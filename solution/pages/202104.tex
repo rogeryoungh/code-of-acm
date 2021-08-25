@@ -1,0 +1,30 @@
+\chapter{2021 年 4 月}
+
+\section{P1314 聪明的质检员}
+
+\paragraph{题目大意}
+
+对于一个区间 $[l_i,r_i]$，计算矿石在这个区间上的检验值 $y_i$：
+\[ y_i=\sum_{j=l_i}^{r_i}[w_j \geqslant W] \times \sum_{j=l_i}^{r_i}[w_j \geqslant W]v_j \]
+记检验结果为 $y=\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。
+
+\paragraph{分析}
+
+注意到 $y(w)$ 是关于 $W$ 的递减函数，对 $w$ 在 $[w_{\min},w_{\max}]$ 上进行二分。
+
+区间求和需要用前缀和优化。
+
+\section{P2261 余数求和}
+
+\paragraph{题目大意}
+
+给出正整数 $n$ 和 $k$，请计算
+\[ G(n, k) = \sum_{i = 1}^n k \bmod i \]
+
+\paragraph{分析}
+
+因为
+\[ k \bmod i = k - i \left\lfloor \frac{k}{i} \right\rfloor \]
+因此有
+\[ G(n,k) = nk - \sum_{i=1}^n i \left\lfloor \frac{k}{i} \right\rfloor  \]
+后面需要整数分块。

@@ -1,0 +1,10 @@
+.vscode/
+
+
+*.pdf
+__latexident*.tex
+*.aux
+*.out
+*.log
+*.synctex.gz
+*.toc
