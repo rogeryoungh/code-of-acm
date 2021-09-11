@@ -20,12 +20,12 @@ void init(int tlim) {
 ## NTT
 
 ```cpp
-void ntt(poly_t &f, int deg = lim, int type = 1) {
+void ntt(poly_t f[], int deg = lim, int type = 1) {
     for (int i = 0; i < deg; ++i) {
         if (i < rev[i]) {
             std::swap(f[i], f[rev[i]]);
         }
-    };
+    }
     for (int h = 2; h <= deg; h <<= 1) {
         ll tg = type == 1 ? 3 : g_inv;
         ll gn = qpow(tg, (mod - 1) / h, mod);
@@ -46,7 +46,7 @@ void ntt(poly_t &f, int deg = lim, int type = 1) {
         f[i] = f[i] * lim_inv % mod;
 }
 
-void intt(poly_t &f, int deg = lim) {
+void intt(poly_t f[], int deg = lim) {
     ntt(f, deg, -1);
 }
 ```
@@ -54,21 +54,21 @@ void intt(poly_t &f, int deg = lim) {
 ## 卷积 | convolution
 
 ```cpp
-void convolution(poly_t &f, poly_t &g) {
+void convolution(poly_t f[], poly_t g[], poly_t ans[], int deg = lim) {
     poly::ntt(f);
     if (f != g)
-        poly::ntt(g);
+        poly::ntt(g, deg);
     for (int i = 0; i <= lim; i++)
-        f[i] = f[i] * g[i];
-    poly::intt(f);
+        ans[i] = f[i] * g[i];
+    poly::intt(ans, deg);
 }
 ```
 
 ## 多项式逆 | poly_inv
 
 ```cpp
-void poly_inv(const poly_t &h, poly_t &ans, int deg = lim) {
-    static poly_t inv_t;
+void poly_inv(const poly_t h[], poly_t ans[], int deg = lim) {
+    static poly_type inv_t;
     std::fill(ans, ans + deg + deg, 0);
     ans[0] = inv(h[0]);
     for (int t = 2; t <= deg; t <<= 1) {
@@ -82,7 +82,49 @@ void poly_inv(const poly_t &h, poly_t &ans, int deg = lim) {
         for (int i = 0; i != t2; ++i)
             ans[i] = ans[i] * momo(2 - ans[i] * inv_t[i]);
         intt(ans, t2);
+
         std::fill(ans + t, ans + t2, 0);
     }
+}
+```
+
+## 多项式微分 | derivative
+
+```cpp
+void derivative(const poly_t f[], poly_t ans[], const int deg = lim) {
+    for (int i = 1; i < deg; ++i)
+        ans[i - 1] = f[i] * i % mod;
+    ans[deg - 1] = 0;
+}
+```
+
+## 多项式积分 | integrate
+
+```cpp
+void integrate(const poly_t h[], poly_t ans[], const int deg = lim) {
+    for (int i = deg - 1; i; --i)
+        ans[i] = h[i - 1] * inv(i) % mod;
+    ans[0] = 0; /* C */
+}
+```
+
+## 多项式 $\ln$ | poly_ln
+
+```cpp
+void poly_ln(const poly_t f[], poly_t ans[], const int deg = lim) {
+    static poly_type ln_t;
+    const int t = deg << 1;
+
+    derivative(f, ln_t, deg);
+    std::fill(ln_t + deg, ln_t + t, 0);
+    poly_inv(f, ans, deg);
+
+    ntt(ln_t, t);
+    ntt(ans, t);
+    for (int i = 0; i != t; ++i)
+        ln_t[i] = ln_t[i] * ans[i] % mod;
+    intt(ln_t, t);
+
+    integrate(ln_t, ans, deg);
 }
 ```

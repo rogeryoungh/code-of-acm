@@ -13,8 +13,9 @@
 
 namespace poly {
 
-void poly_inv(const poly_t &h, poly_t &ans, int deg = lim) {
-    static poly_t inv_t;
+
+void poly_inv(const poly_t h[], poly_t ans[], int deg = lim) {
+    static poly_type inv_t;
     std::fill(ans, ans + deg + deg, 0);
     ans[0] = inv(h[0]);
     for (int t = 2; t <= deg; t <<= 1) {
@@ -28,7 +29,6 @@ void poly_inv(const poly_t &h, poly_t &ans, int deg = lim) {
         for (int i = 0; i != t2; ++i)
             ans[i] = ans[i] * momo(2 - ans[i] * inv_t[i]);
         intt(ans, t2);
-
         std::fill(ans + t, ans + t2, 0);
     }
 }
@@ -36,3 +36,5 @@ void poly_inv(const poly_t &h, poly_t &ans, int deg = lim) {
 } // namespace poly
 
 #endif
+
+

@@ -11,12 +11,12 @@
 
 namespace poly {
 
-void ntt(poly_t &f, int deg = lim, int type = 1) {
+void ntt(poly_t f[], int deg = lim, int type = 1) {
     for (int i = 0; i < deg; ++i) {
         if (i < rev[i]) {
             std::swap(f[i], f[rev[i]]);
         }
-    };
+    }
     for (int h = 2; h <= deg; h <<= 1) {
         ll tg = type == 1 ? 3 : g_inv;
         ll gn = qpow(tg, (mod - 1) / h, mod);
@@ -37,7 +37,7 @@ void ntt(poly_t &f, int deg = lim, int type = 1) {
         f[i] = f[i] * lim_inv % mod;
 }
 
-void intt(poly_t &f, int deg = lim) {
+void intt(poly_t f[], int deg = lim) {
     ntt(f, deg, -1);
 }
 

@@ -20,6 +20,8 @@ int g_inv, g;
 int rev[maxn];
 
 } // namespace poly
-using poly_t = ll[poly::maxn];
+
+using poly_t = ll;
+using poly_type = poly_t[poly::maxn];
 
 #endif
