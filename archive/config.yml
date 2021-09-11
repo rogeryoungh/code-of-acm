@@ -1,0 +1,61 @@
+baseURL: "https://rogeryoungh.github.io/code-of-acm"
+languageCode: "zh"
+title: "Roger Young"
+theme: "paper-mod"
+
+
+menu:
+  main:
+    - name: Log
+      url: tags/log/
+      weight: 1
+    - name: Archive
+      url: archives
+      weight: 5
+    - name: Search
+      url: search/
+      weight: 10
+    - name: Tags
+      url: tags/
+      weight: 10
+        
+
+markup:
+  highlight:
+    noClasses: false
+  goldmark:
+    renderer:
+      unsafe: true
+
+Copyright: © 2021 [Roger Young](/code-of-acm)
+
+params:
+  ShowCodeCopyButtons: true
+  ShowToc: true
+  ShowPostNavLinks: true
+  ShowCopyRight: true
+  gitRepo: https://github.com/rogeryoungh/code-of-acm/#
+  profileMode:
+    enabled: true
+    title: "Roger Young" # optional default will be site title
+    subtitle: "Code of ACM"
+    imageUrl: https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png
+  comments: true
+  valine:
+    enable: true
+    appId: fKamuLtYmV8QSg2WmPMXbsbT-gzGzoHsz
+    appKey: xRU1tcJiz1qbaEMD5aRkPzXk
+    avatar: 'mp'
+    placeholder: '说点什么吧...'
+    visitor: false
+  socialIcons:
+    - name: github
+      url: "https://github.com/rogeryoungh"
+    - name: telegram
+      url: "https://t.me/rogeryoungh"
+    - name: rss
+      url: "index.xml"
+
+
+outputs:
+  home: ["HTML", "RSS", "JSON"]
