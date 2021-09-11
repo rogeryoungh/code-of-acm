@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Codeforces on Roger Young</title><link>https://rogeryoungh.github.io/code-of-acm/tags/codeforces/</link><description>Recent content in Codeforces on Roger Young</description><generator>Hugo -- gohugo.io</generator><language>zh</language><copyright>© 2021 [Roger Young](/code-of-acm)</copyright><lastBuildDate>Mon, 29 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/tags/codeforces/index.xml" rel="self" type="application/rss+xml"/><item><title>CF1494 Educational Round 105 (Rated for Div. 2)</title><link>https://rogeryoungh.github.io/code-of-acm/post/2021-03/cfedu105/</link><pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate><guid>https://rogeryoungh.github.io/code-of-acm/post/2021-03/cfedu105/</guid><description>题目链接：Link 。
+A. ABC String 这么水的题竟然 wa 了 4 发。。
+题目大意 给定一个长 $n$ 的字符串 $a$，仅由 A，B，C 组成，$n$ 为偶数。
+对于仅含 ( 和 ) 的括号序列，当我们能够在其中添加 1 使得其为合法的表达式，则序列合法。
+构造合法的长为 $n$ 的括号序列 $b$，要求在 $a$ 同为 A 的，在 $b$ 中也要相同；B，C 也是如此。
+分析 序列合法的定义即对任意位置，其左侧的 ) 总比 ( 少，且整体左右括号数相等。
+首个字母必为左括号，末尾字母必为右括号。剩下的那个讨论一下即可。
+int main() { ll ttt = rr(); char ss[60]; while (ttt--) { scanf(&amp;#34;%s&amp;#34;, ss + 1); ll len = strlen(ss + 1); if (ss[1] == ss[len]) { printf(&amp;#34;NO\n&amp;#34;); continue; } ll sa[3] = {0, 0, 0}; _fora (i, 1, len) sa[ss[i] - &amp;#39;A&amp;#39;]++; ll sl = ss[1] - &amp;#39;A&amp;#39;, sr = ss[len] - &amp;#39;A&amp;#39;; ll sm = 3ll - sl - sr; int flag = FALSE; sa[0] = sa[1] = sa[2] = 0; if (sa[sl] + sa[sm] == sa[sr]) { _fora (i, 1, len) { sa[ss[i] - &amp;#39;A&amp;#39;]++; flag += (sa[sl] + sa[sm] &amp;lt; sa[sr]); } } else if (sa[sl] == sa[sm] + sa[sr]) { _fora (i, 1, len) { sa[ss[i] - &amp;#39;A&amp;#39;]++; flag += (sa[sl] &amp;lt; sa[sm] + sa[sr]); } } else { printf(&amp;#34;NO\n&amp;#34;); continue; } if (flag) printf(&amp;#34;NO\n&amp;#34;); else printf(&amp;#34;YES\n&amp;#34;); } return 0; } B.</description></item><item><title>CF1384B2 Koa and the Beach</title><link>https://rogeryoungh.github.io/code-of-acm/post/2020-09/cf1384b2/</link><pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate><guid>https://rogeryoungh.github.io/code-of-acm/post/2020-09/cf1384b2/</guid><description>题目大意 海里每一个位置都有一个深度，而且水里随着时间有锯齿状周期为 $2k$ 的潮汐。
+当潮汐与深度之和大于给定值 $l$ 时 Koa 会溺水，游泳、海岸、岛上永远是安全的。
+在任意时间 Koa 可以选择游到 $x+1$ 或停留在 $x$，试问 Koa 是否能够安全的从海岸 $0$ 到达岛上 $n+1$。
+分析 开始的想法是随着时间 DP，更好的解法是贪心。
+若一个位置在水位最高时仍不会溺水，则称这个位置是安全的，并且可以任意选择出发时机。
+即安全位置之间是相互独立的，我们只需判断可达性，尽量到达每一个安全位置。若之后 $2k$ 个位置没有安全位置，必死。
+Koa 的最优决策是在刚退潮时出发，如果能走就尽量往前走，不能走就等，等到涨潮就说明不存在通过方法。
+int main() { int ttt = rr(); while (ttt--) { int n = rr(), k = rr(), l = rr(); int flag = 0; int last = k; _fora (i, 1, n) { int d = rr(); flag += l &amp;lt; d; if (l - d &amp;gt;= k) last = k; else last = min(last - 1, l - d); flag += abs(last) &amp;gt; l - d; } if (flag) printf(&amp;#34;No\n&amp;#34;); else printf(&amp;#34;Yes\n&amp;#34;); } return 0; }</description></item></channel></rss>

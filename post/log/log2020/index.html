@@ -1,0 +1,293 @@
+<!doctype html><html lang=en dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>2020 年刷题日志 | Roger Young</title>
+<meta name=keywords content="Log">
+<meta name=description content="过于简单的题不记录。
+洛谷：更新至：2020.12.31(2020.10)
+CodeForces：更新至：&ndash;.&ndash;
+牛客：更新至：&ndash;.&ndash;
+HDU：更新至：&ndash;.&ndash;
+2020 年 12 月 P5656 二元一次不定方程 (exgcd)
+P4779 单源最短路径（标准版）
+P1629 邮递员送信
+P1359 租用游艇
+P2016 战略游戏
+P3884 二叉树问题
+P3379 最近公共祖先（LCA）
+P2052 道路修建
+P1352 没有上司的舞会
+P3371 单源最短路径（弱化版）
+P3146 248 G
+2020 年 11 月 P1880 石子合并 ==DONE==
+P1636 Einstein 学画画
+P3383 线性筛素数
+P1226 快速幂 || 取余运算
+P3367 并查集
+P4913 二叉树深度
+P4715 淘汰赛
+P2058 海港
+P1106 删数问题
+P1160 队列安排
+P1941 飞扬的小鸟
+P1064 金明的预算方案
+P1833 樱花
+P1541 乌龟棋
+P3842 线段">
+<meta name=author content="rogeryoungh">
+<link rel=canonical href=https://rogeryoungh.github.io/code-of-acm/post/log/log2020/>
+<link crossorigin=anonymous href=/code-of-acm/assets/css/stylesheet.min.51e56ec491ce4ddb9a51265d16c0e4cbd5305ad05fd8d750740f0182ef5ce433.css integrity="sha256-UeVuxJHOTduaUSZdFsDky9UwWtBf2NdQdA8Bgu9c5DM=" rel="preload stylesheet" as=style>
+<link rel=preload href=https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png as=image>
+<script defer crossorigin=anonymous src=/code-of-acm/assets/js/highlight.min.ace83f4b53c98dc53a6abd63c24435a9e8d1b55cc1722d04fcdb9bb9870bf806.js integrity="sha256-rOg/S1PJjcU6ar1jwkQ1qejRtVzBci0E/NubuYcL+AY=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://rogeryoungh.github.io/code-of-acm/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=https://rogeryoungh.github.io/code-of-acm/favicon-16x16.png>
+<link rel=icon type=image/png sizes=32x32 href=https://rogeryoungh.github.io/code-of-acm/favicon-32x32.png>
+<link rel=apple-touch-icon href=https://rogeryoungh.github.io/code-of-acm/apple-touch-icon.png>
+<link rel=mask-icon href=https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<meta name=generator content="Hugo 0.88.1">
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js onload=renderMathInElement(document.body)></script>
+<script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:!0},{left:'$',right:'$',display:!1},{left:'\\(',right:'\\)',display:!1},{left:'\\[',right:'\\]',display:!0}],throwOnError:!1})})</script>
+<meta property="og:title" content="2020 年刷题日志">
+<meta property="og:description" content="过于简单的题不记录。
+洛谷：更新至：2020.12.31(2020.10)
+CodeForces：更新至：&ndash;.&ndash;
+牛客：更新至：&ndash;.&ndash;
+HDU：更新至：&ndash;.&ndash;
+2020 年 12 月 P5656 二元一次不定方程 (exgcd)
+P4779 单源最短路径（标准版）
+P1629 邮递员送信
+P1359 租用游艇
+P2016 战略游戏
+P3884 二叉树问题
+P3379 最近公共祖先（LCA）
+P2052 道路修建
+P1352 没有上司的舞会
+P3371 单源最短路径（弱化版）
+P3146 248 G
+2020 年 11 月 P1880 石子合并 ==DONE==
+P1636 Einstein 学画画
+P3383 线性筛素数
+P1226 快速幂 || 取余运算
+P3367 并查集
+P4913 二叉树深度
+P4715 淘汰赛
+P2058 海港
+P1106 删数问题
+P1160 队列安排
+P1941 飞扬的小鸟
+P1064 金明的预算方案
+P1833 樱花
+P1541 乌龟棋
+P3842 线段">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/log/log2020/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2020-12-31T00:00:00+00:00">
+<meta property="article:modified_time" content="2020-12-31T00:00:00+00:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="2020 年刷题日志">
+<meta name=twitter:description content="过于简单的题不记录。
+洛谷：更新至：2020.12.31(2020.10)
+CodeForces：更新至：&ndash;.&ndash;
+牛客：更新至：&ndash;.&ndash;
+HDU：更新至：&ndash;.&ndash;
+2020 年 12 月 P5656 二元一次不定方程 (exgcd)
+P4779 单源最短路径（标准版）
+P1629 邮递员送信
+P1359 租用游艇
+P2016 战略游戏
+P3884 二叉树问题
+P3379 最近公共祖先（LCA）
+P2052 道路修建
+P1352 没有上司的舞会
+P3371 单源最短路径（弱化版）
+P3146 248 G
+2020 年 11 月 P1880 石子合并 ==DONE==
+P1636 Einstein 学画画
+P3383 线性筛素数
+P1226 快速幂 || 取余运算
+P3367 并查集
+P4913 二叉树深度
+P4715 淘汰赛
+P2058 海港
+P1106 删数问题
+P1160 队列安排
+P1941 飞扬的小鸟
+P1064 金明的预算方案
+P1833 樱花
+P1541 乌龟棋
+P3842 线段">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://rogeryoungh.github.io/code-of-acm/post/"},{"@type":"ListItem","position":3,"name":"2020 年刷题日志","item":"https://rogeryoungh.github.io/code-of-acm/post/log/log2020/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"2020 年刷题日志","name":"2020 年刷题日志","description":"过于简单的题不记录。\n洛谷：更新至：2020.12.31(2020.10)\nCodeForces：更新至：\u0026ndash;.\u0026ndash;\n牛客：更新至：\u0026ndash;.\u0026ndash;\nHDU：更新至：\u0026ndash;.\u0026ndash;\n2020 年 12 月 P5656 二元一次不定方程 (exgcd)\nP4779 单源最短路径（标准版）\nP1629 邮递员送信\nP1359 租用游艇\nP2016 战略游戏\nP3884 二叉树问题\nP3379 最近公共祖先（LCA）\nP2052 道路修建\nP1352 没有上司的舞会\nP3371 单源最短路径（弱化版）\nP3146 248 G\n2020 年 11 月 P1880 石子合并 ==DONE==\nP1636 Einstein 学画画\nP3383 线性筛素数\nP1226 快速幂 || 取余运算\nP3367 并查集\nP4913 二叉树深度\nP4715 淘汰赛\nP2058 海港\nP1106 删数问题\nP1160 队列安排\nP1941 飞扬的小鸟\nP1064 金明的预算方案\nP1833 樱花\nP1541 乌龟棋\nP3842 线段","keywords":["Log"],"articleBody":"过于简单的题不记录。\n洛谷：更新至：2020.12.31(2020.10)\nCodeForces：更新至：–.–\n牛客：更新至：–.–\nHDU：更新至：–.–\n2020 年 12 月 P5656 二元一次不定方程 (exgcd)\nP4779 单源最短路径（标准版）\nP1629 邮递员送信\nP1359 租用游艇\nP2016 战略游戏\nP3884 二叉树问题\nP3379 最近公共祖先（LCA）\nP2052 道路修建\nP1352 没有上司的舞会\nP3371 单源最短路径（弱化版）\nP3146 248 G\n2020 年 11 月 P1880 石子合并 ==DONE==\nP1636 Einstein 学画画\nP3383 线性筛素数\nP1226 快速幂 || 取余运算\nP3367 并查集\nP4913 二叉树深度\nP4715 淘汰赛\nP2058 海港\nP1106 删数问题\nP1160 队列安排\nP1941 飞扬的小鸟\nP1064 金明的预算方案\nP1833 樱花\nP1541 乌龟棋\nP3842 线段\n2020 年 10 月 P1077 摆花 ==DONE==\nP4995 跳跳！ ==DONE==\nP1090 合并果子 ==DONE==\nP1990 覆盖墙壁 ==DONE==\nP1928 外星密码 ==DONE==\nP1923 求第 $k$ 小的数 ==DONE==\nP5143 攀爬者 ==X==\nP1095 守望者的逃离 ==DONE==\n2020 年 09 月 开始 ACM。不记录 HDU 150 的基础题。\nP1042 乒乓球 ==X==\nP2181 对角线 ==DONE==\nP1004 方格取数 ==DONE==\nCF1384B2 Koa and the Beach ==DONE==\n","wordCount":"125","inLanguage":"en","datePublished":"2020-12-31T00:00:00Z","dateModified":"2020-12-31T00:00:00Z","author":{"@type":"Person","name":"rogeryoungh"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://rogeryoungh.github.io/code-of-acm/post/log/log2020/"},"publisher":{"@type":"Organization","name":"Roger Young","logo":{"@type":"ImageObject","url":"https://rogeryoungh.github.io/code-of-acm/favicon.ico"}}}</script>
+</head>
+<body id=top>
+<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+<noscript>
+<style type=text/css>#theme-toggle,.top-link{display:none}</style>
+<style>@media(prefers-color-scheme:dark){:root{--theme:#1d1e20;--entry:#2e2e33;--primary:rgba(255, 255, 255, 0.84);--secondary:rgba(255, 255, 255, 0.56);--tertiary:rgba(255, 255, 255, 0.16);--content:rgba(255, 255, 255, 0.74);--hljs-bg:#2e2e33;--code-bg:#37383e;--border:#333}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+</noscript>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://rogeryoungh.github.io/code-of-acm accesskey=h title="Roger Young (Alt + H)">Roger Young</a>
+<span class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+</span>
+</div>
+<ul id=menu>
+<li>
+<a href=https://rogeryoungh.github.io/code-of-acm/tags/log/ title=Log>
+<span>Log</span>
+</a>
+</li>
+<li>
+<a href=https://rogeryoungh.github.io/code-of-acm/archives title=Archive>
+<span>Archive</span>
+</a>
+</li>
+<li>
+<a href=https://rogeryoungh.github.io/code-of-acm/search/ title="Search (Alt + /)" accesskey=/>
+<span>Search</span>
+</a>
+</li>
+<li>
+<a href=https://rogeryoungh.github.io/code-of-acm/tags/ title=Tags>
+<span>Tags</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<h1 class=post-title>
+2020 年刷题日志
+</h1>
+<div class=post-meta>December 31, 2020&nbsp;·&nbsp;rogeryoungh
+</div>
+</header> <div class=toc>
+<details>
+<summary accesskey=c title="(Alt + C)">
+<div class=details>Table of Contents</div>
+</summary>
+<div class=inner><ul>
+<li>
+<a href=#2020-%e5%b9%b4-12-%e6%9c%88 aria-label="2020 年 12 月">2020 年 12 月</a></li>
+<li>
+<a href=#2020-%e5%b9%b4-11-%e6%9c%88 aria-label="2020 年 11 月">2020 年 11 月</a></li>
+<li>
+<a href=#2020-%e5%b9%b4-10-%e6%9c%88 aria-label="2020 年 10 月">2020 年 10 月</a><ul>
+<li>
+<a href=#2020-%e5%b9%b4-09-%e6%9c%88 aria-label="2020 年 09 月">2020 年 09 月</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<div class=post-content><p>过于简单的题不记录。</p>
+<p>洛谷：更新至：2020.12.31(2020.10)</p>
+<p>CodeForces：更新至：&ndash;.&ndash;</p>
+<p>牛客：更新至：&ndash;.&ndash;</p>
+<p>HDU：更新至：&ndash;.&ndash;</p>
+<h2 id=2020-年-12-月>2020 年 12 月<a hidden class=anchor aria-hidden=true href=#2020-年-12-月>#</a></h2>
+<p>P5656 二元一次不定方程 (exgcd)</p>
+<p>P4779 单源最短路径（标准版）</p>
+<p>P1629 邮递员送信</p>
+<p>P1359 租用游艇</p>
+<p>P2016 战略游戏</p>
+<p>P3884 二叉树问题</p>
+<p>P3379 最近公共祖先（LCA）</p>
+<p>P2052 道路修建</p>
+<p>P1352 没有上司的舞会</p>
+<p>P3371 单源最短路径（弱化版）</p>
+<p>P3146 248 G</p>
+<h2 id=2020-年-11-月>2020 年 11 月<a hidden class=anchor aria-hidden=true href=#2020-年-11-月>#</a></h2>
+<p><a href=../../2020-11/p1880>P1880 石子合并</a> ==DONE==</p>
+<p>P1636 Einstein 学画画</p>
+<p>P3383 线性筛素数</p>
+<p>P1226 快速幂 || 取余运算</p>
+<p>P3367 并查集</p>
+<p>P4913 二叉树深度</p>
+<p>P4715 淘汰赛</p>
+<p>P2058 海港</p>
+<p>P1106 删数问题</p>
+<p>P1160 队列安排</p>
+<p>P1941 飞扬的小鸟</p>
+<p>P1064 金明的预算方案</p>
+<p>P1833 樱花</p>
+<p>P1541 乌龟棋</p>
+<p>P3842 线段</p>
+<h2 id=2020-年-10-月>2020 年 10 月<a hidden class=anchor aria-hidden=true href=#2020-年-10-月>#</a></h2>
+<p><a href=../../2020-10/p1077>P1077 摆花</a> ==DONE==</p>
+<p><a href=../../2020-10/p4995>P4995 跳跳！</a> ==DONE==</p>
+<p><a href=../../2020-10/p1090>P1090 合并果子</a> ==DONE==</p>
+<p><a href=../../2020-10/p1990>P1990 覆盖墙壁</a> ==DONE==</p>
+<p><a href=../../2020-10/p1928>P1928 外星密码</a> ==DONE==</p>
+<p><a href=../../2020-10/p1923>P1923 求第 $k$ 小的数</a> ==DONE==</p>
+<p><a href=../../2020-10/p5143>P5143 攀爬者</a> ==X==</p>
+<p><a href=../../2020-10/p1095>P1095 守望者的逃离</a> ==DONE==</p>
+<h3 id=2020-年-09-月>2020 年 09 月<a hidden class=anchor aria-hidden=true href=#2020-年-09-月>#</a></h3>
+<p>开始 ACM。不记录 HDU 150 的基础题。</p>
+<p><a href=../../2020-09/p1042>P1042 乒乓球</a> ==X==</p>
+<p><a href=../../2020-09/p2181>P2181 对角线</a> ==DONE==</p>
+<p><a href=../../2020-09/p1004>P1004 方格取数</a> ==DONE==</p>
+<p><a href=../../2020-09/cf1384b2>CF1384B2 Koa and the Beach</a> ==DONE==</p>
+</div>
+<footer class=post-footer>
+<ul class=post-tags>
+<li><a href=https://rogeryoungh.github.io/code-of-acm/tags/log/>Log</a></li>
+</ul>
+<nav class=paginav>
+<a class=prev href=https://rogeryoungh.github.io/code-of-acm/post/2021-03/p2678/>
+<span class=title>« Prev Page</span>
+<br>
+<span>P2678 跳石头</span>
+</a>
+<a class=next href=https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1880/>
+<span class=title>Next Page »</span>
+<br>
+<span>P1880 石子合并</span>
+</a>
+</nav>
+<blockquote>
+<p class=copyright-item>
+本文作者： rogeryoungh。
+许可协议：<a href=https://creativecommons.org/licenses/by-sa/4.0/deed.zh target=_blank>CC BY-SA 4.0</a>。
+转载请署名！
+</p>
+<p class=copyright-item>
+撰写时间：2020-12-31，
+<a href=https://github.com/rogeryoungh/code-of-acm/#/commits/main/content/post/log/log2020.md target=_blank>更新历史</a>。
+</p>
+</blockquote>
+</footer><div id=vcomments></div>
+<script src=//unpkg.com/valine/dist/Valine.min.js></script>
+<script type=text/javascript>new Valine({el:'#vcomments',appId:'fKamuLtYmV8QSg2WmPMXbsbT-gzGzoHsz',appKey:'xRU1tcJiz1qbaEMD5aRkPzXk',avatar:'mp',placeholder:'说点什么吧...',visitor:'false'})</script>
+</article>
+</main>
+<footer class=footer>
+<span>© 2021 <a href=/code-of-acm>Roger Young</a></span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+</span>
+</footer>
+<a href=#top id=gototop aria-label="go to top" title="Go to Top (Alt + G)">
+<button class=top-link id=top-link type=button accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</button>
+</a>
+<script>let menu=document.getElementById('menu');menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+<script>document.querySelectorAll('pre > code').forEach(b=>{const c=b.parentNode.parentNode,a=document.createElement('button');a.classList.add('copy-code'),a.innerText='copy';function d(){a.innerText='copied!',setTimeout(()=>{a.innerText='copy'},2e3)}a.addEventListener('click',e=>{if('clipboard'in navigator){navigator.clipboard.writeText(b.textContent),d();return}const a=document.createRange();a.selectNodeContents(b);const c=window.getSelection();c.removeAllRanges(),c.addRange(a);try{document.execCommand('copy'),d()}catch(a){}c.removeRange(a)}),c.classList.contains("highlight")?c.appendChild(a):c.parentNode.firstChild==c||(b.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?b.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(a):b.parentNode.appendChild(a))})</script></body>
+</html>
