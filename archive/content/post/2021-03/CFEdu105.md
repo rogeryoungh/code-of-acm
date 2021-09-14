@@ -29,9 +29,10 @@ tags:
 首个字母必为左括号，末尾字母必为右括号。剩下的那个讨论一下即可。
 
 ```cpp
+char ss[60];
+
 int main() {
     ll ttt = rr();
-    char ss[60];
     while (ttt--) {
         scanf("%s", ss + 1);
         ll len = strlen(ss + 1);
@@ -40,21 +41,21 @@ int main() {
             continue;
         }
         ll sa[3] = {0, 0, 0};
-        _fora (i, 1, len)
+        for (ll i = 1; i <= len; i++)
             sa[ss[i] - 'A']++;
         ll sl = ss[1] - 'A', sr = ss[len] - 'A';
         ll sm = 3ll - sl - sr;
-        int flag = FALSE;
+        bool flag = false;
         sa[0] = sa[1] = sa[2] = 0;
         if (sa[sl] + sa[sm] == sa[sr]) {
-            _fora (i, 1, len) {
+            for (ll i = 1; i <= len; i++) {
                 sa[ss[i] - 'A']++;
-                flag += (sa[sl] + sa[sm] < sa[sr]);
+                flag = flag || sa[sl] + sa[sm] < sa[sr];
             }
         } else if (sa[sl] == sa[sm] + sa[sr]) {
-            _fora (i, 1, len) {
+            for (ll i = 1; i <= len; i++) {
                 sa[ss[i] - 'A']++;
-                flag += (sa[sl] < sa[sm] + sa[sr]);
+                flag = flag || sa[sl] < sa[sm] + sa[sr];
             }
         } else {
             printf("NO\n");
@@ -83,26 +84,27 @@ int main() {
 
 ```cpp
 ll ff[10], aa[10];
+
 int main() {
     ll ttt = rr();
     while (ttt--) {
         ll n = rr();
-        _fora (i, 0, 3)
+        for (ll i = 0; i <= 3; i++)
             aa[i] = rr();
-        int flag = 0;
-        _fora (k, 0, 15) {
+        bool flag = false;
+        for (ll k = 0; k <= 15; k++) {
             memset(ff, 0, sizeof(ff));
             int f = 1;
-            _fora (j, 0, 3) {
+            for (ll j = 0; j <= 3; j++) {
                 ff[j] = ((k & f) > 0);
                 f = f << 1;
             }
-            f = 0;
-            _fora (j, 0, 3) {
+            bool tflag = false;
+            for (ll j = 0; j <= 3; j++) {
                 ll u = aa[j] - ff[j] - ff[(j + 1) % 4];
-                f += (u < 0) + (u > n - 2);
+                tflag = tflag || u < 0 || u > n - 2;
             }
-            flag += !f;
+            flag = flag || !tflag;
         }
         if (flag)
             printf("YES\n");
@@ -136,68 +138,70 @@ int main() {
 ~~有些地方可以用二分？但好像没有变快啊~~
 
 ```cpp
-ll aa[200086];
-ll bb[200086];
+const ll inf = 0x3f3f3f3f3f3f3f3f;
+ll aa[200086], bb[200086];
 
 int main() {
     ll ttt = rr();
-    while(ttt--) {
+    while (ttt--) {
         ll n = rr();
         ll m = rr();
         ll a0 = 0, b0 = 0;
-        _fora(i,1,n) aa[i] = rr();
-        _fora(i,1,m) bb[i] = rr();
-        a0 = lower_bound(aa+1,aa+n+1,0) - aa-1;
-        b0 = lower_bound(bb+1,bb+m+1,0) - bb-1;
-        aa[0] = -_inf; bb[0] = -_inf;
-        aa[n+1] = _inf; bb[m+1] = _inf;
-        ll ra1 = a0+1, rb1 = b0+1;
-        ll sum = 0,ans = 0, len = 0;
-        ll sl,sr;
-        sl = sr = rb1;
-        while(ra1<=n || rb1<=m) {
-            if(aa[ra1]<bb[rb1]) {
-                len++; ra1++;
+        for (ll i = 1; i <= n; i++)
+            aa[i] = rr();
+        for (ll i = 1; i <= m; i++)
+            bb[i] = rr();
+        a0 = lower_bound(aa + 1, aa + n + 1, 0) - aa - 1;
+        b0 = lower_bound(bb + 1, bb + m + 1, 0) - bb - 1;
+        aa[0] = bb[0] = -inf;
+        aa[n + 1] = bb[m + 1] = inf;
+        ll ra1 = a0 + 1, rb1 = b0 + 1;
+        ll sum = 0, ans = 0, len = 0;
+        ll sl = rb1, sr = rb1;
+        while (ra1 <= n || rb1 <= m) {
+            if (aa[ra1] < bb[rb1]) {
+                len++, ra1++;
                 continue;
             }
             sr++;
-            ll tsum = sr-sl;
-            if(aa[ra1]>bb[rb1]) {
-                while(bb[sl]<=bb[rb1]-len && tsum>0)
+            ll tsum = sr - sl;
+            if (aa[ra1] > bb[rb1]) {
+                while (bb[sl] <= bb[rb1] - len && tsum > 0)
                     sl++, tsum--;
             } else {
                 ans++;
-                while(bb[sl]<=bb[rb1]-len-1 && tsum>0)
+                while (bb[sl] <= bb[rb1] - len - 1 && tsum > 0)
                     sl++, tsum--;
-                len++; ra1++;
+                len++, ra1++;
             }
             rb1++;
-            ans = max(ans,tsum);
+            ans = max(ans, tsum);
         }
         sum += ans;
-        ra1 = a0; sl = sr = rb1 = b0;
-        len = 0; ans = 0;
-        while(ra1>=1 || rb1>=1) {
-            if(aa[ra1]>bb[rb1]) {
-                len++; ra1--;
+        ra1 = a0;
+        sl = sr = rb1 = b0;
+        ans = len = 0;
+        while (ra1 >= 1 || rb1 >= 1) {
+            if (aa[ra1] > bb[rb1]) {
+                len++, ra1--;
                 continue;
             }
             sl--;
-            ll tsum = sr-sl;
-            if(aa[ra1]<bb[rb1]) {
-                while(bb[sr]>=bb[rb1]+len && tsum>0)
+            ll tsum = sr - sl;
+            if (aa[ra1] < bb[rb1]) {
+                while (bb[sr] >= bb[rb1] + len && tsum > 0)
                     sr--, tsum--;
             } else {
                 ans++;
-                while(bb[sr]>=bb[rb1]+len+1 && tsum>0)
+                while (bb[sr] >= bb[rb1] + len + 1 && tsum > 0)
                     sr--, tsum--;
-                len++; ra1--;
+                len++, ra1--;
             }
             rb1--;
-            ans = max(ans,tsum);
+            ans = max(ans, tsum);
         }
         sum += ans;
-        printf("%lld\n",sum);
+        printf("%lld\n", sum);
     }
     return 0;
 }
