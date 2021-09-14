@@ -14,7 +14,7 @@
     </style>
     <body>
         <script>
-            var localpath = "http://localhost:8080/0/";
+            var base_path = "https://cdn.jsdelivr.net/gh/rogeryoungh/code-of-acm@main/template/";
 
             var ans = "";
 
@@ -39,7 +39,7 @@
                     return;
                 }
                 let element = substr[index];
-                let path = localpath + element.substring(1, element.length - 1);
+                let path = base_path + element.substring(1, element.length - 1);
                 console.log("ask " + path);
                 fetch(path)
                     .then(response => response.text())
