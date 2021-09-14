@@ -4,19 +4,19 @@
 #ifndef RYLOCAL
 #include "__base.hpp"
 
-#include "fft.cpp"
+#include "fft.hpp"
 #endif
 
 namespace poly {
 
-void convolution(poly_t &f, poly_t &g, int deg = lim) {
+void convolution(poly_t f[], poly_t g[], poly_t ans[], int deg = lim) {
 
     poly::fft(f, deg);
     if (f != g)
         poly::fft(g, deg);
 
     for (int i = 0; i <= lim; i++)
-        f[i] = f[i] * g[i];
+        ans[i] = f[i] * g[i];
 
     poly::ifft(f, deg);
 }

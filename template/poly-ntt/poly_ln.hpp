@@ -4,14 +4,14 @@
 #ifndef RYLOCAL
 #include "__base.hpp"
 
-#include "../basic/qpow.cpp"
-#include "../basic/inv.cpp"
-#include "init.cpp"
-#include "ntt.cpp"
-#include "poly_inv.cpp"
-#include "convolution.cpp"
-#include "poly_derivative.cpp"
-#include "poly_integrate.cpp"
+#include "../basic/qpow.hpp"
+#include "../basic/inv.hpp"
+#include "init.hpp"
+#include "ntt.hpp"
+#include "poly_inv.hpp"
+#include "convolution.hpp"
+#include "poly_derivative.hpp"
+#include "poly_integrate.hpp"
 #endif
 
 namespace poly {

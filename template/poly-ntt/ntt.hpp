@@ -4,9 +4,9 @@
 #ifndef RYLOCAL
 #include "__base.hpp"
 
-#include "../basic/mo.cpp"
-#include "../basic/qpow.cpp"
-#include "../basic/inv.cpp"
+#include "../basic/mo.hpp"
+#include "../basic/qpow.hpp"
+#include "../basic/inv.hpp"
 #endif
 
 namespace poly {
@@ -24,7 +24,7 @@ void ntt(poly_t f[], int deg = lim, int type = 1) {
             ll g = 1;
             for (int k = j; k < j + h / 2; k++) {
                 ll f1 = f[k], f2 = g * f[k + h / 2] % mod;
-                f[k] = mo(f1 + f2);
+                f[k] = (f1 + f2) % mod;
                 f[k + h / 2] = mo(f1 - f2);
                 g = g * gn % mod;
             }

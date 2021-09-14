@@ -4,8 +4,8 @@
 #ifndef RYLOCAL
 #include "__base.hpp"
 
-#include "../basic/qpow.cpp"
-#include "../basic/inv.cpp"
+#include "../basic/qpow.hpp"
+#include "../basic/inv.hpp"
 #endif
 
 namespace poly {

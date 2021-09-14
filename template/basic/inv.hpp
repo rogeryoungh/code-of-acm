@@ -4,7 +4,7 @@
 #ifndef RYLOCAL
 #include "__base.hpp"
 
-#include "qpow.cpp"
+#include "qpow.hpp"
 #endif
 
 #ifdef ACM_MOD

@@ -4,7 +4,7 @@
 #ifndef RYLOCAL
 #include "__base.hpp"
 
-#include "ntt.cpp"
+#include "ntt.hpp"
 #endif
 
 namespace poly {

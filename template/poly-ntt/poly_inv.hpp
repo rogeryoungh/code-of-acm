@@ -4,11 +4,11 @@
 #ifndef RYLOCAL
 #include "__base.hpp"
 
-#include "../basic/mo.cpp"
-#include "../basic/qpow.cpp"
-#include "../basic/inv.cpp"
-#include "init.cpp"
-#include "ntt.cpp"
+#include "../basic/mo.hpp"
+#include "../basic/qpow.hpp"
+#include "../basic/inv.hpp"
+#include "init.hpp"
+#include "ntt.hpp"
 #endif
 
 namespace poly {

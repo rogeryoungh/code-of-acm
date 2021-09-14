@@ -7,7 +7,7 @@ using ld = long double;
 
 #include <iostream>
 #include <cmath>
-#include "../basic/complex.cpp"
+#include "../basic/complex.hpp"
 
 namespace poly {
 const int maxn = 1 << 22;
@@ -17,7 +17,7 @@ int g_inv, g;
 int rev[maxn];
 
 } // namespace poly
-using Comp = Complex<double>;
-using poly_t = Comp[poly::maxn];
+using poly_t = Complex<double>;
+using poly_type = poly_t[poly::maxn];
 
 #endif
