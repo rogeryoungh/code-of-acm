@@ -1,0 +1,30 @@
+<!doctype html><html>
+<head>
+<meta charset=utf-8>
+<title>模板 Generate</title>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css rel=stylesheet>
+<script src=https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js></script>
+</head>
+<style>textarea{font-family:monospace,Consolas,Courier,monospace}</style>
+<body>
+<script>var base_path="https://cdn.jsdelivr.net/gh/rogeryoungh/code-of-acm@main/template/",ans="",reg=/(?!=#include(\s*))\"template(\S*)\"/g;function generate(){document.getElementById("outputs").value="Waiting...";let b=document.getElementById("inputs").value;var a=b.match(reg);console.log(a),ans="// TEMPLATE BEGIN\n// GENERATE FROM https://github.com/rogeryoungh/code-of-acm\n#pragma region\n",getFile(a,0)}function getFile(a,b){if(a==null||b>=a.length){ans+="\n\n#pragma endregion\n// TEMPLATE END",document.getElementById("outputs").value=ans;return}let c=a[b],d=base_path+c.substring(1,c.length-1);console.log("ask "+d),fetch(d).then(a=>a.text()).then(c=>{console.log(c);let d=c.indexOf("#ifndef RYLOCAL"),e=c.indexOf("#endif");console.log("start = "+d+" end = "+e);let f=c.substring(0,d-1)+c.substring(e+"#endif".length+1,c.length);console.log(f),ans+=f+"\n",getFile(a,b+1)})}</script>
+<main class=flex-shrink-0>
+<div class=container>
+<h1 class="mt-5 text-center">ACM 模板生成</h1>
+<div class="row align-items-start g-5">
+<div class=col-md>
+<h4 class=mt-5>头文件</h4>
+<textarea class=form-control placeholder="#include .h" rows=15 id=inputs></textarea>
+</div>
+<div class=col-md>
+<h4 class=mt-5>生成结果</h4>
+<textarea class=form-control placeholder=code... rows=15 id=outputs></textarea>
+</div>
+</div>
+<div class="mt-5 text-center">
+<button type=button class="btn btn-primary" onclick=generate()>Primary</button>
+</div>
+</div>
+</main>
+</body>
+</html>

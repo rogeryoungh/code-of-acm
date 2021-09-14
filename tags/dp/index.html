@@ -81,7 +81,7 @@
 $$ dp(i,j) = \max_{i \leqslant k \leqslant j}(dp(i,k) + dp(k+1,j) + s(i,j)) $$ 其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。
 然而不能通过先 $i$ 再 $j$ 再 $k$ 的循环来递推，运算顺序值得注意。
 细节：前缀和、循环开两倍。
-int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(); _fora (i, 1, n) f[i + n] = f[i] = rr(); _fora (i, 1, n * 2) s[i] = s[i - 1] + f[i]; _fora (len, 2, n) { _fora (i, 1, 2 * n - len + 1) { int j = i + len - 1; int mmax = 0, mmin = 0x3f3f3f3f; int ss = s[j] - s[i - 1]; _fora (k, i, j - 1) { mmax = max(mmax, dmax[i][k] + dmax[k + 1][j] + ss); mmin = min(mmin, dmin[i][k] + dmin[k + 1][j] + ss); } dmax[i][j] = mmax; dmin[i][j] = mmin; } } int rst = 0x3f3f3f3f; _fora (p, 0, n - 1) rst = min(rst, dmin[p + 1][p + n]); printf("%d\n", rst); rst = 0; _fora (p, 0, n - 1) rst = max(rst, dmax[p + 1][p + n]); printf("%d\n", rst); return 0; } </p>
+int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(); for (ll i = 1; i &lt;= n; i++) f[i + n] = f[i] = rr(); for (ll i = 1; i &lt;= n * 2; i++) s[i] = s[i - 1] + f[i]; for (ll len = 2; len &lt;= n; len++) { for (ll i = 1; i &lt;= 2 * n - len + 1; i++) { int j = i + len - 1; int tmax = 0, tmin = 0x3f3f3f3f; int ss = s[j] - s[i - 1]; for (ll k = i; k &lt;= j - 1; k++) { tmax = max(tmax, dmax[i][k] + dmax[k + 1][j] + ss); tmin = min(tmin, dmin[i][k] + dmin[k + 1][j] + ss); } dmax[i][j] = tmax; dmin[i][j] = tmin; } } int mmin = 0x3f3f3f3f, mmax = 0; for (ll p = 0; p &lt;= n - 1; p++) { mmin = min(mmin, dmin[p + 1][p + n]); mmax = max(mmax, dmax[p + 1][p + n]); } printf("%d\n%d\n", mmin, mmax); return 0; } </p>
 </section>
 <footer class=entry-footer>November 30, 2020&nbsp;·&nbsp;rogeryoungh</footer>
 <a class=entry-link aria-label="post link to P1880 石子合并" href=https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1880/></a>
@@ -94,7 +94,7 @@ int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(
 <p>题目大意 要从 $n$ 种花中挑出 $m$ 盆展览，其中第 $i$ 种花不得多于 $a_i$ 种。求有几种选法。
 分析 考虑动态规划，记状态 $dp[i,j]$ 为摆完前 $i$ 种花，共 $j$ 盆时的方案数。容易得到递推式
 $$ dp[i,j] = \sum_{k = j - \min(a_i, j)}^j dp[i-1,k] $$ 边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。
-const ll mod = 1e6 + 7; ll dp[110], aa[110], sum[110]; int main() { ll n = rr(), m = rr(); sum[0] = dp[0] = 1; _fora (i, 1, n) aa[i] = rr(); _fora (i, 1, n) { _fora (j, 1, m) sum[j] = (sum[j - 1] + dp[j]) % mod; _forz (j, m, 0) { int t = j - 1 - min(aa[i], j); if (t > 0) dp[j] = (dp[j] + sum[j - 1] - sum[t]) % mod; } } printf("%lld\n", (dp[m] + mod) % mod); return 0; } </p>
+const ll mod = 1e6 + 7; ll dp[110], aa[110], sum[110]; int main() { ll n = rr(), m = rr(); sum[0] = dp[0] = 1; for (ll i = 1; i &lt;= n; i++) aa[i] = rr(); for (ll i = 1; i &lt;= n; i++) { for (ll j = 1; j &lt;= m; j++) sum[j] = (sum[j - 1] + dp[j]) % mod; for (ll j = m; j >= 0; j--) { int t = j - 1 - min(aa[i], j); if (t > 0) dp[j] = (dp[j] + sum[j - 1] - sum[t]) % mod; } } printf("%lld\n", (dp[m] + mod) % mod); return 0; } </p>
 </section>
 <footer class=entry-footer>October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
 <a class=entry-link aria-label="post link to P1077 摆花" href=https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1077/></a>

@@ -77,7 +77,7 @@
 <section class=entry-content>
 <p>题目大意 可以合并两堆果子成一堆新果子，消耗两堆果子数目之和的体力。给定 $n$ 堆果子的数目 $a_i$，求体力耗费最小的方案。
 分析 很容易猜到贪心结论，不断选取两个最小的堆进行合并。
-priority_queue&lt;int, vector&lt;int>, greater&lt;int> > q; int main() { int n = rr(); _fora (i, 1, n) { int t = rr() q.push(); } int sum = 0; while (q.size() >= 2) { int x = q.top(); q.pop(); int y = q.top(); q.pop(); sum += x + y; q.push(x + y); } printf("%d\n", sum); return 0; } 本质上是证明 Huffman 树的构造的正确性，有点复杂。</p>
+priority_queue&lt;int, vector&lt;int>, greater&lt;int> > q; int main() { int n = rr(); for (ll i = 1; i &lt;= n; i++) { int t = rr(); q.push(t); } int sum = 0; while (q.size() >= 2) { int x = q.top(); q.pop(); int y = q.top(); q.pop(); sum += x + y; q.push(x + y); } printf("%d\n", sum); return 0; } 本质上是证明 Huffman 树的构造的正确性，有点复杂。</p>
 </section>
 <footer class=entry-footer>October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
 <a class=entry-link aria-label="post link to P1090 合并果子" href=https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1090/></a>
@@ -92,7 +92,8 @@ priority_queue&lt;int, vector&lt;int>, greater&lt;int> > q; int main() { int n =
 考虑证明结论，设 $h_i$ 是将要跳的序列，展开求和式
 $$ S = \sum_{k=1}^{n-1}(h_k-h_{k+1})^2 = \sum_{k=1}^nh_k^2 - 2\sum_{k=1}^{n-1}h_kh_{k+1} $$ 注意到平方和为一个定值，重点在后半式。记 $H_k = h_{k+1}$，有
 $$ \sum_{k=1}^{n-1}h_kH_k $$ 利用高中时学的排序不等式，有
-$$ \text{反序和} \leqslant \text{乱序和} \leqslant \text{顺序和} $$ 于是有反序最小。</p>
+$$ \text{反序和} \leqslant \text{乱序和} \leqslant \text{顺序和} $$ 于是有反序最小。双指针维护即可。
+ll nn[310]; int main() { ll n = rr(); for (ll i = 1; i &lt;= n; i++) nn[i] = rr(); sort(nn + 1, nn + n + 1); ll l = 0, r = n, sum = 0; while (l &lt; r) { ll t1 = nn[l] - nn[r], t2 = nn[l + 1] - nn[r]; sum += t1 * t1 + t2 * t2; l++, r--; } printf("%lld\n", sum); return 0; } </p>
 </section>
 <footer class=entry-footer>October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
 <a class=entry-link aria-label="post link to P4995 跳跳！" href=https://rogeryoungh.github.io/code-of-acm/post/2020-10/p4995/></a>
@@ -105,7 +106,7 @@ $$ \text{反序和} \leqslant \text{乱序和} \leqslant \text{顺序和} $$ 于
 <p>P1095 守望者的逃离 题目大意 守望者的可以在一秒逃出 $17 {\rm m}$，或者消耗 $10$ 点魔法值闪现 $60 {\rm m}$。原地休息时每秒回复 $4$ 点魔法值。
 守望者开始有 $M$ 点魔法，需要在 $T$ 秒内逃离距离 $S$。若能逃离则求最短逃离时间，否则求最远距离。
 分析 设 $s_1$为一直走路，$s_2$ 为一直闪现恢复。当 $s_2$ 快了就把 $s_1$ 更新为 $s_2$。
-int main() { int m, s, t; scanf("%d%d%d", &m, &s, &t); int time = t; int s1, s2; s1 = s2 = 0; while (time > 0 && s1 &lt; s) { s1 += 17; if (m >= 10) { m -= 10; s2 += 60; } else { m += 4; } s1 = max(s1, s2); time--; } if (s1 &lt; s) printf("No\n%d\n", s1); else printf("Yes\n%d\n", t - time); return 0; } </p>
+int main() { int m = rr(), s = rr(), t = rr(); int time = t, s1 = 0, s2 = 0; while (time > 0 && s1 &lt; s) { s1 += 17; if (m >= 10) m -= 10, s2 += 60; else m += 4; s1 = max(s1, s2); time--; } if (s1 &lt; s) printf("No\n%d\n", s1); else printf("Yes\n%d\n", t - time); return 0; } </p>
 </section>
 <footer class=entry-footer>October 9, 2020&nbsp;·&nbsp;rogeryoungh</footer>
 <a class=entry-link aria-label="post link to P1095 守望者的逃离" href=https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1095/></a>
@@ -122,7 +123,7 @@ int main() { int m, s, t; scanf("%d%d%d", &m, &s, &t); int time = t; int s1, s2;
 若一个位置在水位最高时仍不会溺水，则称这个位置是安全的，并且可以任意选择出发时机。
 即安全位置之间是相互独立的，我们只需判断可达性，尽量到达每一个安全位置。若之后 $2k$ 个位置没有安全位置，必死。
 Koa 的最优决策是在刚退潮时出发，如果能走就尽量往前走，不能走就等，等到涨潮就说明不存在通过方法。
-int main() { int ttt = rr(); while (ttt--) { int n = rr(), k = rr(), l = rr(); int flag = 0; int last = k; _fora (i, 1, n) { int d = rr(); flag += l &lt; d; if (l - d >= k) last = k; else last = min(last - 1, l - d); flag += abs(last) > l - d; } if (flag) printf("No\n"); else printf("Yes\n"); } return 0; } </p>
+int main() { int ttt = rr(); while (ttt--) { int n = rr(), k = rr(), l = rr(); int flag = 0; int last = k; for (ll i = 1; i &lt;= n; i++) { int d = rr(); flag += l &lt; d; if (l - d >= k) last = k; else last = min(last - 1, l - d); flag += abs(last) > l - d; } if (flag) printf("No\n"); else printf("Yes\n"); } return 0; } </p>
 </section>
 <footer class=entry-footer>September 20, 2020&nbsp;·&nbsp;rogeryoungh</footer>
 <a class=entry-link aria-label="post link to CF1384B2 Koa and the Beach" href=https://rogeryoungh.github.io/code-of-acm/post/2020-09/cf1384b2/></a>

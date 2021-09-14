@@ -115,11 +115,11 @@ P2181 对角线
 $$ </p>
 <p>注意爆 <code>long long</code>，需要写成 <code>n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4</code>。</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
-	<span class=kt>unsigned</span> <span class=kt>long</span> <span class=kt>long</span> <span class=n>n</span><span class=p>;</span>
-	<span class=n>scanf</span><span class=p>(</span><span class=s>&#34;%llu&#34;</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>n</span><span class=p>);</span>
+    <span class=kt>unsigned</span> <span class=kt>long</span> <span class=kt>long</span> <span class=n>n</span><span class=p>;</span>
+    <span class=n>scanf</span><span class=p>(</span><span class=s>&#34;%llu&#34;</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>n</span><span class=p>);</span>
     <span class=n>n</span> <span class=o>=</span> <span class=n>n</span> <span class=o>*</span> <span class=p>(</span><span class=n>n</span> <span class=o>-</span> <span class=mi>1</span><span class=p>)</span> <span class=o>/</span> <span class=mi>2</span> <span class=o>*</span> <span class=p>(</span><span class=n>n</span> <span class=o>-</span> <span class=mi>2</span><span class=p>)</span> <span class=o>/</span> <span class=mi>3</span> <span class=o>*</span> <span class=p>(</span><span class=n>n</span> <span class=o>-</span> <span class=mi>3</span><span class=p>)</span> <span class=o>/</span> <span class=mi>4</span><span class=p>;</span>
-	<span class=n>printf</span><span class=p>(</span><span class=s>&#34;%llu&#34;</span><span class=p>,</span> <span class=n>n</span><span class=p>);</span>
-	<span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;%llu&#34;</span><span class=p>,</span> <span class=n>n</span><span class=p>);</span>
+    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
 <span class=p>}</span>
 </code></pre></div>
 </div>

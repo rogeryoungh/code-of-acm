@@ -116,8 +116,12 @@ const ll mod = 1000000007, inv2 = 500000004; const int maxn = 200001; ll n, prim
 <h2>P4173 残缺的字符串</h2>
 </header>
 <section class=entry-content>
-<p>Todo
-char a[MAXN], b[MAXN]; ll ts[MAXN], tb[MAXN]; Comp B[MAXN], S[MAXN]; Comp ANS[MAXN]; int stk[MAXN], cnt = 0; int main() { ll m = rr(), n = rr(); int lim = 1, lim_2; while (lim &lt;= n + m) lim &lt;&lt;= 1; lim_2 = lim >> 1; for (int i = 0; i &lt; lim; ++i) { rev[i] = (rev[i >> 1] >> 1) | ((i & 1) * lim_2); } scanf("%s", a); // 模式串 scanf("%s", b); // 文本串 _fora (i, 1, m) { ll j = m - i; ll t = a[j] - 'a' + 1; if (a[j] == '*') t = 0; ts[i] = t; } _fora (i, 0, n - 1) { ll t = b[i] - 'a' + 1; if (b[i] == '*') t = 0; tb[i] = t; } _fora (i, 0, lim - 1) { S[i] = Comp(ts[i], 0); B[i] = Comp(tb[i] * tb[i] * tb[i], 0); } FFT(S, lim, 1); FFT(B, lim, 1); _fora (i, 0, lim - 1) ANS[i] = S[i] * B[i]; _fora (i, 0, lim - 1) { S[i] = Comp(ts[i] * ts[i] * ts[i], 0); B[i] = Comp(tb[i], 0); } FFT(S, lim, 1); FFT(B, lim, 1); _fora (i, 0, lim - 1) ANS[i] = ANS[i] + S[i] * B[i]; _fora (i, 0, lim - 1) { S[i] = Comp(ts[i] * ts[i], 0); B[i] = Comp(tb[i] * tb[i], 0); } FFT(S, lim, 1); FFT(B, lim, 1); _fora (i, 0, lim - 1) ANS[i] = ANS[i] - S[i] * B[i] * Comp(2, 0); FFT(ANS, lim, -1); _fora (i, m, n) { if (fabs(ANS[i]....</p>
+<p>魔改 KMP 大概是不行的，卷积在这里出现的很妙。
+卷积处理匹配 定义匹配函数
+$$ d(x,y) = [x = y] $$ 给定文本串 $B$ 和长为 $m$ 的模式串 $A$，要找出 $A$ 在 $B$ 的所有出现，可以定义
+$$ f(k) = \sum_{i=0}^{m-1} d(A_{i}, B_{i-m+k}) $$ 即 $f(k) = 0$ 时有完全匹配 $A = B[k-m\ldots k-1]$。考虑让 $d$ 函数更 “数学” 一点，以更好的计算
+$$ d(x,y) = (x - y)^2 $$ 再提供模式串 $A$ 的翻转 $S$，即 $A_i = S_{m-i}$，展开有
+$$ \begin{aligned} f(k) &= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{i-m+k}^2 - 2\sum_{i=0}^{m-1} A_{i}B_{i-m+k}\\ &= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{i-m+k}^2 - 2\sum_{i=0}^{m-1} S_{m-i}B_{i-m+k} \end{aligned} $$ 前面两项能够预处理，最后一项是卷积。于是最终复杂度是 $O(n \log n)$。...</p>
 </section>
 <footer class=entry-footer>July 28, 2021&nbsp;·&nbsp;rogeryoungh</footer>
 <a class=entry-link aria-label="post link to P4173 残缺的字符串" href=https://rogeryoungh.github.io/code-of-acm/post/2021-07/p4173/></a>
@@ -162,7 +166,7 @@ $$ \varphi\left(\prod_{i=1}^mp_i^{q_i}\right) = \prod_{i=1}^m(p_i-1)p_i^{q_i-1} 
 考虑设 $f(n)$ 为 $\varphi(n)$ 中因子 $2$ 的个数。
 设 $\gcd(a,b) = 1$，可以证明 $f(ab) = f(a) f(b)$。同时 $f(p) = f(p-1)$。
 这说明 $f(x)$ 是一个积性函数，可以用 Euler 筛递推。
-const ll MN = 1e5 + 10; bool notp[1000001]; int prime[200001], cnt; int phi[1000001]; void sieve(int n) { phi[1] = 1; _fora (i, 2, n) { if (!...</p>
+const ll MN = 1e5 + 10; bool notp[1000001]; int prime[200001], cnt, phi[1000001]; void sieve(int n) { phi[1] = 1; for (ll i = 2; i &lt;= n; i++) { if (!...</p>
 </section>
 <footer class=entry-footer>May 25, 2021&nbsp;·&nbsp;rogeryoungh</footer>
 <a class=entry-link aria-label="post link to P2350 外星人" href=https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2350/></a>

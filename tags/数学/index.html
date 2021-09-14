@@ -78,7 +78,7 @@
 <p>题目大意 赢 11 分并且压对手两分以上则一局结束，否则要追分至压对手两分。
 给定 $\texttt{WL}$ 序列，分别求 11 分制和 21 分制下每场比分，$\texttt{E}$ 是结束符。
 分析 这是一道比较烦的模拟题，很绕。
-char ch[62510]; int solve(int win, int len) { int w = 0, l = 0; _fora (i, 0, len-1) { w += ch[i] == 'W'; l += ch[i] == 'L'; if (max(w, l) >= win &&abs(w - l) >= 2) { printf("%d:%d\n", w, l); w = l = 0; } } printf("%d:%d\n", w, l); } int main() { char ccc; int len = 0; while(scanf("%c", &ccc) !...</p>
+char ch[62510]; int solve(int win, int len) { int w = 0, l = 0; for (ll i = 0; i &lt; len; i++) { w += ch[i] == 'W'; l += ch[i] == 'L'; if (max(w, l) >= win && abs(w - l) >= 2) { printf("%d:%d\n", w, l); w = l = 0; } } printf("%d:%d\n", w, l); } int main() { char ccc; int len = 0; while (scanf("%c", &ccc) !...</p>
 </section>
 <footer class=entry-footer>September 23, 2020&nbsp;·&nbsp;rogeryoungh</footer>
 <a class=entry-link aria-label="post link to P1042 乒乓球" href=https://rogeryoungh.github.io/code-of-acm/post/2020-09/p1042/></a>

@@ -2,4 +2,4 @@
 给定词典和初始字母，每个单词最多出现两次，求最大拼接长度。
 分析 我是没想出来，经题解提示了拼接函数才写出来的。
 设 $mt(x,y)$ 为第 $x$ 和 $y$ 个单词拼接后的最小重合长度，其可简单的通过匹配得到。
-char s[30][100]; ll len[30]; ll mt[30][30]; void init(int x, int y) { ll ml = min(len[x], len[y]) - 1; _fora (i, 1, ml) { int flag = 1; _fora (j, 0, i - 1) { if (s[x][len[x] + j - i] != s[y][j]) { flag = 0; break; } } if (flag) { mt[x][y] = i; break; } } } 然后回溯 dfs，搜索即可。</description></item></channel></rss>
+char s[30][100]; ll len[30]; ll mt[30][30]; void init(int x, int y) { ll ml = min(len[x], len[y]) - 1; for (ll i = 1; i &amp;lt;= ml; i++) { int flag = 1; for (ll j = 0; j &amp;lt;= i - 1; j++) { if (s[x][len[x] + j - i] !</description></item></channel></rss>

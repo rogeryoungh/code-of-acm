@@ -82,22 +82,6 @@ const ll mod = 1000000007, inv2 = 500000004; const int maxn = 200001; ll n, prim
 <footer class=entry-footer>August 15, 2021&nbsp;·&nbsp;rogeryoungh</footer>
 <a class=entry-link aria-label="post link to LOJ6053 简单的函数" href=https://rogeryoungh.github.io/code-of-acm/post/2021-08/loj6053/></a>
 </article>
-<article class="post-entry tag-entry">
-<header class=entry-header>
-<h2>CF1389E Calendar Ambiguity</h2>
-</header>
-<section class=entry-content>
-<p>Berland 年有 $m$ 月，每月 $d$ 天。一周有 $w$ 天。
-若第 $x$ 月的第 $y$ 天和第 $y$ 月的第 $x$ 天是同一个星期，则称 $(x,y)$ 是一对。
-求一年有几对。
-$$ xd+y \equiv yd+x \pmod w $$ 即
-$$ (x-y)(d-1) \equiv 0 \Rightarrow (x-y)(d-1) \in w\mathbb{Z} $$ 于是有
-$$ y-x = \frac{wk}{\gcd(w,d-1)} $$ 又 $x &lt; y \leqslant \min(m,d)$​，
-int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll g = w / gcd(w, d - 1); ll max_y = min(m, d) - 1; ll div = (max_y + 1) / g, mod = (max_y + 1) % g; ll sum = (div - 1) * div / 2 * g + mod * div; printf("%lld\n", sum); } return 0; } </p>
-</section>
-<footer class=entry-footer>May 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to CF1389E Calendar Ambiguity" href=https://rogeryoungh.github.io/code-of-acm/post/2021-05/cf1389e/></a>
-</article>
 </main>
 <footer class=footer>
 <span>© 2021 <a href=/code-of-acm>Roger Young</a></span>
