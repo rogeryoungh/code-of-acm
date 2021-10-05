@@ -10,7 +10,7 @@
 
 namespace poly {
 
-void EGF2OGF(poly_t f[], poly_t ans[], int deg = lim) {
+void EGF2OGF(int f[], int ans[], int deg = lim) {
     ll fact = 1;
     ans[0] = f[0];
     for (ll i = 1; i <= deg; i++) {

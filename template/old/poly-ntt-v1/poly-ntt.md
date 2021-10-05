@@ -68,7 +68,7 @@ void convolution(poly_t f[], poly_t g[], poly_t ans[], int deg = lim) {
 
 ```cpp
 void poly_inv(const poly_t h[], poly_t ans[], int deg = lim) {
-    static poly_type inv_t;
+    static poly_t  inv_t;
     std::fill(ans, ans + deg + deg, 0);
     ans[0] = inv(h[0]);
     for (int t = 2; t <= deg; t <<= 1) {
@@ -112,7 +112,7 @@ void integrate(const poly_t h[], poly_t ans[], const int deg = lim) {
 
 ```cpp
 void poly_ln(const poly_t f[], poly_t ans[], const int deg = lim) {
-    static poly_type ln_t;
+    static poly_t  ln_t;
     const int t = deg << 1;
 
     derivative(f, ln_t, deg);

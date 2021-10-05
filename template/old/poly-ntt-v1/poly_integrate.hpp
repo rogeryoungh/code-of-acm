@@ -10,10 +10,14 @@
 
 namespace poly {
 
-void integrate(const poly_t h[], poly_t ans[], const int deg = lim) {
+void integrate(const int *h, int *ans, const int deg = lim) {
     for (int i = deg - 1; i; --i)
-        ans[i] = h[i - 1] * inv(i) % mod;
+        ans[i] = mul(h[i - 1], Inv[i]);
     ans[0] = 0; /* C */
+}
+
+void integrate(int *h, const int deg = lim) {
+    integrate(h, h, deg);
 }
 
 } // namespace poly

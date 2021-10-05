@@ -44,12 +44,28 @@
                 fetch(path)
                     .then(response => response.text())
                     .then(data => {
-                        console.log(data);
-                        let re_start = data.indexOf("#ifndef RYLOCAL");
+                        // console.log(data);
+
+                        // 删除没用的宏
+
+                        // #ifndef ACM_XXXXX
+                        // #define ACM_XXXXX
+
+                        // #ifndef RYLOCAL
+                        // #include "../XXX.hpp"
+                        // #endif
+
+                        // namespace XXX{}         // 只保留这些
+
+                        // #endif
+
+
                         let re_end = data.indexOf("#endif");
-                        console.log("start = " + re_start + " end = " + re_end);
-                        let tdata = data.substring(0, re_start - 1) + data.substring(re_end + "#endif".length + 1, data.length);
-                        console.log(tdata);
+                        let df_end = data.lastIndexOf("#endif");
+                        console.log("start = " + re_end + " end = " + df_end);
+                        let tdata = data.substring(re_end + "#endif".length + 1, df_end - 1);
+                        // console.log(tdata);
+
 
                         ans += tdata + "\n";
                         getFile(substr, index+1);

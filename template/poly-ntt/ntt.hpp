@@ -4,43 +4,39 @@
 #ifndef RYLOCAL
 #include "__base.hpp"
 
-#include "../basic/mo.hpp"
 #include "../basic/qpow.hpp"
-#include "../basic/inv.hpp"
+#include "../basic/mo.hpp"
 #endif
 
-namespace poly {
-
-void ntt(poly_t f[], int deg = lim, int type = 1) {
-    for (int i = 0; i < deg; ++i) {
-        if (i < rev[i]) {
-            std::swap(f[i], f[rev[i]]);
-        }
-    }
-    for (int h = 2; h <= deg; h <<= 1) {
-        ll tg = type == 1 ? 3 : g_inv;
-        ll gn = qpow(tg, (mod - 1) / h, mod);
-        for (int j = 0; j < deg; j += h) {
-            ll g = 1;
-            for (int k = j; k < j + h / 2; k++) {
-                ll f1 = f[k], f2 = g * f[k + h / 2] % mod;
-                f[k] = (f1 + f2) % mod;
-                f[k + h / 2] = mo(f1 - f2);
-                g = g * gn % mod;
+void ntt(poly_t &f, int deg) {
+    for (int l = deg >> 1; l; l >>= 1)
+        for (int i = 0; i < deg; i += (l << 1))
+            for (int j = 0; j < l; j++) {
+                int x = add(f[i + j], f[i + j + l]);
+                f[i + j + l] = mul(w[j + l], sub(f[i + j], f[i + j + l]));
+                f[i + j] = x;
             }
-        }
-    }
-    if (type == 1)
-        return;
-    ll lim_inv = inv(deg, mod);
+}
+
+void intt(poly_t &f, int deg) {
+    for (int l = 1; l < deg; l <<= 1)
+        for (int i = 0; i < deg; i += (l << 1))
+            for (int j = 0; j < l; j++) {
+                int x = f[i + j], y = mul(f[i + j + l], w[j + l]);
+                f[i + j] = add(x, y), f[i + j + l] = sub(x, y);
+            }
+    const int deg_inv = mod - (mod - 1) / deg;
     for (int i = 0; i < deg; i++)
-        f[i] = f[i] * lim_inv % mod;
+        f[i] = mul(f[i], deg_inv);
+    std::reverse(f.begin() + 1, f.begin() + deg);
 }
 
-void intt(poly_t f[], int deg = lim) {
-    ntt(f, deg, -1);
+void ntt(poly_t &f) {
+    ntt(f, f.size());
 }
 
-} // namespace poly
+void intt(poly_t &f) {
+    intt(f, f.size());
+}
 
 #endif

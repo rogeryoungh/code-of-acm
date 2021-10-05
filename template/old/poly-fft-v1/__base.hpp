@@ -5,15 +5,20 @@ using ll = long long;
 using ull = unsigned long long;
 using ld = long double;
 
-#include <algorithm>
 #include <iostream>
 #include <cmath>
-#include <vector>
 #include "../basic/complex.hpp"
 
-using img = Complex<double>;
-using poly_t = std::vector<img>;
+const int maxn = 1 << 20;
 
-poly_t w;
+using img = Complex<double>;
+using poly_t = img[maxn];
+
+namespace poly {
+int k = 20, lim = 1 << k;
+
+int rev[maxn];
+
+} // namespace poly
 
 #endif
