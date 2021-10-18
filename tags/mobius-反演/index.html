@@ -8,7 +8,7 @@
 <meta name=description content>
 <meta name=author content>
 <link rel=canonical href=https://rogeryoungh.github.io/code-of-acm/tags/mobius-%E5%8F%8D%E6%BC%94/>
-<link crossorigin=anonymous href=/code-of-acm/assets/css/stylesheet.min.51e56ec491ce4ddb9a51265d16c0e4cbd5305ad05fd8d750740f0182ef5ce433.css integrity="sha256-UeVuxJHOTduaUSZdFsDky9UwWtBf2NdQdA8Bgu9c5DM=" rel="preload stylesheet" as=style>
+<link crossorigin=anonymous href=/code-of-acm/assets/css/stylesheet.min.c56e1d144ba700000f853a33a302832ce915146ddae9593a87839996e7a41b6e.css integrity="sha256-xW4dFEunAAAPhTozowKDLOkVFG3a6Vk6h4OZluekG24=" rel="preload stylesheet" as=style>
 <link rel=preload href=https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png as=image>
 <link rel=icon href=https://rogeryoungh.github.io/code-of-acm/favicon.ico>
 <link rel=icon type=image/png sizes=16x16 href=https://rogeryoungh.github.io/code-of-acm/favicon-16x16.png>
@@ -70,6 +70,19 @@
 <header class=page-header>
 <h1>Mobius 反演</h1>
 </header>
+<article class="post-entry tag-entry">
+<header class=entry-header>
+<h2>HDU6750 Function</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 定义
+$$ f (n) = \sum_{d \mid n} d \left[ \gcd \left( d, \frac{n}{d} \right) = 1 \right] $$ 求其前缀和 $S(n)$。
+分析 首先 Min25 筛是过不了的，内存不够。先推式子
+$$ \begin{aligned} S (n) &= \sum_{i = 1}^n \sum_{d \mid i} d \left[ \gcd \left( d, \frac{i}{d} \right) = 1 \right] \\ &= \sum_{d = 1}^n \sum_{i = 1}^n d [d \mid i] \left[\gcd \left( d, \frac{i}{d} \right) = 1 \right] \\ &= \sum_{d = 1}^n \sum_{i = 1}^{n / d} d [\gcd (i, d) = 1] \end{aligned} $$ 看到 $\gcd = 1$ 就应该想起来 Mobius 反演，容易化简有...</p>
+</section>
+<footer class=entry-footer>September 22, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to HDU6750 Function" href=https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6750/></a>
+</article>
 <article class="post-entry tag-entry">
 <header class=entry-header>
 <h2>P2257 YY 的 GCD</h2>

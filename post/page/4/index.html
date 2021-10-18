@@ -8,7 +8,7 @@
 <meta name=description content>
 <meta name=author content>
 <link rel=canonical href=https://rogeryoungh.github.io/code-of-acm/post/>
-<link crossorigin=anonymous href=/code-of-acm/assets/css/stylesheet.min.51e56ec491ce4ddb9a51265d16c0e4cbd5305ad05fd8d750740f0182ef5ce433.css integrity="sha256-UeVuxJHOTduaUSZdFsDky9UwWtBf2NdQdA8Bgu9c5DM=" rel="preload stylesheet" as=style>
+<link crossorigin=anonymous href=/code-of-acm/assets/css/stylesheet.min.c56e1d144ba700000f853a33a302832ce915146ddae9593a87839996e7a41b6e.css integrity="sha256-xW4dFEunAAAPhTozowKDLOkVFG3a6Vk6h4OZluekG24=" rel="preload stylesheet" as=style>
 <link rel=preload href=https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png as=image>
 <link rel=icon href=https://rogeryoungh.github.io/code-of-acm/favicon.ico>
 <link rel=icon type=image/png sizes=16x16 href=https://rogeryoungh.github.io/code-of-acm/favicon-16x16.png>
@@ -73,17 +73,144 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
-<h2>模板生成</h2>
+<h2>P1090 合并果子</h2>
 </header>
 <section class=entry-content>
-<p></p>
+<p>题目大意 可以合并两堆果子成一堆新果子，消耗两堆果子数目之和的体力。给定 $n$ 堆果子的数目 $a_i$，求体力耗费最小的方案。
+分析 很容易猜到贪心结论，不断选取两个最小的堆进行合并。
+priority_queue&lt;int, vector&lt;int>, greater&lt;int> > q; int main() { int n = rr(); for (ll i = 1; i &lt;= n; i++) { int t = rr(); q.push(t); } int sum = 0; while (q.size() >= 2) { int x = q.top(); q.pop(); int y = q.top(); q.pop(); sum += x + y; q.push(x + y); } printf("%d\n", sum); return 0; } 本质上是证明 Huffman 树的构造的正确性，有点复杂。</p>
 </section>
-<footer class=entry-footer></footer>
-<a class=entry-link aria-label="post link to 模板生成" href=https://rogeryoungh.github.io/code-of-acm/post/log/template-gen/></a>
+<footer class=entry-footer>October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P1090 合并果子" href=https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1090/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>P1923 求第 $k$ 小的数</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 给定数列，求第 $k$ 小的数。
+分析 模板题。考虑分治，随便选一个数 $x$，然后把比 $x$ 大的数移到右边，比 $x$ 小的数移到左边。因此得到了数 $x$ 的排位，若恰为第 $k$ 个则返回，否则根据大小在左右寻找。
+该算法是不稳定的，期望复杂度 $O(n)$，最坏复杂度 $O(n^2)$。
+实际上存在最坏复杂度为 $O(n)$ 的 BFPTR 算法，但因为其常数过大实现复杂而很少应用。
+ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l + r) / 2]; while (i &lt;= j) { while (nn[j] > x) j--; while (nn[i] &lt; x) i++; if (i &lt;= j) { swap(nn[i], nn[j]); i++, j--; } } // l &lt;= j &lt;= i &lt;=r if (k &lt;= j) return quicksort(l, j); else if (k >= i) return quicksort(i, r); else return nn[k + 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i &lt;= n; i++) scanf("%lld", &nn[i]); printf("%lld", quicksort(1, n)); return 0; } </p>
+</section>
+<footer class=entry-footer>October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P1923 求第 $k$ 小的数" href=https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1923/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>P1928 外星密码</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 我们将重复的 $n$ 个字符串 S 压缩为 [nS]，且存在多重压缩。给定一个压缩结果，展开它。
+分析 我考虑用类似状态机的方式解析字符串。
+当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$ 写成 BNF 更直观一点
+&lt;pwd> ::= &lt;EMPTY> | {&lt;ALPHA>} | &lt;pwd> "[" &lt;NUMBER> &lt;pwd> "]" &lt;pwd> string read() { string s = ""; char c; while (cin >> c) { if (c == '[') { int n; cin >> n; string ts = read(); while (n--) s += ts; } else if (c == ']') { return s; } else { s += c; } } return s; } int main() { cout &lt;&lt; read(); return 0; } </p>
+</section>
+<footer class=entry-footer>October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P1928 外星密码" href=https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1928/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>P1990 覆盖墙壁</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 有 I 形和 L 形两种砖头，分别能覆盖 2 个单元和 3 个单元。求 $2 \times n$ 的墙有多少不重复的覆盖方式，结果对 $10^4$ 取模。
+分析 其中 I 形砖块仅有横放和竖放两种。关键在于 L 形，两个 L 形之间可以用 I 形填充，这让情况变得复杂起来。
+对于 $F_n$ 的递推，我们可以想到
+在 $F_{n-1}$ 后放一个 I 形砖块。 在 $F_{n-2}$ 后放两个横着的 I 形砖块。 对于更前面的递推，较为复杂。 两个 L 形砖块对齐，上下翻转也可以，即 $2 F_{n-3}$。 两个 L 形砖块可以对顶放，空缺恰用一个 I 填充，即 $2 F_{n-4}$。 类似 $2F_{n-3}$，中间可以再插入两个 I 形，即 $2 F_{n-5}$。 …… 直到 I 形和 L 形砖块恰好铺满墙壁，即 $2F_{0}$。 容易得到我们的递推式...</p>
+</section>
+<footer class=entry-footer>October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P1990 覆盖墙壁" href=https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1990/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>P4995 跳跳！</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 给定石头的高度 $h$，从第 $i$ 块石头跳到第 $j$ 块上耗费体力 $(h_i-h_j)^2$ ，求最耗体力的路径。
+分析 容易猜到贪心结论，是不断的在剩余石头中最大最小的来回跳。
+考虑证明结论，设 $h_i$ 是将要跳的序列，展开求和式
+$$ S = \sum_{k=1}^{n-1}(h_k-h_{k+1})^2 = \sum_{k=1}^nh_k^2 - 2\sum_{k=1}^{n-1}h_kh_{k+1} $$ 注意到平方和为一个定值，重点在后半式。记 $H_k = h_{k+1}$，有
+$$ \sum_{k=1}^{n-1}h_kH_k $$ 利用高中时学的排序不等式，有
+$$ \text{反序和} \leqslant \text{乱序和} \leqslant \text{顺序和} $$ 于是有反序最小。双指针维护即可。
+ll nn[310]; int main() { ll n = rr(); for (ll i = 1; i &lt;= n; i++) nn[i] = rr(); sort(nn + 1, nn + n + 1); ll l = 0, r = n, sum = 0; while (l &lt; r) { ll t1 = nn[l] - nn[r], t2 = nn[l + 1] - nn[r]; sum += t1 * t1 + t2 * t2; l++, r--; } printf("%lld\n", sum); return 0; } </p>
+</section>
+<footer class=entry-footer>October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P4995 跳跳！" href=https://rogeryoungh.github.io/code-of-acm/post/2020-10/p4995/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>P5143 攀爬者</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 在三维空间中，HKE 只能往上走，求攀爬总长。
+分析 对所有座标的 $z$ 分量排序即可。
+struct POINT { double x, y, z; bool operator&lt;(POINT p) { return z > p.z; } } nn[50010]; double dis(POINT &p1, POINT &p2) { double t1 = p1.x - p2.x, t2 = p1.y - p2.y, t3 = p1.z - p2.z; return sqrt(t1 * t1 + t2 * t2 + t3 * t3); } int main() { int n = rr(); for (ll i = 1; i &lt;= n; i++) cin >> nn[i]....</p>
+</section>
+<footer class=entry-footer>October 13, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P5143 攀爬者" href=https://rogeryoungh.github.io/code-of-acm/post/2020-10/p5143/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>P1095 守望者的逃离</h2>
+</header>
+<section class=entry-content>
+<p>P1095 守望者的逃离 题目大意 守望者的可以在一秒逃出 $17 {\rm m}$，或者消耗 $10$ 点魔法值闪现 $60 {\rm m}$。原地休息时每秒回复 $4$ 点魔法值。
+守望者开始有 $M$ 点魔法，需要在 $T$ 秒内逃离距离 $S$。若能逃离则求最短逃离时间，否则求最远距离。
+分析 设 $s_1$为一直走路，$s_2$ 为一直闪现恢复。当 $s_2$ 快了就把 $s_1$ 更新为 $s_2$。
+int main() { int m = rr(), s = rr(), t = rr(); int time = t, s1 = 0, s2 = 0; while (time > 0 && s1 &lt; s) { s1 += 17; if (m >= 10) m -= 10, s2 += 60; else m += 4; s1 = max(s1, s2); time--; } if (s1 &lt; s) printf("No\n%d\n", s1); else printf("Yes\n%d\n", t - time); return 0; } </p>
+</section>
+<footer class=entry-footer>October 9, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P1095 守望者的逃离" href=https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1095/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>P1042 乒乓球</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 赢 11 分并且压对手两分以上则一局结束，否则要追分至压对手两分。
+给定 $\texttt{WL}$ 序列，分别求 11 分制和 21 分制下每场比分，$\texttt{E}$ 是结束符。
+分析 这是一道比较烦的模拟题，很绕。
+char ch[62510]; int solve(int win, int len) { int w = 0, l = 0; for (ll i = 0; i &lt; len; i++) { w += ch[i] == 'W'; l += ch[i] == 'L'; if (max(w, l) >= win && abs(w - l) >= 2) { printf("%d:%d\n", w, l); w = l = 0; } } printf("%d:%d\n", w, l); } int main() { char ccc; int len = 0; while (scanf("%c", &ccc) !...</p>
+</section>
+<footer class=entry-footer>September 23, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P1042 乒乓球" href=https://rogeryoungh.github.io/code-of-acm/post/2020-09/p1042/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>P2181 对角线</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 凸 $n$ 边形中，任意三条对角线不共点，求所有对角线交点的个数。
+分析 注意到一个交点对应凸多边形 $4$ 个定点，于是等价于 $n$ 个点任选 $4$ 个点的选法种数，即
+$$ \binom{n}{4} = \frac{n(n-1)(n-2)(n-3)}{24} $$ 注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。
+int main() { unsigned long long n; scanf("%llu", &n); n = n * (n - 1) / 2 * (n - 2) / 3 * (n - 3) / 4; printf("%llu", n); return 0; } </p>
+</section>
+<footer class=entry-footer>September 22, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P2181 对角线" href=https://rogeryoungh.github.io/code-of-acm/post/2020-09/p2181/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>CF1384B2 Koa and the Beach</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 海里每一个位置都有一个深度，而且水里随着时间有锯齿状周期为 $2k$ 的潮汐。
+当潮汐与深度之和大于给定值 $l$ 时 Koa 会溺水，游泳、海岸、岛上永远是安全的。
+在任意时间 Koa 可以选择游到 $x+1$ 或停留在 $x$，试问 Koa 是否能够安全的从海岸 $0$ 到达岛上 $n+1$。
+分析 开始的想法是随着时间 DP，更好的解法是贪心。
+若一个位置在水位最高时仍不会溺水，则称这个位置是安全的，并且可以任意选择出发时机。
+即安全位置之间是相互独立的，我们只需判断可达性，尽量到达每一个安全位置。若之后 $2k$ 个位置没有安全位置，必死。
+Koa 的最优决策是在刚退潮时出发，如果能走就尽量往前走，不能走就等，等到涨潮就说明不存在通过方法。
+int main() { int ttt = rr(); while (ttt--) { int n = rr(), k = rr(), l = rr(); int flag = 0; int last = k; for (ll i = 1; i &lt;= n; i++) { int d = rr(); flag += l &lt; d; if (l - d >= k) last = k; else last = min(last - 1, l - d); flag += abs(last) > l - d; } if (flag) printf("No\n"); else printf("Yes\n"); } return 0; } </p>
+</section>
+<footer class=entry-footer>September 20, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to CF1384B2 Koa and the Beach" href=https://rogeryoungh.github.io/code-of-acm/post/2020-09/cf1384b2/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
 <a class=prev href=https://rogeryoungh.github.io/code-of-acm/post/page/3/>« Prev Page</a>
+<a class=next href=https://rogeryoungh.github.io/code-of-acm/post/page/5/>Next Page »</a>
 </nav>
 </footer>
 </main>

@@ -12,9 +12,9 @@
  $$ f(n) = \sum_{n \mid d} \mu\left(\frac{d}{n}\right)F(d) = \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tn} \right\rfloor \left\lfloor \frac{y}{tn} \right\rfloor $$ 预处理出 $\mu(t)$ 的前缀和，剩下的就是一个二重分块了。">
 <meta name=author content="rogeryoungh">
 <link rel=canonical href=https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2522/>
-<link crossorigin=anonymous href=/code-of-acm/assets/css/stylesheet.min.51e56ec491ce4ddb9a51265d16c0e4cbd5305ad05fd8d750740f0182ef5ce433.css integrity="sha256-UeVuxJHOTduaUSZdFsDky9UwWtBf2NdQdA8Bgu9c5DM=" rel="preload stylesheet" as=style>
+<link crossorigin=anonymous href=/code-of-acm/assets/css/stylesheet.min.c56e1d144ba700000f853a33a302832ce915146ddae9593a87839996e7a41b6e.css integrity="sha256-xW4dFEunAAAPhTozowKDLOkVFG3a6Vk6h4OZluekG24=" rel="preload stylesheet" as=style>
 <link rel=preload href=https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png as=image>
-<script defer crossorigin=anonymous src=/code-of-acm/assets/js/highlight.min.ace83f4b53c98dc53a6abd63c24435a9e8d1b55cc1722d04fcdb9bb9870bf806.js integrity="sha256-rOg/S1PJjcU6ar1jwkQ1qejRtVzBci0E/NubuYcL+AY=" onload=hljs.initHighlightingOnLoad()></script>
+<script defer crossorigin=anonymous src=/code-of-acm/assets/js/highlight.min.dacf81874295cd2936dececc3a04b7a00adb5d68618e897914957eeeef6f03b8.js integrity="sha256-2s+Bh0KVzSk23s7MOgS3oArbXWhhjol5FJV+7u9vA7g=" onload=hljs.initHighlightingOnLoad()></script>
 <link rel=icon href=https://rogeryoungh.github.io/code-of-acm/favicon.ico>
 <link rel=icon type=image/png sizes=16x16 href=https://rogeryoungh.github.io/code-of-acm/favicon-16x16.png>
 <link rel=icon type=image/png sizes=32x32 href=https://rogeryoungh.github.io/code-of-acm/favicon-32x32.png>
@@ -123,11 +123,13 @@ f(k) = \sum_{i=1}^x \sum_{j=1}^y [\gcd(i,j) = k]
 $$ </p>
 <p>利用 Mobius 反演化简，设 $F(d)$</p>
 <p> $$
-F(n) = \sum_{n \mid d} f(d) = \sum_{i=1}^x \sum_{j=1}^y [n \mid i][n \mid j] = \left\lfloor \frac{x}{n} \right\rfloor \left\lfloor \frac{y}{n} \right\rfloor
+F(n) = \sum_{n \mid d} f(d) = \sum_{i=1}^x \sum_{j=1}^y [n \mid i][n \mid j]
+= \left\lfloor \frac{x}{n} \right\rfloor \left\lfloor \frac{y}{n} \right\rfloor
 $$ </p>
 <p>反演化简有</p>
 <p> $$
-f(n) = \sum_{n \mid d} \mu\left(\frac{d}{n}\right)F(d) = \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tn} \right\rfloor \left\lfloor \frac{y}{tn} \right\rfloor
+f(n) = \sum_{n \mid d} \mu\left(\frac{d}{n}\right)F(d)
+= \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tn} \right\rfloor \left\lfloor \frac{y}{tn} \right\rfloor
 $$ </p>
 <p>预处理出 $\mu(t)$ 的前缀和，剩下的就是一个二重分块了。</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=k>const</span> <span class=n>ll</span> <span class=n>MN</span> <span class=o>=</span> <span class=mi>50000</span><span class=p>;</span>
