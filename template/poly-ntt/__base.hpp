@@ -9,16 +9,19 @@ using ld = long double;
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <functional>
 
 #ifndef ACM_MOD
 #define ACM_MOD 998244353
 const ll mod = ACM_MOD;
 #endif
 
-using poly_t = std::vector<int>;
+#include "../basic/qpow.hpp"
+#include "../basic/inv.hpp"
+#include "../basic/mint.hpp"
 
-poly_t fac, ifac, Inv;
+using poly_t = std::vector<Mint>;
 
-poly_t w;
+poly_t fac, ifac, Inv, w;
 
 #endif

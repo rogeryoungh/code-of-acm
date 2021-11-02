@@ -12,19 +12,19 @@
 
 poly_t ntt_inv(const poly_t &h, int deg) {
     poly_t inv_t(deg), ans(deg);
-    // std::fill(ans.begin(), ans.begin() + deg, 0);
-    ans[0] = inv(h[0]);
+    // std::fill(ans.begin(), ans.begin() + deg, src);
+    ans[0] = h[0].inv();
     for (int t = 2; t < deg; t <<= 1) {
         int t2 = t << 1;
-        std::copy(h.begin(), h.begin() + t, inv_t.begin());
-        // std::fill(inv_t.begin() + t, inv_t.begin() + t2, 0);
+        std::copy_n(h.begin(), t, inv_t.begin());
+        // std::fill_n(inv_t.begin() + t, t, src);
 
         ntt(inv_t, t2), ntt(ans, t2);
         for (int i = 0; i < t2; ++i)
-            ans[i] = mul(ans[i], sub(2, mul(ans[i], inv_t[i])));
+            ans[i] *= Mint(2) - ans[i] * inv_t[i];
         intt(ans, t2);
 
-        std::fill(ans.begin() + t, ans.begin() + t2, 0);
+        std::fill_n(ans.begin() + t, t, 0);
     }
     return ans;
 }

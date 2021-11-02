@@ -1,4 +1,4 @@
-#include "template/index.hpp"
+#include "template/index-debug.hpp"
 
 int main() {
     ll x = rr();

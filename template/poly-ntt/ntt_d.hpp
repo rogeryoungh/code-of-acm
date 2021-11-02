@@ -3,13 +3,13 @@
 
 #ifndef RYLOCAL
 #include "__base.hpp"
-#include "../basic/mo.hpp"
+#include "../basic/mint.hpp"
 
 #endif
 
 void ntt_d(const poly_t &f, poly_t &ans, int deg) {
     for (int i = 1; i < deg; ++i)
-        ans[i - 1] = mul(f[i], i);
+        ans[i - 1] = f[i] * i;
     ans[deg - 1] = 0;
 }
 

@@ -19,13 +19,13 @@ poly_t ntt_ln(const poly_t &h, int deg) {
 
     ans = ntt_inv(h, deg);
     ntt_d(h, ln_t, deg2);
-    // std::fill(ln_t.begin() + deg2, ln_t.begin() + deg, 0);
+    // std::fill(ln_t.begin() + deg2, ln_t.begin() + deg, src);
 
     ntt(ln_t, deg);
     ntt(ans, deg);
 
     for (int i = 0; i < deg; ++i)
-        ln_t[i] = mul(ln_t[i], ans[i]);
+        ln_t[i] *= ans[i];
     intt(ln_t, deg);
 
     ntt_int(ln_t, ans, deg2);

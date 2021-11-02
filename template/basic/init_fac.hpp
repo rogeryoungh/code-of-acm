@@ -3,7 +3,9 @@
 
 #ifndef RYLOCAL
 #include "__base.hpp"
-#include "mo.hpp"
+#include "qpow.hpp"
+#include "inv.hpp"
+#include "mint.hpp"
 #endif
 
 void init_fac(ll *fac, int lim) {
@@ -14,11 +16,14 @@ void init_fac(ll *fac, int lim) {
     }
 }
 
-void init_ifac(ll *fac, ll *ifac, int lim, const ll *Inv) {
+void init_ifac(ll *fac, ll *ifac, int lim) {
     ifac[0] = fac[0] = 1;
     for (ll i = 1; i < lim; i++) {
         fac[i] = mul(fac[i - 1], i);
-        ifac[i] = mul(ifac[i], Inv[i]);
+    }
+    ifac[lim - 1] = inv(fac[lim - 1]);
+    for (ll i = lim - 2; i > 0; i--) {
+        ifac[i] = mul(ifac[i + 1], i + 1);
     }
 }
 

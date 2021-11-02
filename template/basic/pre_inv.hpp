@@ -3,12 +3,12 @@
 
 #ifndef RYLOCAL
 #include "__base.hpp"
-#include "mo.hpp"
+#include "mint.hpp"
 #endif
 
-vector<int> init_inv(int lim) {
+vector<int> pre_inv(int lim) {
     vector<int> Inv(lim);
-    Inv[1] = 1;
+    Inv[0] = Inv[1] = 1;
     for (int i = 2; i < lim; i++) {
         Inv[i] = mul((mod - mod / i), Inv[mod % i]);
     }
