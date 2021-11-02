@@ -73,12 +73,71 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>P1393 Mivik 的标题</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 在字符集中有 $m$ 个不同的字符，求给定字符串 $S$ 在长度为 $n$ 的字符串的全集中出现的概率。
+分析 参考 Mivik 的字符串公开赛。
+定义 $A$ 类字符串为，在整个字符串中 $S$ 只出现过一次，且恰好 $S$ 出现在末尾的字符串。
+设 ${f_i}$ 是长度为 $i$ 的字符串中 $A$ 类字符串的个数。再定义 ${g_i}$ 是长度为 $i$ 的字符串中没有出现过 $S$ 的个数。
+在长为 $i$ 的没有出现过 $S$ 的字符串后面加上一个字符，则可能出现 $S$ 也可能没有出现 $S$。
+$$ m g_i = f_{i+1} + g_{i+1} $$
+定义关于 $S$ 的数列 ${s_i}$ 为
+$$ s_i = [i \ \text{is a period of}\ S] $$
+即当 $i$ 是 $S$ 的一个循环节时，$s_i$ 为 $1$，否则为 $0$。...</p>
+</section>
+<footer class=entry-footer>November 2, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P1393 Mivik 的标题" href=https://rogeryoungh.github.io/code-of-acm/post/2021-11/p1393/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>P5179 Fraction</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 求最简分数 $p/q$ 满足
+$$ \frac{a}{b} 若有多组解，输出 $q$ 最小的；仍有多组解，输出 $p$ 最小的一组。
+分析 分类讨论：
+首先当 $\lfloor a/b \rfloor + 1 \leqslant \lceil c/d \rceil - 1$ 时，说明两个数之间存在一个整数，直接返回 $p = 1, q = \lfloor a / b \rfloor + 1$ 即可。 其次当 $a = 0$ 时，直接解得 $p = 1, q = \lfloor d / c \rfloor + 1$。 当 $a &lt; b$ 时，这意味着我们无法直接求解。考虑翻转，转化问题为 $$ \frac{d}{c} 当 $a > b$ 时，考虑求解 $$ \frac{a}{b} - \left\lfloor\frac{a}{b}\right\rfloor 唯一需要确认的就是，翻转后仍是最优解，考虑反证。...</p>
+</section>
+<footer class=entry-footer>October 30, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P5179 Fraction" href=https://rogeryoungh.github.io/code-of-acm/post/2021-10/p5179/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>P5171 Earthquake</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 给定 $a,b,c$，求满足方程 $ax + by \leqslant c$ 的非负整数解的个数。
+分析 令 $n = \lfloor c / a \rfloor$，容易推出让我们求的是
+$$ n + 1 + \sum_{x = 0}^{n} \left\lfloor \frac{c - ax}{b} \right\rfloor $$ 直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \to (n - x)$，代入有
+$$ n + 1 + \sum_{x = 0}^{n} \left\lfloor \frac{ax + c - an}{b} \right\rfloor $$ 显然 $c - an$ 是 c % a，于是套类欧即可
+ll Euclid(ll a, ll b, ll c, ll n) { ll m = (a * n + b) / c, S1 = n * (n + 1) / 2; if (a == 0) { return b / c * (n + 1); } else if (a >= c || b >= c) { ll f = S1 * (a / c) + b / c * (n + 1); return f + Euclid(a % c, b % c, c, n); } else { return m * n - Euclid(c, c - b - 1, a, m - 1); } } int main() { ll a = rr(), b = rr(), c = rr(); ll n = c / a; printf("%lld\n", Euclid(a, c % a, b, n) + n + 1); return 0; } </p>
+</section>
+<footer class=entry-footer>October 28, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P5171 Earthquake" href=https://rogeryoungh.github.io/code-of-acm/post/2021-10/p5171/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>NC11255B Sample Game</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 给定生成 $1$ 到 $n$ 数字的概率分布，不断生成随机数 $x$ 直到 $x$ 不是已经生成过的最大的数停止，求生成次数平方的期望。
+分析 设期望的随机次数为 $f_x = E(x)$，我们需要计算的次数为 $g_x = E(x^2)$。
+关于 $f_i$ 的 DP 是显然的，计算有
+$$ f_x = \sum_{i = 1}^{x - 1} p_i + \sum_{i = x}^n p_i(1 + f_i) = 1 + \sum_{i = x}^n p_i f_i $$ 容易观察到
+$$ f_{x + 1} =(1 - p_x) f_x \Rightarrow f_x = \prod_{i = x}^n \frac{1}{1 - p_x} $$ 接下来需要一个套路...</p>
+</section>
+<footer class=entry-footer>October 19, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to NC11255B Sample Game" href=https://rogeryoungh.github.io/code-of-acm/post/2021-10/nc11255b/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>P3052 Cows in a Skyscraper G</h2>
 </header>
 <section class=entry-content>
 <p>题目大意 有 $n$ 头牛坐电梯，重量分别为 $c_i$，电梯的最大限额是 $W$，求最少分多少次能够全部上去。
 分析 注意 $n \leqslant 18$，枚举全排列是不行的。考虑用状态压缩，将第 $j$ 头奶牛的选和不选用状态 $i$ 的第 $j$ 位数字表示。设 $f_i$ 表示状态为 $i$ 时最小乘电梯次数，$g_i$ 表示此状态下最新那个电梯已经有的重量。
-首先令 cow = i &lt;&lt; j - 1，若 i & j 为 $1$ 则说明这个奶牛已经坐上电梯了，不计算。 当 $W - g_i \geqslant c_i$ 时，最后那个电梯坐的下这头牛。 当 $W - g_i &lt; c_i$ 时，只能新开一个电梯。 还是代码更清晰
+首先令 cow = i &lt;&lt; (j - 1)，若 i & cow 为 $1$ 则说明这个奶牛已经坐上电梯了，不计算。 当 $W - g_i \geqslant c_i$ 时，最后那个电梯坐的下这头牛。 当 $W - g_i &lt; c_i$ 时，只能新开一个电梯。 还是代码更清晰
 const int maxn = 18; ll ci[maxn]; ll ff[1 &lt;&lt; maxn], gg[1 &lt;&lt; maxn]; int main() { ll n = rr(), W = rr(); for (int i = 1; i &lt;= n; i++) ci[i] = rr(); fill_n(ff, 1 &lt;&lt; maxn, n); fill_n(gg, 1 &lt;&lt; maxn, W); ff[0] = 1, gg[0] = 0; for (int i = 0; i &lt; (1 &lt;&lt; n); i++) { for (int j = 1; j &lt;= n; j++) { ll cow = 1 &lt;&lt; (j - 1); if (i & cow) continue; if (W - gg[i] >= ci[j]) { ff[i | cow] = ff[i]; gg[i | cow] = min(gg[i | cow], gg[i] + ci[j]); } else if (W - gg[i] &lt; ci[j] && ff[i | cow] >= ff[i] + 1) { ff[i | cow] = ff[i] + 1; gg[i | cow] = min(gg[i | cow], ci[j]); } } } printf("%lld", ff[(1 &lt;&lt; n) - 1]); return 0; } </p>
 </section>
 <footer class=entry-footer>October 18, 2021&nbsp;·&nbsp;rogeryoungh</footer>
@@ -94,8 +153,10 @@ const int maxn = 18; ll ci[maxn]; ll ff[1 &lt;&lt; maxn], gg[1 &lt;&lt; maxn]; i
 CodeForces：更新至：–.–
 牛客：更新至：–.–
 HDU：更新至：–.–
-2021 年 10 月 P3052 Cows in a Skyscraper G
+2021 年 10 月 NC11255B Sample Game
+P3052 Cows in a Skyscraper G
 P4059 找爸爸
+HDU6955 Xor sum
 2021 年 09 月 HDU6833 A Very Easy Math Problem
 HDU6755 Fibonacci Sum
 HDU6537 Neko and function
@@ -170,61 +231,6 @@ $$ (F_{i c})^k = \left( \frac{A^{i c} - B^{i c}}{A - B} \right)^k = \frac{1}{(A 
 </section>
 <footer class=entry-footer>September 23, 2021&nbsp;·&nbsp;rogeryoungh</footer>
 <a class=entry-link aria-label="post link to HDU6755 Fibonacci Sum" href=https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6755/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>HDU6537 Neko and function</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 定义 $f(n, k)$ 为满足如下要求的，长度为 $k$ 的数列 $\{a_i\}$ 个数：
-要求每个数字都大于 $1$； 数列各项之积恰为 $n$。 求其前缀和 $S(n, k) = \sum f(i, k)$。
-分析 多组输入好坑啊。
-先允许 $a_i=1$，将结果记为 $g(n,k)$，容易利用隔板法求得
-$$ g (p^c, k) = \binom{t + k - 1}{k - 1} $$ 对于多个质因数，显然其贡献是相互独立的，即 $g$ 是积性函数。考虑选取 $i$ 个数令其 $a_i>1$，枚举有
-$$ g (n, k) = \sum_{i = 1}^k \binom{n}{i} f (n, i) $$ 二项式反演（或者直接容斥）有
-$$ f (n, k) = \sum_{i = 1}^k (- 1)^{k - i} \binom{k}{i} g (n, i) $$ 求和并换序...</p>
-</section>
-<footer class=entry-footer>September 22, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to HDU6537 Neko and function" href=https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6537/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>HDU6750 Function</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 定义
-$$ f (n) = \sum_{d \mid n} d \left[ \gcd \left( d, \frac{n}{d} \right) = 1 \right] $$ 求其前缀和 $S(n)$。
-分析 首先 Min25 筛是过不了的，内存不够。先推式子
-$$ \begin{aligned} S (n) &= \sum_{i = 1}^n \sum_{d \mid i} d \left[ \gcd \left( d, \frac{i}{d} \right) = 1 \right] \\ &= \sum_{d = 1}^n \sum_{i = 1}^n d [d \mid i] \left[\gcd \left( d, \frac{i}{d} \right) = 1 \right] \\ &= \sum_{d = 1}^n \sum_{i = 1}^{n / d} d [\gcd (i, d) = 1] \end{aligned} $$ 看到 $\gcd = 1$ 就应该想起来 Mobius 反演，容易化简有...</p>
-</section>
-<footer class=entry-footer>September 22, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to HDU6750 Function" href=https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6750/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>P5349 幂</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 即求
-$$ S = \sum_{n=0}^\infty f(n)r^n $$ 分析 换序
-$$ S = \sum_{n = 0}^{\infty} \left( \sum_{i = 0}^m f_i n^i \right) r^n = \sum_{i = 0}^m f_i \sum_{n = 0}^{\infty} n^i r^n $$ 令
-$$ S_i = \sum_{n = 0}^{\infty} n^i r^n $$ 套路的逐项相减，主动的凑二项式
-$$ (1 - r) S_i = 1 + \sum_{n = 1}^{\infty} n^i r^n - \sum_{n = 1}^{\infty} (n - 1)^i r^n = 1 + \sum_{n = 0}^{\infty} r^{n + 1} \sum_{j = 0}^{i - 1} \binom{k}{j} n^j $$ 交换求和顺序...</p>
-</section>
-<footer class=entry-footer>September 9, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to P5349 幂" href=https://rogeryoungh.github.io/code-of-acm/post/2021-09/p5349/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>LOJ6053 简单的函数</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 给定积性函数 $f(p^c) = p \oplus c$。对 $1000000007$ 取模求前缀和。
-分析 Min25 板子题。
-const ll mod = 1000000007, inv2 = 500000004; const int maxn = 200001; ll n, prime[maxn], cnt, w[maxn], s[maxn], c[maxn]; ll sqrt_n, m; ll mo(ll x) { return (x + mod) % mod; } ll f_p(ll p, ll e) { return p ^ e; } int id(ll x) { return x &lt;= sqrt_n ? x : m - (n / x) + 1; } ll F(long long n, int k) { if (n &lt;= prime[k]) return 0; ll ret = s[id(n)] - s[prime[k]]; for (int i = k + 1; i &lt;= cnt && prime[i] * prime[i] &lt;= n; i++) { ll pi = prime[i], pk = pi; for (int c = 1; pk * pi &lt;= n; c++, pk *= pi) ret += f_p(pi, c) * F(n / pk, i) + f_p(pi, c + 1); } return mo(ret); } int main() { n = rr(); sqrt_n = sqrt(n + 0....</p>
-</section>
-<footer class=entry-footer>August 15, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to LOJ6053 简单的函数" href=https://rogeryoungh.github.io/code-of-acm/post/2021-08/loj6053/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

@@ -73,6 +73,60 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>P2303 Longge 的问题</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 即求
+$$ \sum_{i=1}^n \gcd(i,n) $$ 分析 联想到
+$$ \varphi(n) = \sum_{i=1}^n [\gcd(i,n) = 1] $$ 尝试凑这个形式
+$$ \begin{aligned} \sum_{i=1}^n \gcd(i,n) &= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \\ &= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \\ &= \sum_{d \mid n} d \varphi(n/d) \end{aligned} $$ 这里其实已经可以过题了，但还可以再瞎搞一下，令
+$$ nf(n) = \sum_{d \mid n} d \varphi(n/d) = n\sum_{d \mid n} \frac{\varphi(d)}{d} $$ 尝试证明 $f(n)$ 是一个积性函数。设 $\gcd(a,b) = 1$，有...</p>
+</section>
+<footer class=entry-footer>May 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P2303 Longge 的问题" href=https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2303/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>P4721 分治 FFT</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 给定 $g[1], \cdots, g[m]$，求序列 $f$。
+$$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$ 分析 不妨令 $g [0] = 0$，$h (x) = g (x) + h [0]$，我们要解方程
+$$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$ 这个形式看似卷积，但实际上它缺了一项。对 $n > 0$ 凑卷积...</p>
+</section>
+<footer class=entry-footer>May 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P4721 分治 FFT" href=https://rogeryoungh.github.io/code-of-acm/post/2021-05/p4721/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>P2522 Problem B</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 即求
+$$ \sum_{i=a}^b \sum_{j=c}^d [\gcd(i,j) = k] $$ 分析 容易想到，独立出函数 $f(k)$ 使得
+$$ f(k) = \sum_{i=1}^x \sum_{j=1}^y [\gcd(i,j) = k] $$ 利用 Mobius 反演化简，设 $F(d)$
+$$ F(n) = \sum_{n \mid d} f(d) = \sum_{i=1}^x \sum_{j=1}^y [n \mid i][n \mid j] = \left\lfloor \frac{x}{n} \right\rfloor \left\lfloor \frac{y}{n} \right\rfloor $$ 反演化简有
+$$ f(n) = \sum_{n \mid d} \mu\left(\frac{d}{n}\right)F(d) = \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tn} \right\rfloor \left\lfloor \frac{y}{tn} \right\rfloor $$ 预处理出 $\mu(t)$ 的前缀和，剩下的就是一个二重分块了。...</p>
+</section>
+<footer class=entry-footer>May 19, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P2522 Problem B" href=https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2522/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>P2261 余数求和</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 给出正整数 $n$ 和 $k$，请计算
+$$ G(n, k) = \sum_{i = 1}^n k \bmod i $$ 分析 因为
+$$ k \bmod i = k - i \left\lfloor \frac{k}{i} \right\rfloor $$ 因此有
+$$ G(n,k) = nk - \sum_{i=1}^n i \left\lfloor \frac{k}{i} \right\rfloor $$ 后面需要整数分块。
+int main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l = 1, r; l &lt;= n; l = r + 1) { r = min(n, k / (k / l)); ll t = (l + r) * (r - l + 1) / 2; sum -= t * (k / l); } printf("%lld", sum); return 0; } </p>
+</section>
+<footer class=entry-footer>April 30, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P2261 余数求和" href=https://rogeryoungh.github.io/code-of-acm/post/2021-04/p2261/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>P1314 聪明的质检员</h2>
 </header>
 <section class=entry-content>
@@ -182,58 +236,6 @@ int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(
 </section>
 <footer class=entry-footer>November 30, 2020&nbsp;·&nbsp;rogeryoungh</footer>
 <a class=entry-link aria-label="post link to P1880 石子合并" href=https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1880/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>P1833 樱花</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 混合背包。每棵树都有美学值 $C_i$，共有三种：
-一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。 分析 对于混合背包，我们可以对物品拆分，得到多个物品。
-ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), teh = rr(), tem = rr(); int tsum = (teh - tsh) * 60 + tem - tsm; int n = rr(); int tp = 1; for (ll i = 1; i &lt;= n; i++) { int t = rr(), c = rr(), p = rr(); if (p == 1) { tt[tp] = t, cc[tp] = c; tp++; } else { p = p !...</p>
-</section>
-<footer class=entry-footer>November 11, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to P1833 樱花" href=https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1833/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>P1541 乌龟棋</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 初始有四种卡片，消耗后分别可以前进 $1$、$2$、$3$ 和 $4$ 格。棋盘上每个点都有个分数，求从第 $1$ 格到达第 $N$ 格途径分数的最大值。
-分析 设状态 $F[i, j, k, w]$ 为使用 $i$ 张前进 $1$、……、$w$ 张前进 $4$ 之后的状态，容易得到转移方程
-$$ F[i, j, k, w] = \max\left\{ \begin{matrix} dp[i - 1, j, k, w] \\ dp[i, j - 1, k, w] \\ dp[i, j, k - 1, w] \\ dp[i, j, k, w - 1] \end{matrix}\right\} + a[i + 2j + 3k + 4w] $$ 处理一下边界情况，滚动数组即可。...</p>
-</section>
-<footer class=entry-footer>November 10, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to P1541 乌龟棋" href=https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1541/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>P3842 线段</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 在 $n \times n$ 的格上，在每行中各有一条线段 $(i, l_i) \to (i, r_i)$。
-你从 $(1,1)$ 出发，只能沿着格子直走，最终走到 $(n,n)$。要求沿途经过所有的线段，且所走路程长度尽量的短。
-分析 显然是一行一行的递推。维护两个数据，一个是走完该行后停留在左侧的，记作 ${\rm DP}_l$，相应的停留在右侧的记作 ${\rm DP}_r$。
-若停在左侧，可能从上一行的右侧走来，也可能是由左侧走来，故转移方程有
-$$ {\rm DP}_l[i] = r_i - l_i + \min\{{\rm DP}_l[i - 1] + |l_{i-1} - r_i|, {\rm DP}_r[i - 1] + |r_{i - 1} - r_i|\} $$ 右侧类似，故可以写出代码
-int main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll i = 1; i &lt;= n; i++) { ll l = rr(), r = rr(); ll tl = min(dpl + abs(past_l - r), dpr + abs(past_r - r)) + r - l; ll tr = min(dpl + abs(past_l - l), dpr + abs(past_r - l)) + r - l; dpl = tl, dpr = tr; past_l = l, past_r = r; } printf("%lld\n", min(dpl + n - past_l, dpr + n - past_r) + n - 1); return 0; } </p>
-</section>
-<footer class=entry-footer>November 10, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to P3842 线段" href=https://rogeryoungh.github.io/code-of-acm/post/2020-11/p3842/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>P1077 摆花</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 要从 $n$ 种花中挑出 $m$ 盆展览，其中第 $i$ 种花不得多于 $a_i$ 种。求有几种选法。
-分析 考虑动态规划，记状态 $dp[i,j]$ 为摆完前 $i$ 种花，共 $j$ 盆时的方案数。容易得到递推式
-$$ dp[i,j] = \sum_{k = j - \min(a_i, j)}^j dp[i-1,k] $$ 边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。
-const ll mod = 1e6 + 7; ll dp[110], aa[110], sum[110]; int main() { ll n = rr(), m = rr(); sum[0] = dp[0] = 1; for (ll i = 1; i &lt;= n; i++) aa[i] = rr(); for (ll i = 1; i &lt;= n; i++) { for (ll j = 1; j &lt;= m; j++) sum[j] = (sum[j - 1] + dp[j]) % mod; for (ll j = m; j >= 0; j--) { int t = j - 1 - min(aa[i], j); if (t > 0) dp[j] = (dp[j] + sum[j - 1] - sum[t]) % mod; } } printf("%lld\n", (dp[m] + mod) % mod); return 0; } </p>
-</section>
-<footer class=entry-footer>October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to P1077 摆花" href=https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1077/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

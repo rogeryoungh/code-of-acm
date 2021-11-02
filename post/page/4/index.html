@@ -73,6 +73,58 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>P1833 樱花</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 混合背包。每棵树都有美学值 $C_i$，共有三种：
+一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。 分析 对于混合背包，我们可以对物品拆分，得到多个物品。
+ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), teh = rr(), tem = rr(); int tsum = (teh - tsh) * 60 + tem - tsm; int n = rr(); int tp = 1; for (ll i = 1; i &lt;= n; i++) { int t = rr(), c = rr(), p = rr(); if (p == 1) { tt[tp] = t, cc[tp] = c; tp++; } else { p = p !...</p>
+</section>
+<footer class=entry-footer>November 11, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P1833 樱花" href=https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1833/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>P1541 乌龟棋</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 初始有四种卡片，消耗后分别可以前进 $1$、$2$、$3$ 和 $4$ 格。棋盘上每个点都有个分数，求从第 $1$ 格到达第 $N$ 格途径分数的最大值。
+分析 设状态 $F[i, j, k, w]$ 为使用 $i$ 张前进 $1$、……、$w$ 张前进 $4$ 之后的状态，容易得到转移方程
+$$ F[i, j, k, w] = \max\left\{ \begin{matrix} dp[i - 1, j, k, w] \\ dp[i, j - 1, k, w] \\ dp[i, j, k - 1, w] \\ dp[i, j, k, w - 1] \end{matrix}\right\} + a[i + 2j + 3k + 4w] $$ 处理一下边界情况，滚动数组即可。...</p>
+</section>
+<footer class=entry-footer>November 10, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P1541 乌龟棋" href=https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1541/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>P3842 线段</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 在 $n \times n$ 的格上，在每行中各有一条线段 $(i, l_i) \to (i, r_i)$。
+你从 $(1,1)$ 出发，只能沿着格子直走，最终走到 $(n,n)$。要求沿途经过所有的线段，且所走路程长度尽量的短。
+分析 显然是一行一行的递推。维护两个数据，一个是走完该行后停留在左侧的，记作 ${\rm DP}_l$，相应的停留在右侧的记作 ${\rm DP}_r$。
+若停在左侧，可能从上一行的右侧走来，也可能是由左侧走来，故转移方程有
+$$ {\rm DP}_l[i] = r_i - l_i + \min\{{\rm DP}_l[i - 1] + |l_{i-1} - r_i|, {\rm DP}_r[i - 1] + |r_{i - 1} - r_i|\} $$ 右侧类似，故可以写出代码
+int main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll i = 1; i &lt;= n; i++) { ll l = rr(), r = rr(); ll tl = min(dpl + abs(past_l - r), dpr + abs(past_r - r)) + r - l; ll tr = min(dpl + abs(past_l - l), dpr + abs(past_r - l)) + r - l; dpl = tl, dpr = tr; past_l = l, past_r = r; } printf("%lld\n", min(dpl + n - past_l, dpr + n - past_r) + n - 1); return 0; } </p>
+</section>
+<footer class=entry-footer>November 10, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P3842 线段" href=https://rogeryoungh.github.io/code-of-acm/post/2020-11/p3842/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>P1077 摆花</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 要从 $n$ 种花中挑出 $m$ 盆展览，其中第 $i$ 种花不得多于 $a_i$ 种。求有几种选法。
+分析 考虑动态规划，记状态 $dp[i,j]$ 为摆完前 $i$ 种花，共 $j$ 盆时的方案数。容易得到递推式
+$$ dp[i,j] = \sum_{k = j - \min(a_i, j)}^j dp[i-1,k] $$ 边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。
+const ll mod = 1e6 + 7; ll dp[110], aa[110], sum[110]; int main() { ll n = rr(), m = rr(); sum[0] = dp[0] = 1; for (ll i = 1; i &lt;= n; i++) aa[i] = rr(); for (ll i = 1; i &lt;= n; i++) { for (ll j = 1; j &lt;= m; j++) sum[j] = (sum[j - 1] + dp[j]) % mod; for (ll j = m; j >= 0; j--) { int t = j - 1 - min(aa[i], j); if (t > 0) dp[j] = (dp[j] + sum[j - 1] - sum[t]) % mod; } } printf("%lld\n", (dp[m] + mod) % mod); return 0; } </p>
+</section>
+<footer class=entry-footer>October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P1077 摆花" href=https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1077/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>P1090 合并果子</h2>
 </header>
 <section class=entry-content>
@@ -150,62 +202,6 @@ struct POINT { double x, y, z; bool operator&lt;(POINT p) { return z > p.z; } } 
 </section>
 <footer class=entry-footer>October 13, 2020&nbsp;·&nbsp;rogeryoungh</footer>
 <a class=entry-link aria-label="post link to P5143 攀爬者" href=https://rogeryoungh.github.io/code-of-acm/post/2020-10/p5143/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>P1095 守望者的逃离</h2>
-</header>
-<section class=entry-content>
-<p>P1095 守望者的逃离 题目大意 守望者的可以在一秒逃出 $17 {\rm m}$，或者消耗 $10$ 点魔法值闪现 $60 {\rm m}$。原地休息时每秒回复 $4$ 点魔法值。
-守望者开始有 $M$ 点魔法，需要在 $T$ 秒内逃离距离 $S$。若能逃离则求最短逃离时间，否则求最远距离。
-分析 设 $s_1$为一直走路，$s_2$ 为一直闪现恢复。当 $s_2$ 快了就把 $s_1$ 更新为 $s_2$。
-int main() { int m = rr(), s = rr(), t = rr(); int time = t, s1 = 0, s2 = 0; while (time > 0 && s1 &lt; s) { s1 += 17; if (m >= 10) m -= 10, s2 += 60; else m += 4; s1 = max(s1, s2); time--; } if (s1 &lt; s) printf("No\n%d\n", s1); else printf("Yes\n%d\n", t - time); return 0; } </p>
-</section>
-<footer class=entry-footer>October 9, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to P1095 守望者的逃离" href=https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1095/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>P1042 乒乓球</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 赢 11 分并且压对手两分以上则一局结束，否则要追分至压对手两分。
-给定 $\texttt{WL}$ 序列，分别求 11 分制和 21 分制下每场比分，$\texttt{E}$ 是结束符。
-分析 这是一道比较烦的模拟题，很绕。
-char ch[62510]; int solve(int win, int len) { int w = 0, l = 0; for (ll i = 0; i &lt; len; i++) { w += ch[i] == 'W'; l += ch[i] == 'L'; if (max(w, l) >= win && abs(w - l) >= 2) { printf("%d:%d\n", w, l); w = l = 0; } } printf("%d:%d\n", w, l); } int main() { char ccc; int len = 0; while (scanf("%c", &ccc) !...</p>
-</section>
-<footer class=entry-footer>September 23, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to P1042 乒乓球" href=https://rogeryoungh.github.io/code-of-acm/post/2020-09/p1042/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>P2181 对角线</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 凸 $n$ 边形中，任意三条对角线不共点，求所有对角线交点的个数。
-分析 注意到一个交点对应凸多边形 $4$ 个定点，于是等价于 $n$ 个点任选 $4$ 个点的选法种数，即
-$$ \binom{n}{4} = \frac{n(n-1)(n-2)(n-3)}{24} $$ 注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。
-int main() { unsigned long long n; scanf("%llu", &n); n = n * (n - 1) / 2 * (n - 2) / 3 * (n - 3) / 4; printf("%llu", n); return 0; } </p>
-</section>
-<footer class=entry-footer>September 22, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to P2181 对角线" href=https://rogeryoungh.github.io/code-of-acm/post/2020-09/p2181/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>CF1384B2 Koa and the Beach</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 海里每一个位置都有一个深度，而且水里随着时间有锯齿状周期为 $2k$ 的潮汐。
-当潮汐与深度之和大于给定值 $l$ 时 Koa 会溺水，游泳、海岸、岛上永远是安全的。
-在任意时间 Koa 可以选择游到 $x+1$ 或停留在 $x$，试问 Koa 是否能够安全的从海岸 $0$ 到达岛上 $n+1$。
-分析 开始的想法是随着时间 DP，更好的解法是贪心。
-若一个位置在水位最高时仍不会溺水，则称这个位置是安全的，并且可以任意选择出发时机。
-即安全位置之间是相互独立的，我们只需判断可达性，尽量到达每一个安全位置。若之后 $2k$ 个位置没有安全位置，必死。
-Koa 的最优决策是在刚退潮时出发，如果能走就尽量往前走，不能走就等，等到涨潮就说明不存在通过方法。
-int main() { int ttt = rr(); while (ttt--) { int n = rr(), k = rr(), l = rr(); int flag = 0; int last = k; for (ll i = 1; i &lt;= n; i++) { int d = rr(); flag += l &lt; d; if (l - d >= k) last = k; else last = min(last - 1, l - d); flag += abs(last) > l - d; } if (flag) printf("No\n"); else printf("Yes\n"); } return 0; } </p>
-</section>
-<footer class=entry-footer>September 20, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to CF1384B2 Koa and the Beach" href=https://rogeryoungh.github.io/code-of-acm/post/2020-09/cf1384b2/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

@@ -73,6 +73,62 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>P1095 守望者的逃离</h2>
+</header>
+<section class=entry-content>
+<p>P1095 守望者的逃离 题目大意 守望者的可以在一秒逃出 $17 {\rm m}$，或者消耗 $10$ 点魔法值闪现 $60 {\rm m}$。原地休息时每秒回复 $4$ 点魔法值。
+守望者开始有 $M$ 点魔法，需要在 $T$ 秒内逃离距离 $S$。若能逃离则求最短逃离时间，否则求最远距离。
+分析 设 $s_1$为一直走路，$s_2$ 为一直闪现恢复。当 $s_2$ 快了就把 $s_1$ 更新为 $s_2$。
+int main() { int m = rr(), s = rr(), t = rr(); int time = t, s1 = 0, s2 = 0; while (time > 0 && s1 &lt; s) { s1 += 17; if (m >= 10) m -= 10, s2 += 60; else m += 4; s1 = max(s1, s2); time--; } if (s1 &lt; s) printf("No\n%d\n", s1); else printf("Yes\n%d\n", t - time); return 0; } </p>
+</section>
+<footer class=entry-footer>October 9, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P1095 守望者的逃离" href=https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1095/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>P1042 乒乓球</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 赢 11 分并且压对手两分以上则一局结束，否则要追分至压对手两分。
+给定 $\texttt{WL}$ 序列，分别求 11 分制和 21 分制下每场比分，$\texttt{E}$ 是结束符。
+分析 这是一道比较烦的模拟题，很绕。
+char ch[62510]; int solve(int win, int len) { int w = 0, l = 0; for (ll i = 0; i &lt; len; i++) { w += ch[i] == 'W'; l += ch[i] == 'L'; if (max(w, l) >= win && abs(w - l) >= 2) { printf("%d:%d\n", w, l); w = l = 0; } } printf("%d:%d\n", w, l); } int main() { char ccc; int len = 0; while (scanf("%c", &ccc) !...</p>
+</section>
+<footer class=entry-footer>September 23, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P1042 乒乓球" href=https://rogeryoungh.github.io/code-of-acm/post/2020-09/p1042/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>P2181 对角线</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 凸 $n$ 边形中，任意三条对角线不共点，求所有对角线交点的个数。
+分析 注意到一个交点对应凸多边形 $4$ 个定点，于是等价于 $n$ 个点任选 $4$ 个点的选法种数，即
+$$ \binom{n}{4} = \frac{n(n-1)(n-2)(n-3)}{24} $$ 注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。
+int main() { unsigned long long n; scanf("%llu", &n); n = n * (n - 1) / 2 * (n - 2) / 3 * (n - 3) / 4; printf("%llu", n); return 0; } </p>
+</section>
+<footer class=entry-footer>September 22, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to P2181 对角线" href=https://rogeryoungh.github.io/code-of-acm/post/2020-09/p2181/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>CF1384B2 Koa and the Beach</h2>
+</header>
+<section class=entry-content>
+<p>题目大意 海里每一个位置都有一个深度，而且水里随着时间有锯齿状周期为 $2k$ 的潮汐。
+当潮汐与深度之和大于给定值 $l$ 时 Koa 会溺水，游泳、海岸、岛上永远是安全的。
+在任意时间 Koa 可以选择游到 $x+1$ 或停留在 $x$，试问 Koa 是否能够安全的从海岸 $0$ 到达岛上 $n+1$。
+分析 开始的想法是随着时间 DP，更好的解法是贪心。
+若一个位置在水位最高时仍不会溺水，则称这个位置是安全的，并且可以任意选择出发时机。
+即安全位置之间是相互独立的，我们只需判断可达性，尽量到达每一个安全位置。若之后 $2k$ 个位置没有安全位置，必死。
+Koa 的最优决策是在刚退潮时出发，如果能走就尽量往前走，不能走就等，等到涨潮就说明不存在通过方法。
+int main() { int ttt = rr(); while (ttt--) { int n = rr(), k = rr(), l = rr(); int flag = 0; int last = k; for (ll i = 1; i &lt;= n; i++) { int d = rr(); flag += l &lt; d; if (l - d >= k) last = k; else last = min(last - 1, l - d); flag += abs(last) > l - d; } if (flag) printf("No\n"); else printf("Yes\n"); } return 0; } </p>
+</section>
+<footer class=entry-footer>September 20, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+<a class=entry-link aria-label="post link to CF1384B2 Koa and the Beach" href=https://rogeryoungh.github.io/code-of-acm/post/2020-09/cf1384b2/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>P1004 方格取数</h2>
 </header>
 <section class=entry-content>
