@@ -1,256 +1,431 @@
-<!doctype html><html lang=en dir=auto>
-<head><meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=robots content="index, follow">
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
 <title>Posts | Roger Young</title>
-<meta name=keywords content>
-<meta name=description content>
-<meta name=author content>
-<link rel=canonical href=https://rogeryoungh.github.io/code-of-acm/post/>
-<link crossorigin=anonymous href=/code-of-acm/assets/css/stylesheet.min.c56e1d144ba700000f853a33a302832ce915146ddae9593a87839996e7a41b6e.css integrity="sha256-xW4dFEunAAAPhTozowKDLOkVFG3a6Vk6h4OZluekG24=" rel="preload stylesheet" as=style>
-<link rel=preload href=https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png as=image>
-<link rel=icon href=https://rogeryoungh.github.io/code-of-acm/favicon.ico>
-<link rel=icon type=image/png sizes=16x16 href=https://rogeryoungh.github.io/code-of-acm/favicon-16x16.png>
-<link rel=icon type=image/png sizes=32x32 href=https://rogeryoungh.github.io/code-of-acm/favicon-32x32.png>
-<link rel=apple-touch-icon href=https://rogeryoungh.github.io/code-of-acm/apple-touch-icon.png>
-<link rel=mask-icon href=https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg>
-<meta name=theme-color content="#2e2e33">
-<meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.88.1">
-<link rel=alternate type=application/rss+xml href=https://rogeryoungh.github.io/code-of-acm/post/index.xml>
-<meta property="og:title" content="Posts">
-<meta property="og:description" content>
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Posts">
-<meta name=twitter:description content>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://rogeryoungh.github.io/code-of-acm/post/"}]}</script>
+<meta name="keywords" content="" />
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/" />
+<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.db03f6b1db979d0cdd8e815f16121fd4c2bd956cb3c3efedeab38b2fb48ae6a7.css" integrity="sha256-2wP2sduXnQzdjoFfFhIf1MK9lWyzw&#43;/t6rOLL7SK5qc=" rel="preload stylesheet" as="style">
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
+<link rel="icon" href="https://rogeryoungh.github.io/code-of-acm/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://rogeryoungh.github.io/code-of-acm/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://rogeryoungh.github.io/code-of-acm/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://rogeryoungh.github.io/code-of-acm/apple-touch-icon.png">
+<link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.89.4" />
+<link rel="alternate" type="application/rss+xml" href="https://rogeryoungh.github.io/code-of-acm/post/index.xml">
+
+
+
+
+<meta property="og:title" content="Posts" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Posts"/>
+<meta name="twitter:description" content=""/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Posts",
+      "item": "https://rogeryoungh.github.io/code-of-acm/post/"
+    }
+  ]
+}
+</script>
 </head>
-<body class=list id=top>
-<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-font") === "serif") {
+        document.body.classList.add('serif');
+    }
+
+</script>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
 <noscript>
-<style type=text/css>#theme-toggle,.top-link{display:none}</style>
-<style>@media(prefers-color-scheme:dark){:root{--theme:#1d1e20;--entry:#2e2e33;--primary:rgba(255, 255, 255, 0.84);--secondary:rgba(255, 255, 255, 0.56);--tertiary:rgba(255, 255, 255, 0.16);--content:rgba(255, 255, 255, 0.74);--hljs-bg:#2e2e33;--code-bg:#37383e;--border:#333}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
 </noscript>
-<header class=header>
-<nav class=nav>
-<div class=logo>
-<a href=https://rogeryoungh.github.io/code-of-acm accesskey=h title="Roger Young (Alt + H)">Roger Young</a>
-<span class=logo-switches>
-<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button>
-</span>
-</div>
-<ul id=menu>
-<li>
-<a href=https://rogeryoungh.github.io/code-of-acm/tags/log/ title=Log>
-<span>Log</span>
-</a>
-</li>
-<li>
-<a href=https://rogeryoungh.github.io/code-of-acm/archives title=Archive>
-<span>Archive</span>
-</a>
-</li>
-<li>
-<a href=https://rogeryoungh.github.io/code-of-acm/search/ title="Search (Alt + /)" accesskey=/>
-<span>Search</span>
-</a>
-</li>
-<li>
-<a href=https://rogeryoungh.github.io/code-of-acm/tags/ title=Tags>
-<span>Tags</span>
-</a>
-</li>
-</ul>
-</nav>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://rogeryoungh.github.io/code-of-acm" accesskey="h" title="Roger Young (Alt + H)">Roger Young</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <button id="font-toggle" accesskey="t" title="(Alt + T)">A</button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://rogeryoungh.github.io/code-of-acm/tags/log/" title="Log">
+                    <span>Log</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rogeryoungh.github.io/code-of-acm/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rogeryoungh.github.io/code-of-acm/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rogeryoungh.github.io/code-of-acm/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </header>
-<main class=main>
-<header class=page-header>
-<h1>Posts</h1>
+<main class="main"> 
+<header class="page-header">
+  <h1>Posts</h1>
 </header>
-<article class=post-entry>
-<header class=entry-header>
-<h2>P1393 Mivik 的标题</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 在字符集中有 $m$ 个不同的字符，求给定字符串 $S$ 在长度为 $n$ 的字符串的全集中出现的概率。
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>CF Round 706(Div 2)</h2>
+  </header>
+  <section class="entry-content">
+    <p>D. Let&#39;s Go Hiking 两人在序列上移动，Qingshan 只能往值更高的地方走，Daniel 只能往低处走。两人不能重叠，求 Qingshan 中有多少可以赢的位置。
+分析 其实我们只用关注上升和下降的序列有多长，而不必关心它们具体是几。
+如果 Qingshan 选边界上的坡，或者不选在坡顶，那么 Daniel 可以紧挨着它，从而必输。
+如果 Qingshan 不选最长的坡，则 Danniel 可以选最长的坡，从而必输。
+如果最长的坡存在没有公共最高点的两个，Danniel 可以避开 Qingshan 选，从而必输。
+剩下的情况只有两种：
+ 最长的坡只有一个，Qingshan 只能选在此坡坡顶，Danniel 可以选在靠近坡底的地方，使得两人碰面，从而必输。 最长的坡有两个且有公共最高点，Qingshan 选在坡顶，则可以选择避开 Danniel 下坡，从而必胜。  附：代码，展开
+E. Garden of the Sun 在棋盘的格子中有不连续的 X，请连接使得其满足如下条件
+ X 组成的图案是连通的。 X 组成的图案不存在环。  分析 X 不连续是一个比较强的性质。
+构造类似 丰 字形的图案，横与横之间空两行，这样可以使得所有 X 都附在一条横上，且互相不连接。
+接下来考虑如何把横连起来，可以发现只用在第一列、第二列中选一列进行连接即可。
+附：代码，展开
+F. BFS Trees  第一次补题补到 F 耶！什么时候才能在赛中做到 F 呢……
+ 我们定义一个图上的生成树是以 $s$ 点为根的 BFS 树，当且仅当：对于任意的节点 $t$，$s\to t$ 在 BFS 树上的最短路等于图上的最短路。...</p>
+  </section>
+  <footer class="entry-footer">November 11, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to CF Round 706(Div 2)" href="https://rogeryoungh.github.io/code-of-acm/post/2021-11/cf1496/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>2021 年刷题日志</h2>
+  </header>
+  <section class="entry-content">
+    <p>过于简单的题不记录。
+洛谷：更新至：2021.11.10(–.–)
+CodeForces：更新至：–.–
+牛客：更新至：–.–
+HDU：更新至：–.–
+2021 年 11 月 P1393 Mivik 的标题
+P3846 常系数齐次线性递推
+P3846 可爱的质数/BSGS
+P5158 多项式快速插值
+P5050 多项式多点求值
+P5277 多项式开根（加强版）
+P4512 多项式除法
+P5245 多项式快速幂
+P4718 Pollard-Rho 算法
+P5491 二次剩余
+2021 年 10 月 P5179 Fraction
+P5171 Earthquake
+NC11255B Sample Game
+P3052 Cows in a Skyscraper G
+P4059 找爸爸
+HDU6955 Xor sum
+P5170 类欧几里得算法
+2021 年 09 月 P5205 多项式开根
+HDU6833 A Very Easy Math Problem
+HDU6755 Fibonacci Sum...</p>
+  </section>
+  <footer class="entry-footer">November 10, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to 2021 年刷题日志" href="https://rogeryoungh.github.io/code-of-acm/post/log/log2021/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P1393 Mivik 的标题</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 在字符集中有 $m$ 个不同的字符，求给定字符串 $S$ 在长度为 $n$ 的字符串的全集中出现的概率。
 分析 参考 Mivik 的字符串公开赛。
 定义 $A$ 类字符串为，在整个字符串中 $S$ 只出现过一次，且恰好 $S$ 出现在末尾的字符串。
 设 ${f_i}$ 是长度为 $i$ 的字符串中 $A$ 类字符串的个数。再定义 ${g_i}$ 是长度为 $i$ 的字符串中没有出现过 $S$ 的个数。
 在长为 $i$ 的没有出现过 $S$ 的字符串后面加上一个字符，则可能出现 $S$ 也可能没有出现 $S$。
-$$ m g_i = f_{i+1} + g_{i+1} $$
+$$ m g_i = f_{i&#43;1} &#43; g_{i&#43;1} $$
 定义关于 $S$ 的数列 ${s_i}$ 为
 $$ s_i = [i \ \text{is a period of}\ S] $$
 即当 $i$ 是 $S$ 的一个循环节时，$s_i$ 为 $1$，否则为 $0$。...</p>
-</section>
-<footer class=entry-footer>November 2, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to P1393 Mivik 的标题" href=https://rogeryoungh.github.io/code-of-acm/post/2021-11/p1393/></a>
+  </section>
+  <footer class="entry-footer">November 2, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1393 Mivik 的标题" href="https://rogeryoungh.github.io/code-of-acm/post/2021-11/p1393/"></a>
 </article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>P5179 Fraction</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 求最简分数 $p/q$ 满足
-$$ \frac{a}{b} 若有多组解，输出 $q$ 最小的；仍有多组解，输出 $p$ 最小的一组。
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P5179 Fraction</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 求最简分数 $p/q$ 满足
+ $$ \frac{a}{b} 若有多组解，输出 $q$ 最小的；仍有多组解，输出 $p$ 最小的一组。
 分析 分类讨论：
-首先当 $\lfloor a/b \rfloor + 1 \leqslant \lceil c/d \rceil - 1$ 时，说明两个数之间存在一个整数，直接返回 $p = 1, q = \lfloor a / b \rfloor + 1$ 即可。 其次当 $a = 0$ 时，直接解得 $p = 1, q = \lfloor d / c \rfloor + 1$。 当 $a &lt; b$ 时，这意味着我们无法直接求解。考虑翻转，转化问题为 $$ \frac{d}{c} 当 $a > b$ 时，考虑求解 $$ \frac{a}{b} - \left\lfloor\frac{a}{b}\right\rfloor 唯一需要确认的就是，翻转后仍是最优解，考虑反证。...</p>
-</section>
-<footer class=entry-footer>October 30, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to P5179 Fraction" href=https://rogeryoungh.github.io/code-of-acm/post/2021-10/p5179/></a>
+ 首先当 $\lfloor a/b \rfloor &#43; 1 \leqslant \lceil c/d \rceil - 1$ 时，说明两个数之间存在一个整数，直接返回 $p = 1, q = \lfloor a / b \rfloor &#43; 1$ 即可。 其次当 $a = 0$ 时，直接解得 $p = 1, q = \lfloor d / c \rfloor &#43; 1$。 当 $a &lt; b$ 时，这意味着我们无法直接求解。考虑翻转，转化问题为  $$ \frac{d}{c} 当 $a &gt; b$ 时，考虑求解  $$ \frac{a}{b} - \left\lfloor\frac{a}{b}\right\rfloor  唯一需要确认的就是，翻转后仍是最优解，考虑反证。...</p>
+  </section>
+  <footer class="entry-footer">October 30, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P5179 Fraction" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/p5179/"></a>
 </article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>P5171 Earthquake</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 给定 $a,b,c$，求满足方程 $ax + by \leqslant c$ 的非负整数解的个数。
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P5171 Earthquake</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定 $a,b,c$，求满足方程 $ax &#43; by \leqslant c$ 的非负整数解的个数。
 分析 令 $n = \lfloor c / a \rfloor$，容易推出让我们求的是
-$$ n + 1 + \sum_{x = 0}^{n} \left\lfloor \frac{c - ax}{b} \right\rfloor $$ 直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \to (n - x)$，代入有
-$$ n + 1 + \sum_{x = 0}^{n} \left\lfloor \frac{ax + c - an}{b} \right\rfloor $$ 显然 $c - an$ 是 c % a，于是套类欧即可
-ll Euclid(ll a, ll b, ll c, ll n) { ll m = (a * n + b) / c, S1 = n * (n + 1) / 2; if (a == 0) { return b / c * (n + 1); } else if (a >= c || b >= c) { ll f = S1 * (a / c) + b / c * (n + 1); return f + Euclid(a % c, b % c, c, n); } else { return m * n - Euclid(c, c - b - 1, a, m - 1); } } int main() { ll a = rr(), b = rr(), c = rr(); ll n = c / a; printf("%lld\n", Euclid(a, c % a, b, n) + n + 1); return 0; } </p>
-</section>
-<footer class=entry-footer>October 28, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to P5171 Earthquake" href=https://rogeryoungh.github.io/code-of-acm/post/2021-10/p5171/></a>
+ $$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{c - ax}{b} \right\rfloor $$ 直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \to (n - x)$，代入有
+ $$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{ax &#43; c - an}{b} \right\rfloor $$ 显然 $c - an$ 是 c % a，于是套类欧即可
+附：代码，展开</p>
+  </section>
+  <footer class="entry-footer">October 28, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P5171 Earthquake" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/p5171/"></a>
 </article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>NC11255B Sample Game</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 给定生成 $1$ 到 $n$ 数字的概率分布，不断生成随机数 $x$ 直到 $x$ 不是已经生成过的最大的数停止，求生成次数平方的期望。
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>NC11255B Sample Game</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定生成 $1$ 到 $n$ 数字的概率分布，不断生成随机数 $x$ 直到 $x$ 不是已经生成过的最大的数停止，求生成次数平方的期望。
 分析 设期望的随机次数为 $f_x = E(x)$，我们需要计算的次数为 $g_x = E(x^2)$。
 关于 $f_i$ 的 DP 是显然的，计算有
-$$ f_x = \sum_{i = 1}^{x - 1} p_i + \sum_{i = x}^n p_i(1 + f_i) = 1 + \sum_{i = x}^n p_i f_i $$ 容易观察到
-$$ f_{x + 1} =(1 - p_x) f_x \Rightarrow f_x = \prod_{i = x}^n \frac{1}{1 - p_x} $$ 接下来需要一个套路...</p>
-</section>
-<footer class=entry-footer>October 19, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to NC11255B Sample Game" href=https://rogeryoungh.github.io/code-of-acm/post/2021-10/nc11255b/></a>
+ $$ f_x = \sum_{i = 1}^{x - 1} p_i &#43; \sum_{i = x}^n p_i(1 &#43; f_i) = 1 &#43; \sum_{i = x}^n p_i f_i $$ 容易观察到
+ $$ f_{x &#43; 1} =(1 - p_x) f_x \Rightarrow f_x = \prod_{i = x}^n \frac{1}{1 - p_x} $$ 接下来需要一个套路...</p>
+  </section>
+  <footer class="entry-footer">October 19, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to NC11255B Sample Game" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/nc11255b/"></a>
 </article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>P3052 Cows in a Skyscraper G</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 有 $n$ 头牛坐电梯，重量分别为 $c_i$，电梯的最大限额是 $W$，求最少分多少次能够全部上去。
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P3052 Cows in a Skyscraper G</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 有 $n$ 头牛坐电梯，重量分别为 $c_i$，电梯的最大限额是 $W$，求最少分多少次能够全部上去。
 分析 注意 $n \leqslant 18$，枚举全排列是不行的。考虑用状态压缩，将第 $j$ 头奶牛的选和不选用状态 $i$ 的第 $j$ 位数字表示。设 $f_i$ 表示状态为 $i$ 时最小乘电梯次数，$g_i$ 表示此状态下最新那个电梯已经有的重量。
-首先令 cow = i &lt;&lt; (j - 1)，若 i & cow 为 $1$ 则说明这个奶牛已经坐上电梯了，不计算。 当 $W - g_i \geqslant c_i$ 时，最后那个电梯坐的下这头牛。 当 $W - g_i &lt; c_i$ 时，只能新开一个电梯。 还是代码更清晰
-const int maxn = 18; ll ci[maxn]; ll ff[1 &lt;&lt; maxn], gg[1 &lt;&lt; maxn]; int main() { ll n = rr(), W = rr(); for (int i = 1; i &lt;= n; i++) ci[i] = rr(); fill_n(ff, 1 &lt;&lt; maxn, n); fill_n(gg, 1 &lt;&lt; maxn, W); ff[0] = 1, gg[0] = 0; for (int i = 0; i &lt; (1 &lt;&lt; n); i++) { for (int j = 1; j &lt;= n; j++) { ll cow = 1 &lt;&lt; (j - 1); if (i & cow) continue; if (W - gg[i] >= ci[j]) { ff[i | cow] = ff[i]; gg[i | cow] = min(gg[i | cow], gg[i] + ci[j]); } else if (W - gg[i] &lt; ci[j] && ff[i | cow] >= ff[i] + 1) { ff[i | cow] = ff[i] + 1; gg[i | cow] = min(gg[i | cow], ci[j]); } } } printf("%lld", ff[(1 &lt;&lt; n) - 1]); return 0; } </p>
-</section>
-<footer class=entry-footer>October 18, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to P3052 Cows in a Skyscraper G" href=https://rogeryoungh.github.io/code-of-acm/post/2021-10/p3052/></a>
+ 首先令 cow = i &lt;&lt; (j - 1)，若 i &amp; cow 为 $1$ 则说明这个奶牛已经坐上电梯了，不计算。 当 $W - g_i \geqslant c_i$ 时，最后那个电梯坐的下这头牛。 当 $W - g_i &lt; c_i$ 时，只能新开一个电梯。  还是代码更清晰
+const int maxn = 18; ll ci[maxn]; ll ff[1 &lt;&lt; maxn], gg[1 &lt;&lt; maxn]; int main() { ll n = rr(), W = rr(); for (int i = 1; i &lt;= n; i&#43;&#43;) ci[i] = rr(); fill_n(ff, 1 &lt;&lt; maxn, n); fill_n(gg, 1 &lt;&lt; maxn, W); ff[0] = 1, gg[0] = 0; for (int i = 0; i &lt; (1 &lt;&lt; n); i&#43;&#43;) { for (int j = 1; j &lt;= n; j&#43;&#43;) { ll cow = 1 &lt;&lt; (j - 1); if (i &amp; cow) continue; if (W - gg[i] &gt;= ci[j]) { ff[i | cow] = ff[i]; gg[i | cow] = min(gg[i | cow], gg[i] &#43; ci[j]); } else if (W - gg[i] &lt; ci[j] &amp;&amp; ff[i | cow] &gt;= ff[i] &#43; 1) { ff[i | cow] = ff[i] &#43; 1; gg[i | cow] = min(gg[i | cow], ci[j]); } } } printf(&#34;%lld&#34;, ff[(1 &lt;&lt; n) - 1]); return 0; } </p>
+  </section>
+  <footer class="entry-footer">October 18, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P3052 Cows in a Skyscraper G" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/p3052/"></a>
 </article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>2021 年刷题日志</h2>
-</header>
-<section class=entry-content>
-<p>过于简单的题不记录。
-洛谷：更新至：2021.10.17(–.–)
-CodeForces：更新至：–.–
-牛客：更新至：–.–
-HDU：更新至：–.–
-2021 年 10 月 NC11255B Sample Game
-P3052 Cows in a Skyscraper G
-P4059 找爸爸
-HDU6955 Xor sum
-2021 年 09 月 HDU6833 A Very Easy Math Problem
-HDU6755 Fibonacci Sum
-HDU6537 Neko and function
-HDU6750 Function
-P5349 幂
-2021 年 08 月 P4721 分治 FFT
-P4238 多项式乘法逆
-P4245 任意模数多项式乘法
-P4213 杜教筛
-P5325 Min_25筛
-LOJ6053 简单的函数
-2021 年 07 月 P4173 残缺的字符串
-HDU多校2021-2
-HDU6961 I love cube HDU6965 I love string HDU6971 I love max and multiply HUD6972 I love 114514 P3803 多项式乘法（FFT）...</p>
-</section>
-<footer class=entry-footer>October 17, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to 2021 年刷题日志" href=https://rogeryoungh.github.io/code-of-acm/post/log/log2021/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>P4059 找爸爸</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 给定两串 DNA 序列，可以在其中任意插空格，然后逐位比较，当两位都是字母时查表得到相似度。
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P4059 找爸爸</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定两串 DNA 序列，可以在其中任意插空格，然后逐位比较，当两位都是字母时查表得到相似度。
 长度为 $k$ 的空格有额外相似度 $- A - B(k - 1)$。求两序列的最大相似度。
 分析 若不考虑空格的贡献，容易想到二维 DP，记 ${\rm DP}[i,j]$ 是 $A$ 串到位置 $i$ 同时 $B$ 串到位置 $j$ 时最大的相似度，有
-$$ {\rm DP}[i, j] = \max\{ {\rm DP}[i - 1, j - 1] + D[i, j], {\rm DP}[i - 1, j], {\rm DP}[i, j - 1] \} $$ 当我们考虑空格的贡献时，可以发现空格的额外贡献只与前面一位有关。若两个序列此位都是空格，则把去掉后相似度一定会增加，故只有三种可能：设 ${\rm DP}_0$ 是结尾没有空格；${\rm DP}_1$ 是空格在 $A$ 串；${\rm DP}_2$ 是空格在 $B$ 串。
+ $$ {\rm DP}[i, j] = \max\{ {\rm DP}[i - 1, j - 1] &#43; D[i, j], {\rm DP}[i - 1, j], {\rm DP}[i, j - 1] \} $$ 当我们考虑空格的贡献时，可以发现空格的额外贡献只与前面一位有关。若两个序列此位都是空格，则把去掉后相似度一定会增加，故只有三种可能：设 ${\rm DP}_0$ 是结尾没有空格；${\rm DP}_1$ 是空格在 $A$ 串；${\rm DP}_2$ 是空格在 $B$ 串。
 思考最后一个空格的转移方式，自然有方程
-$$ \begin{aligned} {\rm DP}_0[i, j] &= \max\{ {\rm DP}_0[i - 1, j - 1], {\rm DP}_1[i - 1, j - 1], {\rm DP}_2[i - 1, j - 1] \} + D[i, j] \\ {\rm DP}_1[i, j] &= \max\{ {\rm DP}_0[i, j - 1] - A, {\rm DP}_1[i, j - 1]- B, {\rm DP}_2[i, j - 1] - A\} \\ {\rm DP}_2[i, j] &= \max\{ {\rm DP}_0[i - 1, j] - A, {\rm DP}_1[i - 1, j] - A, {\rm DP}_2[i, j - 1] - B \} \\ \end{aligned} $$ 随手加滚动数组 WA 了好久，发现每次都要清空为 -INF，否则会 WA。...</p>
-</section>
-<footer class=entry-footer>October 17, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to P4059 找爸爸" href=https://rogeryoungh.github.io/code-of-acm/post/2021-10/p4059/></a>
+ $$ \begin{aligned} {\rm DP}_0[i, j] &amp;= \max\{ {\rm DP}_0[i - 1, j - 1], {\rm DP}_1[i - 1, j - 1], {\rm DP}_2[i - 1, j - 1] \} &#43; D[i, j] \\ {\rm DP}_1[i, j] &amp;= \max\{ {\rm DP}_0[i, j - 1] - A, {\rm DP}_1[i, j - 1]- B, {\rm DP}_2[i, j - 1] - A\} \\ {\rm DP}_2[i, j] &amp;= \max\{ {\rm DP}_0[i - 1, j] - A, {\rm DP}_1[i - 1, j] - A, {\rm DP}_2[i, j - 1] - B \} \\ \end{aligned} $$ 随手加滚动数组 WA 了好久，发现每次都要清空为 -INF，否则会 WA。...</p>
+  </section>
+  <footer class="entry-footer">October 17, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P4059 找爸爸" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/p4059/"></a>
 </article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>HDU6955 Xor sum</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 给定整数序列 ${a_n}$，寻找满足区间异或和大于等于 $k$ 的连续序列中最短的。
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>HDU6955 Xor sum</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定整数序列 ${a_n}$，寻找满足区间异或和大于等于 $k$ 的连续序列中最短的。
 若有多个同样长度的答案，输出位置靠前的，若不存在输出 -1。
 分析 看到异或最值就应该想到 01trie。做前缀异或和，这样我们的问题就变成找到最靠近的两个数，其异或大于等于 $k$。
 因为要求位置最靠前的，所以我选择倒着遍历。当遍历到第 $i$ 个数 $a_i$ 时，字典树已经维护好此位置之后的数据，即每个值出现最左边的位置。
-const int maxn = 1e5 + 10, o = 30 - 1; int trie[maxn * 30][2], val[maxn * 30], tot, n, k; void insert(int ai, int i) { int p = 1; for (int j = o; j >= 0; j--) { int ch = (ai >> j) & 1; if (trie[p][ch] == 0) trie[p][ch] = ++tot; p = trie[p][ch]; val[p] = i; } } 我们只需从高位到低位遍历第 $j$ 位，分类讨论：...</p>
-</section>
-<footer class=entry-footer>October 11, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to HDU6955 Xor sum" href=https://rogeryoungh.github.io/code-of-acm/post/2021-10/hdu6955/></a>
+const int maxn = 1e5 &#43; 10, o = 30 - 1; int trie[maxn * 30][2], val[maxn * 30], tot, n, k; void insert(int ai, int i) { int p = 1; for (int j = o; j &gt;= 0; j--) { int ch = (ai &gt;&gt; j) &amp; 1; if (trie[p][ch] == 0) trie[p][ch] = &#43;&#43;tot; p = trie[p][ch]; val[p] = i; } } 我们只需从高位到低位遍历第 $j$ 位，分类讨论：...</p>
+  </section>
+  <footer class="entry-footer">October 11, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to HDU6955 Xor sum" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/hdu6955/"></a>
 </article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>HDU6833 A Very Easy Math Problem</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 即求
-$$ S (n) = \sum^n_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd \{ a_x \}) \gcd \{ a_x \} $$ 我自己随便简写了，全打太麻烦了。
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>HDU6833 A Very Easy Math Problem</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 即求
+ $$ S (n) = \sum^n_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd \{ a_x \}) \gcd \{ a_x \} $$ 我自己随便简写了，全打太麻烦了。
 分析 这东西看着很吓人，其实是纸老虎。首先 $f(x) = \mu(x)^2$。提出 $\gcd$ 有
-$$ \begin{aligned} S (n) & =\sum_{d=1}^{n}\sum^{n}_{\{ a_{x}\}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd \{ a_{x}\} =d]\\ & =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x+1}\sum^{n/d}_{\{ a_{x}\} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd \{ a_{x}\} =1] \end{aligned} $$ 对后面这部分反演有
-$$ \begin{aligned} & \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd \{ a_x \}} \mu (t) \right)\\ = & \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd \{ a_x \}] \mu (t) \right)\\ = & \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \end{aligned} $$ 代回去，枚举 $T = d t$...</p>
-</section>
-<footer class=entry-footer>September 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to HDU6833 A Very Easy Math Problem" href=https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6833/></a>
+ $$ \begin{aligned} S (n) &amp; =\sum_{d=1}^{n}\sum^{n}_{\{ a_{x}\}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd \{ a_{x}\} =d]\\ &amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x&#43;1}\sum^{n/d}_{\{ a_{x}\} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd \{ a_{x}\} =1] \end{aligned} $$ 对后面这部分反演有
+ $$ \begin{aligned} &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd \{ a_x \}} \mu (t) \right)\\ = &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd \{ a_x \}] \mu (t) \right)\\ = &amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \end{aligned} $$ 代回去，枚举 $T = d t$...</p>
+  </section>
+  <footer class="entry-footer">September 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to HDU6833 A Very Easy Math Problem" href="https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6833/"></a>
 </article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>HDU6755 Fibonacci Sum</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 设 Fibonacci 数列第 $i$ 项为 $F_i$，求
-$$ S = \sum_{i = 0}^n (F_{i c})^k $$ 分析 由特征方程法，设
-$$ x^2 + x - 1 = 0 \Longrightarrow A, B = \frac{1 \pm \sqrt{5}}{2} $$ 因此 Fibonacci 通项公式即可表示为
-$$ F_n = \frac{A^n - B^n}{A - B} $$ 根据二次剩余的知识，模意义下是可以开方的。因此
-$$ (F_{i c})^k = \left( \frac{A^{i c} - B^{i c}}{A - B} \right)^k = \frac{1}{(A - B)^k} \sum_{j = 0}^k \binom{k}{j} (- 1)^{k - j} (A^j B^{k - j})^{i c} $$ 求和有...</p>
-</section>
-<footer class=entry-footer>September 23, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to HDU6755 Fibonacci Sum" href=https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6755/></a>
-</article>
-<footer class=page-footer>
-<nav class=pagination>
-<a class=next href=https://rogeryoungh.github.io/code-of-acm/post/page/2/>Next Page »</a>
-</nav>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="https://rogeryoungh.github.io/code-of-acm/post/page/2/">Next Page »</a>
+  </nav>
 </footer>
-</main>
-<footer class=footer>
-<span>© 2021 <a href=/code-of-acm>Roger Young</a></span>
-<span>
-Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
-</span>
+    </main>
+    <footer class="footer">
+    <span>© 2021 <a href="/code-of-acm">Roger Young</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
 </footer>
-<a href=#top id=gototop aria-label="go to top" title="Go to Top (Alt + G)">
-<button class=top-link id=top-link type=button accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
-</button>
+<a href="#top" id="gototop" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
 </a>
-<script>let menu=document.getElementById('menu');menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
-<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
-<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script></body>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+    document.getElementById("font-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("serif")) {
+            document.body.classList.remove('serif');
+            localStorage.setItem("pref-font", 'sans');
+        } else {
+            document.body.classList.add('serif');
+            localStorage.setItem("pref-font", 'serif');
+        }
+    })
+
+</script></body>
+
 </html>

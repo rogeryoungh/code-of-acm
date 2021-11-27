@@ -1,241 +1,403 @@
-<!doctype html><html lang=en dir=auto>
-<head><meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=robots content="index, follow">
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
 <title>Posts | Roger Young</title>
-<meta name=keywords content>
-<meta name=description content>
-<meta name=author content>
-<link rel=canonical href=https://rogeryoungh.github.io/code-of-acm/post/>
-<link crossorigin=anonymous href=/code-of-acm/assets/css/stylesheet.min.c56e1d144ba700000f853a33a302832ce915146ddae9593a87839996e7a41b6e.css integrity="sha256-xW4dFEunAAAPhTozowKDLOkVFG3a6Vk6h4OZluekG24=" rel="preload stylesheet" as=style>
-<link rel=preload href=https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png as=image>
-<link rel=icon href=https://rogeryoungh.github.io/code-of-acm/favicon.ico>
-<link rel=icon type=image/png sizes=16x16 href=https://rogeryoungh.github.io/code-of-acm/favicon-16x16.png>
-<link rel=icon type=image/png sizes=32x32 href=https://rogeryoungh.github.io/code-of-acm/favicon-32x32.png>
-<link rel=apple-touch-icon href=https://rogeryoungh.github.io/code-of-acm/apple-touch-icon.png>
-<link rel=mask-icon href=https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg>
-<meta name=theme-color content="#2e2e33">
-<meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.88.1">
-<link rel=alternate type=application/rss+xml href=https://rogeryoungh.github.io/code-of-acm/post/index.xml>
-<meta property="og:title" content="Posts">
-<meta property="og:description" content>
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Posts">
-<meta name=twitter:description content>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://rogeryoungh.github.io/code-of-acm/post/"}]}</script>
+<meta name="keywords" content="" />
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/" />
+<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.db03f6b1db979d0cdd8e815f16121fd4c2bd956cb3c3efedeab38b2fb48ae6a7.css" integrity="sha256-2wP2sduXnQzdjoFfFhIf1MK9lWyzw&#43;/t6rOLL7SK5qc=" rel="preload stylesheet" as="style">
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
+<link rel="icon" href="https://rogeryoungh.github.io/code-of-acm/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://rogeryoungh.github.io/code-of-acm/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://rogeryoungh.github.io/code-of-acm/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://rogeryoungh.github.io/code-of-acm/apple-touch-icon.png">
+<link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.89.4" />
+<link rel="alternate" type="application/rss+xml" href="https://rogeryoungh.github.io/code-of-acm/post/index.xml">
+
+
+
+
+<meta property="og:title" content="Posts" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Posts"/>
+<meta name="twitter:description" content=""/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Posts",
+      "item": "https://rogeryoungh.github.io/code-of-acm/post/"
+    }
+  ]
+}
+</script>
 </head>
-<body class=list id=top>
-<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-font") === "serif") {
+        document.body.classList.add('serif');
+    }
+
+</script>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
 <noscript>
-<style type=text/css>#theme-toggle,.top-link{display:none}</style>
-<style>@media(prefers-color-scheme:dark){:root{--theme:#1d1e20;--entry:#2e2e33;--primary:rgba(255, 255, 255, 0.84);--secondary:rgba(255, 255, 255, 0.56);--tertiary:rgba(255, 255, 255, 0.16);--content:rgba(255, 255, 255, 0.74);--hljs-bg:#2e2e33;--code-bg:#37383e;--border:#333}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
 </noscript>
-<header class=header>
-<nav class=nav>
-<div class=logo>
-<a href=https://rogeryoungh.github.io/code-of-acm accesskey=h title="Roger Young (Alt + H)">Roger Young</a>
-<span class=logo-switches>
-<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button>
-</span>
-</div>
-<ul id=menu>
-<li>
-<a href=https://rogeryoungh.github.io/code-of-acm/tags/log/ title=Log>
-<span>Log</span>
-</a>
-</li>
-<li>
-<a href=https://rogeryoungh.github.io/code-of-acm/archives title=Archive>
-<span>Archive</span>
-</a>
-</li>
-<li>
-<a href=https://rogeryoungh.github.io/code-of-acm/search/ title="Search (Alt + /)" accesskey=/>
-<span>Search</span>
-</a>
-</li>
-<li>
-<a href=https://rogeryoungh.github.io/code-of-acm/tags/ title=Tags>
-<span>Tags</span>
-</a>
-</li>
-</ul>
-</nav>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://rogeryoungh.github.io/code-of-acm" accesskey="h" title="Roger Young (Alt + H)">Roger Young</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <button id="font-toggle" accesskey="t" title="(Alt + T)">A</button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://rogeryoungh.github.io/code-of-acm/tags/log/" title="Log">
+                    <span>Log</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rogeryoungh.github.io/code-of-acm/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rogeryoungh.github.io/code-of-acm/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rogeryoungh.github.io/code-of-acm/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </header>
-<main class=main>
-<header class=page-header>
-<h1>Posts</h1>
+<main class="main"> 
+<header class="page-header">
+  <h1>Posts</h1>
 </header>
-<article class=post-entry>
-<header class=entry-header>
-<h2>HDU6537 Neko and function</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 定义 $f(n, k)$ 为满足如下要求的，长度为 $k$ 的数列 $\{a_i\}$ 个数：
-要求每个数字都大于 $1$； 数列各项之积恰为 $n$。 求其前缀和 $S(n, k) = \sum f(i, k)$。
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>HDU6755 Fibonacci Sum</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 设 Fibonacci 数列第 $i$ 项为 $F_i$，求
+ $$ S = \sum_{i = 0}^n (F_{i c})^k $$ 分析 由特征方程法，设
+ $$ x^2 &#43; x - 1 = 0 \Longrightarrow A, B = \frac{1 \pm \sqrt{5}}{2} $$ 因此 Fibonacci 通项公式即可表示为
+ $$ F_n = \frac{A^n - B^n}{A - B} $$ 根据二次剩余的知识，模意义下是可以开方的。因此
+ $$ (F_{i c})^k = \left( \frac{A^{i c} - B^{i c}}{A - B} \right)^k = \frac{1}{(A - B)^k} \sum_{j = 0}^k \binom{k}{j} (- 1)^{k - j} (A^j B^{k - j})^{i c} $$ 求和有...</p>
+  </section>
+  <footer class="entry-footer">September 23, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to HDU6755 Fibonacci Sum" href="https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6755/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>HDU6537 Neko and function</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 定义 $f(n, k)$ 为满足如下要求的，长度为 $k$ 的数列 $\{a_i\}$ 个数：
+ 要求每个数字都大于 $1$； 数列各项之积恰为 $n$。  求其前缀和 $S(n, k) = \sum f(i, k)$。
 分析 多组输入好坑啊。
 先允许 $a_i=1$，将结果记为 $g(n,k)$，容易利用隔板法求得
-$$ g (p^c, k) = \binom{t + k - 1}{k - 1} $$ 对于多个质因数，显然其贡献是相互独立的，即 $g$ 是积性函数。考虑选取 $i$ 个数令其 $a_i>1$，枚举有
-$$ g (n, k) = \sum_{i = 1}^k \binom{n}{i} f (n, i) $$ 二项式反演（或者直接容斥）有
-$$ f (n, k) = \sum_{i = 1}^k (- 1)^{k - i} \binom{k}{i} g (n, i) $$ 求和并换序...</p>
-</section>
-<footer class=entry-footer>September 22, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to HDU6537 Neko and function" href=https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6537/></a>
+ $$ g (p^c, k) = \binom{t &#43; k - 1}{k - 1} $$ 对于多个质因数，显然其贡献是相互独立的，即 $g$ 是积性函数。考虑选取 $i$ 个数令其 $a_i&gt;1$，枚举有
+ $$ g (n, k) = \sum_{i = 1}^k \binom{n}{i} f (n, i) $$ 二项式反演（或者直接容斥）有
+ $$ f (n, k) = \sum_{i = 1}^k (- 1)^{k - i} \binom{k}{i} g (n, i) $$ 求和并换序...</p>
+  </section>
+  <footer class="entry-footer">September 22, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to HDU6537 Neko and function" href="https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6537/"></a>
 </article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>HDU6750 Function</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 定义
-$$ f (n) = \sum_{d \mid n} d \left[ \gcd \left( d, \frac{n}{d} \right) = 1 \right] $$ 求其前缀和 $S(n)$。
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>HDU6750 Function</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 定义
+ $$ f (n) = \sum_{d \mid n} d \left[ \gcd \left( d, \frac{n}{d} \right) = 1 \right] $$ 求其前缀和 $S(n)$。
 分析 首先 Min25 筛是过不了的，内存不够。先推式子
-$$ \begin{aligned} S (n) &= \sum_{i = 1}^n \sum_{d \mid i} d \left[ \gcd \left( d, \frac{i}{d} \right) = 1 \right] \\ &= \sum_{d = 1}^n \sum_{i = 1}^n d [d \mid i] \left[\gcd \left( d, \frac{i}{d} \right) = 1 \right] \\ &= \sum_{d = 1}^n \sum_{i = 1}^{n / d} d [\gcd (i, d) = 1] \end{aligned} $$ 看到 $\gcd = 1$ 就应该想起来 Mobius 反演，容易化简有...</p>
-</section>
-<footer class=entry-footer>September 22, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to HDU6750 Function" href=https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6750/></a>
+ $$ \begin{aligned} S (n) &amp;= \sum_{i = 1}^n \sum_{d \mid i} d \left[ \gcd \left( d, \frac{i}{d} \right) = 1 \right] \\ &amp;= \sum_{d = 1}^n \sum_{i = 1}^n d [d \mid i] \left[\gcd \left( d, \frac{i}{d} \right) = 1 \right] \\ &amp;= \sum_{d = 1}^n \sum_{i = 1}^{n / d} d [\gcd (i, d) = 1] \end{aligned} $$ 看到 $\gcd = 1$ 就应该想起来 Mobius 反演，容易化简有...</p>
+  </section>
+  <footer class="entry-footer">September 22, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to HDU6750 Function" href="https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6750/"></a>
 </article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>P5349 幂</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 即求
-$$ S = \sum_{n=0}^\infty f(n)r^n $$ 分析 换序
-$$ S = \sum_{n = 0}^{\infty} \left( \sum_{i = 0}^m f_i n^i \right) r^n = \sum_{i = 0}^m f_i \sum_{n = 0}^{\infty} n^i r^n $$ 令
-$$ S_i = \sum_{n = 0}^{\infty} n^i r^n $$ 套路的逐项相减，主动的凑二项式
-$$ (1 - r) S_i = 1 + \sum_{n = 1}^{\infty} n^i r^n - \sum_{n = 1}^{\infty} (n - 1)^i r^n = 1 + \sum_{n = 0}^{\infty} r^{n + 1} \sum_{j = 0}^{i - 1} \binom{k}{j} n^j $$ 交换求和顺序...</p>
-</section>
-<footer class=entry-footer>September 9, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to P5349 幂" href=https://rogeryoungh.github.io/code-of-acm/post/2021-09/p5349/></a>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P5349 幂</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 即求
+ $$ S = \sum_{n=0}^\infty f(n)r^n $$ 分析 换序
+ $$ S = \sum_{n = 0}^{\infty} \left( \sum_{i = 0}^m f_i n^i \right) r^n = \sum_{i = 0}^m f_i \sum_{n = 0}^{\infty} n^i r^n $$ 令
+ $$ S_i = \sum_{n = 0}^{\infty} n^i r^n $$ 套路的逐项相减，主动的凑二项式
+ $$ (1 - r) S_i = 1 &#43; \sum_{n = 1}^{\infty} n^i r^n - \sum_{n = 1}^{\infty} (n - 1)^i r^n = 1 &#43; \sum_{n = 0}^{\infty} r^{n &#43; 1} \sum_{j = 0}^{i - 1} \binom{k}{j} n^j $$ 交换求和顺序...</p>
+  </section>
+  <footer class="entry-footer">September 9, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P5349 幂" href="https://rogeryoungh.github.io/code-of-acm/post/2021-09/p5349/"></a>
 </article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>LOJ6053 简单的函数</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 给定积性函数 $f(p^c) = p \oplus c$。对 $1000000007$ 取模求前缀和。
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>LOJ6053 简单的函数</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定积性函数 $f(p^c) = p \oplus c$。对 $1000000007$ 取模求前缀和。
 分析 Min25 板子题。
-const ll mod = 1000000007, inv2 = 500000004; const int maxn = 200001; ll n, prime[maxn], cnt, w[maxn], s[maxn], c[maxn]; ll sqrt_n, m; ll mo(ll x) { return (x + mod) % mod; } ll f_p(ll p, ll e) { return p ^ e; } int id(ll x) { return x &lt;= sqrt_n ? x : m - (n / x) + 1; } ll F(long long n, int k) { if (n &lt;= prime[k]) return 0; ll ret = s[id(n)] - s[prime[k]]; for (int i = k + 1; i &lt;= cnt && prime[i] * prime[i] &lt;= n; i++) { ll pi = prime[i], pk = pi; for (int c = 1; pk * pi &lt;= n; c++, pk *= pi) ret += f_p(pi, c) * F(n / pk, i) + f_p(pi, c + 1); } return mo(ret); } int main() { n = rr(); sqrt_n = sqrt(n + 0....</p>
-</section>
-<footer class=entry-footer>August 15, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to LOJ6053 简单的函数" href=https://rogeryoungh.github.io/code-of-acm/post/2021-08/loj6053/></a>
+const ll mod = 1000000007, inv2 = 500000004; const int maxn = 200001; ll n, prime[maxn], cnt, w[maxn], s[maxn], c[maxn]; ll sqrt_n, m; ll mo(ll x) { return (x &#43; mod) % mod; } ll f_p(ll p, ll e) { return p ^ e; } int id(ll x) { return x &lt;= sqrt_n ? x : m - (n / x) &#43; 1; } ll F(long long n, int k) { if (n &lt;= prime[k]) return 0; ll ret = s[id(n)] - s[prime[k]]; for (int i = k &#43; 1; i &lt;= cnt &amp;&amp; prime[i] * prime[i] &lt;= n; i&#43;&#43;) { ll pi = prime[i], pk = pi; for (int c = 1; pk * pi &lt;= n; c&#43;&#43;, pk *= pi) ret &#43;= f_p(pi, c) * F(n / pk, i) &#43; f_p(pi, c &#43; 1); } return mo(ret); } int main() { n = rr(); sqrt_n = sqrt(n &#43; 0....</p>
+  </section>
+  <footer class="entry-footer">August 15, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to LOJ6053 简单的函数" href="https://rogeryoungh.github.io/code-of-acm/post/2021-08/loj6053/"></a>
 </article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>HDU6975 Forgiving Matching</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 给定文本串 $S$ 和模式串 $T$，对每个位置进行匹配，得到失配次数。
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>HDU6975 Forgiving Matching</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定文本串 $S$ 和模式串 $T$，对每个位置进行匹配，得到失配次数。
 统计此失配次数，计算前缀和。
 分析 我是没料到 HDOJ 没有 M_PI，CE 了几发。
 FFT 字符串匹配模板题，我在 ZAFU Wiki 中讲过，即对每个字符卷积。
-#include "template/basic/complex.hpp" const int maxn = 1 &lt;&lt; 20; using img = Complex&lt;double>; using poly_t = vector&lt;img>; poly_t w; #include "template/poly-fft/fft_init.hpp"#include "template/poly-fft/fft.hpp" char a[maxn], b[maxn]; int sum[maxn], ans[maxn]; char ch[] = "0123456789*"; int main() { w = fft_init(maxn); int ttt = rr(); while (ttt--) { int n = rr(), m = rr(); fill(sum, sum + m + n + 12, 0); fill(ans, ans + m + 12, 0); int lim = getlim(m, n); scanf("%s %s", b, a); int tsum = 0; for (int i = 0; i &lt; m - 1; i++) { tsum += b[i] == '*'; tsum += a[i] == '*'; } tsum += a[m - 1] == '*'; reverse(a, a + m + 1); for (int k = 0; k &lt;= 10; k++) { poly_t SS(lim); for (int i = 0; i &lt; n; i++) SS[i]....</p>
-</section>
-<footer class=entry-footer>July 30, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to HDU6975 Forgiving Matching" href=https://rogeryoungh.github.io/code-of-acm/post/2021-07/hdu6975/></a>
+#include &#34;template/basic/complex.hpp&#34; const int maxn = 1 &lt;&lt; 20; using img = Complex&lt;double&gt;; using poly_t = vector&lt;img&gt;; poly_t w; #include &#34;template/poly-fft/fft_init.hpp&#34;#include &#34;template/poly-fft/fft.hpp&#34; char a[maxn], b[maxn]; int sum[maxn], ans[maxn]; char ch[] = &#34;0123456789*&#34;; int main() { w = fft_init(maxn); int ttt = rr(); while (ttt--) { int n = rr(), m = rr(); fill(sum, sum &#43; m &#43; n &#43; 12, 0); fill(ans, ans &#43; m &#43; 12, 0); int lim = getlim(m, n); scanf(&#34;%s %s&#34;, b, a); int tsum = 0; for (int i = 0; i &lt; m - 1; i&#43;&#43;) { tsum &#43;= b[i] == &#39;*&#39;; tsum &#43;= a[i] == &#39;*&#39;; } tsum &#43;= a[m - 1] == &#39;*&#39;; reverse(a, a &#43; m &#43; 1); for (int k = 0; k &lt;= 10; k&#43;&#43;) { poly_t SS(lim); for (int i = 0; i &lt; n; i&#43;&#43;) SS[i]....</p>
+  </section>
+  <footer class="entry-footer">July 30, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to HDU6975 Forgiving Matching" href="https://rogeryoungh.github.io/code-of-acm/post/2021-07/hdu6975/"></a>
 </article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>P4173 残缺的字符串</h2>
-</header>
-<section class=entry-content>
-<p>魔改 KMP 大概是不行的，卷积在这里出现的很妙。
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P4173 残缺的字符串</h2>
+  </header>
+  <section class="entry-content">
+    <p>魔改 KMP 大概是不行的，卷积在这里出现的很妙。
 卷积处理匹配 定义匹配函数
-$$ d(x,y) = [x = y] $$ 给定文本串 $B$ 和长为 $m$ 的模式串 $A$，要找出 $A$ 在 $B$ 的所有出现，可以定义
-$$ f(k) = \sum_{i=0}^{m-1} d(A_{i}, B_{i-m+k}) $$ 即 $f(k) = 0$ 时有完全匹配 $A = B[k-m\ldots k-1]$。考虑让 $d$ 函数更 “数学” 一点，以更好的计算
-$$ d(x,y) = (x - y)^2 $$ 再提供模式串 $A$ 的翻转 $S$，即 $A_i = S_{m-i}$，展开有
-$$ \begin{aligned} f(k) &= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{i-m+k}^2 - 2\sum_{i=0}^{m-1} A_{i}B_{i-m+k}\\ &= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{i-m+k}^2 - 2\sum_{i=0}^{m-1} S_{m-i}B_{i-m+k} \end{aligned} $$ 前面两项能够预处理，最后一项是卷积。于是最终复杂度是 $O(n \log n)$。...</p>
-</section>
-<footer class=entry-footer>July 28, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to P4173 残缺的字符串" href=https://rogeryoungh.github.io/code-of-acm/post/2021-07/p4173/></a>
+ $$ d(x,y) = [x = y] $$ 给定文本串 $B$ 和长为 $m$ 的模式串 $A$，要找出 $A$ 在 $B$ 的所有出现，可以定义
+ $$ f(k) = \sum_{i=0}^{m-1} d(A_{i}, B_{i-m&#43;k}) $$ 即 $f(k) = 0$ 时有完全匹配 $A = B[k-m\ldots k-1]$。考虑让 $d$ 函数更 “数学” 一点，以更好的计算
+ $$ d(x,y) = (x - y)^2 $$ 再提供模式串 $A$ 的翻转 $S$，即 $A_i = S_{m-i}$，展开有
+ $$ \begin{aligned} f(k) &amp;= \sum_{i=0}^{m-1}A_{i}^2 &#43; \sum_{i=0}^{m-1}B_{i-m&#43;k}^2 - 2\sum_{i=0}^{m-1} A_{i}B_{i-m&#43;k}\\ &amp;= \sum_{i=0}^{m-1}A_{i}^2 &#43; \sum_{i=0}^{m-1}B_{i-m&#43;k}^2 - 2\sum_{i=0}^{m-1} S_{m-i}B_{i-m&#43;k} \end{aligned} $$ 前面两项能够预处理，最后一项是卷积。于是最终复杂度是 $O(n \log n)$。...</p>
+  </section>
+  <footer class="entry-footer">July 28, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P4173 残缺的字符串" href="https://rogeryoungh.github.io/code-of-acm/post/2021-07/p4173/"></a>
 </article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>P1762 偶数</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 求杨辉三角形前 $n$ 行的偶数个数，对 $1000003$ 取模。
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P1762 偶数</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 求杨辉三角形前 $n$ 行的偶数个数，对 $1000003$ 取模。
 分析 对杨辉三角奇数打表。
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 于是递推公式...</p>
-</section>
-<footer class=entry-footer>July 12, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to P1762 偶数" href=https://rogeryoungh.github.io/code-of-acm/post/2021-07/p1762/></a>
+  </section>
+  <footer class="entry-footer">July 12, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1762 偶数" href="https://rogeryoungh.github.io/code-of-acm/post/2021-07/p1762/"></a>
 </article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>P2257 YY 的 GCD</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 即求
-$$ \sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) \in \mathbb{P}] $$ 分析 先转化一下
-$$ \sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) \in \mathbb{P}] = \sum_{p}\sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) = p] $$ 在 P2522 中得到
-$$ \sum_{i=1}^x \sum_{j=1}^y [\gcd(i,j) = k] = \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tk} \right\rfloor \left\lfloor \frac{y}{tk} \right\rfloor $$ 代入有
-$$ \sum_{p} \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tp} \right\rfloor \left\lfloor \frac{y}{tp} \right\rfloor $$ 令 $T = tp$，$T$ 的上界应还是 $\min(x,y)$，代入有
-$$ \sum_{T=1}^{\min(x,y)} \left\lfloor \frac{x}{T} \right\rfloor \left\lfloor \frac{y}{T} \right\rfloor \sum_{p \mid T} \mu\left(\frac{T}{p}\right) $$ 后面那个在 Euler 筛后再求和一下，是可以预处理的。...</p>
-</section>
-<footer class=entry-footer>May 26, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to P2257 YY 的 GCD" href=https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2257/></a>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P2257 YY 的 GCD</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 即求
+ $$ \sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) \in \mathbb{P}] $$ 分析 先转化一下
+ $$ \sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) \in \mathbb{P}] = \sum_{p}\sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) = p] $$ 在 P2522 中得到
+ $$ \sum_{i=1}^x \sum_{j=1}^y [\gcd(i,j) = k] = \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tk} \right\rfloor \left\lfloor \frac{y}{tk} \right\rfloor $$ 代入有
+ $$ \sum_{p} \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tp} \right\rfloor \left\lfloor \frac{y}{tp} \right\rfloor $$ 令 $T = tp$，$T$ 的上界应还是 $\min(x,y)$，代入有
+ $$ \sum_{T=1}^{\min(x,y)} \left\lfloor \frac{x}{T} \right\rfloor \left\lfloor \frac{y}{T} \right\rfloor \sum_{p \mid T} \mu\left(\frac{T}{p}\right) $$ 后面那个在 Euler 筛后再求和一下，是可以预处理的。...</p>
+  </section>
+  <footer class="entry-footer">May 26, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P2257 YY 的 GCD" href="https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2257/"></a>
 </article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>P2350 外星人</h2>
-</header>
-<section class=entry-content>
-<p>题目大意 设
-$$ \varphi_{x+1}(m) = \varphi(\varphi_x(m)) $$ 求最小的 $x$ 使得 $\varphi_x(m) = 1$。
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P2350 外星人</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 设
+ $$ \varphi_{x&#43;1}(m) = \varphi(\varphi_x(m)) $$ 求最小的 $x$ 使得 $\varphi_x(m) = 1$。
 其中 $\varphi(m)$ 是欧拉函数。
 分析 注意到仅有 $\varphi(1) = \varphi(2) = 1$，再有公式
-$$ \varphi\left(\prod_{i=1}^mp_i^{q_i}\right) = \prod_{i=1}^m(p_i-1)p_i^{q_i-1} $$ 因此从唯一分解形式的角度来看，迭代一次消去了一个 $2$，也生成了一些 $2$。
+ $$ \varphi\left(\prod_{i=1}^mp_i^{q_i}\right) = \prod_{i=1}^m(p_i-1)p_i^{q_i-1} $$ 因此从唯一分解形式的角度来看，迭代一次消去了一个 $2$，也生成了一些 $2$。
 考虑设 $f(n)$ 为 $\varphi(n)$ 中因子 $2$ 的个数。
 设 $\gcd(a,b) = 1$，可以证明 $f(ab) = f(a) f(b)$。同时 $f(p) = f(p-1)$。
 这说明 $f(x)$ 是一个积性函数，可以用 Euler 筛递推。
-const ll MN = 1e5 + 10; bool notp[1000001]; int prime[200001], cnt, phi[1000001]; void sieve(int n) { phi[1] = 1; for (ll i = 2; i &lt;= n; i++) { if (!...</p>
-</section>
-<footer class=entry-footer>May 25, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to P2350 外星人" href=https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2350/></a>
+const ll MN = 1e5 &#43; 10; bool notp[1000001]; int prime[200001], cnt, phi[1000001]; void sieve(int n) { phi[1] = 1; for (ll i = 2; i &lt;= n; i&#43;&#43;) { if (!...</p>
+  </section>
+  <footer class="entry-footer">May 25, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P2350 外星人" href="https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2350/"></a>
 </article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>CF1389E Calendar Ambiguity</h2>
-</header>
-<section class=entry-content>
-<p>Berland 年有 $m$ 月，每月 $d$ 天。一周有 $w$ 天。
-若第 $x$ 月的第 $y$ 天和第 $y$ 月的第 $x$ 天是同一个星期，则称 $(x,y)$ 是一对。
-求一年有几对。
-$$ xd+y \equiv yd+x \pmod w $$ 即
-$$ (x-y)(d-1) \equiv 0 \Rightarrow (x-y)(d-1) \in w\mathbb{Z} $$ 于是有
-$$ y-x = \frac{wk}{\gcd(w,d-1)} $$ 又 $x &lt; y \leqslant \min(m,d)$​，
-int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll g = w / gcd(w, d - 1); ll max_y = min(m, d) - 1; ll div = (max_y + 1) / g, mod = (max_y + 1) % g; ll sum = (div - 1) * div / 2 * g + mod * div; printf("%lld\n", sum); } return 0; } </p>
-</section>
-<footer class=entry-footer>May 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-<a class=entry-link aria-label="post link to CF1389E Calendar Ambiguity" href=https://rogeryoungh.github.io/code-of-acm/post/2021-05/cf1389e/></a>
-</article>
-<footer class=page-footer>
-<nav class=pagination>
-<a class=prev href=https://rogeryoungh.github.io/code-of-acm/post/>« Prev Page</a>
-<a class=next href=https://rogeryoungh.github.io/code-of-acm/post/page/3/>Next Page »</a>
-</nav>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://rogeryoungh.github.io/code-of-acm/post/">« Prev Page</a>
+    <a class="next" href="https://rogeryoungh.github.io/code-of-acm/post/page/3/">Next Page »</a>
+  </nav>
 </footer>
-</main>
-<footer class=footer>
-<span>© 2021 <a href=/code-of-acm>Roger Young</a></span>
-<span>
-Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
-</span>
+    </main>
+    <footer class="footer">
+    <span>© 2021 <a href="/code-of-acm">Roger Young</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
 </footer>
-<a href=#top id=gototop aria-label="go to top" title="Go to Top (Alt + G)">
-<button class=top-link id=top-link type=button accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
-</button>
+<a href="#top" id="gototop" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
 </a>
-<script>let menu=document.getElementById('menu');menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
-<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
-<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script></body>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+    document.getElementById("font-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("serif")) {
+            document.body.classList.remove('serif');
+            localStorage.setItem("pref-font", 'sans');
+        } else {
+            document.body.classList.add('serif');
+            localStorage.setItem("pref-font", 'serif');
+        }
+    })
+
+</script></body>
+
 </html>

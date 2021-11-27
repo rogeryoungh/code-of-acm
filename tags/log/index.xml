@@ -1,26 +1,53 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Log on Roger Young</title><link>https://rogeryoungh.github.io/code-of-acm/tags/log/</link><description>Recent content in Log on Roger Young</description><generator>Hugo -- gohugo.io</generator><language>zh</language><copyright>© 2021 [Roger Young](/code-of-acm)</copyright><lastBuildDate>Sun, 17 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/tags/log/index.xml" rel="self" type="application/rss+xml"/><item><title>2021 年刷题日志</title><link>https://rogeryoungh.github.io/code-of-acm/post/log/log2021/</link><pubDate>Sun, 17 Oct 2021 00:00:00 +0000</pubDate><guid>https://rogeryoungh.github.io/code-of-acm/post/log/log2021/</guid><description>过于简单的题不记录。
-洛谷：更新至：2021.10.17(&amp;ndash;.&amp;ndash;)
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Log on Roger Young</title>
+    <link>https://rogeryoungh.github.io/code-of-acm/tags/log/</link>
+    <description>Recent content in Log on Roger Young</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>© 2021 [Roger Young](/code-of-acm)</copyright>
+    <lastBuildDate>Wed, 10 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/tags/log/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2021 年刷题日志</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/log/log2021/</link>
+      <pubDate>Wed, 10 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/log/log2021/</guid>
+      <description>过于简单的题不记录。
+洛谷：更新至：2021.11.10(&amp;ndash;.&amp;ndash;)
 CodeForces：更新至：&amp;ndash;.&amp;ndash;
 牛客：更新至：&amp;ndash;.&amp;ndash;
 HDU：更新至：&amp;ndash;.&amp;ndash;
-2021 年 10 月 NC11255B Sample Game
+2021 年 11 月 P1393 Mivik 的标题
+P3846 常系数齐次线性递推
+P3846 可爱的质数/BSGS
+P5158 多项式快速插值
+P5050 多项式多点求值
+P5277 多项式开根（加强版）
+P4512 多项式除法
+P5245 多项式快速幂
+P4718 Pollard-Rho 算法
+P5491 二次剩余
+2021 年 10 月 P5179 Fraction
+P5171 Earthquake
+NC11255B Sample Game
 P3052 Cows in a Skyscraper G
 P4059 找爸爸
 HDU6955 Xor sum
-2021 年 09 月 HDU6833 A Very Easy Math Problem
-HDU6755 Fibonacci Sum
-HDU6537 Neko and function
-HDU6750 Function
-P5349 幂
-2021 年 08 月 P4721 分治 FFT
-P4238 多项式乘法逆
-P4245 任意模数多项式乘法
-P4213 杜教筛
-P5325 Min_25筛
-LOJ6053 简单的函数
-2021 年 07 月 P4173 残缺的字符串
-HDU多校2021-2
-HDU6961 I love cube HDU6965 I love string HDU6971 I love max and multiply HUD6972 I love 114514 P3803 多项式乘法（FFT）</description></item><item><title>2020 年刷题日志</title><link>https://rogeryoungh.github.io/code-of-acm/post/log/log2020/</link><pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate><guid>https://rogeryoungh.github.io/code-of-acm/post/log/log2020/</guid><description>过于简单的题不记录。
+P5170 类欧几里得算法
+2021 年 09 月 P5205 多项式开根
+HDU6833 A Very Easy Math Problem
+HDU6755 Fibonacci Sum</description>
+    </item>
+    
+    <item>
+      <title>2020 年刷题日志</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/log/log2020/</link>
+      <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/log/log2020/</guid>
+      <description>过于简单的题不记录。
 洛谷：更新至：2020.12.31(2020.10)
 CodeForces：更新至：&amp;ndash;.&amp;ndash;
 牛客：更新至：&amp;ndash;.&amp;ndash;
@@ -49,4 +76,35 @@ P1160 队列安排
 P1941 飞扬的小鸟
 P1064 金明的预算方案
 P1833 樱花
-P1541 乌龟棋 ==DONE==</description></item><item><title>OJ 题目跳转</title><link>https://rogeryoungh.github.io/code-of-acm/post/log/jump/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rogeryoungh.github.io/code-of-acm/post/log/jump/</guid><description/></item><item><title>模板生成</title><link>https://rogeryoungh.github.io/code-of-acm/post/log/template-gen/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rogeryoungh.github.io/code-of-acm/post/log/template-gen/</guid><description/></item></channel></rss>
+P1541 乌龟棋 ==DONE==</description>
+    </item>
+    
+    <item>
+      <title>OJ 题目跳转</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/log/jump/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/log/jump/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>模板生成</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/log/template-gen/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/log/template-gen/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>贴代码</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/log/code/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/log/code/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

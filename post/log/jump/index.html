@@ -1,100 +1,445 @@
-<!doctype html><html lang=en dir=auto>
-<head><meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=robots content="index, follow">
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
 <title>OJ 题目跳转 | Roger Young</title>
-<meta name=keywords content="Log">
-<meta name=description content="OJ 题目跳转 - Roger Young">
-<meta name=author content>
-<link rel=canonical href=https://rogeryoungh.github.io/code-of-acm/post/log/jump/>
-<link crossorigin=anonymous href=/code-of-acm/assets/css/stylesheet.min.c56e1d144ba700000f853a33a302832ce915146ddae9593a87839996e7a41b6e.css integrity="sha256-xW4dFEunAAAPhTozowKDLOkVFG3a6Vk6h4OZluekG24=" rel="preload stylesheet" as=style>
-<link rel=preload href=https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png as=image>
-<script defer crossorigin=anonymous src=/code-of-acm/assets/js/highlight.min.dacf81874295cd2936dececc3a04b7a00adb5d68618e897914957eeeef6f03b8.js integrity="sha256-2s+Bh0KVzSk23s7MOgS3oArbXWhhjol5FJV+7u9vA7g=" onload=hljs.initHighlightingOnLoad()></script>
-<link rel=icon href=https://rogeryoungh.github.io/code-of-acm/favicon.ico>
-<link rel=icon type=image/png sizes=16x16 href=https://rogeryoungh.github.io/code-of-acm/favicon-16x16.png>
-<link rel=icon type=image/png sizes=32x32 href=https://rogeryoungh.github.io/code-of-acm/favicon-32x32.png>
-<link rel=apple-touch-icon href=https://rogeryoungh.github.io/code-of-acm/apple-touch-icon.png>
-<link rel=mask-icon href=https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg>
-<meta name=theme-color content="#2e2e33">
-<meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.88.1">
-<meta property="og:title" content="OJ 题目跳转">
-<meta property="og:description" content>
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/log/jump/"><meta property="article:section" content="post">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="OJ 题目跳转">
-<meta name=twitter:description content>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://rogeryoungh.github.io/code-of-acm/post/"},{"@type":"ListItem","position":3,"name":"OJ 题目跳转","item":"https://rogeryoungh.github.io/code-of-acm/post/log/jump/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"OJ 题目跳转","name":"OJ 题目跳转","description":"","keywords":["Log"],"articleBody":"","wordCount":"0","inLanguage":"en","datePublished":"0001-01-01T00:00:00Z","dateModified":"0001-01-01T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://rogeryoungh.github.io/code-of-acm/post/log/jump/"},"publisher":{"@type":"Organization","name":"Roger Young","logo":{"@type":"ImageObject","url":"https://rogeryoungh.github.io/code-of-acm/favicon.ico"}}}</script>
+<meta name="keywords" content="Log" />
+<meta name="description" content="OJ 题目跳转 - Roger Young">
+<meta name="author" content="">
+<link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/log/jump/" />
+<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.db03f6b1db979d0cdd8e815f16121fd4c2bd956cb3c3efedeab38b2fb48ae6a7.css" integrity="sha256-2wP2sduXnQzdjoFfFhIf1MK9lWyzw&#43;/t6rOLL7SK5qc=" rel="preload stylesheet" as="style">
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
+<script defer crossorigin="anonymous" src="/code-of-acm/assets/js/highlight.min.dacf81874295cd2936dececc3a04b7a00adb5d68618e897914957eeeef6f03b8.js" integrity="sha256-2s&#43;Bh0KVzSk23s7MOgS3oArbXWhhjol5FJV&#43;7u9vA7g="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://rogeryoungh.github.io/code-of-acm/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://rogeryoungh.github.io/code-of-acm/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://rogeryoungh.github.io/code-of-acm/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://rogeryoungh.github.io/code-of-acm/apple-touch-icon.png">
+<link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.89.4" />
+
+
+
+
+<meta property="og:title" content="OJ 题目跳转" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/log/jump/" /><meta property="article:section" content="post" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="OJ 题目跳转"/>
+<meta name="twitter:description" content=""/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Posts",
+      "item": "https://rogeryoungh.github.io/code-of-acm/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "OJ 题目跳转",
+      "item": "https://rogeryoungh.github.io/code-of-acm/post/log/jump/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "OJ 题目跳转",
+  "name": "OJ 题目跳转",
+  "description": "",
+  "keywords": [
+    "Log"
+  ],
+  "articleBody": "",
+  "wordCount" : "0",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://rogeryoungh.github.io/code-of-acm/post/log/jump/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Roger Young",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://rogeryoungh.github.io/code-of-acm/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
-<body id=top>
-<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-font") === "serif") {
+        document.body.classList.add('serif');
+    }
+
+</script>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
 <noscript>
-<style type=text/css>#theme-toggle,.top-link{display:none}</style>
-<style>@media(prefers-color-scheme:dark){:root{--theme:#1d1e20;--entry:#2e2e33;--primary:rgba(255, 255, 255, 0.84);--secondary:rgba(255, 255, 255, 0.56);--tertiary:rgba(255, 255, 255, 0.16);--content:rgba(255, 255, 255, 0.74);--hljs-bg:#2e2e33;--code-bg:#37383e;--border:#333}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
 </noscript>
-<header class=header>
-<nav class=nav>
-<div class=logo>
-<a href=https://rogeryoungh.github.io/code-of-acm accesskey=h title="Roger Young (Alt + H)">Roger Young</a>
-<span class=logo-switches>
-<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button>
-</span>
-</div>
-<ul id=menu>
-<li>
-<a href=https://rogeryoungh.github.io/code-of-acm/tags/log/ title=Log>
-<span>Log</span>
-</a>
-</li>
-<li>
-<a href=https://rogeryoungh.github.io/code-of-acm/archives title=Archive>
-<span>Archive</span>
-</a>
-</li>
-<li>
-<a href=https://rogeryoungh.github.io/code-of-acm/search/ title="Search (Alt + /)" accesskey=/>
-<span>Search</span>
-</a>
-</li>
-<li>
-<a href=https://rogeryoungh.github.io/code-of-acm/tags/ title=Tags>
-<span>Tags</span>
-</a>
-</li>
-</ul>
-</nav>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://rogeryoungh.github.io/code-of-acm" accesskey="h" title="Roger Young (Alt + H)">Roger Young</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <button id="font-toggle" accesskey="t" title="(Alt + T)">A</button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://rogeryoungh.github.io/code-of-acm/tags/log/" title="Log">
+                    <span>Log</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rogeryoungh.github.io/code-of-acm/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rogeryoungh.github.io/code-of-acm/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rogeryoungh.github.io/code-of-acm/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </header>
-<main class=main>
-<header class=page-header>
-<h1>OJ 题目跳转</h1>
+<main class="main">
+<header class="page-header">
+    <h1>OJ 题目跳转</h1>
 </header>
-<div class=post-content>
-<p>题目跳转工具，类似 <code>HDU1234</code> 或 <code>CF1234A</code>，回车即可跳转。至于哪些能够跳，<code>Ctrl+U</code> 看看源码就知道了。</p>
+
+<div class="post-content">
+    <p>题目跳转工具，类似 <code>HDU1234</code> 或 <code>CF1234A</code>，回车即可跳转。至于哪些能够跳，<code>Ctrl+U</code> 看看源码就知道了。</p>
 </div>
-<div id=searchbox>
-<input id=keyword autofocus placeholder="题目编号 ↵" aria-label=search type=search onkeyup=onKeyUp(event)>
-<div id=searchResults></div>
+
+<div id="searchbox">
+    <input id="keyword" autofocus placeholder="题目编号 ↵" aria-label="search" type="search" onkeyup="onKeyUp(event)">
+    <div id="searchResults"></div>
 </div>
-<script>let input="",urls=[];function onKeyUp(b){var a=b||window.event||arguments.callee.caller.arguments[0];load(),a&&a.keyCode==13&&window.open(urls[0],'_blank')}window.onload=load;function load(){input=document.getElementById("keyword").value,input=input.toUpperCase().replaceAll(/\s/g,""),urls=[],match();let a="";for(let b in urls)a+=`<li class="post-entry"><header class="entry-header">${urls[b]}&nbsp;\xBB</header><a href="${urls[b]}" aria-label="${urls[b]}"></a></li>`;document.getElementById("searchResults").innerHTML=a}function test(b,a,c){if(c==null){let c=new RegExp(`^${a}\\d*$`);c.test(input)&&addURL(b,input.substring(a.length))}else if(c==='cf-problem'){let c=input.length,d=new RegExp(`^${a}\\d+[A-Z]$`);if(d.test(input)){addURL(b,input.substring(a.length,c-1),input.substring(c-1));return}if(d=new RegExp(`^${a}\\d+[A-Z]\\d$`),d.test(input)){addURL(b,input.substring(a.length,c-2),input.substring(c-2));return}}}function match(){let b=input.length;test('luogu','P'),test('luogu','LUOGU'),test('hdu','HDU'),test('hdu','HDOJ'),test('poj','POJ'),test('loj','LOJ'),test('uoj','UOJ'),test('bzoj','BZOJ'),test('codeforces-contest','CF'),test('codeforces','CF','cf-problem');let a=!0;a&&(test('luogu-codeforces','CF','cf-problem'),test('vjudge-codeforces','CF','cf-problem'),test('vjudge-uva','UVA'))}function addURL(b,c,d){let a="https://";b==='luogu'?a+=`www.luogu.com.cn/problem/P${c}`:b==='hdu'?a+=`acm.hdu.edu.cn/showproblem.php?pid=${c}`:b==='loj'?a+=`loj.ac/p/${c}`:b==='uoj'?a+=`uoj.ac/problem/${c}`:b==='poj'?a='http://'+`poj.org/problem?id=${c}`:b==='codeforces'?a+=`codeforces.com/problemset/problem/${c}/${d}`:b==='codeforces-contest'?a+=`codeforces.com/contest/${c}`:b==='codeforces-contest'?a+=`codeforces.com/contest/${c}`:b==='bzoj'?a+=`darkbzoj.tk/problem/${c}`:b==='luogu-codeforces'?a+=`www.luogu.com.cn/problem/CF${c}${d}`:b==='vjudge-codeforces'?a+=`vjudge.net/problem/CodeForces-${c}${d}`:b==='vjudge-lightoj'?a+=`vjudge.net/problem/LightOJ-${c}`:b==='vjudge-uva'&&(a+=`vjudge.net/problem/UVA-${c}`),urls.push(a)}</script>
-</main>
-<footer class=footer>
-<span>© 2021 <a href=/code-of-acm>Roger Young</a></span>
-<span>
-Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
-</span>
+<script>
+
+let input = "";
+let urls = [];
+
+function onKeyUp(event) {
+    var e = event || window.event || arguments.callee.caller.arguments[0];
+    load();
+    if (e && e.keyCode == 13) {
+        window.open(urls[0], '_blank');
+    }
+}
+
+window.onload = load;
+
+function load() {
+    input = document.getElementById("keyword").value;
+    input = input.toUpperCase().replaceAll(/\s/g, "");
+    urls = [];
+    match();
+    let d = "";
+    for (let i in urls) {
+        d += `<li class="post-entry"><header class="entry-header">${urls[i]}&nbsp;\xBB</header><a href="${urls[i]}" aria-label="${urls[i]}"></a></li>`;
+    }
+    document.getElementById("searchResults").innerHTML = d;
+}
+
+function test(site, preffix, extra) {
+    if (extra == null) {
+        let reg = new RegExp(`^${preffix}\\d*$`);
+        if (reg.test(input)) {
+            addURL(site, input.substring(preffix.length));
+        }
+    } else if (extra === 'cf-problem') {
+        let len = input.length;
+        let reg = new RegExp(`^${preffix}\\d+[A-Z]$`);
+        if (reg.test(input)) {
+            addURL(site, input.substring(preffix.length, len - 1), input.substring(len - 1));
+            return;
+        }
+        reg = new RegExp(`^${preffix}\\d+[A-Z]\\d$`);
+        if (reg.test(input)) {
+            addURL(site, input.substring(preffix.length, len - 2), input.substring(len - 2));
+            return;
+        }
+    }
+}
+
+function match() {
+    let len = input.length;
+    test('luogu', 'P');
+    test('luogu', 'LUOGU');
+    test('hdu', 'HDU');
+    test('hdu', 'HDOJ');
+    test('poj', 'POJ');
+    test('loj', 'LOJ');
+    test('uoj', 'UOJ');
+    test('bzoj', 'BZOJ');
+    test('codeforces-contest', 'CF');
+    test('codeforces', 'CF', 'cf-problem');
+    
+    let allow_remote_oj = true;
+
+    if (allow_remote_oj) {
+        test('luogu-codeforces', 'CF', 'cf-problem');
+        test('vjudge-codeforces', 'CF', 'cf-problem');
+        test('vjudge-uva', 'UVA');
+    }
+}
+
+function addURL(site, code, extra) {
+    let url = "https://";
+    if (site === 'luogu')
+        url += `www.luogu.com.cn/problem/P${code}`;
+    else if (site === 'hdu')
+        url += `acm.hdu.edu.cn/showproblem.php?pid=${code}`;
+    else if (site === 'loj')
+        url += `loj.ac/p/${code}`;
+    else if (site === 'uoj')
+        url += `uoj.ac/problem/${code}`;
+    else if (site === 'poj')
+        url = 'http://' + `poj.org/problem?id=${code}`; //
+    else if (site === 'codeforces')
+        url += `codeforces.com/problemset/problem/${code}/${extra}`;
+    else if (site === 'codeforces-contest')
+        url += `codeforces.com/contest/${code}`;
+    else if (site === 'codeforces-contest')
+        url += `codeforces.com/contest/${code}`;
+    else if (site === 'bzoj')
+        url += `darkbzoj.tk/problem/${code}`;
+    
+    //////// REMOTE OJ /////////
+    
+    else if (site === 'luogu-codeforces')
+        url += `www.luogu.com.cn/problem/CF${code}${extra}`;
+    else if (site === 'vjudge-codeforces')
+        url += `vjudge.net/problem/CodeForces-${code}${extra}`;
+    else if (site === 'vjudge-lightoj')
+        url += `vjudge.net/problem/LightOJ-${code}`;
+    else if (site === 'vjudge-uva')
+        url += `vjudge.net/problem/UVA-${code}`;
+
+    
+    urls.push(url);
+}
+
+</script>
+    </main>
+    <footer class="footer">
+    <span>© 2021 <a href="/code-of-acm">Roger Young</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
 </footer>
-<a href=#top id=gototop aria-label="go to top" title="Go to Top (Alt + G)">
-<button class=top-link id=top-link type=button accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
-</button>
+<a href="#top" id="gototop" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
 </a>
-<script>let menu=document.getElementById('menu');menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
-<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
-<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
-<script>document.querySelectorAll('pre > code').forEach(b=>{const c=b.parentNode.parentNode,a=document.createElement('button');a.classList.add('copy-code'),a.innerText='copy';function d(){a.innerText='copied!',setTimeout(()=>{a.innerText='copy'},2e3)}a.addEventListener('click',e=>{if('clipboard'in navigator){navigator.clipboard.writeText(b.textContent),d();return}const a=document.createRange();a.selectNodeContents(b);const c=window.getSelection();c.removeAllRanges(),c.addRange(a);try{document.execCommand('copy'),d()}catch(a){}c.removeRange(a)}),c.classList.contains("highlight")?c.appendChild(a):c.parentNode.firstChild==c||(b.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?b.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(a):b.parentNode.appendChild(a))})</script></body>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+    document.getElementById("font-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("serif")) {
+            document.body.classList.remove('serif');
+            localStorage.setItem("pref-font", 'sans');
+        } else {
+            document.body.classList.add('serif');
+            localStorage.setItem("pref-font", 'serif');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script></body>
+
 </html>
