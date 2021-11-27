@@ -1,0 +1,148 @@
+\chapter{2021 年 9 月}
+
+\section{HDU6537 Neko and function}
+
+\paragraph{题目大意}
+
+定义 $f(n, k)$ 为满足如下要求的，长度为 $k$ 的数列 $\\{a_i\\}$ 个数：
+
+- 要求每个数字都大于 $1$；
+- 数列各项之积恰为 $n$。
+
+求其前缀和 $S(n, k) = \sum f(i, k)$。
+
+\paragraph{分析}
+
+多组输入好坑啊。
+
+先允许 $a_i=1$，将结果记为 $g(n,k)$，容易利用隔板法求得
+\[ g (p^c, k) = \binom{t + k - 1}{k - 1} \]
+对于多个质因数，显然其贡献是相互独立的，即 $g$ 是积性函数。考虑选取 $i$ 个数令其 $a_i>1$，枚举有
+\[ g (n, k) = \sum_{i = 1}^k \binom{n}{i} f (n, i) \]
+二项式反演（或者直接容斥）有
+\[ f (n, k) = \sum_{i = 1}^k (- 1)^{k - i} \binom{k}{i} g (n, i) \]
+求和并换序
+\[ \begin{aligned}
+\sum_{i = 1}^x f (i, k) &= \sum_{n = 1}^x \sum_{i = 1}^k (- 1)^{k - i} \binom{k}{i} g (n, i) \\
+&= \sum_{i = 1}^k (- 1)^{k - i} \binom{k}{i} \sum_{n = 1}^x g (n, i)
+\end{aligned} \]
+后面即是 $g$ 的前缀和，可以用 Min25 筛。
+
+\section{HDU6750 Function}
+
+\paragraph{题目大意}
+
+定义
+\[ f (n) = \sum_{d \mid n} d \left[ \gcd \left( d, \frac{n}{d} \right) = 1 \right] \]
+求其前缀和 $S(n)$。
+
+\paragraph{分析}
+
+首先 Min25 筛是过不了的，内存不够。先推式子
+\[ \begin{aligned}
+S (n) &= \sum_{i = 1}^n \sum_{d \mid i} d \left[ \gcd \left( d, \frac{i}{d} \right) = 1 \right] \\
+&= \sum_{d = 1}^n \sum_{i = 1}^n d [d \mid i] \left[\gcd \left( d, \frac{i}{d} \right) = 1 \right] \\
+&= \sum_{d = 1}^n \sum_{i = 1}^{n / d} d [\gcd (i, d) = 1]
+\end{aligned} \]
+看到 $\gcd = 1$ 就应该想起来 Mobius 反演，容易化简有
+\[ S (n) = \sum_{d = 1}^n \sum_{i = 1}^{n / d} d \sum_{u \mid \gcd (i, d)} \mu(u) = \sum_{u = 1}^{\sqrt{n}} u \mu (u) \sum_{d = 1}^{n / u^2} d \left\lfloor \frac{n}{d u^2} \right\rfloor \]
+用数论分块即可，计算复杂度 $O ( \sqrt{n} \log n )$。
+
+\section{HDU6755 Fibonacci Sum}
+
+\paragraph{题目大意}
+
+设 Fibonacci 数列第 $i$ 项为 $F_i$，求
+\[ S = \sum_{i = 0}^n (F_{i c})^k \]
+\paragraph{分析}
+
+由特征方程法，设
+\[ x^2 + x - 1 = 0 \Longrightarrow A, B = \frac{1 \pm \sqrt{5}}{2} \]
+因此 Fibonacci 通项公式即可表示为
+\[ F_n = \frac{A^n - B^n}{A - B} \]
+根据二次剩余的知识，模意义下是可以开方的。因此
+\[ (F_{i c})^k = \left( \frac{A^{i c} - B^{i c}}{A - B} \right)^k
+= \frac{1}{(A - B)^k} \sum_{j = 0}^k \binom{k}{j} (- 1)^{k - j} (A^j B^{k - j})^{i c} \]
+求和有
+\[ (A - B)^k S = (A - B)^k \sum_{i = 0}^n (F_{i c})^k = \sum_{i = 0}^n \sum_{j
+= 0}^k \binom{k}{j} (- 1)^{k - j} (A^j B^{k - j})^{i c} \]
+换序求和，即是等比数列（公比可能为 $1$，需要特判）
+\[ \begin{aligned}
+(A-B)^{k}S
+& =\sum_{j=0}^{k}\binom{k}{j}(-1)^{k-j}\sum_{i=0}^{n}(A^{j}B^{k-j})^{ic}\\
+& =\sum_{j=0}^{k}\binom{k}{j}(-1)^{k-j}{\frac{(A^{j}B^{k-j})^{c(n+1)}-1}{(A^{j}B^{k-j})^{c}-1}}
+\end{aligned} \]
+直接计算会 TLE，需要用中间变量简化
+\[ \frac{(A^j B^{k - j})^{c (n + 1)} - 1}{(A^j B^{k - j})^c - 1} = \frac{B^{k c (n + 1)} {(A B^{- 1})^{c (n + 1) j}}  - 1}{B^{k c} (A B^{- 1})^{c j} - 1} \]
+用中间变量在循环中递推，再加上 Euler 降幂，就可以过题了。
+
+\section{HDU6833 A Very Easy Math Problem}
+
+\paragraph{题目大意}
+
+即求
+\[ S (n) = \sum^n_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd \{ a_x \}) \gcd \{ a_x \} \]
+我自己随便简写了，全打太麻烦了。
+
+\paragraph{分析}
+
+这东西看着很吓人，其实是纸老虎。首先 $f(x) = \mu(x)^2$。提出 $\gcd$ 有
+\[ \begin{aligned}
+S (n) & =\sum_{d=1}^{n}\sum^{n}_{\{ a_{x}\}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd \{ a_{x}\} =d]\\
+& =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x+1}\sum^{n/d}_{\{ a_{x}\} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd \{ a_{x}\} =1]
+\end{aligned} \]
+对后面这部分反演有
+\[ \begin{aligned}
+& \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd \{ a_x \}} \mu (t) \right)\\
+= & \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd \{ a_x \}] \mu (t) \right)\\
+= & \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k
+\end{aligned} \]
+代回去，枚举 $T = d t$
+\[ \begin{aligned}
+S (n) & = \sum_{d = 1}^n d \mu (d)^2 (d t)^{k x} \sum_{t = 1}^{n / d} \mu (t) \sum^{n / d t}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k\\
+& = \sum_{T = 1}^n \sum_{d \mid T} d \mu (d)^2 T^{k x} \mu \left(\frac{T}{d} \right) \sum^{n / T}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k\\
+& = \sum_{T = 1}^n T^{k x} \left( \sum^{n / T}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \right) \sum_{d \mid T} d \mu (d)^2 \mu \left( \frac{T}{d} \right)\\
+& = \sum_{T = 1}^n T^{k x} \left( \sum^{n / T}_{i = 1} i^k \right)^x \sum_{d \mid T} d \mu (d)^2 \mu \left( \frac{T}{d} \right)
+\end{aligned} \]
+到这里已经差不多化完了。令
+\[ G (x) = \sum^x_{i = 1} i^k, H (x) = \sum_{d \mid x} d \mu (d)^2 \mu \left( \frac{x}{d} \right) \]
+其中 $G (x)$ 显然可以预处理，而 $H (x)$ 是积性函数的卷积，故也是积性函数，其中
+\[ H (p^c) = \begin{cases}
+p - 1,& c = 1\\
+-p, & c = 2  \\
+0, & c > 2
+\end{cases} \]
+可以线性筛得到。总之
+\[ S (n) = \sum_{T = 1}^n T^{k x} H (T) G \left( \left\lfloor \frac{n}{T} \right\rfloor \right)^x \]
+可以用整数分块。
+
+
+\section{P5349 幂}
+
+\paragraph{题目大意}
+
+即求
+\[ S = \sum_{n=0}^\infty f(n)r^n \]
+
+\paragraph{分析}
+
+换序
+\[ S = \sum_{n = 0}^{\infty} \left( \sum_{i = 0}^m f_i n^i \right) r^n
+= \sum_{i = 0}^m f_i \sum_{n = 0}^{\infty} n^i r^n \]
+令
+\[ S_i = \sum_{n = 0}^{\infty} n^i r^n \]
+套路的逐项相减，主动的凑二项式
+\[ (1 - r) S_i = 1 + \sum_{n = 1}^{\infty} n^i r^n - \sum_{n = 1}^{\infty} (n - 1)^i r^n
+= 1 + \sum_{n = 0}^{\infty} r^{n + 1} \sum_{j = 0}^{i - 1} \binom{k}{j} n^j \]
+交换求和顺序
+\[ (1 - r) S_i = 1 + \sum_{j = 0}^{i - 1} \binom{k}{j} \sum_{n = 0}^{\infty}r^{n + 1} n^j
+= 1 + \sum_{j = 0}^{i - 1} \binom{k}{j} r S_j \]
+再凑成完整的二项式卷积
+\[ \frac{S_i - 1}{r} = \sum_{j = 0}^i \binom{k}{j} S_j \]
+我们设 $\{ S_i \}$ 的 EGF 为 $g(x)$，可以得到方程
+\[ \frac{g(x) - 1}{r} = {\rm e}^x g(x) \]
+解得
+\[ g(x) = \frac{1}{1 - r {\rm e}^x} \]
+因此最终多项式逆即可，EGF 和 OGF 的转化就是点乘阶乘。
+
+

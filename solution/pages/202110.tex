@@ -1,0 +1,177 @@
+\chapter{2021 年 10 月}
+
+\section{HDU6955 Xor sum}
+
+\paragraph{题目大意}
+
+给定整数序列 $\{a_n\}$，寻找满足区间异或和大于等于 $k$ 的连续序列中最短的。
+
+若有多个同样长度的答案，输出位置靠前的，若不存在输出 \verb`-1`。
+
+\paragraph{分析}
+
+看到异或最值就应该想到 01trie。做前缀异或和，这样我们的问题就变成找到最靠近的两个数，其异或大于等于 $k$。
+
+因为要求位置最靠前的，所以我选择倒着遍历。当遍历到第 $i$ 个数 $a_i$ 时，字典树已经维护好此位置之后的数据，即每个值出现最左边的位置。
+
+我们只需从高位到低位遍历第 $j$ 位，分类讨论：
+
+- 若 $k[j] = 1$，则说明 $a_i[j] \oplus a_u[j]$ 只能为 $1$，在字典树中选择 $a_i[j] \oplus 1$ 深入（什么都不做）。
+- 若 $k[j] = 0$，那么若 $a_i[j] \oplus a_u[j] = 1$ 则一定大于 $k$，记录字典树中 $a_i[j] \oplus 1$ 的值，然后在字典树中选择 $a_i[j]$ 深入。
+
+因为我们是从前往后查的，因此同样长度中总是先查到考前的，汇总有
+
+\section{NC11255B Sample Game}
+
+\paragraph{题目大意}
+
+给定生成 $1$ 到 $n$ 数字的概率分布，不断生成随机数 $x$ 直到 $x$ 不是已经生成过的最大的数停止，求生成次数平方的期望。
+
+\paragraph{分析}
+
+
+设期望的随机次数为 $f_x = E(x)$，我们需要计算的次数为
+$g_x = E(x^2)$。
+
+关于 $f_i$ 的 DP 是显然的，计算有
+
+\[ f_x = \sum_{i = 1}^{x - 1} p_i + \sum_{i = x}^n p_i(1 + f_i)
+= 1 + \sum_{i = x}^n p_i f_i \]
+
+容易观察到
+
+\[ f_{x + 1} =(1 - p_x) f_x \Rightarrow f_x = \prod_{i = x}^n \frac{1}{1 - p_x} \]
+
+接下来需要一个套路
+
+\[ E((x + 1)^2) = E(x^2) + 2 E(x) + 1 \]
+
+类似的可以推得
+
+\[ g_x = \sum_{i = 1}^{x - 1} p_i + \sum_{i = x}^n p_i(g_i + 2 f_i + 1)  = 1
+   + \sum_{i = x}^n p_i g_i + 2 \sum_{i = x}^n p_i f_i = \sum_{i = x}^n p_i
+   g_i + 2 f_x - 1 \]
+
+最终答案即是
+
+\[ ans = \sum_{i = 1}^n p_i(g_i + 2 f_i + 1)  = g_1 \]
+
+至此，倒着递推已经可以线性求解了。但是我们还可以继续优化，逐项相减有
+
+\[ g_{x + 1} - g_x = 2(f_{x + 1} - f_x) - p_x g_x = - 2 p_x f_x - p_x g_x \]
+
+即
+
+\[ \frac{g_x}{f_x} - \frac{g_{x + 1}}{f_{x + 1}} = \frac{2}{1 - p_x} - 2 \]
+
+因此
+
+\[ {\rm ans} = g_1 = f_1 \left( \frac{g_n}{f_n} - 2(n - 1) + 2 \sum_{i =
+   1}^{n - 1} \frac{1}{1 - p_x} \right) = \left( \prod_{i = x}^n \frac{1}{1 -
+   p_x} \right) \left( 1 + 2 \sum_{i = 1}^n \frac{1}{1 - p_x} - 2 n \right) \]
+
+至此，我们可以 $O(n)$ 的解决问题。
+
+我们经过了很长的化简过程才导出这一结果，实际上生成函数更为快捷。
+
+设 $f(x)$ 是生成长度为 $i$ 的非递减序列的生成函数，即 $P(len > i)$，可以推出
+
+\[ f(x) = \prod_{i = 1}^n \frac{1}{1 - p_i x} \]
+
+而我们需要求
+
+\[ \sum_{i = 1}^{\infty} (f_{i - 1} - f_i) i^2 = \sum_{i = 0}^{\infty} f_i (2 i + 1) = 2 f'(1) + f(1) \]
+
+化简即可得到上式。
+
+
+\section{P3052 Cows in a Skyscraper G}
+
+\paragraph{题目大意}
+
+有 $n$ 头牛坐电梯，重量分别为 $c_i$，电梯的最大限额是 $W$，求最少分多少次能够全部上去。
+
+\paragraph{分析}
+
+注意 $n \leqslant 18$，枚举全排列是不行的。考虑用状态压缩，将第 $j$ 头奶牛的选和不选用状态 $i$ 的第 $j$ 位数字表示。设 $f_i$ 表示状态为 $i$ 时最小乘电梯次数，$g_i$ 表示此状态下最新那个电梯已经有的重量。
+
+- 首先令 \verb`cow = i << (j - 1)`，若 \verb`i & cow` 为 $1$ 则说明这个奶牛已经坐上电梯了，不计算。
+- 当 $W - g_i \geqslant c_i$ 时，最后那个电梯坐的下这头牛。
+- 当 $W - g_i < c_i$ 时，只能新开一个电梯。
+
+还是代码更清晰
+
+\section{P4059 找爸爸}
+
+\paragraph{题目大意}
+
+给定两串 DNA 序列，可以在其中任意插空格，然后逐位比较，当两位都是字母时查表得到相似度。
+
+长度为 $k$ 的空格有额外相似度 $- A - B(k - 1)$。求两序列的最大相似度。
+
+\paragraph{分析}
+
+若不考虑空格的贡献，容易想到二维 DP，记 ${\rm DP}[i,j]$ 是 $A$ 串到位置 $i$ 同时 $B$ 串到位置 $j$ 时最大的相似度，有
+
+\[ {\rm DP}[i, j] = \max\{ {\rm DP}[i - 1, j - 1] + D[i, j], {\rm DP}[i - 1, j], {\rm DP}[i, j - 1] \} \]
+
+当我们考虑空格的贡献时，可以发现空格的额外贡献只与前面一位有关。若两个序列此位都是空格，则把去掉后相似度一定会增加，故只有三种可能：设 ${\rm DP}_0$ 是结尾没有空格；${\rm DP}_1$ 是空格在 $A$ 串；${\rm DP}_2$ 是空格在 $B$ 串。
+
+思考最后一个空格的转移方式，自然有方程
+
+\[ \begin{aligned}
+{\rm DP}_0[i, j] &= \max\{ {\rm DP}_0[i - 1, j - 1], {\rm DP}_1[i - 1, j - 1], {\rm DP}_2[i - 1, j - 1] \} + D[i, j] \\
+{\rm DP}_1[i, j] &= \max\{ {\rm DP}_0[i, j - 1] - A, {\rm DP}_1[i, j - 1]- B, {\rm DP}_2[i, j - 1] - A\} \\
+{\rm DP}_2[i, j] &= \max\{ {\rm DP}_0[i - 1, j] - A, {\rm DP}_1[i - 1, j] - A, {\rm DP}_2[i, j - 1] - B \} \\
+\end{aligned} \]
+
+随手加滚动数组 WA 了好久，发现每次都要清空为 \verb`-INF`，否则会 WA。
+
+\section{P5171 Earthquake}
+
+\paragraph{题目大意}
+
+给定 $a,b,c$，求满足方程 $ax + by \leqslant c$ 的非负整数解的个数。
+
+\paragraph{分析}
+
+令 $n = \lfloor c / a \rfloor$，容易推出让我们求的是
+
+
+\[ n + 1 + \sum_{x = 0}^{n} \left\lfloor \frac{c - ax}{b} \right\rfloor \]
+
+直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \to (n -  x)$，代入有
+
+\[ n + 1 + \sum_{x = 0}^{n} \left\lfloor \frac{ax + c - an}{b} \right\rfloor \]
+
+显然 $c - an$ 是 \verb`c % a`，于是套类欧即可
+
+\section{P5179 Fraction}
+
+\paragraph{题目大意}
+
+求最简分数 $p/q$ 满足
+
+\[ \frac{a}{b} < \frac{p}{q} < \frac{c}{d} \]
+
+若有多组解，输出 $q$ 最小的；仍有多组解，输出 $p$ 最小的一组。
+
+\paragraph{分析}
+
+分类讨论：
+
+- 首先当 $\lfloor a/b \rfloor + 1 \leqslant \lceil c/d \rceil - 1$ 时，说明两个数之间存在一个整数，直接返回 $p = 1, q = \lfloor a / b \rfloor + 1$ 即可。
+- 其次当 $a = 0$ 时，直接解得 $p = 1, q = \lfloor d / c \rfloor + 1$。
+- 当 $a < b$ 时，这意味着我们无法直接求解。考虑翻转，转化问题为
+\[ \frac{d}{c} < \frac{q}{p} < \frac{b}{a} \]
+递归即可。
+- 当 $a > b$ 时，考虑求解
+\[ \frac{a}{b} - \left\lfloor\frac{a}{b}\right\rfloor < \frac{p}{q} - \left\lfloor\frac{a}{b}\right\rfloor < \frac{c}{d} - \left\lfloor\frac{a}{b}\right\rfloor \]
+也是递归即可，还原出结果以后返回。
+
+唯一需要确认的就是，翻转后仍是最优解，考虑反证。
+
+设存在 $p_0 \geqslant p$ 且 $q_0 < q$ 使得 $p_0/q_0$ 在翻转前不是最优解，但是翻转后是最优解。从而有
+\[ \frac{d}{c} < \frac{p_0}{q_0} < \frac{p_0}{q} \leqslant \frac{p}{q} < \frac{b}{a} \]
+即 $p_0/q$ 是翻转前的更优解，与 $p/q$ 是最优解矛盾。
+

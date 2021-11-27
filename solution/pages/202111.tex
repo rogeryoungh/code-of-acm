@@ -1,16 +1,12 @@
----
-author: "rogeryoungh"
-title: "P1393 Mivik 的标题"
-date: "2021-11-02"
-katex: true
-showtoc: true
----
+\chapter{2021 年 11 月}
 
-## 题目大意
+\section{P1393 Mivik 的标题}
+
+\paragraph{题目大意}
 
 在字符集中有 $m$ 个不同的字符，求给定字符串 $S$ 在长度为 $n$ 的字符串的全集中出现的概率。
 
-## 分析
+\paragraph{分析}
 
 参考 [Mivik 的字符串公开赛](https://mivik.gitee.io/2020/solution/mivik-string-contest-title/)。
 
@@ -19,37 +15,15 @@ showtoc: true
 设 $\{f_i\}$ 是长度为 $i$ 的字符串中 $A$ 类字符串的个数。再定义 $\{g_i\}$ 是长度为 $i$ 的字符串中没有出现过 $S$ 的个数。
 
 在长为 $i$ 的没有出现过 $S$ 的字符串后面加上一个字符，则可能出现 $S$ 也可能没有出现 $S$。
-
-$$
-m g_i = f_{i+1} + g_{i+1}
-$$
-
+\[ m g_i = f_{i+1} + g_{i+1} \]
 定义关于 $S$ 的数列 $\{s_i\}$ 为
-
-$$
-s_i = [i \ \text{is a period of}\ S]
-$$
-
+\[ s_i = [i \ \text{is a period of}\ S] \]
 即当 $i$ 是 $S$ 的一个循环节时，$s_i$ 为 $1$，否则为 $0$。
 
 我们在所有未出现过 $S$ 的长为 $n - |S|$ 的字符串后面拼接上 $S$，当 $i$ 是 $S$ 的周期时 $n-i$ 是其完整出现 $S$ 的位置。有
-
-$$
-g_{n - |S|} = \sum_{i=0}^n f_{n - i} s_{i}
-$$
-
+\[ g_{n - |S|} = \sum_{i=0}^n f_{n - i} s_{i} \]
 写成生成函数形式，可以得到 $f_i$ 的生成函数
-
-$$
-f(x) = \frac{x^{|S|}}{x^{|S|} + (1 - m x) s(x)}
-$$
-
+\[ f(x) = \frac{x^{|S|}}{x^{|S|} + (1 - m x) s(x)} \]
 我们要计算的是长为 $n$ 的符合要求的字符串总数，即是把字符串填充至 $n$ 的长度即可，即
-
-$$
-E(x) = \frac{f(x)}{1 - m x}
-$$
-
+\[ E(x) = \frac{f(x)}{1 - m x} \]
 我们只需计算 $E[n]/m^n$ 即可。循环节可以用 KMP 预处理。
-
-{{<codes url="2021-11/codes/P1393.cpp">}}
