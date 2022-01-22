@@ -1,39 +1,37 @@
-#define RYLOCAL
-
 #include <algorithm>
+#include <iostream>
+#include <cassert>
 #include <cmath>
 #include <cstdio>
 #include <cstring>
 #include <ctime>
-#include <functional>
-#include <iostream>
 #include <list>
 #include <map>
 #include <queue>
+#include <set>
 #include <stack>
+#include <random>
+#include <functional>
 
 using namespace std;
 using ll = long long;
-using ull = unsigned long long;
-using ld = long double;
+using i128 = __int128_t;
+using u64 = unsigned long long;
+using pii = pair<int, int>;
+using vi = vector<int>;
 
-#define _fore(i, a) for (ll i = head[(a)]; i; i = edge[i].nxt)
-#define LN putchar('\n')
 #define _dbg(...) fprintf(stderr, __VA_ARGS__)
 
 ll rr() {
-    ll s = 0, w = 1;
-    char c = getchar();
-    while (!isdigit(c)) {
+    ll s = 0, w = false, c = getchar();
+    for (; !isdigit(c); c = getchar()) {
         if (c == '-')
-            w = -1;
-        c = getchar();
+            w = true;
     }
-    while (isdigit(c)) {
+    for (; isdigit(c); c = getchar()) {
         s = s * 10 + c - '0';
-        c = getchar();
     }
-    return s * w;
+    return w ? -s : s;
 }
 
 // END OF HEADER

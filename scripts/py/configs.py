@@ -6,11 +6,14 @@ root_config = {
     'template_source': '',
     'cc': 'clang++',
     'cc_flags': '',
+    'port': 10045
 }
 
 problem_config = {
     'testcase': 0,
     'test_only': 0,
+    'url': '',
+    'src': 'main.cpp',
 }
 
 
@@ -30,7 +33,7 @@ def read_problem_config(file):
         return config
     except FileNotFoundError:
         print("Not found `problem.toml`.")
-    return root_config
+    return problem_config
 
 
 def write_config(config, file):

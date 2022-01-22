@@ -1,10 +1,9 @@
 #ifndef ACM_MATH_CIPOLLA_H
+
 #define ACM_MATH_CIPOLLA_H
 
-#ifndef RYLOCAL
-#include "__base.hpp"
-#include "../basic/qpow.hpp"
-#endif
+#include "template/math/qpow.hpp"
+#include "template/math/tpow.hpp"
 
 namespace Qresidue {
     ll legendre(ll a, ll p) { return qpow(a, (p - 1) / 2, p); }
@@ -21,13 +20,13 @@ namespace Qresidue {
     ll P, I;
     struct expnum {
         ll a = 1, b = 0;
-        friend expnum operator*(expnum i1, expnum i2) {
-            return expnum{(i1.a * i2.a + i1.b * i2.b % P * I) % P,
-                          (i1.b * i2.a + i1.a * i2.b) % P};
-        }
     };
+    expnum operator*(expnum i1, expnum i2) {
+        return expnum{(i1.a * i2.a + i1.b * i2.b % P * I) % P,
+                        (i1.b * i2.a + i1.a * i2.b) % P};
+    }
 
-    pair<int, int> Cipolla(ll n, ll _p) {
+    std::pair<int, int> Cipolla(ll n, ll _p) {
         P = _p;
         if (n % P == 0) // 不互质的情形
             return {0, 0};
@@ -42,7 +41,7 @@ namespace Qresidue {
     }
 }; // namespace Qresidue
 
-pair<int, int> Cipolla(ll n, ll p) {
+std::pair<int, int> Cipolla(ll n, ll p) {
     return Qresidue::Cipolla(n, p);
 }
 

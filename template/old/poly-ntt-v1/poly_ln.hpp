@@ -17,7 +17,7 @@
 namespace poly {
 
 void poly_ln(const int *h, int *ans, const int deg = lim) {
-    static poly_t ln_t;
+    static Poly ln_t;
     const int deg2 = deg >> 1;
 
     derivative(h, ln_t, deg2);

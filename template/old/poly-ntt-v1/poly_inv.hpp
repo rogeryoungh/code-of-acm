@@ -14,7 +14,7 @@
 namespace poly {
 
 void poly_inv(const int *h, int *ans, int deg = lim) {
-    static poly_t inv_t;
+    static Poly inv_t;
     std::fill(ans, ans + deg, 0);
     ans[0] = inv(h[0]);
     for (int t = 2; t < deg; t <<= 1) {

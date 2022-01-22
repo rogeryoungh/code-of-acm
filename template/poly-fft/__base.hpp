@@ -12,8 +12,8 @@ using ld = long double;
 #include "../basic/complex.hpp"
 
 using img = Complex<double>;
-using poly_t = std::vector<img>;
+using Poly = std::vector<img>;
 
-poly_t w;
+Poly w;
 
 #endif

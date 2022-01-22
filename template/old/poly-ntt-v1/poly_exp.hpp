@@ -17,7 +17,7 @@
 namespace poly {
 
 void poly_exp(const int *f, int *ans, int deg = lim) {
-    static poly_t exp_t;
+    static Poly exp_t;
     std::fill(ans, ans + deg, 0);
     ans[0] = 1;
     for (int t = 2; t < deg; t <<= 1) {

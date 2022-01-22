@@ -10,9 +10,9 @@ def main():
     sum += 1
     if not os.path.exists('testcase'):
         os.makedirs('testcase')
-    with open(f'testcase/main_{sum}.in', 'w+') as f:
+    with open(f'testcase/{sum}.in', 'w+') as f:
         f.write('\n')
-    with open(f'testcase/main_{sum}.out', 'w+') as f:
+    with open(f'testcase/{sum}.out', 'w+') as f:
         f.write('\n')
     problem_config['testcase'] = sum
     configs.write_config(problem_config, 'problem.toml')

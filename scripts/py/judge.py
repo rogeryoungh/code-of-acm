@@ -36,17 +36,17 @@ def cmp_line(f1, f2):
                 return True
 
 
-def judge(number):
-    file_in = f'testcase/main_{number}.in'
-    file_ans = f'testcase/main_{number}.out'
-    file_out = f'testcase/main_{number}.out.t'
+def judge(io_prefix, number):
+    file_in = f'testcase/{io_prefix}{number}.in'
+    file_ans = f'testcase/{io_prefix}{number}.out'
+    file_out = f'testcase/{io_prefix}{number}.out.t'
     flag = ''
     try:
         with open(file_in, 'r') as f_in:
             with open(file_out, 'w+') as f_out:
                 T1 = time.perf_counter_ns()
                 p = subprocess.Popen(args='./a.out', stdin=f_in, stdout=f_out)
-                stdout, stderr = p.communicate(timeout=24)
+                stdout, stderr = p.communicate(timeout=4)
                 if p.returncode != 0:
                     flag = 'RE'
     except subprocess.TimeoutExpired:
@@ -63,14 +63,15 @@ def judge(number):
 
 def main():
     problem_config = configs.read_problem_config('problem.toml')
-    sums = problem_config['testcase']
+    sums = problem_config.get('testcase', 0)
     only = problem_config['test_only'].split(' ')
+    io_prefix = problem_config.get('io_prefix', '')
     if only[0] == '':
         for i in range(1, int(sums) + 1):
-            judge(i)
+            judge(io_prefix, i)
     else:
         for i in only:
-            judge(i)
+            judge(io_prefix, i)
     return ''
 
 

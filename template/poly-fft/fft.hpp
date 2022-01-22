@@ -5,8 +5,9 @@
 #include "__base.hpp"
 #endif
 
-void fft(poly_t &f) {
+void fft(Poly &f) {
     int deg = f.size();
+    pre_w(deg);
     for (int l = deg >> 1; l; l >>= 1)
         for (int i = 0; i < deg; i += (l << 1))
             for (int j = 0; j < l; j++) {
@@ -16,8 +17,9 @@ void fft(poly_t &f) {
             }
 }
 
-void ifft(poly_t &f) {
+void ifft(Poly &f) {
     int deg = f.size();
+    pre_w(deg);
     for (int l = 1; l < deg; l <<= 1)
         for (int i = 0; i < deg; i += (l << 1))
             for (int j = 0; j < l; j++) {

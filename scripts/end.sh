@@ -1,1 +1,1 @@
-clang++ main.cpp -I/home/roger/Code/ACM/cl -g -O1
+clang++ main.cpp -I/home/roger/Code/ACM/cl -g -fsanitize=address -O2

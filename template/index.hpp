@@ -1,22 +1,22 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 using ll = long long;
-using ull = unsigned long long;
-using ld = long double;
+using i128 = __int128_t;
+using u64 = unsigned long long;
+using pii = pair<int, int>;
+using vi = vector<int>;
 
-#define _fore(i, a) for (ll i = head[(a)]; i; i = edge[i].nxt)
-#define LN putchar('\n')
-#define _dbg(...) 1
-#define dbg(x) 1
+#define _dbg(...)
+#define dbg(x)
 
 ll rr() {
-    ll s = 0, w = 1;
-    char c = getchar();
-    while (!isdigit(c))
-        w = 1 - 2 * (c == '-'), c = getchar();
-    while (isdigit(c))
-        s = s * 10 + c - '0', c = getchar();
-    return s * w;
+    ll s = 0, w = false, c = getchar();
+    for (; !isdigit(c); c = getchar())
+        w = w || c == '-';
+    for (; isdigit(c); c = getchar())
+        s = s * 10 + c - '0';
+    return w ? -s : s;
 }
 
 // END OF HEADER

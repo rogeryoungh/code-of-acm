@@ -9,14 +9,14 @@ using ld = long double;
 
 #ifndef ACM_MOD
 #define ACM_MOD 998244353
-const ll mod = ACM_MOD;
+const int P = ACM_MOD;
 #endif
 
 const int maxn = 1 << 20;
 
-using poly_t  = int[maxn];
+using Poly  = int[maxn];
 
-poly_t  fac, ifac, Inv;
+Poly  fac, ifac, Inv;
 
 namespace poly {
 int k = 20, lim = 1 << k;

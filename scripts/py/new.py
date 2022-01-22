@@ -15,11 +15,7 @@ problem_config = {
 }
 
 
-def main():
-    if len(sys.argv) == 1:
-        print('usage: new <problem>')
-        return ''
-    name = sys.argv[1]
+def main(name):
     problem_path = util.get_problem_path(name)
     if os.path.exists(problem_path):
         print(f'ERROR: problem `{name}` exists')
@@ -35,11 +31,15 @@ def main():
     shutil.copy(template_cpp_file, f'{problem_path}/main.cpp')
     configs.write_config(problem_config, f'{problem_path}/problem.toml')
 
-    add_cmake.add_cmake(name)
-    return f'cd {problem_path}'
+    # add_cmake.add_cmake(name)
+    return problem_path
 
 
 if __name__ == '__main__':
-    cmds = main()
-    with open(util.get_script_file('end.sh'), 'w+') as f:
-        f.write(cmds)
+    if len(sys.argv) == 1:
+        print('usage: new <problem>')
+    else:
+        name = sys.argv[1]
+        cmds = main(name)
+        with open(util.get_script_file('end.sh'), 'w+') as f:
+            f.write(f'cd {cmds}')

@@ -12,7 +12,7 @@ using ld = long double;
 const int maxn = 1 << 20;
 
 using img = Complex<double>;
-using poly_t = img[maxn];
+using Poly = img[maxn];
 
 namespace poly {
 int k = 20, lim = 1 << k;

@@ -1,31 +1,27 @@
 #ifndef ACM_BASIC_COMPLEX_H
 #define ACM_BASIC_COMPLEX_H
 
-#ifndef RYLOCAL
-#include "__base.hpp"
-#endif
-
-template <class T> struct Complex {
-    T x, y;
-    void f(T xx = 0, T yy = 0) {
+struct img {
+    double x, y;
+    void f(double xx = 0, double yy = 0) {
         x = xx, y = yy;
     }
-    Complex operator+(const Complex &c) {
-        return (Complex) {x + c.x, y + c.y};
+    img operator+(const img &c) const {
+        return (img) {x + c.x, y + c.y};
     }
-    Complex operator-(const Complex &c) {
-        return (Complex) {x - c.x, y - c.y};
+    img operator-(const img &c) const{
+        return (img) {x - c.x, y - c.y};
     }
-    Complex operator*(const Complex &c) {
-        T tx = x * c.x - y * c.y;
-        T ty = x * c.y + y * c.x;
-        return (Complex) {tx, ty};
+    img operator*(const img &c) const {
+        double tx = x * c.x - y * c.y;
+        double ty = x * c.y + y * c.x;
+        return (img) {tx, ty};
     }
-    Complex operator/(T c) {
-        return (Complex) {x / c, y / c};
+    img operator/(double c) const {
+        return (img) {x / c, y / c};
     }
-    Complex conj() {
-        return (Complex) {x, -y};
+    img conj() const {
+        return (img) {x, -y};
     }
 };
 

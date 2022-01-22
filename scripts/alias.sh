@@ -1,4 +1,4 @@
-export R_HELPER_ROOT="/home/roger/Code/ACM/cl"
+export R_HELPER_ROOT="/home/roger/Code/ACM/cl/"
 
 function do_py() {
     python3 "$@";
@@ -18,6 +18,11 @@ function new() {
     do_after
 }
 
+function w() {
+    do_py $R_HELPER_ROOT/scripts/py/watch.py "$@"
+#    do_after
+}
+
 function pre() {
     do_py $R_HELPER_ROOT/scripts/py/pre.py "$@"
 #    do_after
@@ -25,6 +30,10 @@ function pre() {
 
 function update_alias(){
     source $R_HELPER_ROOT/scripts/alias.sh
+}
+
+function add_cmake(){
+    do_py $R_HELPER_ROOT/scripts/py/add_cmake.py "$@"
 }
 
 function b() {

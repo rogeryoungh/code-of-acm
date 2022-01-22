@@ -14,7 +14,7 @@
 namespace poly {
 
 void poly_sqrt(const int *f, int *ans, int deg = lim) {
-    static poly_t s_t1, s_t2;
+    static Poly s_t1, s_t2;
     std::fill(ans, ans + deg, 0);
     const int inv_2 = (mod + 1) / 2;
     ans[0] = 1;

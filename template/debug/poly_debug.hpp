@@ -2,22 +2,22 @@
 #define ACM_POLY_DEBUG_H
 
 #ifndef RYLOCAL
-#include "__base.hpp"
 #include "../basic/mint.hpp"
+#include "../ntt-mint/poly.hpp"
 #endif
 
-void poly_print(const poly_t &f, int lim) {
+void poly_print(const Poly &f, int lim) {
     printf("(%d) ", lim);
     for (int i = 0; i < lim; i++) {
         int v = f[i].v;
-        if (v >= mod / 2) {
-            v = v - mod;
+        if (v >= P / 2) {
+            v = v - P;
         }
         printf("%d ", v);
     }
 }
 
-void poly_print(const poly_t& f) {
+void poly_print(const Poly& f) {
     poly_print(f, f.size());
 }
 
