@@ -154,9 +154,12 @@
   </header>
   <section class="entry-content">
     <p>题目大意 给出正整数 $n$ 和 $k$，请计算
- $$ G(n, k) = \sum_{i = 1}^n k \bmod i $$ 分析 因为
- $$ k \bmod i = k - i \left\lfloor \frac{k}{i} \right\rfloor $$ 因此有
- $$ G(n,k) = nk - \sum_{i=1}^n i \left\lfloor \frac{k}{i} \right\rfloor $$ 后面需要整数分块。
+$$ G(n, k) = \sum_{i = 1}^n k \bmod i $$
+分析 因为
+$$ k \bmod i = k - i \left\lfloor \frac{k}{i} \right\rfloor $$
+因此有
+$$ G(n,k) = nk - \sum_{i=1}^n i \left\lfloor \frac{k}{i} \right\rfloor $$
+后面需要整数分块。
 int main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l = 1, r; l &lt;= n; l = r &#43; 1) { r = min(n, k / (k / l)); ll t = (l &#43; r) * (r - l &#43; 1) / 2; sum -= t * (k / l); } printf(&#34;%lld&#34;, sum); return 0; } </p>
   </section>
   <footer class="entry-footer">April 30, 2021&nbsp;·&nbsp;rogeryoungh</footer>

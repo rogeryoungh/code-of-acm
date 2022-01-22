@@ -9,7 +9,8 @@
 <meta name="keywords" content="洛谷, 数学" />
 <meta name="description" content="题目大意 凸 $n$ 边形中，任意三条对角线不共点，求所有对角线交点的个数。
 分析 注意到一个交点对应凸多边形 $4$ 个定点，于是等价于 $n$ 个点任选 $4$ 个点的选法种数，即
- $$ \binom{n}{4} = \frac{n(n-1)(n-2)(n-3)}{24} $$ 注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。
+$$ \binom{n}{4} = \frac{n(n-1)(n-2)(n-3)}{24} $$
+注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。
 int main() { unsigned long long n; scanf(&#34;%llu&#34;, &amp;n); n = n * (n - 1) / 2 * (n - 2) / 3 * (n - 3) / 4; printf(&#34;%llu&#34;, n); return 0; } ">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2020-09/p2181/" />
@@ -54,7 +55,8 @@ int main() { unsigned long long n; scanf(&#34;%llu&#34;, &amp;n); n = n * (n - 1
 <meta property="og:title" content="P2181 对角线" />
 <meta property="og:description" content="题目大意 凸 $n$ 边形中，任意三条对角线不共点，求所有对角线交点的个数。
 分析 注意到一个交点对应凸多边形 $4$ 个定点，于是等价于 $n$ 个点任选 $4$ 个点的选法种数，即
- $$ \binom{n}{4} = \frac{n(n-1)(n-2)(n-3)}{24} $$ 注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。
+$$ \binom{n}{4} = \frac{n(n-1)(n-2)(n-3)}{24} $$
+注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。
 int main() { unsigned long long n; scanf(&#34;%llu&#34;, &amp;n); n = n * (n - 1) / 2 * (n - 2) / 3 * (n - 3) / 4; printf(&#34;%llu&#34;, n); return 0; } " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/2020-09/p2181/" /><meta property="article:section" content="post" />
@@ -65,7 +67,8 @@ int main() { unsigned long long n; scanf(&#34;%llu&#34;, &amp;n); n = n * (n - 1
 <meta name="twitter:title" content="P2181 对角线"/>
 <meta name="twitter:description" content="题目大意 凸 $n$ 边形中，任意三条对角线不共点，求所有对角线交点的个数。
 分析 注意到一个交点对应凸多边形 $4$ 个定点，于是等价于 $n$ 个点任选 $4$ 个点的选法种数，即
- $$ \binom{n}{4} = \frac{n(n-1)(n-2)(n-3)}{24} $$ 注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。
+$$ \binom{n}{4} = \frac{n(n-1)(n-2)(n-3)}{24} $$
+注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。
 int main() { unsigned long long n; scanf(&#34;%llu&#34;, &amp;n); n = n * (n - 1) / 2 * (n - 2) / 3 * (n - 3) / 4; printf(&#34;%llu&#34;, n); return 0; } "/>
 
 
@@ -95,11 +98,11 @@ int main() { unsigned long long n; scanf(&#34;%llu&#34;, &amp;n); n = n * (n - 1
   "@type": "BlogPosting",
   "headline": "P2181 对角线",
   "name": "P2181 对角线",
-  "description": "题目大意 凸 $n$ 边形中，任意三条对角线不共点，求所有对角线交点的个数。\n分析 注意到一个交点对应凸多边形 $4$ 个定点，于是等价于 $n$ 个点任选 $4$ 个点的选法种数，即\n $$ \\binom{n}{4} = \\frac{n(n-1)(n-2)(n-3)}{24} $$ 注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。\nint main() { unsigned long long n; scanf(\u0026#34;%llu\u0026#34;, \u0026amp;n); n = n * (n - 1) / 2 * (n - 2) / 3 * (n - 3) / 4; printf(\u0026#34;%llu\u0026#34;, n); return 0; } ",
+  "description": "题目大意 凸 $n$ 边形中，任意三条对角线不共点，求所有对角线交点的个数。\n分析 注意到一个交点对应凸多边形 $4$ 个定点，于是等价于 $n$ 个点任选 $4$ 个点的选法种数，即\n$$ \\binom{n}{4} = \\frac{n(n-1)(n-2)(n-3)}{24} $$\n注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。\nint main() { unsigned long long n; scanf(\u0026#34;%llu\u0026#34;, \u0026amp;n); n = n * (n - 1) / 2 * (n - 2) / 3 * (n - 3) / 4; printf(\u0026#34;%llu\u0026#34;, n); return 0; } ",
   "keywords": [
     "洛谷", "数学"
   ],
-  "articleBody": "题目大意 凸 $n$ 边形中，任意三条对角线不共点，求所有对角线交点的个数。\n分析 注意到一个交点对应凸多边形 $4$ 个定点，于是等价于 $n$ 个点任选 $4$ 个点的选法种数，即\n $$ \\binom{n}{4} = \\frac{n(n-1)(n-2)(n-3)}{24} $$ 注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。\nint main() { unsigned long long n; scanf(\"%llu\", \u0026n); n = n * (n - 1) / 2 * (n - 2) / 3 * (n - 3) / 4; printf(\"%llu\", n); return 0; } ",
+  "articleBody": "题目大意 凸 $n$ 边形中，任意三条对角线不共点，求所有对角线交点的个数。\n分析 注意到一个交点对应凸多边形 $4$ 个定点，于是等价于 $n$ 个点任选 $4$ 个点的选法种数，即\n$$ \\binom{n}{4} = \\frac{n(n-1)(n-2)(n-3)}{24} $$\n注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。\nint main() { unsigned long long n; scanf(\"%llu\", \u0026n); n = n * (n - 1) / 2 * (n - 2) / 3 * (n - 3) / 4; printf(\"%llu\", n); return 0; } ",
   "wordCount" : "68",
   "inLanguage": "en",
   "datePublished": "2020-09-22T00:00:00Z",
@@ -261,9 +264,9 @@ int main() { unsigned long long n; scanf(&#34;%llu&#34;, &amp;n); n = n * (n - 1
 <p>凸 $n$ 边形中，任意三条对角线不共点，求所有对角线交点的个数。</p>
 <h2 id="分析">分析<a hidden class="anchor" aria-hidden="true" href="#分析">#</a></h2>
 <p>注意到一个交点对应凸多边形 $4$ 个定点，于是等价于 $n$ 个点任选 $4$ 个点的选法种数，即</p>
-<p> $$
+<p>$$
 \binom{n}{4} = \frac{n(n-1)(n-2)(n-3)}{24}
-$$ </p>
+$$</p>
 <p>注意爆 <code>long long</code>，需要写成 <code>n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4</code>。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">;</span>

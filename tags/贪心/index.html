@@ -169,9 +169,12 @@ priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; &gt; q; int main() 
     <p>题目大意 给定石头的高度 $h$，从第 $i$ 块石头跳到第 $j$ 块上耗费体力 $(h_i-h_j)^2$ ，求最耗体力的路径。
 分析 容易猜到贪心结论，是不断的在剩余石头中最大最小的来回跳。
 考虑证明结论，设 $h_i$ 是将要跳的序列，展开求和式
- $$ S = \sum_{k=1}^{n-1}(h_k-h_{k&#43;1})^2 = \sum_{k=1}^nh_k^2 - 2\sum_{k=1}^{n-1}h_kh_{k&#43;1} $$ 注意到平方和为一个定值，重点在后半式。记 $H_k = h_{k&#43;1}$，有
- $$ \sum_{k=1}^{n-1}h_kH_k $$ 利用高中时学的排序不等式，有
- $$ \text{反序和} \leqslant \text{乱序和} \leqslant \text{顺序和} $$ 于是有反序最小。双指针维护即可。
+$$ S = \sum_{k=1}^{n-1}(h_k-h_{k&#43;1})^2 = \sum_{k=1}^nh_k^2 - 2\sum_{k=1}^{n-1}h_kh_{k&#43;1} $$
+注意到平方和为一个定值，重点在后半式。记 $H_k = h_{k&#43;1}$，有
+$$ \sum_{k=1}^{n-1}h_kH_k $$
+利用高中时学的排序不等式，有
+$$ \text{反序和} \leqslant \text{乱序和} \leqslant \text{顺序和} $$
+于是有反序最小。双指针维护即可。
 ll nn[310]; int main() { ll n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) nn[i] = rr(); sort(nn &#43; 1, nn &#43; n &#43; 1); ll l = 0, r = n, sum = 0; while (l &lt; r) { ll t1 = nn[l] - nn[r], t2 = nn[l &#43; 1] - nn[r]; sum &#43;= t1 * t1 &#43; t2 * t2; l&#43;&#43;, r--; } printf(&#34;%lld\n&#34;, sum); return 0; } </p>
   </section>
   <footer class="entry-footer">October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>

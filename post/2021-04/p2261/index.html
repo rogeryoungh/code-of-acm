@@ -8,9 +8,12 @@
 <title>P2261 余数求和 | Roger Young</title>
 <meta name="keywords" content="洛谷, 数论, 分块" />
 <meta name="description" content="题目大意 给出正整数 $n$ 和 $k$，请计算
- $$ G(n, k) = \sum_{i = 1}^n k \bmod i $$ 分析 因为
- $$ k \bmod i = k - i \left\lfloor \frac{k}{i} \right\rfloor $$ 因此有
- $$ G(n,k) = nk - \sum_{i=1}^n i \left\lfloor \frac{k}{i} \right\rfloor $$ 后面需要整数分块。
+$$ G(n, k) = \sum_{i = 1}^n k \bmod i $$
+分析 因为
+$$ k \bmod i = k - i \left\lfloor \frac{k}{i} \right\rfloor $$
+因此有
+$$ G(n,k) = nk - \sum_{i=1}^n i \left\lfloor \frac{k}{i} \right\rfloor $$
+后面需要整数分块。
 int main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l = 1, r; l &lt;= n; l = r &#43; 1) { r = min(n, k / (k / l)); ll t = (l &#43; r) * (r - l &#43; 1) / 2; sum -= t * (k / l); } printf(&#34;%lld&#34;, sum); return 0; } ">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2021-04/p2261/" />
@@ -54,9 +57,12 @@ int main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l 
 
 <meta property="og:title" content="P2261 余数求和" />
 <meta property="og:description" content="题目大意 给出正整数 $n$ 和 $k$，请计算
- $$ G(n, k) = \sum_{i = 1}^n k \bmod i $$ 分析 因为
- $$ k \bmod i = k - i \left\lfloor \frac{k}{i} \right\rfloor $$ 因此有
- $$ G(n,k) = nk - \sum_{i=1}^n i \left\lfloor \frac{k}{i} \right\rfloor $$ 后面需要整数分块。
+$$ G(n, k) = \sum_{i = 1}^n k \bmod i $$
+分析 因为
+$$ k \bmod i = k - i \left\lfloor \frac{k}{i} \right\rfloor $$
+因此有
+$$ G(n,k) = nk - \sum_{i=1}^n i \left\lfloor \frac{k}{i} \right\rfloor $$
+后面需要整数分块。
 int main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l = 1, r; l &lt;= n; l = r &#43; 1) { r = min(n, k / (k / l)); ll t = (l &#43; r) * (r - l &#43; 1) / 2; sum -= t * (k / l); } printf(&#34;%lld&#34;, sum); return 0; } " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/2021-04/p2261/" /><meta property="article:section" content="post" />
@@ -66,9 +72,12 @@ int main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="P2261 余数求和"/>
 <meta name="twitter:description" content="题目大意 给出正整数 $n$ 和 $k$，请计算
- $$ G(n, k) = \sum_{i = 1}^n k \bmod i $$ 分析 因为
- $$ k \bmod i = k - i \left\lfloor \frac{k}{i} \right\rfloor $$ 因此有
- $$ G(n,k) = nk - \sum_{i=1}^n i \left\lfloor \frac{k}{i} \right\rfloor $$ 后面需要整数分块。
+$$ G(n, k) = \sum_{i = 1}^n k \bmod i $$
+分析 因为
+$$ k \bmod i = k - i \left\lfloor \frac{k}{i} \right\rfloor $$
+因此有
+$$ G(n,k) = nk - \sum_{i=1}^n i \left\lfloor \frac{k}{i} \right\rfloor $$
+后面需要整数分块。
 int main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l = 1, r; l &lt;= n; l = r &#43; 1) { r = min(n, k / (k / l)); ll t = (l &#43; r) * (r - l &#43; 1) / 2; sum -= t * (k / l); } printf(&#34;%lld&#34;, sum); return 0; } "/>
 
 
@@ -98,11 +107,11 @@ int main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l 
   "@type": "BlogPosting",
   "headline": "P2261 余数求和",
   "name": "P2261 余数求和",
-  "description": "题目大意 给出正整数 $n$ 和 $k$，请计算\n $$ G(n, k) = \\sum_{i = 1}^n k \\bmod i $$ 分析 因为\n $$ k \\bmod i = k - i \\left\\lfloor \\frac{k}{i} \\right\\rfloor $$ 因此有\n $$ G(n,k) = nk - \\sum_{i=1}^n i \\left\\lfloor \\frac{k}{i} \\right\\rfloor $$ 后面需要整数分块。\nint main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l = 1, r; l \u0026lt;= n; l = r + 1) { r = min(n, k / (k / l)); ll t = (l + r) * (r - l + 1) / 2; sum -= t * (k / l); } printf(\u0026#34;%lld\u0026#34;, sum); return 0; } ",
+  "description": "题目大意 给出正整数 $n$ 和 $k$，请计算\n$$ G(n, k) = \\sum_{i = 1}^n k \\bmod i $$\n分析 因为\n$$ k \\bmod i = k - i \\left\\lfloor \\frac{k}{i} \\right\\rfloor $$\n因此有\n$$ G(n,k) = nk - \\sum_{i=1}^n i \\left\\lfloor \\frac{k}{i} \\right\\rfloor $$\n后面需要整数分块。\nint main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l = 1, r; l \u0026lt;= n; l = r + 1) { r = min(n, k / (k / l)); ll t = (l + r) * (r - l + 1) / 2; sum -= t * (k / l); } printf(\u0026#34;%lld\u0026#34;, sum); return 0; } ",
   "keywords": [
     "洛谷", "数论", "分块"
   ],
-  "articleBody": "题目大意 给出正整数 $n$ 和 $k$，请计算\n $$ G(n, k) = \\sum_{i = 1}^n k \\bmod i $$ 分析 因为\n $$ k \\bmod i = k - i \\left\\lfloor \\frac{k}{i} \\right\\rfloor $$ 因此有\n $$ G(n,k) = nk - \\sum_{i=1}^n i \\left\\lfloor \\frac{k}{i} \\right\\rfloor $$ 后面需要整数分块。\nint main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l = 1, r; l  n; l = r + 1) { r = min(n, k / (k / l)); ll t = (l + r) * (r - l + 1) / 2; sum -= t * (k / l); } printf(\"%lld\", sum); return 0; } ",
+  "articleBody": "题目大意 给出正整数 $n$ 和 $k$，请计算\n$$ G(n, k) = \\sum_{i = 1}^n k \\bmod i $$\n分析 因为\n$$ k \\bmod i = k - i \\left\\lfloor \\frac{k}{i} \\right\\rfloor $$\n因此有\n$$ G(n,k) = nk - \\sum_{i=1}^n i \\left\\lfloor \\frac{k}{i} \\right\\rfloor $$\n后面需要整数分块。\nint main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l = 1, r; l  n; l = r + 1) { r = min(n, k / (k / l)); ll t = (l + r) * (r - l + 1) / 2; sum -= t * (k / l); } printf(\"%lld\", sum); return 0; } ",
   "wordCount" : "114",
   "inLanguage": "en",
   "datePublished": "2021-04-30T00:00:00Z",
@@ -262,18 +271,18 @@ int main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l 
 
   <div class="post-content"><h2 id="题目大意">题目大意<a hidden class="anchor" aria-hidden="true" href="#题目大意">#</a></h2>
 <p>给出正整数 $n$ 和 $k$，请计算</p>
-<p> $$
+<p>$$
 G(n, k) = \sum_{i = 1}^n k \bmod i
-$$ </p>
+$$</p>
 <h2 id="分析">分析<a hidden class="anchor" aria-hidden="true" href="#分析">#</a></h2>
 <p>因为</p>
-<p> $$
+<p>$$
 k \bmod i = k - i \left\lfloor \frac{k}{i} \right\rfloor
-$$ </p>
+$$</p>
 <p>因此有</p>
-<p> $$
+<p>$$
 G(n,k) = nk - \sum_{i=1}^n i \left\lfloor \frac{k}{i} \right\rfloor
-$$ </p>
+$$</p>
 <p>后面需要整数分块。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">ll</span> <span class="n">n</span> <span class="o">=</span> <span class="n">rr</span><span class="p">();</span>

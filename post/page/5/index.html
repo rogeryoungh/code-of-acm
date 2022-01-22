@@ -165,6 +165,26 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P4995 跳跳！</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定石头的高度 $h$，从第 $i$ 块石头跳到第 $j$ 块上耗费体力 $(h_i-h_j)^2$ ，求最耗体力的路径。
+分析 容易猜到贪心结论，是不断的在剩余石头中最大最小的来回跳。
+考虑证明结论，设 $h_i$ 是将要跳的序列，展开求和式
+$$ S = \sum_{k=1}^{n-1}(h_k-h_{k&#43;1})^2 = \sum_{k=1}^nh_k^2 - 2\sum_{k=1}^{n-1}h_kh_{k&#43;1} $$
+注意到平方和为一个定值，重点在后半式。记 $H_k = h_{k&#43;1}$，有
+$$ \sum_{k=1}^{n-1}h_kH_k $$
+利用高中时学的排序不等式，有
+$$ \text{反序和} \leqslant \text{乱序和} \leqslant \text{顺序和} $$
+于是有反序最小。双指针维护即可。
+ll nn[310]; int main() { ll n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) nn[i] = rr(); sort(nn &#43; 1, nn &#43; n &#43; 1); ll l = 0, r = n, sum = 0; while (l &lt; r) { ll t1 = nn[l] - nn[r], t2 = nn[l &#43; 1] - nn[r]; sum &#43;= t1 * t1 &#43; t2 * t2; l&#43;&#43;, r--; } printf(&#34;%lld\n&#34;, sum); return 0; } </p>
+  </section>
+  <footer class="entry-footer">October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P4995 跳跳！" href="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p4995/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P5143 攀爬者</h2>
   </header>
   <section class="entry-content">
@@ -211,7 +231,8 @@ char ch[62510]; int solve(int win, int len) { int w = 0, l = 0; for (ll i = 0; i
   <section class="entry-content">
     <p>题目大意 凸 $n$ 边形中，任意三条对角线不共点，求所有对角线交点的个数。
 分析 注意到一个交点对应凸多边形 $4$ 个定点，于是等价于 $n$ 个点任选 $4$ 个点的选法种数，即
- $$ \binom{n}{4} = \frac{n(n-1)(n-2)(n-3)}{24} $$ 注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。
+$$ \binom{n}{4} = \frac{n(n-1)(n-2)(n-3)}{24} $$
+注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。
 int main() { unsigned long long n; scanf(&#34;%llu&#34;, &amp;n); n = n * (n - 1) / 2 * (n - 2) / 3 * (n - 3) / 4; printf(&#34;%llu&#34;, n); return 0; } </p>
   </section>
   <footer class="entry-footer">September 22, 2020&nbsp;·&nbsp;rogeryoungh</footer>
@@ -246,11 +267,12 @@ int main() { int ttt = rr(); while (ttt--) { int n = rr(), k = rr(), l = rr(); i
 分析 考虑把先走后走转化为两个人同时走，只需要处理遇到两次的值即可。
 考虑四维 DP，用 $dp[x_1,y_1,x_2,y_2]$ 表示第一个人走到 $(x_1,y_1)$ 和第二个人走到 $(x_2,y_2)$。
 再考虑转移，每一个位置仅可能从其左面或上面转移来，于是可以写出（$x_1 \ne y_1$ 或 $x_2 \ne y_2$ 时）
- $$ dp[x_1,y_1,x_2,y_2] = \max\left\{ \begin{matrix} dp[x_1-1,y_1,x_2-1,y_2] \\ dp[x_1,y_1-1,x_2-1,y_2] \\ dp[x_1-1,y_1,x_2,y_2-1] \\ dp[x_1,y_1-1,x_2,y_2-1] \end{matrix}\right\} &#43; a[x_1,y_1] &#43; a[x_2,y_2] $$ 当 $x_1=y_1,x_2=y_2$ 时，只加一次即可。到这里 $O(n^4)$ 其实已经可以过题了，但还可以优化。
+$$ dp[x_1,y_1,x_2,y_2] = \max\left{ \begin{matrix} dp[x_1-1,y_1,x_2-1,y_2] \ dp[x_1,y_1-1,x_2-1,y_2] \ dp[x_1-1,y_1,x_2,y_2-1] \ dp[x_1,y_1-1,x_2,y_2-1] \end{matrix}\right} &#43; a[x_1,y_1] &#43; a[x_2,y_2] $$
+当 $x_1=y_1,x_2=y_2$ 时，只加一次即可。到这里 $O(n^4)$ 其实已经可以过题了，但还可以优化。
 注意到一些状态是不可达的，因为 $x_1&#43;y_1 = x_2&#43;y_2$，因此存在 $O(n^3)$ 的 DP。
 考虑当前已走长度 $h=x_1&#43;y_1=x_2&#43;y_2$，于是可以把两个人的座标表示为 $(x_1,h-x_1)$ 和 $(x_2,h-x_2)$。
 于是记状态为 $dp[h,x_1,x_2]$，当 $x_1 \ne x_2$ 时有
- $$ dp[h,x_1,x_2] = \max\left\{ \begin{matrix} dp[h-1,x_1,x_2] \\ dp[h-1,x_1,x_2-1] \\ dp[h-1,x_1-1,x_2] \\ dp[h-1,x_1-1,x_2-1] \end{matrix}\right\} &#43; a[x_1,h-x_1] &#43; a[x_2,h-x_2] $$ 再注意到可以使用滚动数组，因此有...</p>
+$$ dp[h,x_1,x_2] = \max\left{ \begin{matrix} dp[h-1,x_1,x_2] \ dp[h-1,x_1,x_2-1] \ dp[h-1,x_1-1,x_2] \ dp[h-1,x_1-1,x_2-1] \end{matrix}\right} &#43; a[x_1,h-x_1] &#43; a[x_2,h-x_2] $$...</p>
   </section>
   <footer class="entry-footer">September 20, 2020&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P1004 方格取数" href="https://rogeryoungh.github.io/code-of-acm/post/2020-09/p1004/"></a>

@@ -9,8 +9,10 @@
 <meta name="keywords" content="" />
 <meta name="description" content="题目大意 给定 $a,b,c$，求满足方程 $ax &#43; by \leqslant c$ 的非负整数解的个数。
 分析 令 $n = \lfloor c / a \rfloor$，容易推出让我们求的是
- $$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{c - ax}{b} \right\rfloor $$ 直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \to (n - x)$，代入有
- $$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{ax &#43; c - an}{b} \right\rfloor $$ 显然 $c - an$ 是 c % a，于是套类欧即可
+$$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{c - ax}{b} \right\rfloor $$
+直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \to (n - x)$，代入有
+$$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{ax &#43; c - an}{b} \right\rfloor $$
+显然 $c - an$ 是 c % a，于是套类欧即可
 附：代码，展开">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/p5171/" />
@@ -55,8 +57,10 @@
 <meta property="og:title" content="P5171 Earthquake" />
 <meta property="og:description" content="题目大意 给定 $a,b,c$，求满足方程 $ax &#43; by \leqslant c$ 的非负整数解的个数。
 分析 令 $n = \lfloor c / a \rfloor$，容易推出让我们求的是
- $$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{c - ax}{b} \right\rfloor $$ 直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \to (n - x)$，代入有
- $$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{ax &#43; c - an}{b} \right\rfloor $$ 显然 $c - an$ 是 c % a，于是套类欧即可
+$$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{c - ax}{b} \right\rfloor $$
+直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \to (n - x)$，代入有
+$$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{ax &#43; c - an}{b} \right\rfloor $$
+显然 $c - an$ 是 c % a，于是套类欧即可
 附：代码，展开" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/2021-10/p5171/" /><meta property="article:section" content="post" />
@@ -67,8 +71,10 @@
 <meta name="twitter:title" content="P5171 Earthquake"/>
 <meta name="twitter:description" content="题目大意 给定 $a,b,c$，求满足方程 $ax &#43; by \leqslant c$ 的非负整数解的个数。
 分析 令 $n = \lfloor c / a \rfloor$，容易推出让我们求的是
- $$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{c - ax}{b} \right\rfloor $$ 直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \to (n - x)$，代入有
- $$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{ax &#43; c - an}{b} \right\rfloor $$ 显然 $c - an$ 是 c % a，于是套类欧即可
+$$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{c - ax}{b} \right\rfloor $$
+直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \to (n - x)$，代入有
+$$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{ax &#43; c - an}{b} \right\rfloor $$
+显然 $c - an$ 是 c % a，于是套类欧即可
 附：代码，展开"/>
 
 
@@ -98,11 +104,11 @@
   "@type": "BlogPosting",
   "headline": "P5171 Earthquake",
   "name": "P5171 Earthquake",
-  "description": "题目大意 给定 $a,b,c$，求满足方程 $ax + by \\leqslant c$ 的非负整数解的个数。\n分析 令 $n = \\lfloor c / a \\rfloor$，容易推出让我们求的是\n $$ n + 1 + \\sum_{x = 0}^{n} \\left\\lfloor \\frac{c - ax}{b} \\right\\rfloor $$ 直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \\to (n - x)$，代入有\n $$ n + 1 + \\sum_{x = 0}^{n} \\left\\lfloor \\frac{ax + c - an}{b} \\right\\rfloor $$ 显然 $c - an$ 是 c % a，于是套类欧即可\n附：代码，展开",
+  "description": "题目大意 给定 $a,b,c$，求满足方程 $ax + by \\leqslant c$ 的非负整数解的个数。\n分析 令 $n = \\lfloor c / a \\rfloor$，容易推出让我们求的是\n$$ n + 1 + \\sum_{x = 0}^{n} \\left\\lfloor \\frac{c - ax}{b} \\right\\rfloor $$\n直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \\to (n - x)$，代入有\n$$ n + 1 + \\sum_{x = 0}^{n} \\left\\lfloor \\frac{ax + c - an}{b} \\right\\rfloor $$\n显然 $c - an$ 是 c % a，于是套类欧即可\n附：代码，展开",
   "keywords": [
     
   ],
-  "articleBody": "题目大意 给定 $a,b,c$，求满足方程 $ax + by \\leqslant c$ 的非负整数解的个数。\n分析 令 $n = \\lfloor c / a \\rfloor$，容易推出让我们求的是\n $$ n + 1 + \\sum_{x = 0}^{n} \\left\\lfloor \\frac{c - ax}{b} \\right\\rfloor $$ 直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \\to (n - x)$，代入有\n $$ n + 1 + \\sum_{x = 0}^{n} \\left\\lfloor \\frac{ax + c - an}{b} \\right\\rfloor $$ 显然 $c - an$ 是 c % a，于是套类欧即可\n附：代码，展开\n",
+  "articleBody": "题目大意 给定 $a,b,c$，求满足方程 $ax + by \\leqslant c$ 的非负整数解的个数。\n分析 令 $n = \\lfloor c / a \\rfloor$，容易推出让我们求的是\n$$ n + 1 + \\sum_{x = 0}^{n} \\left\\lfloor \\frac{c - ax}{b} \\right\\rfloor $$\n直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \\to (n - x)$，代入有\n$$ n + 1 + \\sum_{x = 0}^{n} \\left\\lfloor \\frac{ax + c - an}{b} \\right\\rfloor $$\n显然 $c - an$ 是 c % a，于是套类欧即可\n附：代码，展开\n",
   "wordCount" : "63",
   "inLanguage": "en",
   "datePublished": "2021-10-28T00:00:00Z",
@@ -264,13 +270,13 @@
 <p>给定 $a,b,c$，求满足方程 $ax + by \leqslant c$ 的非负整数解的个数。</p>
 <h2 id="分析">分析<a hidden class="anchor" aria-hidden="true" href="#分析">#</a></h2>
 <p>令 $n = \lfloor c / a \rfloor$，容易推出让我们求的是</p>
-<p> $$
+<p>$$
 n + 1 + \sum_{x = 0}^{n} \left\lfloor \frac{c - ax}{b} \right\rfloor
-$$ </p>
+$$</p>
 <p>直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \to (n -  x)$，代入有</p>
-<p> $$
+<p>$$
 n + 1 + \sum_{x = 0}^{n} \left\lfloor \frac{ax + c - an}{b} \right\rfloor
-$$ </p>
+$$</p>
 <p>显然 $c - an$ 是 <code>c % a</code>，于是套类欧即可</p>
 <p>附：<a href="../../log/code/?url=roger://2021-10%2fcodes%2fP5171.cpp">代码</a>，<a href="../../log/code/?url=roger://2021-10%2fcodes%2fP5171.cpp.cpp">展开</a></p>
 

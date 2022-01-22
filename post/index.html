@@ -165,6 +165,22 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>ZAFU 2022.01.18 个人赛题解</h2>
+  </header>
+  <section class="entry-content">
+    <p>非常抱歉，本次比赛对难度估计不当，给大家造成了不好的体验，在此向大家致歉。
+A - CF1379A 题目大意 替换字符串 $s$ 中的 ?，使得出现且仅出现一次 abacaba。
+分析 本题较为难写，因为很难判断恰好出现了一次。但是数据规模很小，可以采用非常暴力的写法。
+一种想法是，枚举每个出现 abacaba 的位置 $i$，把当前 $s[i, i &#43; 6]$ 中的 ? 设为给定串，这样就得到了字符串 $t$。
+然后判断字符串 $t$ 中只出现了一次 abacaba，可以通过 substr 枚举所有长为 $6$ 的子串判断。
+string what = &#34;abacaba&#34;; void solve() { int len; string s; cin &gt;&gt; len &gt;&gt; s; for (int i = 0; i &lt; len - 6; i&#43;&#43;) { string tmp = s; for (int j = 0; j &lt; 7; j&#43;&#43;) if (tmp[i &#43; j] == &#39;?...</p>
+  </section>
+  <footer class="entry-footer">January 21, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to ZAFU 2022.01.18 个人赛题解" href="https://rogeryoungh.github.io/code-of-acm/post/2022-01/hj1/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>CF Round 706(Div 2)</h2>
   </header>
   <section class="entry-content">
@@ -247,9 +263,10 @@ $$ s_i = [i \ \text{is a period of}\ S] $$
   </header>
   <section class="entry-content">
     <p>题目大意 求最简分数 $p/q$ 满足
- $$ \frac{a}{b} 若有多组解，输出 $q$ 最小的；仍有多组解，输出 $p$ 最小的一组。
+$$ \frac{a}{b} &lt; \frac{p}{q} &lt; \frac{c}{d} $$
+若有多组解，输出 $q$ 最小的；仍有多组解，输出 $p$ 最小的一组。
 分析 分类讨论：
- 首先当 $\lfloor a/b \rfloor &#43; 1 \leqslant \lceil c/d \rceil - 1$ 时，说明两个数之间存在一个整数，直接返回 $p = 1, q = \lfloor a / b \rfloor &#43; 1$ 即可。 其次当 $a = 0$ 时，直接解得 $p = 1, q = \lfloor d / c \rfloor &#43; 1$。 当 $a &lt; b$ 时，这意味着我们无法直接求解。考虑翻转，转化问题为  $$ \frac{d}{c} 当 $a &gt; b$ 时，考虑求解  $$ \frac{a}{b} - \left\lfloor\frac{a}{b}\right\rfloor  唯一需要确认的就是，翻转后仍是最优解，考虑反证。...</p>
+ 首先当 $\lfloor a/b \rfloor &#43; 1 \leqslant \lceil c/d \rceil - 1$ 时，说明两个数之间存在一个整数，直接返回 $p = 1, q = \lfloor a / b \rfloor &#43; 1$ 即可。 其次当 $a = 0$ 时，直接解得 $p = 1, q = \lfloor d / c \rfloor &#43; 1$。 当 $a &lt; b$ 时，这意味着我们无法直接求解。考虑翻转，转化问题为 $$ \frac{d}{c} &lt; \frac{q}{p} &lt; \frac{b}{a} $$ 递归即可。 当 $a &gt; b$ 时，考虑求解 $$ \frac{a}{b} - \left\lfloor\frac{a}{b}\right\rfloor &lt; \frac{p}{q} - \left\lfloor\frac{a}{b}\right\rfloor &lt; \frac{c}{d} - \left\lfloor\frac{a}{b}\right\rfloor $$ 也是递归即可，还原出结果以后返回。  唯一需要确认的就是，翻转后仍是最优解，考虑反证。...</p>
   </section>
   <footer class="entry-footer">October 30, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P5179 Fraction" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/p5179/"></a>
@@ -262,8 +279,10 @@ $$ s_i = [i \ \text{is a period of}\ S] $$
   <section class="entry-content">
     <p>题目大意 给定 $a,b,c$，求满足方程 $ax &#43; by \leqslant c$ 的非负整数解的个数。
 分析 令 $n = \lfloor c / a \rfloor$，容易推出让我们求的是
- $$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{c - ax}{b} \right\rfloor $$ 直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \to (n - x)$，代入有
- $$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{ax &#43; c - an}{b} \right\rfloor $$ 显然 $c - an$ 是 c % a，于是套类欧即可
+$$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{c - ax}{b} \right\rfloor $$
+直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \to (n - x)$，代入有
+$$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{ax &#43; c - an}{b} \right\rfloor $$
+显然 $c - an$ 是 c % a，于是套类欧即可
 附：代码，展开</p>
   </section>
   <footer class="entry-footer">October 28, 2021&nbsp;·&nbsp;rogeryoungh</footer>
@@ -278,8 +297,11 @@ $$ s_i = [i \ \text{is a period of}\ S] $$
     <p>题目大意 给定生成 $1$ 到 $n$ 数字的概率分布，不断生成随机数 $x$ 直到 $x$ 不是已经生成过的最大的数停止，求生成次数平方的期望。
 分析 设期望的随机次数为 $f_x = E(x)$，我们需要计算的次数为 $g_x = E(x^2)$。
 关于 $f_i$ 的 DP 是显然的，计算有
- $$ f_x = \sum_{i = 1}^{x - 1} p_i &#43; \sum_{i = x}^n p_i(1 &#43; f_i) = 1 &#43; \sum_{i = x}^n p_i f_i $$ 容易观察到
- $$ f_{x &#43; 1} =(1 - p_x) f_x \Rightarrow f_x = \prod_{i = x}^n \frac{1}{1 - p_x} $$ 接下来需要一个套路...</p>
+$$ f_x = \sum_{i = 1}^{x - 1} p_i &#43; \sum_{i = x}^n p_i(1 &#43; f_i) = 1 &#43; \sum_{i = x}^n p_i f_i $$
+容易观察到
+$$ f_{x &#43; 1} =(1 - p_x) f_x \Rightarrow f_x = \prod_{i = x}^n \frac{1}{1 - p_x} $$
+接下来需要一个套路
+$$ E((x &#43; 1)^2) = E(x^2) &#43; 2 E(x) &#43; 1 $$...</p>
   </section>
   <footer class="entry-footer">October 19, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to NC11255B Sample Game" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/nc11255b/"></a>
@@ -307,9 +329,10 @@ const int maxn = 18; ll ci[maxn]; ll ff[1 &lt;&lt; maxn], gg[1 &lt;&lt; maxn]; i
     <p>题目大意 给定两串 DNA 序列，可以在其中任意插空格，然后逐位比较，当两位都是字母时查表得到相似度。
 长度为 $k$ 的空格有额外相似度 $- A - B(k - 1)$。求两序列的最大相似度。
 分析 若不考虑空格的贡献，容易想到二维 DP，记 ${\rm DP}[i,j]$ 是 $A$ 串到位置 $i$ 同时 $B$ 串到位置 $j$ 时最大的相似度，有
- $$ {\rm DP}[i, j] = \max\{ {\rm DP}[i - 1, j - 1] &#43; D[i, j], {\rm DP}[i - 1, j], {\rm DP}[i, j - 1] \} $$ 当我们考虑空格的贡献时，可以发现空格的额外贡献只与前面一位有关。若两个序列此位都是空格，则把去掉后相似度一定会增加，故只有三种可能：设 ${\rm DP}_0$ 是结尾没有空格；${\rm DP}_1$ 是空格在 $A$ 串；${\rm DP}_2$ 是空格在 $B$ 串。
+$$ {\rm DP}[i, j] = \max{ {\rm DP}[i - 1, j - 1] &#43; D[i, j], {\rm DP}[i - 1, j], {\rm DP}[i, j - 1] } $$
+当我们考虑空格的贡献时，可以发现空格的额外贡献只与前面一位有关。若两个序列此位都是空格，则把去掉后相似度一定会增加，故只有三种可能：设 ${\rm DP}_0$ 是结尾没有空格；${\rm DP}_1$ 是空格在 $A$ 串；${\rm DP}_2$ 是空格在 $B$ 串。
 思考最后一个空格的转移方式，自然有方程
- $$ \begin{aligned} {\rm DP}_0[i, j] &amp;= \max\{ {\rm DP}_0[i - 1, j - 1], {\rm DP}_1[i - 1, j - 1], {\rm DP}_2[i - 1, j - 1] \} &#43; D[i, j] \\ {\rm DP}_1[i, j] &amp;= \max\{ {\rm DP}_0[i, j - 1] - A, {\rm DP}_1[i, j - 1]- B, {\rm DP}_2[i, j - 1] - A\} \\ {\rm DP}_2[i, j] &amp;= \max\{ {\rm DP}_0[i - 1, j] - A, {\rm DP}_1[i - 1, j] - A, {\rm DP}_2[i, j - 1] - B \} \\ \end{aligned} $$ 随手加滚动数组 WA 了好久，发现每次都要清空为 -INF，否则会 WA。...</p>
+$$ \begin{aligned} {\rm DP}_0[i, j] &amp;= \max{ {\rm DP}_0[i - 1, j - 1], {\rm DP}_1[i - 1, j - 1], {\rm DP}_2[i - 1, j - 1] } &#43; D[i, j] \ {\rm DP}_1[i, j] &amp;= \max{ {\rm DP}_0[i, j - 1] - A, {\rm DP}_1[i, j - 1]- B, {\rm DP}_2[i, j - 1] - A} \ {\rm DP}_2[i, j] &amp;= \max{ {\rm DP}_0[i - 1, j] - A, {\rm DP}_1[i - 1, j] - A, {\rm DP}_2[i, j - 1] - B } \ \end{aligned} $$...</p>
   </section>
   <footer class="entry-footer">October 17, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P4059 找爸爸" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/p4059/"></a>
@@ -328,21 +351,6 @@ const int maxn = 1e5 &#43; 10, o = 30 - 1; int trie[maxn * 30][2], val[maxn * 30
   </section>
   <footer class="entry-footer">October 11, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to HDU6955 Xor sum" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/hdu6955/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>HDU6833 A Very Easy Math Problem</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 即求
- $$ S (n) = \sum^n_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd \{ a_x \}) \gcd \{ a_x \} $$ 我自己随便简写了，全打太麻烦了。
-分析 这东西看着很吓人，其实是纸老虎。首先 $f(x) = \mu(x)^2$。提出 $\gcd$ 有
- $$ \begin{aligned} S (n) &amp; =\sum_{d=1}^{n}\sum^{n}_{\{ a_{x}\}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd \{ a_{x}\} =d]\\ &amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x&#43;1}\sum^{n/d}_{\{ a_{x}\} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd \{ a_{x}\} =1] \end{aligned} $$ 对后面这部分反演有
- $$ \begin{aligned} &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd \{ a_x \}} \mu (t) \right)\\ = &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd \{ a_x \}] \mu (t) \right)\\ = &amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \end{aligned} $$ 代回去，枚举 $T = d t$...</p>
-  </section>
-  <footer class="entry-footer">September 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to HDU6833 A Very Easy Math Problem" href="https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6833/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

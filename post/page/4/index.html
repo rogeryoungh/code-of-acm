@@ -165,13 +165,54 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>2020 年刷题日志</h2>
+  </header>
+  <section class="entry-content">
+    <p>过于简单的题不记录。
+洛谷：更新至：2020.12.31(2020.10)
+CodeForces：更新至：–.–
+牛客：更新至：–.–
+HDU：更新至：–.–
+2020 年 12 月 P5656 二元一次不定方程 (exgcd)
+P4779 单源最短路径（标准版）
+P1629 邮递员送信
+P1359 租用游艇
+P2016 战略游戏
+P3884 二叉树问题
+P3379 最近公共祖先（LCA）
+P2052 道路修建
+P1352 没有上司的舞会
+P3371 单源最短路径（弱化版）
+P3146 248 G
+2020 年 11 月 P1880 石子合并 ==DONE==
+P1636 Einstein 学画画
+P3383 线性筛素数
+P1226 快速幂 || 取余运算
+P3367 并查集
+P4913 二叉树深度
+P4715 淘汰赛
+P2058 海港
+P1106 删数问题
+P1160 队列安排
+P1941 飞扬的小鸟
+P1064 金明的预算方案
+P1833 樱花
+P1541 乌龟棋 ==DONE==...</p>
+  </section>
+  <footer class="entry-footer">December 31, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to 2020 年刷题日志" href="https://rogeryoungh.github.io/code-of-acm/post/log/log2020/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P1880 石子合并</h2>
   </header>
   <section class="entry-content">
     <p>题目大意 环形队列上有 $n$ 堆石子，可以把相邻的两堆合成一堆，每次合并的得分是新一堆的石子数。
 求最终分数的最小值和最大值。
 分析 考虑 $dp(i,j)$ 是将区间 $[i,j]$ 的石子全部合并的最大值。于是状态转移方程为
- $$ dp(i,j) = \max_{i \leqslant k \leqslant j}(dp(i,k) &#43; dp(k&#43;1,j) &#43; s(i,j)) $$ 其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。
+$$ dp(i,j) = \max_{i \leqslant k \leqslant j}(dp(i,k) &#43; dp(k&#43;1,j) &#43; s(i,j)) $$
+其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。
 然而不能通过先 $i$ 再 $j$ 再 $k$ 的循环来递推，运算顺序值得注意。
 细节：前缀和、循环开两倍。
 int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) f[i &#43; n] = f[i] = rr(); for (ll i = 1; i &lt;= n * 2; i&#43;&#43;) s[i] = s[i - 1] &#43; f[i]; for (ll len = 2; len &lt;= n; len&#43;&#43;) { for (ll i = 1; i &lt;= 2 * n - len &#43; 1; i&#43;&#43;) { int j = i &#43; len - 1; int tmax = 0, tmin = 0x3f3f3f3f; int ss = s[j] - s[i - 1]; for (ll k = i; k &lt;= j - 1; k&#43;&#43;) { tmax = max(tmax, dmax[i][k] &#43; dmax[k &#43; 1][j] &#43; ss); tmin = min(tmin, dmin[i][k] &#43; dmin[k &#43; 1][j] &#43; ss); } dmax[i][j] = tmax; dmin[i][j] = tmin; } } int mmin = 0x3f3f3f3f, mmax = 0; for (ll p = 0; p &lt;= n - 1; p&#43;&#43;) { mmin = min(mmin, dmin[p &#43; 1][p &#43; n]); mmax = max(mmax, dmax[p &#43; 1][p &#43; n]); } printf(&#34;%d\n%d\n&#34;, mmin, mmax); return 0; } </p>
@@ -200,7 +241,9 @@ ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), te
   <section class="entry-content">
     <p>题目大意 初始有四种卡片，消耗后分别可以前进 $1$、$2$、$3$ 和 $4$ 格。棋盘上每个点都有个分数，求从第 $1$ 格到达第 $N$ 格途径分数的最大值。
 分析 设状态 $F[i, j, k, w]$ 为使用 $i$ 张前进 $1$、……、$w$ 张前进 $4$ 之后的状态，容易得到转移方程
- $$ F[i, j, k, w] = \max\left\{ \begin{matrix} dp[i - 1, j, k, w] \\ dp[i, j - 1, k, w] \\ dp[i, j, k - 1, w] \\ dp[i, j, k, w - 1] \end{matrix}\right\} &#43; a[i &#43; 2j &#43; 3k &#43; 4w] $$ 处理一下边界情况，滚动数组即可。...</p>
+$$ F[i, j, k, w] = \max\left{ \begin{matrix} dp[i - 1, j, k, w] \ dp[i, j - 1, k, w] \ dp[i, j, k - 1, w] \ dp[i, j, k, w - 1] \end{matrix}\right} &#43; a[i &#43; 2j &#43; 3k &#43; 4w] $$
+处理一下边界情况，滚动数组即可。
+ll dp[50][50][50], aa[400], tt[10]; int main() { ll n = rr(), m = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) { aa[i] = rr(); } for (ll i = 1; i &lt;= m; i&#43;&#43;) { tt[rr()]&#43;&#43;; } for (ll i = 0; i &lt;= tt[1]; i&#43;&#43;) { for (ll j = 0; j &lt;= tt[2]; j&#43;&#43;) { for (ll k = 0; k &lt;= tt[3]; k&#43;&#43;) { for (ll w = 0; w &lt;= tt[4]; w&#43;&#43;) { dp[j][k][w] = aa[i * 1 &#43; j * 2 &#43; k * 3 &#43; w * 4 &#43; 1] &#43; max4( j == 0 ?...</p>
   </section>
   <footer class="entry-footer">November 10, 2020&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P1541 乌龟棋" href="https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1541/"></a>
@@ -215,7 +258,8 @@ ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), te
 你从 $(1,1)$ 出发，只能沿着格子直走，最终走到 $(n,n)$。要求沿途经过所有的线段，且所走路程长度尽量的短。
 分析 显然是一行一行的递推。维护两个数据，一个是走完该行后停留在左侧的，记作 ${\rm DP}_l$，相应的停留在右侧的记作 ${\rm DP}_r$。
 若停在左侧，可能从上一行的右侧走来，也可能是由左侧走来，故转移方程有
- $$ {\rm DP}_l[i] = r_i - l_i &#43; \min\{{\rm DP}_l[i - 1] &#43; |l_{i-1} - r_i|, {\rm DP}_r[i - 1] &#43; |r_{i - 1} - r_i|\} $$ 右侧类似，故可以写出代码
+$$ {\rm DP}_l[i] = r_i - l_i &#43; \min{{\rm DP}l[i - 1] &#43; |l{i-1} - r_i|, {\rm DP}r[i - 1] &#43; |r{i - 1} - r_i|} $$
+右侧类似，故可以写出代码
 int main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll i = 1; i &lt;= n; i&#43;&#43;) { ll l = rr(), r = rr(); ll tl = min(dpl &#43; abs(past_l - r), dpr &#43; abs(past_r - r)) &#43; r - l; ll tr = min(dpl &#43; abs(past_l - l), dpr &#43; abs(past_r - l)) &#43; r - l; dpl = tl, dpr = tr; past_l = l, past_r = r; } printf(&#34;%lld\n&#34;, min(dpl &#43; n - past_l, dpr &#43; n - past_r) &#43; n - 1); return 0; } </p>
   </section>
   <footer class="entry-footer">November 10, 2020&nbsp;·&nbsp;rogeryoungh</footer>
@@ -229,7 +273,8 @@ int main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll 
   <section class="entry-content">
     <p>题目大意 要从 $n$ 种花中挑出 $m$ 盆展览，其中第 $i$ 种花不得多于 $a_i$ 种。求有几种选法。
 分析 考虑动态规划，记状态 $dp[i,j]$ 为摆完前 $i$ 种花，共 $j$ 盆时的方案数。容易得到递推式
- $$ dp[i,j] = \sum_{k = j - \min(a_i, j)}^j dp[i-1,k] $$ 边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。
+$$ dp[i,j] = \sum_{k = j - \min(a_i, j)}^j dp[i-1,k] $$
+边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。
 const ll mod = 1e6 &#43; 7; ll dp[110], aa[110], sum[110]; int main() { ll n = rr(), m = rr(); sum[0] = dp[0] = 1; for (ll i = 1; i &lt;= n; i&#43;&#43;) aa[i] = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) { for (ll j = 1; j &lt;= m; j&#43;&#43;) sum[j] = (sum[j - 1] &#43; dp[j]) % mod; for (ll j = m; j &gt;= 0; j--) { int t = j - 1 - min(aa[i], j); if (t &gt; 0) dp[j] = (dp[j] &#43; sum[j - 1] - sum[t]) % mod; } } printf(&#34;%lld\n&#34;, (dp[m] &#43; mod) % mod); return 0; } </p>
   </section>
   <footer class="entry-footer">October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
@@ -290,23 +335,6 @@ ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l &
   </section>
   <footer class="entry-footer">October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P1990 覆盖墙壁" href="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1990/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P4995 跳跳！</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 给定石头的高度 $h$，从第 $i$ 块石头跳到第 $j$ 块上耗费体力 $(h_i-h_j)^2$ ，求最耗体力的路径。
-分析 容易猜到贪心结论，是不断的在剩余石头中最大最小的来回跳。
-考虑证明结论，设 $h_i$ 是将要跳的序列，展开求和式
- $$ S = \sum_{k=1}^{n-1}(h_k-h_{k&#43;1})^2 = \sum_{k=1}^nh_k^2 - 2\sum_{k=1}^{n-1}h_kh_{k&#43;1} $$ 注意到平方和为一个定值，重点在后半式。记 $H_k = h_{k&#43;1}$，有
- $$ \sum_{k=1}^{n-1}h_kH_k $$ 利用高中时学的排序不等式，有
- $$ \text{反序和} \leqslant \text{乱序和} \leqslant \text{顺序和} $$ 于是有反序最小。双指针维护即可。
-ll nn[310]; int main() { ll n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) nn[i] = rr(); sort(nn &#43; 1, nn &#43; n &#43; 1); ll l = 0, r = n, sum = 0; while (l &lt; r) { ll t1 = nn[l] - nn[r], t2 = nn[l &#43; 1] - nn[r]; sum &#43;= t1 * t1 &#43; t2 * t2; l&#43;&#43;, r--; } printf(&#34;%lld\n&#34;, sum); return 0; } </p>
-  </section>
-  <footer class="entry-footer">October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P4995 跳跳！" href="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p4995/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

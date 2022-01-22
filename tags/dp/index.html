@@ -156,8 +156,11 @@
     <p>题目大意 给定生成 $1$ 到 $n$ 数字的概率分布，不断生成随机数 $x$ 直到 $x$ 不是已经生成过的最大的数停止，求生成次数平方的期望。
 分析 设期望的随机次数为 $f_x = E(x)$，我们需要计算的次数为 $g_x = E(x^2)$。
 关于 $f_i$ 的 DP 是显然的，计算有
- $$ f_x = \sum_{i = 1}^{x - 1} p_i &#43; \sum_{i = x}^n p_i(1 &#43; f_i) = 1 &#43; \sum_{i = x}^n p_i f_i $$ 容易观察到
- $$ f_{x &#43; 1} =(1 - p_x) f_x \Rightarrow f_x = \prod_{i = x}^n \frac{1}{1 - p_x} $$ 接下来需要一个套路...</p>
+$$ f_x = \sum_{i = 1}^{x - 1} p_i &#43; \sum_{i = x}^n p_i(1 &#43; f_i) = 1 &#43; \sum_{i = x}^n p_i f_i $$
+容易观察到
+$$ f_{x &#43; 1} =(1 - p_x) f_x \Rightarrow f_x = \prod_{i = x}^n \frac{1}{1 - p_x} $$
+接下来需要一个套路
+$$ E((x &#43; 1)^2) = E(x^2) &#43; 2 E(x) &#43; 1 $$...</p>
   </section>
   <footer class="entry-footer">October 19, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to NC11255B Sample Game" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/nc11255b/"></a>
@@ -185,7 +188,8 @@ const int maxn = 18; ll ci[maxn]; ll ff[1 &lt;&lt; maxn], gg[1 &lt;&lt; maxn]; i
     <p>题目大意 环形队列上有 $n$ 堆石子，可以把相邻的两堆合成一堆，每次合并的得分是新一堆的石子数。
 求最终分数的最小值和最大值。
 分析 考虑 $dp(i,j)$ 是将区间 $[i,j]$ 的石子全部合并的最大值。于是状态转移方程为
- $$ dp(i,j) = \max_{i \leqslant k \leqslant j}(dp(i,k) &#43; dp(k&#43;1,j) &#43; s(i,j)) $$ 其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。
+$$ dp(i,j) = \max_{i \leqslant k \leqslant j}(dp(i,k) &#43; dp(k&#43;1,j) &#43; s(i,j)) $$
+其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。
 然而不能通过先 $i$ 再 $j$ 再 $k$ 的循环来递推，运算顺序值得注意。
 细节：前缀和、循环开两倍。
 int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) f[i &#43; n] = f[i] = rr(); for (ll i = 1; i &lt;= n * 2; i&#43;&#43;) s[i] = s[i - 1] &#43; f[i]; for (ll len = 2; len &lt;= n; len&#43;&#43;) { for (ll i = 1; i &lt;= 2 * n - len &#43; 1; i&#43;&#43;) { int j = i &#43; len - 1; int tmax = 0, tmin = 0x3f3f3f3f; int ss = s[j] - s[i - 1]; for (ll k = i; k &lt;= j - 1; k&#43;&#43;) { tmax = max(tmax, dmax[i][k] &#43; dmax[k &#43; 1][j] &#43; ss); tmin = min(tmin, dmin[i][k] &#43; dmin[k &#43; 1][j] &#43; ss); } dmax[i][j] = tmax; dmin[i][j] = tmin; } } int mmin = 0x3f3f3f3f, mmax = 0; for (ll p = 0; p &lt;= n - 1; p&#43;&#43;) { mmin = min(mmin, dmin[p &#43; 1][p &#43; n]); mmax = max(mmax, dmax[p &#43; 1][p &#43; n]); } printf(&#34;%d\n%d\n&#34;, mmin, mmax); return 0; } </p>
@@ -214,7 +218,9 @@ ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), te
   <section class="entry-content">
     <p>题目大意 初始有四种卡片，消耗后分别可以前进 $1$、$2$、$3$ 和 $4$ 格。棋盘上每个点都有个分数，求从第 $1$ 格到达第 $N$ 格途径分数的最大值。
 分析 设状态 $F[i, j, k, w]$ 为使用 $i$ 张前进 $1$、……、$w$ 张前进 $4$ 之后的状态，容易得到转移方程
- $$ F[i, j, k, w] = \max\left\{ \begin{matrix} dp[i - 1, j, k, w] \\ dp[i, j - 1, k, w] \\ dp[i, j, k - 1, w] \\ dp[i, j, k, w - 1] \end{matrix}\right\} &#43; a[i &#43; 2j &#43; 3k &#43; 4w] $$ 处理一下边界情况，滚动数组即可。...</p>
+$$ F[i, j, k, w] = \max\left{ \begin{matrix} dp[i - 1, j, k, w] \ dp[i, j - 1, k, w] \ dp[i, j, k - 1, w] \ dp[i, j, k, w - 1] \end{matrix}\right} &#43; a[i &#43; 2j &#43; 3k &#43; 4w] $$
+处理一下边界情况，滚动数组即可。
+ll dp[50][50][50], aa[400], tt[10]; int main() { ll n = rr(), m = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) { aa[i] = rr(); } for (ll i = 1; i &lt;= m; i&#43;&#43;) { tt[rr()]&#43;&#43;; } for (ll i = 0; i &lt;= tt[1]; i&#43;&#43;) { for (ll j = 0; j &lt;= tt[2]; j&#43;&#43;) { for (ll k = 0; k &lt;= tt[3]; k&#43;&#43;) { for (ll w = 0; w &lt;= tt[4]; w&#43;&#43;) { dp[j][k][w] = aa[i * 1 &#43; j * 2 &#43; k * 3 &#43; w * 4 &#43; 1] &#43; max4( j == 0 ?...</p>
   </section>
   <footer class="entry-footer">November 10, 2020&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P1541 乌龟棋" href="https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1541/"></a>
@@ -229,7 +235,8 @@ ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), te
 你从 $(1,1)$ 出发，只能沿着格子直走，最终走到 $(n,n)$。要求沿途经过所有的线段，且所走路程长度尽量的短。
 分析 显然是一行一行的递推。维护两个数据，一个是走完该行后停留在左侧的，记作 ${\rm DP}_l$，相应的停留在右侧的记作 ${\rm DP}_r$。
 若停在左侧，可能从上一行的右侧走来，也可能是由左侧走来，故转移方程有
- $$ {\rm DP}_l[i] = r_i - l_i &#43; \min\{{\rm DP}_l[i - 1] &#43; |l_{i-1} - r_i|, {\rm DP}_r[i - 1] &#43; |r_{i - 1} - r_i|\} $$ 右侧类似，故可以写出代码
+$$ {\rm DP}_l[i] = r_i - l_i &#43; \min{{\rm DP}l[i - 1] &#43; |l{i-1} - r_i|, {\rm DP}r[i - 1] &#43; |r{i - 1} - r_i|} $$
+右侧类似，故可以写出代码
 int main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll i = 1; i &lt;= n; i&#43;&#43;) { ll l = rr(), r = rr(); ll tl = min(dpl &#43; abs(past_l - r), dpr &#43; abs(past_r - r)) &#43; r - l; ll tr = min(dpl &#43; abs(past_l - l), dpr &#43; abs(past_r - l)) &#43; r - l; dpl = tl, dpr = tr; past_l = l, past_r = r; } printf(&#34;%lld\n&#34;, min(dpl &#43; n - past_l, dpr &#43; n - past_r) &#43; n - 1); return 0; } </p>
   </section>
   <footer class="entry-footer">November 10, 2020&nbsp;·&nbsp;rogeryoungh</footer>
@@ -243,7 +250,8 @@ int main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll 
   <section class="entry-content">
     <p>题目大意 要从 $n$ 种花中挑出 $m$ 盆展览，其中第 $i$ 种花不得多于 $a_i$ 种。求有几种选法。
 分析 考虑动态规划，记状态 $dp[i,j]$ 为摆完前 $i$ 种花，共 $j$ 盆时的方案数。容易得到递推式
- $$ dp[i,j] = \sum_{k = j - \min(a_i, j)}^j dp[i-1,k] $$ 边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。
+$$ dp[i,j] = \sum_{k = j - \min(a_i, j)}^j dp[i-1,k] $$
+边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。
 const ll mod = 1e6 &#43; 7; ll dp[110], aa[110], sum[110]; int main() { ll n = rr(), m = rr(); sum[0] = dp[0] = 1; for (ll i = 1; i &lt;= n; i&#43;&#43;) aa[i] = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) { for (ll j = 1; j &lt;= m; j&#43;&#43;) sum[j] = (sum[j - 1] &#43; dp[j]) % mod; for (ll j = m; j &gt;= 0; j--) { int t = j - 1 - min(aa[i], j); if (t &gt; 0) dp[j] = (dp[j] &#43; sum[j - 1] - sum[t]) % mod; } } printf(&#34;%lld\n&#34;, (dp[m] &#43; mod) % mod); return 0; } </p>
   </section>
   <footer class="entry-footer">October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
@@ -274,11 +282,12 @@ const ll mod = 1e6 &#43; 7; ll dp[110], aa[110], sum[110]; int main() { ll n = r
 分析 考虑把先走后走转化为两个人同时走，只需要处理遇到两次的值即可。
 考虑四维 DP，用 $dp[x_1,y_1,x_2,y_2]$ 表示第一个人走到 $(x_1,y_1)$ 和第二个人走到 $(x_2,y_2)$。
 再考虑转移，每一个位置仅可能从其左面或上面转移来，于是可以写出（$x_1 \ne y_1$ 或 $x_2 \ne y_2$ 时）
- $$ dp[x_1,y_1,x_2,y_2] = \max\left\{ \begin{matrix} dp[x_1-1,y_1,x_2-1,y_2] \\ dp[x_1,y_1-1,x_2-1,y_2] \\ dp[x_1-1,y_1,x_2,y_2-1] \\ dp[x_1,y_1-1,x_2,y_2-1] \end{matrix}\right\} &#43; a[x_1,y_1] &#43; a[x_2,y_2] $$ 当 $x_1=y_1,x_2=y_2$ 时，只加一次即可。到这里 $O(n^4)$ 其实已经可以过题了，但还可以优化。
+$$ dp[x_1,y_1,x_2,y_2] = \max\left{ \begin{matrix} dp[x_1-1,y_1,x_2-1,y_2] \ dp[x_1,y_1-1,x_2-1,y_2] \ dp[x_1-1,y_1,x_2,y_2-1] \ dp[x_1,y_1-1,x_2,y_2-1] \end{matrix}\right} &#43; a[x_1,y_1] &#43; a[x_2,y_2] $$
+当 $x_1=y_1,x_2=y_2$ 时，只加一次即可。到这里 $O(n^4)$ 其实已经可以过题了，但还可以优化。
 注意到一些状态是不可达的，因为 $x_1&#43;y_1 = x_2&#43;y_2$，因此存在 $O(n^3)$ 的 DP。
 考虑当前已走长度 $h=x_1&#43;y_1=x_2&#43;y_2$，于是可以把两个人的座标表示为 $(x_1,h-x_1)$ 和 $(x_2,h-x_2)$。
 于是记状态为 $dp[h,x_1,x_2]$，当 $x_1 \ne x_2$ 时有
- $$ dp[h,x_1,x_2] = \max\left\{ \begin{matrix} dp[h-1,x_1,x_2] \\ dp[h-1,x_1,x_2-1] \\ dp[h-1,x_1-1,x_2] \\ dp[h-1,x_1-1,x_2-1] \end{matrix}\right\} &#43; a[x_1,h-x_1] &#43; a[x_2,h-x_2] $$ 再注意到可以使用滚动数组，因此有...</p>
+$$ dp[h,x_1,x_2] = \max\left{ \begin{matrix} dp[h-1,x_1,x_2] \ dp[h-1,x_1,x_2-1] \ dp[h-1,x_1-1,x_2] \ dp[h-1,x_1-1,x_2-1] \end{matrix}\right} &#43; a[x_1,h-x_1] &#43; a[x_2,h-x_2] $$...</p>
   </section>
   <footer class="entry-footer">September 20, 2020&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P1004 方格取数" href="https://rogeryoungh.github.io/code-of-acm/post/2020-09/p1004/"></a>

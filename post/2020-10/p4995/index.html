@@ -10,9 +10,12 @@
 <meta name="description" content="题目大意 给定石头的高度 $h$，从第 $i$ 块石头跳到第 $j$ 块上耗费体力 $(h_i-h_j)^2$ ，求最耗体力的路径。
 分析 容易猜到贪心结论，是不断的在剩余石头中最大最小的来回跳。
 考虑证明结论，设 $h_i$ 是将要跳的序列，展开求和式
- $$ S = \sum_{k=1}^{n-1}(h_k-h_{k&#43;1})^2 = \sum_{k=1}^nh_k^2 - 2\sum_{k=1}^{n-1}h_kh_{k&#43;1} $$ 注意到平方和为一个定值，重点在后半式。记 $H_k = h_{k&#43;1}$，有
- $$ \sum_{k=1}^{n-1}h_kH_k $$ 利用高中时学的排序不等式，有
- $$ \text{反序和} \leqslant \text{乱序和} \leqslant \text{顺序和} $$ 于是有反序最小。双指针维护即可。
+$$ S = \sum_{k=1}^{n-1}(h_k-h_{k&#43;1})^2 = \sum_{k=1}^nh_k^2 - 2\sum_{k=1}^{n-1}h_kh_{k&#43;1} $$
+注意到平方和为一个定值，重点在后半式。记 $H_k = h_{k&#43;1}$，有
+$$ \sum_{k=1}^{n-1}h_kH_k $$
+利用高中时学的排序不等式，有
+$$ \text{反序和} \leqslant \text{乱序和} \leqslant \text{顺序和} $$
+于是有反序最小。双指针维护即可。
 ll nn[310]; int main() { ll n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) nn[i] = rr(); sort(nn &#43; 1, nn &#43; n &#43; 1); ll l = 0, r = n, sum = 0; while (l &lt; r) { ll t1 = nn[l] - nn[r], t2 = nn[l &#43; 1] - nn[r]; sum &#43;= t1 * t1 &#43; t2 * t2; l&#43;&#43;, r--; } printf(&#34;%lld\n&#34;, sum); return 0; } ">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p4995/" />
@@ -58,9 +61,12 @@ ll nn[310]; int main() { ll n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) nn[
 <meta property="og:description" content="题目大意 给定石头的高度 $h$，从第 $i$ 块石头跳到第 $j$ 块上耗费体力 $(h_i-h_j)^2$ ，求最耗体力的路径。
 分析 容易猜到贪心结论，是不断的在剩余石头中最大最小的来回跳。
 考虑证明结论，设 $h_i$ 是将要跳的序列，展开求和式
- $$ S = \sum_{k=1}^{n-1}(h_k-h_{k&#43;1})^2 = \sum_{k=1}^nh_k^2 - 2\sum_{k=1}^{n-1}h_kh_{k&#43;1} $$ 注意到平方和为一个定值，重点在后半式。记 $H_k = h_{k&#43;1}$，有
- $$ \sum_{k=1}^{n-1}h_kH_k $$ 利用高中时学的排序不等式，有
- $$ \text{反序和} \leqslant \text{乱序和} \leqslant \text{顺序和} $$ 于是有反序最小。双指针维护即可。
+$$ S = \sum_{k=1}^{n-1}(h_k-h_{k&#43;1})^2 = \sum_{k=1}^nh_k^2 - 2\sum_{k=1}^{n-1}h_kh_{k&#43;1} $$
+注意到平方和为一个定值，重点在后半式。记 $H_k = h_{k&#43;1}$，有
+$$ \sum_{k=1}^{n-1}h_kH_k $$
+利用高中时学的排序不等式，有
+$$ \text{反序和} \leqslant \text{乱序和} \leqslant \text{顺序和} $$
+于是有反序最小。双指针维护即可。
 ll nn[310]; int main() { ll n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) nn[i] = rr(); sort(nn &#43; 1, nn &#43; n &#43; 1); ll l = 0, r = n, sum = 0; while (l &lt; r) { ll t1 = nn[l] - nn[r], t2 = nn[l &#43; 1] - nn[r]; sum &#43;= t1 * t1 &#43; t2 * t2; l&#43;&#43;, r--; } printf(&#34;%lld\n&#34;, sum); return 0; } " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p4995/" /><meta property="article:section" content="post" />
@@ -72,9 +78,12 @@ ll nn[310]; int main() { ll n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) nn[
 <meta name="twitter:description" content="题目大意 给定石头的高度 $h$，从第 $i$ 块石头跳到第 $j$ 块上耗费体力 $(h_i-h_j)^2$ ，求最耗体力的路径。
 分析 容易猜到贪心结论，是不断的在剩余石头中最大最小的来回跳。
 考虑证明结论，设 $h_i$ 是将要跳的序列，展开求和式
- $$ S = \sum_{k=1}^{n-1}(h_k-h_{k&#43;1})^2 = \sum_{k=1}^nh_k^2 - 2\sum_{k=1}^{n-1}h_kh_{k&#43;1} $$ 注意到平方和为一个定值，重点在后半式。记 $H_k = h_{k&#43;1}$，有
- $$ \sum_{k=1}^{n-1}h_kH_k $$ 利用高中时学的排序不等式，有
- $$ \text{反序和} \leqslant \text{乱序和} \leqslant \text{顺序和} $$ 于是有反序最小。双指针维护即可。
+$$ S = \sum_{k=1}^{n-1}(h_k-h_{k&#43;1})^2 = \sum_{k=1}^nh_k^2 - 2\sum_{k=1}^{n-1}h_kh_{k&#43;1} $$
+注意到平方和为一个定值，重点在后半式。记 $H_k = h_{k&#43;1}$，有
+$$ \sum_{k=1}^{n-1}h_kH_k $$
+利用高中时学的排序不等式，有
+$$ \text{反序和} \leqslant \text{乱序和} \leqslant \text{顺序和} $$
+于是有反序最小。双指针维护即可。
 ll nn[310]; int main() { ll n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) nn[i] = rr(); sort(nn &#43; 1, nn &#43; n &#43; 1); ll l = 0, r = n, sum = 0; while (l &lt; r) { ll t1 = nn[l] - nn[r], t2 = nn[l &#43; 1] - nn[r]; sum &#43;= t1 * t1 &#43; t2 * t2; l&#43;&#43;, r--; } printf(&#34;%lld\n&#34;, sum); return 0; } "/>
 
 
@@ -104,11 +113,11 @@ ll nn[310]; int main() { ll n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) nn[
   "@type": "BlogPosting",
   "headline": "P4995 跳跳！",
   "name": "P4995 跳跳！",
-  "description": "题目大意 给定石头的高度 $h$，从第 $i$ 块石头跳到第 $j$ 块上耗费体力 $(h_i-h_j)^2$ ，求最耗体力的路径。\n分析 容易猜到贪心结论，是不断的在剩余石头中最大最小的来回跳。\n考虑证明结论，设 $h_i$ 是将要跳的序列，展开求和式\n $$ S = \\sum_{k=1}^{n-1}(h_k-h_{k+1})^2 = \\sum_{k=1}^nh_k^2 - 2\\sum_{k=1}^{n-1}h_kh_{k+1} $$ 注意到平方和为一个定值，重点在后半式。记 $H_k = h_{k+1}$，有\n $$ \\sum_{k=1}^{n-1}h_kH_k $$ 利用高中时学的排序不等式，有\n $$ \\text{反序和} \\leqslant \\text{乱序和} \\leqslant \\text{顺序和} $$ 于是有反序最小。双指针维护即可。\nll nn[310]; int main() { ll n = rr(); for (ll i = 1; i \u0026lt;= n; i++) nn[i] = rr(); sort(nn + 1, nn + n + 1); ll l = 0, r = n, sum = 0; while (l \u0026lt; r) { ll t1 = nn[l] - nn[r], t2 = nn[l + 1] - nn[r]; sum += t1 * t1 + t2 * t2; l++, r--; } printf(\u0026#34;%lld\\n\u0026#34;, sum); return 0; } ",
+  "description": "题目大意 给定石头的高度 $h$，从第 $i$ 块石头跳到第 $j$ 块上耗费体力 $(h_i-h_j)^2$ ，求最耗体力的路径。\n分析 容易猜到贪心结论，是不断的在剩余石头中最大最小的来回跳。\n考虑证明结论，设 $h_i$ 是将要跳的序列，展开求和式\n$$ S = \\sum_{k=1}^{n-1}(h_k-h_{k+1})^2 = \\sum_{k=1}^nh_k^2 - 2\\sum_{k=1}^{n-1}h_kh_{k+1} $$\n注意到平方和为一个定值，重点在后半式。记 $H_k = h_{k+1}$，有\n$$ \\sum_{k=1}^{n-1}h_kH_k $$\n利用高中时学的排序不等式，有\n$$ \\text{反序和} \\leqslant \\text{乱序和} \\leqslant \\text{顺序和} $$\n于是有反序最小。双指针维护即可。\nll nn[310]; int main() { ll n = rr(); for (ll i = 1; i \u0026lt;= n; i++) nn[i] = rr(); sort(nn + 1, nn + n + 1); ll l = 0, r = n, sum = 0; while (l \u0026lt; r) { ll t1 = nn[l] - nn[r], t2 = nn[l + 1] - nn[r]; sum += t1 * t1 + t2 * t2; l++, r--; } printf(\u0026#34;%lld\\n\u0026#34;, sum); return 0; } ",
   "keywords": [
     "洛谷", "贪心"
   ],
-  "articleBody": "题目大意 给定石头的高度 $h$，从第 $i$ 块石头跳到第 $j$ 块上耗费体力 $(h_i-h_j)^2$ ，求最耗体力的路径。\n分析 容易猜到贪心结论，是不断的在剩余石头中最大最小的来回跳。\n考虑证明结论，设 $h_i$ 是将要跳的序列，展开求和式\n $$ S = \\sum_{k=1}^{n-1}(h_k-h_{k+1})^2 = \\sum_{k=1}^nh_k^2 - 2\\sum_{k=1}^{n-1}h_kh_{k+1} $$ 注意到平方和为一个定值，重点在后半式。记 $H_k = h_{k+1}$，有\n $$ \\sum_{k=1}^{n-1}h_kH_k $$ 利用高中时学的排序不等式，有\n $$ \\text{反序和} \\leqslant \\text{乱序和} \\leqslant \\text{顺序和} $$ 于是有反序最小。双指针维护即可。\nll nn[310]; int main() { ll n = rr(); for (ll i = 1; i  n; i++) nn[i] = rr(); sort(nn + 1, nn + n + 1); ll l = 0, r = n, sum = 0; while (l  r) { ll t1 = nn[l] - nn[r], t2 = nn[l + 1] - nn[r]; sum += t1 * t1 + t2 * t2; l++, r--; } printf(\"%lld\\n\", sum); return 0; } ",
+  "articleBody": "题目大意 给定石头的高度 $h$，从第 $i$ 块石头跳到第 $j$ 块上耗费体力 $(h_i-h_j)^2$ ，求最耗体力的路径。\n分析 容易猜到贪心结论，是不断的在剩余石头中最大最小的来回跳。\n考虑证明结论，设 $h_i$ 是将要跳的序列，展开求和式\n$$ S = \\sum_{k=1}^{n-1}(h_k-h_{k+1})^2 = \\sum_{k=1}^nh_k^2 - 2\\sum_{k=1}^{n-1}h_kh_{k+1} $$\n注意到平方和为一个定值，重点在后半式。记 $H_k = h_{k+1}$，有\n$$ \\sum_{k=1}^{n-1}h_kH_k $$\n利用高中时学的排序不等式，有\n$$ \\text{反序和} \\leqslant \\text{乱序和} \\leqslant \\text{顺序和} $$\n于是有反序最小。双指针维护即可。\nll nn[310]; int main() { ll n = rr(); for (ll i = 1; i  n; i++) nn[i] = rr(); sort(nn + 1, nn + n + 1); ll l = 0, r = n, sum = 0; while (l  r) { ll t1 = nn[l] - nn[r], t2 = nn[l + 1] - nn[r]; sum += t1 * t1 + t2 * t2; l++, r--; } printf(\"%lld\\n\", sum); return 0; } ",
   "wordCount" : "113",
   "inLanguage": "en",
   "datePublished": "2020-10-16T00:00:00Z",
@@ -271,17 +280,17 @@ ll nn[310]; int main() { ll n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) nn[
 <h2 id="分析">分析<a hidden class="anchor" aria-hidden="true" href="#分析">#</a></h2>
 <p>容易猜到贪心结论，是不断的在剩余石头中最大最小的来回跳。</p>
 <p>考虑证明结论，设 $h_i$ 是将要跳的序列，展开求和式</p>
-<p> $$
+<p>$$
 S = \sum_{k=1}^{n-1}(h_k-h_{k+1})^2 = \sum_{k=1}^nh_k^2 - 2\sum_{k=1}^{n-1}h_kh_{k+1}
-$$ </p>
+$$</p>
 <p>注意到平方和为一个定值，重点在后半式。记 $H_k = h_{k+1}$，有</p>
-<p> $$
+<p>$$
 \sum_{k=1}^{n-1}h_kH_k
-$$ </p>
+$$</p>
 <p>利用高中时学的排序不等式，有</p>
-<p> $$
+<p>$$
 \text{反序和} \leqslant \text{乱序和} \leqslant \text{顺序和}
-$$ </p>
+$$</p>
 <p>于是有反序最小。双指针维护即可。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">ll</span> <span class="n">nn</span><span class="p">[</span><span class="mi">310</span><span class="p">];</span>
 

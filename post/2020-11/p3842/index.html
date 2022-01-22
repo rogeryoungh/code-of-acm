@@ -11,7 +11,8 @@
 你从 $(1,1)$ 出发，只能沿着格子直走，最终走到 $(n,n)$。要求沿途经过所有的线段，且所走路程长度尽量的短。
 分析 显然是一行一行的递推。维护两个数据，一个是走完该行后停留在左侧的，记作 ${\rm DP}_l$，相应的停留在右侧的记作 ${\rm DP}_r$。
 若停在左侧，可能从上一行的右侧走来，也可能是由左侧走来，故转移方程有
- $$ {\rm DP}_l[i] = r_i - l_i &#43; \min\{{\rm DP}_l[i - 1] &#43; |l_{i-1} - r_i|, {\rm DP}_r[i - 1] &#43; |r_{i - 1} - r_i|\} $$ 右侧类似，故可以写出代码
+$$ {\rm DP}_l[i] = r_i - l_i &#43; \min{{\rm DP}l[i - 1] &#43; |l{i-1} - r_i|, {\rm DP}r[i - 1] &#43; |r{i - 1} - r_i|} $$
+右侧类似，故可以写出代码
 int main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll i = 1; i &lt;= n; i&#43;&#43;) { ll l = rr(), r = rr(); ll tl = min(dpl &#43; abs(past_l - r), dpr &#43; abs(past_r - r)) &#43; r - l; ll tr = min(dpl &#43; abs(past_l - l), dpr &#43; abs(past_r - l)) &#43; r - l; dpl = tl, dpr = tr; past_l = l, past_r = r; } printf(&#34;%lld\n&#34;, min(dpl &#43; n - past_l, dpr &#43; n - past_r) &#43; n - 1); return 0; } ">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2020-11/p3842/" />
@@ -58,7 +59,8 @@ int main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll 
 你从 $(1,1)$ 出发，只能沿着格子直走，最终走到 $(n,n)$。要求沿途经过所有的线段，且所走路程长度尽量的短。
 分析 显然是一行一行的递推。维护两个数据，一个是走完该行后停留在左侧的，记作 ${\rm DP}_l$，相应的停留在右侧的记作 ${\rm DP}_r$。
 若停在左侧，可能从上一行的右侧走来，也可能是由左侧走来，故转移方程有
- $$ {\rm DP}_l[i] = r_i - l_i &#43; \min\{{\rm DP}_l[i - 1] &#43; |l_{i-1} - r_i|, {\rm DP}_r[i - 1] &#43; |r_{i - 1} - r_i|\} $$ 右侧类似，故可以写出代码
+$$ {\rm DP}_l[i] = r_i - l_i &#43; \min{{\rm DP}l[i - 1] &#43; |l{i-1} - r_i|, {\rm DP}r[i - 1] &#43; |r{i - 1} - r_i|} $$
+右侧类似，故可以写出代码
 int main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll i = 1; i &lt;= n; i&#43;&#43;) { ll l = rr(), r = rr(); ll tl = min(dpl &#43; abs(past_l - r), dpr &#43; abs(past_r - r)) &#43; r - l; ll tr = min(dpl &#43; abs(past_l - l), dpr &#43; abs(past_r - l)) &#43; r - l; dpl = tl, dpr = tr; past_l = l, past_r = r; } printf(&#34;%lld\n&#34;, min(dpl &#43; n - past_l, dpr &#43; n - past_r) &#43; n - 1); return 0; } " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/2020-11/p3842/" /><meta property="article:section" content="post" />
@@ -71,7 +73,8 @@ int main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll 
 你从 $(1,1)$ 出发，只能沿着格子直走，最终走到 $(n,n)$。要求沿途经过所有的线段，且所走路程长度尽量的短。
 分析 显然是一行一行的递推。维护两个数据，一个是走完该行后停留在左侧的，记作 ${\rm DP}_l$，相应的停留在右侧的记作 ${\rm DP}_r$。
 若停在左侧，可能从上一行的右侧走来，也可能是由左侧走来，故转移方程有
- $$ {\rm DP}_l[i] = r_i - l_i &#43; \min\{{\rm DP}_l[i - 1] &#43; |l_{i-1} - r_i|, {\rm DP}_r[i - 1] &#43; |r_{i - 1} - r_i|\} $$ 右侧类似，故可以写出代码
+$$ {\rm DP}_l[i] = r_i - l_i &#43; \min{{\rm DP}l[i - 1] &#43; |l{i-1} - r_i|, {\rm DP}r[i - 1] &#43; |r{i - 1} - r_i|} $$
+右侧类似，故可以写出代码
 int main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll i = 1; i &lt;= n; i&#43;&#43;) { ll l = rr(), r = rr(); ll tl = min(dpl &#43; abs(past_l - r), dpr &#43; abs(past_r - r)) &#43; r - l; ll tr = min(dpl &#43; abs(past_l - l), dpr &#43; abs(past_r - l)) &#43; r - l; dpl = tl, dpr = tr; past_l = l, past_r = r; } printf(&#34;%lld\n&#34;, min(dpl &#43; n - past_l, dpr &#43; n - past_r) &#43; n - 1); return 0; } "/>
 
 
@@ -101,11 +104,11 @@ int main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll 
   "@type": "BlogPosting",
   "headline": "P3842 线段",
   "name": "P3842 线段",
-  "description": "题目大意 在 $n \\times n$ 的格上，在每行中各有一条线段 $(i, l_i) \\to (i, r_i)$。\n你从 $(1,1)$ 出发，只能沿着格子直走，最终走到 $(n,n)$。要求沿途经过所有的线段，且所走路程长度尽量的短。\n分析 显然是一行一行的递推。维护两个数据，一个是走完该行后停留在左侧的，记作 ${\\rm DP}_l$，相应的停留在右侧的记作 ${\\rm DP}_r$。\n若停在左侧，可能从上一行的右侧走来，也可能是由左侧走来，故转移方程有\n $$ {\\rm DP}_l[i] = r_i - l_i + \\min\\{{\\rm DP}_l[i - 1] + |l_{i-1} - r_i|, {\\rm DP}_r[i - 1] + |r_{i - 1} - r_i|\\} $$ 右侧类似，故可以写出代码\nint main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll i = 1; i \u0026lt;= n; i++) { ll l = rr(), r = rr(); ll tl = min(dpl + abs(past_l - r), dpr + abs(past_r - r)) + r - l; ll tr = min(dpl + abs(past_l - l), dpr + abs(past_r - l)) + r - l; dpl = tl, dpr = tr; past_l = l, past_r = r; } printf(\u0026#34;%lld\\n\u0026#34;, min(dpl + n - past_l, dpr + n - past_r) + n - 1); return 0; } ",
+  "description": "题目大意 在 $n \\times n$ 的格上，在每行中各有一条线段 $(i, l_i) \\to (i, r_i)$。\n你从 $(1,1)$ 出发，只能沿着格子直走，最终走到 $(n,n)$。要求沿途经过所有的线段，且所走路程长度尽量的短。\n分析 显然是一行一行的递推。维护两个数据，一个是走完该行后停留在左侧的，记作 ${\\rm DP}_l$，相应的停留在右侧的记作 ${\\rm DP}_r$。\n若停在左侧，可能从上一行的右侧走来，也可能是由左侧走来，故转移方程有\n$$ {\\rm DP}_l[i] = r_i - l_i + \\min{{\\rm DP}l[i - 1] + |l{i-1} - r_i|, {\\rm DP}r[i - 1] + |r{i - 1} - r_i|} $$\n右侧类似，故可以写出代码\nint main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll i = 1; i \u0026lt;= n; i++) { ll l = rr(), r = rr(); ll tl = min(dpl + abs(past_l - r), dpr + abs(past_r - r)) + r - l; ll tr = min(dpl + abs(past_l - l), dpr + abs(past_r - l)) + r - l; dpl = tl, dpr = tr; past_l = l, past_r = r; } printf(\u0026#34;%lld\\n\u0026#34;, min(dpl + n - past_l, dpr + n - past_r) + n - 1); return 0; } ",
   "keywords": [
     "洛谷", "DP"
   ],
-  "articleBody": "题目大意 在 $n \\times n$ 的格上，在每行中各有一条线段 $(i, l_i) \\to (i, r_i)$。\n你从 $(1,1)$ 出发，只能沿着格子直走，最终走到 $(n,n)$。要求沿途经过所有的线段，且所走路程长度尽量的短。\n分析 显然是一行一行的递推。维护两个数据，一个是走完该行后停留在左侧的，记作 ${\\rm DP}_l$，相应的停留在右侧的记作 ${\\rm DP}_r$。\n若停在左侧，可能从上一行的右侧走来，也可能是由左侧走来，故转移方程有\n $$ {\\rm DP}_l[i] = r_i - l_i + \\min\\{{\\rm DP}_l[i - 1] + |l_{i-1} - r_i|, {\\rm DP}_r[i - 1] + |r_{i - 1} - r_i|\\} $$ 右侧类似，故可以写出代码\nint main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll i = 1; i  n; i++) { ll l = rr(), r = rr(); ll tl = min(dpl + abs(past_l - r), dpr + abs(past_r - r)) + r - l; ll tr = min(dpl + abs(past_l - l), dpr + abs(past_r - l)) + r - l; dpl = tl, dpr = tr; past_l = l, past_r = r; } printf(\"%lld\\n\", min(dpl + n - past_l, dpr + n - past_r) + n - 1); return 0; } ",
+  "articleBody": "题目大意 在 $n \\times n$ 的格上，在每行中各有一条线段 $(i, l_i) \\to (i, r_i)$。\n你从 $(1,1)$ 出发，只能沿着格子直走，最终走到 $(n,n)$。要求沿途经过所有的线段，且所走路程长度尽量的短。\n分析 显然是一行一行的递推。维护两个数据，一个是走完该行后停留在左侧的，记作 ${\\rm DP}_l$，相应的停留在右侧的记作 ${\\rm DP}_r$。\n若停在左侧，可能从上一行的右侧走来，也可能是由左侧走来，故转移方程有\n$$ {\\rm DP}_l[i] = r_i - l_i + \\min{{\\rm DP}l[i - 1] + |l{i-1} - r_i|, {\\rm DP}r[i - 1] + |r{i - 1} - r_i|} $$\n右侧类似，故可以写出代码\nint main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll i = 1; i  n; i++) { ll l = rr(), r = rr(); ll tl = min(dpl + abs(past_l - r), dpr + abs(past_r - r)) + r - l; ll tr = min(dpl + abs(past_l - l), dpr + abs(past_r - l)) + r - l; dpl = tl, dpr = tr; past_l = l, past_r = r; } printf(\"%lld\\n\", min(dpl + n - past_l, dpr + n - past_r) + n - 1); return 0; } ",
   "wordCount" : "152",
   "inLanguage": "en",
   "datePublished": "2020-11-10T00:00:00Z",
@@ -269,9 +272,9 @@ int main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll 
 <h2 id="分析">分析<a hidden class="anchor" aria-hidden="true" href="#分析">#</a></h2>
 <p>显然是一行一行的递推。维护两个数据，一个是走完该行后停留在左侧的，记作 ${\rm DP}_l$，相应的停留在右侧的记作 ${\rm DP}_r$。</p>
 <p>若停在左侧，可能从上一行的右侧走来，也可能是由左侧走来，故转移方程有</p>
-<p> $$
-{\rm DP}_l[i] = r_i - l_i + \min\{{\rm DP}_l[i - 1] + |l_{i-1} - r_i|, {\rm DP}_r[i - 1] + |r_{i - 1} - r_i|\}
-$$ </p>
+<p>$$
+{\rm DP}_l[i] = r_i - l_i + \min{{\rm DP}<em>l[i - 1] + |l</em>{i-1} - r_i|, {\rm DP}<em>r[i - 1] + |r</em>{i - 1} - r_i|}
+$$</p>
 <p>右侧类似，故可以写出代码</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">rr</span><span class="p">();</span>

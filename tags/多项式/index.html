@@ -154,8 +154,10 @@
   </header>
   <section class="entry-content">
     <p>题目大意 给定 $g[1], \cdots, g[m]$，求序列 $f$。
- $$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$ 分析 不妨令 $g [0] = 0$，$h (x) = g (x) &#43; h [0]$，我们要解方程
- $$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$ 这个形式看似卷积，但实际上它缺了一项。对 $n &gt; 0$ 凑卷积...</p>
+$$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$
+分析 不妨令 $g [0] = 0$，$h (x) = g (x) &#43; h [0]$，我们要解方程
+$$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$
+这个形式看似卷积，但实际上它缺了一项。对 $n &gt; 0$ 凑卷积...</p>
   </section>
   <footer class="entry-footer">May 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P4721 分治 FFT" href="https://rogeryoungh.github.io/code-of-acm/post/2021-05/p4721/"></a>

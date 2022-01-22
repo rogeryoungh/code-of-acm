@@ -10,7 +10,8 @@
 <meta name="description" content="题目大意 环形队列上有 $n$ 堆石子，可以把相邻的两堆合成一堆，每次合并的得分是新一堆的石子数。
 求最终分数的最小值和最大值。
 分析 考虑 $dp(i,j)$ 是将区间 $[i,j]$ 的石子全部合并的最大值。于是状态转移方程为
- $$ dp(i,j) = \max_{i \leqslant k \leqslant j}(dp(i,k) &#43; dp(k&#43;1,j) &#43; s(i,j)) $$ 其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。
+$$ dp(i,j) = \max_{i \leqslant k \leqslant j}(dp(i,k) &#43; dp(k&#43;1,j) &#43; s(i,j)) $$
+其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。
 然而不能通过先 $i$ 再 $j$ 再 $k$ 的循环来递推，运算顺序值得注意。
 细节：前缀和、循环开两倍。
 int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) f[i &#43; n] = f[i] = rr(); for (ll i = 1; i &lt;= n * 2; i&#43;&#43;) s[i] = s[i - 1] &#43; f[i]; for (ll len = 2; len &lt;= n; len&#43;&#43;) { for (ll i = 1; i &lt;= 2 * n - len &#43; 1; i&#43;&#43;) { int j = i &#43; len - 1; int tmax = 0, tmin = 0x3f3f3f3f; int ss = s[j] - s[i - 1]; for (ll k = i; k &lt;= j - 1; k&#43;&#43;) { tmax = max(tmax, dmax[i][k] &#43; dmax[k &#43; 1][j] &#43; ss); tmin = min(tmin, dmin[i][k] &#43; dmin[k &#43; 1][j] &#43; ss); } dmax[i][j] = tmax; dmin[i][j] = tmin; } } int mmin = 0x3f3f3f3f, mmax = 0; for (ll p = 0; p &lt;= n - 1; p&#43;&#43;) { mmin = min(mmin, dmin[p &#43; 1][p &#43; n]); mmax = max(mmax, dmax[p &#43; 1][p &#43; n]); } printf(&#34;%d\n%d\n&#34;, mmin, mmax); return 0; } ">
@@ -58,7 +59,8 @@ int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(
 <meta property="og:description" content="题目大意 环形队列上有 $n$ 堆石子，可以把相邻的两堆合成一堆，每次合并的得分是新一堆的石子数。
 求最终分数的最小值和最大值。
 分析 考虑 $dp(i,j)$ 是将区间 $[i,j]$ 的石子全部合并的最大值。于是状态转移方程为
- $$ dp(i,j) = \max_{i \leqslant k \leqslant j}(dp(i,k) &#43; dp(k&#43;1,j) &#43; s(i,j)) $$ 其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。
+$$ dp(i,j) = \max_{i \leqslant k \leqslant j}(dp(i,k) &#43; dp(k&#43;1,j) &#43; s(i,j)) $$
+其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。
 然而不能通过先 $i$ 再 $j$ 再 $k$ 的循环来递推，运算顺序值得注意。
 细节：前缀和、循环开两倍。
 int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) f[i &#43; n] = f[i] = rr(); for (ll i = 1; i &lt;= n * 2; i&#43;&#43;) s[i] = s[i - 1] &#43; f[i]; for (ll len = 2; len &lt;= n; len&#43;&#43;) { for (ll i = 1; i &lt;= 2 * n - len &#43; 1; i&#43;&#43;) { int j = i &#43; len - 1; int tmax = 0, tmin = 0x3f3f3f3f; int ss = s[j] - s[i - 1]; for (ll k = i; k &lt;= j - 1; k&#43;&#43;) { tmax = max(tmax, dmax[i][k] &#43; dmax[k &#43; 1][j] &#43; ss); tmin = min(tmin, dmin[i][k] &#43; dmin[k &#43; 1][j] &#43; ss); } dmax[i][j] = tmax; dmin[i][j] = tmin; } } int mmin = 0x3f3f3f3f, mmax = 0; for (ll p = 0; p &lt;= n - 1; p&#43;&#43;) { mmin = min(mmin, dmin[p &#43; 1][p &#43; n]); mmax = max(mmax, dmax[p &#43; 1][p &#43; n]); } printf(&#34;%d\n%d\n&#34;, mmin, mmax); return 0; } " />
@@ -72,7 +74,8 @@ int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(
 <meta name="twitter:description" content="题目大意 环形队列上有 $n$ 堆石子，可以把相邻的两堆合成一堆，每次合并的得分是新一堆的石子数。
 求最终分数的最小值和最大值。
 分析 考虑 $dp(i,j)$ 是将区间 $[i,j]$ 的石子全部合并的最大值。于是状态转移方程为
- $$ dp(i,j) = \max_{i \leqslant k \leqslant j}(dp(i,k) &#43; dp(k&#43;1,j) &#43; s(i,j)) $$ 其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。
+$$ dp(i,j) = \max_{i \leqslant k \leqslant j}(dp(i,k) &#43; dp(k&#43;1,j) &#43; s(i,j)) $$
+其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。
 然而不能通过先 $i$ 再 $j$ 再 $k$ 的循环来递推，运算顺序值得注意。
 细节：前缀和、循环开两倍。
 int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) f[i &#43; n] = f[i] = rr(); for (ll i = 1; i &lt;= n * 2; i&#43;&#43;) s[i] = s[i - 1] &#43; f[i]; for (ll len = 2; len &lt;= n; len&#43;&#43;) { for (ll i = 1; i &lt;= 2 * n - len &#43; 1; i&#43;&#43;) { int j = i &#43; len - 1; int tmax = 0, tmin = 0x3f3f3f3f; int ss = s[j] - s[i - 1]; for (ll k = i; k &lt;= j - 1; k&#43;&#43;) { tmax = max(tmax, dmax[i][k] &#43; dmax[k &#43; 1][j] &#43; ss); tmin = min(tmin, dmin[i][k] &#43; dmin[k &#43; 1][j] &#43; ss); } dmax[i][j] = tmax; dmin[i][j] = tmin; } } int mmin = 0x3f3f3f3f, mmax = 0; for (ll p = 0; p &lt;= n - 1; p&#43;&#43;) { mmin = min(mmin, dmin[p &#43; 1][p &#43; n]); mmax = max(mmax, dmax[p &#43; 1][p &#43; n]); } printf(&#34;%d\n%d\n&#34;, mmin, mmax); return 0; } "/>
@@ -104,11 +107,11 @@ int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(
   "@type": "BlogPosting",
   "headline": "P1880 石子合并",
   "name": "P1880 石子合并",
-  "description": "题目大意 环形队列上有 $n$ 堆石子，可以把相邻的两堆合成一堆，每次合并的得分是新一堆的石子数。\n求最终分数的最小值和最大值。\n分析 考虑 $dp(i,j)$ 是将区间 $[i,j]$ 的石子全部合并的最大值。于是状态转移方程为\n $$ dp(i,j) = \\max_{i \\leqslant k \\leqslant j}(dp(i,k) + dp(k+1,j) + s(i,j)) $$ 其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。\n然而不能通过先 $i$ 再 $j$ 再 $k$ 的循环来递推，运算顺序值得注意。\n细节：前缀和、循环开两倍。\nint dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(); for (ll i = 1; i \u0026lt;= n; i++) f[i + n] = f[i] = rr(); for (ll i = 1; i \u0026lt;= n * 2; i++) s[i] = s[i - 1] + f[i]; for (ll len = 2; len \u0026lt;= n; len++) { for (ll i = 1; i \u0026lt;= 2 * n - len + 1; i++) { int j = i + len - 1; int tmax = 0, tmin = 0x3f3f3f3f; int ss = s[j] - s[i - 1]; for (ll k = i; k \u0026lt;= j - 1; k++) { tmax = max(tmax, dmax[i][k] + dmax[k + 1][j] + ss); tmin = min(tmin, dmin[i][k] + dmin[k + 1][j] + ss); } dmax[i][j] = tmax; dmin[i][j] = tmin; } } int mmin = 0x3f3f3f3f, mmax = 0; for (ll p = 0; p \u0026lt;= n - 1; p++) { mmin = min(mmin, dmin[p + 1][p + n]); mmax = max(mmax, dmax[p + 1][p + n]); } printf(\u0026#34;%d\\n%d\\n\u0026#34;, mmin, mmax); return 0; } ",
+  "description": "题目大意 环形队列上有 $n$ 堆石子，可以把相邻的两堆合成一堆，每次合并的得分是新一堆的石子数。\n求最终分数的最小值和最大值。\n分析 考虑 $dp(i,j)$ 是将区间 $[i,j]$ 的石子全部合并的最大值。于是状态转移方程为\n$$ dp(i,j) = \\max_{i \\leqslant k \\leqslant j}(dp(i,k) + dp(k+1,j) + s(i,j)) $$\n其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。\n然而不能通过先 $i$ 再 $j$ 再 $k$ 的循环来递推，运算顺序值得注意。\n细节：前缀和、循环开两倍。\nint dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(); for (ll i = 1; i \u0026lt;= n; i++) f[i + n] = f[i] = rr(); for (ll i = 1; i \u0026lt;= n * 2; i++) s[i] = s[i - 1] + f[i]; for (ll len = 2; len \u0026lt;= n; len++) { for (ll i = 1; i \u0026lt;= 2 * n - len + 1; i++) { int j = i + len - 1; int tmax = 0, tmin = 0x3f3f3f3f; int ss = s[j] - s[i - 1]; for (ll k = i; k \u0026lt;= j - 1; k++) { tmax = max(tmax, dmax[i][k] + dmax[k + 1][j] + ss); tmin = min(tmin, dmin[i][k] + dmin[k + 1][j] + ss); } dmax[i][j] = tmax; dmin[i][j] = tmin; } } int mmin = 0x3f3f3f3f, mmax = 0; for (ll p = 0; p \u0026lt;= n - 1; p++) { mmin = min(mmin, dmin[p + 1][p + n]); mmax = max(mmax, dmax[p + 1][p + n]); } printf(\u0026#34;%d\\n%d\\n\u0026#34;, mmin, mmax); return 0; } ",
   "keywords": [
     "洛谷", "DP"
   ],
-  "articleBody": "题目大意 环形队列上有 $n$ 堆石子，可以把相邻的两堆合成一堆，每次合并的得分是新一堆的石子数。\n求最终分数的最小值和最大值。\n分析 考虑 $dp(i,j)$ 是将区间 $[i,j]$ 的石子全部合并的最大值。于是状态转移方程为\n $$ dp(i,j) = \\max_{i \\leqslant k \\leqslant j}(dp(i,k) + dp(k+1,j) + s(i,j)) $$ 其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。\n然而不能通过先 $i$ 再 $j$ 再 $k$ 的循环来递推，运算顺序值得注意。\n细节：前缀和、循环开两倍。\nint dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(); for (ll i = 1; i  n; i++) f[i + n] = f[i] = rr(); for (ll i = 1; i  n * 2; i++) s[i] = s[i - 1] + f[i]; for (ll len = 2; len  n; len++) { for (ll i = 1; i  2 * n - len + 1; i++) { int j = i + len - 1; int tmax = 0, tmin = 0x3f3f3f3f; int ss = s[j] - s[i - 1]; for (ll k = i; k  j - 1; k++) { tmax = max(tmax, dmax[i][k] + dmax[k + 1][j] + ss); tmin = min(tmin, dmin[i][k] + dmin[k + 1][j] + ss); } dmax[i][j] = tmax; dmin[i][j] = tmin; } } int mmin = 0x3f3f3f3f, mmax = 0; for (ll p = 0; p  n - 1; p++) { mmin = min(mmin, dmin[p + 1][p + n]); mmax = max(mmax, dmax[p + 1][p + n]); } printf(\"%d\\n%d\\n\", mmin, mmax); return 0; } ",
+  "articleBody": "题目大意 环形队列上有 $n$ 堆石子，可以把相邻的两堆合成一堆，每次合并的得分是新一堆的石子数。\n求最终分数的最小值和最大值。\n分析 考虑 $dp(i,j)$ 是将区间 $[i,j]$ 的石子全部合并的最大值。于是状态转移方程为\n$$ dp(i,j) = \\max_{i \\leqslant k \\leqslant j}(dp(i,k) + dp(k+1,j) + s(i,j)) $$\n其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。\n然而不能通过先 $i$ 再 $j$ 再 $k$ 的循环来递推，运算顺序值得注意。\n细节：前缀和、循环开两倍。\nint dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(); for (ll i = 1; i  n; i++) f[i + n] = f[i] = rr(); for (ll i = 1; i  n * 2; i++) s[i] = s[i - 1] + f[i]; for (ll len = 2; len  n; len++) { for (ll i = 1; i  2 * n - len + 1; i++) { int j = i + len - 1; int tmax = 0, tmin = 0x3f3f3f3f; int ss = s[j] - s[i - 1]; for (ll k = i; k  j - 1; k++) { tmax = max(tmax, dmax[i][k] + dmax[k + 1][j] + ss); tmin = min(tmin, dmin[i][k] + dmin[k + 1][j] + ss); } dmax[i][j] = tmax; dmin[i][j] = tmin; } } int mmin = 0x3f3f3f3f, mmax = 0; for (ll p = 0; p  n - 1; p++) { mmin = min(mmin, dmin[p + 1][p + n]); mmax = max(mmax, dmax[p + 1][p + n]); } printf(\"%d\\n%d\\n\", mmin, mmax); return 0; } ",
   "wordCount" : "216",
   "inLanguage": "en",
   "datePublished": "2020-11-30T00:00:00Z",
@@ -271,9 +274,9 @@ int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(
 <p>求最终分数的最小值和最大值。</p>
 <h2 id="分析">分析<a hidden class="anchor" aria-hidden="true" href="#分析">#</a></h2>
 <p>考虑 $dp(i,j)$ 是将区间 $[i,j]$ 的石子全部合并的最大值。于是状态转移方程为</p>
-<p> $$
+<p>$$
 dp(i,j) = \max_{i \leqslant k \leqslant j}(dp(i,k) + dp(k+1,j) + s(i,j))
-$$ </p>
+$$</p>
 <p>其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。</p>
 <p>然而不能通过先 $i$ 再 $j$ 再 $k$ 的循环来递推，运算顺序值得注意。</p>
 <p>细节：前缀和、循环开两倍。</p>

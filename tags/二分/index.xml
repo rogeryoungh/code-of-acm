@@ -15,7 +15,8 @@
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-04/p1314/</guid>
       <description>题目大意 对于一个区间 $[l_i,r_i]$，计算矿石在这个区间上的检验值 $y_i$：
- $$ y_i=\sum_{j=l_i}^{r_i}[w_j \geqslant W] \times \sum_{j=l_i}^{r_i}[w_j \geqslant W]v_j $$ 记检验结果为 $y=\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。
+$$ y_i=\sum_{j=l_i}^{r_i}[w_j \geqslant W] \times \sum_{j=l_i}^{r_i}[w_j \geqslant W]v_j $$
+记检验结果为 $y=\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。
 分析 注意到 $y(w)$ 是关于 $W$ 的递减函数，对 $w$ 在 $[w_{\min},w_{\max}]$ 上进行二分。
 const ll MN = 2e5 + 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; ll n, m, s; int main() { n = rr(), m = rr(), s = rr(); ll minw = 0x3f3f3f3f, maxw = 0; f1[0] = f2[0] = 0; for (ll i = 1; i &amp;lt;= n; i++) { ww[i] = rr(), vv[i] = rr(); maxw = max(ww[i], maxw); minw = min(ww[i], minw); } for (ll i = 1; i &amp;lt;= m; i++) { li[i] = rr(), ri[i] = rr(); } ll l = minw, r = maxw + 1; while (l &amp;lt; r) { int mid = (l + r) &amp;gt;&amp;gt; 1; if (sum(mid) &amp;lt;= s) r = mid; else l = mid + 1; } ll rst = min(sum(l - 1) - s, s - sum(l)); printf(&amp;#34;%lld&amp;#34;, rst); return 0; } 区间求和可以用前缀和优化。</description>
     </item>

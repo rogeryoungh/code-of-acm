@@ -8,7 +8,8 @@
 <title>P1314 聪明的质检员 | Roger Young</title>
 <meta name="keywords" content="洛谷, 二分" />
 <meta name="description" content="题目大意 对于一个区间 $[l_i,r_i]$，计算矿石在这个区间上的检验值 $y_i$：
- $$ y_i=\sum_{j=l_i}^{r_i}[w_j \geqslant W] \times \sum_{j=l_i}^{r_i}[w_j \geqslant W]v_j $$ 记检验结果为 $y=\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。
+$$ y_i=\sum_{j=l_i}^{r_i}[w_j \geqslant W] \times \sum_{j=l_i}^{r_i}[w_j \geqslant W]v_j $$
+记检验结果为 $y=\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。
 分析 注意到 $y(w)$ 是关于 $W$ 的递减函数，对 $w$ 在 $[w_{\min},w_{\max}]$ 上进行二分。
 const ll MN = 2e5 &#43; 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; ll n, m, s; int main() { n = rr(), m = rr(), s = rr(); ll minw = 0x3f3f3f3f, maxw = 0; f1[0] = f2[0] = 0; for (ll i = 1; i &lt;= n; i&#43;&#43;) { ww[i] = rr(), vv[i] = rr(); maxw = max(ww[i], maxw); minw = min(ww[i], minw); } for (ll i = 1; i &lt;= m; i&#43;&#43;) { li[i] = rr(), ri[i] = rr(); } ll l = minw, r = maxw &#43; 1; while (l &lt; r) { int mid = (l &#43; r) &gt;&gt; 1; if (sum(mid) &lt;= s) r = mid; else l = mid &#43; 1; } ll rst = min(sum(l - 1) - s, s - sum(l)); printf(&#34;%lld&#34;, rst); return 0; } 区间求和可以用前缀和优化。">
 <meta name="author" content="rogeryoungh">
@@ -53,7 +54,8 @@ const ll MN = 2e5 &#43; 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; l
 
 <meta property="og:title" content="P1314 聪明的质检员" />
 <meta property="og:description" content="题目大意 对于一个区间 $[l_i,r_i]$，计算矿石在这个区间上的检验值 $y_i$：
- $$ y_i=\sum_{j=l_i}^{r_i}[w_j \geqslant W] \times \sum_{j=l_i}^{r_i}[w_j \geqslant W]v_j $$ 记检验结果为 $y=\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。
+$$ y_i=\sum_{j=l_i}^{r_i}[w_j \geqslant W] \times \sum_{j=l_i}^{r_i}[w_j \geqslant W]v_j $$
+记检验结果为 $y=\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。
 分析 注意到 $y(w)$ 是关于 $W$ 的递减函数，对 $w$ 在 $[w_{\min},w_{\max}]$ 上进行二分。
 const ll MN = 2e5 &#43; 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; ll n, m, s; int main() { n = rr(), m = rr(), s = rr(); ll minw = 0x3f3f3f3f, maxw = 0; f1[0] = f2[0] = 0; for (ll i = 1; i &lt;= n; i&#43;&#43;) { ww[i] = rr(), vv[i] = rr(); maxw = max(ww[i], maxw); minw = min(ww[i], minw); } for (ll i = 1; i &lt;= m; i&#43;&#43;) { li[i] = rr(), ri[i] = rr(); } ll l = minw, r = maxw &#43; 1; while (l &lt; r) { int mid = (l &#43; r) &gt;&gt; 1; if (sum(mid) &lt;= s) r = mid; else l = mid &#43; 1; } ll rst = min(sum(l - 1) - s, s - sum(l)); printf(&#34;%lld&#34;, rst); return 0; } 区间求和可以用前缀和优化。" />
 <meta property="og:type" content="article" />
@@ -64,7 +66,8 @@ const ll MN = 2e5 &#43; 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; l
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="P1314 聪明的质检员"/>
 <meta name="twitter:description" content="题目大意 对于一个区间 $[l_i,r_i]$，计算矿石在这个区间上的检验值 $y_i$：
- $$ y_i=\sum_{j=l_i}^{r_i}[w_j \geqslant W] \times \sum_{j=l_i}^{r_i}[w_j \geqslant W]v_j $$ 记检验结果为 $y=\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。
+$$ y_i=\sum_{j=l_i}^{r_i}[w_j \geqslant W] \times \sum_{j=l_i}^{r_i}[w_j \geqslant W]v_j $$
+记检验结果为 $y=\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。
 分析 注意到 $y(w)$ 是关于 $W$ 的递减函数，对 $w$ 在 $[w_{\min},w_{\max}]$ 上进行二分。
 const ll MN = 2e5 &#43; 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; ll n, m, s; int main() { n = rr(), m = rr(), s = rr(); ll minw = 0x3f3f3f3f, maxw = 0; f1[0] = f2[0] = 0; for (ll i = 1; i &lt;= n; i&#43;&#43;) { ww[i] = rr(), vv[i] = rr(); maxw = max(ww[i], maxw); minw = min(ww[i], minw); } for (ll i = 1; i &lt;= m; i&#43;&#43;) { li[i] = rr(), ri[i] = rr(); } ll l = minw, r = maxw &#43; 1; while (l &lt; r) { int mid = (l &#43; r) &gt;&gt; 1; if (sum(mid) &lt;= s) r = mid; else l = mid &#43; 1; } ll rst = min(sum(l - 1) - s, s - sum(l)); printf(&#34;%lld&#34;, rst); return 0; } 区间求和可以用前缀和优化。"/>
 
@@ -95,11 +98,11 @@ const ll MN = 2e5 &#43; 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; l
   "@type": "BlogPosting",
   "headline": "P1314 聪明的质检员",
   "name": "P1314 聪明的质检员",
-  "description": "题目大意 对于一个区间 $[l_i,r_i]$，计算矿石在这个区间上的检验值 $y_i$：\n $$ y_i=\\sum_{j=l_i}^{r_i}[w_j \\geqslant W] \\times \\sum_{j=l_i}^{r_i}[w_j \\geqslant W]v_j $$ 记检验结果为 $y=\\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。\n分析 注意到 $y(w)$ 是关于 $W$ 的递减函数，对 $w$ 在 $[w_{\\min},w_{\\max}]$ 上进行二分。\nconst ll MN = 2e5 + 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; ll n, m, s; int main() { n = rr(), m = rr(), s = rr(); ll minw = 0x3f3f3f3f, maxw = 0; f1[0] = f2[0] = 0; for (ll i = 1; i \u0026lt;= n; i++) { ww[i] = rr(), vv[i] = rr(); maxw = max(ww[i], maxw); minw = min(ww[i], minw); } for (ll i = 1; i \u0026lt;= m; i++) { li[i] = rr(), ri[i] = rr(); } ll l = minw, r = maxw + 1; while (l \u0026lt; r) { int mid = (l + r) \u0026gt;\u0026gt; 1; if (sum(mid) \u0026lt;= s) r = mid; else l = mid + 1; } ll rst = min(sum(l - 1) - s, s - sum(l)); printf(\u0026#34;%lld\u0026#34;, rst); return 0; } 区间求和可以用前缀和优化。",
+  "description": "题目大意 对于一个区间 $[l_i,r_i]$，计算矿石在这个区间上的检验值 $y_i$：\n$$ y_i=\\sum_{j=l_i}^{r_i}[w_j \\geqslant W] \\times \\sum_{j=l_i}^{r_i}[w_j \\geqslant W]v_j $$\n记检验结果为 $y=\\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。\n分析 注意到 $y(w)$ 是关于 $W$ 的递减函数，对 $w$ 在 $[w_{\\min},w_{\\max}]$ 上进行二分。\nconst ll MN = 2e5 + 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; ll n, m, s; int main() { n = rr(), m = rr(), s = rr(); ll minw = 0x3f3f3f3f, maxw = 0; f1[0] = f2[0] = 0; for (ll i = 1; i \u0026lt;= n; i++) { ww[i] = rr(), vv[i] = rr(); maxw = max(ww[i], maxw); minw = min(ww[i], minw); } for (ll i = 1; i \u0026lt;= m; i++) { li[i] = rr(), ri[i] = rr(); } ll l = minw, r = maxw + 1; while (l \u0026lt; r) { int mid = (l + r) \u0026gt;\u0026gt; 1; if (sum(mid) \u0026lt;= s) r = mid; else l = mid + 1; } ll rst = min(sum(l - 1) - s, s - sum(l)); printf(\u0026#34;%lld\u0026#34;, rst); return 0; } 区间求和可以用前缀和优化。",
   "keywords": [
     "洛谷", "二分"
   ],
-  "articleBody": "题目大意 对于一个区间 $[l_i,r_i]$，计算矿石在这个区间上的检验值 $y_i$：\n $$ y_i=\\sum_{j=l_i}^{r_i}[w_j \\geqslant W] \\times \\sum_{j=l_i}^{r_i}[w_j \\geqslant W]v_j $$ 记检验结果为 $y=\\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。\n分析 注意到 $y(w)$ 是关于 $W$ 的递减函数，对 $w$ 在 $[w_{\\min},w_{\\max}]$ 上进行二分。\nconst ll MN = 2e5 + 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; ll n, m, s; int main() { n = rr(), m = rr(), s = rr(); ll minw = 0x3f3f3f3f, maxw = 0; f1[0] = f2[0] = 0; for (ll i = 1; i  n; i++) { ww[i] = rr(), vv[i] = rr(); maxw = max(ww[i], maxw); minw = min(ww[i], minw); } for (ll i = 1; i  m; i++) { li[i] = rr(), ri[i] = rr(); } ll l = minw, r = maxw + 1; while (l  r) { int mid = (l + r)  1; if (sum(mid)  s) r = mid; else l = mid + 1; } ll rst = min(sum(l - 1) - s, s - sum(l)); printf(\"%lld\", rst); return 0; } 区间求和可以用前缀和优化。\nll f1[MN], f2[MN]; ll sum(ll w) { for (ll i = 1; i  n; i++) { ll f = ww[i] = w; f1[i] = f1[i - 1] + f; f2[i] = f2[i - 1] + f * vv[i]; } ll sum = 0; for (ll k = 1; k  m; k++) { ll l = li[k], r = ri[k]; sum += (f1[r] - f1[l - 1]) * (f2[r] - f2[l - 1]); } return sum; } ",
+  "articleBody": "题目大意 对于一个区间 $[l_i,r_i]$，计算矿石在这个区间上的检验值 $y_i$：\n$$ y_i=\\sum_{j=l_i}^{r_i}[w_j \\geqslant W] \\times \\sum_{j=l_i}^{r_i}[w_j \\geqslant W]v_j $$\n记检验结果为 $y=\\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。\n分析 注意到 $y(w)$ 是关于 $W$ 的递减函数，对 $w$ 在 $[w_{\\min},w_{\\max}]$ 上进行二分。\nconst ll MN = 2e5 + 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; ll n, m, s; int main() { n = rr(), m = rr(), s = rr(); ll minw = 0x3f3f3f3f, maxw = 0; f1[0] = f2[0] = 0; for (ll i = 1; i  n; i++) { ww[i] = rr(), vv[i] = rr(); maxw = max(ww[i], maxw); minw = min(ww[i], minw); } for (ll i = 1; i  m; i++) { li[i] = rr(), ri[i] = rr(); } ll l = minw, r = maxw + 1; while (l  r) { int mid = (l + r)  1; if (sum(mid)  s) r = mid; else l = mid + 1; } ll rst = min(sum(l - 1) - s, s - sum(l)); printf(\"%lld\", rst); return 0; } 区间求和可以用前缀和优化。\nll f1[MN], f2[MN]; ll sum(ll w) { for (ll i = 1; i  n; i++) { ll f = ww[i] = w; f1[i] = f1[i - 1] + f; f2[i] = f2[i - 1] + f * vv[i]; } ll sum = 0; for (ll k = 1; k  m; k++) { ll l = li[k], r = ri[k]; sum += (f1[r] - f1[l - 1]) * (f2[r] - f2[l - 1]); } return sum; } ",
   "wordCount" : "244",
   "inLanguage": "en",
   "datePublished": "2021-04-13T00:00:00Z",
@@ -259,9 +262,9 @@ const ll MN = 2e5 &#43; 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; l
 
   <div class="post-content"><h2 id="题目大意">题目大意<a hidden class="anchor" aria-hidden="true" href="#题目大意">#</a></h2>
 <p>对于一个区间 $[l_i,r_i]$，计算矿石在这个区间上的检验值 $y_i$：</p>
-<p> $$
+<p>$$
 y_i=\sum_{j=l_i}^{r_i}[w_j \geqslant W] \times \sum_{j=l_i}^{r_i}[w_j \geqslant W]v_j
-$$ </p>
+$$</p>
 <p>记检验结果为 $y=\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。</p>
 <h2 id="分析">分析<a hidden class="anchor" aria-hidden="true" href="#分析">#</a></h2>
 <p>注意到 $y(w)$ 是关于 $W$ 的递减函数，对 $w$ 在 $[w_{\min},w_{\max}]$ 上进行二分。</p>

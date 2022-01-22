@@ -7,7 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© 2021 [Roger Young](/code-of-acm)</copyright>
-    <lastBuildDate>Thu, 11 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 21 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ZAFU 2022.01.18 个人赛题解</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-01/hj1/</link>
+      <pubDate>Fri, 21 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-01/hj1/</guid>
+      <description>非常抱歉，本次比赛对难度估计不当，给大家造成了不好的体验，在此向大家致歉。
+A - CF1379A 题目大意 替换字符串 $s$ 中的 ?，使得出现且仅出现一次 abacaba。
+分析 本题较为难写，因为很难判断恰好出现了一次。但是数据规模很小，可以采用非常暴力的写法。
+一种想法是，枚举每个出现 abacaba 的位置 $i$，把当前 $s[i, i + 6]$ 中的 ? 设为给定串，这样就得到了字符串 $t$。
+然后判断字符串 $t$ 中只出现了一次 abacaba，可以通过 substr 枚举所有长为 $6$ 的子串判断。
+string what = &amp;#34;abacaba&amp;#34;; void solve() { int len; string s; cin &amp;gt;&amp;gt; len &amp;gt;&amp;gt; s; for (int i = 0; i &amp;lt; len - 6; i++) { string tmp = s; for (int j = 0; j &amp;lt; 7; j++) if (tmp[i + j] == &amp;#39;?</description>
+    </item>
+    
     <item>
       <title>CF Round 706(Div 2)</title>
       <link>https://rogeryoungh.github.io/code-of-acm/post/2021-11/cf1496/</link>
@@ -87,9 +101,10 @@ $$ s_i = [i \ \text{is a period of}\ S] $$
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-10/p5179/</guid>
       <description>题目大意 求最简分数 $p/q$ 满足
- $$ \frac{a}{b} 若有多组解，输出 $q$ 最小的；仍有多组解，输出 $p$ 最小的一组。
+$$ \frac{a}{b} &amp;lt; \frac{p}{q} &amp;lt; \frac{c}{d} $$
+若有多组解，输出 $q$ 最小的；仍有多组解，输出 $p$ 最小的一组。
 分析 分类讨论：
- 首先当 $\lfloor a/b \rfloor + 1 \leqslant \lceil c/d \rceil - 1$ 时，说明两个数之间存在一个整数，直接返回 $p = 1, q = \lfloor a / b \rfloor + 1$ 即可。 其次当 $a = 0$ 时，直接解得 $p = 1, q = \lfloor d / c \rfloor + 1$。 当 $a &amp;lt; b$ 时，这意味着我们无法直接求解。考虑翻转，转化问题为  $$ \frac{d}{c} 当 $a &amp;gt; b$ 时，考虑求解  $$ \frac{a}{b} - \left\lfloor\frac{a}{b}\right\rfloor  唯一需要确认的就是，翻转后仍是最优解，考虑反证。</description>
+ 首先当 $\lfloor a/b \rfloor + 1 \leqslant \lceil c/d \rceil - 1$ 时，说明两个数之间存在一个整数，直接返回 $p = 1, q = \lfloor a / b \rfloor + 1$ 即可。 其次当 $a = 0$ 时，直接解得 $p = 1, q = \lfloor d / c \rfloor + 1$。 当 $a &amp;lt; b$ 时，这意味着我们无法直接求解。考虑翻转，转化问题为 $$ \frac{d}{c} &amp;lt; \frac{q}{p} &amp;lt; \frac{b}{a} $$ 递归即可。 当 $a &amp;gt; b$ 时，考虑求解 $$ \frac{a}{b} - \left\lfloor\frac{a}{b}\right\rfloor &amp;lt; \frac{p}{q} - \left\lfloor\frac{a}{b}\right\rfloor &amp;lt; \frac{c}{d} - \left\lfloor\frac{a}{b}\right\rfloor $$ 也是递归即可，还原出结果以后返回。  唯一需要确认的就是，翻转后仍是最优解，考虑反证。</description>
     </item>
     
     <item>
@@ -100,8 +115,10 @@ $$ s_i = [i \ \text{is a period of}\ S] $$
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-10/p5171/</guid>
       <description>题目大意 给定 $a,b,c$，求满足方程 $ax + by \leqslant c$ 的非负整数解的个数。
 分析 令 $n = \lfloor c / a \rfloor$，容易推出让我们求的是
- $$ n + 1 + \sum_{x = 0}^{n} \left\lfloor \frac{c - ax}{b} \right\rfloor $$ 直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \to (n - x)$，代入有
- $$ n + 1 + \sum_{x = 0}^{n} \left\lfloor \frac{ax + c - an}{b} \right\rfloor $$ 显然 $c - an$ 是 c % a，于是套类欧即可
+$$ n + 1 + \sum_{x = 0}^{n} \left\lfloor \frac{c - ax}{b} \right\rfloor $$
+直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \to (n - x)$，代入有
+$$ n + 1 + \sum_{x = 0}^{n} \left\lfloor \frac{ax + c - an}{b} \right\rfloor $$
+显然 $c - an$ 是 c % a，于是套类欧即可
 附：代码，展开</description>
     </item>
     
@@ -114,8 +131,11 @@ $$ s_i = [i \ \text{is a period of}\ S] $$
       <description>题目大意 给定生成 $1$ 到 $n$ 数字的概率分布，不断生成随机数 $x$ 直到 $x$ 不是已经生成过的最大的数停止，求生成次数平方的期望。
 分析 设期望的随机次数为 $f_x = E(x)$，我们需要计算的次数为 $g_x = E(x^2)$。
 关于 $f_i$ 的 DP 是显然的，计算有
- $$ f_x = \sum_{i = 1}^{x - 1} p_i + \sum_{i = x}^n p_i(1 + f_i) = 1 + \sum_{i = x}^n p_i f_i $$ 容易观察到
- $$ f_{x + 1} =(1 - p_x) f_x \Rightarrow f_x = \prod_{i = x}^n \frac{1}{1 - p_x} $$ 接下来需要一个套路</description>
+$$ f_x = \sum_{i = 1}^{x - 1} p_i + \sum_{i = x}^n p_i(1 + f_i) = 1 + \sum_{i = x}^n p_i f_i $$
+容易观察到
+$$ f_{x + 1} =(1 - p_x) f_x \Rightarrow f_x = \prod_{i = x}^n \frac{1}{1 - p_x} $$
+接下来需要一个套路
+$$ E((x + 1)^2) = E(x^2) + 2 E(x) + 1 $$</description>
     </item>
     
     <item>
@@ -139,9 +159,10 @@ const int maxn = 18; ll ci[maxn]; ll ff[1 &amp;lt;&amp;lt; maxn], gg[1 &amp;lt;&
       <description>题目大意 给定两串 DNA 序列，可以在其中任意插空格，然后逐位比较，当两位都是字母时查表得到相似度。
 长度为 $k$ 的空格有额外相似度 $- A - B(k - 1)$。求两序列的最大相似度。
 分析 若不考虑空格的贡献，容易想到二维 DP，记 ${\rm DP}[i,j]$ 是 $A$ 串到位置 $i$ 同时 $B$ 串到位置 $j$ 时最大的相似度，有
- $$ {\rm DP}[i, j] = \max\{ {\rm DP}[i - 1, j - 1] + D[i, j], {\rm DP}[i - 1, j], {\rm DP}[i, j - 1] \} $$ 当我们考虑空格的贡献时，可以发现空格的额外贡献只与前面一位有关。若两个序列此位都是空格，则把去掉后相似度一定会增加，故只有三种可能：设 ${\rm DP}_0$ 是结尾没有空格；${\rm DP}_1$ 是空格在 $A$ 串；${\rm DP}_2$ 是空格在 $B$ 串。
+$$ {\rm DP}[i, j] = \max{ {\rm DP}[i - 1, j - 1] + D[i, j], {\rm DP}[i - 1, j], {\rm DP}[i, j - 1] } $$
+当我们考虑空格的贡献时，可以发现空格的额外贡献只与前面一位有关。若两个序列此位都是空格，则把去掉后相似度一定会增加，故只有三种可能：设 ${\rm DP}_0$ 是结尾没有空格；${\rm DP}_1$ 是空格在 $A$ 串；${\rm DP}_2$ 是空格在 $B$ 串。
 思考最后一个空格的转移方式，自然有方程
- $$ \begin{aligned} {\rm DP}_0[i, j] &amp;= \max\{ {\rm DP}_0[i - 1, j - 1], {\rm DP}_1[i - 1, j - 1], {\rm DP}_2[i - 1, j - 1] \} + D[i, j] \\ {\rm DP}_1[i, j] &amp;= \max\{ {\rm DP}_0[i, j - 1] - A, {\rm DP}_1[i, j - 1]- B, {\rm DP}_2[i, j - 1] - A\} \\ {\rm DP}_2[i, j] &amp;= \max\{ {\rm DP}_0[i - 1, j] - A, {\rm DP}_1[i - 1, j] - A, {\rm DP}_2[i, j - 1] - B \} \\ \end{aligned} $$ 随手加滚动数组 WA 了好久，发现每次都要清空为 -INF，否则会 WA。</description>
+$$ \begin{aligned} {\rm DP}_0[i, j] &amp;amp;= \max{ {\rm DP}_0[i - 1, j - 1], {\rm DP}_1[i - 1, j - 1], {\rm DP}_2[i - 1, j - 1] } + D[i, j] \ {\rm DP}_1[i, j] &amp;amp;= \max{ {\rm DP}_0[i, j - 1] - A, {\rm DP}_1[i, j - 1]- B, {\rm DP}_2[i, j - 1] - A} \ {\rm DP}_2[i, j] &amp;amp;= \max{ {\rm DP}_0[i - 1, j] - A, {\rm DP}_1[i - 1, j] - A, {\rm DP}_2[i, j - 1] - B } \ \end{aligned} $$</description>
     </item>
     
     <item>
@@ -164,10 +185,12 @@ const int maxn = 1e5 + 10, o = 30 - 1; int trie[maxn * 30][2], val[maxn * 30], t
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6833/</guid>
       <description>题目大意 即求
- $$ S (n) = \sum^n_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd \{ a_x \}) \gcd \{ a_x \} $$ 我自己随便简写了，全打太麻烦了。
+$$ S (n) = \sum^n_{{ a_x } = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd { a_x }) \gcd { a_x } $$
+我自己随便简写了，全打太麻烦了。
 分析 这东西看着很吓人，其实是纸老虎。首先 $f(x) = \mu(x)^2$。提出 $\gcd$ 有
- $$ \begin{aligned} S (n) &amp; =\sum_{d=1}^{n}\sum^{n}_{\{ a_{x}\}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd \{ a_{x}\} =d]\\ &amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x+1}\sum^{n/d}_{\{ a_{x}\} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd \{ a_{x}\} =1] \end{aligned} $$ 对后面这部分反演有
- $$ \begin{aligned} &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd \{ a_x \}} \mu (t) \right)\\ = &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd \{ a_x \}] \mu (t) \right)\\ = &amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \end{aligned} $$ 代回去，枚举 $T = d t$</description>
+$$ \begin{aligned} S (n) &amp;amp; =\sum_{d=1}^{n}\sum^{n}{{ a{x}}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd { a_{x}} =d]\ &amp;amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x+1}\sum^{n/d}{{ a{x}} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd { a_{x}} =1] \end{aligned} $$
+对后面这部分反演有
+$$ \begin{aligned} &amp;amp; \sum^{n / d}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd { a_x }} \mu (t) \right)\ = &amp;amp; \sum^{n / d}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd { a_x }] \mu (t) \right)\ = &amp;amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \end{aligned} $$</description>
     </item>
     
     <item>
@@ -177,10 +200,13 @@ const int maxn = 1e5 + 10, o = 30 - 1; int trie[maxn * 30][2], val[maxn * 30], t
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6755/</guid>
       <description>题目大意 设 Fibonacci 数列第 $i$ 项为 $F_i$，求
- $$ S = \sum_{i = 0}^n (F_{i c})^k $$ 分析 由特征方程法，设
- $$ x^2 + x - 1 = 0 \Longrightarrow A, B = \frac{1 \pm \sqrt{5}}{2} $$ 因此 Fibonacci 通项公式即可表示为
- $$ F_n = \frac{A^n - B^n}{A - B} $$ 根据二次剩余的知识，模意义下是可以开方的。因此
- $$ (F_{i c})^k = \left( \frac{A^{i c} - B^{i c}}{A - B} \right)^k = \frac{1}{(A - B)^k} \sum_{j = 0}^k \binom{k}{j} (- 1)^{k - j} (A^j B^{k - j})^{i c} $$ 求和有</description>
+$$ S = \sum_{i = 0}^n (F_{i c})^k $$
+分析 由特征方程法，设
+$$ x^2 + x - 1 = 0 \Longrightarrow A, B = \frac{1 \pm \sqrt{5}}{2} $$
+因此 Fibonacci 通项公式即可表示为
+$$ F_n = \frac{A^n - B^n}{A - B} $$
+根据二次剩余的知识，模意义下是可以开方的。因此
+$$ (F_{i c})^k = \left( \frac{A^{i c} - B^{i c}}{A - B} \right)^k = \frac{1}{(A - B)^k} \sum_{j = 0}^k \binom{k}{j} (- 1)^{k - j} (A^j B^{k - j})^{i c} $$</description>
     </item>
     
     <item>
@@ -193,9 +219,11 @@ const int maxn = 1e5 + 10, o = 30 - 1; int trie[maxn * 30][2], val[maxn * 30], t
  要求每个数字都大于 $1$； 数列各项之积恰为 $n$。  求其前缀和 $S(n, k) = \sum f(i, k)$。
 分析 多组输入好坑啊。
 先允许 $a_i=1$，将结果记为 $g(n,k)$，容易利用隔板法求得
- $$ g (p^c, k) = \binom{t + k - 1}{k - 1} $$ 对于多个质因数，显然其贡献是相互独立的，即 $g$ 是积性函数。考虑选取 $i$ 个数令其 $a_i&amp;gt;1$，枚举有
- $$ g (n, k) = \sum_{i = 1}^k \binom{n}{i} f (n, i) $$ 二项式反演（或者直接容斥）有
- $$ f (n, k) = \sum_{i = 1}^k (- 1)^{k - i} \binom{k}{i} g (n, i) $$ 求和并换序</description>
+$$ g (p^c, k) = \binom{t + k - 1}{k - 1} $$
+对于多个质因数，显然其贡献是相互独立的，即 $g$ 是积性函数。考虑选取 $i$ 个数令其 $a_i&amp;gt;1$，枚举有
+$$ g (n, k) = \sum_{i = 1}^k \binom{n}{i} f (n, i) $$
+二项式反演（或者直接容斥）有
+$$ f (n, k) = \sum_{i = 1}^k (- 1)^{k - i} \binom{k}{i} g (n, i) $$</description>
     </item>
     
     <item>
@@ -205,9 +233,10 @@ const int maxn = 1e5 + 10, o = 30 - 1; int trie[maxn * 30][2], val[maxn * 30], t
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6750/</guid>
       <description>题目大意 定义
- $$ f (n) = \sum_{d \mid n} d \left[ \gcd \left( d, \frac{n}{d} \right) = 1 \right] $$ 求其前缀和 $S(n)$。
+$$ f (n) = \sum_{d \mid n} d \left[ \gcd \left( d, \frac{n}{d} \right) = 1 \right] $$
+求其前缀和 $S(n)$。
 分析 首先 Min25 筛是过不了的，内存不够。先推式子
- $$ \begin{aligned} S (n) &amp;= \sum_{i = 1}^n \sum_{d \mid i} d \left[ \gcd \left( d, \frac{i}{d} \right) = 1 \right] \\ &amp;= \sum_{d = 1}^n \sum_{i = 1}^n d [d \mid i] \left[\gcd \left( d, \frac{i}{d} \right) = 1 \right] \\ &amp;= \sum_{d = 1}^n \sum_{i = 1}^{n / d} d [\gcd (i, d) = 1] \end{aligned} $$ 看到 $\gcd = 1$ 就应该想起来 Mobius 反演，容易化简有</description>
+$$ \begin{aligned} S (n) &amp;amp;= \sum_{i = 1}^n \sum_{d \mid i} d \left[ \gcd \left( d, \frac{i}{d} \right) = 1 \right] \ &amp;amp;= \sum_{d = 1}^n \sum_{i = 1}^n d [d \mid i] \left[\gcd \left( d, \frac{i}{d} \right) = 1 \right] \ &amp;amp;= \sum_{d = 1}^n \sum_{i = 1}^{n / d} d [\gcd (i, d) = 1] \end{aligned} $$</description>
     </item>
     
     <item>
@@ -217,10 +246,13 @@ const int maxn = 1e5 + 10, o = 30 - 1; int trie[maxn * 30][2], val[maxn * 30], t
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-09/p5349/</guid>
       <description>题目大意 即求
- $$ S = \sum_{n=0}^\infty f(n)r^n $$ 分析 换序
- $$ S = \sum_{n = 0}^{\infty} \left( \sum_{i = 0}^m f_i n^i \right) r^n = \sum_{i = 0}^m f_i \sum_{n = 0}^{\infty} n^i r^n $$ 令
- $$ S_i = \sum_{n = 0}^{\infty} n^i r^n $$ 套路的逐项相减，主动的凑二项式
- $$ (1 - r) S_i = 1 + \sum_{n = 1}^{\infty} n^i r^n - \sum_{n = 1}^{\infty} (n - 1)^i r^n = 1 + \sum_{n = 0}^{\infty} r^{n + 1} \sum_{j = 0}^{i - 1} \binom{k}{j} n^j $$ 交换求和顺序</description>
+$$ S = \sum_{n=0}^\infty f(n)r^n $$
+分析 换序
+$$ S = \sum_{n = 0}^{\infty} \left( \sum_{i = 0}^m f_i n^i \right) r^n = \sum_{i = 0}^m f_i \sum_{n = 0}^{\infty} n^i r^n $$
+令
+$$ S_i = \sum_{n = 0}^{\infty} n^i r^n $$
+套路的逐项相减，主动的凑二项式
+$$ (1 - r) S_i = 1 + \sum_{n = 1}^{\infty} n^i r^n - \sum_{n = 1}^{\infty} (n - 1)^i r^n = 1 + \sum_{n = 0}^{\infty} r^{n + 1} \sum_{j = 0}^{i - 1} \binom{k}{j} n^j $$</description>
     </item>
     
     <item>
@@ -255,10 +287,13 @@ FFT 字符串匹配模板题，我在 ZAFU Wiki 中讲过，即对每个字符�
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-07/p4173/</guid>
       <description>魔改 KMP 大概是不行的，卷积在这里出现的很妙。
 卷积处理匹配 定义匹配函数
- $$ d(x,y) = [x = y] $$ 给定文本串 $B$ 和长为 $m$ 的模式串 $A$，要找出 $A$ 在 $B$ 的所有出现，可以定义
- $$ f(k) = \sum_{i=0}^{m-1} d(A_{i}, B_{i-m+k}) $$ 即 $f(k) = 0$ 时有完全匹配 $A = B[k-m\ldots k-1]$。考虑让 $d$ 函数更 “数学” 一点，以更好的计算
- $$ d(x,y) = (x - y)^2 $$ 再提供模式串 $A$ 的翻转 $S$，即 $A_i = S_{m-i}$，展开有
- $$ \begin{aligned} f(k) &amp;= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{i-m+k}^2 - 2\sum_{i=0}^{m-1} A_{i}B_{i-m+k}\\ &amp;= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{i-m+k}^2 - 2\sum_{i=0}^{m-1} S_{m-i}B_{i-m+k} \end{aligned} $$ 前面两项能够预处理，最后一项是卷积。于是最终复杂度是 $O(n \log n)$。</description>
+$$ d(x,y) = [x = y] $$
+给定文本串 $B$ 和长为 $m$ 的模式串 $A$，要找出 $A$ 在 $B$ 的所有出现，可以定义
+$$ f(k) = \sum_{i=0}^{m-1} d(A_{i}, B_{i-m+k}) $$
+即 $f(k) = 0$ 时有完全匹配 $A = B[k-m\ldots k-1]$。考虑让 $d$ 函数更 “数学” 一点，以更好的计算
+$$ d(x,y) = (x - y)^2 $$
+再提供模式串 $A$ 的翻转 $S$，即 $A_i = S_{m-i}$，展开有
+$$ \begin{aligned} f(k) &amp;amp;= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{i-m+k}^2 - 2\sum_{i=0}^{m-1} A_{i}B_{i-m+k}\ &amp;amp;= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{i-m+k}^2 - 2\sum_{i=0}^{m-1} S_{m-i}B_{i-m+k} \end{aligned} $$</description>
     </item>
     
     <item>
@@ -279,11 +314,15 @@ FFT 字符串匹配模板题，我在 ZAFU Wiki 中讲过，即对每个字符�
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2257/</guid>
       <description>题目大意 即求
- $$ \sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) \in \mathbb{P}] $$ 分析 先转化一下
- $$ \sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) \in \mathbb{P}] = \sum_{p}\sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) = p] $$ 在 P2522 中得到
- $$ \sum_{i=1}^x \sum_{j=1}^y [\gcd(i,j) = k] = \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tk} \right\rfloor \left\lfloor \frac{y}{tk} \right\rfloor $$ 代入有
- $$ \sum_{p} \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tp} \right\rfloor \left\lfloor \frac{y}{tp} \right\rfloor $$ 令 $T = tp$，$T$ 的上界应还是 $\min(x,y)$，代入有
- $$ \sum_{T=1}^{\min(x,y)} \left\lfloor \frac{x}{T} \right\rfloor \left\lfloor \frac{y}{T} \right\rfloor \sum_{p \mid T} \mu\left(\frac{T}{p}\right) $$ 后面那个在 Euler 筛后再求和一下，是可以预处理的。</description>
+$$ \sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) \in \mathbb{P}] $$
+分析 先转化一下
+$$ \sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) \in \mathbb{P}] = \sum_{p}\sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) = p] $$
+在 P2522 中得到
+$$ \sum_{i=1}^x \sum_{j=1}^y [\gcd(i,j) = k] = \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tk} \right\rfloor \left\lfloor \frac{y}{tk} \right\rfloor $$
+代入有
+$$ \sum_{p} \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tp} \right\rfloor \left\lfloor \frac{y}{tp} \right\rfloor $$
+令 $T = tp$，$T$ 的上界应还是 $\min(x,y)$，代入有
+$$ \sum_{T=1}^{\min(x,y)} \left\lfloor \frac{x}{T} \right\rfloor \left\lfloor \frac{y}{T} \right\rfloor \sum_{p \mid T} \mu\left(\frac{T}{p}\right) $$</description>
     </item>
     
     <item>
@@ -293,10 +332,12 @@ FFT 字符串匹配模板题，我在 ZAFU Wiki 中讲过，即对每个字符�
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2350/</guid>
       <description>题目大意 设
- $$ \varphi_{x+1}(m) = \varphi(\varphi_x(m)) $$ 求最小的 $x$ 使得 $\varphi_x(m) = 1$。
+$$ \varphi_{x+1}(m) = \varphi(\varphi_x(m)) $$
+求最小的 $x$ 使得 $\varphi_x(m) = 1$。
 其中 $\varphi(m)$ 是欧拉函数。
 分析 注意到仅有 $\varphi(1) = \varphi(2) = 1$，再有公式
- $$ \varphi\left(\prod_{i=1}^mp_i^{q_i}\right) = \prod_{i=1}^m(p_i-1)p_i^{q_i-1} $$ 因此从唯一分解形式的角度来看，迭代一次消去了一个 $2$，也生成了一些 $2$。
+$$ \varphi\left(\prod_{i=1}^mp_i^{q_i}\right) = \prod_{i=1}^m(p_i-1)p_i^{q_i-1} $$
+因此从唯一分解形式的角度来看，迭代一次消去了一个 $2$，也生成了一些 $2$。
 考虑设 $f(n)$ 为 $\varphi(n)$ 中因子 $2$ 的个数。
 设 $\gcd(a,b) = 1$，可以证明 $f(ab) = f(a) f(b)$。同时 $f(p) = f(p-1)$。
 这说明 $f(x)$ 是一个积性函数，可以用 Euler 筛递推。
@@ -312,9 +353,12 @@ const ll MN = 1e5 + 10; bool notp[1000001]; int prime[200001], cnt, phi[1000001]
       <description>Berland 年有 $m$ 月，每月 $d$ 天。一周有 $w$ 天。
 若第 $x$ 月的第 $y$ 天和第 $y$ 月的第 $x$ 天是同一个星期，则称 $(x,y)$ 是一对。
 求一年有几对。
- $$ xd+y \equiv yd+x \pmod w $$ 即
- $$ (x-y)(d-1) \equiv 0 \Rightarrow (x-y)(d-1) \in w\mathbb{Z} $$ 于是有
- $$ y-x = \frac{wk}{\gcd(w,d-1)} $$ 又 $x &amp;lt; y \leqslant \min(m,d)$​，
+$$ xd+y \equiv yd+x \pmod w $$
+即
+$$ (x-y)(d-1) \equiv 0 \Rightarrow (x-y)(d-1) \in w\mathbb{Z} $$
+于是有
+$$ y-x = \frac{wk}{\gcd(w,d-1)} $$
+又 $x &amp;lt; y \leqslant \min(m,d)$​，
 int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll g = w / gcd(w, d - 1); ll max_y = min(m, d) - 1; ll div = (max_y + 1) / g, mod = (max_y + 1) % g; ll sum = (div - 1) * div / 2 * g + mod * div; printf(&amp;#34;%lld\n&amp;#34;, sum); } return 0; } </description>
     </item>
     
@@ -325,10 +369,14 @@ int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll 
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2303/</guid>
       <description>题目大意 即求
- $$ \sum_{i=1}^n \gcd(i,n) $$ 分析 联想到
- $$ \varphi(n) = \sum_{i=1}^n [\gcd(i,n) = 1] $$ 尝试凑这个形式
- $$ \begin{aligned} \sum_{i=1}^n \gcd(i,n) &amp;= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \\ &amp;= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \\ &amp;= \sum_{d \mid n} d \varphi(n/d) \end{aligned} $$ 这里其实已经可以过题了，但还可以再瞎搞一下，令
- $$ nf(n) = \sum_{d \mid n} d \varphi(n/d) = n\sum_{d \mid n} \frac{\varphi(d)}{d} $$ 尝试证明 $f(n)$ 是一个积性函数。设 $\gcd(a,b) = 1$，有</description>
+$$ \sum_{i=1}^n \gcd(i,n) $$
+分析 联想到
+$$ \varphi(n) = \sum_{i=1}^n [\gcd(i,n) = 1] $$
+尝试凑这个形式
+$$ \begin{aligned} \sum_{i=1}^n \gcd(i,n) &amp;amp;= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \ &amp;amp;= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \ &amp;amp;= \sum_{d \mid n} d \varphi(n/d) \end{aligned} $$
+这里其实已经可以过题了，但还可以再瞎搞一下，令
+$$ nf(n) = \sum_{d \mid n} d \varphi(n/d) = n\sum_{d \mid n} \frac{\varphi(d)}{d} $$
+尝试证明 $f(n)$ 是一个积性函数。设 $\gcd(a,b) = 1$，有</description>
     </item>
     
     <item>
@@ -338,8 +386,10 @@ int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll 
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p4721/</guid>
       <description>题目大意 给定 $g[1], \cdots, g[m]$，求序列 $f$。
- $$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$ 分析 不妨令 $g [0] = 0$，$h (x) = g (x) + h [0]$，我们要解方程
- $$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$ 这个形式看似卷积，但实际上它缺了一项。对 $n &amp;gt; 0$ 凑卷积</description>
+$$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$
+分析 不妨令 $g [0] = 0$，$h (x) = g (x) + h [0]$，我们要解方程
+$$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$
+这个形式看似卷积，但实际上它缺了一项。对 $n &amp;gt; 0$ 凑卷积</description>
     </item>
     
     <item>
@@ -349,10 +399,14 @@ int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll 
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2522/</guid>
       <description>题目大意 即求
- $$ \sum_{i=a}^b \sum_{j=c}^d [\gcd(i,j) = k] $$ 分析 容易想到，独立出函数 $f(k)$ 使得
- $$ f(k) = \sum_{i=1}^x \sum_{j=1}^y [\gcd(i,j) = k] $$ 利用 Mobius 反演化简，设 $F(d)$
- $$ F(n) = \sum_{n \mid d} f(d) = \sum_{i=1}^x \sum_{j=1}^y [n \mid i][n \mid j] = \left\lfloor \frac{x}{n} \right\rfloor \left\lfloor \frac{y}{n} \right\rfloor $$ 反演化简有
- $$ f(n) = \sum_{n \mid d} \mu\left(\frac{d}{n}\right)F(d) = \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tn} \right\rfloor \left\lfloor \frac{y}{tn} \right\rfloor $$ 预处理出 $\mu(t)$ 的前缀和，剩下的就是一个二重分块了。</description>
+$$ \sum_{i=a}^b \sum_{j=c}^d [\gcd(i,j) = k] $$
+分析 容易想到，独立出函数 $f(k)$ 使得
+$$ f(k) = \sum_{i=1}^x \sum_{j=1}^y [\gcd(i,j) = k] $$
+利用 Mobius 反演化简，设 $F(d)$
+$$ F(n) = \sum_{n \mid d} f(d) = \sum_{i=1}^x \sum_{j=1}^y [n \mid i][n \mid j] = \left\lfloor \frac{x}{n} \right\rfloor \left\lfloor \frac{y}{n} \right\rfloor $$
+反演化简有
+$$ f(n) = \sum_{n \mid d} \mu\left(\frac{d}{n}\right)F(d) = \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tn} \right\rfloor \left\lfloor \frac{y}{tn} \right\rfloor $$
+预处理出 $\mu(t)$ 的前缀和，剩下的就是一个二重分块了。</description>
     </item>
     
     <item>
@@ -362,9 +416,12 @@ int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll 
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-04/p2261/</guid>
       <description>题目大意 给出正整数 $n$ 和 $k$，请计算
- $$ G(n, k) = \sum_{i = 1}^n k \bmod i $$ 分析 因为
- $$ k \bmod i = k - i \left\lfloor \frac{k}{i} \right\rfloor $$ 因此有
- $$ G(n,k) = nk - \sum_{i=1}^n i \left\lfloor \frac{k}{i} \right\rfloor $$ 后面需要整数分块。
+$$ G(n, k) = \sum_{i = 1}^n k \bmod i $$
+分析 因为
+$$ k \bmod i = k - i \left\lfloor \frac{k}{i} \right\rfloor $$
+因此有
+$$ G(n,k) = nk - \sum_{i=1}^n i \left\lfloor \frac{k}{i} \right\rfloor $$
+后面需要整数分块。
 int main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l = 1, r; l &amp;lt;= n; l = r + 1) { r = min(n, k / (k / l)); ll t = (l + r) * (r - l + 1) / 2; sum -= t * (k / l); } printf(&amp;#34;%lld&amp;#34;, sum); return 0; } </description>
     </item>
     
@@ -375,7 +432,8 @@ int main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l 
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-04/p1314/</guid>
       <description>题目大意 对于一个区间 $[l_i,r_i]$，计算矿石在这个区间上的检验值 $y_i$：
- $$ y_i=\sum_{j=l_i}^{r_i}[w_j \geqslant W] \times \sum_{j=l_i}^{r_i}[w_j \geqslant W]v_j $$ 记检验结果为 $y=\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。
+$$ y_i=\sum_{j=l_i}^{r_i}[w_j \geqslant W] \times \sum_{j=l_i}^{r_i}[w_j \geqslant W]v_j $$
+记检验结果为 $y=\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。
 分析 注意到 $y(w)$ 是关于 $W$ 的递减函数，对 $w$ 在 $[w_{\min},w_{\max}]$ 上进行二分。
 const ll MN = 2e5 + 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; ll n, m, s; int main() { n = rr(), m = rr(), s = rr(); ll minw = 0x3f3f3f3f, maxw = 0; f1[0] = f2[0] = 0; for (ll i = 1; i &amp;lt;= n; i++) { ww[i] = rr(), vv[i] = rr(); maxw = max(ww[i], maxw); minw = min(ww[i], minw); } for (ll i = 1; i &amp;lt;= m; i++) { li[i] = rr(), ri[i] = rr(); } ll l = minw, r = maxw + 1; while (l &amp;lt; r) { int mid = (l + r) &amp;gt;&amp;gt; 1; if (sum(mid) &amp;lt;= s) r = mid; else l = mid + 1; } ll rst = min(sum(l - 1) - s, s - sum(l)); printf(&amp;#34;%lld&amp;#34;, rst); return 0; } 区间求和可以用前缀和优化。</description>
     </item>
@@ -468,7 +526,8 @@ P1541 乌龟棋 ==DONE==</description>
       <description>题目大意 环形队列上有 $n$ 堆石子，可以把相邻的两堆合成一堆，每次合并的得分是新一堆的石子数。
 求最终分数的最小值和最大值。
 分析 考虑 $dp(i,j)$ 是将区间 $[i,j]$ 的石子全部合并的最大值。于是状态转移方程为
- $$ dp(i,j) = \max_{i \leqslant k \leqslant j}(dp(i,k) + dp(k+1,j) + s(i,j)) $$ 其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。
+$$ dp(i,j) = \max_{i \leqslant k \leqslant j}(dp(i,k) + dp(k+1,j) + s(i,j)) $$
+其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。
 然而不能通过先 $i$ 再 $j$ 再 $k$ 的循环来递推，运算顺序值得注意。
 细节：前缀和、循环开两倍。
 int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(); for (ll i = 1; i &amp;lt;= n; i++) f[i + n] = f[i] = rr(); for (ll i = 1; i &amp;lt;= n * 2; i++) s[i] = s[i - 1] + f[i]; for (ll len = 2; len &amp;lt;= n; len++) { for (ll i = 1; i &amp;lt;= 2 * n - len + 1; i++) { int j = i + len - 1; int tmax = 0, tmin = 0x3f3f3f3f; int ss = s[j] - s[i - 1]; for (ll k = i; k &amp;lt;= j - 1; k++) { tmax = max(tmax, dmax[i][k] + dmax[k + 1][j] + ss); tmin = min(tmin, dmin[i][k] + dmin[k + 1][j] + ss); } dmax[i][j] = tmax; dmin[i][j] = tmin; } } int mmin = 0x3f3f3f3f, mmax = 0; for (ll p = 0; p &amp;lt;= n - 1; p++) { mmin = min(mmin, dmin[p + 1][p + n]); mmax = max(mmax, dmax[p + 1][p + n]); } printf(&amp;#34;%d\n%d\n&amp;#34;, mmin, mmax); return 0; } </description>
@@ -493,7 +552,9 @@ ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), te
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1541/</guid>
       <description>题目大意 初始有四种卡片，消耗后分别可以前进 $1$、$2$、$3$ 和 $4$ 格。棋盘上每个点都有个分数，求从第 $1$ 格到达第 $N$ 格途径分数的最大值。
 分析 设状态 $F[i, j, k, w]$ 为使用 $i$ 张前进 $1$、……、$w$ 张前进 $4$ 之后的状态，容易得到转移方程
- $$ F[i, j, k, w] = \max\left\{ \begin{matrix} dp[i - 1, j, k, w] \\ dp[i, j - 1, k, w] \\ dp[i, j, k - 1, w] \\ dp[i, j, k, w - 1] \end{matrix}\right\} + a[i + 2j + 3k + 4w] $$ 处理一下边界情况，滚动数组即可。</description>
+$$ F[i, j, k, w] = \max\left{ \begin{matrix} dp[i - 1, j, k, w] \ dp[i, j - 1, k, w] \ dp[i, j, k - 1, w] \ dp[i, j, k, w - 1] \end{matrix}\right} + a[i + 2j + 3k + 4w] $$
+处理一下边界情况，滚动数组即可。
+ll dp[50][50][50], aa[400], tt[10]; int main() { ll n = rr(), m = rr(); for (ll i = 1; i &amp;lt;= n; i++) { aa[i] = rr(); } for (ll i = 1; i &amp;lt;= m; i++) { tt[rr()]++; } for (ll i = 0; i &amp;lt;= tt[1]; i++) { for (ll j = 0; j &amp;lt;= tt[2]; j++) { for (ll k = 0; k &amp;lt;= tt[3]; k++) { for (ll w = 0; w &amp;lt;= tt[4]; w++) { dp[j][k][w] = aa[i * 1 + j * 2 + k * 3 + w * 4 + 1] + max4( j == 0 ?</description>
     </item>
     
     <item>
@@ -506,7 +567,8 @@ ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), te
 你从 $(1,1)$ 出发，只能沿着格子直走，最终走到 $(n,n)$。要求沿途经过所有的线段，且所走路程长度尽量的短。
 分析 显然是一行一行的递推。维护两个数据，一个是走完该行后停留在左侧的，记作 ${\rm DP}_l$，相应的停留在右侧的记作 ${\rm DP}_r$。
 若停在左侧，可能从上一行的右侧走来，也可能是由左侧走来，故转移方程有
- $$ {\rm DP}_l[i] = r_i - l_i + \min\{{\rm DP}_l[i - 1] + |l_{i-1} - r_i|, {\rm DP}_r[i - 1] + |r_{i - 1} - r_i|\} $$ 右侧类似，故可以写出代码
+$$ {\rm DP}_l[i] = r_i - l_i + \min{{\rm DP}l[i - 1] + |l{i-1} - r_i|, {\rm DP}r[i - 1] + |r{i - 1} - r_i|} $$
+右侧类似，故可以写出代码
 int main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll i = 1; i &amp;lt;= n; i++) { ll l = rr(), r = rr(); ll tl = min(dpl + abs(past_l - r), dpr + abs(past_r - r)) + r - l; ll tr = min(dpl + abs(past_l - l), dpr + abs(past_r - l)) + r - l; dpl = tl, dpr = tr; past_l = l, past_r = r; } printf(&amp;#34;%lld\n&amp;#34;, min(dpl + n - past_l, dpr + n - past_r) + n - 1); return 0; } </description>
     </item>
     
@@ -518,7 +580,8 @@ int main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll 
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1077/</guid>
       <description>题目大意 要从 $n$ 种花中挑出 $m$ 盆展览，其中第 $i$ 种花不得多于 $a_i$ 种。求有几种选法。
 分析 考虑动态规划，记状态 $dp[i,j]$ 为摆完前 $i$ 种花，共 $j$ 盆时的方案数。容易得到递推式
- $$ dp[i,j] = \sum_{k = j - \min(a_i, j)}^j dp[i-1,k] $$ 边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。
+$$ dp[i,j] = \sum_{k = j - \min(a_i, j)}^j dp[i-1,k] $$
+边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。
 const ll mod = 1e6 + 7; ll dp[110], aa[110], sum[110]; int main() { ll n = rr(), m = rr(); sum[0] = dp[0] = 1; for (ll i = 1; i &amp;lt;= n; i++) aa[i] = rr(); for (ll i = 1; i &amp;lt;= n; i++) { for (ll j = 1; j &amp;lt;= m; j++) sum[j] = (sum[j - 1] + dp[j]) % mod; for (ll j = m; j &amp;gt;= 0; j--) { int t = j - 1 - min(aa[i], j); if (t &amp;gt; 0) dp[j] = (dp[j] + sum[j - 1] - sum[t]) % mod; } } printf(&amp;#34;%lld\n&amp;#34;, (dp[m] + mod) % mod); return 0; } </description>
     </item>
     
@@ -579,9 +642,12 @@ ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l +
       <description>题目大意 给定石头的高度 $h$，从第 $i$ 块石头跳到第 $j$ 块上耗费体力 $(h_i-h_j)^2$ ，求最耗体力的路径。
 分析 容易猜到贪心结论，是不断的在剩余石头中最大最小的来回跳。
 考虑证明结论，设 $h_i$ 是将要跳的序列，展开求和式
- $$ S = \sum_{k=1}^{n-1}(h_k-h_{k+1})^2 = \sum_{k=1}^nh_k^2 - 2\sum_{k=1}^{n-1}h_kh_{k+1} $$ 注意到平方和为一个定值，重点在后半式。记 $H_k = h_{k+1}$，有
- $$ \sum_{k=1}^{n-1}h_kH_k $$ 利用高中时学的排序不等式，有
- $$ \text{反序和} \leqslant \text{乱序和} \leqslant \text{顺序和} $$ 于是有反序最小。双指针维护即可。
+$$ S = \sum_{k=1}^{n-1}(h_k-h_{k+1})^2 = \sum_{k=1}^nh_k^2 - 2\sum_{k=1}^{n-1}h_kh_{k+1} $$
+注意到平方和为一个定值，重点在后半式。记 $H_k = h_{k+1}$，有
+$$ \sum_{k=1}^{n-1}h_kH_k $$
+利用高中时学的排序不等式，有
+$$ \text{反序和} \leqslant \text{乱序和} \leqslant \text{顺序和} $$
+于是有反序最小。双指针维护即可。
 ll nn[310]; int main() { ll n = rr(); for (ll i = 1; i &amp;lt;= n; i++) nn[i] = rr(); sort(nn + 1, nn + n + 1); ll l = 0, r = n, sum = 0; while (l &amp;lt; r) { ll t1 = nn[l] - nn[r], t2 = nn[l + 1] - nn[r]; sum += t1 * t1 + t2 * t2; l++, r--; } printf(&amp;#34;%lld\n&amp;#34;, sum); return 0; } </description>
     </item>
     
@@ -628,7 +694,8 @@ char ch[62510]; int solve(int win, int len) { int w = 0, l = 0; for (ll i = 0; i
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-09/p2181/</guid>
       <description>题目大意 凸 $n$ 边形中，任意三条对角线不共点，求所有对角线交点的个数。
 分析 注意到一个交点对应凸多边形 $4$ 个定点，于是等价于 $n$ 个点任选 $4$ 个点的选法种数，即
- $$ \binom{n}{4} = \frac{n(n-1)(n-2)(n-3)}{24} $$ 注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。
+$$ \binom{n}{4} = \frac{n(n-1)(n-2)(n-3)}{24} $$
+注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。
 int main() { unsigned long long n; scanf(&amp;#34;%llu&amp;#34;, &amp;amp;n); n = n * (n - 1) / 2 * (n - 2) / 3 * (n - 3) / 4; printf(&amp;#34;%llu&amp;#34;, n); return 0; } </description>
     </item>
     
@@ -659,11 +726,12 @@ int main() { int ttt = rr(); while (ttt--) { int n = rr(), k = rr(), l = rr(); i
 分析 考虑把先走后走转化为两个人同时走，只需要处理遇到两次的值即可。
 考虑四维 DP，用 $dp[x_1,y_1,x_2,y_2]$ 表示第一个人走到 $(x_1,y_1)$ 和第二个人走到 $(x_2,y_2)$。
 再考虑转移，每一个位置仅可能从其左面或上面转移来，于是可以写出（$x_1 \ne y_1$ 或 $x_2 \ne y_2$ 时）
- $$ dp[x_1,y_1,x_2,y_2] = \max\left\{ \begin{matrix} dp[x_1-1,y_1,x_2-1,y_2] \\ dp[x_1,y_1-1,x_2-1,y_2] \\ dp[x_1-1,y_1,x_2,y_2-1] \\ dp[x_1,y_1-1,x_2,y_2-1] \end{matrix}\right\} + a[x_1,y_1] + a[x_2,y_2] $$ 当 $x_1=y_1,x_2=y_2$ 时，只加一次即可。到这里 $O(n^4)$ 其实已经可以过题了，但还可以优化。
+$$ dp[x_1,y_1,x_2,y_2] = \max\left{ \begin{matrix} dp[x_1-1,y_1,x_2-1,y_2] \ dp[x_1,y_1-1,x_2-1,y_2] \ dp[x_1-1,y_1,x_2,y_2-1] \ dp[x_1,y_1-1,x_2,y_2-1] \end{matrix}\right} + a[x_1,y_1] + a[x_2,y_2] $$
+当 $x_1=y_1,x_2=y_2$ 时，只加一次即可。到这里 $O(n^4)$ 其实已经可以过题了，但还可以优化。
 注意到一些状态是不可达的，因为 $x_1+y_1 = x_2+y_2$，因此存在 $O(n^3)$ 的 DP。
 考虑当前已走长度 $h=x_1+y_1=x_2+y_2$，于是可以把两个人的座标表示为 $(x_1,h-x_1)$ 和 $(x_2,h-x_2)$。
 于是记状态为 $dp[h,x_1,x_2]$，当 $x_1 \ne x_2$ 时有
- $$ dp[h,x_1,x_2] = \max\left\{ \begin{matrix} dp[h-1,x_1,x_2] \\ dp[h-1,x_1,x_2-1] \\ dp[h-1,x_1-1,x_2] \\ dp[h-1,x_1-1,x_2-1] \end{matrix}\right\} + a[x_1,h-x_1] + a[x_2,h-x_2] $$ 再注意到可以使用滚动数组，因此有</description>
+$$ dp[h,x_1,x_2] = \max\left{ \begin{matrix} dp[h-1,x_1,x_2] \ dp[h-1,x_1,x_2-1] \ dp[h-1,x_1-1,x_2] \ dp[h-1,x_1-1,x_2-1] \end{matrix}\right} + a[x_1,h-x_1] + a[x_2,h-x_2] $$</description>
     </item>
     
     <item>

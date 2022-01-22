@@ -165,14 +165,34 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>HDU6833 A Very Easy Math Problem</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 即求
+$$ S (n) = \sum^n_{{ a_x } = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd { a_x }) \gcd { a_x } $$
+我自己随便简写了，全打太麻烦了。
+分析 这东西看着很吓人，其实是纸老虎。首先 $f(x) = \mu(x)^2$。提出 $\gcd$ 有
+$$ \begin{aligned} S (n) &amp; =\sum_{d=1}^{n}\sum^{n}{{ a{x}}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd { a_{x}} =d]\ &amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x&#43;1}\sum^{n/d}{{ a{x}} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd { a_{x}} =1] \end{aligned} $$
+对后面这部分反演有
+$$ \begin{aligned} &amp; \sum^{n / d}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd { a_x }} \mu (t) \right)\ = &amp; \sum^{n / d}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd { a_x }] \mu (t) \right)\ = &amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \end{aligned} $$...</p>
+  </section>
+  <footer class="entry-footer">September 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to HDU6833 A Very Easy Math Problem" href="https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6833/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>HDU6755 Fibonacci Sum</h2>
   </header>
   <section class="entry-content">
     <p>题目大意 设 Fibonacci 数列第 $i$ 项为 $F_i$，求
- $$ S = \sum_{i = 0}^n (F_{i c})^k $$ 分析 由特征方程法，设
- $$ x^2 &#43; x - 1 = 0 \Longrightarrow A, B = \frac{1 \pm \sqrt{5}}{2} $$ 因此 Fibonacci 通项公式即可表示为
- $$ F_n = \frac{A^n - B^n}{A - B} $$ 根据二次剩余的知识，模意义下是可以开方的。因此
- $$ (F_{i c})^k = \left( \frac{A^{i c} - B^{i c}}{A - B} \right)^k = \frac{1}{(A - B)^k} \sum_{j = 0}^k \binom{k}{j} (- 1)^{k - j} (A^j B^{k - j})^{i c} $$ 求和有...</p>
+$$ S = \sum_{i = 0}^n (F_{i c})^k $$
+分析 由特征方程法，设
+$$ x^2 &#43; x - 1 = 0 \Longrightarrow A, B = \frac{1 \pm \sqrt{5}}{2} $$
+因此 Fibonacci 通项公式即可表示为
+$$ F_n = \frac{A^n - B^n}{A - B} $$
+根据二次剩余的知识，模意义下是可以开方的。因此
+$$ (F_{i c})^k = \left( \frac{A^{i c} - B^{i c}}{A - B} \right)^k = \frac{1}{(A - B)^k} \sum_{j = 0}^k \binom{k}{j} (- 1)^{k - j} (A^j B^{k - j})^{i c} $$...</p>
   </section>
   <footer class="entry-footer">September 23, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to HDU6755 Fibonacci Sum" href="https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6755/"></a>
@@ -187,9 +207,11 @@
  要求每个数字都大于 $1$； 数列各项之积恰为 $n$。  求其前缀和 $S(n, k) = \sum f(i, k)$。
 分析 多组输入好坑啊。
 先允许 $a_i=1$，将结果记为 $g(n,k)$，容易利用隔板法求得
- $$ g (p^c, k) = \binom{t &#43; k - 1}{k - 1} $$ 对于多个质因数，显然其贡献是相互独立的，即 $g$ 是积性函数。考虑选取 $i$ 个数令其 $a_i&gt;1$，枚举有
- $$ g (n, k) = \sum_{i = 1}^k \binom{n}{i} f (n, i) $$ 二项式反演（或者直接容斥）有
- $$ f (n, k) = \sum_{i = 1}^k (- 1)^{k - i} \binom{k}{i} g (n, i) $$ 求和并换序...</p>
+$$ g (p^c, k) = \binom{t &#43; k - 1}{k - 1} $$
+对于多个质因数，显然其贡献是相互独立的，即 $g$ 是积性函数。考虑选取 $i$ 个数令其 $a_i&gt;1$，枚举有
+$$ g (n, k) = \sum_{i = 1}^k \binom{n}{i} f (n, i) $$
+二项式反演（或者直接容斥）有
+$$ f (n, k) = \sum_{i = 1}^k (- 1)^{k - i} \binom{k}{i} g (n, i) $$...</p>
   </section>
   <footer class="entry-footer">September 22, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to HDU6537 Neko and function" href="https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6537/"></a>
@@ -201,9 +223,10 @@
   </header>
   <section class="entry-content">
     <p>题目大意 定义
- $$ f (n) = \sum_{d \mid n} d \left[ \gcd \left( d, \frac{n}{d} \right) = 1 \right] $$ 求其前缀和 $S(n)$。
+$$ f (n) = \sum_{d \mid n} d \left[ \gcd \left( d, \frac{n}{d} \right) = 1 \right] $$
+求其前缀和 $S(n)$。
 分析 首先 Min25 筛是过不了的，内存不够。先推式子
- $$ \begin{aligned} S (n) &amp;= \sum_{i = 1}^n \sum_{d \mid i} d \left[ \gcd \left( d, \frac{i}{d} \right) = 1 \right] \\ &amp;= \sum_{d = 1}^n \sum_{i = 1}^n d [d \mid i] \left[\gcd \left( d, \frac{i}{d} \right) = 1 \right] \\ &amp;= \sum_{d = 1}^n \sum_{i = 1}^{n / d} d [\gcd (i, d) = 1] \end{aligned} $$ 看到 $\gcd = 1$ 就应该想起来 Mobius 反演，容易化简有...</p>
+$$ \begin{aligned} S (n) &amp;= \sum_{i = 1}^n \sum_{d \mid i} d \left[ \gcd \left( d, \frac{i}{d} \right) = 1 \right] \ &amp;= \sum_{d = 1}^n \sum_{i = 1}^n d [d \mid i] \left[\gcd \left( d, \frac{i}{d} \right) = 1 \right] \ &amp;= \sum_{d = 1}^n \sum_{i = 1}^{n / d} d [\gcd (i, d) = 1] \end{aligned} $$...</p>
   </section>
   <footer class="entry-footer">September 22, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to HDU6750 Function" href="https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6750/"></a>
@@ -215,10 +238,13 @@
   </header>
   <section class="entry-content">
     <p>题目大意 即求
- $$ S = \sum_{n=0}^\infty f(n)r^n $$ 分析 换序
- $$ S = \sum_{n = 0}^{\infty} \left( \sum_{i = 0}^m f_i n^i \right) r^n = \sum_{i = 0}^m f_i \sum_{n = 0}^{\infty} n^i r^n $$ 令
- $$ S_i = \sum_{n = 0}^{\infty} n^i r^n $$ 套路的逐项相减，主动的凑二项式
- $$ (1 - r) S_i = 1 &#43; \sum_{n = 1}^{\infty} n^i r^n - \sum_{n = 1}^{\infty} (n - 1)^i r^n = 1 &#43; \sum_{n = 0}^{\infty} r^{n &#43; 1} \sum_{j = 0}^{i - 1} \binom{k}{j} n^j $$ 交换求和顺序...</p>
+$$ S = \sum_{n=0}^\infty f(n)r^n $$
+分析 换序
+$$ S = \sum_{n = 0}^{\infty} \left( \sum_{i = 0}^m f_i n^i \right) r^n = \sum_{i = 0}^m f_i \sum_{n = 0}^{\infty} n^i r^n $$
+令
+$$ S_i = \sum_{n = 0}^{\infty} n^i r^n $$
+套路的逐项相减，主动的凑二项式
+$$ (1 - r) S_i = 1 &#43; \sum_{n = 1}^{\infty} n^i r^n - \sum_{n = 1}^{\infty} (n - 1)^i r^n = 1 &#43; \sum_{n = 0}^{\infty} r^{n &#43; 1} \sum_{j = 0}^{i - 1} \binom{k}{j} n^j $$...</p>
   </section>
   <footer class="entry-footer">September 9, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P5349 幂" href="https://rogeryoungh.github.io/code-of-acm/post/2021-09/p5349/"></a>
@@ -259,10 +285,13 @@ FFT 字符串匹配模板题，我在 ZAFU Wiki 中讲过，即对每个字符�
   <section class="entry-content">
     <p>魔改 KMP 大概是不行的，卷积在这里出现的很妙。
 卷积处理匹配 定义匹配函数
- $$ d(x,y) = [x = y] $$ 给定文本串 $B$ 和长为 $m$ 的模式串 $A$，要找出 $A$ 在 $B$ 的所有出现，可以定义
- $$ f(k) = \sum_{i=0}^{m-1} d(A_{i}, B_{i-m&#43;k}) $$ 即 $f(k) = 0$ 时有完全匹配 $A = B[k-m\ldots k-1]$。考虑让 $d$ 函数更 “数学” 一点，以更好的计算
- $$ d(x,y) = (x - y)^2 $$ 再提供模式串 $A$ 的翻转 $S$，即 $A_i = S_{m-i}$，展开有
- $$ \begin{aligned} f(k) &amp;= \sum_{i=0}^{m-1}A_{i}^2 &#43; \sum_{i=0}^{m-1}B_{i-m&#43;k}^2 - 2\sum_{i=0}^{m-1} A_{i}B_{i-m&#43;k}\\ &amp;= \sum_{i=0}^{m-1}A_{i}^2 &#43; \sum_{i=0}^{m-1}B_{i-m&#43;k}^2 - 2\sum_{i=0}^{m-1} S_{m-i}B_{i-m&#43;k} \end{aligned} $$ 前面两项能够预处理，最后一项是卷积。于是最终复杂度是 $O(n \log n)$。...</p>
+$$ d(x,y) = [x = y] $$
+给定文本串 $B$ 和长为 $m$ 的模式串 $A$，要找出 $A$ 在 $B$ 的所有出现，可以定义
+$$ f(k) = \sum_{i=0}^{m-1} d(A_{i}, B_{i-m&#43;k}) $$
+即 $f(k) = 0$ 时有完全匹配 $A = B[k-m\ldots k-1]$。考虑让 $d$ 函数更 “数学” 一点，以更好的计算
+$$ d(x,y) = (x - y)^2 $$
+再提供模式串 $A$ 的翻转 $S$，即 $A_i = S_{m-i}$，展开有
+$$ \begin{aligned} f(k) &amp;= \sum_{i=0}^{m-1}A_{i}^2 &#43; \sum_{i=0}^{m-1}B_{i-m&#43;k}^2 - 2\sum_{i=0}^{m-1} A_{i}B_{i-m&#43;k}\ &amp;= \sum_{i=0}^{m-1}A_{i}^2 &#43; \sum_{i=0}^{m-1}B_{i-m&#43;k}^2 - 2\sum_{i=0}^{m-1} S_{m-i}B_{i-m&#43;k} \end{aligned} $$...</p>
   </section>
   <footer class="entry-footer">July 28, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P4173 残缺的字符串" href="https://rogeryoungh.github.io/code-of-acm/post/2021-07/p4173/"></a>
@@ -287,33 +316,18 @@ FFT 字符串匹配模板题，我在 ZAFU Wiki 中讲过，即对每个字符�
   </header>
   <section class="entry-content">
     <p>题目大意 即求
- $$ \sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) \in \mathbb{P}] $$ 分析 先转化一下
- $$ \sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) \in \mathbb{P}] = \sum_{p}\sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) = p] $$ 在 P2522 中得到
- $$ \sum_{i=1}^x \sum_{j=1}^y [\gcd(i,j) = k] = \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tk} \right\rfloor \left\lfloor \frac{y}{tk} \right\rfloor $$ 代入有
- $$ \sum_{p} \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tp} \right\rfloor \left\lfloor \frac{y}{tp} \right\rfloor $$ 令 $T = tp$，$T$ 的上界应还是 $\min(x,y)$，代入有
- $$ \sum_{T=1}^{\min(x,y)} \left\lfloor \frac{x}{T} \right\rfloor \left\lfloor \frac{y}{T} \right\rfloor \sum_{p \mid T} \mu\left(\frac{T}{p}\right) $$ 后面那个在 Euler 筛后再求和一下，是可以预处理的。...</p>
+$$ \sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) \in \mathbb{P}] $$
+分析 先转化一下
+$$ \sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) \in \mathbb{P}] = \sum_{p}\sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) = p] $$
+在 P2522 中得到
+$$ \sum_{i=1}^x \sum_{j=1}^y [\gcd(i,j) = k] = \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tk} \right\rfloor \left\lfloor \frac{y}{tk} \right\rfloor $$
+代入有
+$$ \sum_{p} \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tp} \right\rfloor \left\lfloor \frac{y}{tp} \right\rfloor $$
+令 $T = tp$，$T$ 的上界应还是 $\min(x,y)$，代入有
+$$ \sum_{T=1}^{\min(x,y)} \left\lfloor \frac{x}{T} \right\rfloor \left\lfloor \frac{y}{T} \right\rfloor \sum_{p \mid T} \mu\left(\frac{T}{p}\right) $$...</p>
   </section>
   <footer class="entry-footer">May 26, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P2257 YY 的 GCD" href="https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2257/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P2350 外星人</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 设
- $$ \varphi_{x&#43;1}(m) = \varphi(\varphi_x(m)) $$ 求最小的 $x$ 使得 $\varphi_x(m) = 1$。
-其中 $\varphi(m)$ 是欧拉函数。
-分析 注意到仅有 $\varphi(1) = \varphi(2) = 1$，再有公式
- $$ \varphi\left(\prod_{i=1}^mp_i^{q_i}\right) = \prod_{i=1}^m(p_i-1)p_i^{q_i-1} $$ 因此从唯一分解形式的角度来看，迭代一次消去了一个 $2$，也生成了一些 $2$。
-考虑设 $f(n)$ 为 $\varphi(n)$ 中因子 $2$ 的个数。
-设 $\gcd(a,b) = 1$，可以证明 $f(ab) = f(a) f(b)$。同时 $f(p) = f(p-1)$。
-这说明 $f(x)$ 是一个积性函数，可以用 Euler 筛递推。
-const ll MN = 1e5 &#43; 10; bool notp[1000001]; int prime[200001], cnt, phi[1000001]; void sieve(int n) { phi[1] = 1; for (ll i = 2; i &lt;= n; i&#43;&#43;) { if (!...</p>
-  </section>
-  <footer class="entry-footer">May 25, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P2350 外星人" href="https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2350/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

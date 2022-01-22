@@ -9,7 +9,8 @@
 <meta name="keywords" content="洛谷, DP" />
 <meta name="description" content="题目大意 要从 $n$ 种花中挑出 $m$ 盆展览，其中第 $i$ 种花不得多于 $a_i$ 种。求有几种选法。
 分析 考虑动态规划，记状态 $dp[i,j]$ 为摆完前 $i$ 种花，共 $j$ 盆时的方案数。容易得到递推式
- $$ dp[i,j] = \sum_{k = j - \min(a_i, j)}^j dp[i-1,k] $$ 边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。
+$$ dp[i,j] = \sum_{k = j - \min(a_i, j)}^j dp[i-1,k] $$
+边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。
 const ll mod = 1e6 &#43; 7; ll dp[110], aa[110], sum[110]; int main() { ll n = rr(), m = rr(); sum[0] = dp[0] = 1; for (ll i = 1; i &lt;= n; i&#43;&#43;) aa[i] = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) { for (ll j = 1; j &lt;= m; j&#43;&#43;) sum[j] = (sum[j - 1] &#43; dp[j]) % mod; for (ll j = m; j &gt;= 0; j--) { int t = j - 1 - min(aa[i], j); if (t &gt; 0) dp[j] = (dp[j] &#43; sum[j - 1] - sum[t]) % mod; } } printf(&#34;%lld\n&#34;, (dp[m] &#43; mod) % mod); return 0; } ">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1077/" />
@@ -54,7 +55,8 @@ const ll mod = 1e6 &#43; 7; ll dp[110], aa[110], sum[110]; int main() { ll n = r
 <meta property="og:title" content="P1077 摆花" />
 <meta property="og:description" content="题目大意 要从 $n$ 种花中挑出 $m$ 盆展览，其中第 $i$ 种花不得多于 $a_i$ 种。求有几种选法。
 分析 考虑动态规划，记状态 $dp[i,j]$ 为摆完前 $i$ 种花，共 $j$ 盆时的方案数。容易得到递推式
- $$ dp[i,j] = \sum_{k = j - \min(a_i, j)}^j dp[i-1,k] $$ 边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。
+$$ dp[i,j] = \sum_{k = j - \min(a_i, j)}^j dp[i-1,k] $$
+边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。
 const ll mod = 1e6 &#43; 7; ll dp[110], aa[110], sum[110]; int main() { ll n = rr(), m = rr(); sum[0] = dp[0] = 1; for (ll i = 1; i &lt;= n; i&#43;&#43;) aa[i] = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) { for (ll j = 1; j &lt;= m; j&#43;&#43;) sum[j] = (sum[j - 1] &#43; dp[j]) % mod; for (ll j = m; j &gt;= 0; j--) { int t = j - 1 - min(aa[i], j); if (t &gt; 0) dp[j] = (dp[j] &#43; sum[j - 1] - sum[t]) % mod; } } printf(&#34;%lld\n&#34;, (dp[m] &#43; mod) % mod); return 0; } " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1077/" /><meta property="article:section" content="post" />
@@ -65,7 +67,8 @@ const ll mod = 1e6 &#43; 7; ll dp[110], aa[110], sum[110]; int main() { ll n = r
 <meta name="twitter:title" content="P1077 摆花"/>
 <meta name="twitter:description" content="题目大意 要从 $n$ 种花中挑出 $m$ 盆展览，其中第 $i$ 种花不得多于 $a_i$ 种。求有几种选法。
 分析 考虑动态规划，记状态 $dp[i,j]$ 为摆完前 $i$ 种花，共 $j$ 盆时的方案数。容易得到递推式
- $$ dp[i,j] = \sum_{k = j - \min(a_i, j)}^j dp[i-1,k] $$ 边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。
+$$ dp[i,j] = \sum_{k = j - \min(a_i, j)}^j dp[i-1,k] $$
+边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。
 const ll mod = 1e6 &#43; 7; ll dp[110], aa[110], sum[110]; int main() { ll n = rr(), m = rr(); sum[0] = dp[0] = 1; for (ll i = 1; i &lt;= n; i&#43;&#43;) aa[i] = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) { for (ll j = 1; j &lt;= m; j&#43;&#43;) sum[j] = (sum[j - 1] &#43; dp[j]) % mod; for (ll j = m; j &gt;= 0; j--) { int t = j - 1 - min(aa[i], j); if (t &gt; 0) dp[j] = (dp[j] &#43; sum[j - 1] - sum[t]) % mod; } } printf(&#34;%lld\n&#34;, (dp[m] &#43; mod) % mod); return 0; } "/>
 
 
@@ -95,11 +98,11 @@ const ll mod = 1e6 &#43; 7; ll dp[110], aa[110], sum[110]; int main() { ll n = r
   "@type": "BlogPosting",
   "headline": "P1077 摆花",
   "name": "P1077 摆花",
-  "description": "题目大意 要从 $n$ 种花中挑出 $m$ 盆展览，其中第 $i$ 种花不得多于 $a_i$ 种。求有几种选法。\n分析 考虑动态规划，记状态 $dp[i,j]$ 为摆完前 $i$ 种花，共 $j$ 盆时的方案数。容易得到递推式\n $$ dp[i,j] = \\sum_{k = j - \\min(a_i, j)}^j dp[i-1,k] $$ 边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。\nconst ll mod = 1e6 + 7; ll dp[110], aa[110], sum[110]; int main() { ll n = rr(), m = rr(); sum[0] = dp[0] = 1; for (ll i = 1; i \u0026lt;= n; i++) aa[i] = rr(); for (ll i = 1; i \u0026lt;= n; i++) { for (ll j = 1; j \u0026lt;= m; j++) sum[j] = (sum[j - 1] + dp[j]) % mod; for (ll j = m; j \u0026gt;= 0; j--) { int t = j - 1 - min(aa[i], j); if (t \u0026gt; 0) dp[j] = (dp[j] + sum[j - 1] - sum[t]) % mod; } } printf(\u0026#34;%lld\\n\u0026#34;, (dp[m] + mod) % mod); return 0; } ",
+  "description": "题目大意 要从 $n$ 种花中挑出 $m$ 盆展览，其中第 $i$ 种花不得多于 $a_i$ 种。求有几种选法。\n分析 考虑动态规划，记状态 $dp[i,j]$ 为摆完前 $i$ 种花，共 $j$ 盆时的方案数。容易得到递推式\n$$ dp[i,j] = \\sum_{k = j - \\min(a_i, j)}^j dp[i-1,k] $$\n边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。\nconst ll mod = 1e6 + 7; ll dp[110], aa[110], sum[110]; int main() { ll n = rr(), m = rr(); sum[0] = dp[0] = 1; for (ll i = 1; i \u0026lt;= n; i++) aa[i] = rr(); for (ll i = 1; i \u0026lt;= n; i++) { for (ll j = 1; j \u0026lt;= m; j++) sum[j] = (sum[j - 1] + dp[j]) % mod; for (ll j = m; j \u0026gt;= 0; j--) { int t = j - 1 - min(aa[i], j); if (t \u0026gt; 0) dp[j] = (dp[j] + sum[j - 1] - sum[t]) % mod; } } printf(\u0026#34;%lld\\n\u0026#34;, (dp[m] + mod) % mod); return 0; } ",
   "keywords": [
     "洛谷", "DP"
   ],
-  "articleBody": "题目大意 要从 $n$ 种花中挑出 $m$ 盆展览，其中第 $i$ 种花不得多于 $a_i$ 种。求有几种选法。\n分析 考虑动态规划，记状态 $dp[i,j]$ 为摆完前 $i$ 种花，共 $j$ 盆时的方案数。容易得到递推式\n $$ dp[i,j] = \\sum_{k = j - \\min(a_i, j)}^j dp[i-1,k] $$ 边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。\nconst ll mod = 1e6 + 7; ll dp[110], aa[110], sum[110]; int main() { ll n = rr(), m = rr(); sum[0] = dp[0] = 1; for (ll i = 1; i  n; i++) aa[i] = rr(); for (ll i = 1; i  n; i++) { for (ll j = 1; j  m; j++) sum[j] = (sum[j - 1] + dp[j]) % mod; for (ll j = m; j = 0; j--) { int t = j - 1 - min(aa[i], j); if (t  0) dp[j] = (dp[j] + sum[j - 1] - sum[t]) % mod; } } printf(\"%lld\\n\", (dp[m] + mod) % mod); return 0; } ",
+  "articleBody": "题目大意 要从 $n$ 种花中挑出 $m$ 盆展览，其中第 $i$ 种花不得多于 $a_i$ 种。求有几种选法。\n分析 考虑动态规划，记状态 $dp[i,j]$ 为摆完前 $i$ 种花，共 $j$ 盆时的方案数。容易得到递推式\n$$ dp[i,j] = \\sum_{k = j - \\min(a_i, j)}^j dp[i-1,k] $$\n边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。\nconst ll mod = 1e6 + 7; ll dp[110], aa[110], sum[110]; int main() { ll n = rr(), m = rr(); sum[0] = dp[0] = 1; for (ll i = 1; i  n; i++) aa[i] = rr(); for (ll i = 1; i  n; i++) { for (ll j = 1; j  m; j++) sum[j] = (sum[j - 1] + dp[j]) % mod; for (ll j = m; j = 0; j--) { int t = j - 1 - min(aa[i], j); if (t  0) dp[j] = (dp[j] + sum[j - 1] - sum[t]) % mod; } } printf(\"%lld\\n\", (dp[m] + mod) % mod); return 0; } ",
   "wordCount" : "144",
   "inLanguage": "en",
   "datePublished": "2020-10-16T00:00:00Z",
@@ -261,9 +264,9 @@ const ll mod = 1e6 &#43; 7; ll dp[110], aa[110], sum[110]; int main() { ll n = r
 <p>要从 $n$ 种花中挑出 $m$ 盆展览，其中第 $i$ 种花不得多于 $a_i$ 种。求有几种选法。</p>
 <h2 id="分析">分析<a hidden class="anchor" aria-hidden="true" href="#分析">#</a></h2>
 <p>考虑动态规划，记状态 $dp[i,j]$ 为摆完前 $i$ 种花，共 $j$ 盆时的方案数。容易得到递推式</p>
-<p> $$
+<p>$$
 dp[i,j] = \sum_{k = j - \min(a_i, j)}^j dp[i-1,k]
-$$ </p>
+$$</p>
 <p>边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">const</span> <span class="n">ll</span> <span class="n">mod</span> <span class="o">=</span> <span class="mf">1e6</span> <span class="o">+</span> <span class="mi">7</span><span class="p">;</span>
 <span class="n">ll</span> <span class="n">dp</span><span class="p">[</span><span class="mi">110</span><span class="p">],</span> <span class="n">aa</span><span class="p">[</span><span class="mi">110</span><span class="p">],</span> <span class="n">sum</span><span class="p">[</span><span class="mi">110</span><span class="p">];</span>

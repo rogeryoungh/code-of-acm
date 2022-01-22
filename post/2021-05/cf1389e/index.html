@@ -10,9 +10,12 @@
 <meta name="description" content="Berland 年有 $m$ 月，每月 $d$ 天。一周有 $w$ 天。
 若第 $x$ 月的第 $y$ 天和第 $y$ 月的第 $x$ 天是同一个星期，则称 $(x,y)$ 是一对。
 求一年有几对。
- $$ xd&#43;y \equiv yd&#43;x \pmod w $$ 即
- $$ (x-y)(d-1) \equiv 0 \Rightarrow (x-y)(d-1) \in w\mathbb{Z} $$ 于是有
- $$ y-x = \frac{wk}{\gcd(w,d-1)} $$ 又 $x &lt; y \leqslant \min(m,d)$​，
+$$ xd&#43;y \equiv yd&#43;x \pmod w $$
+即
+$$ (x-y)(d-1) \equiv 0 \Rightarrow (x-y)(d-1) \in w\mathbb{Z} $$
+于是有
+$$ y-x = \frac{wk}{\gcd(w,d-1)} $$
+又 $x &lt; y \leqslant \min(m,d)$​，
 int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll g = w / gcd(w, d - 1); ll max_y = min(m, d) - 1; ll div = (max_y &#43; 1) / g, mod = (max_y &#43; 1) % g; ll sum = (div - 1) * div / 2 * g &#43; mod * div; printf(&#34;%lld\n&#34;, sum); } return 0; } ">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2021-05/cf1389e/" />
@@ -58,9 +61,12 @@ int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll 
 <meta property="og:description" content="Berland 年有 $m$ 月，每月 $d$ 天。一周有 $w$ 天。
 若第 $x$ 月的第 $y$ 天和第 $y$ 月的第 $x$ 天是同一个星期，则称 $(x,y)$ 是一对。
 求一年有几对。
- $$ xd&#43;y \equiv yd&#43;x \pmod w $$ 即
- $$ (x-y)(d-1) \equiv 0 \Rightarrow (x-y)(d-1) \in w\mathbb{Z} $$ 于是有
- $$ y-x = \frac{wk}{\gcd(w,d-1)} $$ 又 $x &lt; y \leqslant \min(m,d)$​，
+$$ xd&#43;y \equiv yd&#43;x \pmod w $$
+即
+$$ (x-y)(d-1) \equiv 0 \Rightarrow (x-y)(d-1) \in w\mathbb{Z} $$
+于是有
+$$ y-x = \frac{wk}{\gcd(w,d-1)} $$
+又 $x &lt; y \leqslant \min(m,d)$​，
 int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll g = w / gcd(w, d - 1); ll max_y = min(m, d) - 1; ll div = (max_y &#43; 1) / g, mod = (max_y &#43; 1) % g; ll sum = (div - 1) * div / 2 * g &#43; mod * div; printf(&#34;%lld\n&#34;, sum); } return 0; } " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/2021-05/cf1389e/" /><meta property="article:section" content="post" />
@@ -72,9 +78,12 @@ int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll 
 <meta name="twitter:description" content="Berland 年有 $m$ 月，每月 $d$ 天。一周有 $w$ 天。
 若第 $x$ 月的第 $y$ 天和第 $y$ 月的第 $x$ 天是同一个星期，则称 $(x,y)$ 是一对。
 求一年有几对。
- $$ xd&#43;y \equiv yd&#43;x \pmod w $$ 即
- $$ (x-y)(d-1) \equiv 0 \Rightarrow (x-y)(d-1) \in w\mathbb{Z} $$ 于是有
- $$ y-x = \frac{wk}{\gcd(w,d-1)} $$ 又 $x &lt; y \leqslant \min(m,d)$​，
+$$ xd&#43;y \equiv yd&#43;x \pmod w $$
+即
+$$ (x-y)(d-1) \equiv 0 \Rightarrow (x-y)(d-1) \in w\mathbb{Z} $$
+于是有
+$$ y-x = \frac{wk}{\gcd(w,d-1)} $$
+又 $x &lt; y \leqslant \min(m,d)$​，
 int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll g = w / gcd(w, d - 1); ll max_y = min(m, d) - 1; ll div = (max_y &#43; 1) / g, mod = (max_y &#43; 1) % g; ll sum = (div - 1) * div / 2 * g &#43; mod * div; printf(&#34;%lld\n&#34;, sum); } return 0; } "/>
 
 
@@ -104,11 +113,11 @@ int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll 
   "@type": "BlogPosting",
   "headline": "CF1389E Calendar Ambiguity",
   "name": "CF1389E Calendar Ambiguity",
-  "description": "Berland 年有 $m$ 月，每月 $d$ 天。一周有 $w$ 天。\n若第 $x$ 月的第 $y$ 天和第 $y$ 月的第 $x$ 天是同一个星期，则称 $(x,y)$ 是一对。\n求一年有几对。\n $$ xd+y \\equiv yd+x \\pmod w $$ 即\n $$ (x-y)(d-1) \\equiv 0 \\Rightarrow (x-y)(d-1) \\in w\\mathbb{Z} $$ 于是有\n $$ y-x = \\frac{wk}{\\gcd(w,d-1)} $$ 又 $x \u0026lt; y \\leqslant \\min(m,d)$​，\nint main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll g = w / gcd(w, d - 1); ll max_y = min(m, d) - 1; ll div = (max_y + 1) / g, mod = (max_y + 1) % g; ll sum = (div - 1) * div / 2 * g + mod * div; printf(\u0026#34;%lld\\n\u0026#34;, sum); } return 0; } ",
+  "description": "Berland 年有 $m$ 月，每月 $d$ 天。一周有 $w$ 天。\n若第 $x$ 月的第 $y$ 天和第 $y$ 月的第 $x$ 天是同一个星期，则称 $(x,y)$ 是一对。\n求一年有几对。\n$$ xd+y \\equiv yd+x \\pmod w $$\n即\n$$ (x-y)(d-1) \\equiv 0 \\Rightarrow (x-y)(d-1) \\in w\\mathbb{Z} $$\n于是有\n$$ y-x = \\frac{wk}{\\gcd(w,d-1)} $$\n又 $x \u0026lt; y \\leqslant \\min(m,d)$​，\nint main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll g = w / gcd(w, d - 1); ll max_y = min(m, d) - 1; ll div = (max_y + 1) / g, mod = (max_y + 1) % g; ll sum = (div - 1) * div / 2 * g + mod * div; printf(\u0026#34;%lld\\n\u0026#34;, sum); } return 0; } ",
   "keywords": [
     "CodeForces", "数论"
   ],
-  "articleBody": "Berland 年有 $m$ 月，每月 $d$ 天。一周有 $w$ 天。\n若第 $x$ 月的第 $y$ 天和第 $y$ 月的第 $x$ 天是同一个星期，则称 $(x,y)$ 是一对。\n求一年有几对。\n $$ xd+y \\equiv yd+x \\pmod w $$ 即\n $$ (x-y)(d-1) \\equiv 0 \\Rightarrow (x-y)(d-1) \\in w\\mathbb{Z} $$ 于是有\n $$ y-x = \\frac{wk}{\\gcd(w,d-1)} $$ 又 $x int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll g = w / gcd(w, d - 1); ll max_y = min(m, d) - 1; ll div = (max_y + 1) / g, mod = (max_y + 1) % g; ll sum = (div - 1) * div / 2 * g + mod * div; printf(\"%lld\\n\", sum); } return 0; } ",
+  "articleBody": "Berland 年有 $m$ 月，每月 $d$ 天。一周有 $w$ 天。\n若第 $x$ 月的第 $y$ 天和第 $y$ 月的第 $x$ 天是同一个星期，则称 $(x,y)$ 是一对。\n求一年有几对。\n$$ xd+y \\equiv yd+x \\pmod w $$\n即\n$$ (x-y)(d-1) \\equiv 0 \\Rightarrow (x-y)(d-1) \\in w\\mathbb{Z} $$\n于是有\n$$ y-x = \\frac{wk}{\\gcd(w,d-1)} $$\n又 $x int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll g = w / gcd(w, d - 1); ll max_y = min(m, d) - 1; ll div = (max_y + 1) / g, mod = (max_y + 1) % g; ll sum = (div - 1) * div / 2 * g + mod * div; printf(\"%lld\\n\", sum); } return 0; } ",
   "wordCount" : "122",
   "inLanguage": "en",
   "datePublished": "2021-05-24T00:00:00Z",
@@ -263,17 +272,17 @@ int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll 
   <div class="post-content"><p>Berland 年有 $m$ 月，每月 $d$ 天。一周有 $w$ 天。</p>
 <p>若第 $x$ 月的第 $y$ 天和第 $y$ 月的第 $x$ 天是同一个星期，则称 $(x,y)$ 是一对。</p>
 <p>求一年有几对。</p>
-<p> $$
+<p>$$
 xd+y \equiv yd+x \pmod w
-$$ </p>
+$$</p>
 <p>即</p>
-<p> $$
+<p>$$
 (x-y)(d-1) \equiv 0 \Rightarrow (x-y)(d-1) \in w\mathbb{Z}
-$$ </p>
+$$</p>
 <p>于是有</p>
-<p> $$
+<p>$$
 y-x = \frac{wk}{\gcd(w,d-1)}
-$$ </p>
+$$</p>
 <p>又 $x &lt; y \leqslant \min(m,d)$​，</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">ll</span> <span class="n">ttt</span> <span class="o">=</span> <span class="n">rr</span><span class="p">();</span>
