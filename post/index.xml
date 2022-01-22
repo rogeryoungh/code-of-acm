@@ -6,8 +6,25 @@
     <description>Recent content in Posts on Roger Young</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <copyright>© 2021 [Roger Young](/code-of-acm)</copyright>
-    <lastBuildDate>Fri, 21 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/post/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2021 [Roger Young](https://rogeryoungh.github.io/blog/about/)</copyright>
+    <lastBuildDate>Sat, 22 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>代码模板文档</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/other/docs/</link>
+      <pubDate>Sat, 22 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/other/docs/</guid>
+      <description>我的代码模板依赖于我自己写的预处理器，它能够 DFS 的把所有引入的模板展开。
+公共文件头。
+Basic 基本部分有
+ modint：m32。  NTT-mint 基于 modint 的多项式板子。每一种算法可能有多种实现。
+多项式类的定义
+ poly/1.hpp：继承于 vector&amp;lt;m32&amp;gt;。  NTT
+ ntt/1.hpp：无 rev 的 NTT。 ntt/2.hpp：略微卡常的 NTT。  多项式逆
+ inv/1.hpp：12E 的牛顿迭代 inv，和 16E 的牛顿迭代 div。 inv/2.hpp：10E 的牛顿迭代 inv，和 13E 的牛顿迭代 div。 inv/3.hpp：24E 的牛顿迭代 inv，和 28E 的牛顿迭代 div。 inv/6.hpp：半在线卷积实现的 inv &amp;amp; div。 inv/7.hpp：全在线卷积实现的 inv &amp;amp; div。（没啥用） inv/8.hpp：10E 的分块牛顿迭代 inv，和 10E 的分块牛顿迭代 div。  多项式 exp
+ exp/1.hpp：20E 的牛顿迭代 exp。 exp/2.hpp：17E 的牛顿迭代 exp。 exp/3.</description>
+    </item>
+    
     <item>
       <title>ZAFU 2022.01.18 个人赛题解</title>
       <link>https://rogeryoungh.github.io/code-of-acm/post/2022-01/hj1/</link>
@@ -18,7 +35,7 @@
 A - CF1379A 题目大意 替换字符串 $s$ 中的 ?，使得出现且仅出现一次 abacaba。
 分析 本题较为难写，因为很难判断恰好出现了一次。但是数据规模很小，可以采用非常暴力的写法。
 一种想法是，枚举每个出现 abacaba 的位置 $i$，把当前 $s[i, i + 6]$ 中的 ? 设为给定串，这样就得到了字符串 $t$。
-然后判断字符串 $t$ 中只出现了一次 abacaba，可以通过 substr 枚举所有长为 $6$ 的子串判断。
+然后判断字符串 $t$ 中只出现了一次 abacaba，可以通过 substr 枚举所有长为 $6$ 的子串。
 string what = &amp;#34;abacaba&amp;#34;; void solve() { int len; string s; cin &amp;gt;&amp;gt; len &amp;gt;&amp;gt; s; for (int i = 0; i &amp;lt; len - 6; i++) { string tmp = s; for (int j = 0; j &amp;lt; 7; j++) if (tmp[i + j] == &amp;#39;?</description>
     </item>
     
@@ -46,10 +63,10 @@ F. BFS Trees  第一次补题补到 F 耶！什么时候才能在赛中做到 F 
     
     <item>
       <title>2021 年刷题日志</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/log/log2021/</link>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/other/log2021/</link>
       <pubDate>Wed, 10 Nov 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/log/log2021/</guid>
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/other/log2021/</guid>
       <description>过于简单的题不记录。
 洛谷：更新至：2021.11.10(&amp;ndash;.&amp;ndash;)
 CodeForces：更新至：&amp;ndash;.&amp;ndash;
@@ -481,10 +498,10 @@ int main() { L = rr(), N = rr(), M = rr(); for (ll i = 1; i &amp;lt;= N; i++) aa
     
     <item>
       <title>2020 年刷题日志</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/log/log2020/</link>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/other/log2020/</link>
       <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/log/log2020/</guid>
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/other/log2020/</guid>
       <description>过于简单的题不记录。
 洛谷：更新至：2020.12.31(2020.10)
 CodeForces：更新至：&amp;ndash;.&amp;ndash;
@@ -736,28 +753,28 @@ $$ dp[h,x_1,x_2] = \max\left{ \begin{matrix} dp[h-1,x_1,x_2] \ dp[h-1,x_1,x_2-1]
     
     <item>
       <title>OJ 题目跳转</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/log/jump/</link>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/other/jump/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/log/jump/</guid>
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/other/jump/</guid>
       <description></description>
     </item>
     
     <item>
       <title>模板生成</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/log/template-gen/</link>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/other/template-gen/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/log/template-gen/</guid>
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/other/template-gen/</guid>
       <description></description>
     </item>
     
     <item>
       <title>贴代码</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/log/code/</link>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/other/code/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/log/code/</guid>
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/other/code/</guid>
       <description></description>
     </item>
     

@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>OJ 题目跳转 | Roger Young</title>
-<meta name="keywords" content="Log" />
-<meta name="description" content="OJ 题目跳转 - Roger Young">
+<title>贴代码 | Roger Young</title>
+<meta name="keywords" content="" />
+<meta name="description" content="贴代码 - Roger Young">
 <meta name="author" content="">
-<link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/log/jump/" />
+<link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/other/code/" />
 <link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.db03f6b1db979d0cdd8e815f16121fd4c2bd956cb3c3efedeab38b2fb48ae6a7.css" integrity="sha256-2wP2sduXnQzdjoFfFhIf1MK9lWyzw&#43;/t6rOLL7SK5qc=" rel="preload stylesheet" as="style">
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
 <script defer crossorigin="anonymous" src="/code-of-acm/assets/js/highlight.min.dacf81874295cd2936dececc3a04b7a00adb5d68618e897914957eeeef6f03b8.js" integrity="sha256-2s&#43;Bh0KVzSk23s7MOgS3oArbXWhhjol5FJV&#43;7u9vA7g="
@@ -26,15 +26,15 @@
 
 
 
-<meta property="og:title" content="OJ 题目跳转" />
+<meta property="og:title" content="贴代码" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/log/jump/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/other/code/" /><meta property="article:section" content="post" />
 
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="OJ 题目跳转"/>
+<meta name="twitter:title" content="贴代码"/>
 <meta name="twitter:description" content=""/>
 
 
@@ -52,8 +52,8 @@
     {
       "@type": "ListItem",
       "position":  3 ,
-      "name": "OJ 题目跳转",
-      "item": "https://rogeryoungh.github.io/code-of-acm/post/log/jump/"
+      "name": "贴代码",
+      "item": "https://rogeryoungh.github.io/code-of-acm/post/other/code/"
     }
   ]
 }
@@ -62,11 +62,11 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "OJ 题目跳转",
-  "name": "OJ 题目跳转",
+  "headline": "贴代码",
+  "name": "贴代码",
   "description": "",
   "keywords": [
-    "Log"
+    
   ],
   "articleBody": "",
   "wordCount" : "0",
@@ -75,7 +75,7 @@
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://rogeryoungh.github.io/code-of-acm/post/log/jump/"
+    "@id": "https://rogeryoungh.github.io/code-of-acm/post/other/code/"
   },
   "publisher": {
     "@type": "Organization",
@@ -174,11 +174,6 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://rogeryoungh.github.io/code-of-acm/tags/log/" title="Log">
-                    <span>Log</span>
-                </a>
-            </li>
-            <li>
                 <a href="https://rogeryoungh.github.io/code-of-acm/archives" title="Archive">
                     <span>Archive</span>
                 </a>
@@ -193,132 +188,74 @@
                     <span>Tags</span>
                 </a>
             </li>
+            <li>
+                <a href="https://rogeryoungh.github.io/code-of-acm/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
 <main class="main">
 <header class="page-header">
-    <h1>OJ 题目跳转</h1>
+    <h1>贴代码</h1>
 </header>
 
 <div class="post-content">
-    <p>题目跳转工具，类似 <code>HDU1234</code> 或 <code>CF1234A</code>，回车即可跳转。至于哪些能够跳，<code>Ctrl+U</code> 看看源码就知道了。</p>
-</div>
 
-<div id="searchbox">
-    <input id="keyword" autofocus placeholder="题目编号 ↵" aria-label="search" type="search" onkeyup="onKeyUp(event)">
-    <div id="searchResults"></div>
+<p>
+Talk is cheap, show me the code. <a href="./?url=roger://post/2021-11/codes/P1393.cpp">一个栗子</a>。
+</p>
+
+<pre>
+<code id="codes" class="hljs cpp">404 page not found
+使用方式：https://&lt;here-url&gt;?url=&lt;path-to-cpp&gt;</code>
+</pre>
+
 </div>
 <script>
-
-let input = "";
-let urls = [];
-
-function onKeyUp(event) {
-    var e = event || window.event || arguments.callee.caller.arguments[0];
-    load();
-    if (e && e.keyCode == 13) {
-        window.open(urls[0], '_blank');
-    }
-}
-
-window.onload = load;
-
-function load() {
-    input = document.getElementById("keyword").value;
-    input = input.toUpperCase().replaceAll(/\s/g, "");
-    urls = [];
-    match();
-    let d = "";
-    for (let i in urls) {
-        d += `<li class="post-entry"><header class="entry-header">${urls[i]}&nbsp;\xBB</header><a href="${urls[i]}" aria-label="${urls[i]}"></a></li>`;
-    }
-    document.getElementById("searchResults").innerHTML = d;
-}
-
-function test(site, preffix, extra) {
-    if (extra == null) {
-        let reg = new RegExp(`^${preffix}\\d*$`);
-        if (reg.test(input)) {
-            addURL(site, input.substring(preffix.length));
+    function getQueryVariable(variable) {
+        let query = window.location.search.substring(1);
+        let vars = query.split("&");
+        for (let i = 0; i < vars.length; i++) {
+            let pair = vars[i].split("=");
+            if (pair[0] == variable) { return pair[1]; }
         }
-    } else if (extra === 'cf-problem') {
-        let len = input.length;
-        let reg = new RegExp(`^${preffix}\\d+[A-Z]$`);
-        if (reg.test(input)) {
-            addURL(site, input.substring(preffix.length, len - 1), input.substring(len - 1));
+        return (false);
+    }
+
+    window.onload = load;
+
+    function load() {
+        url = getQueryVariable("url");
+        if (!url)
             return;
+        console.log(url.substring(0, 4));
+        if (url.startsWith("roger://")) {
+            lt = window.location;
+            tmp_url = lt.protocol + "//" + lt.host + lt.pathname;
+            post_url = tmp_url + "../../../";
+            url = post_url + url.substring(8);
         }
-        reg = new RegExp(`^${preffix}\\d+[A-Z]\\d$`);
-        if (reg.test(input)) {
-            addURL(site, input.substring(preffix.length, len - 2), input.substring(len - 2));
-            return;
-        }
+        console.log("ask " + url);
+        codes.innerText = "loading...";
+        fetch(url)
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                data = data.replaceAll("<", "&lt;");
+                data = data.replaceAll(">", "&gt;");
+                console.log(data);
+                codes.innerHTML = data;
+                hljs.highlightBlock(codes);
+            });
     }
-}
 
-function match() {
-    let len = input.length;
-    test('luogu', 'P');
-    test('luogu', 'LUOGU');
-    test('hdu', 'HDU');
-    test('hdu', 'HDOJ');
-    test('poj', 'POJ');
-    test('loj', 'LOJ');
-    test('uoj', 'UOJ');
-    test('bzoj', 'BZOJ');
-    test('codeforces-contest', 'CF');
-    test('codeforces', 'CF', 'cf-problem');
-    
-    let allow_remote_oj = true;
-
-    if (allow_remote_oj) {
-        test('luogu-codeforces', 'CF', 'cf-problem');
-        test('vjudge-codeforces', 'CF', 'cf-problem');
-        test('vjudge-uva', 'UVA');
-    }
-}
-
-function addURL(site, code, extra) {
-    let url = "https://";
-    if (site === 'luogu')
-        url += `www.luogu.com.cn/problem/P${code}`;
-    else if (site === 'hdu')
-        url += `acm.hdu.edu.cn/showproblem.php?pid=${code}`;
-    else if (site === 'loj')
-        url += `loj.ac/p/${code}`;
-    else if (site === 'uoj')
-        url += `uoj.ac/problem/${code}`;
-    else if (site === 'poj')
-        url = 'http://' + `poj.org/problem?id=${code}`; //
-    else if (site === 'codeforces')
-        url += `codeforces.com/problemset/problem/${code}/${extra}`;
-    else if (site === 'codeforces-contest')
-        url += `codeforces.com/contest/${code}`;
-    else if (site === 'codeforces-contest')
-        url += `codeforces.com/contest/${code}`;
-    else if (site === 'bzoj')
-        url += `darkbzoj.tk/problem/${code}`;
-    
-    //////// REMOTE OJ /////////
-    
-    else if (site === 'luogu-codeforces')
-        url += `www.luogu.com.cn/problem/CF${code}${extra}`;
-    else if (site === 'vjudge-codeforces')
-        url += `vjudge.net/problem/CodeForces-${code}${extra}`;
-    else if (site === 'vjudge-lightoj')
-        url += `vjudge.net/problem/LightOJ-${code}`;
-    else if (site === 'vjudge-uva')
-        url += `vjudge.net/problem/UVA-${code}`;
-
-    
-    urls.push(url);
-}
 
 </script>
     </main>
     <footer class="footer">
-    <span>© 2021 <a href="/code-of-acm">Roger Young</a></span>
+    <span>© 2021 <a href="https://rogeryoungh.github.io/blog/about/">Roger Young</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
