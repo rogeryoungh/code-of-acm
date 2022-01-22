@@ -6,9 +6,6 @@ theme: "paper-mod"
 
 menu:
   main:
-    - name: Log
-      url: tags/log/
-      weight: 1
     - name: Archive
       url: archives
       weight: 5
@@ -18,6 +15,9 @@ menu:
     - name: Tags
       url: tags/
       weight: 10
+    - name: About
+      url: about/
+      weight: 15
         
 
 markup:
@@ -27,7 +27,7 @@ markup:
     renderer:
       unsafe: true
 
-Copyright: © 2021 [Roger Young](/code-of-acm)
+Copyright: © 2021 [Roger Young](https://rogeryoungh.github.io/blog/about/)
 
 params:
   ShowCodeCopyButtons: true

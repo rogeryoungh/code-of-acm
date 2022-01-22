@@ -6,7 +6,7 @@
 <div class="post-content">
 
 <p>
-Talk is cheap, show me the code. <a href="./?url=roger://2021-11/codes/P1393.cpp">一个栗子</a>。
+Talk is cheap, show me the code. <a href="./?url=roger://post/2021-11/codes/P1393.cpp">一个栗子</a>。
 </p>
 
 <pre>
@@ -32,13 +32,12 @@ Talk is cheap, show me the code. <a href="./?url=roger://2021-11/codes/P1393.cpp
         url = getQueryVariable("url");
         if (!url)
             return;
-            console.log(url.substring(0, 4));
-        if (url.substring(0, 4) !== "http") {
+        console.log(url.substring(0, 4));
+        if (url.startsWith("roger://")) {
             lt = window.location;
             tmp_url = lt.protocol + "//" + lt.host + lt.pathname;
-            post_url = tmp_url + "../../";
+            post_url = tmp_url + "../../../";
             url = post_url + url.substring(8);
-            url.substring(0, 4) !== "localhost"
         }
         console.log("ask " + url);
         codes.innerText = "loading...";

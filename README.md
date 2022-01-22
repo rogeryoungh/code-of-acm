@@ -6,6 +6,7 @@
 
 - Archive：代码归档，包含每一题的完整代码，以及做题思路。
 - Solution：题解整理，只保留了做题思路，LaTeX 格式。
+- Scripts：工具脚本，比如展开引入的本地模板。
 - Template：代码模板，练习用。打印模板见我的 Note 仓库。
 
 本仓库内代码适用 MIT License。
@@ -19,8 +20,7 @@
 ```cpp
 using namespace std;
 using ll = long long;
-using ull = unsigned long long;
-using ld = long double;
+using u64 = unsigned long long;
 
 #define _fore(i, a) for (ll i = head[a]; i; i = edge[i].nxt)
 #define LN putchar('\n')
