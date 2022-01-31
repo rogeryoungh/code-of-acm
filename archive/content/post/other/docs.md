@@ -1,24 +1,53 @@
 ---
 author: "rogeryoungh"
-title: "代码模板文档"
+title: "代码模板"
 date: "2022-01-22"
 showtoc: true
 katex: true
 ---
 
-我的代码模板依赖于我自己写的预处理器，它能够 DFS 的把所有引入的模板展开。
+我的代码模板依赖于我自定义的[预处理器](../code/?url=https://rogeryoungh.github.io/code-of-acm/scripts/py/pre.py)，它通过 DFS 把所有引入的模板展开。
 
-[公共文件头](../code/?url=https://rogeryoungh.github.io/code-of-acm/template/index.hpp)。
+- [index.hpp](../code/?url=https://rogeryoungh.github.io/code-of-acm/template/index.hpp)：公共文件头。
+
+我的模板风格是简单封装：在保持易用的同时，封装尽量的薄。
+
+## Data Struct
+
+基础数据结构。
+
+- [fwtree/1.hpp](../code/?url=https://rogeryoungh.github.io/code-of-acm/template/ds/fwtree/1.hpp)：普通树状数组。
+- [fwtree/2.hpp](../code/?url=https://rogeryoungh.github.io/code-of-acm/template/ds/fwtree/1.hpp)：支持区间修改、区间查询的树状数组。
+- [SegmentTree/1.hpp](../code/?url=https://rogeryoungh.github.io/code-of-acm/template/ds/SegmentTree/1.hpp)：普通线段树示例，不可引入。
+- [SegmentTree/2.hpp](../code/?url=https://rogeryoungh.github.io/code-of-acm/template/ds/SegmentTree/2.hpp)：带懒标记的线段树示例，不可引入。
+
+## Math
+
+基础数学算法。
+
+- [qpow.hpp](../code/?url=https://rogeryoungh.github.io/code-of-acm/template/math/qpow.hpp)：快速幂。
+- [qpow128.hpp](../code/?url=https://rogeryoungh.github.io/code-of-acm/template/math/qpow128.hpp)：64 位类型的快速幂。
 
 ## Basic
 
-基本部分有 
+我也不知道这东西该放哪，就放到这里吧。
 
 - modint：[m32](../code/?url=https://rogeryoungh.github.io/code-of-acm/template/basic/mint/m32.hpp)。
 
-## NTT-mint
+## NTT-int
 
-基于 modint 的多项式板子。每一种算法可能有多种实现。
+简化多项式板子，码量少，常数较大。
+
+- [fps/O.hpp](../code/?url=https://rogeryoungh.github.io/code-of-acm/template/ntt-int/fps/1.hpp)：多项式基础结构，用牛顿迭代完成操作。
+- [fps/F.hpp](../code/?url=https://rogeryoungh.github.io/code-of-acm/template/ntt-int/fps/1.hpp)：与上面的相同，略卡常数。
+- [cdq.hpp](../code/?url=https://rogeryoungh.github.io/code-of-acm/template/ntt-int/cdq.hpp)：非递归 CDQ 分治。
+- [eval.hpp](../code/?url=https://rogeryoungh.github.io/code-of-acm/template/ntt-int/eval.hpp)：多点插值，多点求值。
+
+## ~~没有用的 NTT-mint~~
+
+基于 modint 的多项式板子，注重易用性和常数，码量较大。
+
+每一种算法可能有多种实现。
 
 多项式类的定义
 

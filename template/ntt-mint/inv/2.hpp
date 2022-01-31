@@ -18,7 +18,7 @@ Poly Poly::inv() const { // 10E
     if (deg() == 1)
         return x;
     for (int t = 2; t < deg() * 2; t <<= 1)
-        x.invD(cut(t), x.cut(t), t);
+        x.invD(cut(t), x, t);
     return x.cut(deg());
 }
 

@@ -3,18 +3,18 @@
 
 #include "template/ntt-mint/poly/0.hpp"
 
-Poly operator+(const Poly &f, const Poly &g) {
-    Poly ret = Poly(f).redeg(max(f.deg(), g.deg()));
+Poly operator+(Poly f, Poly g) {
+    if (f.deg() < g.deg())
+        std::swap(f, g);
     for (int i = 0; i < g.deg(); i++)
         f[i] += g[i];
     return f;
 }
 
-Poly operator-(const Poly &f, const Poly &g) {
-    Poly ret = Poly(f).redeg(max(f.deg(), g.deg()));
-    for (int i = 0; i < g.deg(); i++)
-        f[i] -= g[i];
-    return f;
+Poly operator-(Poly f, Poly g) {
+    for (auto &i : g)
+        i = -i;
+    return std::move(f) + g;
 }
 
 m32 mulAt(const Poly &f, const Poly &g, int u) {

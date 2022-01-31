@@ -1,8 +1,6 @@
 #ifndef ACM_NTT_INT_SIMP_H
 #define ACM_NTT_INT_SIMP_H
 
-#include <utility>
-
 #include "template/math/qpow.hpp"
 
 std::vector<int> w, Inv, fac, ifac;
@@ -11,17 +9,19 @@ inline int get_lim(int sum) {
     return 2 << std::__lg(sum);
 }
 
-struct m32 { // 简化 modint
+struct m32 {
     int v;
-    m32(int o = 0) : v(o) {}
+    m32(int o) : v(o) {}
     int operator+(int o) const {
-        return v + o >= P ? v + o - P : v + o;
+        int t = v + o;
+        return t >= P ? t - P : t;
     }
     int operator-(int o) const {
-        return v - o < 0 ? v - o + P : v - o;
+        int t = v - o;
+        return t < 0 ? t + P : t;
     }
     int operator*(int o) {
-        return ll(v) * o % P;
+        return 1ll * v * o % P;
     }
 };
 
@@ -49,7 +49,6 @@ static int ntt_size = 0;
 
 template <class iter>
 void ntt(iter f, int n) {
-    ntt_size += n;
     for (int l = n / 2; l; l >>= 1)
         for (int i = 0; i < n; i += l * 2)
             for (int j = 0; j < l; j++) {
@@ -61,12 +60,10 @@ void ntt(iter f, int n) {
 
 template <class iter>
 void intt(iter f, int n) {
-    ntt_size += n;
     for (int l = 1; l < n; l <<= 1)
         for (int i = 0; i < n; i += l * 2)
             for (int j = 0; j < l; j++) {
-                m32 x = f[i + j];
-                int y = m32(w[j + l]) * f[i + j + l];
+                m32 x = f[i + j]; int y = m32(w[j + l]) * f[i + j + l];
                 f[i + j] = x + y, f[i + j + l] = x - y;
             }
     m32 iv = P - (P - 1) / n;
@@ -75,30 +72,14 @@ void intt(iter f, int n) {
     reverse(f + 1, f + n);
 }
 
-struct Poly : vector<int> { // 大常数板子
-#define T (*this)
+struct Poly: vector<int> {
     using vector::vector;
-    int deg() const {
-        return size();
-    }
+#define T (*this)
     Poly& redeg(int m) {
         return resize(m), *this;
     }
-    Poly cut(int m) const {
-        return Poly{begin(), begin() + min(m, deg())};
-    }
-    friend Poly operator+(Poly f, Poly g) {
-        if (f.deg() < g.deg())
-            f.swap(g);
-        int m = f.deg() + g.deg() - 1;
-        for (int i = 0; i < m; i++)
-            f[i] = m32(f[i]) + g[i];
-        return f;
-    }
-    friend Poly operator-(const Poly& f, Poly g) {
-        for (auto &gi : g)
-            gi = P - gi;
-        return f + g;
+    Poly cut(int m, int l = 0) const {
+        return {begin() + l, begin() + min<int>(size(), m + l)};
     }
     Poly &ntt(int m) {
         return ::ntt(redeg(m).begin(), m), *this;
@@ -107,54 +88,17 @@ struct Poly : vector<int> { // 大常数板子
         return ::intt(begin(), m), *this;
     }
     Poly& operator^=(const Poly &g) {
-        for (int i = 0; i < deg(); i++)
-            T[i] = m32(T[i]) * g[i];
+        for (int i = 0; i < size(); i++)
+            T[i] = 1ll * T[i] * g[i] % P;
         return *this;
-    }
-    friend Poly operator^(const Poly &f, const Poly &g) {
-        return Poly(f) ^= g;
     }
     friend Poly& mul(Poly &f, Poly &g, int m) {
         return (f.ntt(m) ^= g.ntt(m)).intt(m);
     }
-    friend Poly operator*(Poly f, Poly g) {
-        if (f.deg() < g.deg())
-            swap(f, g);
-        int m = f.deg() + g.deg() - 1;
-        if (g.deg() == 1) {
-            for (auto &fi : f.v)
-                fi = m32(fi) * g[0];
-            return f;
-        }
-        return mul(f, g, get_lim(m)).redeg(m);
-    }
-    Poly deriv() const {
-        vi f(deg() - 1);
-        for (int i = 1; i < deg(); i++)
-            f[i - 1] = m32(i) * v[i];
-        return f;
-    }
-    Poly integr() const {
-        vi f(deg() + 1);
-        for (int i = deg(); i > 0; --i)
-            f[i] = m32(Inv[i]) * v[i - 1];
-        return f;
-    }
     Poly inv(int m) const;
-    Poly div(int m, const Poly& g) const;
-    Poly ln(int m) const {
-        return deriv().div(m - 1, cut(m)).integr();
-    }
+    Poly div(Poly G, int m) const;
     Poly exp(int m) const;
-    Poly sqrt(int m) const;
-    Poly pow(int m, int k) const {
-        return (ln(m) * k).exp(m);
-    }
-    Poly rev() const { return vi(v.rbegin(), v.rend()); }
-    friend Poly operator/(const Poly& f, const Poly& g) {
-        int m = f.deg() - g.deg() + 1;
-        return f.rev().div(m, g.rev()).rev();
-    }
+#undef T
 };
 
 template <int M = 32>

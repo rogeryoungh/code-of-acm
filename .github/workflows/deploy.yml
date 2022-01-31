@@ -23,12 +23,8 @@ jobs:
 
       - name: Build
         run: |
-          cd archive && hugo
-          cp -r ../template ../archive/public
-
-      - name: preprocess markdown
-        run: wget https://github.com/rogeryoungh/preprocessor-md-tex/releases/latest/download/preprocessor-md-tex && chmod +x preprocessor-md-tex && ./preprocessor-md-tex archive/content
-
+          bash scripts/build.sh
+          
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'

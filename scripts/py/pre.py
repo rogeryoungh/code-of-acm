@@ -6,8 +6,8 @@ import datetime
 
 template_dir = "/home/roger/Code/ACM/cl/"
 
-links = "// GENERATE FROM https://github.com/rogeryoungh/code-of-acm"
-date = f"// GENERATE DATE: {datetime.datetime.now()}"
+links = "// Author: Roger Young"
+date = f"// Date: {datetime.datetime.now()}"
 
 
 # 读文件内容
@@ -28,10 +28,11 @@ def same_file(path: str):
         flag = True
     if path.startswith("template/basic/mint") and not path.endswith("0.hpp"):
         flag = True
+    if path.startswith("template/ntt-int/fps") and not path.endswith("0.hpp"):
+        flag = True
     if flag:
         right = path.rindex("/")
         return path[:right]
-
     return path
 
 
@@ -86,7 +87,7 @@ def main(file):
     content = "\n".join(content_split)
 
     pyperclip.copy(content)
-    print("success: already in clipboard.")
+    print("success: %.3f KB" % (len(content) / 1024))
     # rewrite_file(file + '.cpp', content)
 
 
