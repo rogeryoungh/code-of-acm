@@ -6,6 +6,6 @@ chmod +x preprocessor-md-tex
 ./preprocessor-md-tex archive/content
 
 # Hugo
-hugo archive
+cd archive && hugo
 cp -r ../template ../archive/public
 cp -r ../scripts ../archive/public
