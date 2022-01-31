@@ -1,16 +1,7 @@
 #ifndef ACM_NTT_INT_EXTRA_H
 #define ACM_NTT_INT_EXTRA_H
 
-#ifndef RYLOCAL
-#include <vector>
-#include <algorithm>
-#include <functional>
-
-std::vector<int> w, Inv;
-#include "../basic/qpow.hpp"
-#include "ntt_simp.hpp"
-
-#endif
+#include "template/ntt-int/ntt_simp.hpp"
 
 struct PolyCDQ {
     Poly ans, f, nf[32];

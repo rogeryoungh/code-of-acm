@@ -1,209 +1,224 @@
-#include <utility>
-
 #ifndef ACM_NTT_INT_SIMP_H
 #define ACM_NTT_INT_SIMP_H
 
-#ifndef RYLOCAL
-#include <vector>
-#include <algorithm>
-#include <functional>
+#include <utility>
 
-std::vector<int> w, Inv;
-#include "../basic/qpow.hpp"
+#include "template/math/qpow.hpp"
 
-#endif
+std::vector<int> w, Inv, fac, ifac;
 
 inline int get_lim(int sum) {
-    int lim = 1;
-    while (lim < sum)
-        lim *= 2;
-    return lim;
+    return 2 << std::__lg(sum);
 }
 
-inline int& momo(int& u) {
-    return u >= P ? u -= P : u;
-}
+struct m32 { // 简化 modint
+    int v;
+    m32(int o = 0) : v(o) {}
+    int operator+(int o) const {
+        return v + o >= P ? v + o - P : v + o;
+    }
+    int operator-(int o) const {
+        return v - o < 0 ? v - o + P : v - o;
+    }
+    int operator*(int o) {
+        return ll(v) * o % P;
+    }
+};
 
-inline int mo(int u) {
-    return u >= P ? u - P : u;
-}
-
-void pre_w(int n) {
-    static int LIM = (w = {1, 1}, 2);
+void pre_w(int n, int g = 3) {
     n = get_lim(n);
-    if (n <= LIM)
-        return;
-    w.resize(n);
-    for (int l = LIM; l < n; l *= 2) {
-        int p = qpow(3, (P - 1) / l / 2, P);
+    w = {1, 1}, w.resize(n);
+    for (int l = 2; l < n; l *= 2) {
+        m32 p = qpow(g, (P - 1) / l / 2, P);
         for (int i = 0; i < l; i += 2) {
             w[(l + i)] = w[(l + i) / 2];
-            w[l + i + 1] = 1ll * w[l + i] * p % P;
+            w[l + i + 1] = p * w[l + i];
         }
     }
-    LIM = n;
 }
 
 void pre_inv(int n) {
-    static int LIM = (Inv = {1, 1}, 2);
-    if (n <= LIM)
-        return;
-    Inv.resize(n);
-    for (int i = LIM; i < n; i++) {
-        Inv[i] = 1ll * Inv[P % i] * (P - P / i) % P;
+    n = get_lim(n);
+    Inv = {1, 1}, Inv.resize(n);
+    for (int i = 2; i < n; i++) {
+        Inv[i] = m32(P - P / i) * Inv[P % i];
     }
-    LIM = n;
 }
 
 static int ntt_size = 0;
 
-void ntt(std::vector<int>::iterator f, int deg) {
-    pre_w(deg);
-    ntt_size += deg;
-    for (int l = deg >> 1; l; l >>= 1)
-        for (int i = 0; i < deg; i += l * 2) {
-            auto fj = f + i;
-            for (int j = 0; j < l; j++, fj++) {
-                int x = fj[0] + fj[l];
-                fj[l] = 1ll * w[l + j] * (fj[0] - fj[l] + P) % P;
-                momo(fj[0] = x);
+template <class iter>
+void ntt(iter f, int n) {
+    ntt_size += n;
+    for (int l = n / 2; l; l >>= 1)
+        for (int i = 0; i < n; i += l * 2)
+            for (int j = 0; j < l; j++) {
+                int x = f[i + j], y = f[i + j + l];
+                f[i + j + l] = m32(x - y + P) * w[j + l];
+                f[i + j] = m32(x) + y;
             }
-        }
 }
 
-void intt(std::vector<int>::iterator f, int deg) {
-    pre_w(deg);
-    ntt_size += deg;
-    for (int l = 1; l < deg; l *= 2)
-        for (int i = 0; i < deg; i += l * 2) {
-            auto fj = f + i;
-            for (int j = 0; j < l; j++, fj++) {
-                int x = fj[0], y = 1ll * fj[l] * w[j + l] % P;
-                momo(fj[0] = x + y), momo(fj[l] = x - y + P);
+template <class iter>
+void intt(iter f, int n) {
+    ntt_size += n;
+    for (int l = 1; l < n; l <<= 1)
+        for (int i = 0; i < n; i += l * 2)
+            for (int j = 0; j < l; j++) {
+                m32 x = f[i + j];
+                int y = m32(w[j + l]) * f[i + j + l];
+                f[i + j] = x + y, f[i + j + l] = x - y;
             }
-        }
-    const int deg_inv = P - (P - 1) / deg;
-    for (int i = 0; i < deg; i++)
-        f[i] = 1ll * f[i] * deg_inv % P;
-    std::reverse(f + 1, f + deg);
+    m32 iv = P - (P - 1) / n;
+    for (int i = 0; i < n; i++)
+        f[i] = iv * f[i];
+    reverse(f + 1, f + n);
 }
 
-struct Poly : std::vector<int> {
+struct Poly : vector<int> { // 大常数板子
+#define T (*this)
     using vector::vector;
-    bool isNTT = false;
-    Poly(Poly::const_iterator pi, int len) : Poly(pi, pi + len) {}
+    int deg() const {
+        return size();
+    }
+    Poly& redeg(int m) {
+        return resize(m), *this;
+    }
     Poly cut(int m) const {
-        return Poly(begin(), std::min<int>(m, size()));
+        return Poly{begin(), begin() + min(m, deg())};
     }
     friend Poly operator+(Poly f, Poly g) {
-        if (f.size() < g.size())
-            std::swap(f, g);
-        for (int i = 0; i < g.size(); i++)
-            momo(f[i] += g[i]);
+        if (f.deg() < g.deg())
+            f.swap(g);
+        int m = f.deg() + g.deg() - 1;
+        for (int i = 0; i < m; i++)
+            f[i] = m32(f[i]) + g[i];
         return f;
     }
-    friend Poly operator-(Poly f, Poly g) {
-        for (auto &i : g)
-            i = P - i;
-        return std::move(f) + g;
+    friend Poly operator-(const Poly& f, Poly g) {
+        for (auto &gi : g)
+            gi = P - gi;
+        return f + g;
     }
     Poly &ntt(int m) {
-        if (!isNTT) {
-            resize(m);
-            ::ntt(begin(), m);
-            isNTT = true;
-        }
-        return *this;
+        return ::ntt(redeg(m).begin(), m), *this;
     }
     Poly &intt(int m) {
-        ::intt(begin(), m);
-        isNTT = false;
+        return ::intt(begin(), m), *this;
+    }
+    Poly& operator^=(const Poly &g) {
+        for (int i = 0; i < deg(); i++)
+            T[i] = m32(T[i]) * g[i];
         return *this;
     }
-    Poly &operator<<=(int t) {
-        Poly &h = *this;
-        for (int i = t / 2; i < t; i++)
-            h[i - t / 2] = h[i], h[i] = 0;
-        return resize(t / 2), h;
-    }
-    Poly &operator>>=(int t) {
-        Poly &h = *this;
-        for (int i = 0; i < t / 2; i++)
-            h[i + t / 2] = h[i], h[i] = 0;
-        return h;
+    friend Poly operator^(const Poly &f, const Poly &g) {
+        return Poly(f) ^= g;
     }
     friend Poly& mul(Poly &f, Poly &g, int m) {
-        f.ntt(m), g.ntt(m);
-        for (int i = 0; i < m; i++)
-            f[i] = 1ll * f[i] * g[i] % P;
-        return f.intt(m);
+        return (f.ntt(m) ^= g.ntt(m)).intt(m);
     }
     friend Poly operator*(Poly f, Poly g) {
-        int m = f.size() + g.size() - 1;
-        return mul(f, g, get_lim(m)).cut(m);
+        if (f.deg() < g.deg())
+            swap(f, g);
+        int m = f.deg() + g.deg() - 1;
+        if (g.deg() == 1) {
+            for (auto &fi : f.v)
+                fi = m32(fi) * g[0];
+            return f;
+        }
+        return mul(f, g, get_lim(m)).redeg(m);
     }
     Poly deriv() const {
-        Poly f(size() - 1);
-        for (int i = 1; i < size(); i++)
-            f[i - 1] = 1ll * (*this)[i] * i % P;
+        vi f(deg() - 1);
+        for (int i = 1; i < deg(); i++)
+            f[i - 1] = m32(i) * v[i];
         return f;
     }
     Poly integr() const {
-        Poly f(size() + 1);
-        pre_inv(size() + 1);
-        for (int i = size(); i > 0; --i)
-            f[i] = 1ll * (*this)[i - 1] * Inv[i] % P;
+        vi f(deg() + 1);
+        for (int i = deg(); i > 0; --i)
+            f[i] = m32(Inv[i]) * v[i - 1];
         return f;
     }
-    Poly& invD(Poly f2, Poly nx, int t) {
-        mul(f2, nx, t) <<= t;
-        mul(f2, nx, t) >>= t;
-        return *this = *this - f2;
-    }
-    Poly inv(int m) const {
-        Poly x = {qpow(front())};
-        for (int t = 2; t < m * 2; t *= 2) {
-            x.invD(cut(t), x, t);
-        }
-        return x.cut(m);
-    }
-    Poly div(int m, const Poly &g) const {
-        return (cut(m) * g.inv(m)).cut(m);
-    }
+    Poly inv(int m) const;
+    Poly div(int m, const Poly& g) const;
     Poly ln(int m) const {
-        Poly f = cut(m);
-        return f.deriv().div(m, f).integr();
+        return deriv().div(m - 1, cut(m)).integr();
     }
-    Poly exp(int m) const {
-        Poly x = {1};
-        if (m >= 2)
-            x.push_back(at(1));
-        for (int t = 4; t < m * 2; x.resize(t), t *= 2) {
-            x = x * (Poly{1} + cut(t) - x.ln(t));
-        }
-        return x.cut(m);
-    }
-    // div
-    Poly sqrt(int m) const {
-        Poly x = {1};
-#ifdef ACM_MATH_CIPOLLA_H
-            x[0] = Cipolla(front(), P).first;
-#endif
-        for (int t = 2; t < m * 2; x.resize(t), t *= 2) {
-            x = (x + cut(t).div(t, x)) * Poly{(P + 1) / 2};
-        }
-        return x.cut(m);
-    }
+    Poly exp(int m) const;
+    Poly sqrt(int m) const;
     Poly pow(int m, int k) const {
-        return (ln(m) * Poly{k}).exp(m);
+        return (ln(m) * k).exp(m);
     }
-    Poly rev() const {
-        return {rbegin(), rend()};
-    }
-    friend Poly operator/(Poly f, Poly g) {
-        int m = f.size() - g.size() + 1;
+    Poly rev() const { return vi(v.rbegin(), v.rend()); }
+    friend Poly operator/(const Poly& f, const Poly& g) {
+        int m = f.deg() - g.deg() + 1;
         return f.rev().div(m, g.rev()).rev();
     }
 };
+
+template <int M = 32>
+struct PolyCDQ {
+    int now = 0;
+    Poly &F, &G, conv;
+    std::map<int, Poly> nf;
+
+    PolyCDQ(Poly &f, Poly &g) : F(f), G(g) {
+        conv.redeg(M);
+    }
+
+    int next() { // return  (F * G)[now] - F[0] G[now]
+        conv[now] = m32(conv[now]) + m32(G[now]) * F[0], now++;
+        int len = now & -now, l = now - len;
+        if (len < M) {
+            u64 s = 0;
+            for (int j = now & -M; j < now; ++j) {
+                s += 1ull * G[j] * F[now - j];
+                if (j & 15)
+                    s %= P;
+            }
+            conv[now] = m32(conv[now]) + s % P;
+        } else {
+            Poly a = G.cut(len, l).ntt(len * 2), &b = nf[len];
+            if (l == 0) // b.empty()
+                b = F.cut(len * 2).ntt(len * 2), conv.redeg(now * 2);
+            (a ^= b).intt(len * 2);
+            for (int i = len; i < len * 2; i++)
+                conv[l + i] = m32(a[i]) + conv[l + i];
+        }
+        return conv[now];
+    }
+};
+
+Poly cdq_inv(Poly F, int m) {
+    Poly G(m);
+    PolyCDQ<> X(F.redeg(m), G);
+    m32 iv = qpow(F[0]);
+    G[0] = iv.v;
+    for (int i = 1; i < m; i++)
+        G[i] = m32(0) - iv * X.next();
+    return G;
+}
+
+Poly cdq_div(Poly H, Poly F, int m) {
+    Poly G(m);
+    PolyCDQ<> X(F.redeg(m), G);
+    m32 iv = qpow(G[0]);
+    G[0] = iv * H[0];
+    for (int i = 1; i < m; i++)
+        G[i] = iv * (F[i] - X.next() + P);
+    return G;
+}
+
+Poly cdq_exp(Poly F, int m) {
+    Poly G(m);
+    for (int i = 0; i < F.size(); i++)
+        F[i] = m32(i) * F[i];
+    PolyCDQ<> X(F, G);
+    G[0] = 1;
+    for (int i = 1; i < m; i++)
+        G[i] = m32(Inv[i]) * X.next();
+    return G;
+}
 
 #endif

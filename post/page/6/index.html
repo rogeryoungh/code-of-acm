@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.92.0" />
+<meta name="generator" content="Hugo 0.92.1" />
 <link rel="alternate" type="application/rss+xml" href="https://rogeryoungh.github.io/code-of-acm/post/index.xml">
 
 
@@ -162,6 +162,96 @@
 <header class="page-header">
   <h1>Posts</h1>
 </header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P1042 乒乓球</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 赢 11 分并且压对手两分以上则一局结束，否则要追分至压对手两分。
+给定 $\texttt{WL}$ 序列，分别求 11 分制和 21 分制下每场比分，$\texttt{E}$ 是结束符。
+分析 这是一道比较烦的模拟题，很绕。
+char ch[62510]; int solve(int win, int len) { int w = 0, l = 0; for (ll i = 0; i &lt; len; i&#43;&#43;) { w &#43;= ch[i] == &#39;W&#39;; l &#43;= ch[i] == &#39;L&#39;; if (max(w, l) &gt;= win &amp;&amp; abs(w - l) &gt;= 2) { printf(&#34;%d:%d\n&#34;, w, l); w = l = 0; } } printf(&#34;%d:%d\n&#34;, w, l); } int main() { char ccc; int len = 0; while (scanf(&#34;%c&#34;, &amp;ccc) !...</p>
+  </section>
+  <footer class="entry-footer">September 23, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1042 乒乓球" href="https://rogeryoungh.github.io/code-of-acm/post/2020-09/p1042/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P2181 对角线</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 凸 $n$ 边形中，任意三条对角线不共点，求所有对角线交点的个数。
+分析 注意到一个交点对应凸多边形 $4$ 个定点，于是等价于 $n$ 个点任选 $4$ 个点的选法种数，即
+$$ \binom{n}{4} = \frac{n(n-1)(n-2)(n-3)}{24} $$
+注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。
+int main() { unsigned long long n; scanf(&#34;%llu&#34;, &amp;n); n = n * (n - 1) / 2 * (n - 2) / 3 * (n - 3) / 4; printf(&#34;%llu&#34;, n); return 0; } </p>
+  </section>
+  <footer class="entry-footer">September 22, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P2181 对角线" href="https://rogeryoungh.github.io/code-of-acm/post/2020-09/p2181/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>CF1384B2 Koa and the Beach</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 海里每一个位置都有一个深度，而且水里随着时间有锯齿状周期为 $2k$ 的潮汐。
+当潮汐与深度之和大于给定值 $l$ 时 Koa 会溺水，游泳、海岸、岛上永远是安全的。
+在任意时间 Koa 可以选择游到 $x&#43;1$ 或停留在 $x$，试问 Koa 是否能够安全的从海岸 $0$ 到达岛上 $n&#43;1$。
+分析 开始的想法是随着时间 DP，更好的解法是贪心。
+若一个位置在水位最高时仍不会溺水，则称这个位置是安全的，并且可以任意选择出发时机。
+即安全位置之间是相互独立的，我们只需判断可达性，尽量到达每一个安全位置。若之后 $2k$ 个位置没有安全位置，必死。
+Koa 的最优决策是在刚退潮时出发，如果能走就尽量往前走，不能走就等，等到涨潮就说明不存在通过方法。
+int main() { int ttt = rr(); while (ttt--) { int n = rr(), k = rr(), l = rr(); int flag = 0; int last = k; for (ll i = 1; i &lt;= n; i&#43;&#43;) { int d = rr(); flag &#43;= l &lt; d; if (l - d &gt;= k) last = k; else last = min(last - 1, l - d); flag &#43;= abs(last) &gt; l - d; } if (flag) printf(&#34;No\n&#34;); else printf(&#34;Yes\n&#34;); } return 0; } </p>
+  </section>
+  <footer class="entry-footer">September 20, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to CF1384B2 Koa and the Beach" href="https://rogeryoungh.github.io/code-of-acm/post/2020-09/cf1384b2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P1004 方格取数</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 在 $n \times n$ 的方格（$n \leqslant 9$）中存在一些正整数，经过格子时获得格子上的数，但只能获得一次。
+某人只能向右或向下走，从格子的左上角走到到右下角，共走两次，求最大能取得的数字。
+分析 考虑把先走后走转化为两个人同时走，只需要处理遇到两次的值即可。
+考虑四维 DP，用 $dp[x_1,y_1,x_2,y_2]$ 表示第一个人走到 $(x_1,y_1)$ 和第二个人走到 $(x_2,y_2)$。
+再考虑转移，每一个位置仅可能从其左面或上面转移来，于是可以写出（$x_1 \ne y_1$ 或 $x_2 \ne y_2$ 时）
+$$ dp[x_1,y_1,x_2,y_2] = \max\left\{ \begin{matrix} dp[x_1-1,y_1,x_2-1,y_2] \\ dp[x_1,y_1-1,x_2-1,y_2] \\ dp[x_1-1,y_1,x_2,y_2-1] \\ dp[x_1,y_1-1,x_2,y_2-1] \end{matrix}\right\} &#43; a[x_1,y_1] &#43; a[x_2,y_2] $$
+当 $x_1=y_1,x_2=y_2$ 时，只加一次即可。到这里 $O(n^4)$ 其实已经可以过题了，但还可以优化。
+注意到一些状态是不可达的，因为 $x_1&#43;y_1 = x_2&#43;y_2$，因此存在 $O(n^3)$ 的 DP。
+考虑当前已走长度 $h=x_1&#43;y_1=x_2&#43;y_2$，于是可以把两个人的座标表示为 $(x_1,h-x_1)$ 和 $(x_2,h-x_2)$。
+于是记状态为 $dp[h,x_1,x_2]$，当 $x_1 \ne x_2$ 时有
+$$ dp[h,x_1,x_2] = \max\left\{ \begin{matrix} dp[h-1,x_1,x_2] \\ dp[h-1,x_1,x_2-1] \\ dp[h-1,x_1-1,x_2] \\ dp[h-1,x_1-1,x_2-1] \end{matrix}\right\} &#43; a[x_1,h-x_1] &#43; a[x_2,h-x_2] $$...</p>
+  </section>
+  <footer class="entry-footer">September 20, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1004 方格取数" href="https://rogeryoungh.github.io/code-of-acm/post/2020-09/p1004/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>OJ 题目跳转</h2>
+  </header>
+  <section class="entry-content">
+    <p></p>
+  </section>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to OJ 题目跳转" href="https://rogeryoungh.github.io/code-of-acm/post/other/jump/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>模板生成</h2>
+  </header>
+  <section class="entry-content">
+    <p></p>
+  </section>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to 模板生成" href="https://rogeryoungh.github.io/code-of-acm/post/other/template-gen/"></a>
+</article>
 
 <article class="post-entry"> 
   <header class="entry-header">

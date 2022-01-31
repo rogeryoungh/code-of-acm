@@ -8,12 +8,12 @@
 <title>HDU6833 A Very Easy Math Problem | Roger Young</title>
 <meta name="keywords" content="数论" />
 <meta name="description" content="题目大意 即求
-$$ S (n) = \sum^n_{{ a_x } = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd { a_x }) \gcd { a_x } $$
+$$ S (n) = \sum^n_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd \{ a_x \}) \gcd \{ a_x \} $$
 我自己随便简写了，全打太麻烦了。
 分析 这东西看着很吓人，其实是纸老虎。首先 $f(x) = \mu(x)^2$。提出 $\gcd$ 有
-$$ \begin{aligned} S (n) &amp; =\sum_{d=1}^{n}\sum^{n}{{ a{x}}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd { a_{x}} =d]\ &amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x&#43;1}\sum^{n/d}{{ a{x}} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd { a_{x}} =1] \end{aligned} $$
+$$ \begin{aligned} S (n) &amp; =\sum_{d=1}^{n}\sum^{n}_{\{ a_{x}\}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd \{ a_{x}\} =d]\\ &amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x&#43;1}\sum^{n/d}_{\{ a_{x}\} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd \{ a_{x}\} =1] \end{aligned} $$
 对后面这部分反演有
-$$ \begin{aligned} &amp; \sum^{n / d}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd { a_x }} \mu (t) \right)\ = &amp; \sum^{n / d}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd { a_x }] \mu (t) \right)\ = &amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \end{aligned} $$">
+$$ \begin{aligned} &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd \{ a_x \}} \mu (t) \right)\\ = &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd \{ a_x \}] \mu (t) \right)\\ = &amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \end{aligned} $$">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6833/" />
 <link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.db03f6b1db979d0cdd8e815f16121fd4c2bd956cb3c3efedeab38b2fb48ae6a7.css" integrity="sha256-2wP2sduXnQzdjoFfFhIf1MK9lWyzw&#43;/t6rOLL7SK5qc=" rel="preload stylesheet" as="style">
@@ -27,7 +27,7 @@ $$ \begin{aligned} &amp; \sum^{n / d}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \ri
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.92.0" />
+<meta name="generator" content="Hugo 0.92.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -56,12 +56,12 @@ $$ \begin{aligned} &amp; \sum^{n / d}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \ri
 
 <meta property="og:title" content="HDU6833 A Very Easy Math Problem" />
 <meta property="og:description" content="题目大意 即求
-$$ S (n) = \sum^n_{{ a_x } = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd { a_x }) \gcd { a_x } $$
+$$ S (n) = \sum^n_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd \{ a_x \}) \gcd \{ a_x \} $$
 我自己随便简写了，全打太麻烦了。
 分析 这东西看着很吓人，其实是纸老虎。首先 $f(x) = \mu(x)^2$。提出 $\gcd$ 有
-$$ \begin{aligned} S (n) &amp; =\sum_{d=1}^{n}\sum^{n}{{ a{x}}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd { a_{x}} =d]\ &amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x&#43;1}\sum^{n/d}{{ a{x}} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd { a_{x}} =1] \end{aligned} $$
+$$ \begin{aligned} S (n) &amp; =\sum_{d=1}^{n}\sum^{n}_{\{ a_{x}\}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd \{ a_{x}\} =d]\\ &amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x&#43;1}\sum^{n/d}_{\{ a_{x}\} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd \{ a_{x}\} =1] \end{aligned} $$
 对后面这部分反演有
-$$ \begin{aligned} &amp; \sum^{n / d}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd { a_x }} \mu (t) \right)\ = &amp; \sum^{n / d}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd { a_x }] \mu (t) \right)\ = &amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \end{aligned} $$" />
+$$ \begin{aligned} &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd \{ a_x \}} \mu (t) \right)\\ = &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd \{ a_x \}] \mu (t) \right)\\ = &amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \end{aligned} $$" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6833/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-09-24T00:00:00&#43;00:00" />
@@ -70,12 +70,12 @@ $$ \begin{aligned} &amp; \sum^{n / d}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \ri
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="HDU6833 A Very Easy Math Problem"/>
 <meta name="twitter:description" content="题目大意 即求
-$$ S (n) = \sum^n_{{ a_x } = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd { a_x }) \gcd { a_x } $$
+$$ S (n) = \sum^n_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd \{ a_x \}) \gcd \{ a_x \} $$
 我自己随便简写了，全打太麻烦了。
 分析 这东西看着很吓人，其实是纸老虎。首先 $f(x) = \mu(x)^2$。提出 $\gcd$ 有
-$$ \begin{aligned} S (n) &amp; =\sum_{d=1}^{n}\sum^{n}{{ a{x}}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd { a_{x}} =d]\ &amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x&#43;1}\sum^{n/d}{{ a{x}} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd { a_{x}} =1] \end{aligned} $$
+$$ \begin{aligned} S (n) &amp; =\sum_{d=1}^{n}\sum^{n}_{\{ a_{x}\}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd \{ a_{x}\} =d]\\ &amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x&#43;1}\sum^{n/d}_{\{ a_{x}\} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd \{ a_{x}\} =1] \end{aligned} $$
 对后面这部分反演有
-$$ \begin{aligned} &amp; \sum^{n / d}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd { a_x }} \mu (t) \right)\ = &amp; \sum^{n / d}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd { a_x }] \mu (t) \right)\ = &amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \end{aligned} $$"/>
+$$ \begin{aligned} &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd \{ a_x \}} \mu (t) \right)\\ = &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd \{ a_x \}] \mu (t) \right)\\ = &amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \end{aligned} $$"/>
 
 
 <script type="application/ld+json">
@@ -104,11 +104,11 @@ $$ \begin{aligned} &amp; \sum^{n / d}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \ri
   "@type": "BlogPosting",
   "headline": "HDU6833 A Very Easy Math Problem",
   "name": "HDU6833 A Very Easy Math Problem",
-  "description": "题目大意 即求\n$$ S (n) = \\sum^n_{{ a_x } = 1} \\left( \\prod_{j = 1}^x a_j \\right)^k f (\\gcd { a_x }) \\gcd { a_x } $$\n我自己随便简写了，全打太麻烦了。\n分析 这东西看着很吓人，其实是纸老虎。首先 $f(x) = \\mu(x)^2$。提出 $\\gcd$ 有\n$$ \\begin{aligned} S (n) \u0026amp; =\\sum_{d=1}^{n}\\sum^{n}{{ a{x}}=1}(\\prod_{j=1}^{x}a_{j})^{k}{\\mu}(d)^{2}d [gcd { a_{x}} =d]\\ \u0026amp; =\\sum_{d=1}^{n}{\\mu}(d)^{2}d^{k x+1}\\sum^{n/d}{{ a{x}} =1}(\\prod_{j=1}^{x}a_{j})^{k}[gcd { a_{x}} =1] \\end{aligned} $$\n对后面这部分反演有\n$$ \\begin{aligned} \u0026amp; \\sum^{n / d}{{ a_x } = 1} \\left( \\prod{j = 1}^x a_j \\right)^k \\left( \\sum_{t \\mid \\gcd { a_x }} \\mu (t) \\right)\\ = \u0026amp; \\sum^{n / d}{{ a_x } = 1} \\left( \\prod{j = 1}^x a_j \\right)^k \\left( \\sum_{t = 1}^{n / d} [t \\mid \\gcd { a_x }] \\mu (t) \\right)\\ = \u0026amp; \\sum_{t = 1}^{n / d} \\mu (t) t^{k x} \\sum^{n / d t}{{ a_x } = 1} \\left( \\prod{j = 1}^x a_j \\right)^k \\end{aligned} $$",
+  "description": "题目大意 即求\n$$ S (n) = \\sum^n_{\\{ a_x \\} = 1} \\left( \\prod_{j = 1}^x a_j \\right)^k f (\\gcd \\{ a_x \\}) \\gcd \\{ a_x \\} $$\n我自己随便简写了，全打太麻烦了。\n分析 这东西看着很吓人，其实是纸老虎。首先 $f(x) = \\mu(x)^2$。提出 $\\gcd$ 有\n$$ \\begin{aligned} S (n) \u0026amp; =\\sum_{d=1}^{n}\\sum^{n}_{\\{ a_{x}\\}=1}(\\prod_{j=1}^{x}a_{j})^{k}{\\mu}(d)^{2}d [gcd \\{ a_{x}\\} =d]\\\\ \u0026amp; =\\sum_{d=1}^{n}{\\mu}(d)^{2}d^{k x+1}\\sum^{n/d}_{\\{ a_{x}\\} =1}(\\prod_{j=1}^{x}a_{j})^{k}[gcd \\{ a_{x}\\} =1] \\end{aligned} $$\n对后面这部分反演有\n$$ \\begin{aligned} \u0026amp; \\sum^{n / d}_{\\{ a_x \\} = 1} \\left( \\prod_{j = 1}^x a_j \\right)^k \\left( \\sum_{t \\mid \\gcd \\{ a_x \\}} \\mu (t) \\right)\\\\ = \u0026amp; \\sum^{n / d}_{\\{ a_x \\} = 1} \\left( \\prod_{j = 1}^x a_j \\right)^k \\left( \\sum_{t = 1}^{n / d} [t \\mid \\gcd \\{ a_x \\}] \\mu (t) \\right)\\\\ = \u0026amp; \\sum_{t = 1}^{n / d} \\mu (t) t^{k x} \\sum^{n / d t}_{\\{ a_x \\} = 1} \\left( \\prod_{j = 1}^x a_j \\right)^k \\end{aligned} $$",
   "keywords": [
     "数论"
   ],
-  "articleBody": "题目大意 即求\n$$ S (n) = \\sum^n_{{ a_x } = 1} \\left( \\prod_{j = 1}^x a_j \\right)^k f (\\gcd { a_x }) \\gcd { a_x } $$\n我自己随便简写了，全打太麻烦了。\n分析 这东西看着很吓人，其实是纸老虎。首先 $f(x) = \\mu(x)^2$。提出 $\\gcd$ 有\n$$ \\begin{aligned} S (n) \u0026 =\\sum_{d=1}^{n}\\sum^{n}{{ a{x}}=1}(\\prod_{j=1}^{x}a_{j})^{k}{\\mu}(d)^{2}d [gcd { a_{x}} =d]\\ \u0026 =\\sum_{d=1}^{n}{\\mu}(d)^{2}d^{k x+1}\\sum^{n/d}{{ a{x}} =1}(\\prod_{j=1}^{x}a_{j})^{k}[gcd { a_{x}} =1] \\end{aligned} $$\n对后面这部分反演有\n$$ \\begin{aligned} \u0026 \\sum^{n / d}{{ a_x } = 1} \\left( \\prod{j = 1}^x a_j \\right)^k \\left( \\sum_{t \\mid \\gcd { a_x }} \\mu (t) \\right)\\ = \u0026 \\sum^{n / d}{{ a_x } = 1} \\left( \\prod{j = 1}^x a_j \\right)^k \\left( \\sum_{t = 1}^{n / d} [t \\mid \\gcd { a_x }] \\mu (t) \\right)\\ = \u0026 \\sum_{t = 1}^{n / d} \\mu (t) t^{k x} \\sum^{n / d t}{{ a_x } = 1} \\left( \\prod{j = 1}^x a_j \\right)^k \\end{aligned} $$\n代回去，枚举 $T = d t$\n$$ \\begin{aligned} S (n) \u0026 = \\sum_{d = 1}^n d \\mu (d)^2 (d t)^{k x} \\sum_{t = 1}^{n / d} \\mu (t) \\sum^{n / d t}{{ a_x } = 1} \\left( \\prod{j = 1}^x a_j \\right)^k\\ \u0026 = \\sum_{T = 1}^n \\sum_{d \\mid T} d \\mu (d)^2 T^{k x} \\mu \\left(\\frac{T}{d} \\right) \\sum^{n / T}{{ a_x } = 1} \\left( \\prod{j = 1}^x a_j \\right)^k\\ \u0026 = \\sum_{T = 1}^n T^{k x} \\left( \\sum^{n / T}{{ a_x } = 1} \\left( \\prod{j = 1}^x a_j \\right)^k \\right) \\sum_{d \\mid T} d \\mu (d)^2 \\mu \\left( \\frac{T}{d} \\right)\\ \u0026 = \\sum_{T = 1}^n T^{k x} \\left( \\sum^{n / T}{i = 1} i^k \\right)^x \\sum{d \\mid T} d \\mu (d)^2 \\mu \\left( \\frac{T}{d} \\right) \\end{aligned} $$\n到这里已经差不多化完了。令\n$$ G (x) = \\sum^x_{i = 1} i^k, H (x) = \\sum_{d \\mid x} d \\mu (d)^2 \\mu \\left( \\frac{x}{d} \\right) $$\n其中 $G (x)$ 显然可以预处理，而 $H (x)$ 是积性函数的卷积，故也是积性函数，其中\n$$ H (p^c) = \\begin{cases} p - 1,\u0026 c = 1\\ -p, \u0026 c = 2 \\ 0, \u0026 c  2 \\end{cases} $$\n可以线性筛得到。\nconst ll maxn = 2e5 + 86; const ll mod = 1e9 + 7; #define ACM_MOD mod  bool notp[maxn + 10]; int prime[maxn/10 + 10], cnt; ll hh[maxn + 10]; void sieve(int n) { hh[1] = 1; for (int i = 2; i  n; i++) { if (!notp[i]) { prime[++cnt] = i; hh[i] = i - 1; } int t = n / i; for (int j = 1; j  cnt;j++) { int pj = prime[j], ti = i * pj; if (pj  t) break; notp[ti] = true; if (i % pj == 0) { int tj = i / pj; if (tj % pj != 0) { hh[ti] = hh[tj] * (mod - pj) % mod; } else { hh[ti] = 0; } break; } hh[ti] = hh[i] * hh[pj] % mod; } } } 总之\n$$ S (n) = \\sum_{T = 1}^n T^{k x} H (T) G \\left( \\left\\lfloor \\frac{n}{T} \\right\\rfloor \\right)^x $$\n可以用整数分块。\n#include \"template/basic/qpow.hpp\" ll gg[maxn + 10]; void pre(ll k, ll x) { sieve(maxn); for (ll i = 1; i  maxn; i++) { gg[i] = (gg[i - 1] + qpow(i, k)) % mod; } for (ll i = 1; i  maxn; i++) { hh[i] = (hh[i - 1] + qpow(i, k * x % (mod - 1)) * hh[i]) % mod; gg[i] = qpow(gg[i], x); } } int main() { ll ttt = rr(), k = rr(), x = rr(); pre(k, x); while(ttt--) { ll n = rr(); ll ans = 0; for (ll l = 1, r; l  n; l = r + 1) { r = n / (n / l); ll tsum = hh[r] - hh[l - 1] + mod; tsum = tsum * gg[n / l] % mod; ans = ans + tsum; } printf(\"%lld\\n\", ans % mod); } return 0; } ",
+  "articleBody": "题目大意 即求\n$$ S (n) = \\sum^n_{\\{ a_x \\} = 1} \\left( \\prod_{j = 1}^x a_j \\right)^k f (\\gcd \\{ a_x \\}) \\gcd \\{ a_x \\} $$\n我自己随便简写了，全打太麻烦了。\n分析 这东西看着很吓人，其实是纸老虎。首先 $f(x) = \\mu(x)^2$。提出 $\\gcd$ 有\n$$ \\begin{aligned} S (n) \u0026 =\\sum_{d=1}^{n}\\sum^{n}_{\\{ a_{x}\\}=1}(\\prod_{j=1}^{x}a_{j})^{k}{\\mu}(d)^{2}d [gcd \\{ a_{x}\\} =d]\\\\ \u0026 =\\sum_{d=1}^{n}{\\mu}(d)^{2}d^{k x+1}\\sum^{n/d}_{\\{ a_{x}\\} =1}(\\prod_{j=1}^{x}a_{j})^{k}[gcd \\{ a_{x}\\} =1] \\end{aligned} $$\n对后面这部分反演有\n$$ \\begin{aligned} \u0026 \\sum^{n / d}_{\\{ a_x \\} = 1} \\left( \\prod_{j = 1}^x a_j \\right)^k \\left( \\sum_{t \\mid \\gcd \\{ a_x \\}} \\mu (t) \\right)\\\\ = \u0026 \\sum^{n / d}_{\\{ a_x \\} = 1} \\left( \\prod_{j = 1}^x a_j \\right)^k \\left( \\sum_{t = 1}^{n / d} [t \\mid \\gcd \\{ a_x \\}] \\mu (t) \\right)\\\\ = \u0026 \\sum_{t = 1}^{n / d} \\mu (t) t^{k x} \\sum^{n / d t}_{\\{ a_x \\} = 1} \\left( \\prod_{j = 1}^x a_j \\right)^k \\end{aligned} $$\n代回去，枚举 $T = d t$\n$$ \\begin{aligned} S (n) \u0026 = \\sum_{d = 1}^n d \\mu (d)^2 (d t)^{k x} \\sum_{t = 1}^{n / d} \\mu (t) \\sum^{n / d t}_{\\{ a_x \\} = 1} \\left( \\prod_{j = 1}^x a_j \\right)^k\\\\ \u0026 = \\sum_{T = 1}^n \\sum_{d \\mid T} d \\mu (d)^2 T^{k x} \\mu \\left(\\frac{T}{d} \\right) \\sum^{n / T}_{\\{ a_x \\} = 1} \\left( \\prod_{j = 1}^x a_j \\right)^k\\\\ \u0026 = \\sum_{T = 1}^n T^{k x} \\left( \\sum^{n / T}_{\\{ a_x \\} = 1} \\left( \\prod_{j = 1}^x a_j \\right)^k \\right) \\sum_{d \\mid T} d \\mu (d)^2 \\mu \\left( \\frac{T}{d} \\right)\\\\ \u0026 = \\sum_{T = 1}^n T^{k x} \\left( \\sum^{n / T}_{i = 1} i^k \\right)^x \\sum_{d \\mid T} d \\mu (d)^2 \\mu \\left( \\frac{T}{d} \\right) \\end{aligned} $$\n到这里已经差不多化完了。令\n$$ G (x) = \\sum^x_{i = 1} i^k, H (x) = \\sum_{d \\mid x} d \\mu (d)^2 \\mu \\left( \\frac{x}{d} \\right) $$\n其中 $G (x)$ 显然可以预处理，而 $H (x)$ 是积性函数的卷积，故也是积性函数，其中\n$$ H (p^c) = \\begin{cases} p - 1,\u0026 c = 1\\\\ -p, \u0026 c = 2 \\\\ 0, \u0026 c  2 \\end{cases} $$\n可以线性筛得到。\nconst ll maxn = 2e5 + 86; const ll mod = 1e9 + 7; #define ACM_MOD mod  bool notp[maxn + 10]; int prime[maxn/10 + 10], cnt; ll hh[maxn + 10]; void sieve(int n) { hh[1] = 1; for (int i = 2; i  n; i++) { if (!notp[i]) { prime[++cnt] = i; hh[i] = i - 1; } int t = n / i; for (int j = 1; j  cnt;j++) { int pj = prime[j], ti = i * pj; if (pj  t) break; notp[ti] = true; if (i % pj == 0) { int tj = i / pj; if (tj % pj != 0) { hh[ti] = hh[tj] * (mod - pj) % mod; } else { hh[ti] = 0; } break; } hh[ti] = hh[i] * hh[pj] % mod; } } } 总之\n$$ S (n) = \\sum_{T = 1}^n T^{k x} H (T) G \\left( \\left\\lfloor \\frac{n}{T} \\right\\rfloor \\right)^x $$\n可以用整数分块。\n#include \"template/basic/qpow.hpp\" ll gg[maxn + 10]; void pre(ll k, ll x) { sieve(maxn); for (ll i = 1; i  maxn; i++) { gg[i] = (gg[i - 1] + qpow(i, k)) % mod; } for (ll i = 1; i  maxn; i++) { hh[i] = (hh[i - 1] + qpow(i, k * x % (mod - 1)) * hh[i]) % mod; gg[i] = qpow(gg[i], x); } } int main() { ll ttt = rr(), k = rr(), x = rr(); pre(k, x); while(ttt--) { ll n = rr(); ll ans = 0; for (ll l = 1, r; l  n; l = r + 1) { r = n / (n / l); ll tsum = hh[r] - hh[l - 1] + mod; tsum = tsum * gg[n / l] % mod; ans = ans + tsum; } printf(\"%lld\\n\", ans % mod); } return 0; } ",
   "wordCount" : "631",
   "inLanguage": "en",
   "datePublished": "2021-09-24T00:00:00Z",
@@ -269,32 +269,32 @@ $$ \begin{aligned} &amp; \sum^{n / d}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \ri
   <div class="post-content"><h2 id="题目大意">题目大意<a hidden class="anchor" aria-hidden="true" href="#题目大意">#</a></h2>
 <p>即求</p>
 <p>$$
-S (n) = \sum^n_{{ a_x } = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd { a_x }) \gcd { a_x }
+S (n) = \sum^n_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd \{ a_x \}) \gcd \{ a_x \}
 $$</p>
 <p>我自己随便简写了，全打太麻烦了。</p>
 <h2 id="分析">分析<a hidden class="anchor" aria-hidden="true" href="#分析">#</a></h2>
 <p>这东西看着很吓人，其实是纸老虎。首先 $f(x) = \mu(x)^2$。提出 $\gcd$ 有</p>
 <p>$$
 \begin{aligned}
-S (n) &amp; =\sum_{d=1}^{n}\sum^{n}<em>{{ a</em>{x}}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd { a_{x}} =d]\
-&amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x+1}\sum^{n/d}<em>{{ a</em>{x}} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd { a_{x}} =1]
+S (n) &amp; =\sum_{d=1}^{n}\sum^{n}_{\{ a_{x}\}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd \{ a_{x}\} =d]\\
+&amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x+1}\sum^{n/d}_{\{ a_{x}\} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd \{ a_{x}\} =1]
 \end{aligned}
 $$</p>
 <p>对后面这部分反演有</p>
 <p>$$
 \begin{aligned}
-&amp; \sum^{n / d}<em>{{ a_x } = 1} \left( \prod</em>{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd { a_x }} \mu (t) \right)\
-= &amp; \sum^{n / d}<em>{{ a_x } = 1} \left( \prod</em>{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd { a_x }] \mu (t) \right)\
-= &amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}<em>{{ a_x } = 1} \left( \prod</em>{j = 1}^x a_j \right)^k
+&amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd \{ a_x \}} \mu (t) \right)\\
+= &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd \{ a_x \}] \mu (t) \right)\\
+= &amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k
 \end{aligned}
 $$</p>
 <p>代回去，枚举 $T = d t$</p>
 <p>$$
 \begin{aligned}
-S (n) &amp; = \sum_{d = 1}^n d \mu (d)^2 (d t)^{k x} \sum_{t = 1}^{n / d} \mu (t) \sum^{n / d t}<em>{{ a_x } = 1} \left( \prod</em>{j = 1}^x a_j \right)^k\
-&amp; = \sum_{T = 1}^n \sum_{d \mid T} d \mu (d)^2 T^{k x} \mu \left(\frac{T}{d} \right) \sum^{n / T}<em>{{ a_x } = 1} \left( \prod</em>{j = 1}^x a_j \right)^k\
-&amp; = \sum_{T = 1}^n T^{k x} \left( \sum^{n / T}<em>{{ a_x } = 1} \left( \prod</em>{j = 1}^x a_j \right)^k \right) \sum_{d \mid T} d \mu (d)^2 \mu \left( \frac{T}{d} \right)\
-&amp; = \sum_{T = 1}^n T^{k x} \left( \sum^{n / T}<em>{i = 1} i^k \right)^x \sum</em>{d \mid T} d \mu (d)^2 \mu \left( \frac{T}{d} \right)
+S (n) &amp; = \sum_{d = 1}^n d \mu (d)^2 (d t)^{k x} \sum_{t = 1}^{n / d} \mu (t) \sum^{n / d t}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k\\
+&amp; = \sum_{T = 1}^n \sum_{d \mid T} d \mu (d)^2 T^{k x} \mu \left(\frac{T}{d} \right) \sum^{n / T}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k\\
+&amp; = \sum_{T = 1}^n T^{k x} \left( \sum^{n / T}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \right) \sum_{d \mid T} d \mu (d)^2 \mu \left( \frac{T}{d} \right)\\
+&amp; = \sum_{T = 1}^n T^{k x} \left( \sum^{n / T}_{i = 1} i^k \right)^x \sum_{d \mid T} d \mu (d)^2 \mu \left( \frac{T}{d} \right)
 \end{aligned}
 $$</p>
 <p>到这里已经差不多化完了。令</p>
@@ -304,8 +304,8 @@ $$</p>
 <p>其中 $G (x)$ 显然可以预处理，而 $H (x)$ 是积性函数的卷积，故也是积性函数，其中</p>
 <p>$$
 H (p^c) = \begin{cases}
-p - 1,&amp; c = 1\
--p, &amp; c = 2  \
+p - 1,&amp; c = 1\\
+-p, &amp; c = 2  \\
 0, &amp; c &gt; 2
 \end{cases}
 $$</p>

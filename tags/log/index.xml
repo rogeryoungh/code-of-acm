@@ -7,7 +7,26 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© 2021 [Roger Young](https://rogeryoungh.github.io/blog/about/)</copyright>
-    <lastBuildDate>Wed, 10 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/tags/log/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 31 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/tags/log/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2021 年刷题日志</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/other/log2022/</link>
+      <pubDate>Mon, 31 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/other/log2022/</guid>
+      <description>新的一年，一样的菜。
+过于简单的题不记录。
+2022 年 01 月 01-14 |  UOJ50 链式反应
+01-21 |  ZAFU 2022.01.18 个人赛题解
+01-27 |  P3373 线段树 2
+01-27 |  P2023 维护序列
+01-28 |  P1531 I Hate It
+01-28 |  P5057 简单题
+01-28 |  P4588 数学计算
+01-28 |  P1637 三元上升子序列
+01-29 |  P5431 乘法逆元 2</description>
+    </item>
+    
     <item>
       <title>2021 年刷题日志</title>
       <link>https://rogeryoungh.github.io/code-of-acm/post/other/log2021/</link>
@@ -19,26 +38,16 @@
 CodeForces：更新至：&amp;ndash;.&amp;ndash;
 牛客：更新至：&amp;ndash;.&amp;ndash;
 HDU：更新至：&amp;ndash;.&amp;ndash;
-2021 年 11 月 P1393 Mivik 的标题
-P3846 常系数齐次线性递推
-P3846 可爱的质数/BSGS
-P5158 多项式快速插值
-P5050 多项式多点求值
-P5277 多项式开根（加强版）
-P4512 多项式除法
-P5245 多项式快速幂
-P4718 Pollard-Rho 算法
-P5491 二次剩余
-2021 年 10 月 P5179 Fraction
-P5171 Earthquake
-NC11255B Sample Game
-P3052 Cows in a Skyscraper G
-P4059 找爸爸
-HDU6955 Xor sum
-P5170 类欧几里得算法
-2021 年 09 月 P5205 多项式开根
-HDU6833 A Very Easy Math Problem
-HDU6755 Fibonacci Sum</description>
+2021 年 01 月 01-25 |  P3378 堆
+2021 年 02 月 02-28 |  P1216 数字三角形
+2021 年 03 月 03-02 |  P3382 三分法
+03-06 |  P3865 ST 表
+03-17 |  P1162 填涂颜色
+03-17 |  P1019 单词接龙
+03-19 |  P1014 Cantor 表
+03-19 |  P3370 字符串哈希
+03-20 |  P3375 KMP 字符串匹配
+03-20 |  P3374 树状数组 1</description>
     </item>
     
     <item>
@@ -52,31 +61,17 @@ HDU6755 Fibonacci Sum</description>
 CodeForces：更新至：&amp;ndash;.&amp;ndash;
 牛客：更新至：&amp;ndash;.&amp;ndash;
 HDU：更新至：&amp;ndash;.&amp;ndash;
-2020 年 12 月 P5656 二元一次不定方程 (exgcd)
-P4779 单源最短路径（标准版）
-P1629 邮递员送信
-P1359 租用游艇
-P2016 战略游戏
-P3884 二叉树问题
-P3379 最近公共祖先（LCA）
-P2052 道路修建
-P1352 没有上司的舞会
-P3371 单源最短路径（弱化版）
-P3146 248 G
-2020 年 11 月 P1880 石子合并 ==DONE==
-P1636 Einstein 学画画
-P3383 线性筛素数
-P1226 快速幂 || 取余运算
-P3367 并查集
-P4913 二叉树深度
-P4715 淘汰赛
-P2058 海港
-P1106 删数问题
-P1160 队列安排
-P1941 飞扬的小鸟
-P1064 金明的预算方案
-P1833 樱花
-P1541 乌龟棋 ==DONE==</description>
+2020 年 09 月 开始 ACM。不记录 HDU 150 的基础题。
+09-20 |  CF1384B2 Koa and the Beach
+09-20 |  P1004 方格取数
+09-22 |  P2181 对角线
+09-23 |  P1042 乒乓球
+2020 年 10 月 10-09 |  P1095 守望者的逃离
+10-13 |  P5143 攀爬者
+10-16 |  P1923 求第 $k$ 小的数
+10-16 |  P1928 外星密码
+10-16 |  P1990 覆盖墙壁
+10-16 |  P1090 合并果子</description>
     </item>
     
   </channel>

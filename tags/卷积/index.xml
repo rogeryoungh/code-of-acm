@@ -22,7 +22,7 @@ $$ f(k) = \sum_{i=0}^{m-1} d(A_{i}, B_{i-m+k}) $$
 即 $f(k) = 0$ 时有完全匹配 $A = B[k-m\ldots k-1]$。考虑让 $d$ 函数更 “数学” 一点，以更好的计算
 $$ d(x,y) = (x - y)^2 $$
 再提供模式串 $A$ 的翻转 $S$，即 $A_i = S_{m-i}$，展开有
-$$ \begin{aligned} f(k) &amp;amp;= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{i-m+k}^2 - 2\sum_{i=0}^{m-1} A_{i}B_{i-m+k}\ &amp;amp;= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{i-m+k}^2 - 2\sum_{i=0}^{m-1} S_{m-i}B_{i-m+k} \end{aligned} $$</description>
+$$ \begin{aligned} f(k) &amp;amp;= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{i-m+k}^2 - 2\sum_{i=0}^{m-1} A_{i}B_{i-m+k}\\ &amp;amp;= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{i-m+k}^2 - 2\sum_{i=0}^{m-1} S_{m-i}B_{i-m+k} \end{aligned} $$</description>
     </item>
     
   </channel>

@@ -7,22 +7,128 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© 2021 [Roger Young](https://rogeryoungh.github.io/blog/about/)</copyright>
-    <lastBuildDate>Sat, 22 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 31 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>代码模板文档</title>
+      <title>2021 年刷题日志</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/other/log2022/</link>
+      <pubDate>Mon, 31 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/other/log2022/</guid>
+      <description>新的一年，一样的菜。
+过于简单的题不记录。
+2022 年 01 月 01-14 |  UOJ50 链式反应
+01-21 |  ZAFU 2022.01.18 个人赛题解
+01-27 |  P3373 线段树 2
+01-27 |  P2023 维护序列
+01-28 |  P1531 I Hate It
+01-28 |  P5057 简单题
+01-28 |  P4588 数学计算
+01-28 |  P1637 三元上升子序列
+01-29 |  P5431 乘法逆元 2</description>
+    </item>
+    
+    <item>
+      <title>P5431 乘法逆元 2</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p5431/</link>
+      <pubDate>Sat, 29 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p5431/</guid>
+      <description>题目大意 给定 $n$ 个正整数 $\{a_i\}$ 和 $k$，求在模 $p$ 意义下的
+$$ \sum_{i=1}^n \frac{k^i}{a_i} \bmod p $$
+分析 逐个求逆元是 $O(n \log p)$ 的，肯定会 T，需要想想别的办法。
+批量求逆元的一个技巧，先求出 $a_i$ 的前缀积，然后求出全部积的逆元，再逐个往前推。即
+$$ (a_n)^{-1} = \left(\prod_{i=1}^{n-1} a_i\right) \left(\prod_{i=1}^n a_i\right)^{-1} $$
+显然，$\{a_n\}$ 中不能有 $0$。
+vi get_inv(const vi &amp;amp;a, int p) { int n = a.size() - 1; vi prod(n + 1); prod[0] = 1; for (int i = 1; i &amp;lt;= n; i++) { prod[i] = 1ll * prod[i - 1] * a[i] % p; } prod[n] = qpow(prod[n], p - 2, p); vi iva(n + 1); for (int i = n; i &amp;gt;= 1; i--) { iva[i] = 1ll * prod[i] * prod[i - 1] % p; prod[i - 1] = 1ll * prod[i] * a[i] % p; } return iva; } </description>
+    </item>
+    
+    <item>
+      <title>P1637 三元上升子序列</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p1637/</link>
+      <pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p1637/</guid>
+      <description>题目大意 给定一个序列，求其中三元上升子序列的个数
+ 对于 $i,j,k$，若 $a_i &amp;lt; a_j &amp;lt; a_k$，则是一个满足要求的三元对。  分析 考虑枚举中间的数 $j$，设其左边有 $a$ 个数比它小，右边有 $b$ 个数比它大，则中间为 $j$ 的三元对个数为 $ab$。
+至此就和逆序对类似了，离散化后用树状数组即可。
+#include &amp;#34;template/ds/fwtree/0.hpp&amp;#34; struct Node { ll x, y; bool operator&amp;lt;(const Node &amp;amp;o) const { if (x == o.x) return y &amp;gt; o.y; return x &amp;lt; o.x; } }; int main() { int n = rr(); vector&amp;lt;Node&amp;gt; v(n + 1); for (int i = 1; i &amp;lt;= n; i++) { v[i].</description>
+    </item>
+    
+    <item>
+      <title>P3373 线段树 2</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p3373/</link>
+      <pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p3373/</guid>
+      <description>题目大意 给定一个数列，有如下操作：
+ 将区间 $[l,r]$ 上的数乘上 $x$ 将区间 $[l,r]$ 上的数加上 $x$ 询问区间 $[l,r]$ 上的数之和  分析 很经典的线段树教学题，写完后对线段树的理解确实更深了。
+从一次函数的角度考虑问题感觉更清晰。我们实际上在对每个序列上的值做一次函数
+$$ f_i(x) = k_i x + m_i $$
+先来看本题线段树的结构
+template &amp;lt;class T&amp;gt; struct SegmentTree { vector&amp;lt;Seg&amp;gt; tr; void pushup(int p); void pushdown(int p); void build(int l, int r, int p = 1); void modify(int l, int r, T k, T m, int p = 1); T query(int l, int r, int p = 1); }; 懒标记：在知道一段当前值的情况下，可以立刻知道该段被操作后的值，不必重新计算所有的数。因此可以把当前的操作存起来，询问的时候再对子节点做真实操作。</description>
+    </item>
+    
+    <item>
+      <title>P4588 数学计算</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p4588/</link>
+      <pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p4588/</guid>
+      <description>题目大意 初始是 $x=1$，我们每轮对 $x$ 做一个操作
+ 将 $x$ 变为 $k x$，并输出 $x \bmod M$。 将 $x$ 变为 $x / k_i$，即取消第 $i$ 次操作，并输出 $x \bmod M$。  保证每个操作 1 的 $k$ 在操作 2 中至多被除一次。
+分析 $M$ 并不保证是质数，逆元可能不存在。
+可以把操作序列看作一个乘积式，初始情况下全为 $1$。
+ 操作 1 即是把第 $i$ 个数变为 $k$。 操作 2 即是把第 $i$ 个数变回 $1$。  修改结束后，询问所有数的乘积。单点修改，区间查询，标准的线段树。
+因为只询问全体和，zkw 好写的多。
+template &amp;lt;class T&amp;gt; struct SegmentTree { vector&amp;lt;T&amp;gt; tr; int N; SegmentTree(int l, int r) { int n = r - l + 1; N = 2 &amp;lt;&amp;lt; std::__lg(n); tr.</description>
+    </item>
+    
+    <item>
+      <title>P5057 简单题</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p5057/</link>
+      <pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p5057/</guid>
+      <description>题目大意 给定一个 01 序列，有如下操作：
+ 将区间 $[l,r]$ 上的数 01 翻转。 询问第 $i$ 个数的值。  分析 区间操作，单点查询，很自然的想到了差分。
+用异或或者加减代替翻转都可以，用树状数组维护。我选择了加减，这样询问时对 $2$ 取余即可。
+#include &amp;#34;template/ds/fwtree/0.hpp&amp;#34; int main() { int n = rr(), m = rr(); fwtree_1&amp;lt;int&amp;gt; tr(n + 2); while (m--) { int t = rr(); if (t == 1) { int l = rr() + 1, r = rr() + 1; tr.modify(l - 1, -1), tr.modify(r, 1); } else { int i = rr(); i = tr.</description>
+    </item>
+    
+    <item>
+      <title>代码模板</title>
       <link>https://rogeryoungh.github.io/code-of-acm/post/other/docs/</link>
       <pubDate>Sat, 22 Jan 2022 00:00:00 +0000</pubDate>
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/other/docs/</guid>
-      <description>我的代码模板依赖于我自己写的预处理器，它能够 DFS 的把所有引入的模板展开。
-公共文件头。
-Basic 基本部分有
- modint：m32。  NTT-mint 基于 modint 的多项式板子。每一种算法可能有多种实现。
+      <description>我的代码模板依赖于我自定义的预处理器，它通过 DFS 把所有引入的模板展开。
+ index.hpp：公共文件头。  我的模板风格是简单封装：在保持易用的同时，封装尽量的薄。
+Data Struct 基础数据结构。
+ fwtree/1.hpp：普通树状数组。 fwtree/2.hpp：支持区间修改、区间查询的树状数组。 SegmentTree/1.hpp：普通线段树示例，不可引入。 SegmentTree/2.hpp：带懒标记的线段树示例，不可引入。  Math 基础数学算法。
+ qpow.hpp：快速幂。 qpow128.hpp：64 位类型的快速幂。  Basic 我也不知道这东西该放哪，就放到这里吧。
+ modint：m32。  NTT-int 简化多项式板子，码量少，常数较大。
+ fps/O.hpp：多项式基础结构，用牛顿迭代完成操作。 fps/F.hpp：与上面的相同，略卡常数。 cdq.hpp：非递归 CDQ 分治。 eval.hpp：多点插值，多点求值。  没有用的 NTT-mint 基于 modint 的多项式板子，注重易用性和常数，码量较大。
+每一种算法可能有多种实现。
 多项式类的定义
  poly/1.hpp：继承于 vector&amp;lt;m32&amp;gt;。  NTT
  ntt/1.hpp：无 rev 的 NTT。 ntt/2.hpp：略微卡常的 NTT。  多项式逆
- inv/1.hpp：12E 的牛顿迭代 inv，和 16E 的牛顿迭代 div。 inv/2.hpp：10E 的牛顿迭代 inv，和 13E 的牛顿迭代 div。 inv/3.hpp：24E 的牛顿迭代 inv，和 28E 的牛顿迭代 div。 inv/6.hpp：半在线卷积实现的 inv &amp;amp; div。 inv/7.hpp：全在线卷积实现的 inv &amp;amp; div。（没啥用） inv/8.hpp：10E 的分块牛顿迭代 inv，和 10E 的分块牛顿迭代 div。  多项式 exp
- exp/1.hpp：20E 的牛顿迭代 exp。 exp/2.hpp：17E 的牛顿迭代 exp。 exp/3.</description>
+ inv/1.hpp：12E 的牛顿迭代 inv，和 16E 的牛顿迭代 div。 inv/2.hpp：10E 的牛顿迭代 inv，和 13E 的牛顿迭代 div。 inv/3.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/about/</link>
+      <pubDate>Fri, 21 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/about/</guid>
+      <description>你好！
+如你所见，这里放的都是我的 ACM 刷题记录。主博客在 这里。
+刷题日志 2020 年刷题日志
+2021 年刷题日志
+2022 年刷题日志
+代码模板文档 代码模板
+小工具 展示代码
+题号跳转</description>
     </item>
     
     <item>
@@ -72,26 +178,16 @@ F. BFS Trees  第一次补题补到 F 耶！什么时候才能在赛中做到 F 
 CodeForces：更新至：&amp;ndash;.&amp;ndash;
 牛客：更新至：&amp;ndash;.&amp;ndash;
 HDU：更新至：&amp;ndash;.&amp;ndash;
-2021 年 11 月 P1393 Mivik 的标题
-P3846 常系数齐次线性递推
-P3846 可爱的质数/BSGS
-P5158 多项式快速插值
-P5050 多项式多点求值
-P5277 多项式开根（加强版）
-P4512 多项式除法
-P5245 多项式快速幂
-P4718 Pollard-Rho 算法
-P5491 二次剩余
-2021 年 10 月 P5179 Fraction
-P5171 Earthquake
-NC11255B Sample Game
-P3052 Cows in a Skyscraper G
-P4059 找爸爸
-HDU6955 Xor sum
-P5170 类欧几里得算法
-2021 年 09 月 P5205 多项式开根
-HDU6833 A Very Easy Math Problem
-HDU6755 Fibonacci Sum</description>
+2021 年 01 月 01-25 |  P3378 堆
+2021 年 02 月 02-28 |  P1216 数字三角形
+2021 年 03 月 03-02 |  P3382 三分法
+03-06 |  P3865 ST 表
+03-17 |  P1162 填涂颜色
+03-17 |  P1019 单词接龙
+03-19 |  P1014 Cantor 表
+03-19 |  P3370 字符串哈希
+03-20 |  P3375 KMP 字符串匹配
+03-20 |  P3374 树状数组 1</description>
     </item>
     
     <item>
@@ -103,10 +199,10 @@ HDU6755 Fibonacci Sum</description>
       <description>题目大意 在字符集中有 $m$ 个不同的字符，求给定字符串 $S$ 在长度为 $n$ 的字符串的全集中出现的概率。
 分析 参考 Mivik 的字符串公开赛。
 定义 $A$ 类字符串为，在整个字符串中 $S$ 只出现过一次，且恰好 $S$ 出现在末尾的字符串。
-设 ${f_i}$ 是长度为 $i$ 的字符串中 $A$ 类字符串的个数。再定义 ${g_i}$ 是长度为 $i$ 的字符串中没有出现过 $S$ 的个数。
+设 $\{f_i\}$ 是长度为 $i$ 的字符串中 $A$ 类字符串的个数。再定义 $\{g_i\}$ 是长度为 $i$ 的字符串中没有出现过 $S$ 的个数。
 在长为 $i$ 的没有出现过 $S$ 的字符串后面加上一个字符，则可能出现 $S$ 也可能没有出现 $S$。
 $$ m g_i = f_{i+1} + g_{i+1} $$
-定义关于 $S$ 的数列 ${s_i}$ 为
+定义关于 $S$ 的数列 $\{s_i\}$ 为
 $$ s_i = [i \ \text{is a period of}\ S] $$
 即当 $i$ 是 $S$ 的一个循环节时，$s_i$ 为 $1$，否则为 $0$。</description>
     </item>
@@ -176,10 +272,10 @@ const int maxn = 18; ll ci[maxn]; ll ff[1 &amp;lt;&amp;lt; maxn], gg[1 &amp;lt;&
       <description>题目大意 给定两串 DNA 序列，可以在其中任意插空格，然后逐位比较，当两位都是字母时查表得到相似度。
 长度为 $k$ 的空格有额外相似度 $- A - B(k - 1)$。求两序列的最大相似度。
 分析 若不考虑空格的贡献，容易想到二维 DP，记 ${\rm DP}[i,j]$ 是 $A$ 串到位置 $i$ 同时 $B$ 串到位置 $j$ 时最大的相似度，有
-$$ {\rm DP}[i, j] = \max{ {\rm DP}[i - 1, j - 1] + D[i, j], {\rm DP}[i - 1, j], {\rm DP}[i, j - 1] } $$
+$$ {\rm DP}[i, j] = \max\{ {\rm DP}[i - 1, j - 1] + D[i, j], {\rm DP}[i - 1, j], {\rm DP}[i, j - 1] \} $$
 当我们考虑空格的贡献时，可以发现空格的额外贡献只与前面一位有关。若两个序列此位都是空格，则把去掉后相似度一定会增加，故只有三种可能：设 ${\rm DP}_0$ 是结尾没有空格；${\rm DP}_1$ 是空格在 $A$ 串；${\rm DP}_2$ 是空格在 $B$ 串。
 思考最后一个空格的转移方式，自然有方程
-$$ \begin{aligned} {\rm DP}_0[i, j] &amp;amp;= \max{ {\rm DP}_0[i - 1, j - 1], {\rm DP}_1[i - 1, j - 1], {\rm DP}_2[i - 1, j - 1] } + D[i, j] \ {\rm DP}_1[i, j] &amp;amp;= \max{ {\rm DP}_0[i, j - 1] - A, {\rm DP}_1[i, j - 1]- B, {\rm DP}_2[i, j - 1] - A} \ {\rm DP}_2[i, j] &amp;amp;= \max{ {\rm DP}_0[i - 1, j] - A, {\rm DP}_1[i - 1, j] - A, {\rm DP}_2[i, j - 1] - B } \ \end{aligned} $$</description>
+$$ \begin{aligned} {\rm DP}_0[i, j] &amp;amp;= \max\{ {\rm DP}_0[i - 1, j - 1], {\rm DP}_1[i - 1, j - 1], {\rm DP}_2[i - 1, j - 1] \} + D[i, j] \\ {\rm DP}_1[i, j] &amp;amp;= \max\{ {\rm DP}_0[i, j - 1] - A, {\rm DP}_1[i, j - 1]- B, {\rm DP}_2[i, j - 1] - A\} \\ {\rm DP}_2[i, j] &amp;amp;= \max\{ {\rm DP}_0[i - 1, j] - A, {\rm DP}_1[i - 1, j] - A, {\rm DP}_2[i, j - 1] - B \} \\ \end{aligned} $$</description>
     </item>
     
     <item>
@@ -188,7 +284,7 @@ $$ \begin{aligned} {\rm DP}_0[i, j] &amp;amp;= \max{ {\rm DP}_0[i - 1, j - 1], {
       <pubDate>Mon, 11 Oct 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-10/hdu6955/</guid>
-      <description>题目大意 给定整数序列 ${a_n}$，寻找满足区间异或和大于等于 $k$ 的连续序列中最短的。
+      <description>题目大意 给定整数序列 $\{a_n\}$，寻找满足区间异或和大于等于 $k$ 的连续序列中最短的。
 若有多个同样长度的答案，输出位置靠前的，若不存在输出 -1。
 分析 看到异或最值就应该想到 01trie。做前缀异或和，这样我们的问题就变成找到最靠近的两个数，其异或大于等于 $k$。
 因为要求位置最靠前的，所以我选择倒着遍历。当遍历到第 $i$ 个数 $a_i$ 时，字典树已经维护好此位置之后的数据，即每个值出现最左边的位置。
@@ -202,12 +298,12 @@ const int maxn = 1e5 + 10, o = 30 - 1; int trie[maxn * 30][2], val[maxn * 30], t
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6833/</guid>
       <description>题目大意 即求
-$$ S (n) = \sum^n_{{ a_x } = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd { a_x }) \gcd { a_x } $$
+$$ S (n) = \sum^n_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd \{ a_x \}) \gcd \{ a_x \} $$
 我自己随便简写了，全打太麻烦了。
 分析 这东西看着很吓人，其实是纸老虎。首先 $f(x) = \mu(x)^2$。提出 $\gcd$ 有
-$$ \begin{aligned} S (n) &amp;amp; =\sum_{d=1}^{n}\sum^{n}{{ a{x}}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd { a_{x}} =d]\ &amp;amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x+1}\sum^{n/d}{{ a{x}} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd { a_{x}} =1] \end{aligned} $$
+$$ \begin{aligned} S (n) &amp;amp; =\sum_{d=1}^{n}\sum^{n}_{\{ a_{x}\}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd \{ a_{x}\} =d]\\ &amp;amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x+1}\sum^{n/d}_{\{ a_{x}\} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd \{ a_{x}\} =1] \end{aligned} $$
 对后面这部分反演有
-$$ \begin{aligned} &amp;amp; \sum^{n / d}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd { a_x }} \mu (t) \right)\ = &amp;amp; \sum^{n / d}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd { a_x }] \mu (t) \right)\ = &amp;amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \end{aligned} $$</description>
+$$ \begin{aligned} &amp;amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd \{ a_x \}} \mu (t) \right)\\ = &amp;amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd \{ a_x \}] \mu (t) \right)\\ = &amp;amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \end{aligned} $$</description>
     </item>
     
     <item>
@@ -232,7 +328,7 @@ $$ (F_{i c})^k = \left( \frac{A^{i c} - B^{i c}}{A - B} \right)^k = \frac{1}{(A 
       <pubDate>Wed, 22 Sep 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6537/</guid>
-      <description>题目大意 定义 $f(n, k)$ 为满足如下要求的，长度为 $k$ 的数列 $\{a_i\}$ 个数：
+      <description>题目大意 定义 $f(n, k)$ 为满足如下要求的，长度为 $k$ 的数列 $\\{a_i\\}$ 个数：
  要求每个数字都大于 $1$； 数列各项之积恰为 $n$。  求其前缀和 $S(n, k) = \sum f(i, k)$。
 分析 多组输入好坑啊。
 先允许 $a_i=1$，将结果记为 $g(n,k)$，容易利用隔板法求得
@@ -253,7 +349,7 @@ $$ f (n, k) = \sum_{i = 1}^k (- 1)^{k - i} \binom{k}{i} g (n, i) $$</description
 $$ f (n) = \sum_{d \mid n} d \left[ \gcd \left( d, \frac{n}{d} \right) = 1 \right] $$
 求其前缀和 $S(n)$。
 分析 首先 Min25 筛是过不了的，内存不够。先推式子
-$$ \begin{aligned} S (n) &amp;amp;= \sum_{i = 1}^n \sum_{d \mid i} d \left[ \gcd \left( d, \frac{i}{d} \right) = 1 \right] \ &amp;amp;= \sum_{d = 1}^n \sum_{i = 1}^n d [d \mid i] \left[\gcd \left( d, \frac{i}{d} \right) = 1 \right] \ &amp;amp;= \sum_{d = 1}^n \sum_{i = 1}^{n / d} d [\gcd (i, d) = 1] \end{aligned} $$</description>
+$$ \begin{aligned} S (n) &amp;amp;= \sum_{i = 1}^n \sum_{d \mid i} d \left[ \gcd \left( d, \frac{i}{d} \right) = 1 \right] \\ &amp;amp;= \sum_{d = 1}^n \sum_{i = 1}^n d [d \mid i] \left[\gcd \left( d, \frac{i}{d} \right) = 1 \right] \\ &amp;amp;= \sum_{d = 1}^n \sum_{i = 1}^{n / d} d [\gcd (i, d) = 1] \end{aligned} $$</description>
     </item>
     
     <item>
@@ -310,7 +406,7 @@ $$ f(k) = \sum_{i=0}^{m-1} d(A_{i}, B_{i-m+k}) $$
 即 $f(k) = 0$ 时有完全匹配 $A = B[k-m\ldots k-1]$。考虑让 $d$ 函数更 “数学” 一点，以更好的计算
 $$ d(x,y) = (x - y)^2 $$
 再提供模式串 $A$ 的翻转 $S$，即 $A_i = S_{m-i}$，展开有
-$$ \begin{aligned} f(k) &amp;amp;= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{i-m+k}^2 - 2\sum_{i=0}^{m-1} A_{i}B_{i-m+k}\ &amp;amp;= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{i-m+k}^2 - 2\sum_{i=0}^{m-1} S_{m-i}B_{i-m+k} \end{aligned} $$</description>
+$$ \begin{aligned} f(k) &amp;amp;= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{i-m+k}^2 - 2\sum_{i=0}^{m-1} A_{i}B_{i-m+k}\\ &amp;amp;= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{i-m+k}^2 - 2\sum_{i=0}^{m-1} S_{m-i}B_{i-m+k} \end{aligned} $$</description>
     </item>
     
     <item>
@@ -390,7 +486,7 @@ $$ \sum_{i=1}^n \gcd(i,n) $$
 分析 联想到
 $$ \varphi(n) = \sum_{i=1}^n [\gcd(i,n) = 1] $$
 尝试凑这个形式
-$$ \begin{aligned} \sum_{i=1}^n \gcd(i,n) &amp;amp;= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \ &amp;amp;= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \ &amp;amp;= \sum_{d \mid n} d \varphi(n/d) \end{aligned} $$
+$$ \begin{aligned} \sum_{i=1}^n \gcd(i,n) &amp;amp;= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \\ &amp;amp;= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \\ &amp;amp;= \sum_{d \mid n} d \varphi(n/d) \end{aligned} $$
 这里其实已经可以过题了，但还可以再瞎搞一下，令
 $$ nf(n) = \sum_{d \mid n} d \varphi(n/d) = n\sum_{d \mid n} \frac{\varphi(d)}{d} $$
 尝试证明 $f(n)$ 是一个积性函数。设 $\gcd(a,b) = 1$，有</description>
@@ -507,31 +603,17 @@ int main() { L = rr(), N = rr(), M = rr(); for (ll i = 1; i &amp;lt;= N; i++) aa
 CodeForces：更新至：&amp;ndash;.&amp;ndash;
 牛客：更新至：&amp;ndash;.&amp;ndash;
 HDU：更新至：&amp;ndash;.&amp;ndash;
-2020 年 12 月 P5656 二元一次不定方程 (exgcd)
-P4779 单源最短路径（标准版）
-P1629 邮递员送信
-P1359 租用游艇
-P2016 战略游戏
-P3884 二叉树问题
-P3379 最近公共祖先（LCA）
-P2052 道路修建
-P1352 没有上司的舞会
-P3371 单源最短路径（弱化版）
-P3146 248 G
-2020 年 11 月 P1880 石子合并 ==DONE==
-P1636 Einstein 学画画
-P3383 线性筛素数
-P1226 快速幂 || 取余运算
-P3367 并查集
-P4913 二叉树深度
-P4715 淘汰赛
-P2058 海港
-P1106 删数问题
-P1160 队列安排
-P1941 飞扬的小鸟
-P1064 金明的预算方案
-P1833 樱花
-P1541 乌龟棋 ==DONE==</description>
+2020 年 09 月 开始 ACM。不记录 HDU 150 的基础题。
+09-20 |  CF1384B2 Koa and the Beach
+09-20 |  P1004 方格取数
+09-22 |  P2181 对角线
+09-23 |  P1042 乒乓球
+2020 年 10 月 10-09 |  P1095 守望者的逃离
+10-13 |  P5143 攀爬者
+10-16 |  P1923 求第 $k$ 小的数
+10-16 |  P1928 外星密码
+10-16 |  P1990 覆盖墙壁
+10-16 |  P1090 合并果子</description>
     </item>
     
     <item>
@@ -569,7 +651,7 @@ ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), te
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1541/</guid>
       <description>题目大意 初始有四种卡片，消耗后分别可以前进 $1$、$2$、$3$ 和 $4$ 格。棋盘上每个点都有个分数，求从第 $1$ 格到达第 $N$ 格途径分数的最大值。
 分析 设状态 $F[i, j, k, w]$ 为使用 $i$ 张前进 $1$、……、$w$ 张前进 $4$ 之后的状态，容易得到转移方程
-$$ F[i, j, k, w] = \max\left{ \begin{matrix} dp[i - 1, j, k, w] \ dp[i, j - 1, k, w] \ dp[i, j, k - 1, w] \ dp[i, j, k, w - 1] \end{matrix}\right} + a[i + 2j + 3k + 4w] $$
+$$ F[i, j, k, w] = \max\left\{ \begin{matrix} dp[i - 1, j, k, w] \\ dp[i, j - 1, k, w] \\ dp[i, j, k - 1, w] \\ dp[i, j, k, w - 1] \end{matrix}\right\} + a[i + 2j + 3k + 4w] $$
 处理一下边界情况，滚动数组即可。
 ll dp[50][50][50], aa[400], tt[10]; int main() { ll n = rr(), m = rr(); for (ll i = 1; i &amp;lt;= n; i++) { aa[i] = rr(); } for (ll i = 1; i &amp;lt;= m; i++) { tt[rr()]++; } for (ll i = 0; i &amp;lt;= tt[1]; i++) { for (ll j = 0; j &amp;lt;= tt[2]; j++) { for (ll k = 0; k &amp;lt;= tt[3]; k++) { for (ll w = 0; w &amp;lt;= tt[4]; w++) { dp[j][k][w] = aa[i * 1 + j * 2 + k * 3 + w * 4 + 1] + max4( j == 0 ?</description>
     </item>
@@ -584,7 +666,7 @@ ll dp[50][50][50], aa[400], tt[10]; int main() { ll n = rr(), m = rr(); for (ll 
 你从 $(1,1)$ 出发，只能沿着格子直走，最终走到 $(n,n)$。要求沿途经过所有的线段，且所走路程长度尽量的短。
 分析 显然是一行一行的递推。维护两个数据，一个是走完该行后停留在左侧的，记作 ${\rm DP}_l$，相应的停留在右侧的记作 ${\rm DP}_r$。
 若停在左侧，可能从上一行的右侧走来，也可能是由左侧走来，故转移方程有
-$$ {\rm DP}_l[i] = r_i - l_i + \min{{\rm DP}l[i - 1] + |l{i-1} - r_i|, {\rm DP}r[i - 1] + |r{i - 1} - r_i|} $$
+$$ {\rm DP}_l[i] = r_i - l_i + \min\{{\rm DP}_l[i - 1] + |l_{i-1} - r_i|, {\rm DP}_r[i - 1] + |r_{i - 1} - r_i|\} $$
 右侧类似，故可以写出代码
 int main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll i = 1; i &amp;lt;= n; i++) { ll l = rr(), r = rr(); ll tl = min(dpl + abs(past_l - r), dpr + abs(past_r - r)) + r - l; ll tr = min(dpl + abs(past_l - l), dpr + abs(past_r - l)) + r - l; dpl = tl, dpr = tr; past_l = l, past_r = r; } printf(&amp;#34;%lld\n&amp;#34;, min(dpl + n - past_l, dpr + n - past_r) + n - 1); return 0; } </description>
     </item>
@@ -743,27 +825,12 @@ int main() { int ttt = rr(); while (ttt--) { int n = rr(), k = rr(), l = rr(); i
 分析 考虑把先走后走转化为两个人同时走，只需要处理遇到两次的值即可。
 考虑四维 DP，用 $dp[x_1,y_1,x_2,y_2]$ 表示第一个人走到 $(x_1,y_1)$ 和第二个人走到 $(x_2,y_2)$。
 再考虑转移，每一个位置仅可能从其左面或上面转移来，于是可以写出（$x_1 \ne y_1$ 或 $x_2 \ne y_2$ 时）
-$$ dp[x_1,y_1,x_2,y_2] = \max\left{ \begin{matrix} dp[x_1-1,y_1,x_2-1,y_2] \ dp[x_1,y_1-1,x_2-1,y_2] \ dp[x_1-1,y_1,x_2,y_2-1] \ dp[x_1,y_1-1,x_2,y_2-1] \end{matrix}\right} + a[x_1,y_1] + a[x_2,y_2] $$
+$$ dp[x_1,y_1,x_2,y_2] = \max\left\{ \begin{matrix} dp[x_1-1,y_1,x_2-1,y_2] \\ dp[x_1,y_1-1,x_2-1,y_2] \\ dp[x_1-1,y_1,x_2,y_2-1] \\ dp[x_1,y_1-1,x_2,y_2-1] \end{matrix}\right\} + a[x_1,y_1] + a[x_2,y_2] $$
 当 $x_1=y_1,x_2=y_2$ 时，只加一次即可。到这里 $O(n^4)$ 其实已经可以过题了，但还可以优化。
 注意到一些状态是不可达的，因为 $x_1+y_1 = x_2+y_2$，因此存在 $O(n^3)$ 的 DP。
 考虑当前已走长度 $h=x_1+y_1=x_2+y_2$，于是可以把两个人的座标表示为 $(x_1,h-x_1)$ 和 $(x_2,h-x_2)$。
 于是记状态为 $dp[h,x_1,x_2]$，当 $x_1 \ne x_2$ 时有
-$$ dp[h,x_1,x_2] = \max\left{ \begin{matrix} dp[h-1,x_1,x_2] \ dp[h-1,x_1,x_2-1] \ dp[h-1,x_1-1,x_2] \ dp[h-1,x_1-1,x_2-1] \end{matrix}\right} + a[x_1,h-x_1] + a[x_2,h-x_2] $$</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://rogeryoungh.github.io/code-of-acm/about/</guid>
-      <description>你好！
-如你所见，这里放的都是我的 ACM 刷题记录。我的博客在这里。
-刷题日志 2020 年刷题日志
-2021 年刷题日志
-代码模板文档 文档
-小工具 展示代码
-题号跳转</description>
+$$ dp[h,x_1,x_2] = \max\left\{ \begin{matrix} dp[h-1,x_1,x_2] \\ dp[h-1,x_1,x_2-1] \\ dp[h-1,x_1-1,x_2] \\ dp[h-1,x_1-1,x_2-1] \end{matrix}\right\} + a[x_1,h-x_1] + a[x_2,h-x_2] $$</description>
     </item>
     
     

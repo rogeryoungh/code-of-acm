@@ -15,12 +15,12 @@
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6833/</guid>
       <description>题目大意 即求
-$$ S (n) = \sum^n_{{ a_x } = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd { a_x }) \gcd { a_x } $$
+$$ S (n) = \sum^n_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd \{ a_x \}) \gcd \{ a_x \} $$
 我自己随便简写了，全打太麻烦了。
 分析 这东西看着很吓人，其实是纸老虎。首先 $f(x) = \mu(x)^2$。提出 $\gcd$ 有
-$$ \begin{aligned} S (n) &amp;amp; =\sum_{d=1}^{n}\sum^{n}{{ a{x}}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd { a_{x}} =d]\ &amp;amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x+1}\sum^{n/d}{{ a{x}} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd { a_{x}} =1] \end{aligned} $$
+$$ \begin{aligned} S (n) &amp;amp; =\sum_{d=1}^{n}\sum^{n}_{\{ a_{x}\}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd \{ a_{x}\} =d]\\ &amp;amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x+1}\sum^{n/d}_{\{ a_{x}\} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd \{ a_{x}\} =1] \end{aligned} $$
 对后面这部分反演有
-$$ \begin{aligned} &amp;amp; \sum^{n / d}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd { a_x }} \mu (t) \right)\ = &amp;amp; \sum^{n / d}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd { a_x }] \mu (t) \right)\ = &amp;amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}{{ a_x } = 1} \left( \prod{j = 1}^x a_j \right)^k \end{aligned} $$</description>
+$$ \begin{aligned} &amp;amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd \{ a_x \}} \mu (t) \right)\\ = &amp;amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd \{ a_x \}] \mu (t) \right)\\ = &amp;amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \end{aligned} $$</description>
     </item>
     
     <item>
@@ -45,7 +45,7 @@ $$ (F_{i c})^k = \left( \frac{A^{i c} - B^{i c}}{A - B} \right)^k = \frac{1}{(A 
       <pubDate>Wed, 22 Sep 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6537/</guid>
-      <description>题目大意 定义 $f(n, k)$ 为满足如下要求的，长度为 $k$ 的数列 $\{a_i\}$ 个数：
+      <description>题目大意 定义 $f(n, k)$ 为满足如下要求的，长度为 $k$ 的数列 $\\{a_i\\}$ 个数：
  要求每个数字都大于 $1$； 数列各项之积恰为 $n$。  求其前缀和 $S(n, k) = \sum f(i, k)$。
 分析 多组输入好坑啊。
 先允许 $a_i=1$，将结果记为 $g(n,k)$，容易利用隔板法求得
@@ -66,7 +66,7 @@ $$ f (n, k) = \sum_{i = 1}^k (- 1)^{k - i} \binom{k}{i} g (n, i) $$</description
 $$ f (n) = \sum_{d \mid n} d \left[ \gcd \left( d, \frac{n}{d} \right) = 1 \right] $$
 求其前缀和 $S(n)$。
 分析 首先 Min25 筛是过不了的，内存不够。先推式子
-$$ \begin{aligned} S (n) &amp;amp;= \sum_{i = 1}^n \sum_{d \mid i} d \left[ \gcd \left( d, \frac{i}{d} \right) = 1 \right] \ &amp;amp;= \sum_{d = 1}^n \sum_{i = 1}^n d [d \mid i] \left[\gcd \left( d, \frac{i}{d} \right) = 1 \right] \ &amp;amp;= \sum_{d = 1}^n \sum_{i = 1}^{n / d} d [\gcd (i, d) = 1] \end{aligned} $$</description>
+$$ \begin{aligned} S (n) &amp;amp;= \sum_{i = 1}^n \sum_{d \mid i} d \left[ \gcd \left( d, \frac{i}{d} \right) = 1 \right] \\ &amp;amp;= \sum_{d = 1}^n \sum_{i = 1}^n d [d \mid i] \left[\gcd \left( d, \frac{i}{d} \right) = 1 \right] \\ &amp;amp;= \sum_{d = 1}^n \sum_{i = 1}^{n / d} d [\gcd (i, d) = 1] \end{aligned} $$</description>
     </item>
     
     <item>
@@ -162,7 +162,7 @@ $$ \sum_{i=1}^n \gcd(i,n) $$
 分析 联想到
 $$ \varphi(n) = \sum_{i=1}^n [\gcd(i,n) = 1] $$
 尝试凑这个形式
-$$ \begin{aligned} \sum_{i=1}^n \gcd(i,n) &amp;amp;= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \ &amp;amp;= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \ &amp;amp;= \sum_{d \mid n} d \varphi(n/d) \end{aligned} $$
+$$ \begin{aligned} \sum_{i=1}^n \gcd(i,n) &amp;amp;= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \\ &amp;amp;= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \\ &amp;amp;= \sum_{d \mid n} d \varphi(n/d) \end{aligned} $$
 这里其实已经可以过题了，但还可以再瞎搞一下，令
 $$ nf(n) = \sum_{d \mid n} d \varphi(n/d) = n\sum_{d \mid n} \frac{\varphi(d)}{d} $$
 尝试证明 $f(n)$ 是一个积性函数。设 $\gcd(a,b) = 1$，有</description>

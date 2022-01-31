@@ -31,6 +31,16 @@ void debug(const Poly& f, const char* s) {
 }
 #endif
 
+#ifdef ACM_NTT_INT_SIMP_H
+void debug(const Poly& f, const char* s) {
+    _dbg("[vec<int>] %s = (%d) ", s, f.deg());
+    for (auto &m : f) {
+        _dbg("%d ", m);
+    }
+    _dbg("\n");
+}
+#endif
+
 #ifdef ACM_BASIC_MO_H
 void debug(const m32& m, const char* s) {
     _dbg("[int] %s = %d\n", s, m.v);

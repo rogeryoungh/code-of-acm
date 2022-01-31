@@ -12,7 +12,7 @@ $$ \sum_{i=1}^n \gcd(i,n) $$
 分析 联想到
 $$ \varphi(n) = \sum_{i=1}^n [\gcd(i,n) = 1] $$
 尝试凑这个形式
-$$ \begin{aligned} \sum_{i=1}^n \gcd(i,n) &amp;= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \ &amp;= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \ &amp;= \sum_{d \mid n} d \varphi(n/d) \end{aligned} $$
+$$ \begin{aligned} \sum_{i=1}^n \gcd(i,n) &amp;= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \\ &amp;= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \\ &amp;= \sum_{d \mid n} d \varphi(n/d) \end{aligned} $$
 这里其实已经可以过题了，但还可以再瞎搞一下，令
 $$ nf(n) = \sum_{d \mid n} d \varphi(n/d) = n\sum_{d \mid n} \frac{\varphi(d)}{d} $$
 尝试证明 $f(n)$ 是一个积性函数。设 $\gcd(a,b) = 1$，有">
@@ -29,7 +29,7 @@ $$ nf(n) = \sum_{d \mid n} d \varphi(n/d) = n\sum_{d \mid n} \frac{\varphi(d)}{d
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.92.0" />
+<meta name="generator" content="Hugo 0.92.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -62,7 +62,7 @@ $$ \sum_{i=1}^n \gcd(i,n) $$
 分析 联想到
 $$ \varphi(n) = \sum_{i=1}^n [\gcd(i,n) = 1] $$
 尝试凑这个形式
-$$ \begin{aligned} \sum_{i=1}^n \gcd(i,n) &amp;= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \ &amp;= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \ &amp;= \sum_{d \mid n} d \varphi(n/d) \end{aligned} $$
+$$ \begin{aligned} \sum_{i=1}^n \gcd(i,n) &amp;= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \\ &amp;= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \\ &amp;= \sum_{d \mid n} d \varphi(n/d) \end{aligned} $$
 这里其实已经可以过题了，但还可以再瞎搞一下，令
 $$ nf(n) = \sum_{d \mid n} d \varphi(n/d) = n\sum_{d \mid n} \frac{\varphi(d)}{d} $$
 尝试证明 $f(n)$ 是一个积性函数。设 $\gcd(a,b) = 1$，有" />
@@ -78,7 +78,7 @@ $$ \sum_{i=1}^n \gcd(i,n) $$
 分析 联想到
 $$ \varphi(n) = \sum_{i=1}^n [\gcd(i,n) = 1] $$
 尝试凑这个形式
-$$ \begin{aligned} \sum_{i=1}^n \gcd(i,n) &amp;= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \ &amp;= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \ &amp;= \sum_{d \mid n} d \varphi(n/d) \end{aligned} $$
+$$ \begin{aligned} \sum_{i=1}^n \gcd(i,n) &amp;= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \\ &amp;= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \\ &amp;= \sum_{d \mid n} d \varphi(n/d) \end{aligned} $$
 这里其实已经可以过题了，但还可以再瞎搞一下，令
 $$ nf(n) = \sum_{d \mid n} d \varphi(n/d) = n\sum_{d \mid n} \frac{\varphi(d)}{d} $$
 尝试证明 $f(n)$ 是一个积性函数。设 $\gcd(a,b) = 1$，有"/>
@@ -110,11 +110,11 @@ $$ nf(n) = \sum_{d \mid n} d \varphi(n/d) = n\sum_{d \mid n} \frac{\varphi(d)}{d
   "@type": "BlogPosting",
   "headline": "P2303 Longge 的问题",
   "name": "P2303 Longge 的问题",
-  "description": "题目大意 即求\n$$ \\sum_{i=1}^n \\gcd(i,n) $$\n分析 联想到\n$$ \\varphi(n) = \\sum_{i=1}^n [\\gcd(i,n) = 1] $$\n尝试凑这个形式\n$$ \\begin{aligned} \\sum_{i=1}^n \\gcd(i,n) \u0026amp;= \\sum_{d \\mid n} d \\sum_{i=1}^n [\\gcd(i,n) = d] \\ \u0026amp;= \\sum_{d \\mid n} d \\sum_{i=1}^{n/d} [\\gcd(i,n/d) = 1] \\ \u0026amp;= \\sum_{d \\mid n} d \\varphi(n/d) \\end{aligned} $$\n这里其实已经可以过题了，但还可以再瞎搞一下，令\n$$ nf(n) = \\sum_{d \\mid n} d \\varphi(n/d) = n\\sum_{d \\mid n} \\frac{\\varphi(d)}{d} $$\n尝试证明 $f(n)$ 是一个积性函数。设 $\\gcd(a,b) = 1$，有",
+  "description": "题目大意 即求\n$$ \\sum_{i=1}^n \\gcd(i,n) $$\n分析 联想到\n$$ \\varphi(n) = \\sum_{i=1}^n [\\gcd(i,n) = 1] $$\n尝试凑这个形式\n$$ \\begin{aligned} \\sum_{i=1}^n \\gcd(i,n) \u0026amp;= \\sum_{d \\mid n} d \\sum_{i=1}^n [\\gcd(i,n) = d] \\\\ \u0026amp;= \\sum_{d \\mid n} d \\sum_{i=1}^{n/d} [\\gcd(i,n/d) = 1] \\\\ \u0026amp;= \\sum_{d \\mid n} d \\varphi(n/d) \\end{aligned} $$\n这里其实已经可以过题了，但还可以再瞎搞一下，令\n$$ nf(n) = \\sum_{d \\mid n} d \\varphi(n/d) = n\\sum_{d \\mid n} \\frac{\\varphi(d)}{d} $$\n尝试证明 $f(n)$ 是一个积性函数。设 $\\gcd(a,b) = 1$，有",
   "keywords": [
     "洛谷", "数论"
   ],
-  "articleBody": "题目大意 即求\n$$ \\sum_{i=1}^n \\gcd(i,n) $$\n分析 联想到\n$$ \\varphi(n) = \\sum_{i=1}^n [\\gcd(i,n) = 1] $$\n尝试凑这个形式\n$$ \\begin{aligned} \\sum_{i=1}^n \\gcd(i,n) \u0026= \\sum_{d \\mid n} d \\sum_{i=1}^n [\\gcd(i,n) = d] \\ \u0026= \\sum_{d \\mid n} d \\sum_{i=1}^{n/d} [\\gcd(i,n/d) = 1] \\ \u0026= \\sum_{d \\mid n} d \\varphi(n/d) \\end{aligned} $$\n这里其实已经可以过题了，但还可以再瞎搞一下，令\n$$ nf(n) = \\sum_{d \\mid n} d \\varphi(n/d) = n\\sum_{d \\mid n} \\frac{\\varphi(d)}{d} $$\n尝试证明 $f(n)$ 是一个积性函数。设 $\\gcd(a,b) = 1$，有\n$$ \\begin{aligned} f(a)f(b) \u0026= \\left(\\sum_{d_1 \\mid a} \\frac{\\varphi(d_1)}{d_1}\\right) \\left(\\sum_{d_2 \\mid b} \\frac{\\varphi(d_2)}{d_2}\\right)\\ \u0026= \\sum_{d_1 \\mid a} \\sum_{d_2 \\mid b} \\frac{\\varphi(d_1)}{d_1} \\frac{\\varphi(d_2)}{d_2}\\ \u0026= \\sum_{d_1 \\mid a} \\sum_{d_2 \\mid b} \\frac{\\varphi(d_1d_2)}{d_1d_2}\\ \u0026= f(ab) \\end{aligned} $$\n再来推一下素数，注意 $1 \\mid p^k$，有\n$$ f(p^k) = \\sum_{d \\mid p^k} \\frac{\\varphi(d)}{d} = \\sum_{i=0}^k \\frac{\\varphi(p^i)}{p^i} = k\\left(1 - \\frac{1}{p}\\right) + 1 $$\n类似于 $\\varphi(m)$ 唯一分解形式，我们还有\n$$ f(n) = \\prod_{i=1}^sf(p_i^{k_i}) = \\prod_{i=1}^s \\frac{k_ip_i - k_i + p_i}{p_i} $$\n于是答案即为 $nf(n)$，复杂度 $O(\\sqrt{n})$。\nint main() { ll n = rr(), ans = n; for (ll i = 2; i * i  n; i++) { ll k = 0; while (n % i == 0) k++, n /= i; if (k  0) ans += ans / i * k * (i - 1); } if (n  1) ans += ans / n * (n - 1); printf(\"%lld\", ans); return 0; } ",
+  "articleBody": "题目大意 即求\n$$ \\sum_{i=1}^n \\gcd(i,n) $$\n分析 联想到\n$$ \\varphi(n) = \\sum_{i=1}^n [\\gcd(i,n) = 1] $$\n尝试凑这个形式\n$$ \\begin{aligned} \\sum_{i=1}^n \\gcd(i,n) \u0026= \\sum_{d \\mid n} d \\sum_{i=1}^n [\\gcd(i,n) = d] \\\\ \u0026= \\sum_{d \\mid n} d \\sum_{i=1}^{n/d} [\\gcd(i,n/d) = 1] \\\\ \u0026= \\sum_{d \\mid n} d \\varphi(n/d) \\end{aligned} $$\n这里其实已经可以过题了，但还可以再瞎搞一下，令\n$$ nf(n) = \\sum_{d \\mid n} d \\varphi(n/d) = n\\sum_{d \\mid n} \\frac{\\varphi(d)}{d} $$\n尝试证明 $f(n)$ 是一个积性函数。设 $\\gcd(a,b) = 1$，有\n$$ \\begin{aligned} f(a)f(b) \u0026= \\left(\\sum_{d_1 \\mid a} \\frac{\\varphi(d_1)}{d_1}\\right) \\left(\\sum_{d_2 \\mid b} \\frac{\\varphi(d_2)}{d_2}\\right)\\\\ \u0026= \\sum_{d_1 \\mid a} \\sum_{d_2 \\mid b} \\frac{\\varphi(d_1)}{d_1} \\frac{\\varphi(d_2)}{d_2}\\\\ \u0026= \\sum_{d_1 \\mid a} \\sum_{d_2 \\mid b} \\frac{\\varphi(d_1d_2)}{d_1d_2}\\\\ \u0026= f(ab) \\end{aligned} $$\n再来推一下素数，注意 $1 \\mid p^k$，有\n$$ f(p^k) = \\sum_{d \\mid p^k} \\frac{\\varphi(d)}{d} = \\sum_{i=0}^k \\frac{\\varphi(p^i)}{p^i} = k\\left(1 - \\frac{1}{p}\\right) + 1 $$\n类似于 $\\varphi(m)$ 唯一分解形式，我们还有\n$$ f(n) = \\prod_{i=1}^sf(p_i^{k_i}) = \\prod_{i=1}^s \\frac{k_ip_i - k_i + p_i}{p_i} $$\n于是答案即为 $nf(n)$，复杂度 $O(\\sqrt{n})$。\nint main() { ll n = rr(), ans = n; for (ll i = 2; i * i  n; i++) { ll k = 0; while (n % i == 0) k++, n /= i; if (k  0) ans += ans / i * k * (i - 1); } if (n  1) ans += ans / n * (n - 1); printf(\"%lld\", ans); return 0; } ",
   "wordCount" : "212",
   "inLanguage": "en",
   "datePublished": "2021-05-24T00:00:00Z",
@@ -285,8 +285,8 @@ $$</p>
 <p>尝试凑这个形式</p>
 <p>$$
 \begin{aligned}
-\sum_{i=1}^n \gcd(i,n) &amp;= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \
-&amp;= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \
+\sum_{i=1}^n \gcd(i,n) &amp;= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \\
+&amp;= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \\
 &amp;= \sum_{d \mid n} d \varphi(n/d)
 \end{aligned}
 $$</p>
@@ -297,9 +297,9 @@ $$</p>
 <p>尝试证明 $f(n)$ 是一个积性函数。设 $\gcd(a,b) = 1$，有</p>
 <p>$$
 \begin{aligned}
-f(a)f(b) &amp;= \left(\sum_{d_1 \mid a} \frac{\varphi(d_1)}{d_1}\right) \left(\sum_{d_2 \mid b} \frac{\varphi(d_2)}{d_2}\right)\
-&amp;= \sum_{d_1 \mid a} \sum_{d_2 \mid b} \frac{\varphi(d_1)}{d_1} \frac{\varphi(d_2)}{d_2}\
-&amp;= \sum_{d_1 \mid a} \sum_{d_2 \mid b} \frac{\varphi(d_1d_2)}{d_1d_2}\
+f(a)f(b) &amp;= \left(\sum_{d_1 \mid a} \frac{\varphi(d_1)}{d_1}\right) \left(\sum_{d_2 \mid b} \frac{\varphi(d_2)}{d_2}\right)\\
+&amp;= \sum_{d_1 \mid a} \sum_{d_2 \mid b} \frac{\varphi(d_1)}{d_1} \frac{\varphi(d_2)}{d_2}\\
+&amp;= \sum_{d_1 \mid a} \sum_{d_2 \mid b} \frac{\varphi(d_1d_2)}{d_1d_2}\\
 &amp;= f(ab)
 \end{aligned}
 $$</p>
