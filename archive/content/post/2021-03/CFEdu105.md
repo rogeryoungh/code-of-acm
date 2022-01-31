@@ -4,7 +4,7 @@ title: "CF1494 Educational Round 105 (Rated for Div. 2)"
 date: "2021-03-29"
 katex: true
 showtoc: true
-tags: 
+tags:
   - "CodeForces"
 ---
 
