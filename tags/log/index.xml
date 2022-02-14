@@ -7,11 +7,11 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© 2021 [Roger Young](https://rogeryoungh.github.io/blog/about/)</copyright>
-    <lastBuildDate>Mon, 31 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/tags/log/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 11 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/tags/log/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>2021 年刷题日志</title>
+      <title>2022 年刷题日志</title>
       <link>https://rogeryoungh.github.io/code-of-acm/post/other/log2022/</link>
-      <pubDate>Mon, 31 Jan 2022 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 11 Feb 2022 00:00:00 +0000</pubDate>
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/other/log2022/</guid>
       <description>新的一年，一样的菜。
@@ -24,7 +24,9 @@
 01-28 |  P5057 简单题
 01-28 |  P4588 数学计算
 01-28 |  P1637 三元上升子序列
-01-29 |  P5431 乘法逆元 2</description>
+01-29 |  P5431 乘法逆元 2
+2022 年 02 月 02-11 |  P6186 冒泡排序
+02-14 |  ZAFU 2022.02.14 个人赛题解</description>
     </item>
     
     <item>

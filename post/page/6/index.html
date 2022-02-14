@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.92.1" />
+<meta name="generator" content="Hugo 0.92.2" />
 <link rel="alternate" type="application/rss+xml" href="https://rogeryoungh.github.io/code-of-acm/post/index.xml">
 
 
@@ -162,6 +162,33 @@
 <header class="page-header">
   <h1>Posts</h1>
 </header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P5143 攀爬者</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 在三维空间中，HKE 只能往上走，求攀爬总长。
+分析 对所有座标的 $z$ 分量排序即可。
+struct POINT { double x, y, z; bool operator&lt;(POINT p) { return z &gt; p.z; } } nn[50010]; double dis(POINT &amp;p1, POINT &amp;p2) { double t1 = p1.x - p2.x, t2 = p1.y - p2.y, t3 = p1.z - p2.z; return sqrt(t1 * t1 &#43; t2 * t2 &#43; t3 * t3); } int main() { int n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) cin &gt;&gt; nn[i]....</p>
+  </section>
+  <footer class="entry-footer">October 13, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P5143 攀爬者" href="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p5143/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P1095 守望者的逃离</h2>
+  </header>
+  <section class="entry-content">
+    <p>P1095 守望者的逃离 题目大意 守望者的可以在一秒逃出 $17 {\rm m}$，或者消耗 $10$ 点魔法值闪现 $60 {\rm m}$。原地休息时每秒回复 $4$ 点魔法值。
+守望者开始有 $M$ 点魔法，需要在 $T$ 秒内逃离距离 $S$。若能逃离则求最短逃离时间，否则求最远距离。
+分析 设 $s_1$为一直走路，$s_2$ 为一直闪现恢复。当 $s_2$ 快了就把 $s_1$ 更新为 $s_2$。
+int main() { int m = rr(), s = rr(), t = rr(); int time = t, s1 = 0, s2 = 0; while (time &gt; 0 &amp;&amp; s1 &lt; s) { s1 &#43;= 17; if (m &gt;= 10) m -= 10, s2 &#43;= 60; else m &#43;= 4; s1 = max(s1, s2); time--; } if (s1 &lt; s) printf(&#34;No\n%d\n&#34;, s1); else printf(&#34;Yes\n%d\n&#34;, t - time); return 0; } </p>
+  </section>
+  <footer class="entry-footer">October 9, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1095 守望者的逃离" href="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1095/"></a>
+</article>
 
 <article class="post-entry"> 
   <header class="entry-header">
