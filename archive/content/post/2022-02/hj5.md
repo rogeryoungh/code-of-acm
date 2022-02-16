@@ -16,10 +16,10 @@ showtoc: true
 
 ```cpp
 int main() {
-    int x;
-    scanf("%d", &x);
-    printf("%04d", x);
-    return 0;
+	int x;
+	scanf("%d", &x);
+	printf("%04d", x);
+	return 0;
 }
 ```
 
@@ -37,31 +37,31 @@ int main() {
 
 ```cpp
 bool check(const vector<int> &v) {
-    vector<int> cnt(2);
-    for (auto i : v) {
-        if (i < 0)
-            return false;
-        cnt[i % 2]++;
-    }
-    return cnt[1] <= 1;
+	vector<int> cnt(2);
+	for (auto i : v) {
+		if (i < 0)
+			return false;
+		cnt[i % 2]++;
+	}
+	return cnt[1] <= 1;
 }
 
 int main() {
-    int T;
-    cin >> T;
-    while (T--) {
-        vector<int> v1(4), v2(4);
-        for (int i = 0; i < 4; i++)
-            cin >> v1[i], v2[i] = v1[i];
-        v2[0]--, v2[1]--, v2[2]--, v2[3] += 3;
+	int T;
+	cin >> T;
+	while (T--) {
+		vector<int> v1(4), v2(4);
+		for (int i = 0; i < 4; i++)
+			cin >> v1[i], v2[i] = v1[i];
+		v2[0]--, v2[1]--, v2[2]--, v2[3] += 3;
 
-        if (check(v1) || check(v2)) {
-            printf("Yes\n");
-        } else {
-            printf("No\n");
-        }
-    }
-    return 0;
+		if (check(v1) || check(v2)) {
+			printf("Yes\n");
+		} else {
+			printf("No\n");
+		}
+	}
+	return 0;
 }
 ```
 
@@ -85,55 +85,55 @@ int main() {
 
 ```cpp
 int main() {
-    int n;
-    cin >> n;
-    vector<int> a(N + 1);
-    for (int i = 1; i <= n; i++) {
-        int t;
-        cin >> t;
-        a[t]++;
-    }
-    vector<int> num(10);
-    auto add = [&](int t) {
-        for (int j = 1; j <= min(t, 8); j++) {
-            num[j]++;
-        }
-    };
-    auto sub = [&](int t) {
-        for (int j = 1; j <= min(t, 8); j++) {
-            num[j]--;
-        }
-    };
-    for (int i = 1; i <= N; i++) {
-        add(a[i]);
-    }
+	int n;
+	cin >> n;
+	vector<int> a(N + 1);
+	for (int i = 1; i <= n; i++) {
+		int t;
+		cin >> t;
+		a[t]++;
+	}
+	vector<int> num(10);
+	auto add = [&](int t) {
+		for (int j = 1; j <= min(t, 8); j++) {
+			num[j]++;
+		}
+	};
+	auto sub = [&](int t) {
+		for (int j = 1; j <= min(t, 8); j++) {
+			num[j]--;
+		}
+	};
+	for (int i = 1; i <= N; i++) {
+		add(a[i]);
+	}
 
-    int Q;
-    cin >> Q;
-    while (Q--) {
-        string op;
-        int x;
-        cin >> op >> x;
-        sub(a[x]);
-        if (op[0] == '+') {
-            a[x]++;
-        } else {
-            a[x]--;
-        }
-        add(a[x]);
-        if (num[8] >= 1) {
-            printf("YES\n");
-        } else if (num[6] >= 1 && num[2] >= 2) {
-            printf("YES\n");
-        } else if (num[4] >= 1 && num[2] >= 3) {
-            printf("YES\n");
-        } else if (num[4] >= 2) {
-            printf("YES\n");
-        } else {
-            printf("NO\n");
-        }
-    }
-    return 0;
+	int Q;
+	cin >> Q;
+	while (Q--) {
+		string op;
+		int x;
+		cin >> op >> x;
+		sub(a[x]);
+		if (op[0] == '+') {
+			a[x]++;
+		} else {
+			a[x]--;
+		}
+		add(a[x]);
+		if (num[8] >= 1) {
+			printf("YES\n");
+		} else if (num[6] >= 1 && num[2] >= 2) {
+			printf("YES\n");
+		} else if (num[4] >= 1 && num[2] >= 3) {
+			printf("YES\n");
+		} else if (num[4] >= 2) {
+			printf("YES\n");
+		} else {
+			printf("NO\n");
+		}
+	}
+	return 0;
 }
 ```
 
@@ -149,23 +149,23 @@ int main() {
 
 ```cpp
 int main() {
-    int n;
-    double r;
-    cin >> n >> r;
-    vector<double> x(n), y(n);
-    for (int i = 0; i < n; i++) {
-        cin >> x[i];
-        y[i] = r;
-        for (int j = 0; j < i; j++) {
-            double tx = x[i] - x[j];
-            double delta = 4 * r * r - tx * tx;
-            if (delta + 1E-8 >= 0) {
-                y[i] = max(y[j] + sqrt(delta), y[i]);
-            }
-        }
-        printf("%.10lf ", y[i]);
-    }
-    return 0;
+	int n;
+	double r;
+	cin >> n >> r;
+	vector<double> x(n), y(n);
+	for (int i = 0; i < n; i++) {
+		cin >> x[i];
+		y[i] = r;
+		for (int j = 0; j < i; j++) {
+			double tx = x[i] - x[j];
+			double delta = 4 * r * r - tx * tx;
+			if (delta + 1E-8 >= 0) {
+				y[i] = max(y[j] + sqrt(delta), y[i]);
+			}
+		}
+		printf("%.10lf ", y[i]);
+	}
+	return 0;
 }
 ```
 
@@ -189,38 +189,38 @@ $$
 
 ```cpp
 int main() {
-    int n, m;
-    cin >> n >> m;
-    vector<int> va(n), vb(m);
-    for (int i = 0; i < n; i++) {
-        cin >> va[i];
-    }
-    for (int i = 0; i < m; i++) {
-        cin >> vb[i];
-    }
-    vector<int> vis(n);
-    for (int o = 0; o < 512; o++) {
-        bool f1 = true;
-        for (int i = 0; i < n; i++) {
-            bool f2 = false;
-            for (int j = 0; j < m; j++) {
-                int x = va[i] & vb[j];
-                if ((o | x) == o) {
-                    f2 = true;
-                    break;
-                }
-            }
-            if (!f2) {
-                f1 = false;
-                break;
-            }
-        }
-        if (f1) {
-            cout << o << "\n";
-            break;
-        }
-    }
-    return 0;
+	int n, m;
+	cin >> n >> m;
+	vector<int> va(n), vb(m);
+	for (int i = 0; i < n; i++) {
+		cin >> va[i];
+	}
+	for (int i = 0; i < m; i++) {
+		cin >> vb[i];
+	}
+	vector<int> vis(n);
+	for (int o = 0; o < 512; o++) {
+		bool f1 = true;
+		for (int i = 0; i < n; i++) {
+			bool f2 = false;
+			for (int j = 0; j < m; j++) {
+				int x = va[i] & vb[j];
+				if ((o | x) == o) {
+					f2 = true;
+					break;
+				}
+			}
+			if (!f2) {
+				f1 = false;
+				break;
+			}
+		}
+		if (f1) {
+			cout << o << "\n";
+			break;
+		}
+	}
+	return 0;
 }
 ```
 
@@ -238,32 +238,32 @@ int main() {
 
 ```cpp
 int main() {
-    int n;
-    cin >> n;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++)
-        cin >> v[i];
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        for (int j = i + 1; j < n; j++) {
-            if (v[i] > v[j])
-                ans++;
-        }
-    }
-    ans %= 2;
-    int Q;
-    cin >> Q;
-    while (Q--) {
-        int l, r;
-        cin >> l >> r;
-        int num = (r - l + 1) / 2;
-        ans = (ans + num) % 2;
-        if (ans == 1)
-            printf("odd\n");
-        else
-            printf("even\n");
-    }
-    return 0;
+	int n;
+	cin >> n;
+	vector<int> v(n);
+	for (int i = 0; i < n; i++)
+		cin >> v[i];
+	int ans = 0;
+	for (int i = 0; i < n; i++) {
+		for (int j = i + 1; j < n; j++) {
+			if (v[i] > v[j])
+				ans++;
+		}
+	}
+	ans %= 2;
+	int Q;
+	cin >> Q;
+	while (Q--) {
+		int l, r;
+		cin >> l >> r;
+		int num = (r - l + 1) / 2;
+		ans = (ans + num) % 2;
+		if (ans == 1)
+			printf("odd\n");
+		else
+			printf("even\n");
+	}
+	return 0;
 }
 ```
 
@@ -311,36 +311,36 @@ const int P = 998244353;
 using pll = pair<ll, ll>;
  
 vector<pll> factor(ll n) {
-    vector<pll> ret;
-    for (ll i = 2; 1ll * i * i <= n; i++) {
-        int cnt = 0;
-        while (n % i == 0) {
-            n /= i, cnt++;
-        }
-        if (cnt > 0) {
-            ret.push_back({i, cnt});
-        }
-    }
-    if (n > 1) {
-        ret.push_back({n, 1});
-    }
-    return ret;
+	vector<pll> ret;
+	for (ll i = 2; 1ll * i * i <= n; i++) {
+		int cnt = 0;
+		while (n % i == 0) {
+			n /= i, cnt++;
+		}
+		if (cnt > 0) {
+			ret.push_back({i, cnt});
+		}
+	}
+	if (n > 1) {
+		ret.push_back({n, 1});
+	}
+	return ret;
 }
  
 int main() {
-    ll pp, ans = 1;
-    cin >> pp;
-    for (auto [p, e] : factor(pp - 1)) {
-        ll pk = 1, tsum = 1;
-        p %= P;
-        for (int k = 1; k <= e; k++) {
-            tsum += 1ll * pk * pk % P * (p - 1) % P * p % P;
-            pk = 1ll * pk * p % P;
-        }
-        ans = 1ll * ans * tsum % P;
-    }
-    cout << (ans + 1) % P;
-    return 0;
+	ll pp, ans = 1;
+	cin >> pp;
+	for (auto [p, e] : factor(pp - 1)) {
+		ll pk = 1, tsum = 1;
+		p %= P;
+		for (int k = 1; k <= e; k++) {
+			tsum += 1ll * pk * pk % P * (p - 1) % P * p % P;
+			pk = 1ll * pk * p % P;
+		}
+		ans = 1ll * ans * tsum % P;
+	}
+	cout << (ans + 1) % P;
+	return 0;
 }
 ```
 

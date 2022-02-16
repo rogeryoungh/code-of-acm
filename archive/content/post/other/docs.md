@@ -38,8 +38,8 @@ katex: true
 
 简化多项式板子，码量少，常数较大。
 
-- [fps/O.hpp](../code/?url=https://rogeryoungh.github.io/code-of-acm/template/ntt-int/fps/1.hpp)：多项式基础结构，用牛顿迭代完成操作。
-- [fps/F.hpp](../code/?url=https://rogeryoungh.github.io/code-of-acm/template/ntt-int/fps/1.hpp)：与上面的相同，略卡常数。
+- [fps/O.hpp](../code/?url=https://rogeryoungh.github.io/code-of-acm/template/ntt-int/fps/O.hpp)：多项式基础结构，用牛顿迭代完成操作。
+- [fps/F.hpp](../code/?url=https://rogeryoungh.github.io/code-of-acm/template/ntt-int/fps/F.hpp)：与上面的相同，略卡常数。
 - [cdq.hpp](../code/?url=https://rogeryoungh.github.io/code-of-acm/template/ntt-int/cdq.hpp)：非递归 CDQ 分治。
 - [eval.hpp](../code/?url=https://rogeryoungh.github.io/code-of-acm/template/ntt-int/eval.hpp)：多点插值，多点求值。
 

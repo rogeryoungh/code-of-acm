@@ -26,28 +26,28 @@ showtoc: true
 string what = "abacaba";
 
 void solve() {
-    int len;
-    string s;
-    cin >> len >> s;
-    for (int i = 0; i < len - 6; i++) {
-        string tmp = s;
-        for (int j = 0; j < 7; j++)
-            if (tmp[i + j] == '?')
-                tmp[i + j] = what[j];
-        for (auto &p : tmp)
-            if (p == '?')
-                p = 'z';
-        int cnt = 0;
-        for (int j = 0; j < len - 6; j++) {
-            if (tmp.substr(j, 7) == what)
-                cnt++;
-        }
-        if (cnt == 1) {
-            printf("YES\n%s\n", tmp.data());
-            return;
-        }
-    }
-    printf("NO\n");
+	int len;
+	string s;
+	cin >> len >> s;
+	for (int i = 0; i < len - 6; i++) {
+		string tmp = s;
+		for (int j = 0; j < 7; j++)
+			if (tmp[i + j] == '?')
+				tmp[i + j] = what[j];
+		for (auto &p : tmp)
+			if (p == '?')
+				p = 'z';
+		int cnt = 0;
+		for (int j = 0; j < len - 6; j++) {
+			if (tmp.substr(j, 7) == what)
+				cnt++;
+		}
+		if (cnt == 1) {
+			printf("YES\n%s\n", tmp.data());
+			return;
+		}
+	}
+	printf("NO\n");
 }
 ```
 
@@ -71,21 +71,21 @@ $$
 
 ```cpp
 int main() {
-    int T = rr();
-    while (T--) {
-        ll l = rr(), r = rr(), m = rr();
-        for (ll a = l; a <= r; a++) {
-            int b_c = (m + r - l) % a - (r - l);
-            if (b_c > r - l)
-                continue;
-            if (b_c < 0)
-                printf("%lld %lld %lld\n", a, r + b_c, r);
-            else
-                printf("%lld %lld %lld\n", a, l + b_c, l);
-            break;
-        }
-    }
-    return 0;
+	int T = rr();
+	while (T--) {
+		ll l = rr(), r = rr(), m = rr();
+		for (ll a = l; a <= r; a++) {
+			int b_c = (m + r - l) % a - (r - l);
+			if (b_c > r - l)
+				continue;
+			if (b_c < 0)
+				printf("%lld %lld %lld\n", a, r + b_c, r);
+			else
+				printf("%lld %lld %lld\n", a, l + b_c, l);
+			break;
+		}
+	}
+	return 0;
 }
 ```
 
@@ -148,27 +148,27 @@ int main() {
 
 ```cpp
 int main() {
-    int n = rr();
-    vector<int> aa(100086);
-    if (n == 1) {
-        printf("N\n");
-        return 0;
-    }
-    for (int i = 0; i < n; i++) {
-        aa[rr()]++;
-    }
-    int tot = 0;
-    for (int i = 0; i < N - 1; i++) {
-        aa[i + 1] += aa[i] / 2;
-        aa[i] %= 2;
-        if (aa[i] > 0)
-            tot++;
-    }
-    if (tot <= 2)
-        printf("Y\n");
-    else
-        printf("N\n");
-    return 0;
+	int n = rr();
+	vector<int> aa(100086);
+	if (n == 1) {
+		printf("N\n");
+		return 0;
+	}
+	for (int i = 0; i < n; i++) {
+		aa[rr()]++;
+	}
+	int tot = 0;
+	for (int i = 0; i < N - 1; i++) {
+		aa[i + 1] += aa[i] / 2;
+		aa[i] %= 2;
+		if (aa[i] > 0)
+			tot++;
+	}
+	if (tot <= 2)
+		printf("Y\n");
+	else
+		printf("N\n");
+	return 0;
 }
 ```
 
@@ -190,30 +190,30 @@ int main() {
 
 ```cpp
 int main() {
-    int T = rr();
-    while (T--) {
-        int n = rr();
-        vector<int> P(n * 2 + 1), v, dp(n + 1);
-        for (int i = 0; i < n * 2; i++)
-            P[i] = rr();
-        int m = 0;
-        for (int i = 1; i < n * 2 + 1; i++) {
-            if (P[i] > P[m]) {
-                v.push_back(i - m);
-                m = i;
-            }
-        }
-        for (auto vi : v) {
-            for (int j = n; j >= vi; j--) {
-                dp[j] = max(dp[j], dp[j - vi] + vi);
-            }
-        }
-        if (dp[n] == n)
-            printf("YES\n");
-        else
-            printf("NO\n");
-    }
-    return 0;
+	int T = rr();
+	while (T--) {
+		int n = rr();
+		vector<int> P(n * 2 + 1), v, dp(n + 1);
+		for (int i = 0; i < n * 2; i++)
+			P[i] = rr();
+		int m = 0;
+		for (int i = 1; i < n * 2 + 1; i++) {
+			if (P[i] > P[m]) {
+				v.push_back(i - m);
+				m = i;
+			}
+		}
+		for (auto vi : v) {
+			for (int j = n; j >= vi; j--) {
+				dp[j] = max(dp[j], dp[j - vi] + vi);
+			}
+		}
+		if (dp[n] == n)
+			printf("YES\n");
+		else
+			printf("NO\n");
+	}
+	return 0;
 }
 ```
 
@@ -248,35 +248,35 @@ const int N = 1e5 + 86;
 char A[N], B[N];
 
 void op(int p) {
-    for (int i = 0; i < p; i++)
-        A[i] ^= 1;
-    std::reverse(A, A + p);
+	for (int i = 0; i < p; i++)
+		A[i] ^= 1;
+	std::reverse(A, A + p);
 }
 
 int main() {
-    int T = rr();
-    while (T--) {
-        int n = rr();
-        scanf("%s%s", A, B);
-        vector<int> ans;
-        for (int i = n - 1; i >= 0; i--) {
-            if (A[i] == B[i])
-                continue;
-            if (A[i] == A[0]) {
-                op(i + 1);
-                ans.push_back(i + 1);
-            } else {
-                op(1);
-                ans.push_back(1);
-                op(i + 1);
-                ans.push_back(i + 1);
-            }
-        }
-        printf("%zu ", ans.size());
-        for (int i = 0; i < ans.size(); i++)
-            printf("%d%c", ans[i], " \n"[i == ans.size() - 1]);
-    }
-    return 0;
+	int T = rr();
+	while (T--) {
+		int n = rr();
+		scanf("%s%s", A, B);
+		vector<int> ans;
+		for (int i = n - 1; i >= 0; i--) {
+			if (A[i] == B[i])
+				continue;
+			if (A[i] == A[0]) {
+				op(i + 1);
+				ans.push_back(i + 1);
+			} else {
+				op(1);
+				ans.push_back(1);
+				op(i + 1);
+				ans.push_back(i + 1);
+			}
+		}
+		printf("%zu ", ans.size());
+		for (int i = 0; i < ans.size(); i++)
+			printf("%d%c", ans[i], " \n"[i == ans.size() - 1]);
+	}
+	return 0;
 }
 ```
 
@@ -291,28 +291,28 @@ const int N = 1e5 + 86;
 char A[N], B[N];
 
 int main() {
-    int T = rr();
-    while (T--) {
-        int n = rr();
-        scanf("%s%s", A, B);
-        vector<int> op1, op2;
-        for (int i = 1; i < n; i++) {
-            if (A[i] != A[i - 1])
-                op1.push_back(i);
-            if (B[i] != B[i - 1])
-                op2.push_back(i);
-        }
-        if (A[n - 1] != B[n - 1])
-            op1.push_back(n);
-        reverse(op2.begin(), op2.end());
-        printf("%zu ", op1.size() + op2.size());
-        for (auto i : op1)
-            printf("%d ", i);
-        for (auto i : op2)
-            printf("%d ", i);
-        printf("\n");
-    }
-    return 0;
+	int T = rr();
+	while (T--) {
+		int n = rr();
+		scanf("%s%s", A, B);
+		vector<int> op1, op2;
+		for (int i = 1; i < n; i++) {
+			if (A[i] != A[i - 1])
+				op1.push_back(i);
+			if (B[i] != B[i - 1])
+				op2.push_back(i);
+		}
+		if (A[n - 1] != B[n - 1])
+			op1.push_back(n);
+		reverse(op2.begin(), op2.end());
+		printf("%zu ", op1.size() + op2.size());
+		for (auto i : op1)
+			printf("%d ", i);
+		for (auto i : op2)
+			printf("%d ", i);
+		printf("\n");
+	}
+	return 0;
 }
 ```
 
@@ -350,24 +350,24 @@ int main() {
 
 ```cpp
 int main() {
-    int T = rr();
-    while (T--) {
-        int n = rr(), cnt = 0;
-        bool all_1 = true;
-        for (int i = 0; i < n; i++) {
-            int a = rr();
-            if (all_1) {
-                if (a != 1)
-                    all_1 = false;
-                else
-                    cnt++;
-            }
-        }
-        if (all_1)
-            cnt++;
-        printf("%s\n", cnt % 2 == 0 ? "First" : "Second");
-    }
-    return 0;
+	int T = rr();
+	while (T--) {
+		int n = rr(), cnt = 0;
+		bool all_1 = true;
+		for (int i = 0; i < n; i++) {
+			int a = rr();
+			if (all_1) {
+				if (a != 1)
+					all_1 = false;
+				else
+					cnt++;
+			}
+		}
+		if (all_1)
+			cnt++;
+		printf("%s\n", cnt % 2 == 0 ? "First" : "Second");
+	}
+	return 0;
 }
 ```
 

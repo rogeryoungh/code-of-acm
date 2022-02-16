@@ -32,41 +32,41 @@ tags:
 char ss[60];
 
 int main() {
-    ll ttt = rr();
-    while (ttt--) {
-        scanf("%s", ss + 1);
-        ll len = strlen(ss + 1);
-        if (ss[1] == ss[len]) {
-            printf("NO\n");
-            continue;
-        }
-        ll sa[3] = {0, 0, 0};
-        for (ll i = 1; i <= len; i++)
-            sa[ss[i] - 'A']++;
-        ll sl = ss[1] - 'A', sr = ss[len] - 'A';
-        ll sm = 3ll - sl - sr;
-        bool flag = false;
-        sa[0] = sa[1] = sa[2] = 0;
-        if (sa[sl] + sa[sm] == sa[sr]) {
-            for (ll i = 1; i <= len; i++) {
-                sa[ss[i] - 'A']++;
-                flag = flag || sa[sl] + sa[sm] < sa[sr];
-            }
-        } else if (sa[sl] == sa[sm] + sa[sr]) {
-            for (ll i = 1; i <= len; i++) {
-                sa[ss[i] - 'A']++;
-                flag = flag || sa[sl] < sa[sm] + sa[sr];
-            }
-        } else {
-            printf("NO\n");
-            continue;
-        }
-        if (flag)
-            printf("NO\n");
-        else
-            printf("YES\n");
-    }
-    return 0;
+	ll ttt = rr();
+	while (ttt--) {
+		scanf("%s", ss + 1);
+		ll len = strlen(ss + 1);
+		if (ss[1] == ss[len]) {
+			printf("NO\n");
+			continue;
+		}
+		ll sa[3] = {0, 0, 0};
+		for (ll i = 1; i <= len; i++)
+			sa[ss[i] - 'A']++;
+		ll sl = ss[1] - 'A', sr = ss[len] - 'A';
+		ll sm = 3ll - sl - sr;
+		bool flag = false;
+		sa[0] = sa[1] = sa[2] = 0;
+		if (sa[sl] + sa[sm] == sa[sr]) {
+			for (ll i = 1; i <= len; i++) {
+				sa[ss[i] - 'A']++;
+				flag = flag || sa[sl] + sa[sm] < sa[sr];
+			}
+		} else if (sa[sl] == sa[sm] + sa[sr]) {
+			for (ll i = 1; i <= len; i++) {
+				sa[ss[i] - 'A']++;
+				flag = flag || sa[sl] < sa[sm] + sa[sr];
+			}
+		} else {
+			printf("NO\n");
+			continue;
+		}
+		if (flag)
+			printf("NO\n");
+		else
+			printf("YES\n");
+	}
+	return 0;
 }
 ```
 
@@ -86,32 +86,32 @@ int main() {
 ll ff[10], aa[10];
 
 int main() {
-    ll ttt = rr();
-    while (ttt--) {
-        ll n = rr();
-        for (ll i = 0; i <= 3; i++)
-            aa[i] = rr();
-        bool flag = false;
-        for (ll k = 0; k <= 15; k++) {
-            memset(ff, 0, sizeof(ff));
-            int f = 1;
-            for (ll j = 0; j <= 3; j++) {
-                ff[j] = ((k & f) > 0);
-                f = f << 1;
-            }
-            bool tflag = false;
-            for (ll j = 0; j <= 3; j++) {
-                ll u = aa[j] - ff[j] - ff[(j + 1) % 4];
-                tflag = tflag || u < 0 || u > n - 2;
-            }
-            flag = flag || !tflag;
-        }
-        if (flag)
-            printf("YES\n");
-        else
-            printf("NO\n");
-    }
-    return 0;
+	ll ttt = rr();
+	while (ttt--) {
+		ll n = rr();
+		for (ll i = 0; i <= 3; i++)
+			aa[i] = rr();
+		bool flag = false;
+		for (ll k = 0; k <= 15; k++) {
+			memset(ff, 0, sizeof(ff));
+			int f = 1;
+			for (ll j = 0; j <= 3; j++) {
+				ff[j] = ((k & f) > 0);
+				f = f << 1;
+			}
+			bool tflag = false;
+			for (ll j = 0; j <= 3; j++) {
+				ll u = aa[j] - ff[j] - ff[(j + 1) % 4];
+				tflag = tflag || u < 0 || u > n - 2;
+			}
+			flag = flag || !tflag;
+		}
+		if (flag)
+			printf("YES\n");
+		else
+			printf("NO\n");
+	}
+	return 0;
 }
 ```
 
@@ -142,67 +142,67 @@ const ll inf = 0x3f3f3f3f3f3f3f3f;
 ll aa[200086], bb[200086];
 
 int main() {
-    ll ttt = rr();
-    while (ttt--) {
-        ll n = rr();
-        ll m = rr();
-        ll a0 = 0, b0 = 0;
-        for (ll i = 1; i <= n; i++)
-            aa[i] = rr();
-        for (ll i = 1; i <= m; i++)
-            bb[i] = rr();
-        a0 = lower_bound(aa + 1, aa + n + 1, 0) - aa - 1;
-        b0 = lower_bound(bb + 1, bb + m + 1, 0) - bb - 1;
-        aa[0] = bb[0] = -inf;
-        aa[n + 1] = bb[m + 1] = inf;
-        ll ra1 = a0 + 1, rb1 = b0 + 1;
-        ll sum = 0, ans = 0, len = 0;
-        ll sl = rb1, sr = rb1;
-        while (ra1 <= n || rb1 <= m) {
-            if (aa[ra1] < bb[rb1]) {
-                len++, ra1++;
-                continue;
-            }
-            sr++;
-            ll tsum = sr - sl;
-            if (aa[ra1] > bb[rb1]) {
-                while (bb[sl] <= bb[rb1] - len && tsum > 0)
-                    sl++, tsum--;
-            } else {
-                ans++;
-                while (bb[sl] <= bb[rb1] - len - 1 && tsum > 0)
-                    sl++, tsum--;
-                len++, ra1++;
-            }
-            rb1++;
-            ans = max(ans, tsum);
-        }
-        sum += ans;
-        ra1 = a0;
-        sl = sr = rb1 = b0;
-        ans = len = 0;
-        while (ra1 >= 1 || rb1 >= 1) {
-            if (aa[ra1] > bb[rb1]) {
-                len++, ra1--;
-                continue;
-            }
-            sl--;
-            ll tsum = sr - sl;
-            if (aa[ra1] < bb[rb1]) {
-                while (bb[sr] >= bb[rb1] + len && tsum > 0)
-                    sr--, tsum--;
-            } else {
-                ans++;
-                while (bb[sr] >= bb[rb1] + len + 1 && tsum > 0)
-                    sr--, tsum--;
-                len++, ra1--;
-            }
-            rb1--;
-            ans = max(ans, tsum);
-        }
-        sum += ans;
-        printf("%lld\n", sum);
-    }
-    return 0;
+	ll ttt = rr();
+	while (ttt--) {
+		ll n = rr();
+		ll m = rr();
+		ll a0 = 0, b0 = 0;
+		for (ll i = 1; i <= n; i++)
+			aa[i] = rr();
+		for (ll i = 1; i <= m; i++)
+			bb[i] = rr();
+		a0 = lower_bound(aa + 1, aa + n + 1, 0) - aa - 1;
+		b0 = lower_bound(bb + 1, bb + m + 1, 0) - bb - 1;
+		aa[0] = bb[0] = -inf;
+		aa[n + 1] = bb[m + 1] = inf;
+		ll ra1 = a0 + 1, rb1 = b0 + 1;
+		ll sum = 0, ans = 0, len = 0;
+		ll sl = rb1, sr = rb1;
+		while (ra1 <= n || rb1 <= m) {
+			if (aa[ra1] < bb[rb1]) {
+				len++, ra1++;
+				continue;
+			}
+			sr++;
+			ll tsum = sr - sl;
+			if (aa[ra1] > bb[rb1]) {
+				while (bb[sl] <= bb[rb1] - len && tsum > 0)
+					sl++, tsum--;
+			} else {
+				ans++;
+				while (bb[sl] <= bb[rb1] - len - 1 && tsum > 0)
+					sl++, tsum--;
+				len++, ra1++;
+			}
+			rb1++;
+			ans = max(ans, tsum);
+		}
+		sum += ans;
+		ra1 = a0;
+		sl = sr = rb1 = b0;
+		ans = len = 0;
+		while (ra1 >= 1 || rb1 >= 1) {
+			if (aa[ra1] > bb[rb1]) {
+				len++, ra1--;
+				continue;
+			}
+			sl--;
+			ll tsum = sr - sl;
+			if (aa[ra1] < bb[rb1]) {
+				while (bb[sr] >= bb[rb1] + len && tsum > 0)
+					sr--, tsum--;
+			} else {
+				ans++;
+				while (bb[sr] >= bb[rb1] + len + 1 && tsum > 0)
+					sr--, tsum--;
+				len++, ra1--;
+			}
+			rb1--;
+			ans = max(ans, tsum);
+		}
+		sum += ans;
+		printf("%lld\n", sum);
+	}
+	return 0;
 }
 ```
