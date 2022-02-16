@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/tags/%E5%88%86%E6%B2%BB/" />
-<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.db03f6b1db979d0cdd8e815f16121fd4c2bd956cb3c3efedeab38b2fb48ae6a7.css" integrity="sha256-2wP2sduXnQzdjoFfFhIf1MK9lWyzw&#43;/t6rOLL7SK5qc=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.fcf2ec3918c78adc31c995632533a1773de33d1dc3a9690cddef4ad1e01b601c.css" integrity="sha256-/PLsORjHitwxyZVjJTOhdz3jPR3DqWkM3e9K0eAbYBw=" rel="preload stylesheet" as="style">
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
 <link rel="icon" href="https://rogeryoungh.github.io/code-of-acm/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rogeryoungh.github.io/code-of-acm/favicon-16x16.png">
@@ -157,7 +157,7 @@
 分析 模板题。考虑分治，随便选一个数 $x$，然后把比 $x$ 大的数移到右边，比 $x$ 小的数移到左边。因此得到了数 $x$ 的排位，若恰为第 $k$ 个则返回，否则根据大小在左右寻找。
 该算法是不稳定的，期望复杂度 $O(n)$，最坏复杂度 $O(n^2)$。
 实际上存在最坏复杂度为 $O(n)$ 的 BFPTR 算法，但因为其常数过大实现复杂而很少应用。
-ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l &#43; r) / 2]; while (i &lt;= j) { while (nn[j] &gt; x) j--; while (nn[i] &lt; x) i&#43;&#43;; if (i &lt;= j) { swap(nn[i], nn[j]); i&#43;&#43;, j--; } } // l &lt;= j &lt;= i &lt;=r  if (k &lt;= j) return quicksort(l, j); else if (k &gt;= i) return quicksort(i, r); else return nn[k &#43; 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) scanf(&#34;%lld&#34;, &amp;nn[i]); printf(&#34;%lld&#34;, quicksort(1, n)); return 0; } </p>
+ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l &#43; r) / 2]; while (i &lt;= j) { while (nn[j] &gt; x) j--; while (nn[i] &lt; x) i&#43;&#43;; if (i &lt;= j) { swap(nn[i], nn[j]); i&#43;&#43;, j--; } } // l &lt;= j &lt;= i &lt;=r 	if (k &lt;= j) return quicksort(l, j); else if (k &gt;= i) return quicksort(i, r); else return nn[k &#43; 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) scanf(&#34;%lld&#34;, &amp;nn[i]); printf(&#34;%lld&#34;, quicksort(1, n)); return 0; } </p>
   </section>
   <footer class="entry-footer">October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P1923 求第 $k$ 小的数" href="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1923/"></a>
