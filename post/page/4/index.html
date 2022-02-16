@@ -165,6 +165,27 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P2350 外星人</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 设
+$$ \varphi_{x&#43;1}(m) = \varphi(\varphi_x(m)) $$
+求最小的 $x$ 使得 $\varphi_x(m) = 1$。
+其中 $\varphi(m)$ 是欧拉函数。
+分析 注意到仅有 $\varphi(1) = \varphi(2) = 1$，再有公式
+$$ \varphi\left(\prod_{i=1}^mp_i^{q_i}\right) = \prod_{i=1}^m(p_i-1)p_i^{q_i-1} $$
+因此从唯一分解形式的角度来看，迭代一次消去了一个 $2$，也生成了一些 $2$。
+考虑设 $f(n)$ 为 $\varphi(n)$ 中因子 $2$ 的个数。
+设 $\gcd(a,b) = 1$，可以证明 $f(ab) = f(a) f(b)$。同时 $f(p) = f(p-1)$。
+这说明 $f(x)$ 是一个积性函数，可以用 Euler 筛递推。
+const ll MN = 1e5 &#43; 10; bool notp[1000001]; int prime[200001], cnt, phi[1000001]; void sieve(int n) { phi[1] = 1; for (ll i = 2; i &lt;= n; i&#43;&#43;) { if (!...</p>
+  </section>
+  <footer class="entry-footer">May 25, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P2350 外星人" href="https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2350/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>CF1389E Calendar Ambiguity</h2>
   </header>
   <section class="entry-content">
@@ -314,32 +335,6 @@ int main() { L = rr(), N = rr(), M = rr(); for (ll i = 1; i &lt;= N; i&#43;&#43;
   </section>
   <footer class="entry-footer">March 29, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P2678 跳石头" href="https://rogeryoungh.github.io/code-of-acm/post/2021-03/p2678/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>2020 年刷题日志</h2>
-  </header>
-  <section class="entry-content">
-    <p>过于简单的题不记录。
-洛谷：更新至：2020.12.31(2020.10)
-CodeForces：更新至：–.–
-牛客：更新至：–.–
-HDU：更新至：–.–
-2020 年 09 月 开始 ACM。不记录 HDU 150 的基础题。
-09-20 |  CF1384B2 Koa and the Beach
-09-20 |  P1004 方格取数
-09-22 |  P2181 对角线
-09-23 |  P1042 乒乓球
-2020 年 10 月 10-09 |  P1095 守望者的逃离
-10-13 |  P5143 攀爬者
-10-16 |  P1923 求第 $k$ 小的数
-10-16 |  P1928 外星密码
-10-16 |  P1990 覆盖墙壁
-10-16 |  P1090 合并果子...</p>
-  </section>
-  <footer class="entry-footer">December 31, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to 2020 年刷题日志" href="https://rogeryoungh.github.io/code-of-acm/post/other/log2020/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

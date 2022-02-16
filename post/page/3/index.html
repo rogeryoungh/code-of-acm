@@ -165,6 +165,23 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>HDU6833 A Very Easy Math Problem</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 即求
+$$ S (n) = \sum^n_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd \{ a_x \}) \gcd \{ a_x \} $$
+我自己随便简写了，全打太麻烦了。
+分析 这东西看着很吓人，其实是纸老虎。首先 $f(x) = \mu(x)^2$。提出 $\gcd$ 有
+$$ \begin{aligned} S (n) &amp; =\sum_{d=1}^{n}\sum^{n}_{\{ a_{x}\}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd \{ a_{x}\} =d]\\ &amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x&#43;1}\sum^{n/d}_{\{ a_{x}\} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd \{ a_{x}\} =1] \end{aligned} $$
+对后面这部分反演有
+$$ \begin{aligned} &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd \{ a_x \}} \mu (t) \right)\\ = &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd \{ a_x \}] \mu (t) \right)\\ = &amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \end{aligned} $$...</p>
+  </section>
+  <footer class="entry-footer">September 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to HDU6833 A Very Easy Math Problem" href="https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6833/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>HDU6755 Fibonacci Sum</h2>
   </header>
   <section class="entry-content">
@@ -311,27 +328,6 @@ $$ \sum_{T=1}^{\min(x,y)} \left\lfloor \frac{x}{T} \right\rfloor \left\lfloor \f
   </section>
   <footer class="entry-footer">May 26, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P2257 YY 的 GCD" href="https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2257/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P2350 外星人</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 设
-$$ \varphi_{x&#43;1}(m) = \varphi(\varphi_x(m)) $$
-求最小的 $x$ 使得 $\varphi_x(m) = 1$。
-其中 $\varphi(m)$ 是欧拉函数。
-分析 注意到仅有 $\varphi(1) = \varphi(2) = 1$，再有公式
-$$ \varphi\left(\prod_{i=1}^mp_i^{q_i}\right) = \prod_{i=1}^m(p_i-1)p_i^{q_i-1} $$
-因此从唯一分解形式的角度来看，迭代一次消去了一个 $2$，也生成了一些 $2$。
-考虑设 $f(n)$ 为 $\varphi(n)$ 中因子 $2$ 的个数。
-设 $\gcd(a,b) = 1$，可以证明 $f(ab) = f(a) f(b)$。同时 $f(p) = f(p-1)$。
-这说明 $f(x)$ 是一个积性函数，可以用 Euler 筛递推。
-const ll MN = 1e5 &#43; 10; bool notp[1000001]; int prime[200001], cnt, phi[1000001]; void sieve(int n) { phi[1] = 1; for (ll i = 2; i &lt;= n; i&#43;&#43;) { if (!...</p>
-  </section>
-  <footer class="entry-footer">May 25, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P2350 外星人" href="https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2350/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

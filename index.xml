@@ -7,7 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© 2021 [Roger Young](https://rogeryoungh.github.io/blog/about/)</copyright>
-    <lastBuildDate>Mon, 14 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ZAFU 2022.02.16 个人赛题解</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-02/hj6/</link>
+      <pubDate>Wed, 16 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-02/hj6/</guid>
+      <description>本次比赛 A 题还是出了小锅，幸好发现的比较早，最后影响还算不大。
+A - ABC202A 签到，不讲。我没想到读假了还能过（
+int main() { int a, b, c; cin &amp;gt;&amp;gt; a &amp;gt;&amp;gt; b &amp;gt;&amp;gt; c; cout &amp;lt;&amp;lt; 21 - a - b - c; return 0; } B - CF567A 注意到座标是按照从小到大顺序的，那么对于第 $i$ 个人，最小值显然在 $x_{i-1}, x_{i+1}$ 中取到，最大值在 $x_{1}, x_n$ 中取到。
+注意特判左右两边。
+int main() { int n; cin &amp;gt;&amp;gt; n; vector&amp;lt;int&amp;gt; v(n); for (auto &amp;amp;vi : v) cin &amp;gt;&amp;gt; vi; for (int i = 0; i &amp;lt; n; i++) { int m1, m2; if (i == 0) { m1 = v[1] - v[i], m2 = v[n - 1] - v[i]; } else if (i == n - 1) { m2 = v[i] - v[0], m1 = v[i] - v[i - 1]; } else { m1 = min(v[i] - v[i - 1], v[i + 1] - v[i]); m2 = max(v[i] - v[0], v[n - 1] - v[i]); } cout &amp;lt;&amp;lt; m1 &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; m2 &amp;lt;&amp;lt; &amp;#34;\n&amp;#34;; } return 0; } C - CF765B 即第 $i$ 个字母第一次出现时，第 $1 \sim i - 1$ 个字母都应该出现过。</description>
+    </item>
+    
     <item>
       <title>ZAFU 2022.02.14 个人赛题解</title>
       <link>https://rogeryoungh.github.io/code-of-acm/post/2022-02/hj5/</link>

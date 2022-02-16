@@ -165,6 +165,22 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>ZAFU 2022.01.18 个人赛题解</h2>
+  </header>
+  <section class="entry-content">
+    <p>非常抱歉，本次比赛对难度估计不当，给大家造成了不好的体验，在此向大家致歉。
+A - CF1379A 题目大意 替换字符串 $s$ 中的 ?，使得出现且仅出现一次 abacaba。
+分析 本题较为难写，因为很难判断恰好出现了一次。但是数据规模很小，可以采用非常暴力的写法。
+一种想法是，枚举每个出现 abacaba 的位置 $i$，把当前 $s[i, i &#43; 6]$ 中的 ? 设为给定串，这样就得到了字符串 $t$。
+然后判断字符串 $t$ 中只出现了一次 abacaba，可以通过 substr 枚举所有长为 $6$ 的子串。
+string what = &#34;abacaba&#34;; void solve() { int len; string s; cin &gt;&gt; len &gt;&gt; s; for (int i = 0; i &lt; len - 6; i&#43;&#43;) { string tmp = s; for (int j = 0; j &lt; 7; j&#43;&#43;) if (tmp[i &#43; j] == &#39;?...</p>
+  </section>
+  <footer class="entry-footer">January 21, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to ZAFU 2022.01.18 个人赛题解" href="https://rogeryoungh.github.io/code-of-acm/post/2022-01/hj1/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>CF Round 706(Div 2)</h2>
   </header>
   <section class="entry-content">
@@ -325,23 +341,6 @@ const int maxn = 1e5 &#43; 10, o = 30 - 1; int trie[maxn * 30][2], val[maxn * 30
   </section>
   <footer class="entry-footer">October 11, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to HDU6955 Xor sum" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/hdu6955/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>HDU6833 A Very Easy Math Problem</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 即求
-$$ S (n) = \sum^n_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd \{ a_x \}) \gcd \{ a_x \} $$
-我自己随便简写了，全打太麻烦了。
-分析 这东西看着很吓人，其实是纸老虎。首先 $f(x) = \mu(x)^2$。提出 $\gcd$ 有
-$$ \begin{aligned} S (n) &amp; =\sum_{d=1}^{n}\sum^{n}_{\{ a_{x}\}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd \{ a_{x}\} =d]\\ &amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x&#43;1}\sum^{n/d}_{\{ a_{x}\} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd \{ a_{x}\} =1] \end{aligned} $$
-对后面这部分反演有
-$$ \begin{aligned} &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd \{ a_x \}} \mu (t) \right)\\ = &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd \{ a_x \}] \mu (t) \right)\\ = &amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \end{aligned} $$...</p>
-  </section>
-  <footer class="entry-footer">September 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to HDU6833 A Very Easy Math Problem" href="https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6833/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
