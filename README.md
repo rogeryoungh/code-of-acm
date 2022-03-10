@@ -13,16 +13,17 @@
 
 内容（题目分析等）采用 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.zh)，转载请署名！
 
-## 宏
+## 文件头
 
-我尽量只使用以下的宏。
+改用 `cin`，更加精简了，虽然有点慢。
 
 ```cpp
+#include <bits/stdc++.h>
+
 using namespace std;
 using ll = long long;
-using u64 = unsigned long long;
-using vi = vector<int>;
 
-#define _fore(i, a) for (ll i = head[a]; i; i = edge[i].nxt)
-#define LN putchar('\n')
+int ____ = (ios::sync_with_stdio(0), cin.tie(0), cout.tie(0), 1);
+
+// END OF HEADER | Author: Roger Young
 ```
