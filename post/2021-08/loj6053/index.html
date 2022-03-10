@@ -12,7 +12,7 @@
 const ll mod = 1000000007, inv2 = 500000004; const int maxn = 200001; ll n, prime[maxn], cnt, w[maxn], s[maxn], c[maxn]; ll sqrt_n, m; ll mo(ll x) { return (x &#43; mod) % mod; } ll f_p(ll p, ll e) { return p ^ e; } int id(ll x) { return x &lt;= sqrt_n ? x : m - (n / x) &#43; 1; } ll F(long long n, int k) { if (n &lt;= prime[k]) return 0; ll ret = s[id(n)] - s[prime[k]]; for (int i = k &#43; 1; i &lt;= cnt &amp;&amp; prime[i] * prime[i] &lt;= n; i&#43;&#43;) { ll pi = prime[i], pk = pi; for (int c = 1; pk * pi &lt;= n; c&#43;&#43;, pk *= pi) ret &#43;= f_p(pi, c) * F(n / pk, i) &#43; f_p(pi, c &#43; 1); } return mo(ret); } int main() { n = rr(); sqrt_n = sqrt(n &#43; 0.">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2021-08/loj6053/" />
-<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.fcf2ec3918c78adc31c995632533a1773de33d1dc3a9690cddef4ad1e01b601c.css" integrity="sha256-/PLsORjHitwxyZVjJTOhdz3jPR3DqWkM3e9K0eAbYBw=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
 <script defer crossorigin="anonymous" src="/code-of-acm/assets/js/highlight.min.23e7650687363f10f7adcbafb8b54881414f20f2bbca340cdaa9199d48d8b371.js" integrity="sha256-I&#43;dlBoc2PxD3rcuvuLVIgUFPIPK7yjQM2qkZnUjYs3E="
     onload="hljs.initHighlightingOnLoad();"></script>

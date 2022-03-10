@@ -16,7 +16,7 @@
  如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。  struct SegmentTree { vector&lt;int&gt; l, r, val; int N; SegmentTree(int n) { N = 2 &lt;&lt; std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 &#43; 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] &#43;= l[rs]; if (r[rs] == len) r[p] &#43;= r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] &#43; l[rs]}); } void modify(int i) { i &#43;= N; l[i] = r[i] = val[i] = !">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2022-02/p6492/" />
-<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.fcf2ec3918c78adc31c995632533a1773de33d1dc3a9690cddef4ad1e01b601c.css" integrity="sha256-/PLsORjHitwxyZVjJTOhdz3jPR3DqWkM3e9K0eAbYBw=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
 <script defer crossorigin="anonymous" src="/code-of-acm/assets/js/highlight.min.23e7650687363f10f7adcbafb8b54881414f20f2bbca340cdaa9199d48d8b371.js" integrity="sha256-I&#43;dlBoc2PxD3rcuvuLVIgUFPIPK7yjQM2qkZnUjYs3E="
     onload="hljs.initHighlightingOnLoad();"></script>

@@ -13,7 +13,7 @@
 const int maxn = 18; ll ci[maxn]; ll ff[1 &lt;&lt; maxn], gg[1 &lt;&lt; maxn]; int main() { ll n = rr(), W = rr(); for (int i = 1; i &lt;= n; i&#43;&#43;) ci[i] = rr(); fill_n(ff, 1 &lt;&lt; maxn, n); fill_n(gg, 1 &lt;&lt; maxn, W); ff[0] = 1, gg[0] = 0; for (int i = 0; i &lt; (1 &lt;&lt; n); i&#43;&#43;) { for (int j = 1; j &lt;= n; j&#43;&#43;) { ll cow = 1 &lt;&lt; (j - 1); if (i &amp; cow) continue; if (W - gg[i] &gt;= ci[j]) { ff[i | cow] = ff[i]; gg[i | cow] = min(gg[i | cow], gg[i] &#43; ci[j]); } else if (W - gg[i] &lt; ci[j] &amp;&amp; ff[i | cow] &gt;= ff[i] &#43; 1) { ff[i | cow] = ff[i] &#43; 1; gg[i | cow] = min(gg[i | cow], ci[j]); } } } printf(&#34;%lld&#34;, ff[(1 &lt;&lt; n) - 1]); return 0; } ">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/p3052/" />
-<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.fcf2ec3918c78adc31c995632533a1773de33d1dc3a9690cddef4ad1e01b601c.css" integrity="sha256-/PLsORjHitwxyZVjJTOhdz3jPR3DqWkM3e9K0eAbYBw=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
 <script defer crossorigin="anonymous" src="/code-of-acm/assets/js/highlight.min.23e7650687363f10f7adcbafb8b54881414f20f2bbca340cdaa9199d48d8b371.js" integrity="sha256-I&#43;dlBoc2PxD3rcuvuLVIgUFPIPK7yjQM2qkZnUjYs3E="
     onload="hljs.initHighlightingOnLoad();"></script>

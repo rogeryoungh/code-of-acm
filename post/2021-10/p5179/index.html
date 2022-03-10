@@ -14,7 +14,7 @@ $$ \frac{a}{b} &lt; \frac{p}{q} &lt; \frac{c}{d} $$
  首先当 $\lfloor a/b \rfloor &#43; 1 \leqslant \lceil c/d \rceil - 1$ 时，说明两个数之间存在一个整数，直接返回 $p = 1, q = \lfloor a / b \rfloor &#43; 1$ 即可。 其次当 $a = 0$ 时，直接解得 $p = 1, q = \lfloor d / c \rfloor &#43; 1$。 当 $a &lt; b$ 时，这意味着我们无法直接求解。考虑翻转，转化问题为 $$ \frac{d}{c} &lt; \frac{q}{p} &lt; \frac{b}{a} $$ 递归即可。 当 $a &gt; b$ 时，考虑求解 $$ \frac{a}{b} - \left\lfloor\frac{a}{b}\right\rfloor &lt; \frac{p}{q} - \left\lfloor\frac{a}{b}\right\rfloor &lt; \frac{c}{d} - \left\lfloor\frac{a}{b}\right\rfloor $$ 也是递归即可，还原出结果以后返回。  唯一需要确认的就是，翻转后仍是最优解，考虑反证。">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/p5179/" />
-<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.fcf2ec3918c78adc31c995632533a1773de33d1dc3a9690cddef4ad1e01b601c.css" integrity="sha256-/PLsORjHitwxyZVjJTOhdz3jPR3DqWkM3e9K0eAbYBw=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
 <script defer crossorigin="anonymous" src="/code-of-acm/assets/js/highlight.min.23e7650687363f10f7adcbafb8b54881414f20f2bbca340cdaa9199d48d8b371.js" integrity="sha256-I&#43;dlBoc2PxD3rcuvuLVIgUFPIPK7yjQM2qkZnUjYs3E="
     onload="hljs.initHighlightingOnLoad();"></script>

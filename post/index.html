@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/" />
-<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.fcf2ec3918c78adc31c995632533a1773de33d1dc3a9690cddef4ad1e01b601c.css" integrity="sha256-/PLsORjHitwxyZVjJTOhdz3jPR3DqWkM3e9K0eAbYBw=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
 <link rel="icon" href="https://rogeryoungh.github.io/code-of-acm/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rogeryoungh.github.io/code-of-acm/favicon-16x16.png">
@@ -172,7 +172,7 @@
 A. A ↔ BB 给定一个长为 $N$ 的仅包含 ABC 的字符串 $S$。可以做以下两种操作
  把 A 替换为 BB 把 BB 替换为 A  求操作后 $S$ 的字典序最小是多少。
 分析 我赛时是想到 BA 可以变为 AB，从而降低字典序。
-int main() { int N; string s; cin &gt;&gt; N &gt;&gt; s; for (int i = 0; i &lt; s.size() - 1; i&#43;&#43;) { if (s[i] == &#39;B&#39; &amp;&amp; s[i &#43; 1] == &#39;B&#39;) { s[i] = &#39;A&#39;; s.erase(s.begin() &#43; i &#43; 1); } if (s[i] == &#39;B&#39; &amp;&amp; s[i &#43; 1] == &#39;A&#39;) { swap(s[i], s[i &#43; 1]); } } cout &lt;&lt; s; return 0; } 现在想来，先进行操作 1 再进行操作 2 足以。...</p>
+int main() { int N; string s; cin &gt;&gt; N &gt;&gt; s; for (int i = 0; i &lt; s.size() - 1; i&#43;&#43;) { if (s[i] == &#39;B&#39; &amp;&amp; s[i &#43; 1] == &#39;B&#39;) { s[i] = &#39;A&#39;; s.erase(s.begin() &#43; i &#43; 1); } if (s[i] == &#39;B&#39; &amp;&amp; s[i &#43; 1] == &#39;A&#39;) { swap(s[i], s[i &#43; 1]); } } cout &lt;&lt; s; return 0; } 全部代码请看：Atcoder/ARC136/ARC136A....</p>
   </section>
   <footer class="entry-footer">February 27, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to AtCoder Regular Contest 136 (ABD)" href="https://rogeryoungh.github.io/code-of-acm/post/2022-02/arc136/"></a>
@@ -186,7 +186,8 @@ int main() { int N; string s; cin &gt;&gt; N &gt;&gt; s; for (int i = 0; i &lt; 
     <p>这场感觉好卡。
 A - Digit Machine 如果当前数字是 $k$，按下一次后会变成 $a_k$。求按 $3$ 次后的数字。
 分析 模拟即可。
-int main() { vector&lt;int&gt; v(10); for (auto &amp;vi : v) cin &gt;&gt; vi; int x = 0; for (int i = 0; i &lt; 3; i&#43;&#43;) x = v[x]; cout &lt;&lt; x; return 0; } B - Pasta 把数组 $\{b_m\}$ 的数字映射到 $\{a_n\}$ 上，不能重复。问是否能够完全映射。
+int main() { vector&lt;int&gt; v(10); for (auto &amp;vi : v) cin &gt;&gt; vi; int x = 0; for (int i = 0; i &lt; 3; i&#43;&#43;) x = v[x]; cout &lt;&lt; x; return 0; } 全部代码请看：Atcoder/ABC241/ABC241A.cpp。
+B - Pasta 把数组 $\{b_m\}$ 的数字映射到 $\{a_n\}$ 上，不能重复。问是否能够完全映射。
 分析 用 mutiset&lt;int&gt; 模拟即可。
 int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; multiset&lt;int&gt; s; for (int i = 0; i &lt; n; i&#43;&#43;) { int t; cin &gt;&gt; t; s....</p>
   </section>

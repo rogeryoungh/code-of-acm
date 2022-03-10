@@ -15,7 +15,7 @@ $$ f_i(x) = k_i x &#43; m_i $$
 template &lt;class T&gt; struct SegmentTree { vector&lt;Seg&gt; tr; void pushup(int p); void pushdown(int p); void build(int l, int r, int p = 1); void modify(int l, int r, T k, T m, int p = 1); T query(int l, int r, int p = 1); }; 懒标记：在知道一段当前值的情况下，可以立刻知道该段被操作后的值，不必重新计算所有的数。因此可以把当前的操作存起来，询问的时候再对子节点做真实操作。">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2022-01/p3373/" />
-<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.fcf2ec3918c78adc31c995632533a1773de33d1dc3a9690cddef4ad1e01b601c.css" integrity="sha256-/PLsORjHitwxyZVjJTOhdz3jPR3DqWkM3e9K0eAbYBw=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
 <script defer crossorigin="anonymous" src="/code-of-acm/assets/js/highlight.min.23e7650687363f10f7adcbafb8b54881414f20f2bbca340cdaa9199d48d8b371.js" integrity="sha256-I&#43;dlBoc2PxD3rcuvuLVIgUFPIPK7yjQM2qkZnUjYs3E="
     onload="hljs.initHighlightingOnLoad();"></script>

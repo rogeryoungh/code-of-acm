@@ -10,12 +10,13 @@
 <meta name="description" content="这场感觉好卡。
 A - Digit Machine 如果当前数字是 $k$，按下一次后会变成 $a_k$。求按 $3$ 次后的数字。
 分析 模拟即可。
-int main() { vector&lt;int&gt; v(10); for (auto &amp;vi : v) cin &gt;&gt; vi; int x = 0; for (int i = 0; i &lt; 3; i&#43;&#43;) x = v[x]; cout &lt;&lt; x; return 0; } B - Pasta 把数组 $\{b_m\}$ 的数字映射到 $\{a_n\}$ 上，不能重复。问是否能够完全映射。
+int main() { vector&lt;int&gt; v(10); for (auto &amp;vi : v) cin &gt;&gt; vi; int x = 0; for (int i = 0; i &lt; 3; i&#43;&#43;) x = v[x]; cout &lt;&lt; x; return 0; } 全部代码请看：Atcoder/ABC241/ABC241A.cpp。
+B - Pasta 把数组 $\{b_m\}$ 的数字映射到 $\{a_n\}$ 上，不能重复。问是否能够完全映射。
 分析 用 mutiset&lt;int&gt; 模拟即可。
 int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; multiset&lt;int&gt; s; for (int i = 0; i &lt; n; i&#43;&#43;) { int t; cin &gt;&gt; t; s.">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2022-02/abc241/" />
-<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.fcf2ec3918c78adc31c995632533a1773de33d1dc3a9690cddef4ad1e01b601c.css" integrity="sha256-/PLsORjHitwxyZVjJTOhdz3jPR3DqWkM3e9K0eAbYBw=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
 <script defer crossorigin="anonymous" src="/code-of-acm/assets/js/highlight.min.23e7650687363f10f7adcbafb8b54881414f20f2bbca340cdaa9199d48d8b371.js" integrity="sha256-I&#43;dlBoc2PxD3rcuvuLVIgUFPIPK7yjQM2qkZnUjYs3E="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -57,7 +58,8 @@ int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; multiset&lt;int&gt; s; for (in
 <meta property="og:description" content="这场感觉好卡。
 A - Digit Machine 如果当前数字是 $k$，按下一次后会变成 $a_k$。求按 $3$ 次后的数字。
 分析 模拟即可。
-int main() { vector&lt;int&gt; v(10); for (auto &amp;vi : v) cin &gt;&gt; vi; int x = 0; for (int i = 0; i &lt; 3; i&#43;&#43;) x = v[x]; cout &lt;&lt; x; return 0; } B - Pasta 把数组 $\{b_m\}$ 的数字映射到 $\{a_n\}$ 上，不能重复。问是否能够完全映射。
+int main() { vector&lt;int&gt; v(10); for (auto &amp;vi : v) cin &gt;&gt; vi; int x = 0; for (int i = 0; i &lt; 3; i&#43;&#43;) x = v[x]; cout &lt;&lt; x; return 0; } 全部代码请看：Atcoder/ABC241/ABC241A.cpp。
+B - Pasta 把数组 $\{b_m\}$ 的数字映射到 $\{a_n\}$ 上，不能重复。问是否能够完全映射。
 分析 用 mutiset&lt;int&gt; 模拟即可。
 int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; multiset&lt;int&gt; s; for (int i = 0; i &lt; n; i&#43;&#43;) { int t; cin &gt;&gt; t; s." />
 <meta property="og:type" content="article" />
@@ -70,7 +72,8 @@ int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; multiset&lt;int&gt; s; for (in
 <meta name="twitter:description" content="这场感觉好卡。
 A - Digit Machine 如果当前数字是 $k$，按下一次后会变成 $a_k$。求按 $3$ 次后的数字。
 分析 模拟即可。
-int main() { vector&lt;int&gt; v(10); for (auto &amp;vi : v) cin &gt;&gt; vi; int x = 0; for (int i = 0; i &lt; 3; i&#43;&#43;) x = v[x]; cout &lt;&lt; x; return 0; } B - Pasta 把数组 $\{b_m\}$ 的数字映射到 $\{a_n\}$ 上，不能重复。问是否能够完全映射。
+int main() { vector&lt;int&gt; v(10); for (auto &amp;vi : v) cin &gt;&gt; vi; int x = 0; for (int i = 0; i &lt; 3; i&#43;&#43;) x = v[x]; cout &lt;&lt; x; return 0; } 全部代码请看：Atcoder/ABC241/ABC241A.cpp。
+B - Pasta 把数组 $\{b_m\}$ 的数字映射到 $\{a_n\}$ 上，不能重复。问是否能够完全映射。
 分析 用 mutiset&lt;int&gt; 模拟即可。
 int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; multiset&lt;int&gt; s; for (int i = 0; i &lt; n; i&#43;&#43;) { int t; cin &gt;&gt; t; s."/>
 
@@ -101,12 +104,12 @@ int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; multiset&lt;int&gt; s; for (in
   "@type": "BlogPosting",
   "headline": "AtCoder Beginner Contest 241 (A-E)",
   "name": "AtCoder Beginner Contest 241 (A-E)",
-  "description": "这场感觉好卡。\nA - Digit Machine 如果当前数字是 $k$，按下一次后会变成 $a_k$。求按 $3$ 次后的数字。\n分析 模拟即可。\nint main() { vector\u0026lt;int\u0026gt; v(10); for (auto \u0026amp;vi : v) cin \u0026gt;\u0026gt; vi; int x = 0; for (int i = 0; i \u0026lt; 3; i++) x = v[x]; cout \u0026lt;\u0026lt; x; return 0; } B - Pasta 把数组 $\\{b_m\\}$ 的数字映射到 $\\{a_n\\}$ 上，不能重复。问是否能够完全映射。\n分析 用 mutiset\u0026lt;int\u0026gt; 模拟即可。\nint main() { int n, m; cin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; m; multiset\u0026lt;int\u0026gt; s; for (int i = 0; i \u0026lt; n; i++) { int t; cin \u0026gt;\u0026gt; t; s.",
+  "description": "这场感觉好卡。\nA - Digit Machine 如果当前数字是 $k$，按下一次后会变成 $a_k$。求按 $3$ 次后的数字。\n分析 模拟即可。\nint main() { vector\u0026lt;int\u0026gt; v(10); for (auto \u0026amp;vi : v) cin \u0026gt;\u0026gt; vi; int x = 0; for (int i = 0; i \u0026lt; 3; i++) x = v[x]; cout \u0026lt;\u0026lt; x; return 0; } 全部代码请看：Atcoder/ABC241/ABC241A.cpp。\nB - Pasta 把数组 $\\{b_m\\}$ 的数字映射到 $\\{a_n\\}$ 上，不能重复。问是否能够完全映射。\n分析 用 mutiset\u0026lt;int\u0026gt; 模拟即可。\nint main() { int n, m; cin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; m; multiset\u0026lt;int\u0026gt; s; for (int i = 0; i \u0026lt; n; i++) { int t; cin \u0026gt;\u0026gt; t; s.",
   "keywords": [
     
   ],
-  "articleBody": "这场感觉好卡。\nA - Digit Machine 如果当前数字是 $k$，按下一次后会变成 $a_k$。求按 $3$ 次后的数字。\n分析 模拟即可。\nint main() { vectorint v(10); for (auto \u0026vi : v) cin  vi; int x = 0; for (int i = 0; i  3; i++) x = v[x]; cout  x; return 0; } B - Pasta 把数组 $\\{b_m\\}$ 的数字映射到 $\\{a_n\\}$ 上，不能重复。问是否能够完全映射。\n分析 用 mutiset 模拟即可。\nint main() { int n, m; cin  n  m; multisetint s; for (int i = 0; i  n; i++) { int t; cin  t; s.insert(t); } for (int i = 0; i  m; i++) { int t; cin  t; if (s.count(t) == 0) { cout  \"No\"; return 0; } s.erase(s.find(t)); } cout  \"Yes\"; return 0; } C - Connect 6 给定一个地图，你可以把两个位置改为 #，问是否能够产生连续的 $6$ 个 #。横、竖、斜皆可。\n分析 对于每个点，暴力搜一遍即可。\nint main() { int n; cin  n; vectorstring m(n); for (auto \u0026mi : m) { cin  mi; } for (int i = 0; i  n; i++) { for (int j = 0; j  n; j++) { auto sharp = [\u0026](int x, int y) { int ti = i, tj = j; int sum = 0; for (int u = 0; u  6; u++) { if (ti  0 || tj  0 || ti = n || tj = n) { return false; } sum += m[ti][tj] == '#'; ti += x, tj += y; } return sum = 4; }; bool flag = false; flag = flag || sharp(1, 0) || sharp(1, 1) || sharp(0, 1) || sharp(-1, 1); flag = flag || sharp(-1, 0) || sharp(-1, -1) || sharp(0, -1) || sharp(1, -1); if (flag) { cout  \"Yes\"; return 0; } } } cout  \"No\"; return 0; } D - Sequence Query 给定一个空序列 $A$，和 $Q$ 个询问\n 1 x，把 $x$ 插入 $A$。 2 x k，在所有小于等于 $x$ 的数中，找出第 $k$ 大数。 3 x k，在所有大于等于 $x$ 的数中，找出第 $k$ 小数。  其中 $k \\leqslant 5$。\n分析 我还楞了一会，发现 mutiset 好像可以直接秒。\nint main() { int Q; cin  Q; multisetll s; while (Q--) { ll op, x, k; cin  op  x; if (op == 1) { s.insert(x); } else { cin  k; auto iter = s.begin(); bool flag = false; if (op == 2) { iter = s.upper_bound(x); while (iter != s.begin() \u0026\u0026 k--) iter--; flag = k  0; } else { iter = s.lower_bound(x); k--; while (iter != s.end() \u0026\u0026 k--) iter++; flag = iter == s.end(); } if (flag) cout  \"-1\\n\"; else cout  *iter  \"\\n\"; } } } E - Putting Candies 给定一个长为 $N$ 的序列 $A$，初始数字 $X = 0$。\n 每次让 $X \\gets X + A_{(X \\bmod N)}$。  问 $K$ 次操作后有答案是多少。\n分析 我第一想法是倍增，然后想了想存在循环节，就不写倍增了。\n注意到当值为 $X$ 时，其下一个位置和增加的量仅与 $X \\bmod N$ 有关，故取值最多 $n$ 种，必然存在循环。\n把环判出来，首尾额外处理一下即可。\nint main() { ll n, k; cin  n  k; vectorll v(n), vis(n); for (auto \u0026vi : v) cin  vi; auto get = [\u0026](ll u, const ll p = 0) { ll ans = p, pos = p % n; while (u--) { ans += v[pos]; pos = ans % n; } return ans - p; }; ll cnt = 0, pos = 0, tsum = 0; while (!vis[pos]) { vis[pos] = cnt++; tsum += v[pos]; pos = tsum % n; } ll crc = cnt - vis[pos], left = k - vis[pos]; ll ans = 0; if (left  0) { ans += get(k); } else { ans = get(crc, pos) * (left / crc) + get(vis[pos] + left % crc); } cout  ans; return 0; } ",
-  "wordCount" : "587",
+  "articleBody": "这场感觉好卡。\nA - Digit Machine 如果当前数字是 $k$，按下一次后会变成 $a_k$。求按 $3$ 次后的数字。\n分析 模拟即可。\nint main() { vectorint v(10); for (auto \u0026vi : v) cin  vi; int x = 0; for (int i = 0; i  3; i++) x = v[x]; cout  x; return 0; } 全部代码请看：Atcoder/ABC241/ABC241A.cpp。\nB - Pasta 把数组 $\\{b_m\\}$ 的数字映射到 $\\{a_n\\}$ 上，不能重复。问是否能够完全映射。\n分析 用 mutiset 模拟即可。\nint main() { int n, m; cin  n  m; multisetint s; for (int i = 0; i  n; i++) { int t; cin  t; s.insert(t); } for (int i = 0; i  m; i++) { int t; cin  t; if (s.count(t) == 0) { cout  \"No\"; return 0; } s.erase(s.find(t)); } cout  \"Yes\"; return 0; } 全部代码请看：Atcoder/ABC241/ABC241B.cpp。\nC - Connect 6 给定一个地图，你可以把两个位置改为 #，问是否能够产生连续的 $6$ 个 #。横、竖、斜皆可。\n分析 对于每个点，暴力搜一遍即可。\nint main() { int n; cin  n; vectorstring m(n); for (auto \u0026mi : m) { cin  mi; } for (int i = 0; i  n; i++) { for (int j = 0; j  n; j++) { auto sharp = [\u0026](int x, int y) { int ti = i, tj = j; int sum = 0; for (int u = 0; u  6; u++) { if (ti  0 || tj  0 || ti = n || tj = n) { return false; } sum += m[ti][tj] == '#'; ti += x, tj += y; } return sum = 4; }; bool flag = false; flag = flag || sharp(1, 0) || sharp(1, 1) || sharp(0, 1) || sharp(-1, 1); flag = flag || sharp(-1, 0) || sharp(-1, -1) || sharp(0, -1) || sharp(1, -1); if (flag) { cout  \"Yes\"; return 0; } } } cout  \"No\"; return 0; } 全部代码请看：Atcoder/ABC241/ABC241C.cpp。\nD - Sequence Query 给定一个空序列 $A$，和 $Q$ 个询问\n 1 x，把 $x$ 插入 $A$。 2 x k，在所有小于等于 $x$ 的数中，找出第 $k$ 大数。 3 x k，在所有大于等于 $x$ 的数中，找出第 $k$ 小数。  其中 $k \\leqslant 5$。\n分析 我还楞了一会，发现 mutiset 好像可以直接秒。\nint main() { int Q; cin  Q; multisetll s; while (Q--) { ll op, x, k; cin  op  x; if (op == 1) { s.insert(x); } else { cin  k; auto iter = s.begin(); bool flag = false; if (op == 2) { iter = s.upper_bound(x); while (iter != s.begin() \u0026\u0026 k--) iter--; flag = k  0; } else { iter = s.lower_bound(x); k--; while (iter != s.end() \u0026\u0026 k--) iter++; flag = iter == s.end(); } if (flag) cout  \"-1\\n\"; else cout  *iter  \"\\n\"; } } } 全部代码请看：Atcoder/ABC241/ABC241D.cpp。\nE - Putting Candies 给定一个长为 $N$ 的序列 $A$，初始数字 $X = 0$。\n 每次让 $X \\gets X + A_{(X \\bmod N)}$。  问 $K$ 次操作后有答案是多少。\n分析 我第一想法是倍增，然后想了想存在循环节，就不写倍增了。\n注意到当值为 $X$ 时，其下一个位置和增加的量仅与 $X \\bmod N$ 有关，故取值最多 $n$ 种，必然存在循环。\n把环判出来，首尾额外处理一下即可。\nint main() { ll n, k; cin  n  k; vectorll v(n), vis(n); for (auto \u0026vi : v) cin  vi; auto get = [\u0026](ll u, const ll p = 0) { ll ans = p, pos = p % n; while (u--) { ans += v[pos]; pos = ans % n; } return ans - p; }; ll cnt = 0, pos = 0, tsum = 0; while (!vis[pos]) { vis[pos] = cnt++; tsum += v[pos]; pos = tsum % n; } ll crc = cnt - vis[pos], left = k - vis[pos]; ll ans = 0; if (left  0) { ans += get(k); } else { ans = get(crc, pos) * (left / crc) + get(vis[pos] + left % crc); } cout  ans; return 0; } 全部代码请看：Atcoder/ABC241/ABC241E.cpp。\n",
+  "wordCount" : "592",
   "inLanguage": "en",
   "datePublished": "2022-02-26T00:00:00Z",
   "dateModified": "2022-02-26T00:00:00Z",
@@ -305,7 +308,9 @@ int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; multiset&lt;int&gt; s; for (in
 </span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="b---pasta">B - Pasta<a hidden class="anchor" aria-hidden="true" href="#b---pasta">#</a></h2>
+</span></span></code></pre></div><p>全部代码请看：<a href="https://github.com/rogeryoungh/code-of-acm/blob/main/src/Atcoder/ABC241/ABC241A.cpp">Atcoder/ABC241/ABC241A.cpp</a>。</p>
+
+<h2 id="b---pasta">B - Pasta<a hidden class="anchor" aria-hidden="true" href="#b---pasta">#</a></h2>
 <p>把数组 $\{b_m\}$ 的数字映射到 $\{a_n\}$ 上，不能重复。问是否能够完全映射。</p>
 <h3 id="分析-1">分析<a hidden class="anchor" aria-hidden="true" href="#分析-1">#</a></h3>
 <p>用 <code>mutiset&lt;int&gt;</code> 模拟即可。</p>
@@ -330,7 +335,9 @@ int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; multiset&lt;int&gt; s; for (in
 </span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Yes&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="c---connect-6">C - Connect 6<a hidden class="anchor" aria-hidden="true" href="#c---connect-6">#</a></h2>
+</span></span></code></pre></div><p>全部代码请看：<a href="https://github.com/rogeryoungh/code-of-acm/blob/main/src/Atcoder/ABC241/ABC241B.cpp">Atcoder/ABC241/ABC241B.cpp</a>。</p>
+
+<h2 id="c---connect-6">C - Connect 6<a hidden class="anchor" aria-hidden="true" href="#c---connect-6">#</a></h2>
 <p>给定一个地图，你可以把两个位置改为 <code>#</code>，问是否能够产生连续的 $6$ 个 <code>#</code>。横、竖、斜皆可。</p>
 <h3 id="分析-2">分析<a hidden class="anchor" aria-hidden="true" href="#分析-2">#</a></h3>
 <p>对于每个点，暴力搜一遍即可。</p>
@@ -368,7 +375,9 @@ int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; multiset&lt;int&gt; s; for (in
 </span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;No&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="d---sequence-query">D - Sequence Query<a hidden class="anchor" aria-hidden="true" href="#d---sequence-query">#</a></h2>
+</span></span></code></pre></div><p>全部代码请看：<a href="https://github.com/rogeryoungh/code-of-acm/blob/main/src/Atcoder/ABC241/ABC241C.cpp">Atcoder/ABC241/ABC241C.cpp</a>。</p>
+
+<h2 id="d---sequence-query">D - Sequence Query<a hidden class="anchor" aria-hidden="true" href="#d---sequence-query">#</a></h2>
 <p>给定一个空序列 $A$，和 $Q$ 个询问</p>
 <ul>
 <li><code>1 x</code>，把 $x$ 插入 $A$。</li>
@@ -410,7 +419,9 @@ int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; multiset&lt;int&gt; s; for (in
 </span></span><span class="line"><span class="cl">		<span class="p">}</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="e---putting-candies">E - Putting Candies<a hidden class="anchor" aria-hidden="true" href="#e---putting-candies">#</a></h2>
+</span></span></code></pre></div><p>全部代码请看：<a href="https://github.com/rogeryoungh/code-of-acm/blob/main/src/Atcoder/ABC241/ABC241D.cpp">Atcoder/ABC241/ABC241D.cpp</a>。</p>
+
+<h2 id="e---putting-candies">E - Putting Candies<a hidden class="anchor" aria-hidden="true" href="#e---putting-candies">#</a></h2>
 <p>给定一个长为 $N$ 的序列 $A$，初始数字 $X = 0$。</p>
 <ul>
 <li>每次让 $X \gets X + A_{(X \bmod N)}$。</li>
@@ -452,7 +463,9 @@ int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; multiset&lt;int&gt; s; for (in
 </span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div>
+</span></span></code></pre></div><p>全部代码请看：<a href="https://github.com/rogeryoungh/code-of-acm/blob/main/src/Atcoder/ABC241/ABC241E.cpp">Atcoder/ABC241/ABC241E.cpp</a>。</p>
+
+
 
   </div>
   <footer class="post-footer">

@@ -14,7 +14,7 @@ $$ F[i, j, k, w] = \max\left\{ \begin{matrix} dp[i - 1, j, k, w] \\ dp[i, j - 1,
 ll dp[50][50][50], aa[400], tt[10]; int main() { ll n = rr(), m = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) { aa[i] = rr(); } for (ll i = 1; i &lt;= m; i&#43;&#43;) { tt[rr()]&#43;&#43;; } for (ll i = 0; i &lt;= tt[1]; i&#43;&#43;) { for (ll j = 0; j &lt;= tt[2]; j&#43;&#43;) { for (ll k = 0; k &lt;= tt[3]; k&#43;&#43;) { for (ll w = 0; w &lt;= tt[4]; w&#43;&#43;) { dp[j][k][w] = aa[i * 1 &#43; j * 2 &#43; k * 3 &#43; w * 4 &#43; 1] &#43; max4( j == 0 ?">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1541/" />
-<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.fcf2ec3918c78adc31c995632533a1773de33d1dc3a9690cddef4ad1e01b601c.css" integrity="sha256-/PLsORjHitwxyZVjJTOhdz3jPR3DqWkM3e9K0eAbYBw=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
 <script defer crossorigin="anonymous" src="/code-of-acm/assets/js/highlight.min.23e7650687363f10f7adcbafb8b54881414f20f2bbca340cdaa9199d48d8b371.js" integrity="sha256-I&#43;dlBoc2PxD3rcuvuLVIgUFPIPK7yjQM2qkZnUjYs3E="
     onload="hljs.initHighlightingOnLoad();"></script>

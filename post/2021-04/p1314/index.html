@@ -14,7 +14,7 @@ $$ y_i=\sum_{j=l_i}^{r_i}[w_j \geqslant W] \times \sum_{j=l_i}^{r_i}[w_j \geqsla
 const ll MN = 2e5 &#43; 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; ll n, m, s; int main() { n = rr(), m = rr(), s = rr(); ll minw = 0x3f3f3f3f, maxw = 0; f1[0] = f2[0] = 0; for (ll i = 1; i &lt;= n; i&#43;&#43;) { ww[i] = rr(), vv[i] = rr(); maxw = max(ww[i], maxw); minw = min(ww[i], minw); } for (ll i = 1; i &lt;= m; i&#43;&#43;) { li[i] = rr(), ri[i] = rr(); } ll l = minw, r = maxw &#43; 1; while (l &lt; r) { int mid = (l &#43; r) &gt;&gt; 1; if (sum(mid) &lt;= s) r = mid; else l = mid &#43; 1; } ll rst = min(sum(l - 1) - s, s - sum(l)); printf(&#34;%lld&#34;, rst); return 0; } 区间求和可以用前缀和优化。">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2021-04/p1314/" />
-<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.fcf2ec3918c78adc31c995632533a1773de33d1dc3a9690cddef4ad1e01b601c.css" integrity="sha256-/PLsORjHitwxyZVjJTOhdz3jPR3DqWkM3e9K0eAbYBw=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
 <script defer crossorigin="anonymous" src="/code-of-acm/assets/js/highlight.min.23e7650687363f10f7adcbafb8b54881414f20f2bbca340cdaa9199d48d8b371.js" integrity="sha256-I&#43;dlBoc2PxD3rcuvuLVIgUFPIPK7yjQM2qkZnUjYs3E="
     onload="hljs.initHighlightingOnLoad();"></script>
