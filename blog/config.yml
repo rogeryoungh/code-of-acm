@@ -40,6 +40,9 @@ params:
     title: "Roger Young" # optional default will be site title
     subtitle: "Code of ACM"
     imageUrl: https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png
+    buttons:
+    - name: All of my Posts
+      url: "./archives"
   comments: true
   valine:
     enable: true
