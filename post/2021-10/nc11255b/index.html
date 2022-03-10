@@ -19,7 +19,7 @@ $$ E((x &#43; 1)^2) = E(x^2) &#43; 2 E(x) &#43; 1 $$">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/nc11255b/" />
 <link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.fcf2ec3918c78adc31c995632533a1773de33d1dc3a9690cddef4ad1e01b601c.css" integrity="sha256-/PLsORjHitwxyZVjJTOhdz3jPR3DqWkM3e9K0eAbYBw=" rel="preload stylesheet" as="style">
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
-<script defer crossorigin="anonymous" src="/code-of-acm/assets/js/highlight.min.dacf81874295cd2936dececc3a04b7a00adb5d68618e897914957eeeef6f03b8.js" integrity="sha256-2s&#43;Bh0KVzSk23s7MOgS3oArbXWhhjol5FJV&#43;7u9vA7g="
+<script defer crossorigin="anonymous" src="/code-of-acm/assets/js/highlight.min.23e7650687363f10f7adcbafb8b54881414f20f2bbca340cdaa9199d48d8b371.js" integrity="sha256-I&#43;dlBoc2PxD3rcuvuLVIgUFPIPK7yjQM2qkZnUjYs3E="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rogeryoungh.github.io/code-of-acm/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rogeryoungh.github.io/code-of-acm/favicon-16x16.png">
@@ -28,7 +28,7 @@ $$ E((x &#43; 1)^2) = E(x^2) &#43; 2 E(x) &#43; 1 $$">
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.93.3" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -111,7 +111,7 @@ $$ E((x &#43; 1)^2) = E(x^2) &#43; 2 E(x) &#43; 1 $$"/>
   "keywords": [
     "DP"
   ],
-  "articleBody": "题目大意 给定生成 $1$ 到 $n$ 数字的概率分布，不断生成随机数 $x$ 直到 $x$ 不是已经生成过的最大的数停止，求生成次数平方的期望。\n分析 设期望的随机次数为 $f_x = E(x)$，我们需要计算的次数为 $g_x = E(x^2)$。\n关于 $f_i$ 的 DP 是显然的，计算有\n$$ f_x = \\sum_{i = 1}^{x - 1} p_i + \\sum_{i = x}^n p_i(1 + f_i) = 1 + \\sum_{i = x}^n p_i f_i $$\n容易观察到\n$$ f_{x + 1} =(1 - p_x) f_x \\Rightarrow f_x = \\prod_{i = x}^n \\frac{1}{1 - p_x} $$\n接下来需要一个套路\n$$ E((x + 1)^2) = E(x^2) + 2 E(x) + 1 $$\n类似的可以推得\n$$ g_x = \\sum_{i = 1}^{x - 1} p_i + \\sum_{i = x}^n p_i(g_i + 2 f_i + 1) = 1\n \\sum_{i = x}^n p_i g_i + 2 \\sum_{i = x}^n p_i f_i = \\sum_{i = x}^n p_i g_i + 2 f_x - 1 $$  最终答案即是\n$$ ans = \\sum_{i = 1}^n p_i(g_i + 2 f_i + 1) = g_1 $$\n至此，倒着递推已经可以线性求解了。但是我们还可以继续优化，逐项相减有\n$$ g_{x + 1} - g_x = 2(f_{x + 1} - f_x) - p_x g_x = - 2 p_x f_x - p_x g_x $$\n即\n$$ \\frac{g_x}{f_x} - \\frac{g_{x + 1}}{f_{x + 1}} = \\frac{2}{1 - p_x} - 2 $$\n因此\n$$ {\\rm ans} = g_1 = f_1 \\left( \\frac{g_n}{f_n} - 2(n - 1) + 2 \\sum_{i = 1}^{n - 1} \\frac{1}{1 - p_x} \\right) = \\left( \\prod_{i = x}^n \\frac{1}{1 - p_x} \\right) \\left( 1 + 2 \\sum_{i = 1}^n \\frac{1}{1 - p_x} - 2 n \\right) $$\n至此，我们可以 $O(n)$ 的解决问题。\n#define ACM_MOD 998244353 const ll mod = ACM_MOD; #include \"template/basic/qpow.hpp\"#include \"template/basic/inv.hpp\" ll p[10086]; int main() { ll n = rr(), sum = 0; for (int i = 1; i  n; i++) p[i] = rr(), sum = (sum + p[i]) % mod; sum = inv(sum); for (int i = 1; i  n; i++) { p[i] = p[i] * sum % mod; p[i] = inv(mod + 1 - p[i]); } ll ans = 1, w = mod - n; for (int i = 1; i  n; i++) { ans = ans * p[i] % mod; w = (w + p[i]) % mod; } ans = ans * (1 + 2 * w) % mod; printf(\"%lld\\n\", ans); return 0; } 我们经过了很长的化简过程才导出这一结果，实际上生成函数更为快捷。\n设 $f(x)$ 是生成长度为 $i$ 的非递减序列的生成函数，即 $P(len  i)$，可以推出\n$$ f(x) = \\prod_{i = 1}^n \\frac{1}{1 - p_i x} $$\n而我们需要求\n$$ \\sum_{i = 1}^{\\infty} (f_{i - 1} - f_i) i^2 = \\sum_{i = 0}^{\\infty} f_i (2 i + 1) = 2 f'(1) + f(1) $$\n化简即可得到上式。\n",
+  "articleBody": "题目大意 给定生成 $1$ 到 $n$ 数字的概率分布，不断生成随机数 $x$ 直到 $x$ 不是已经生成过的最大的数停止，求生成次数平方的期望。\n分析 设期望的随机次数为 $f_x = E(x)$，我们需要计算的次数为 $g_x = E(x^2)$。\n关于 $f_i$ 的 DP 是显然的，计算有\n$$ f_x = \\sum_{i = 1}^{x - 1} p_i + \\sum_{i = x}^n p_i(1 + f_i) = 1 + \\sum_{i = x}^n p_i f_i $$\n容易观察到\n$$ f_{x + 1} =(1 - p_x) f_x \\Rightarrow f_x = \\prod_{i = x}^n \\frac{1}{1 - p_x} $$\n接下来需要一个套路\n$$ E((x + 1)^2) = E(x^2) + 2 E(x) + 1 $$\n类似的可以推得\n$$ g_x = \\sum_{i = 1}^{x - 1} p_i + \\sum_{i = x}^n p_i(g_i + 2 f_i + 1) = 1\n \\sum_{i = x}^n p_i g_i + 2 \\sum_{i = x}^n p_i f_i = \\sum_{i = x}^n p_i g_i + 2 f_x - 1 $$  最终答案即是\n$$ ans = \\sum_{i = 1}^n p_i(g_i + 2 f_i + 1) = g_1 $$\n至此，倒着递推已经可以线性求解了。但是我们还可以继续优化，逐项相减有\n$$ g_{x + 1} - g_x = 2(f_{x + 1} - f_x) - p_x g_x = - 2 p_x f_x - p_x g_x $$\n即\n$$ \\frac{g_x}{f_x} - \\frac{g_{x + 1}}{f_{x + 1}} = \\frac{2}{1 - p_x} - 2 $$\n因此\n$$ {\\rm ans} = g_1 = f_1 \\left( \\frac{g_n}{f_n} - 2(n - 1) + 2 \\sum_{i = 1}^{n - 1} \\frac{1}{1 - p_x} \\right) = \\left( \\prod_{i = x}^n \\frac{1}{1 - p_x} \\right) \\left( 1 + 2 \\sum_{i = 1}^n \\frac{1}{1 - p_x} - 2 n \\right) $$\n至此，我们可以 $O(n)$ 的解决问题。\n#define ACM_MOD 998244353 const ll mod = ACM_MOD; #include \"template/basic/qpow.hpp\"#include \"template/basic/inv.hpp\" ll p[10086]; int main() { ll n = rr(), sum = 0; for (int i = 1; i  n; i++) p[i] = rr(), sum = (sum + p[i]) % mod; sum = inv(sum); for (int i = 1; i  n; i++) { p[i] = p[i] * sum % mod; p[i] = inv(mod + 1 - p[i]); } ll ans = 1, w = mod - n; for (int i = 1; i  n; i++) { ans = ans * p[i] % mod; w = (w + p[i]) % mod; } ans = ans * (1 + 2 * w) % mod; printf(\"%lld\\n\", ans); return 0; } 我们经过了很长的化简过程才导出这一结果，实际上生成函数更为快捷。\n设 $f(x)$ 是生成长度为 $i$ 的非递减序列的生成函数，即 $P(len  i)$，可以推出\n$$ f(x) = \\prod_{i = 1}^n \\frac{1}{1 - p_i x} $$\n而我们需要求\n$$ \\sum_{i = 1}^{\\infty} (f_{i - 1} - f_i) i^2 = \\sum_{i = 0}^{\\infty} f_i (2 i + 1) = 2 f’(1) + f(1) $$\n化简即可得到上式。\n",
   "wordCount" : "402",
   "inLanguage": "en",
   "datePublished": "2021-10-19T00:00:00Z",
@@ -314,42 +314,42 @@ $$</p>
 p_x} \right) \left( 1 + 2 \sum_{i = 1}^n \frac{1}{1 - p_x} - 2 n \right)
 $$</p>
 <p>至此，我们可以 $O(n)$ 的解决问题。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define ACM_MOD 998244353
-</span><span class="cp"></span><span class="k">const</span> <span class="n">ll</span> <span class="n">mod</span> <span class="o">=</span> <span class="n">ACM_MOD</span><span class="p">;</span>
-
-<span class="cp">#include</span> <span class="cpf">&#34;template/basic/qpow.hpp&#34;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&#34;template/basic/inv.hpp&#34;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="n">ll</span> <span class="n">p</span><span class="p">[</span><span class="mi">10086</span><span class="p">];</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="n">ll</span> <span class="n">n</span> <span class="o">=</span> <span class="n">rr</span><span class="p">(),</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-		<span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rr</span><span class="p">(),</span> <span class="n">sum</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
-	<span class="n">sum</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">sum</span><span class="p">);</span>
-
-	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-		<span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">sum</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
-		<span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">mod</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-	<span class="p">}</span>
-
-	<span class="n">ll</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">mod</span> <span class="o">-</span> <span class="n">n</span><span class="p">;</span>
-	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-		<span class="n">ans</span> <span class="o">=</span> <span class="n">ans</span> <span class="o">*</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
-		<span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">w</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
-	<span class="p">}</span>
-	<span class="n">ans</span> <span class="o">=</span> <span class="n">ans</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">w</span><span class="p">)</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%lld</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
-	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><p>我们经过了很长的化简过程才导出这一结果，实际上生成函数更为快捷。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#define ACM_MOD 998244353
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">const</span> <span class="n">ll</span> <span class="n">mod</span> <span class="o">=</span> <span class="n">ACM_MOD</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;template/basic/qpow.hpp&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;template/basic/inv.hpp&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">ll</span> <span class="n">p</span><span class="p">[</span><span class="mi">10086</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ll</span> <span class="n">n</span> <span class="o">=</span> <span class="n">rr</span><span class="p">(),</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rr</span><span class="p">(),</span> <span class="n">sum</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">sum</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">sum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">sum</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">mod</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">ll</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">mod</span> <span class="o">-</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ans</span> <span class="o">=</span> <span class="n">ans</span> <span class="o">*</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">w</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ans</span> <span class="o">=</span> <span class="n">ans</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">w</span><span class="p">)</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%lld</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>我们经过了很长的化简过程才导出这一结果，实际上生成函数更为快捷。</p>
 <p>设 $f(x)$ 是生成长度为 $i$ 的非递减序列的生成函数，即 $P(len &gt; i)$，可以推出</p>
 <p>$$
 f(x) = \prod_{i = 1}^n \frac{1}{1 - p_i x}
 $$</p>
 <p>而我们需要求</p>
 <p>$$
-\sum_{i = 1}^{\infty} (f_{i - 1} - f_i) i^2 = \sum_{i = 0}^{\infty} f_i (2 i + 1) = 2 f'(1) + f(1)
+\sum_{i = 1}^{\infty} (f_{i - 1} - f_i) i^2 = \sum_{i = 0}^{\infty} f_i (2 i + 1) = 2 f&rsquo;(1) + f(1)
 $$</p>
 <p>化简即可得到上式。</p>
 

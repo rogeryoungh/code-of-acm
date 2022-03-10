@@ -15,7 +15,7 @@
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1928/" />
 <link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.fcf2ec3918c78adc31c995632533a1773de33d1dc3a9690cddef4ad1e01b601c.css" integrity="sha256-/PLsORjHitwxyZVjJTOhdz3jPR3DqWkM3e9K0eAbYBw=" rel="preload stylesheet" as="style">
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
-<script defer crossorigin="anonymous" src="/code-of-acm/assets/js/highlight.min.dacf81874295cd2936dececc3a04b7a00adb5d68618e897914957eeeef6f03b8.js" integrity="sha256-2s&#43;Bh0KVzSk23s7MOgS3oArbXWhhjol5FJV&#43;7u9vA7g="
+<script defer crossorigin="anonymous" src="/code-of-acm/assets/js/highlight.min.23e7650687363f10f7adcbafb8b54881414f20f2bbca340cdaa9199d48d8b371.js" integrity="sha256-I&#43;dlBoc2PxD3rcuvuLVIgUFPIPK7yjQM2qkZnUjYs3E="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rogeryoungh.github.io/code-of-acm/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rogeryoungh.github.io/code-of-acm/favicon-16x16.png">
@@ -24,7 +24,7 @@
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.93.3" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -267,33 +267,33 @@
 <li>右括号或文本结束则返回 $s$</li>
 </ul>
 <p>写成 BNF 更直观一点</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bnf" data-lang="bnf"> <span class="p">&lt;</span><span class="nc">pwd</span><span class="p">&gt;</span> <span class="o">::=</span> <span class="p">&lt;</span><span class="nc">EMPTY</span><span class="p">&gt;</span>
-		 | {<span class="p">&lt;</span><span class="nc">ALPHA</span><span class="p">&gt;</span>}
-		 | <span class="p">&lt;</span><span class="nc">pwd</span><span class="p">&gt;</span> &#34;[&#34; <span class="p">&lt;</span><span class="nc">NUMBER</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nc">pwd</span><span class="p">&gt;</span> &#34;]&#34; <span class="p">&lt;</span><span class="nc">pwd</span><span class="p">&gt;</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">string</span> <span class="nf">read</span><span class="p">()</span> <span class="p">{</span>
-	<span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
-	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
-	<span class="k">while</span> <span class="p">(</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
-		<span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;[&#39;</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
-			<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
-			<span class="n">string</span> <span class="n">ts</span> <span class="o">=</span> <span class="n">read</span><span class="p">();</span>
-			<span class="k">while</span> <span class="p">(</span><span class="n">n</span><span class="o">--</span><span class="p">)</span>
-				<span class="n">s</span> <span class="o">+=</span> <span class="n">ts</span><span class="p">;</span>
-		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;]&#39;</span><span class="p">)</span> <span class="p">{</span>
-			<span class="k">return</span> <span class="n">s</span><span class="p">;</span>
-		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-			<span class="n">s</span> <span class="o">+=</span> <span class="n">c</span><span class="p">;</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="n">s</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">read</span><span class="p">();</span>
-	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bnf" data-lang="bnf"><span class="line"><span class="cl"> <span class="p">&lt;</span><span class="nc">pwd</span><span class="p">&gt;</span> <span class="o">::=</span> <span class="p">&lt;</span><span class="nc">EMPTY</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">		 | {<span class="p">&lt;</span><span class="nc">ALPHA</span><span class="p">&gt;</span>}
+</span></span><span class="line"><span class="cl">		 | <span class="p">&lt;</span><span class="nc">pwd</span><span class="p">&gt;</span> &#34;[&#34; <span class="p">&lt;</span><span class="nc">NUMBER</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nc">pwd</span><span class="p">&gt;</span> &#34;]&#34; <span class="p">&lt;</span><span class="nc">pwd</span><span class="p">&gt;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">string</span> <span class="nf">read</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span> <span class="p">(</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;[&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">string</span> <span class="n">ts</span> <span class="o">=</span> <span class="n">read</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">			<span class="k">while</span> <span class="p">(</span><span class="n">n</span><span class="o">--</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="n">s</span> <span class="o">+=</span> <span class="n">ts</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;]&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">s</span> <span class="o">+=</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">read</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
 
   </div>
   <footer class="post-footer">

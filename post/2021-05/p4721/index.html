@@ -16,7 +16,7 @@ $$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2021-05/p4721/" />
 <link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.fcf2ec3918c78adc31c995632533a1773de33d1dc3a9690cddef4ad1e01b601c.css" integrity="sha256-/PLsORjHitwxyZVjJTOhdz3jPR3DqWkM3e9K0eAbYBw=" rel="preload stylesheet" as="style">
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
-<script defer crossorigin="anonymous" src="/code-of-acm/assets/js/highlight.min.dacf81874295cd2936dececc3a04b7a00adb5d68618e897914957eeeef6f03b8.js" integrity="sha256-2s&#43;Bh0KVzSk23s7MOgS3oArbXWhhjol5FJV&#43;7u9vA7g="
+<script defer crossorigin="anonymous" src="/code-of-acm/assets/js/highlight.min.23e7650687363f10f7adcbafb8b54881414f20f2bbca340cdaa9199d48d8b371.js" integrity="sha256-I&#43;dlBoc2PxD3rcuvuLVIgUFPIPK7yjQM2qkZnUjYs3E="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rogeryoungh.github.io/code-of-acm/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rogeryoungh.github.io/code-of-acm/favicon-16x16.png">
@@ -25,7 +25,7 @@ $$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.93.3" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -283,36 +283,35 @@ $$</p>
 f (x) = \frac{f [0]}{1 + h [0] - h (x)} = \frac{1}{1 - g (x)}
 $$</p>
 <p>于是求逆即可</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define ACM_MOD 998244353
-</span><span class="cp"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">mod</span> <span class="o">=</span> <span class="n">ACM_MOD</span><span class="p">;</span>
-
-<span class="k">using</span> <span class="n">poly_t</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">;</span>
-<span class="n">poly_t</span> <span class="n">w</span><span class="p">;</span>
-
-<span class="cp">#include</span> <span class="cpf">&#34;template/basic/qpow.hpp&#34;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&#34;template/basic/mint.hpp&#34;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&#34;template/basic/inv.hpp&#34;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&#34;template/poly-ntt/ntt_init.hpp&#34;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&#34;template/poly-ntt/ntt.hpp&#34;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&#34;template/poly-ntt/ntt_inv.hpp&#34;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">rr</span><span class="p">();</span>
-	<span class="kt">int</span> <span class="n">lim</span> <span class="o">=</span> <span class="n">getlin</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
-	<span class="n">w</span> <span class="o">=</span> <span class="n">ntt_init</span><span class="p">(</span><span class="n">lim</span><span class="p">);</span>
-	<span class="n">poly_t</span> <span class="n">ans</span><span class="p">,</span> <span class="n">ff</span><span class="p">(</span><span class="n">lim</span><span class="p">);</span>
-
-	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-		<span class="n">ff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mod</span> <span class="o">-</span> <span class="n">rr</span><span class="p">();</span>
-	<span class="n">ff</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-	<span class="n">ans</span> <span class="o">=</span> <span class="n">ntt_inv</span><span class="p">(</span><span class="n">ff</span><span class="p">,</span> <span class="n">lim</span><span class="p">);</span>
-	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#define ACM_MOD 998244353
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">mod</span> <span class="o">=</span> <span class="n">ACM_MOD</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="n">poly_t</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">poly_t</span> <span class="n">w</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;template/basic/qpow.hpp&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;template/basic/mint.hpp&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;template/basic/inv.hpp&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;template/poly-ntt/ntt_init.hpp&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;template/poly-ntt/ntt.hpp&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;template/poly-ntt/ntt_inv.hpp&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">rr</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">lim</span> <span class="o">=</span> <span class="n">getlin</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">w</span> <span class="o">=</span> <span class="n">ntt_init</span><span class="p">(</span><span class="n">lim</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">poly_t</span> <span class="n">ans</span><span class="p">,</span> <span class="n">ff</span><span class="p">(</span><span class="n">lim</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mod</span> <span class="o">-</span> <span class="n">rr</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ff</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ans</span> <span class="o">=</span> <span class="n">ntt_inv</span><span class="p">(</span><span class="n">ff</span><span class="p">,</span> <span class="n">lim</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
 
   </div>
   <footer class="post-footer">

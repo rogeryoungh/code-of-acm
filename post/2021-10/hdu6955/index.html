@@ -16,7 +16,7 @@ const int maxn = 1e5 &#43; 10, o = 30 - 1; int trie[maxn * 30][2], val[maxn * 30
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/hdu6955/" />
 <link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.fcf2ec3918c78adc31c995632533a1773de33d1dc3a9690cddef4ad1e01b601c.css" integrity="sha256-/PLsORjHitwxyZVjJTOhdz3jPR3DqWkM3e9K0eAbYBw=" rel="preload stylesheet" as="style">
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
-<script defer crossorigin="anonymous" src="/code-of-acm/assets/js/highlight.min.dacf81874295cd2936dececc3a04b7a00adb5d68618e897914957eeeef6f03b8.js" integrity="sha256-2s&#43;Bh0KVzSk23s7MOgS3oArbXWhhjol5FJV&#43;7u9vA7g="
+<script defer crossorigin="anonymous" src="/code-of-acm/assets/js/highlight.min.23e7650687363f10f7adcbafb8b54881414f20f2bbca340cdaa9199d48d8b371.js" integrity="sha256-I&#43;dlBoc2PxD3rcuvuLVIgUFPIPK7yjQM2qkZnUjYs3E="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rogeryoungh.github.io/code-of-acm/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rogeryoungh.github.io/code-of-acm/favicon-16x16.png">
@@ -25,7 +25,7 @@ const int maxn = 1e5 &#43; 10, o = 30 - 1; int trie[maxn * 30][2], val[maxn * 30
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.93.3" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -266,67 +266,67 @@ const int maxn = 1e5 &#43; 10, o = 30 - 1; int trie[maxn * 30][2], val[maxn * 30
 <h2 id="分析">分析<a hidden class="anchor" aria-hidden="true" href="#分析">#</a></h2>
 <p>看到异或最值就应该想到 01trie。做前缀异或和，这样我们的问题就变成找到最靠近的两个数，其异或大于等于 $k$。</p>
 <p>因为要求位置最靠前的，所以我选择倒着遍历。当遍历到第 $i$ 个数 $a_i$ 时，字典树已经维护好此位置之后的数据，即每个值出现最左边的位置。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span> <span class="o">=</span> <span class="mf">1e5</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="n">o</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-
-<span class="kt">int</span> <span class="n">trie</span><span class="p">[</span><span class="n">maxn</span> <span class="o">*</span> <span class="mi">30</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span> <span class="n">val</span><span class="p">[</span><span class="n">maxn</span> <span class="o">*</span> <span class="mi">30</span><span class="p">],</span> <span class="n">tot</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">ai</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">o</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kt">int</span> <span class="n">ch</span> <span class="o">=</span> <span class="p">(</span><span class="n">ai</span> <span class="o">&gt;&gt;</span> <span class="n">j</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">;</span>
-		<span class="k">if</span> <span class="p">(</span><span class="n">trie</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">ch</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-			<span class="n">trie</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">ch</span><span class="p">]</span> <span class="o">=</span> <span class="o">++</span><span class="n">tot</span><span class="p">;</span>
-		<span class="n">p</span> <span class="o">=</span> <span class="n">trie</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">ch</span><span class="p">];</span>
-		<span class="n">val</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>我们只需从高位到低位遍历第 $j$ 位，分类讨论：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span> <span class="o">=</span> <span class="mf">1e5</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="n">o</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">trie</span><span class="p">[</span><span class="n">maxn</span> <span class="o">*</span> <span class="mi">30</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span> <span class="n">val</span><span class="p">[</span><span class="n">maxn</span> <span class="o">*</span> <span class="mi">30</span><span class="p">],</span> <span class="n">tot</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">ai</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">o</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">ch</span> <span class="o">=</span> <span class="p">(</span><span class="n">ai</span> <span class="o">&gt;&gt;</span> <span class="n">j</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">trie</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">ch</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">trie</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">ch</span><span class="p">]</span> <span class="o">=</span> <span class="o">++</span><span class="n">tot</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">p</span> <span class="o">=</span> <span class="n">trie</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">ch</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">		<span class="n">val</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>我们只需从高位到低位遍历第 $j$ 位，分类讨论：</p>
 <ul>
 <li>若 $k[j] = 1$，则说明 $a_i[j] \oplus a_u[j]$ 只能为 $1$，在字典树中选择 $a_i[j] \oplus 1$ 深入（什么都不做）。</li>
 <li>若 $k[j] = 0$，那么若 $a_i[j] \oplus a_u[j] = 1$ 则一定大于 $k$，记录字典树中 $a_i[j] \oplus 1$ 的值，然后在字典树中选择 $a_i[j]$ 深入。</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">search</span><span class="p">(</span><span class="kt">int</span> <span class="n">ai</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">res</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">o</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kt">int</span> <span class="n">x1</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span> <span class="o">&gt;&gt;</span> <span class="n">j</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="p">(</span><span class="n">ai</span> <span class="o">&gt;&gt;</span> <span class="n">j</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">;</span>
-		<span class="k">if</span> <span class="p">(</span><span class="n">x1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kt">int</span> <span class="n">tp</span> <span class="o">=</span> <span class="n">trie</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">x2</span> <span class="o">^</span> <span class="mi">1</span><span class="p">];</span>
-			<span class="k">if</span> <span class="p">(</span><span class="n">tp</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-				<span class="n">res</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">val</span><span class="p">[</span><span class="n">tp</span><span class="p">]);</span>
-		<span class="p">}</span>
-		<span class="n">p</span> <span class="o">=</span> <span class="n">trie</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">x1</span> <span class="o">^</span> <span class="n">x2</span><span class="p">];</span>
-		<span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-			<span class="k">break</span><span class="p">;</span>
-	<span class="p">}</span>
-	<span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-		<span class="n">res</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">val</span><span class="p">[</span><span class="n">p</span><span class="p">]);</span>
-	<span class="k">return</span> <span class="n">res</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><p>因为我们是从前往后查的，因此同样长度中总是先查到考前的，汇总有</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="kt">int</span> <span class="n">ttt</span> <span class="o">=</span> <span class="n">rr</span><span class="p">();</span>
-	<span class="k">while</span> <span class="p">(</span><span class="n">ttt</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
-		<span class="n">n</span> <span class="o">=</span> <span class="n">rr</span><span class="p">(),</span> <span class="n">k</span> <span class="o">=</span> <span class="n">rr</span><span class="p">(),</span> <span class="n">tot</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-		<span class="kt">int</span> <span class="n">anl</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">anr</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pre_sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-		<span class="n">fill_n</span><span class="p">(</span><span class="n">trie</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">o</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-
-		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kt">int</span> <span class="n">ai</span> <span class="o">=</span> <span class="n">pre_sum</span> <span class="o">^</span> <span class="n">rr</span><span class="p">();</span>
-			<span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">search</span><span class="p">(</span><span class="n">ai</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-			<span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">-</span> <span class="n">res</span> <span class="o">&lt;</span> <span class="n">anr</span> <span class="o">-</span> <span class="n">anl</span><span class="p">)</span>
-				<span class="n">anl</span> <span class="o">=</span> <span class="n">res</span><span class="p">,</span> <span class="n">anr</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
-			<span class="n">insert</span><span class="p">(</span><span class="n">ai</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-			<span class="n">pre_sum</span> <span class="o">=</span> <span class="n">ai</span><span class="p">;</span>
-		<span class="p">}</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="n">anl</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
-			<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">anl</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">anr</span><span class="p">);</span>
-		<span class="k">else</span>
-			<span class="n">printf</span><span class="p">(</span><span class="s">&#34;-1</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">search</span><span class="p">(</span><span class="kt">int</span> <span class="n">ai</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">res</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">o</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">x1</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span> <span class="o">&gt;&gt;</span> <span class="n">j</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="p">(</span><span class="n">ai</span> <span class="o">&gt;&gt;</span> <span class="n">j</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">x1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="kt">int</span> <span class="n">tp</span> <span class="o">=</span> <span class="n">trie</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">x2</span> <span class="o">^</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="n">tp</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="n">res</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">val</span><span class="p">[</span><span class="n">tp</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="n">p</span> <span class="o">=</span> <span class="n">trie</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">x1</span> <span class="o">^</span> <span class="n">x2</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">res</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">val</span><span class="p">[</span><span class="n">p</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>因为我们是从前往后查的，因此同样长度中总是先查到考前的，汇总有</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">ttt</span> <span class="o">=</span> <span class="n">rr</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span> <span class="p">(</span><span class="n">ttt</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">n</span> <span class="o">=</span> <span class="n">rr</span><span class="p">(),</span> <span class="n">k</span> <span class="o">=</span> <span class="n">rr</span><span class="p">(),</span> <span class="n">tot</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">anl</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">anr</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pre_sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">fill_n</span><span class="p">(</span><span class="n">trie</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">o</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="kt">int</span> <span class="n">ai</span> <span class="o">=</span> <span class="n">pre_sum</span> <span class="o">^</span> <span class="n">rr</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">			<span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">search</span><span class="p">(</span><span class="n">ai</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">-</span> <span class="n">res</span> <span class="o">&lt;</span> <span class="n">anr</span> <span class="o">-</span> <span class="n">anl</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="n">anl</span> <span class="o">=</span> <span class="n">res</span><span class="p">,</span> <span class="n">anr</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">insert</span><span class="p">(</span><span class="n">ai</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="n">pre_sum</span> <span class="o">=</span> <span class="n">ai</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">anl</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">anl</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">anr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span>
+</span></span><span class="line"><span class="cl">			<span class="n">printf</span><span class="p">(</span><span class="s">&#34;-1</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
 
   </div>
   <footer class="post-footer">

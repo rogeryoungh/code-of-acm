@@ -20,7 +20,7 @@ $$ f(n) = \sum_{n \mid d} \mu\left(\frac{d}{n}\right)F(d) = \sum_{t=1}^{\min(x,y
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2522/" />
 <link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.fcf2ec3918c78adc31c995632533a1773de33d1dc3a9690cddef4ad1e01b601c.css" integrity="sha256-/PLsORjHitwxyZVjJTOhdz3jPR3DqWkM3e9K0eAbYBw=" rel="preload stylesheet" as="style">
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
-<script defer crossorigin="anonymous" src="/code-of-acm/assets/js/highlight.min.dacf81874295cd2936dececc3a04b7a00adb5d68618e897914957eeeef6f03b8.js" integrity="sha256-2s&#43;Bh0KVzSk23s7MOgS3oArbXWhhjol5FJV&#43;7u9vA7g="
+<script defer crossorigin="anonymous" src="/code-of-acm/assets/js/highlight.min.23e7650687363f10f7adcbafb8b54881414f20f2bbca340cdaa9199d48d8b371.js" integrity="sha256-I&#43;dlBoc2PxD3rcuvuLVIgUFPIPK7yjQM2qkZnUjYs3E="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rogeryoungh.github.io/code-of-acm/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rogeryoungh.github.io/code-of-acm/favicon-16x16.png">
@@ -29,7 +29,7 @@ $$ f(n) = \sum_{n \mid d} \mu\left(\frac{d}{n}\right)F(d) = \sum_{t=1}^{\min(x,y
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.93.3" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -295,39 +295,39 @@ f(n) = \sum_{n \mid d} \mu\left(\frac{d}{n}\right)F(d)
 = \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tn} \right\rfloor \left\lfloor \frac{y}{tn} \right\rfloor
 $$</p>
 <p>预处理出 $\mu(t)$ 的前缀和，剩下的就是一个二重分块了。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">const</span> <span class="n">ll</span> <span class="n">MN</span> <span class="o">=</span> <span class="mi">50000</span><span class="p">;</span>
-
-<span class="kt">bool</span> <span class="n">notp</span><span class="p">[</span><span class="mi">1000001</span><span class="p">];</span>
-<span class="kt">int</span> <span class="n">prime</span><span class="p">[</span><span class="mi">200001</span><span class="p">],</span> <span class="n">cnt</span><span class="p">,</span> <span class="n">mu</span><span class="p">[</span><span class="n">MN</span><span class="p">];</span>
-
-<span class="kt">void</span> <span class="nf">Mobius</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">);</span> <span class="c1">// 预处理 Mobius 函数
-</span><span class="c1"></span>
-<span class="n">ll</span> <span class="nf">f</span><span class="p">(</span><span class="n">ll</span> <span class="n">a</span><span class="p">,</span> <span class="n">ll</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-	<span class="n">ll</span> <span class="n">mab</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
-	<span class="n">ll</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-	<span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">;</span> <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">mab</span><span class="p">;</span> <span class="n">l</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-		<span class="n">r</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">l</span><span class="p">),</span> <span class="n">b</span> <span class="o">/</span> <span class="p">(</span><span class="n">b</span> <span class="o">/</span> <span class="n">l</span><span class="p">));</span>
-		<span class="n">sum</span> <span class="o">+=</span> <span class="p">(</span><span class="n">mu</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu</span><span class="p">[</span><span class="n">l</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">l</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">b</span> <span class="o">/</span> <span class="n">l</span><span class="p">);</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="n">ll</span> <span class="n">ttt</span> <span class="o">=</span> <span class="n">rr</span><span class="p">();</span>
-	<span class="n">Mobius</span><span class="p">(</span><span class="n">MN</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-	<span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">MN</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-		<span class="n">mu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">mu</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
-	<span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">ttt</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-		<span class="n">ll</span> <span class="n">a</span> <span class="o">=</span> <span class="n">rr</span><span class="p">(),</span> <span class="n">b</span> <span class="o">=</span> <span class="n">rr</span><span class="p">(),</span> <span class="n">c</span> <span class="o">=</span> <span class="n">rr</span><span class="p">(),</span> <span class="n">d</span> <span class="o">=</span> <span class="n">rr</span><span class="p">();</span>
-		<span class="n">ll</span> <span class="n">k</span> <span class="o">=</span> <span class="n">rr</span><span class="p">();</span>
-		<span class="n">a</span><span class="o">--</span><span class="p">,</span> <span class="n">c</span><span class="o">--</span><span class="p">;</span>
-		<span class="n">a</span> <span class="o">/=</span> <span class="n">k</span><span class="p">,</span> <span class="n">b</span> <span class="o">/=</span> <span class="n">k</span><span class="p">,</span> <span class="n">c</span> <span class="o">/=</span> <span class="n">k</span><span class="p">,</span> <span class="n">d</span> <span class="o">/=</span> <span class="n">k</span><span class="p">;</span>
-		<span class="n">ll</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
-		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%lld</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><h2 id="类似题目">类似题目<a hidden class="anchor" aria-hidden="true" href="#类似题目">#</a></h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">const</span> <span class="n">ll</span> <span class="n">MN</span> <span class="o">=</span> <span class="mi">50000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">notp</span><span class="p">[</span><span class="mi">1000001</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">prime</span><span class="p">[</span><span class="mi">200001</span><span class="p">],</span> <span class="n">cnt</span><span class="p">,</span> <span class="n">mu</span><span class="p">[</span><span class="n">MN</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Mobius</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">);</span> <span class="c1">// 预处理 Mobius 函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">ll</span> <span class="nf">f</span><span class="p">(</span><span class="n">ll</span> <span class="n">a</span><span class="p">,</span> <span class="n">ll</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ll</span> <span class="n">mab</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ll</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">;</span> <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">mab</span><span class="p">;</span> <span class="n">l</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">r</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">l</span><span class="p">),</span> <span class="n">b</span> <span class="o">/</span> <span class="p">(</span><span class="n">b</span> <span class="o">/</span> <span class="n">l</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">		<span class="n">sum</span> <span class="o">+=</span> <span class="p">(</span><span class="n">mu</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu</span><span class="p">[</span><span class="n">l</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">l</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">b</span> <span class="o">/</span> <span class="n">l</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ll</span> <span class="n">ttt</span> <span class="o">=</span> <span class="n">rr</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Mobius</span><span class="p">(</span><span class="n">MN</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">MN</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">mu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">mu</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">ttt</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ll</span> <span class="n">a</span> <span class="o">=</span> <span class="n">rr</span><span class="p">(),</span> <span class="n">b</span> <span class="o">=</span> <span class="n">rr</span><span class="p">(),</span> <span class="n">c</span> <span class="o">=</span> <span class="n">rr</span><span class="p">(),</span> <span class="n">d</span> <span class="o">=</span> <span class="n">rr</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ll</span> <span class="n">k</span> <span class="o">=</span> <span class="n">rr</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">		<span class="n">a</span><span class="o">--</span><span class="p">,</span> <span class="n">c</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">a</span> <span class="o">/=</span> <span class="n">k</span><span class="p">,</span> <span class="n">b</span> <span class="o">/=</span> <span class="n">k</span><span class="p">,</span> <span class="n">c</span> <span class="o">/=</span> <span class="n">k</span><span class="p">,</span> <span class="n">d</span> <span class="o">/=</span> <span class="n">k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ll</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%lld</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="类似题目">类似题目<a hidden class="anchor" aria-hidden="true" href="#类似题目">#</a></h2>
 <p>P2158 仪仗队：即 $k = 1$ 的特殊情况。</p>
 <p>P3455 ZAP-Queries：几乎一样。</p>
 <p>P2257 YY 的 GCD：比这题难，单独开篇。</p>
