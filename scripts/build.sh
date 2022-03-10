@@ -3,9 +3,9 @@
 # 预处理 Markdown 文件
 wget https://github.com/rogeryoungh/preprocessor-md-tex/releases/latest/download/preprocessor-md-tex
 chmod +x preprocessor-md-tex
-./preprocessor-md-tex archive/content
+./preprocessor-md-tex blog/content
 
 # Hugo
-cd archive && hugo
-cp -r ../template ../archive/public
-cp -r ../scripts ../archive/public
+cd blog && hugo
+cp -r ../template ../blog/public
+cp -r ../scripts ../blog/public

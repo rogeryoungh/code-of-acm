@@ -1,23 +1,15 @@
-#ifndef ACM_DEBUG_H
-#define ACM_DEBUG_H
+#define dbg(x) #x << " = " << (x) << ", "
 
-std::pair<int, int> approx(int p, int q, int A) {
-    int x = q, y = p, a = 1, b = 0;
-    while (x > A) {
-        swap(x, y); swap(a, b);
-        a -= x / y * b;
-        x %= y;
-    }
-    return {x, a};
+template <class T>
+ostream &operator<<(ostream &os, const vector<T> &v) {
+	os << "[";
+	for (int i = 0; i < v.size(); i++) {
+		os << v[i] << (i == v.size() - 1 ? "" : ", ");
+	}
+	return os << "]";
 }
 
-#ifdef ACM_MOD
-pair<int, int> simp(int n, int m = P) {
-    return approx(m, n ,1000);
+template <class S, class T>
+ostream &operator<<(ostream &os, const pair<S, T> &p) {
+	return os << "(" << p.first << ", " << p.second << ")";
 }
-#endif
-
-#include "debug/print.hpp"
-
-#endif
-
