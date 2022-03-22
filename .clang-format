@@ -1,0 +1,14 @@
+BasedOnStyle: LLVM
+BreakBeforeBraces: Attach
+IndentWidth: '4'
+Language: Cpp
+TabWidth: '4'
+UseTab: Always
+AllowShortBlocksOnASingleLine: Empty
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLambdasOnASingleLine: Empty
+AlwaysBreakTemplateDeclarations: Yes
+ColumnLimit: 100
+SortIncludes: false
+AlignEscapedNewlines: Left
