@@ -10,84 +10,12 @@ showtoc: true
 
 ## A - CF1379A
 
-### 题目大意
-
-替换字符串 $s$ 中的 `?`，使得出现且仅出现一次 `abacaba`。
-
-### 分析
-
-本题较为难写，因为很难判断恰好出现了一次。但是数据规模很小，可以采用非常暴力的写法。
-
-一种想法是，枚举每个出现 `abacaba` 的位置 $i$，把当前 $s[i, i + 6]$ 中的 `?` 设为给定串，这样就得到了字符串 $t$。
-
-然后判断字符串 $t$ 中只出现了一次 `abacaba`，可以通过 `substr` 枚举所有长为 $6$ 的子串。
-
-```cpp
-string what = "abacaba";
-
-void solve() {
-	int len;
-	string s;
-	cin >> len >> s;
-	for (int i = 0; i < len - 6; i++) {
-		string tmp = s;
-		for (int j = 0; j < 7; j++)
-			if (tmp[i + j] == '?')
-				tmp[i + j] = what[j];
-		for (auto &p : tmp)
-			if (p == '?')
-				p = 'z';
-		int cnt = 0;
-		for (int j = 0; j < len - 6; j++) {
-			if (tmp.substr(j, 7) == what)
-				cnt++;
-		}
-		if (cnt == 1) {
-			printf("YES\n%s\n", tmp.data());
-			return;
-		}
-	}
-	printf("NO\n");
-}
-```
+见 [CF Round #657 (Div. 2)]({{< ref "../2022-03/CF1379.md" >}}) 。
 
 ## B - CF1379B
 
-### 题目大意
+见 [CF Round #657 (Div. 2)]({{< ref "../2022-03/CF1379.md" >}}) 。
 
-给定 $l,r,m$，找到正整数 $a,b,c,n$ 满足 $m = an + b - c$，且 $l \leqslant a,b,c \leqslant r$。
-
-### 分析
-
-反解 $n$ 得到
-
-$$
-\frac{m - (b - c)}{a} = n
-$$
-
-我们可以把 $b - c$ 当作一个整体。注意到 $n$ 是正整数，说明 $m - (b - c)$ 必须要能够整除 $a$，而且 $a$ 的范围不是很大，因此我们可以枚举 $a$。
-
-再注意到 $b-c$ 的范围是 $[l-r,r-l]$，即判断 $m \bmod a$ 是否在这个范围内。
-
-```cpp
-int main() {
-	int T = rr();
-	while (T--) {
-		ll l = rr(), r = rr(), m = rr();
-		for (ll a = l; a <= r; a++) {
-			int b_c = (m + r - l) % a - (r - l);
-			if (b_c > r - l)
-				continue;
-			if (b_c < 0)
-				printf("%lld %lld %lld\n", a, r + b_c, r);
-			else
-				printf("%lld %lld %lld\n", a, l + b_c, l);
-			break;
-		}
-	}
-	return 0;
-}
-```
 
 ## C - CF1313B
 
