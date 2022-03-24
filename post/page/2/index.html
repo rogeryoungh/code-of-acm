@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.93.3" />
+<meta name="generator" content="Hugo 0.95.0" />
 <link rel="alternate" type="application/rss+xml" href="https://rogeryoungh.github.io/code-of-acm/post/index.xml">
 
 
@@ -165,6 +165,60 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>ZAFU 2022.02.14 个人赛题解</h2>
+  </header>
+  <section class="entry-content">
+    <p>本次比赛翻译出现了大问题，想大家道歉。
+同时一些同学反映已经做过，下次个人赛会再拉更早的题目。
+A - ABC222A 签到，不讲。
+int main() { int x; scanf(&#34;%d&#34;, &amp;x); printf(&#34;%04d&#34;, x); return 0; } B - CF1395A 题目大意 给定四种颜色的球，允许把三个红、绿、蓝的球转换为三个白色的，问是否存在方法使得能够排成回文的一列。
+分析 注意到四种颜色个数只有 $0$ 个或 $1$ 个奇数时，才能够摆成回文的一列。
+而转换对四种颜色都意味着奇数变偶数，偶数变奇数。即转换两次又回到原先的奇偶序列，故只用变换一次。
+bool check(const vector&lt;int&gt; &amp;v) { vector&lt;int&gt; cnt(2); for (auto i : v) { if (i &lt; 0) return false; cnt[i % 2]&#43;&#43;; } return cnt[1] &lt;= 1; } int main() { int T; cin &gt;&gt; T; while (T--) { vector&lt;int&gt; v1(4), v2(4); for (int i = 0; i &lt; 4; i&#43;&#43;) cin &gt;&gt; v1[i], v2[i] = v1[i]; v2[0]--, v2[1]--, v2[2]--, v2[3] &#43;= 3; if (check(v1) || check(v2)) { printf(&#34;Yes\n&#34;); } else { printf(&#34;No\n&#34;); } } return 0; } C - CF1393B 题目大意 给定一些长度，问是否能够组成一个长方形和一个正方形。...</p>
+  </section>
+  <footer class="entry-footer">February 14, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to ZAFU 2022.02.14 个人赛题解" href="https://rogeryoungh.github.io/code-of-acm/post/2022-02/hj5/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>2022 年刷题日志</h2>
+  </header>
+  <section class="entry-content">
+    <p>新的一年，一样的菜。
+过于简单的题不记录。
+2022 年 01 月 01-14 |  UOJ50 链式反应
+01-21 |  ZAFU 2022.01.18 个人赛题解
+01-27 |  P3373 线段树 2
+01-27 |  P2023 维护序列
+01-28 |  P1531 I Hate It
+01-28 |  P5057 简单题
+01-28 |  P4588 数学计算
+01-28 |  P1637 三元上升子序列
+01-29 |  P5431 乘法逆元 2
+2022 年 02 月 02-11 |  P6186 冒泡排序
+02-14 |  ZAFU 2022.02.14 个人赛题解...</p>
+  </section>
+  <footer class="entry-footer">February 11, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to 2022 年刷题日志" href="https://rogeryoungh.github.io/code-of-acm/post/other/log2022/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P6186 冒泡排序</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定一个长为 $n$ 的排列 $p$，有如下操作
+ 交换 $p_{x}, p_{x&#43;1}$。 询问排列经过 $k$ 轮冒泡排序后的逆序数。  分析 难点在观察冒泡排序对逆序数的影响，考虑一个数 $p_i$ 受其前面的数影响：
+ 如果 $p_i$ 前面没有比 $p_i$ 大的，冒泡后 $p_{i’}$ 仍不贡献逆序数。 如果 $p_i$ 前面有 $j$ 个比当前数大的，冒泡后有且仅有一个数穿过了 $p_{i’}$，贡献的逆序数减 $1$。  故第 $k$ 轮冒泡后，即每个数贡献的逆序数都要减 $k$。又因为不应减到负数，因此需要用两个树状数组维护。
+#include &#34;template/ds/fwtree/1.hpp&#34; int main() { int n = rr(), m = rr(); vector&lt;int&gt; p(n); for (int i = 0; i &lt; n; i&#43;&#43;) p[i] = rr(); vector&lt;ll&gt; inver(n); { vector&lt;pii&gt; tp(n); for (int i = 0; i &lt; n; i&#43;&#43;) tp[i] = {p[i], i &#43; 1}; sort(tp....</p>
+  </section>
+  <footer class="entry-footer">February 11, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P6186 冒泡排序" href="https://rogeryoungh.github.io/code-of-acm/post/2022-02/p6186/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P5431 乘法逆元 2</h2>
   </header>
   <section class="entry-content">
@@ -269,82 +323,16 @@ Data Struct 基础数据结构。
   </header>
   <section class="entry-content">
     <p>非常抱歉，本次比赛对难度估计不当，给大家造成了不好的体验，在此向大家致歉。
-A - CF1379A 题目大意 替换字符串 $s$ 中的 ?，使得出现且仅出现一次 abacaba。
-分析 本题较为难写，因为很难判断恰好出现了一次。但是数据规模很小，可以采用非常暴力的写法。
-一种想法是，枚举每个出现 abacaba 的位置 $i$，把当前 $s[i, i &#43; 6]$ 中的 ? 设为给定串，这样就得到了字符串 $t$。
-然后判断字符串 $t$ 中只出现了一次 abacaba，可以通过 substr 枚举所有长为 $6$ 的子串。
-string what = &#34;abacaba&#34;; void solve() { int len; string s; cin &gt;&gt; len &gt;&gt; s; for (int i = 0; i &lt; len - 6; i&#43;&#43;) { string tmp = s; for (int j = 0; j &lt; 7; j&#43;&#43;) if (tmp[i &#43; j] == &#39;?...</p>
+A - CF1379A 见 CF Round #657 (Div. 2) 。
+B - CF1379B 见 CF Round #657 (Div. 2) 。
+C - CF1313B 题目大意 有 $n$ 位参赛者参加两轮比赛，ff 获得的名次分别是 $x$ 和 $y$，其他人的名次是未知的，求 ff 最终可能的最高排名和最低排名。
+分析 结论是很容易猜到的，证明有些困难。
+首先构造最低排名，让尽量多的同学有总分 $x&#43;y$，此时 ff 的排名为 $S_1 = \min(n, x &#43; y - 1)$。
+ 证明
+如果某人的总分满足 $x_i &#43; y_i \leqslant x &#43; y$，那么其两次排名一定满足 $$ x_i \leqslant x&#43;y-1\ 且\ y_i \leqslant x&#43;y-1$$ 这样的数对显然是不多于 $\min(n, x &#43; y - 1) = S_1$ 个的，而 $S_1$ 的构造已给出，故最多为 $S_1$ 个。...</p>
   </section>
   <footer class="entry-footer">January 21, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to ZAFU 2022.01.18 个人赛题解" href="https://rogeryoungh.github.io/code-of-acm/post/2022-01/hj1/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>CF Round 706(Div 2)</h2>
-  </header>
-  <section class="entry-content">
-    <p>D. Let&#39;s Go Hiking 两人在序列上移动，Qingshan 只能往值更高的地方走，Daniel 只能往低处走。两人不能重叠，求 Qingshan 中有多少可以赢的位置。
-分析 其实我们只用关注上升和下降的序列有多长，而不必关心它们具体是几。
-如果 Qingshan 选边界上的坡，或者不选在坡顶，那么 Daniel 可以紧挨着它，从而必输。
-如果 Qingshan 不选最长的坡，则 Danniel 可以选最长的坡，从而必输。
-如果最长的坡存在没有公共最高点的两个，Danniel 可以避开 Qingshan 选，从而必输。
-剩下的情况只有两种：
- 最长的坡只有一个，Qingshan 只能选在此坡坡顶，Danniel 可以选在靠近坡底的地方，使得两人碰面，从而必输。 最长的坡有两个且有公共最高点，Qingshan 选在坡顶，则可以选择避开 Danniel 下坡，从而必胜。  附：代码，展开
-E. Garden of the Sun 在棋盘的格子中有不连续的 X，请连接使得其满足如下条件
- X 组成的图案是连通的。 X 组成的图案不存在环。  分析 X 不连续是一个比较强的性质。
-构造类似 丰 字形的图案，横与横之间空两行，这样可以使得所有 X 都附在一条横上，且互相不连接。
-接下来考虑如何把横连起来，可以发现只用在第一列、第二列中选一列进行连接即可。
-附：代码，展开
-F. BFS Trees  第一次补题补到 F 耶！什么时候才能在赛中做到 F 呢……
- 我们定义一个图上的生成树是以 $s$ 点为根的 BFS 树，当且仅当：对于任意的节点 $t$，$s\to t$ 在 BFS 树上的最短路等于图上的最短路。...</p>
-  </section>
-  <footer class="entry-footer">November 11, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to CF Round 706(Div 2)" href="https://rogeryoungh.github.io/code-of-acm/post/2021-11/cf1496/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>2021 年刷题日志</h2>
-  </header>
-  <section class="entry-content">
-    <p>过于简单的题不记录。
-洛谷：更新至：2021.11.10(–.–)
-CodeForces：更新至：–.–
-牛客：更新至：–.–
-HDU：更新至：–.–
-2021 年 01 月 01-25 |  P3378 堆
-2021 年 02 月 02-28 |  P1216 数字三角形
-2021 年 03 月 03-02 |  P3382 三分法
-03-06 |  P3865 ST 表
-03-17 |  P1162 填涂颜色
-03-17 |  P1019 单词接龙
-03-19 |  P1014 Cantor 表
-03-19 |  P3370 字符串哈希
-03-20 |  P3375 KMP 字符串匹配
-03-20 |  P3374 树状数组 1...</p>
-  </section>
-  <footer class="entry-footer">November 10, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to 2021 年刷题日志" href="https://rogeryoungh.github.io/code-of-acm/post/other/log2021/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P1393 Mivik 的标题</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 在字符集中有 $m$ 个不同的字符，求给定字符串 $S$ 在长度为 $n$ 的字符串的全集中出现的概率。
-分析 参考 Mivik 的字符串公开赛。
-定义 $A$ 类字符串为，在整个字符串中 $S$ 只出现过一次，且恰好 $S$ 出现在末尾的字符串。
-设 $\{f_i\}$ 是长度为 $i$ 的字符串中 $A$ 类字符串的个数。再定义 $\{g_i\}$ 是长度为 $i$ 的字符串中没有出现过 $S$ 的个数。
-在长为 $i$ 的没有出现过 $S$ 的字符串后面加上一个字符，则可能出现 $S$ 也可能没有出现 $S$。
-$$ m g_i = f_{i&#43;1} &#43; g_{i&#43;1} $$
-定义关于 $S$ 的数列 $\{s_i\}$ 为
-$$ s_i = [i \ \text{is a period of}\ S] $$
-即当 $i$ 是 $S$ 的一个循环节时，$s_i$ 为 $1$，否则为 $0$。...</p>
-  </section>
-  <footer class="entry-footer">November 2, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P1393 Mivik 的标题" href="https://rogeryoungh.github.io/code-of-acm/post/2021-11/p1393/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

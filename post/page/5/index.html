@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.93.3" />
+<meta name="generator" content="Hugo 0.95.0" />
 <link rel="alternate" type="application/rss+xml" href="https://rogeryoungh.github.io/code-of-acm/post/index.xml">
 
 
@@ -165,6 +165,60 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>CF1389E Calendar Ambiguity</h2>
+  </header>
+  <section class="entry-content">
+    <p>Berland 年有 $m$ 月，每月 $d$ 天。一周有 $w$ 天。
+若第 $x$ 月的第 $y$ 天和第 $y$ 月的第 $x$ 天是同一个星期，则称 $(x,y)$ 是一对。
+求一年有几对。
+$$ xd&#43;y \equiv yd&#43;x \pmod w $$
+即
+$$ (x-y)(d-1) \equiv 0 \Rightarrow (x-y)(d-1) \in w\mathbb{Z} $$
+于是有
+$$ y-x = \frac{wk}{\gcd(w,d-1)} $$
+又 $x &lt; y \leqslant \min(m,d)$​，
+int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll g = w / gcd(w, d - 1); ll max_y = min(m, d) - 1; ll div = (max_y &#43; 1) / g, mod = (max_y &#43; 1) % g; ll sum = (div - 1) * div / 2 * g &#43; mod * div; printf(&#34;%lld\n&#34;, sum); } return 0; } </p>
+  </section>
+  <footer class="entry-footer">May 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to CF1389E Calendar Ambiguity" href="https://rogeryoungh.github.io/code-of-acm/post/2021-05/cf1389e/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P2303 Longge 的问题</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 即求
+$$ \sum_{i=1}^n \gcd(i,n) $$
+分析 联想到
+$$ \varphi(n) = \sum_{i=1}^n [\gcd(i,n) = 1] $$
+尝试凑这个形式
+$$ \begin{aligned} \sum_{i=1}^n \gcd(i,n) &amp;= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \\ &amp;= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \\ &amp;= \sum_{d \mid n} d \varphi(n/d) \end{aligned} $$
+这里其实已经可以过题了，但还可以再瞎搞一下，令
+$$ nf(n) = \sum_{d \mid n} d \varphi(n/d) = n\sum_{d \mid n} \frac{\varphi(d)}{d} $$
+尝试证明 $f(n)$ 是一个积性函数。设 $\gcd(a,b) = 1$，有...</p>
+  </section>
+  <footer class="entry-footer">May 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P2303 Longge 的问题" href="https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2303/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P4721 分治 FFT</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定 $g[1], \cdots, g[m]$，求序列 $f$。
+$$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$
+分析 不妨令 $g [0] = 0$，$h (x) = g (x) &#43; h [0]$，我们要解方程
+$$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$
+这个形式看似卷积，但实际上它缺了一项。对 $n &gt; 0$ 凑卷积...</p>
+  </section>
+  <footer class="entry-footer">May 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P4721 分治 FFT" href="https://rogeryoungh.github.io/code-of-acm/post/2021-05/p4721/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P2522 Problem B</h2>
   </header>
   <section class="entry-content">
@@ -286,52 +340,6 @@ HDU：更新至：–.–
   </section>
   <footer class="entry-footer">December 31, 2020&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to 2020 年刷题日志" href="https://rogeryoungh.github.io/code-of-acm/post/other/log2020/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P1880 石子合并</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 环形队列上有 $n$ 堆石子，可以把相邻的两堆合成一堆，每次合并的得分是新一堆的石子数。
-求最终分数的最小值和最大值。
-分析 考虑 $dp(i,j)$ 是将区间 $[i,j]$ 的石子全部合并的最大值。于是状态转移方程为
-$$ dp(i,j) = \max_{i \leqslant k \leqslant j}(dp(i,k) &#43; dp(k&#43;1,j) &#43; s(i,j)) $$
-其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。
-然而不能通过先 $i$ 再 $j$ 再 $k$ 的循环来递推，运算顺序值得注意。
-细节：前缀和、循环开两倍。
-int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) f[i &#43; n] = f[i] = rr(); for (ll i = 1; i &lt;= n * 2; i&#43;&#43;) s[i] = s[i - 1] &#43; f[i]; for (ll len = 2; len &lt;= n; len&#43;&#43;) { for (ll i = 1; i &lt;= 2 * n - len &#43; 1; i&#43;&#43;) { int j = i &#43; len - 1; int tmax = 0, tmin = 0x3f3f3f3f; int ss = s[j] - s[i - 1]; for (ll k = i; k &lt;= j - 1; k&#43;&#43;) { tmax = max(tmax, dmax[i][k] &#43; dmax[k &#43; 1][j] &#43; ss); tmin = min(tmin, dmin[i][k] &#43; dmin[k &#43; 1][j] &#43; ss); } dmax[i][j] = tmax; dmin[i][j] = tmin; } } int mmin = 0x3f3f3f3f, mmax = 0; for (ll p = 0; p &lt;= n - 1; p&#43;&#43;) { mmin = min(mmin, dmin[p &#43; 1][p &#43; n]); mmax = max(mmax, dmax[p &#43; 1][p &#43; n]); } printf(&#34;%d\n%d\n&#34;, mmin, mmax); return 0; } </p>
-  </section>
-  <footer class="entry-footer">November 30, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P1880 石子合并" href="https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1880/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P1833 樱花</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 混合背包。每棵树都有美学值 $C_i$，共有三种：
- 一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。  分析 对于混合背包，我们可以对物品拆分，得到多个物品。
-ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), teh = rr(), tem = rr(); int tsum = (teh - tsh) * 60 &#43; tem - tsm; int n = rr(); int tp = 1; for (ll i = 1; i &lt;= n; i&#43;&#43;) { int t = rr(), c = rr(), p = rr(); if (p == 1) { tt[tp] = t, cc[tp] = c; tp&#43;&#43;; } else { p = p !...</p>
-  </section>
-  <footer class="entry-footer">November 11, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P1833 樱花" href="https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1833/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P1541 乌龟棋</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 初始有四种卡片，消耗后分别可以前进 $1$、$2$、$3$ 和 $4$ 格。棋盘上每个点都有个分数，求从第 $1$ 格到达第 $N$ 格途径分数的最大值。
-分析 设状态 $F[i, j, k, w]$ 为使用 $i$ 张前进 $1$、……、$w$ 张前进 $4$ 之后的状态，容易得到转移方程
-$$ F[i, j, k, w] = \max\left\{ \begin{matrix} dp[i - 1, j, k, w] \\ dp[i, j - 1, k, w] \\ dp[i, j, k - 1, w] \\ dp[i, j, k, w - 1] \end{matrix}\right\} &#43; a[i &#43; 2j &#43; 3k &#43; 4w] $$
-处理一下边界情况，滚动数组即可。
-ll dp[50][50][50], aa[400], tt[10]; int main() { ll n = rr(), m = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) { aa[i] = rr(); } for (ll i = 1; i &lt;= m; i&#43;&#43;) { tt[rr()]&#43;&#43;; } for (ll i = 0; i &lt;= tt[1]; i&#43;&#43;) { for (ll j = 0; j &lt;= tt[2]; j&#43;&#43;) { for (ll k = 0; k &lt;= tt[3]; k&#43;&#43;) { for (ll w = 0; w &lt;= tt[4]; w&#43;&#43;) { dp[j][k][w] = aa[i * 1 &#43; j * 2 &#43; k * 3 &#43; w * 4 &#43; 1] &#43; max4( j == 0 ?...</p>
-  </section>
-  <footer class="entry-footer">November 10, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P1541 乌龟棋" href="https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1541/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

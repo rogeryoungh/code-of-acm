@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.93.3" />
+<meta name="generator" content="Hugo 0.95.0" />
 <link rel="alternate" type="application/rss+xml" href="https://rogeryoungh.github.io/code-of-acm/post/index.xml">
 
 
@@ -165,6 +165,52 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P1880 石子合并</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 环形队列上有 $n$ 堆石子，可以把相邻的两堆合成一堆，每次合并的得分是新一堆的石子数。
+求最终分数的最小值和最大值。
+分析 考虑 $dp(i,j)$ 是将区间 $[i,j]$ 的石子全部合并的最大值。于是状态转移方程为
+$$ dp(i,j) = \max_{i \leqslant k \leqslant j}(dp(i,k) &#43; dp(k&#43;1,j) &#43; s(i,j)) $$
+其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。
+然而不能通过先 $i$ 再 $j$ 再 $k$ 的循环来递推，运算顺序值得注意。
+细节：前缀和、循环开两倍。
+int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) f[i &#43; n] = f[i] = rr(); for (ll i = 1; i &lt;= n * 2; i&#43;&#43;) s[i] = s[i - 1] &#43; f[i]; for (ll len = 2; len &lt;= n; len&#43;&#43;) { for (ll i = 1; i &lt;= 2 * n - len &#43; 1; i&#43;&#43;) { int j = i &#43; len - 1; int tmax = 0, tmin = 0x3f3f3f3f; int ss = s[j] - s[i - 1]; for (ll k = i; k &lt;= j - 1; k&#43;&#43;) { tmax = max(tmax, dmax[i][k] &#43; dmax[k &#43; 1][j] &#43; ss); tmin = min(tmin, dmin[i][k] &#43; dmin[k &#43; 1][j] &#43; ss); } dmax[i][j] = tmax; dmin[i][j] = tmin; } } int mmin = 0x3f3f3f3f, mmax = 0; for (ll p = 0; p &lt;= n - 1; p&#43;&#43;) { mmin = min(mmin, dmin[p &#43; 1][p &#43; n]); mmax = max(mmax, dmax[p &#43; 1][p &#43; n]); } printf(&#34;%d\n%d\n&#34;, mmin, mmax); return 0; } </p>
+  </section>
+  <footer class="entry-footer">November 30, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1880 石子合并" href="https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1880/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P1833 樱花</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 混合背包。每棵树都有美学值 $C_i$，共有三种：
+ 一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。  分析 对于混合背包，我们可以对物品拆分，得到多个物品。
+ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), teh = rr(), tem = rr(); int tsum = (teh - tsh) * 60 &#43; tem - tsm; int n = rr(); int tp = 1; for (ll i = 1; i &lt;= n; i&#43;&#43;) { int t = rr(), c = rr(), p = rr(); if (p == 1) { tt[tp] = t, cc[tp] = c; tp&#43;&#43;; } else { p = p !...</p>
+  </section>
+  <footer class="entry-footer">November 11, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1833 樱花" href="https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1833/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P1541 乌龟棋</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 初始有四种卡片，消耗后分别可以前进 $1$、$2$、$3$ 和 $4$ 格。棋盘上每个点都有个分数，求从第 $1$ 格到达第 $N$ 格途径分数的最大值。
+分析 设状态 $F[i, j, k, w]$ 为使用 $i$ 张前进 $1$、……、$w$ 张前进 $4$ 之后的状态，容易得到转移方程
+$$ F[i, j, k, w] = \max\left\{ \begin{matrix} dp[i - 1, j, k, w] \\ dp[i, j - 1, k, w] \\ dp[i, j, k - 1, w] \\ dp[i, j, k, w - 1] \end{matrix}\right\} &#43; a[i &#43; 2j &#43; 3k &#43; 4w] $$
+处理一下边界情况，滚动数组即可。
+ll dp[50][50][50], aa[400], tt[10]; int main() { ll n = rr(), m = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) { aa[i] = rr(); } for (ll i = 1; i &lt;= m; i&#43;&#43;) { tt[rr()]&#43;&#43;; } for (ll i = 0; i &lt;= tt[1]; i&#43;&#43;) { for (ll j = 0; j &lt;= tt[2]; j&#43;&#43;) { for (ll k = 0; k &lt;= tt[3]; k&#43;&#43;) { for (ll w = 0; w &lt;= tt[4]; w&#43;&#43;) { dp[j][k][w] = aa[i * 1 &#43; j * 2 &#43; k * 3 &#43; w * 4 &#43; 1] &#43; max4( j == 0 ?...</p>
+  </section>
+  <footer class="entry-footer">November 10, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1541 乌龟棋" href="https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1541/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P3842 线段</h2>
   </header>
   <section class="entry-content">
@@ -269,47 +315,6 @@ ll nn[310]; int main() { ll n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) nn[
   </section>
   <footer class="entry-footer">October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P4995 跳跳！" href="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p4995/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P5143 攀爬者</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 在三维空间中，HKE 只能往上走，求攀爬总长。
-分析 对所有座标的 $z$ 分量排序即可。
-struct POINT { double x, y, z; bool operator&lt;(POINT p) { return z &gt; p.z; } } nn[50010]; double dis(POINT &amp;p1, POINT &amp;p2) { double t1 = p1.x - p2.x, t2 = p1.y - p2.y, t3 = p1.z - p2.z; return sqrt(t1 * t1 &#43; t2 * t2 &#43; t3 * t3); } int main() { int n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) cin &gt;&gt; nn[i]....</p>
-  </section>
-  <footer class="entry-footer">October 13, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P5143 攀爬者" href="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p5143/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P1095 守望者的逃离</h2>
-  </header>
-  <section class="entry-content">
-    <p>P1095 守望者的逃离 题目大意 守望者的可以在一秒逃出 $17 {\rm m}$，或者消耗 $10$ 点魔法值闪现 $60 {\rm m}$。原地休息时每秒回复 $4$ 点魔法值。
-守望者开始有 $M$ 点魔法，需要在 $T$ 秒内逃离距离 $S$。若能逃离则求最短逃离时间，否则求最远距离。
-分析 设 $s_1$为一直走路，$s_2$ 为一直闪现恢复。当 $s_2$ 快了就把 $s_1$ 更新为 $s_2$。
-int main() { int m = rr(), s = rr(), t = rr(); int time = t, s1 = 0, s2 = 0; while (time &gt; 0 &amp;&amp; s1 &lt; s) { s1 &#43;= 17; if (m &gt;= 10) m -= 10, s2 &#43;= 60; else m &#43;= 4; s1 = max(s1, s2); time--; } if (s1 &lt; s) printf(&#34;No\n%d\n&#34;, s1); else printf(&#34;Yes\n%d\n&#34;, t - time); return 0; } </p>
-  </section>
-  <footer class="entry-footer">October 9, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P1095 守望者的逃离" href="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1095/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P1042 乒乓球</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 赢 11 分并且压对手两分以上则一局结束，否则要追分至压对手两分。
-给定 $\texttt{WL}$ 序列，分别求 11 分制和 21 分制下每场比分，$\texttt{E}$ 是结束符。
-分析 这是一道比较烦的模拟题，很绕。
-char ch[62510]; int solve(int win, int len) { int w = 0, l = 0; for (ll i = 0; i &lt; len; i&#43;&#43;) { w &#43;= ch[i] == &#39;W&#39;; l &#43;= ch[i] == &#39;L&#39;; if (max(w, l) &gt;= win &amp;&amp; abs(w - l) &gt;= 2) { printf(&#34;%d:%d\n&#34;, w, l); w = l = 0; } } printf(&#34;%d:%d\n&#34;, w, l); } int main() { char ccc; int len = 0; while (scanf(&#34;%c&#34;, &amp;ccc) !...</p>
-  </section>
-  <footer class="entry-footer">September 23, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P1042 乒乓球" href="https://rogeryoungh.github.io/code-of-acm/post/2020-09/p1042/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

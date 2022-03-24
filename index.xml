@@ -7,7 +7,45 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© 2021 [Roger Young](https://rogeryoungh.github.io/blog/about/)</copyright>
-    <lastBuildDate>Sun, 27 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AtCoder Beginner Contest 242(A-E)</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-03/abc242/</link>
+      <pubDate>Tue, 15 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-03/abc242/</guid>
+      <description>A. T-shirt 前 $A$ 名一定获得衣服，在 $[A+1, B]$ 之间的人将随机挑 $C$ 个人获得衣服。
+若已知他排名于 $X$，求其获得衣服的概率。
+分析 int main() { int A, B, C, X; cin &amp;gt;&amp;gt; A &amp;gt;&amp;gt; B &amp;gt;&amp;gt; C &amp;gt;&amp;gt; X; double ans = 0; if (X &amp;lt;= A) { ans = 1; } else if (X &amp;lt;= B &amp;amp;&amp;amp; A != B) { ans = 1.0 * C / (B - A); } printf(&amp;#34;%.12lf&amp;#34;, ans); return 0; } B. Minimize Ordering 给定一个字符串 $S$，请找到 $S$ 的重排 $S&amp;rsquo;$，并且使其字典序尽可能小。</description>
+    </item>
+    
+    <item>
+      <title>AtCoder Beginner Contest 243(A-G)</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-03/abc243/</link>
+      <pubDate>Sat, 12 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-03/abc243/</guid>
+      <description>数学不行，摆烂。
+A. Shampoo 三个人 F, M, T 按顺序洗澡，其中洗发液用量分别是 $A, B, C$。
+现在洗发液的量 $V$，问谁先无法洗澡？
+分析 第一次没认真读，WA 了一发。
+int main() { int V, A, B, C; cin &amp;gt;&amp;gt; V &amp;gt;&amp;gt; A &amp;gt;&amp;gt; B &amp;gt;&amp;gt; C; V %= A + B + C; if (V &amp;lt; A) { cout &amp;lt;&amp;lt; &amp;#34;F&amp;#34;; } else if (V &amp;lt; A + B) { cout &amp;lt;&amp;lt; &amp;#34;M&amp;#34;; } else { cout &amp;lt;&amp;lt; &amp;#34;T&amp;#34;; } return 0; } B.</description>
+    </item>
+    
+    <item>
+      <title>Codeforces Round #657 (Div. 2)(A-C)</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-03/cf1379/</link>
+      <pubDate>Sat, 12 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-03/cf1379/</guid>
+      <description>这场属实阴间。
+A. Acacius and String 替换字符串 $s$ 中的 ?，使得出现且仅出现一次 abacaba。
+分析 本题较为难写，因为很难判断恰好出现了一次。但是数据规模很小，可以采用非常暴力的写法。
+一种想法是，枚举每个出现 abacaba 的位置 $i$，把当前 $s[i, i + 6]$ 中的 ? 设为给定串，这样就得到了字符串 $t$。
+然后判断字符串 $t$ 中只出现了一次 abacaba，可以通过 substr 枚举所有长为 $6$ 的子串。
+string what = &amp;#34;abacaba&amp;#34;; int N = what.length(); void solve() { int n; string s; cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; s; for (int i = 0; i &amp;lt;= n - N; i++) { string tmp = s; for (int j = 0; j &amp;lt; N; j++) { if (tmp[i + j] == &amp;#39;?</description>
+    </item>
+    
     <item>
       <title>AtCoder Regular Contest 136 (ABD)</title>
       <link>https://rogeryoungh.github.io/code-of-acm/post/2022-02/arc136/</link>
@@ -260,11 +298,13 @@ Data Struct 基础数据结构。
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-01/hj1/</guid>
       <description>非常抱歉，本次比赛对难度估计不当，给大家造成了不好的体验，在此向大家致歉。
-A - CF1379A 题目大意 替换字符串 $s$ 中的 ?，使得出现且仅出现一次 abacaba。
-分析 本题较为难写，因为很难判断恰好出现了一次。但是数据规模很小，可以采用非常暴力的写法。
-一种想法是，枚举每个出现 abacaba 的位置 $i$，把当前 $s[i, i + 6]$ 中的 ? 设为给定串，这样就得到了字符串 $t$。
-然后判断字符串 $t$ 中只出现了一次 abacaba，可以通过 substr 枚举所有长为 $6$ 的子串。
-string what = &amp;#34;abacaba&amp;#34;; void solve() { int len; string s; cin &amp;gt;&amp;gt; len &amp;gt;&amp;gt; s; for (int i = 0; i &amp;lt; len - 6; i++) { string tmp = s; for (int j = 0; j &amp;lt; 7; j++) if (tmp[i + j] == &amp;#39;?</description>
+A - CF1379A 见 CF Round #657 (Div. 2) 。
+B - CF1379B 见 CF Round #657 (Div. 2) 。
+C - CF1313B 题目大意 有 $n$ 位参赛者参加两轮比赛，ff 获得的名次分别是 $x$ 和 $y$，其他人的名次是未知的，求 ff 最终可能的最高排名和最低排名。
+分析 结论是很容易猜到的，证明有些困难。
+首先构造最低排名，让尽量多的同学有总分 $x+y$，此时 ff 的排名为 $S_1 = \min(n, x + y - 1)$。
+ 证明
+如果某人的总分满足 $x_i + y_i \leqslant x + y$，那么其两次排名一定满足 $$ x_i \leqslant x+y-1\ 且\ y_i \leqslant x+y-1$$ 这样的数对显然是不多于 $\min(n, x + y - 1) = S_1$ 个的，而 $S_1$ 的构造已给出，故最多为 $S_1$ 个。</description>
     </item>
     
     <item>

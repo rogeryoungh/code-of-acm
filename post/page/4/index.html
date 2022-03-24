@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.93.3" />
+<meta name="generator" content="Hugo 0.95.0" />
 <link rel="alternate" type="application/rss+xml" href="https://rogeryoungh.github.io/code-of-acm/post/index.xml">
 
 
@@ -165,6 +165,58 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>HDU6755 Fibonacci Sum</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 设 Fibonacci 数列第 $i$ 项为 $F_i$，求
+$$ S = \sum_{i = 0}^n (F_{i c})^k $$
+分析 由特征方程法，设
+$$ x^2 &#43; x - 1 = 0 \Longrightarrow A, B = \frac{1 \pm \sqrt{5}}{2} $$
+因此 Fibonacci 通项公式即可表示为
+$$ F_n = \frac{A^n - B^n}{A - B} $$
+根据二次剩余的知识，模意义下是可以开方的。因此
+$$ (F_{i c})^k = \left( \frac{A^{i c} - B^{i c}}{A - B} \right)^k = \frac{1}{(A - B)^k} \sum_{j = 0}^k \binom{k}{j} (- 1)^{k - j} (A^j B^{k - j})^{i c} $$...</p>
+  </section>
+  <footer class="entry-footer">September 23, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to HDU6755 Fibonacci Sum" href="https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6755/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>HDU6537 Neko and function</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 定义 $f(n, k)$ 为满足如下要求的，长度为 $k$ 的数列 $\\{a_i\\}$ 个数：
+ 要求每个数字都大于 $1$； 数列各项之积恰为 $n$。  求其前缀和 $S(n, k) = \sum f(i, k)$。
+分析 多组输入好坑啊。
+先允许 $a_i=1$，将结果记为 $g(n,k)$，容易利用隔板法求得
+$$ g (p^c, k) = \binom{t &#43; k - 1}{k - 1} $$
+对于多个质因数，显然其贡献是相互独立的，即 $g$ 是积性函数。考虑选取 $i$ 个数令其 $a_i&gt;1$，枚举有
+$$ g (n, k) = \sum_{i = 1}^k \binom{n}{i} f (n, i) $$
+二项式反演（或者直接容斥）有
+$$ f (n, k) = \sum_{i = 1}^k (- 1)^{k - i} \binom{k}{i} g (n, i) $$...</p>
+  </section>
+  <footer class="entry-footer">September 22, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to HDU6537 Neko and function" href="https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6537/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>HDU6750 Function</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 定义
+$$ f (n) = \sum_{d \mid n} d \left[ \gcd \left( d, \frac{n}{d} \right) = 1 \right] $$
+求其前缀和 $S(n)$。
+分析 首先 Min25 筛是过不了的，内存不够。先推式子
+$$ \begin{aligned} S (n) &amp;= \sum_{i = 1}^n \sum_{d \mid i} d \left[ \gcd \left( d, \frac{i}{d} \right) = 1 \right] \\ &amp;= \sum_{d = 1}^n \sum_{i = 1}^n d [d \mid i] \left[\gcd \left( d, \frac{i}{d} \right) = 1 \right] \\ &amp;= \sum_{d = 1}^n \sum_{i = 1}^{n / d} d [\gcd (i, d) = 1] \end{aligned} $$...</p>
+  </section>
+  <footer class="entry-footer">September 22, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to HDU6750 Function" href="https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6750/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P5349 幂</h2>
   </header>
   <section class="entry-content">
@@ -280,60 +332,6 @@ const ll MN = 1e5 &#43; 10; bool notp[1000001]; int prime[200001], cnt, phi[1000
   </section>
   <footer class="entry-footer">May 25, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P2350 外星人" href="https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2350/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>CF1389E Calendar Ambiguity</h2>
-  </header>
-  <section class="entry-content">
-    <p>Berland 年有 $m$ 月，每月 $d$ 天。一周有 $w$ 天。
-若第 $x$ 月的第 $y$ 天和第 $y$ 月的第 $x$ 天是同一个星期，则称 $(x,y)$ 是一对。
-求一年有几对。
-$$ xd&#43;y \equiv yd&#43;x \pmod w $$
-即
-$$ (x-y)(d-1) \equiv 0 \Rightarrow (x-y)(d-1) \in w\mathbb{Z} $$
-于是有
-$$ y-x = \frac{wk}{\gcd(w,d-1)} $$
-又 $x &lt; y \leqslant \min(m,d)$​，
-int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll g = w / gcd(w, d - 1); ll max_y = min(m, d) - 1; ll div = (max_y &#43; 1) / g, mod = (max_y &#43; 1) % g; ll sum = (div - 1) * div / 2 * g &#43; mod * div; printf(&#34;%lld\n&#34;, sum); } return 0; } </p>
-  </section>
-  <footer class="entry-footer">May 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to CF1389E Calendar Ambiguity" href="https://rogeryoungh.github.io/code-of-acm/post/2021-05/cf1389e/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P2303 Longge 的问题</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 即求
-$$ \sum_{i=1}^n \gcd(i,n) $$
-分析 联想到
-$$ \varphi(n) = \sum_{i=1}^n [\gcd(i,n) = 1] $$
-尝试凑这个形式
-$$ \begin{aligned} \sum_{i=1}^n \gcd(i,n) &amp;= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \\ &amp;= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \\ &amp;= \sum_{d \mid n} d \varphi(n/d) \end{aligned} $$
-这里其实已经可以过题了，但还可以再瞎搞一下，令
-$$ nf(n) = \sum_{d \mid n} d \varphi(n/d) = n\sum_{d \mid n} \frac{\varphi(d)}{d} $$
-尝试证明 $f(n)$ 是一个积性函数。设 $\gcd(a,b) = 1$，有...</p>
-  </section>
-  <footer class="entry-footer">May 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P2303 Longge 的问题" href="https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2303/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P4721 分治 FFT</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 给定 $g[1], \cdots, g[m]$，求序列 $f$。
-$$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$
-分析 不妨令 $g [0] = 0$，$h (x) = g (x) &#43; h [0]$，我们要解方程
-$$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$
-这个形式看似卷积，但实际上它缺了一项。对 $n &gt; 0$ 凑卷积...</p>
-  </section>
-  <footer class="entry-footer">May 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P4721 分治 FFT" href="https://rogeryoungh.github.io/code-of-acm/post/2021-05/p4721/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
