@@ -1,21 +1,26 @@
 struct Mtx {
-    ll m[505][505], p, q;
-    Mtx(ll xx, ll yy) {
-        p = xx, q = yy;
-        memset(m, 0, sizeof(m));
-    }
-    auto operator[](int n) /*const*/ {
-        return m[n];
-    }
+	vector<ll> m;
+	int x, y;
+	Mtx(int x_, int y_) {
+		x = x_, y = y_;
+		m.resize(x * y);
+	}
+	auto operator[](int i) /*const*/ {
+		return m.begin() + i * x;
+	}
 };
-Mtx operator*(Mtx &m1, Mtx &m2) {
-    Mtx c(m1.p, m2.q);
-    for (int i = 1; i <= m1.p; i++) {
-        for (int k = 1; k <= m1.q; k++) {
-            ll t = m1[i][k];
-            for (int j = 1; j <= m2.q; j++)
-                c[i][j] = (c[i][j] + m2[k][j] * t) % P;
-        }
-    }
-    return c;
+
+Mtx operator*(const Mtx &lhs, const Mtx &rhs) {
+	assert(lhs.x == rhs.y);
+	Mtx u(rhs.x, lhs.y);
+	for (int i = 0; i < lhs.y; i++) {
+		for (int k = 0; k < lhs.x; k++) {
+			ll t = lhs[i][k];
+			for (int j = 0; j < rhs.x; j++) {
+				u[i][j] += rhs[k][j] * t;
+				u[i][j] %= P;
+			}
+		}
+	}
+	return u;
 }

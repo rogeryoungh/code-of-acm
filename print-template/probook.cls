@@ -101,7 +101,7 @@
 \lstset{basicstyle=\small\linespread{1.0}\ttfamily \lst@ifdisplaystyle\fi,
 	% Code
 	columns=fullflexible,
-	tabsize=4,
+	tabsize=3,
 	showspaces=false,
 	showstringspaces=false,
 	showtabs=false,

@@ -1,4 +1,6 @@
-void exgcd(ll a, ll b, ll& x, ll& y) {
-    if(!b) { y=0, x=1; return; /* gcd = a */ }
-    exgcd(b, a % b, y, x);  y -= a / b * x;
+pair<ll, ll> exgcd(ll a, ll b) {
+	if (!b)
+		return {1, 0};
+	auto [y, x] = exgcd(b, a % b);
+	return {x, y - a / b * x};
 }

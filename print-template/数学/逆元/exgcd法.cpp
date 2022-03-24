@@ -1,5 +1,4 @@
 ll inv(ll a, ll p) {
-    ll x, y;
-    exgcd(a, p, x, y);
-    return (x % p + p) % p;
+	auto [x, y] = exgcd(a, p);
+	return (x % p + p) % p;
 }

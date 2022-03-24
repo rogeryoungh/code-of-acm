@@ -1,18 +1,35 @@
-int pa[MN][30], lgb[MN], dep[MN]; // 预处理 lgb
-void LCA_dfs(int u, int fa) {
-    pa[u][0] = fa, dep[u] = dep[fa] + 1;
-    _fora (i, 1, lgb[dep[u]])
-        pa[u][i] = pa[pa[u][i-1]][i-1];
-    _fore (i, u)  if (edge[i].too != fa)
-        lca_dfs(edge[i].too, u);
-}
-int LCA(int x, int y) {
-    if (dep[x] < dep[y])  swap(x,y);
-    while (dep[x] > dep[y])
-        x = pa[x][lgb[dep[x]-dep[y]]];
-    if (x == y)  return x;
-    _forz (k, lgb[dep[x]] - 1, 0)
-        if (pa[x][k] != pa[y][k])
-            x = pa[x][k], y = pa[y][k];
-    return pa[x][0];
-}
+struct LCA {
+    using T = std::array<int, 18>;
+	vector<T> f;
+    vector<int> dep;
+	LCA(int n, int s) : dep(n) {
+        f.resize(n);
+        dfs(s, 0);
+	}
+	void dfs(int i, int fa) {
+		f[i][0] = fa;
+		dep[i] = dep[fa] + 1;
+		for (int j = 1; j <= 18 - 1; j++) {
+			f[i][j] = f[f[i][j - 1]][j - 1];
+		}
+		for (auto v : G[i]) {
+			if (v != fa)
+				dfs(v, i);
+		}
+	}
+	int query(int x, int y) {
+		if (dep[x] < dep[y])
+			swap(x, y);
+		while (dep[x] > dep[y])
+			x = f[x][std::__lg(dep[x] - dep[y])];
+		if (x == y)
+			return x;
+		for (int k = 18 - 1; k >= 0; k--) {
+			if (f[x][k] != f[y][k])
+				x = f[x][k], y = f[y][k];
+		}
+		if (x == y)
+			return x;
+		return f[x][0];
+	}
+};

@@ -54,11 +54,13 @@
 
 \section{常见技巧}
 
-向上取整 $p/q$ 为 \lstinline[style=cpp]{(p-1)/q+1} 。
+向上取整 $p/q$ 为 \lstinline{(p-1)/q+1} 。
 
-预计算 $\log_n$，只需 \lstinline[style=cpp]{_fora(i, n, MN) logn[i] = logn[i/n] + 1;}。
+预计算 $\log_n$，只需 \lstinline{_fora(i, n, MN) logn[i] = logn[i/n] + 1;}。
 
-字典序 \lstinline[style=cpp]{strcmp(x,y) < 0}。
+字典序 \lstinline{strcmp(x,y) < 0}。
+
+大根堆（优先队列）：\lstinline{priority_queue<pii, vector<pii>, greater<pii>>}。
 
 \section{二分查找}
 
@@ -67,20 +69,22 @@
 在 $[l,r)$ 查找 $\geqslant v$ 中最前的一个，找不到则返回 $r$ 。支持 cmp 函数。
 
 \begin{lstlisting}[style=cpp]
-T* lower_bound(T* l, T* r, const T& v);
+T* lower_bound(T* l, T* r, const T& v, Comp cmp);
 \end{lstlisting}
 
 在 $[l,r)$ 查找 $> value$ 中最前的一个，找不到则返回 $r$ 。支持 cmp 函数。
 
 \begin{lstlisting}[style=cpp]
-T* upper_bound(T* l, T* r, const T& v);
+T* upper_bound(T* l, T* r, const T& v, Comp cmp);
 \end{lstlisting}
 
-手写二分，在单增（单减）数组中查找 $\geqslant x(\leqslant x)$ 的数中最前的一个。
+\paragraph*{手写二分}
+
+在 \lstinline{true -> false} 的区间中，找到最后一个 \lstinline{true}。
 
 \lstinputlisting[style=cpp,caption=/上号/二分/01.cpp]{上号/二分/01.cpp}
 
-在单增（单减）数组中查找 $\leqslant x(\geqslant x)$ 的数中最后的一个。
+在 \lstinline{false -> true} 的区间中，找到第一个 \lstinline{true}。
 
 \lstinputlisting[style=cpp,caption=/上号/二分/02.cpp]{上号/二分/02.cpp}
 
@@ -97,18 +101,17 @@ T* upper_bound(T* l, T* r, const T& v);
 矩阵的输入、输出。
 
 \begin{lstlisting}[style=cpp]
-void read(Mtx &m) {
-    for (int i = 1; i <= m.p; i++)
-        for (int j = 1; j <= m.q; j++)
-            m[i][j] = (P + rr()) % P;
+void read() {
+	ll t;
+	for (int i = 0; i < x * y; i++) {
+		cin >> t;
+		m[i] = (t + P) % P;
+	}
 }
-void pr(Mtx &m) {
-    for (int i = 1; i <= m.p; i++) {
-        printf("%lld", m[i][1]);
-        for (int j = 2; j <= m.q; j++)
-            printf(" %lld", m[i][j]);
-        putchar('\n');
-    }
+void print() {
+	for (int i = 0; i < x * y; i++) {
+		cout << m[i] << " \n"[(i + 1) % x == 0];
+	}
 }
 \end{lstlisting}
 
@@ -151,8 +154,6 @@ void pr(Mtx &m) {
 \lstinputlisting[style=cpp,caption=/数学/exgcd.cpp]{数学/exgcd.cpp}
 
 方程 $ax+by=c$ 有解的充要条件是 $\gcd(a,b) \mid c$。
-
-\lstinputlisting[style=cpp,caption=/数学/liEu.cpp]{数学/liEu.cpp}
 
 \section{乘法逆元}
 
@@ -229,10 +230,12 @@ void pr(Mtx &m) {
 
 \lstinputlisting[style=cpp,caption=/数学/China.cpp]{数学/China.cpp}
 
-\paragraph{二次剩余}
+\paragraph{扩展中国剩余定理}
+若 $n_i$ 中不互质，需要 excrt
+\lstinputlisting[style=cpp,caption=/数学/excrt.cpp]{数学/excrt.cpp}
+
+\paragraph{二次剩余} 求 $x^2 \equiv n$，可以使用 Cipolla 算法。
 \lstinputlisting[style=cpp,caption=/数学/Cipolla.cpp]{数学/Cipolla.cpp}
-
-
 
 
 \section{整除分块}
@@ -270,13 +273,25 @@ void pr(Mtx &m) {
 
 \lstinputlisting[style=cpp,caption=/数学/NTT/core.cpp]{数学/NTT/core.cpp}
 
-\subsection{多项式}
+\subsection{形式幂级数}
 
 \lstinputlisting[style=cpp,caption=/数学/NTT/poly.cpp]{数学/NTT/poly.cpp}
 
-\subsection{基础科技}
+\subsection{牛顿迭代}
+
+给定多项式 $f$，考虑求 $A(g) = 0$。假若我们已经求得 $g_0 = g \bmod x^n$，那么在 $A(g)$ 处做泰勒展开
+\[ 0 \equiv A(g) \equiv A(g_0) + A'(g_0) \ast (g - g_0) \pmod{x^{2n}} \]
+因此
+\[ g \equiv g_0 - \frac{A(g_0)}{\frac{\partial A}{\partial g}(g_0)} \pmod{x^{2n}} \]
+令 $A(g) = f \ast g$ 可以求 inv，令 $A(g) = f \ast g - h$ 可以求 div，令 $A(g) = \ln g - f$ 可以求 exp。
 
 \lstinputlisting[style=cpp,caption=/数学/NTT/impl.cpp]{数学/NTT/impl.cpp}
+
+\subsection{半在线卷积}
+
+当 $f$ 已经给出时，若要逐点的计算 $f \ast g$，可以使用半在线卷积算法。
+
+\lstinputlisting[style=cpp,caption=/数学/NTT/cdq.cpp]{数学/NTT/cdq.cpp}
 
 \subsection{多点求值 ・ 快速插值}
 
@@ -386,9 +401,9 @@ void pr(Mtx &m) {
 
 \begin{lstlisting}[style=cpp]
 for(Node *p=l->head->next; p!=l->tail; p=p->next)
-    //正序遍历
+	//正序遍历
 for(Node *p=l->tail->prev; p!=l->head; p=p->prev)
-    //逆序遍历
+	//逆序遍历
 \end{lstlisting}
 
 \section{滑动窗口}
@@ -397,34 +412,25 @@ for(Node *p=l->tail->prev; p!=l->head; p=p->prev)
 
 \section{树状数组}
 
-树状数组可以维护数组 $a$ 实现 （1）将某个数加上 $x$。（2）求前缀和。
+树状数组可以维护数组 $a$ 实现：1. 将某个数加上 $x$。2. 前缀和。
 
 \lstinputlisting[style=cpp,caption=/数据结构/树状数组/01.cpp]{数据结构/树状数组/01.cpp}
-
-\paragraph{区间加 \& 单点查询}
-
-维护数组 $a$ 的额外差分数组 $b$，那么 $a$ 的区间加就被转化为 $b$ 的单点增加，且 $a$ 单点查询就被转化为 $b$ 的区间查询。
-
-\lstinputlisting[style=cpp,caption=/数据结构/树状数组/02.cpp]{数据结构/树状数组/02.cpp}
 
 \paragraph{区间加 \& 区间求和}
 
 维护数组 $a$ 的额外差分数组 $b$，当我们对 $a$ 的前缀 $r$ 求和时有
-$$\sum_{i=1}^r \sum_{j=1}^i b_j = \sum_{i=1}^rb_i(r-i+1) = (r+1)\sum_{i=1}^rb_i - \sum_{i=1}^rb_ii$$
-因此还需要两个树状数组来维护 $\sum b_i$ 和 $\sum b_ii$。查询前缀和 \verb|cask|。
+\[ \sum_{i=1}^r \sum_{j=1}^i b_j = \sum_{i=1}^rb_i(r-i+1) = (r+1)\sum_{i=1}^rb_i - \sum_{i=1}^rb_ii \]
+因此还需要两个树状数组来维护 $\sum b_i$ 和 $\sum b_ii$。
 
-\lstinputlisting[style=cpp,caption=/数据结构/树状数组/03.cpp]{数据结构/树状数组/03.cpp}
+\lstinputlisting[style=cpp,caption=/数据结构/树状数组/02.cpp]{数据结构/树状数组/02.cpp}
 
 \section{ST 表}
 
-需要预处理 $\log_2$。令 $st(i,j)$ 表示区间 $[i,i+2^j-1]$ 的最大值，显然 $ST(i,0)=a_i$。状态转移方程
-$$ST(i,j+1) = \max(f(i,j) , f(i+2^{j},j))$$
-
-\lstinputlisting[style=cpp,caption=/数据结构/ST表/01.cpp]{数据结构/ST表/01.cpp}
-
+因为 \lstinline{std::__lg(n)}，不需要预处理 $\log_2$。令 $st(i,j)$ 表示区间 $[i,i+2^j-1]$ 的最大值，显然 $ST(i,0)=a_i$。状态转移方程
+\[ ST(i,j+1) = \max(f(i,j) , f(i+2^{j},j)) \]
 对于 RMQ 问题，记 $s = \lfloor\log_2(r-l+1)\rfloor$，我们总是可以用两个区间 $[l,l+2^s-1]$ 和 $[r-2^s+1,r]$ 来覆盖所查询区间。
 
-\lstinputlisting[style=cpp,caption=/数据结构/ST表/02.cpp]{数据结构/ST表/02.cpp}
+\lstinputlisting[style=cpp,caption=/数据结构/ST表/01.cpp]{数据结构/ST表/01.cpp}
 
 \section{线段树}
 
