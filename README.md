@@ -27,3 +27,23 @@ int ____ = (ios::sync_with_stdio(0), cin.tie(0), cout.tie(0), 1);
 
 // END OF HEADER | Author: Roger Young
 ```
+
+## 编译参数
+
+重复定义警告，忽略符号转换。
+
+```bash
+-Wall -Wextra -Wshadow -std=c++20 -Wno-unused-parameter -Wno-sign-compare -O2
+```
+
+越界 RE。
+
+```bash
+-D_GLIBCXX_ASSERTIONS
+```
+
+Linux 独有：各种分析检测。
+
+```
+
+```

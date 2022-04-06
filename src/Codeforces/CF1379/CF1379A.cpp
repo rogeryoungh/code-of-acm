@@ -8,22 +8,26 @@ int ____ = (ios::sync_with_stdio(0), cin.tie(0), cout.tie(0), 1);
 // END OF HEADER | Author: Roger Young
 
 string what = "abacaba";
+int N = what.length();
 
 void solve() {
-	int len;
+	int n;
 	string s;
-	cin >> len >> s;
-	for (int i = 0; i < len - 6; i++) {
+	cin >> n >> s;
+	for (int i = 0; i <= n - N; i++) {
 		string tmp = s;
-		for (int j = 0; j < 7; j++)
-			if (tmp[i + j] == '?')
+		for (int j = 0; j < N; j++) {
+			if (tmp[i + j] == '?') {
 				tmp[i + j] = what[j];
-		for (auto &c : tmp)
-			if (c == '?')
-				c = 'z';
+			}
+		}
+		for (int j = 0; j < tmp.length(); j++) {
+			if (tmp[j] == '?')
+				tmp[j] = 'z';
+		}
 		int cnt = 0;
-		for (int j = 0; j < len - 6; j++) {
-			if (tmp.substr(j, 7) == what)
+		for (int j = 0; j <= tmp.length() - N; j++) {
+			if (tmp.substr(j, N) == what)
 				cnt++;
 		}
 		if (cnt == 1) {

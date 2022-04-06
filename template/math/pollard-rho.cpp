@@ -64,7 +64,7 @@ ll pollard_rho(ll N) {
 	}
 }
 
-vector<ll> factor(ll x) {
+auto factor(ll x) {
 	vector<ll> v;
 	std::function<void(ll)> dfs = [&](ll x) {
 		ll fac = pollard_rho(x);

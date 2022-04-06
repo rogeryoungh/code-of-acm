@@ -1,19 +1,31 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+int ____ = (ios::sync_with_stdio(0), cin.tie(0), cout.tie(0), 1);
+
+// END OF HEADER | Author: Roger Young
+
 template <class T>
 struct SegmentTree {
 	vector<T> val;
 	int N;
-#define ls (p * 2)
-#define rs (p * 2 + 1)
 	SegmentTree(int n = 0) {
-		// 0 ~ N - 1
 		N = 2 << std::__lg(n + 1);
 		val.resize(N * 2);
 	}
-	void build(const vector<T> &a) {
-		for (int i = 0; i < a.size(); i++)
-			val[i + N] = a[i];
-		for (int i = N - 1; i >= 1; i--)
+	template <class U>
+	void build(const vector<U> &v) {
+		for (int i = 0; i < v.size(); i++)
+			val[i + N] = v[i];
+		for (int i = N - 1; i >= 0; i--)
 			pull(i);
+	}
+#define ls (p * 2)
+#define rs (p * 2 + 1)
+	void pull(int p) {
+		val[p] = val[ls] + val[rs];
 	}
 	void modify(int i, T x) {
 		modify(i, x, 1, 0, N);
@@ -23,9 +35,6 @@ struct SegmentTree {
 	}
 
   private:
-	void pull(int p) {
-		val[p] = val[ls] + val[rs];
-	}
 	void modify(int i, T x, int p, int L, int R) {
 		if (R - L == 1) {
 			val[p] += x;
@@ -53,3 +62,24 @@ struct SegmentTree {
 #undef ls
 #undef rs
 };
+
+int main() {
+	int n, q;
+	cin >> n >> q;
+	vector<ll> a(n + 1);
+	for (int i = 1; i <= n; i++) {
+		cin >> a[i];
+	}
+	SegmentTree<ll> st(n);
+	st.build(a);
+	for (int j = 0; j < q; j++) {
+		int op, x, y;
+		cin >> op >> x >> y;
+		if (op == 1) {
+			st.modify(x, y);
+		} else {
+			cout << st.query(x, y + 1) << '\n';
+		}
+	}
+	return 0;
+}

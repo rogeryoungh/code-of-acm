@@ -1,3 +1,12 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+int ____ = (ios::sync_with_stdio(0), cin.tie(0), cout.tie(0), 1);
+
+// END OF HEADER | Author: Roger Young
+
 const int P = 998244353;
 
 int qpow(int a, int b = P - 2, int m = P) {
@@ -10,10 +19,10 @@ int qpow(int a, int b = P - 2, int m = P) {
 	return ret;
 }
 
-std::vector<int> w{1, 1}, Inv{1, 1}, fac{1}, ifac{1};
+std::vector<int> w{1, 1}, Inv{1, 1}, fac, ifac;
 
 inline int get_lim(int m) {
-	return 2 << std::__lg(m - (m > 1));
+	return 2 << std::__lg(m - 1);
 }
 
 int mo(int u) {
@@ -21,7 +30,7 @@ int mo(int u) {
 }
 
 void pre_w(int n) {
-	int lim = w.size();
+	static int lim = 2;
 	n = get_lim(n);
 	if (n <= lim)
 		return;
@@ -37,7 +46,7 @@ void pre_w(int n) {
 }
 
 void pre_inv(int n) {
-	int lim = Inv.size();
+	static int lim = 2;
 	if (n <= lim)
 		return;
 	Inv.resize(n);
@@ -184,3 +193,43 @@ struct Poly : vector<int> { // 大常数板子
 	}
 #undef T
 };
+
+void pre_fac(int n) {
+	fac.resize(n + 1);
+	for (int i = 1; i <= n; i++) {
+		fac[i] = 1ll * fac[i - 1] * i % P;
+	}
+}
+
+void pre_ifac(int n) {
+	ifac.resize(n + 1);
+	ifac[n] = qpow(fac[n]);
+	for (int i = n - 1; i > 0; i--) {
+		ifac[i] = 1ll * ifac[i + 1] * (i + 1) % P;
+	}
+}
+
+int main() {
+	int n, m;
+	cin >> n >> m;
+	vector<int> v(m + 1);
+	for (int i = 0; i < n; i++) {
+		int t;
+		cin >> t;
+		v[t]++;
+	}
+	Poly f(m + 1);
+	pre_inv(m + 1);
+	for (int i = 1; i <= m; i++) {
+		if (v[i] == 0)
+			continue;
+		for (int j = 1; j <= m / i; j++) {
+			f[j * i] = (f[j * i] + 1ll * v[i] * Inv[j]) % P;
+		}
+	}
+	Poly ans = f.exp(m + 1);
+	for (int i = 1; i <= m; i++) {
+		cout << ans[i] << "\n";
+	}
+	return 0;
+}

@@ -1,3 +1,12 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+int ____ = (ios::sync_with_stdio(0), cin.tie(0), cout.tie(0), 1);
+
+// END OF HEADER | Author: Roger Young
+
 const int P = 998244353;
 
 int qpow(int a, int b = P - 2, int m = P) {
@@ -10,7 +19,7 @@ int qpow(int a, int b = P - 2, int m = P) {
 	return ret;
 }
 
-std::vector<int> w{1, 1}, Inv{1, 1}, fac{1}, ifac{1};
+std::vector<int> w{1, 1}, Inv{1, 1}, fac, ifac;
 
 inline int get_lim(int m) {
 	return 2 << std::__lg(m - (m > 1));
@@ -21,9 +30,9 @@ int mo(int u) {
 }
 
 void pre_w(int n) {
-	int lim = w.size();
+	static int lim = 2;
 	n = get_lim(n);
-	if (n <= lim)
+	if (n < lim)
 		return;
 	w.resize(n);
 	for (int l = lim; l < n; l *= 2) {
@@ -37,7 +46,7 @@ void pre_w(int n) {
 }
 
 void pre_inv(int n) {
-	int lim = Inv.size();
+	static int lim = 2;
 	if (n <= lim)
 		return;
 	Inv.resize(n);
@@ -178,9 +187,42 @@ struct Poly : vector<int> { // 大常数板子
 	Poly rev() const {
 		return {rbegin(), rend()};
 	}
-	friend Poly operator/(const Poly &f, const Poly &g) {
+	friend pair<Poly, Poly> operator%(const Poly &f, const Poly &g) {
 		int m = f.deg() - g.deg() + 1;
-		return f.rev().div(m, g.rev()).rev();
+		Poly Q = f.rev().div(m, g.rev()).rev();
+		auto f1 = g.rev().inv(m);
+		auto f2 = f.rev().cut(m);
+		for (auto qi : f1) {
+			cout << qi << " ! ";
+		}
+		for (auto qi : f2) {
+			cout << qi << " ! ";
+		}
+		cout << "\n";
+		Poly R = (f - Q * g).redeg(g.deg() - 1);
+		return {Q, R};
 	}
 #undef T
 };
+
+int main() {
+	int n, m;
+	cin >> n >> m;
+	n++, m++;
+	Poly f(n), g(m);
+	for (auto &fi : f)
+		cin >> fi;
+	for (auto &gi : g)
+		cin >> gi;
+
+	auto [Q, R] = f % g;
+	for (auto qi : Q) {
+		cout << qi << " ";
+	}
+	cout << "\n";
+	for (auto ri : R) {
+		cout << ri << " ";
+	}
+
+	return 0;
+}

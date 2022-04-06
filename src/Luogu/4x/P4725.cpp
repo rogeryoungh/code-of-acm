@@ -1,3 +1,12 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+int ____ = (ios::sync_with_stdio(0), cin.tie(0), cout.tie(0), 1);
+
+// END OF HEADER | Author: Roger Young
+
 const int P = 998244353;
 
 int qpow(int a, int b = P - 2, int m = P) {
@@ -79,6 +88,7 @@ void intt(iter f, int n) {
 
 struct Poly : vector<int> { // 大常数板子
 	using vector::vector;
+	bool isNTT = false;
 #define T (*this)
 	int deg() const {
 		return size();
@@ -108,9 +118,14 @@ struct Poly : vector<int> { // 大常数板子
 		return f;
 	}
 	Poly &ntt(int n) {
-		return redeg(n), ::ntt(begin(), n), T;
+		if (!isNTT) {
+			redeg(n), ::ntt(begin(), n);
+			isNTT = true;
+		}
+		return T;
 	}
 	Poly &intt(int n) {
+		isNTT = false;
 		return ::intt(begin(), n), T;
 	}
 	static Poly &mul(Poly &f, Poly &g, int n) {
@@ -136,31 +151,74 @@ struct Poly : vector<int> { // 大常数板子
 			f[i] = 1ll * Inv[i] * T[i - 1] % P;
 		return f;
 	}
-	Poly inv(int m) const { // 12E
+	Poly &fill0L(int m) {
+		fill_n(begin(), m / 2, 0);
+		return T;
+	}
+	Poly &fill0H(int m) {
+		fill_n(begin() + m / 2, m / 2, 0);
+		return T;
+	}
+	Poly &invD(Poly f2, Poly nx, int t) {
+		mul(f2, nx, t).fill0L(t); // 6E
+		mul(f2, nx, t);			  // 4E
+		redeg(t);
+		for (int i = t / 2; i < t; i++) {
+			T[i] = mo(P - f2[i]);
+		}
+		return T;
+	}
+	Poly inv(int m) const { // 10E
 		Poly x = {qpow(T[0])};
 		for (int t = 2; t < m * 2; t *= 2) {
-			Poly u = cut(t).ntt(t * 2);
-			x.ntt(t * 2);
-			for (int i = 0; i < t * 2; i++)
-				x[i] = (P + 2 - 1ll * u[i] * x[i] % P) * x[i] % P;
-			x.intt(t * 2).redeg(t);
+			x.invD(cut(t), x.cut(m), t);
 		}
 		return x.redeg(m);
 	}
-	Poly div(int m, const Poly &g) const { // 18E
+	Poly div(int m, Poly g) const { // 13E
 		if (deg() == 0)
 			return {};
-		return (cut(m) * g.inv(m)).redeg(m);
+		int t = get_lim(m);
+		Poly x = cut(t / 2), u = g.inv(t / 2); // 10E
+		Poly q = mul(x, u, t).cut(t / 2);	   // 6E
+		mul(q, g, t).fill0L(t);				   // 6E
+		for (int i = t / 2; i < min(t, deg()); i++)
+			q[i] = mo(q[i] - T[i] + P);
+		mul(q, u, t); // 4E
+		for (int i = t / 2; i < t; i++)
+			x[i] = mo(P - q[i]);
+		return x.cut(m);
 	}
 	Poly ln(int m) const {
 		return deriv().div(m - 1, cut(m)).integr();
 	}
 	Poly exp(int m) const { // 48E
-		Poly x = {1};
-		for (int t = 2; t < m * 2; t *= 2) {
-			x = x * (cut(t) - x.ln(t) + Poly{1}), x.redeg(t);
+		if (size() == 1)
+			return {1};
+		int lim = get_lim(m);
+		Poly f = {1, T[1]}, g = {1}, nf, ng = g;
+		pre_inv(lim);
+		for (int t = 4; t <= lim; t <<= 1) {
+			nf = Poly(f).ntt(t);		// 2E
+			ng = g.invD(nf, ng, t / 2); // 3E
+
+			Poly q = cut(t / 2);
+			for (int i = 0; i < q.deg(); i++)
+				q[i] *= i;
+			mul(q, nf, t / 2); // 2E
+			for (int i = 0; i < t / 2; i++)
+				q[i] -= f[i] * i;
+			mul(q, ng, t); // 6E
+			for (int i = t / 2; i < t; i++)
+				q[i] = q[i - t / 2] * Inv[i];
+			for (int i = t / 2; i < std::min(t, deg()); i++)
+				q[i] += (*this)[i];
+			mul(q.fill0L(t), nf, t); // 4E
+			f.resize(t);
+			for (int i = t / 2; i < t; i++)
+				f[i] = q[i];
 		}
-		return x.redeg(m);
+		return f.cut(size());
 	}
 	Poly sqrt(int m) const { // 36E
 		Poly x = {1};
@@ -184,3 +242,17 @@ struct Poly : vector<int> { // 大常数板子
 	}
 #undef T
 };
+
+int main() {
+	int n;
+	cin >> n;
+	Poly f(n);
+	for (auto &fi : f) {
+		cin >> fi;
+	}
+	f = f.ln(n);
+	for (auto fi : f) {
+		cout << fi << " ";
+	}
+	return 0;
+}
