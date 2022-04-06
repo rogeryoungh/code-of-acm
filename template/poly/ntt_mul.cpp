@@ -14,7 +14,7 @@ using Poly = vector<int>;
 Poly w{1, 1}, Inv{1, 1}, fac{1}, ifac{1};
 
 inline int get_lim(int m) {
-	return 2 << std::__lg(m - 1);
+	return 2 << std::__lg(m - (m > 1));
 }
 
 inline int mo(int u) {

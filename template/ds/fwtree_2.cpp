@@ -17,11 +17,9 @@ struct fwtree_2 {
 		add(v2, l, l * k);
 		add(v2, r + 1, -(r + 1) * k);
 	}
-
 	T sum(int l, int r) {
 		return sum(r) - sum(l - 1);
 	}
-
   private:
 	void add(vector<T> &v, int i, T x) {
 		for (; i < len; i += i & -i)
@@ -33,7 +31,6 @@ struct fwtree_2 {
 			sum += v[i];
 		return sum;
 	}
-
 	T sum(int i) {
 		return T(i + 1) * sum(v1, i) + sum(u, i) - sum(v2, i);
 	}

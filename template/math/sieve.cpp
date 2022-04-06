@@ -1,14 +1,14 @@
-vector<bool> notp;
-vector<int> primes;
+vector<bool> not_p;
+vector<int> primes; // 注意，个数可能不精确！
 void Euler(int n) {
-	notp.resize(n + 1);
+	not_p.resize(n + 1);
 	auto _ = [&](int i) {
-		if (!notp[i])
+		if (!not_p[i])
 			primes.push_back(i);
 		for (auto pj : primes) {
 			if (pj > n / i)
 				break;
-			notp[i * pj] = true;
+			not_p[i * pj] = true;
 			if (i % pj == 0)
 				break;
 		}
@@ -20,7 +20,7 @@ void Euler(int n) {
 }
 
 vector<bool> not_p;
-vector<int> primes;
+vector<int> primes; // 注意，个数可能不精确！
 void Eratosthenes(int n) {
 	not_p.resize(n + 1);
 	auto _ = [&](int i) {

@@ -10,19 +10,18 @@ int qpow(int a, int b = P - 2, int m = P) {
 	return ret;
 }
 
-using Poly = vector<int>;
-Poly w{1, 1}, Inv{1, 1}, fac{1}, ifac{1};
+std::vector<int> w{1, 1}, Inv{1, 1}, fac{1}, ifac{1};
 
 inline int get_lim(int m) {
-	return 2 << std::__lg(m - 1);
+	return 2 << std::__lg(m - (m > 1));
 }
 
-inline int mo(int u) {
+int mo(int u) {
 	return u >= P ? u - P : u;
 }
 
 void pre_w(int n) {
-	static int lim = 2;
+	int lim = w.size();
 	n = get_lim(n);
 	if (n <= lim)
 		return;
@@ -33,6 +32,17 @@ void pre_w(int n) {
 			w[(l + i)] = w[(l + i) / 2];
 			w[l + i + 1] = 1ll * w[l + i] * p % P;
 		}
+	}
+	lim = n;
+}
+
+void pre_inv(int n) {
+	int lim = Inv.size();
+	if (n <= lim)
+		return;
+	Inv.resize(n);
+	for (int i = lim; i < n; i++) {
+		Inv[i] = 1ll * Inv[P % i] * (P - P / i) % P;
 	}
 	lim = n;
 }
@@ -67,19 +77,110 @@ void intt(iter f, int n) {
 	reverse(f + 1, f + n);
 }
 
-using Poly = vector<int>;
-
-Poly &mul(Poly &f, Poly &g, int n) {
-	f.resize(n), g.resize(n);
-	ntt(f.begin(), n), ntt(g.begin(), n);
-	for (int i = 0; i < n; i++)
-		f[i] = 1ll * f[i] * g[i] % P;
-	intt(f.begin(), n);
-	return f;
-}
-
-Poly operator*(Poly f, Poly g) {
-	int m = f.size() + g.size() - 1;
-	mul(f, g, get_lim(m));
-	return f.resize(m), f;
-}
+struct Poly : vector<int> { // 大常数板子
+	using vector::vector;
+#define T (*this)
+	int deg() const {
+		return size();
+	}
+	Poly &redeg(int m) {
+		return resize(m), T;
+	}
+	Poly cut(int m, int l = 0) const {
+		return {begin() + l, begin() + min(m + l, deg())};
+	}
+	friend Poly operator+(const Poly &f, const Poly &g) {
+		Poly h = Poly(f).redeg(max(f.deg(), g.deg()));
+		for (int i = 0; i < g.deg(); i++)
+			h[i] = mo(h[i] + g[i]);
+		return h;
+	}
+	friend Poly operator-(const Poly &f, const Poly &g) {
+		Poly h = Poly(f).redeg(max(f.deg(), g.deg()));
+		for (int i = 0; i < g.deg(); i++)
+			h[i] = mo(h[i] - g[i] + P);
+		return h;
+	}
+	Poly operator*(int k) {
+		Poly f = T;
+		for (int &fi : f)
+			fi = 1ll * fi * k % P;
+		return f;
+	}
+	Poly &ntt(int n) {
+		return redeg(n), ::ntt(begin(), n), T;
+	}
+	Poly &intt(int n) {
+		return ::intt(begin(), n), T;
+	}
+	static Poly &mul(Poly &f, Poly &g, int n) {
+		f.ntt(n), g.ntt(n);
+		for (int i = 0; i < n; i++)
+			f[i] = 1ll * f[i] * g[i] % P;
+		return f.intt(n);
+	}
+	friend Poly operator*(Poly f, Poly g) {
+		int m = f.deg() + g.deg() - 1;
+		return mul(f, g, get_lim(m)).redeg(m);
+	}
+	Poly deriv() const {
+		Poly f(deg() - 1);
+		for (int i = 1; i < deg(); i++)
+			f[i - 1] = 1ll * i * T[i] % P;
+		return f;
+	}
+	Poly integr() const {
+		Poly f(deg() + 1);
+		pre_inv(deg() + 1);
+		for (int i = deg(); i > 0; --i)
+			f[i] = 1ll * Inv[i] * T[i - 1] % P;
+		return f;
+	}
+	Poly inv(int m) const { // 12E
+		Poly x = {qpow(T[0])};
+		for (int t = 2; t < m * 2; t *= 2) {
+			Poly u = cut(t).ntt(t * 2);
+			x.ntt(t * 2);
+			for (int i = 0; i < t * 2; i++)
+				x[i] = (P + 2 - 1ll * u[i] * x[i] % P) * x[i] % P;
+			x.intt(t * 2).redeg(t);
+		}
+		return x.redeg(m);
+	}
+	Poly div(int m, const Poly &g) const { // 18E
+		if (deg() == 0)
+			return {};
+		return (cut(m) * g.inv(m)).redeg(m);
+	}
+	Poly ln(int m) const {
+		return deriv().div(m - 1, cut(m)).integr();
+	}
+	Poly exp(int m) const { // 48E
+		Poly x = {1};
+		for (int t = 2; t < m * 2; t *= 2) {
+			x = x * (cut(t) - x.ln(t) + Poly{1}), x.redeg(t);
+		}
+		return x.redeg(m);
+	}
+	Poly sqrt(int m) const { // 36E
+		Poly x = {1};
+#ifdef ACM_MATH_CIPOLLA_H
+		x[0] = Cipolla(front(), P).first;
+#endif
+		for (int t = 2; t < m * 2; t *= 2) {
+			x = (x + cut(t).div(t, x)) * qpow(2);
+		}
+		return x.redeg(m);
+	}
+	Poly pow(int m, int k) const {
+		return (ln(m) * k).exp(m);
+	}
+	Poly rev() const {
+		return {rbegin(), rend()};
+	}
+	friend Poly operator/(const Poly &f, const Poly &g) {
+		int m = f.deg() - g.deg() + 1;
+		return f.rev().div(m, g.rev()).rev();
+	}
+#undef T
+};
