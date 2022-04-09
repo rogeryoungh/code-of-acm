@@ -165,6 +165,24 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>ZAFU 2022.01.18 个人赛题解</h2>
+  </header>
+  <section class="entry-content">
+    <p>非常抱歉，本次比赛对难度估计不当，给大家造成了不好的体验，在此向大家致歉。
+A - CF1379A 见 CF Round #657 (Div. 2) 。
+B - CF1379B 见 CF Round #657 (Div. 2) 。
+C - CF1313B 题目大意 有 $n$ 位参赛者参加两轮比赛，ff 获得的名次分别是 $x$ 和 $y$，其他人的名次是未知的，求 ff 最终可能的最高排名和最低排名。
+分析 结论是很容易猜到的，证明有些困难。
+首先构造最低排名，让尽量多的同学有总分 $x&#43;y$，此时 ff 的排名为 $S_1 = \min(n, x &#43; y - 1)$。
+ 证明
+如果某人的总分满足 $x_i &#43; y_i \leqslant x &#43; y$，那么其两次排名一定满足 $$ x_i \leqslant x&#43;y-1\ 且\ y_i \leqslant x&#43;y-1$$ 这样的数对显然是不多于 $\min(n, x &#43; y - 1) = S_1$ 个的，而 $S_1$ 的构造已给出，故最多为 $S_1$ 个。...</p>
+  </section>
+  <footer class="entry-footer">January 21, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to ZAFU 2022.01.18 个人赛题解" href="https://rogeryoungh.github.io/code-of-acm/post/2022-01/hj1/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>CF Round 706(Div 2)</h2>
   </header>
   <section class="entry-content">
@@ -325,23 +343,6 @@ const int maxn = 1e5 &#43; 10, o = 30 - 1; int trie[maxn * 30][2], val[maxn * 30
   </section>
   <footer class="entry-footer">October 11, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to HDU6955 Xor sum" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/hdu6955/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>HDU6833 A Very Easy Math Problem</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 即求
-$$ S (n) = \sum^n_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd \{ a_x \}) \gcd \{ a_x \} $$
-我自己随便简写了，全打太麻烦了。
-分析 这东西看着很吓人，其实是纸老虎。首先 $f(x) = \mu(x)^2$。提出 $\gcd$ 有
-$$ \begin{aligned} S (n) &amp; =\sum_{d=1}^{n}\sum^{n}_{\{ a_{x}\}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd \{ a_{x}\} =d]\\ &amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x&#43;1}\sum^{n/d}_{\{ a_{x}\} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd \{ a_{x}\} =1] \end{aligned} $$
-对后面这部分反演有
-$$ \begin{aligned} &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd \{ a_x \}} \mu (t) \right)\\ = &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd \{ a_x \}] \mu (t) \right)\\ = &amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \end{aligned} $$...</p>
-  </section>
-  <footer class="entry-footer">September 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to HDU6833 A Very Easy Math Problem" href="https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6833/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

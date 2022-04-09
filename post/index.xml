@@ -7,7 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© 2021 [Roger Young](https://rogeryoungh.github.io/blog/about/)</copyright>
-    <lastBuildDate>Tue, 15 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2021 牛客寒假算法基础集训营 1</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-04/nc9981/</link>
+      <pubDate>Wed, 06 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-04/nc9981/</guid>
+      <description>复习一下。
+A. 串 计算长度不超过 $n$ 且蕴含 us 作为子串的字符串有多少个。
+分析 读错题目了，还以为是容斥。对 “出现 us”、“出现 u”、“其他” 三种情况分别 DP。
+int main() { int n; cin &amp;gt;&amp;gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; for (int i = 1; i &amp;lt;= n; i++) { ll t0 = dp0 * 25 % P; ll tu = (dpu * 25 + dp0) % P; ll ts = (dpu + dps * 26) % P; dp0 = t0, dpu = tu, dps = ts; ans = (ans + dps) % P; } cout &amp;lt;&amp;lt; ans; return 0; } 实际上计算可以做到 $\log n$。记三种情况分别为 $o_n, u_n, s_n$，可以解得</description>
+    </item>
+    
     <item>
       <title>AtCoder Beginner Contest 242(A-E)</title>
       <link>https://rogeryoungh.github.io/code-of-acm/post/2022-03/abc242/</link>
