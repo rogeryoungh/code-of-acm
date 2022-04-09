@@ -1,11 +1,18 @@
-int dis[MN];
-void Bellman_Ford(int ss) {
-    memset(dis, 0x3f, sizeof(dis)); dis[ss] = 0;
-    _fora (iia, 1, n-1) { int flag = 1;
-        _fora (x, 1, n) { _fore (i, x) {
-            int y = edge[i].too, z = dis[x] + edge[i].len;
-            if(dis[y] > z)
-                dis[y] = z, flag = 0;
-        } }  if(flag) return;
-    }
+auto bellman_ford(int n, int s) {
+	vector<int> dis(n + 1, 1E9);
+	dis[s] = 0;
+	for (int k = 1; k < n; k++) {
+		bool flag = true;
+		for (int i = 1; i <= n; i++) {
+			for (auto [v, w] : G[i]) {
+				int d2 = dis[i] + w;
+				if (d2 < dis[v]) {
+					dis[v] = d2, flag = false;
+				}
+			}
+		}
+		if (flag)
+			break;
+	}
+	return dis;
 }

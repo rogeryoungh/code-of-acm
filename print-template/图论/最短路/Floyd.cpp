@@ -1,8 +1,12 @@
-void Floyd() {
-    _fora (k, 1, n) {  _fora (i, 1, n) {
-        if (i == k || f[i][k] == 0x3f3f3f3f)
-            continue;
-        _fora (j, 1, n)
-            f[i][j] = min(f[i][j], f[i][k] + f[k][j]);
-    } }
+void floyd(int n) {
+	memcpy(dis, G, sizeof(dis));
+	for (int k = 1; k <= n; k++) {
+		for (int i = 1; i <= n; i++) {
+			if (i == k || dis[i][k] == 0x3f3f3f3f)
+				continue;
+			for (int j = 1; j <= n; j++) {
+				dis[i][j] = min(dis[i][j], dis[i][k] + dis[k][j]);
+			}
+		}
+	}
 }
