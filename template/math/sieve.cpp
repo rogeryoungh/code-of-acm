@@ -1,7 +1,7 @@
 vector<bool> not_p;
 vector<int> primes; // 注意，个数可能不精确！
 void Euler(int n) {
-	not_p.resize(n + 1);
+	not_p.resize(n + 10);
 	auto _ = [&](int i) {
 		if (!not_p[i])
 			primes.push_back(i);
@@ -22,7 +22,7 @@ void Euler(int n) {
 vector<bool> not_p;
 vector<int> primes; // 注意，个数可能不精确！
 void Eratosthenes(int n) {
-	not_p.resize(n + 1);
+	not_p.resize(n + 10);
 	auto _ = [&](int i) {
 		if (!not_p[i]) {
 			primes.push_back(i);

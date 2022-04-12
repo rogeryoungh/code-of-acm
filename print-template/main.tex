@@ -301,43 +301,50 @@ void print() {
 
 \lstinputlisting[style=cpp,caption=/数学/FFT/core.cpp]{数学/FFT/core.cpp}
 
+\section{线性代数}
+
+高斯消元。
+
+\lstinputlisting[style=cpp,caption=/数学/gauss.cpp]{数学/gauss.cpp}
 
 
 
 
 
 
-% \chapter{图论}
+\chapter{图论}
 
-% \section{链式前项星}
+\section{链式前项星}
 
-% \lstinputlisting[style=cpp,caption=/图论/链式前项星.cpp]{图论/链式前项星.cpp}
+现在更常用 \lstinline{vector<int>}，很方便快捷。
 
-% \section{最短路}
+\lstinputlisting[style=cpp,caption=/图论/链式前项星.cpp]{图论/链式前项星.cpp}
 
-% \subsection{Dijkstra}
+\section{最短路}
 
-% 权值必须是非负，复杂度 $O(E\log E)$。
+\subsection{Dijkstra}
 
-% \lstinputlisting[style=cpp,caption=/图论/最短路/Dijkstra.cpp]{图论/最短路/Dijkstra.cpp}
+权值必须是非负，复杂度 $O(E\log E)$。
 
-% \subsection{Bellman-Ford}
+\lstinputlisting[style=cpp,caption=/图论/最短路/Dijkstra.cpp]{图论/最短路/Dijkstra.cpp}
 
-% 复杂度 $O(VE)$。
+\subsection{Bellman-Ford}
 
-% \lstinputlisting[style=cpp,caption=/图论/最短路/Bellman-Ford.cpp]{图论/最短路/Bellman-Ford.cpp}
+复杂度 $O(VE)$。
 
-% \subsection{Floyd}
+\lstinputlisting[style=cpp,caption=/图论/最短路/Bellman-Ford.cpp]{图论/最短路/Bellman-Ford.cpp}
 
-% 起始条件 $f(i,j)={\rm edge}(i,j)$，$f(i,i)=0$。
+\subsection{Floyd}
 
-% \lstinputlisting[style=cpp,caption=/图论/最短路/Floyd.cpp]{图论/最短路/Floyd.cpp}
+起始条件 $f(i,j)={\rm edge}(i,j)$，$f(i,i)=0$。
 
-% \section{最近公共祖先 LCA}
+\lstinputlisting[style=cpp,caption=/图论/最短路/Floyd.cpp]{图论/最短路/Floyd.cpp}
 
-% 需要预处理 $\log_2$；如果数据小，直接莽 $20$。
+\section{最近公共祖先 LCA}
 
-% \lstinputlisting[style=cpp,caption=图论/LCA.cpp]{图论/LCA.cpp}
+需要预处理 $\log_2$；如果数据小，直接莽 $20$。
+
+\lstinputlisting[style=cpp,caption=图论/LCA.cpp]{图论/LCA.cpp}
 
 
 

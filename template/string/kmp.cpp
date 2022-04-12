@@ -1,4 +1,4 @@
-auto pre_kmp(string s) {
+auto pre_kmp(const string &s) {
 	int n = s.length();
 	vector<int> pi(n + 1);
 	for (int i = 1; i < n; i++) {
@@ -11,7 +11,7 @@ auto pre_kmp(string s) {
 	return pi;
 }
 
-void kmp(string s, string t) {
+void kmp(const string &s, const string &t) {
 	auto pi = pre_kmp(s);
 	int p = 0, n = t.length(), sn = s.length();
 	for (int i = 0; i < n; i++) {

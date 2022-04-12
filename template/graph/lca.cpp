@@ -1,10 +1,10 @@
 struct LCA {
-    using T = std::array<int, 18>;
+	using T = std::array<int, 18>;
 	vector<T> f;
-    vector<int> dep;
+	vector<int> dep;
 	LCA(int n, int s) : dep(n) {
-        f.resize(n);
-        dfs(s, 0);
+		f.resize(n);
+		dfs(s, 0);
 	}
 	void dfs(int i, int fa) {
 		f[i][0] = fa;
