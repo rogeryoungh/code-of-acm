@@ -10,7 +10,7 @@
 <meta name="description" content="复习一下。
 A. 串 计算长度不超过 $n$ 且蕴含 us 作为子串的字符串有多少个。
 分析 读错题目了，还以为是容斥。对 “出现 us”、“出现 u”、“其他” 三种情况分别 DP。
-int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; for (int i = 1; i &lt;= n; i&#43;&#43;) { ll t0 = dp0 * 25 % P; ll tu = (dpu * 25 &#43; dp0) % P; ll ts = (dpu &#43; dps * 26) % P; dp0 = t0, dpu = tu, dps = ts; ans = (ans &#43; dps) % P; } cout &lt;&lt; ans; return 0; } 实际上计算可以做到 $\log n$。记三种情况分别为 $o_n, u_n, s_n$，可以解得">
+int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; for (int i = 1; i &lt;= n; i&#43;&#43;) { ll t0 = dp0 * 25 % P; ll tu = (dpu * 25 &#43; dp0) % P; ll ts = (dpu &#43; dps * 26) % P; dp0 = t0, dpu = tu, dps = ts; ans = (ans &#43; dps) % P; } cout &lt;&lt; ans; return 0; } 全部代码请看：Nowcoder/NC9981/A.">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2022-04/nc9981/" />
 <link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
@@ -55,7 +55,7 @@ int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; fo
 <meta property="og:description" content="复习一下。
 A. 串 计算长度不超过 $n$ 且蕴含 us 作为子串的字符串有多少个。
 分析 读错题目了，还以为是容斥。对 “出现 us”、“出现 u”、“其他” 三种情况分别 DP。
-int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; for (int i = 1; i &lt;= n; i&#43;&#43;) { ll t0 = dp0 * 25 % P; ll tu = (dpu * 25 &#43; dp0) % P; ll ts = (dpu &#43; dps * 26) % P; dp0 = t0, dpu = tu, dps = ts; ans = (ans &#43; dps) % P; } cout &lt;&lt; ans; return 0; } 实际上计算可以做到 $\log n$。记三种情况分别为 $o_n, u_n, s_n$，可以解得" />
+int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; for (int i = 1; i &lt;= n; i&#43;&#43;) { ll t0 = dp0 * 25 % P; ll tu = (dpu * 25 &#43; dp0) % P; ll ts = (dpu &#43; dps * 26) % P; dp0 = t0, dpu = tu, dps = ts; ans = (ans &#43; dps) % P; } cout &lt;&lt; ans; return 0; } 全部代码请看：Nowcoder/NC9981/A." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/2022-04/nc9981/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-04-06T00:00:00&#43;00:00" />
@@ -66,7 +66,7 @@ int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; fo
 <meta name="twitter:description" content="复习一下。
 A. 串 计算长度不超过 $n$ 且蕴含 us 作为子串的字符串有多少个。
 分析 读错题目了，还以为是容斥。对 “出现 us”、“出现 u”、“其他” 三种情况分别 DP。
-int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; for (int i = 1; i &lt;= n; i&#43;&#43;) { ll t0 = dp0 * 25 % P; ll tu = (dpu * 25 &#43; dp0) % P; ll ts = (dpu &#43; dps * 26) % P; dp0 = t0, dpu = tu, dps = ts; ans = (ans &#43; dps) % P; } cout &lt;&lt; ans; return 0; } 实际上计算可以做到 $\log n$。记三种情况分别为 $o_n, u_n, s_n$，可以解得"/>
+int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; for (int i = 1; i &lt;= n; i&#43;&#43;) { ll t0 = dp0 * 25 % P; ll tu = (dpu * 25 &#43; dp0) % P; ll ts = (dpu &#43; dps * 26) % P; dp0 = t0, dpu = tu, dps = ts; ans = (ans &#43; dps) % P; } cout &lt;&lt; ans; return 0; } 全部代码请看：Nowcoder/NC9981/A."/>
 
 
 <script type="application/ld+json">
@@ -95,12 +95,12 @@ int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; fo
   "@type": "BlogPosting",
   "headline": "2021 牛客寒假算法基础集训营 1",
   "name": "2021 牛客寒假算法基础集训营 1",
-  "description": "复习一下。\nA. 串 计算长度不超过 $n$ 且蕴含 us 作为子串的字符串有多少个。\n分析 读错题目了，还以为是容斥。对 “出现 us”、“出现 u”、“其他” 三种情况分别 DP。\nint main() { int n; cin \u0026gt;\u0026gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; for (int i = 1; i \u0026lt;= n; i++) { ll t0 = dp0 * 25 % P; ll tu = (dpu * 25 + dp0) % P; ll ts = (dpu + dps * 26) % P; dp0 = t0, dpu = tu, dps = ts; ans = (ans + dps) % P; } cout \u0026lt;\u0026lt; ans; return 0; } 实际上计算可以做到 $\\log n$。记三种情况分别为 $o_n, u_n, s_n$，可以解得",
+  "description": "复习一下。\nA. 串 计算长度不超过 $n$ 且蕴含 us 作为子串的字符串有多少个。\n分析 读错题目了，还以为是容斥。对 “出现 us”、“出现 u”、“其他” 三种情况分别 DP。\nint main() { int n; cin \u0026gt;\u0026gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; for (int i = 1; i \u0026lt;= n; i++) { ll t0 = dp0 * 25 % P; ll tu = (dpu * 25 + dp0) % P; ll ts = (dpu + dps * 26) % P; dp0 = t0, dpu = tu, dps = ts; ans = (ans + dps) % P; } cout \u0026lt;\u0026lt; ans; return 0; } 全部代码请看：Nowcoder/NC9981/A.",
   "keywords": [
     
   ],
-  "articleBody": "复习一下。\nA. 串 计算长度不超过 $n$ 且蕴含 us 作为子串的字符串有多少个。\n分析 读错题目了，还以为是容斥。对 “出现 us”、“出现 u”、“其他” 三种情况分别 DP。\nint main() { int n; cin  n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; for (int i = 1; i  n; i++) { ll t0 = dp0 * 25 % P; ll tu = (dpu * 25 + dp0) % P; ll ts = (dpu + dps * 26) % P; dp0 = t0, dpu = tu, dps = ts; ans = (ans + dps) % P; } cout  ans; return 0; } 实际上计算可以做到 $\\log n$。记三种情况分别为 $o_n, u_n, s_n$，可以解得\n$$ o_n = 25^n, \\quad u_n = n 25^{n-1}, \\quad s_n = 26^n - o_n-u_n $$\n因此计算得\n$$ \\sum_{i=2}^n s_i = \\frac{1}{14400}(576 \\cdot 26^{n+1} - (599+24n)25^{n+1}-1) $$\nB. 括号 构造长度不超过 $10^5$ 的括号串，使得恰好包含 $k$ 个括号对。\n分析 考虑弄 $5 \\times 10^4$ 个 (，再考虑如何把 $k$ 拆分成 $k_i$，在 $k_i$ 后加上右括号即可。\n拆分可以从 $5\\times10^4$ 开始，逐渐递减。若是从小到大，长度会超。\nint main() { ll k; cin  k; vectorint vis(N + 1); for (int i = N; i = 1; i--) { if (k = i) { k -= i; vis[i] = 1; } } string s; for (int i = 1; i  N; i++) { s.push_back('('); if (vis[i]) s.push_back(')'); } cout  s; return 0; } C. 红和蓝 给定一棵 $n$ 个节点的树，需要用红色和蓝色把树染色：\n 每个红点周围有且仅有一个红点，每个蓝点周围有且仅有一个蓝点。  分析 显然颜色是以二元对的形式分组。下证这样的分组形式唯一。\n 如果该点是叶子，其必须和父节点同色，形式唯一。 如果该点不是叶子，则只有两种可能：   已经被子节点标记，形式唯一。     未被标记，依 DFS 序知子节点全是已经标记，且确定唯一的。故只能和父节点同色。    对于每个叶子，其必须和其父节点同色，从而可以赋给他们相同的编号。如果某个叶子其父节点已经被标记，则说明此树不可染色。\nconst int N = 1E5; vectorint G[N]; int main() { int n; cin  n; for (int i = 1; i  n; i++) { int u, v; cin  u  v; G[u].push_back(v); G[v].push_back(u); } vectorint vis(n + 1), col(n + 1); int cnt = 0; std::functionvoid(int, int) dfs1 = [\u0026](int x, int fa) { for (auto u : G[x]) { if (u != fa) dfs1(u, x); } if (!vis[x]) { if (vis[fa]) { cout  \"-1\"; exit(0); } vis[fa] = vis[x] = ++cnt; } }; std::functionvoid(int, int) dfs2 = [\u0026](int x, int fa) { for (auto u : G[x]) { if (u == fa) continue; if (vis[u] == vis[x]) { col[u] = col[x]; } else { col[u] = !col[x]; } dfs2(u, x); } }; vis[0] = 1, col[1] = 1; dfs1(1, 0), dfs2(1, 0); for (int i = 1; i  n; i++) { cout  (col[i] ? 'R' : 'B'); } return 0; } D. 点一成零 给定一个 $n \\times n$ 的 01 方阵，每次修改可以把一处格子由 $0$ 改为 $1$。\n然后回答询问：每次点击可以把一个 $1$ 的连通块变为 $0$，问有几种操作能够全部为 $0$。\n分析 若方阵中有 $a$ 个连通块，每个连通块的大小是 $b_i$，那么答案是\n$$ ans = a! \\prod b_i $$\n因此我们需要维护连通块的个数，和每个连通块的大小。用带权并查集实现即可。\n同时需要维护连通块的乘积，在合并时维护乘积。\nconst int N = 500 + 10; char ss[N][N]; int main() { int n; cin  n; for (int i = 0; i  n; i++) { cin  ss[i]; } pre_all(n * n + 10); int cnt = 0, mul = 1; DSU dsu(n * n); auto merge = [\u0026](int x1, int y1, int x2, int y2) { if (x2  0 || x2 = n || y2  0 || y2 = n) return; if (ss[x2][y2] == '0') return; int p1 = x1 * n + y1, p2 = x2 * n + y2; if (dsu.find(p1) != dsu.find(p2)) { mul = 1ll * mul * Inv[dsu.size(p1)] % P * Inv[dsu.size(p2)] % P; dsu.merge(p1, p2); mul = 1ll * mul * dsu.size(p1) % P; cnt--; } }; auto change = [\u0026](int i, int j) { if (ss[i][j] == '1') return; ss[i][j] = '1'; cnt++; merge(i, j, i, j - 1); merge(i, j, i, j + 1); merge(i, j, i - 1, j); merge(i, j, i + 1, j); }; for (int i = 0; i  n; i++) { for (int j = 0; j  n; j++) { if (ss[i][j] == '0') continue; ss[i][j] = '0'; change(i, j); } } int Q; cin  Q; while (Q--) { int x, y; cin  x  y; change(x, y); cout  1ll * mul * fac[cnt] % P  \"\\n\"; } return 0; } ",
-  "wordCount" : "649",
+  "articleBody": "复习一下。\nA. 串 计算长度不超过 $n$ 且蕴含 us 作为子串的字符串有多少个。\n分析 读错题目了，还以为是容斥。对 “出现 us”、“出现 u”、“其他” 三种情况分别 DP。\nint main() { int n; cin  n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; for (int i = 1; i  n; i++) { ll t0 = dp0 * 25 % P; ll tu = (dpu * 25 + dp0) % P; ll ts = (dpu + dps * 26) % P; dp0 = t0, dpu = tu, dps = ts; ans = (ans + dps) % P; } cout  ans; return 0; } 全部代码请看：Nowcoder/NC9981/A.cpp。\n实际上计算可以做到 $\\log n$。记三种情况分别为 $o_n, u_n, s_n$，可以解得\n$$ o_n = 25^n, \\quad u_n = n 25^{n-1}, \\quad s_n = 26^n - o_n-u_n $$\n因此计算得\n$$ \\sum_{i=2}^n s_i = \\frac{1}{14400}(576 \\cdot 26^{n+1} - (599+24n)25^{n+1}-1) $$\nB. 括号 构造长度不超过 $10^5$ 的括号串，使得恰好包含 $k$ 个括号对。\n分析 考虑弄 $5 \\times 10^4$ 个 (，再考虑如何把 $k$ 拆分成 $k_i$，在 $k_i$ 后加上右括号即可。\n拆分可以从 $5\\times10^4$ 开始，逐渐递减。若是从小到大，长度会超。\nint main() { ll k; cin  k; vectorint vis(N + 1); for (int i = N; i = 1; i--) { if (k = i) { k -= i; vis[i] = 1; } } string s; for (int i = 1; i  N; i++) { s.push_back('('); if (vis[i]) s.push_back(')'); } cout  s; return 0; } 全部代码请看：Nowcoder/NC9981/B.cpp。\nC. 红和蓝 给定一棵 $n$ 个节点的树，需要用红色和蓝色把树染色：\n 每个红点周围有且仅有一个红点，每个蓝点周围有且仅有一个蓝点。  分析 显然颜色是以二元对的形式分组。下证这样的分组形式唯一。\n 如果该点是叶子，其必须和父节点同色，形式唯一。 如果该点不是叶子，则只有两种可能：  已经被子节点标记，形式唯一。 未被标记，依 DFS 序知子节点全是已经标记，且确定唯一的。故只能和父节点同色。    对于每个叶子，其必须和其父节点同色，从而可以赋给他们相同的编号。如果某个叶子其父节点已经被标记，则说明此树不可染色。\nconst int N = 1E5; vectorint G[N]; int main() { int n; cin  n; for (int i = 1; i  n; i++) { int u, v; cin  u  v; G[u].push_back(v); G[v].push_back(u); } vectorint vis(n + 1), col(n + 1); int cnt = 0; std::functionvoid(int, int) dfs1 = [\u0026](int x, int fa) { for (auto u : G[x]) { if (u != fa) dfs1(u, x); } if (!vis[x]) { if (vis[fa]) { cout  \"-1\"; exit(0); } vis[fa] = vis[x] = ++cnt; } }; std::functionvoid(int, int) dfs2 = [\u0026](int x, int fa) { for (auto u : G[x]) { if (u == fa) continue; if (vis[u] == vis[x]) { col[u] = col[x]; } else { col[u] = !col[x]; } dfs2(u, x); } }; vis[0] = 1, col[1] = 1; dfs1(1, 0), dfs2(1, 0); for (int i = 1; i  n; i++) { cout  (col[i] ? 'R' : 'B'); } return 0; } 全部代码请看：Nowcoder/NC9981/C.cpp。\nD. 点一成零 给定一个 $n \\times n$ 的 01 方阵，每次修改可以把一处格子由 $0$ 改为 $1$。\n然后回答询问：每次点击可以把一个 $1$ 的连通块变为 $0$，问有几种操作能够全部为 $0$。\n分析 若方阵中有 $a$ 个连通块，每个连通块的大小是 $b_i$，那么答案是\n$$ ans = a! \\prod b_i $$\n因此我们需要维护连通块的个数，和每个连通块的大小。用带权并查集实现即可。\n同时需要维护连通块的乘积，在合并时维护乘积。\nconst int N = 500 + 10; char ss[N][N]; int main() { int n; cin  n; for (int i = 0; i  n; i++) { cin  ss[i]; } pre_all(n * n + 10); int cnt = 0, mul = 1; DSU dsu(n * n); auto merge = [\u0026](int x1, int y1, int x2, int y2) { if (x2  0 || x2 = n || y2  0 || y2 = n) return; if (ss[x2][y2] == '0') return; int p1 = x1 * n + y1, p2 = x2 * n + y2; if (dsu.find(p1) != dsu.find(p2)) { mul = 1ll * mul * Inv[dsu.size(p1)] % P * Inv[dsu.size(p2)] % P; dsu.merge(p1, p2); mul = 1ll * mul * dsu.size(p1) % P; cnt--; } }; auto change = [\u0026](int i, int j) { if (ss[i][j] == '1') return; ss[i][j] = '1'; cnt++; merge(i, j, i, j - 1); merge(i, j, i, j + 1); merge(i, j, i - 1, j); merge(i, j, i + 1, j); }; for (int i = 0; i  n; i++) { for (int j = 0; j  n; j++) { if (ss[i][j] == '0') continue; ss[i][j] = '0'; change(i, j); } } int Q; cin  Q; while (Q--) { int x, y; cin  x  y; change(x, y); cout  1ll * mul * fac[cnt] % P  \"\\n\"; } return 0; } 全部代码请看：Nowcoder/NC9981/D.cpp。\nE. 三棱锥之刻 计算几何，不讲。\nconst double PI = acos(-1.0); int main() { double a, r; cin  a  r; double a2 = a * a, r2 = r * r; double s2 = r2 - a2 / 24; double ans = 0; if (s2  0) { double s = sqrt(s2); if (s2  a2 / 12) { ans = PI * s2; } else if (s2  a2 / 3) { double costh = a / s / 2 / sqrt(3); double th = acos(costh); double sinth = sqrt(1 - costh * costh); double t = s * sinth; ans = t * a / sqrt(12) + (PI / 3 - th) * s2; ans *= 3; } else { ans = a * a * sqrt(3) / 4; } } printf(\"%.10lf\", ans * 4); return 0; } 全部代码请看：Nowcoder/NC9981/E.cpp。\nF. 对答案一时爽 给定 $n$ 道选择题，以及牛牛和牛妹的选择。\n问两人得分之和有可能达到的最大值和最小值。\n分析 显然最小值是 $0$。\n当两人答案相同时，可能得两分；否则得一分。\nint main() { int n; cin  n; int sum = 0; vectorchar s1(n), s2(n); for (auto \u0026si : s1) cin  si; for (auto \u0026si : s2) cin  si; for (int i = 0; i  n; i++) { if (s1[i] == s2[i]) { sum += 2; } else { sum += 1; } } cout  sum  \" \"  0; return 0; } 全部代码请看：Nowcoder/NC9981/F.cpp。\nH. 幂塔个位数的计算 计算 $a \\uparrow \\uparrow n$ 的个位数。\n分析 去年我是打表找规律，但是很容易误认为解只和 $a \\bmod 10$ 有关。\n更朴素的想法是欧拉降幂。\na = int(input()) n = int(input()) if(n == 1): print(a % 10) elif(n == 2): print(pow(a, a % 4 + 4, 10)) else: x = pow(a, a % 2 + 2, 4) print(pow(a, x + 4, 10)) 全部代码请看：Nowcoder/NC9981/H.py。\n还有些题解误认为 $a, n$ 都对 $100$ 取模，这里给出一个 Hack。\nINPUT: 2 1001 ============== OUTPUT: 6 I. 限制不互素对的排列 构造一个长为 $n$ 的排列，使得其中恰有 $k$ 对相邻的数，其 $\\gcd(a_i, a_{i+1})  1$。\n分析 怎么感觉这题见过。\n注意到偶数序列是两两 $\\gcd \\geqslant 2$ 的，而相邻整数一定有 $\\gcd(i, i+1) = 1$。\n令 $1$ 作为奇偶分界点，对于 $k 对于 $k = n / 2$，需要额外再找出一对。我找的是 $(6, 3)$。\nint main() { int n, k; cin  n  k; if (n  6 \u0026\u0026 k == n / 2) { cout  -1; exit(0); } vectorint vis(n + 1), ans; for (int i = 2; i  n; i += 2) { if (i == 6) continue; ans.push_back(i); } ans.push_back(6); ans.push_back(3); for (int i = 0; i  k; i++) { cout  ans[i]  \" \"; vis[ans[i]] = true; } for (int i = 1; i  n; i++) { if (!vis[i]) cout  i  \" \"; } return 0; } 全部代码请看：Nowcoder/NC9981/I.cpp。\nJ. 一群小青蛙呱蹦呱蹦呱 给定一个集合 $A = {1, \\cdots, n}$，在其中划去所有质数的幂次 $p_j^k$，组成集合 $B$。问集合 $B$ 所有数的 $\\lcm$ 是多少。\n分析 注意到 $\\lcm$ 再取模，只可能是对于所有因子独立计算贡献。\nint main() { ll n; cin  n; if (n  5) { cout  \"empty\"; return 0; } Euler(n / 2); ll ans = 1; for (auto pj : primes) { ll tn = n; if (pj == 2) { tn /= 3; } else { tn /= 2; } tn /= pj; while (tn  0) { tn /= pj; ans = ans * pj % P; } } cout  ans; return 0; } 全部代码请看：Nowcoder/NC9981/J.cpp。\n",
+  "wordCount" : "1169",
   "inLanguage": "en",
   "datePublished": "2022-04-06T00:00:00Z",
   "dateModified": "2022-04-06T00:00:00Z",
@@ -246,7 +246,7 @@ int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; fo
         <summary accesskey="c" title="(Alt + C)">
             <div class="details">Table of Contents</div>
         </summary>
-        <div class="inner"><ul>
+        <div class="inner"><ul><ul>
                 <li>
                     <a href="#a-%e4%b8%b2" aria-label="A. 串">A. 串</a><ul>
                         
@@ -269,8 +269,38 @@ int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; fo
                     <a href="#d-%e7%82%b9%e4%b8%80%e6%88%90%e9%9b%b6" aria-label="D. 点一成零">D. 点一成零</a><ul>
                         
                 <li>
-                    <a href="#%e5%88%86%e6%9e%90-3" aria-label="分析">分析</a>
+                    <a href="#%e5%88%86%e6%9e%90-3" aria-label="分析">分析</a></li></ul>
+                </li></ul>
+                    
+                <li>
+                    <a href="#e-%e4%b8%89%e6%a3%b1%e9%94%a5%e4%b9%8b%e5%88%bb" aria-label="E. 三棱锥之刻">E. 三棱锥之刻</a><ul>
+                        
+                <li>
+                    <a href="#f-%e5%af%b9%e7%ad%94%e6%a1%88%e4%b8%80%e6%97%b6%e7%88%bd" aria-label="F. 对答案一时爽">F. 对答案一时爽</a><ul>
+                        
+                <li>
+                    <a href="#%e5%88%86%e6%9e%90-4" aria-label="分析">分析</a></li></ul>
                 </li>
+                <li>
+                    <a href="#h-%e5%b9%82%e5%a1%94%e4%b8%aa%e4%bd%8d%e6%95%b0%e7%9a%84%e8%ae%a1%e7%ae%97" aria-label="H. 幂塔个位数的计算">H. 幂塔个位数的计算</a><ul>
+                        
+                <li>
+                    <a href="#%e5%88%86%e6%9e%90-5" aria-label="分析">分析</a></li></ul>
+                </li>
+                <li>
+                    <a href="#i-%e9%99%90%e5%88%b6%e4%b8%8d%e4%ba%92%e7%b4%a0%e5%af%b9%e7%9a%84%e6%8e%92%e5%88%97" aria-label="I. 限制不互素对的排列">I. 限制不互素对的排列</a><ul>
+                        
+                <li>
+                    <a href="#%e5%88%86%e6%9e%90-6" aria-label="分析">分析</a></li></ul>
+                </li>
+                <li>
+                    <a href="#j-%e4%b8%80%e7%be%a4%e5%b0%8f%e9%9d%92%e8%9b%99%e5%91%b1%e8%b9%a6%e5%91%b1%e8%b9%a6%e5%91%b1" aria-label="J. 一群小青蛙呱蹦呱蹦呱">J. 一群小青蛙呱蹦呱蹦呱</a><ul>
+                        
+                <li>
+                    <a href="#%e5%88%86%e6%9e%90-7" aria-label="分析">分析</a>
+                </li>
+            </ul>
+            </li>
             </ul>
             </li>
             </ul>
@@ -298,7 +328,9 @@ int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; fo
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>实际上计算可以做到 $\log n$。记三种情况分别为 $o_n, u_n, s_n$，可以解得</p>
+</span></span></code></pre></div><p>全部代码请看：<a href="https://github.com/rogeryoungh/code-of-acm/blob/main/src/Nowcoder/NC9981/A.cpp">Nowcoder/NC9981/A.cpp</a>。</p>
+
+<p>实际上计算可以做到 $\log n$。记三种情况分别为 $o_n, u_n, s_n$，可以解得</p>
 <p>$$
 o_n = 25^n, \quad u_n = n 25^{n-1}, \quad s_n = 26^n - o_n-u_n
 $$</p>
@@ -330,7 +362,9 @@ $$</p>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="c-红和蓝">C. 红和蓝<a hidden class="anchor" aria-hidden="true" href="#c-红和蓝">#</a></h2>
+</span></span></code></pre></div><p>全部代码请看：<a href="https://github.com/rogeryoungh/code-of-acm/blob/main/src/Nowcoder/NC9981/B.cpp">Nowcoder/NC9981/B.cpp</a>。</p>
+
+<h2 id="c-红和蓝">C. 红和蓝<a hidden class="anchor" aria-hidden="true" href="#c-红和蓝">#</a></h2>
 <p>给定一棵 $n$ 个节点的树，需要用红色和蓝色把树染色：</p>
 <ul>
 <li>每个红点周围有且仅有一个红点，每个蓝点周围有且仅有一个蓝点。</li>
@@ -339,14 +373,9 @@ $$</p>
 <p>显然颜色是以二元对的形式分组。下证这样的分组形式唯一。</p>
 <ul>
 <li>如果该点是叶子，其必须和父节点同色，形式唯一。</li>
-<li>如果该点不是叶子，则只有两种可能：</li>
-<li>
+<li>如果该点不是叶子，则只有两种可能：
 <ul>
 <li>已经被子节点标记，形式唯一。</li>
-</ul>
-</li>
-<li>
-<ul>
 <li>未被标记，依 DFS 序知子节点全是已经标记，且确定唯一的。故只能和父节点同色。</li>
 </ul>
 </li>
@@ -404,7 +433,9 @@ $$</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="d-点一成零">D. 点一成零<a hidden class="anchor" aria-hidden="true" href="#d-点一成零">#</a></h2>
+</span></span></code></pre></div><p>全部代码请看：<a href="https://github.com/rogeryoungh/code-of-acm/blob/main/src/Nowcoder/NC9981/C.cpp">Nowcoder/NC9981/C.cpp</a>。</p>
+
+<h2 id="d-点一成零">D. 点一成零<a hidden class="anchor" aria-hidden="true" href="#d-点一成零">#</a></h2>
 <p>给定一个 $n \times n$ 的 01 方阵，每次修改可以把一处格子由 $0$ 改为 $1$。</p>
 <p>然后回答询问：每次点击可以把一个 $1$ 的连通块变为 $0$，问有几种操作能够全部为 $0$。</p>
 <h3 id="分析-3">分析<a hidden class="anchor" aria-hidden="true" href="#分析-3">#</a></h3>
@@ -473,7 +504,152 @@ $$</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div>
+</span></span></code></pre></div><p>全部代码请看：<a href="https://github.com/rogeryoungh/code-of-acm/blob/main/src/Nowcoder/NC9981/D.cpp">Nowcoder/NC9981/D.cpp</a>。</p>
+
+<h1 id="e-三棱锥之刻">E. 三棱锥之刻<a hidden class="anchor" aria-hidden="true" href="#e-三棱锥之刻">#</a></h1>
+<p>计算几何，不讲。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">double</span> <span class="n">PI</span> <span class="o">=</span> <span class="n">acos</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">r</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">double</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">r</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">double</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">r2</span> <span class="o">-</span> <span class="n">a2</span> <span class="o">/</span> <span class="mi">24</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">double</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">s2</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">double</span> <span class="n">s</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">s2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">s2</span> <span class="o">&lt;</span> <span class="n">a2</span> <span class="o">/</span> <span class="mi">12</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">ans</span> <span class="o">=</span> <span class="n">PI</span> <span class="o">*</span> <span class="n">s2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">s2</span> <span class="o">&lt;</span> <span class="n">a2</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="kt">double</span> <span class="n">costh</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">s</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="kt">double</span> <span class="n">th</span> <span class="o">=</span> <span class="n">acos</span><span class="p">(</span><span class="n">costh</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="kt">double</span> <span class="n">sinth</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">costh</span> <span class="o">*</span> <span class="n">costh</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="kt">double</span> <span class="n">t</span> <span class="o">=</span> <span class="n">s</span> <span class="o">*</span> <span class="n">sinth</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">ans</span> <span class="o">=</span> <span class="n">t</span> <span class="o">*</span> <span class="n">a</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">-</span> <span class="n">th</span><span class="p">)</span> <span class="o">*</span> <span class="n">s2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">ans</span> <span class="o">*=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">ans</span> <span class="o">=</span> <span class="n">a</span>  <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%.10lf&#34;</span><span class="p">,</span> <span class="n">ans</span> <span class="o">*</span> <span class="mi">4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>全部代码请看：<a href="https://github.com/rogeryoungh/code-of-acm/blob/main/src/Nowcoder/NC9981/E.cpp">Nowcoder/NC9981/E.cpp</a>。</p>
+
+<h2 id="f-对答案一时爽">F. 对答案一时爽<a hidden class="anchor" aria-hidden="true" href="#f-对答案一时爽">#</a></h2>
+<p>给定 $n$ 道选择题，以及牛牛和牛妹的选择。</p>
+<p>问两人得分之和有可能达到的最大值和最小值。</p>
+<h3 id="分析-4">分析<a hidden class="anchor" aria-hidden="true" href="#分析-4">#</a></h3>
+<p>显然最小值是 $0$。</p>
+<p>当两人答案相同时，可能得两分；否则得一分。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">s1</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">s2</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">si</span> <span class="p">:</span> <span class="n">s1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">si</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">si</span> <span class="p">:</span> <span class="n">s2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">si</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">s1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">s2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sum</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sum</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">sum</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>全部代码请看：<a href="https://github.com/rogeryoungh/code-of-acm/blob/main/src/Nowcoder/NC9981/F.cpp">Nowcoder/NC9981/F.cpp</a>。</p>
+
+<h2 id="h-幂塔个位数的计算">H. 幂塔个位数的计算<a hidden class="anchor" aria-hidden="true" href="#h-幂塔个位数的计算">#</a></h2>
+<p>计算 $a \uparrow \uparrow n$ 的个位数。</p>
+<h3 id="分析-5">分析<a hidden class="anchor" aria-hidden="true" href="#分析-5">#</a></h3>
+<p>去年我是打表找规律，但是很容易误认为解只和 $a \bmod 10$ 有关。</p>
+<p>更朴素的想法是欧拉降幂。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">%</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">elif</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</span></span></code></pre></div><p>全部代码请看：<a href="https://github.com/rogeryoungh/code-of-acm/blob/main/src/Nowcoder/NC9981/H.py">Nowcoder/NC9981/H.py</a>。</p>
+
+<p>还有些题解误认为 $a, n$ 都对 $100$ 取模，这里给出一个 Hack。</p>
+<pre tabindex="0"><code>INPUT:  2 1001
+==============
+OUTPUT: 6
+</code></pre><h2 id="i-限制不互素对的排列">I. 限制不互素对的排列<a hidden class="anchor" aria-hidden="true" href="#i-限制不互素对的排列">#</a></h2>
+<p>构造一个长为 $n$ 的排列，使得其中恰有 $k$ 对相邻的数，其 $\gcd(a_i, a_{i+1}) &gt; 1$。</p>
+<h3 id="分析-6">分析<a hidden class="anchor" aria-hidden="true" href="#分析-6">#</a></h3>
+<p>怎么感觉这题见过。</p>
+<p>注意到偶数序列是两两 $\gcd \geqslant 2$ 的，而相邻整数一定有 $\gcd(i, i+1) = 1$。</p>
+<p>令 $1$ 作为奇偶分界点，对于 $k &lt; n / 2$ 我们已经有了构造方法。</p>
+<p>对于 $k = n / 2$，需要额外再找出一对。我找的是 $(6, 3)$。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">6</span> <span class="o">&amp;&amp;</span> <span class="n">k</span> <span class="o">==</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vis</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ans</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">k</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">vis</span><span class="p">[</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">vis</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>全部代码请看：<a href="https://github.com/rogeryoungh/code-of-acm/blob/main/src/Nowcoder/NC9981/I.cpp">Nowcoder/NC9981/I.cpp</a>。</p>
+
+<h2 id="j-一群小青蛙呱蹦呱蹦呱">J. 一群小青蛙呱蹦呱蹦呱<a hidden class="anchor" aria-hidden="true" href="#j-一群小青蛙呱蹦呱蹦呱">#</a></h2>
+<p>给定一个集合 $A = {1, \cdots, n}$，在其中划去所有质数的幂次 $p_j^k$，组成集合 $B$。问集合 $B$ 所有数的 $\lcm$ 是多少。</p>
+<h3 id="分析-7">分析<a hidden class="anchor" aria-hidden="true" href="#分析-7">#</a></h3>
+<p>注意到 $\lcm$ 再取模，只可能是对于所有因子独立计算贡献。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ll</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;empty&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Euler</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ll</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">pj</span> <span class="p">:</span> <span class="n">primes</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ll</span> <span class="n">tn</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">pj</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">tn</span> <span class="o">/=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">tn</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="n">tn</span> <span class="o">/=</span> <span class="n">pj</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">while</span> <span class="p">(</span><span class="n">tn</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">tn</span> <span class="o">/=</span> <span class="n">pj</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">ans</span> <span class="o">=</span> <span class="n">ans</span> <span class="o">*</span> <span class="n">pj</span> <span class="o">%</span> <span class="n">P</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>全部代码请看：<a href="https://github.com/rogeryoungh/code-of-acm/blob/main/src/Nowcoder/NC9981/J.cpp">Nowcoder/NC9981/J.cpp</a>。</p>
+
+
 
   </div>
   <footer class="post-footer">

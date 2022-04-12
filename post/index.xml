@@ -17,7 +17,7 @@
       <description>复习一下。
 A. 串 计算长度不超过 $n$ 且蕴含 us 作为子串的字符串有多少个。
 分析 读错题目了，还以为是容斥。对 “出现 us”、“出现 u”、“其他” 三种情况分别 DP。
-int main() { int n; cin &amp;gt;&amp;gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; for (int i = 1; i &amp;lt;= n; i++) { ll t0 = dp0 * 25 % P; ll tu = (dpu * 25 + dp0) % P; ll ts = (dpu + dps * 26) % P; dp0 = t0, dpu = tu, dps = ts; ans = (ans + dps) % P; } cout &amp;lt;&amp;lt; ans; return 0; } 实际上计算可以做到 $\log n$。记三种情况分别为 $o_n, u_n, s_n$，可以解得</description>
+int main() { int n; cin &amp;gt;&amp;gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; for (int i = 1; i &amp;lt;= n; i++) { ll t0 = dp0 * 25 % P; ll tu = (dpu * 25 + dp0) % P; ll ts = (dpu + dps * 26) % P; dp0 = t0, dpu = tu, dps = ts; ans = (ans + dps) % P; } cout &amp;lt;&amp;lt; ans; return 0; } 全部代码请看：Nowcoder/NC9981/A.</description>
     </item>
     
     <item>
@@ -28,7 +28,8 @@ int main() { int n; cin &amp;gt;&amp;gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-03/abc242/</guid>
       <description>A. T-shirt 前 $A$ 名一定获得衣服，在 $[A+1, B]$ 之间的人将随机挑 $C$ 个人获得衣服。
 若已知他排名于 $X$，求其获得衣服的概率。
-分析 int main() { int A, B, C, X; cin &amp;gt;&amp;gt; A &amp;gt;&amp;gt; B &amp;gt;&amp;gt; C &amp;gt;&amp;gt; X; double ans = 0; if (X &amp;lt;= A) { ans = 1; } else if (X &amp;lt;= B &amp;amp;&amp;amp; A != B) { ans = 1.0 * C / (B - A); } printf(&amp;#34;%.12lf&amp;#34;, ans); return 0; } B. Minimize Ordering 给定一个字符串 $S$，请找到 $S$ 的重排 $S&amp;rsquo;$，并且使其字典序尽可能小。</description>
+分析 int main() { int A, B, C, X; cin &amp;gt;&amp;gt; A &amp;gt;&amp;gt; B &amp;gt;&amp;gt; C &amp;gt;&amp;gt; X; double ans = 0; if (X &amp;lt;= A) { ans = 1; } else if (X &amp;lt;= B &amp;amp;&amp;amp; A != B) { ans = 1.0 * C / (B - A); } printf(&amp;#34;%.12lf&amp;#34;, ans); return 0; } 全部代码请看：Atcoder/ABC242/ABC242A.cpp。
+B. Minimize Ordering 给定一个字符串 $S$，请找到 $S$ 的重排 $S&amp;rsquo;$，并且使其字典序尽可能小。</description>
     </item>
     
     <item>
@@ -41,7 +42,7 @@ int main() { int n; cin &amp;gt;&amp;gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps
 A. Shampoo 三个人 F, M, T 按顺序洗澡，其中洗发液用量分别是 $A, B, C$。
 现在洗发液的量 $V$，问谁先无法洗澡？
 分析 第一次没认真读，WA 了一发。
-int main() { int V, A, B, C; cin &amp;gt;&amp;gt; V &amp;gt;&amp;gt; A &amp;gt;&amp;gt; B &amp;gt;&amp;gt; C; V %= A + B + C; if (V &amp;lt; A) { cout &amp;lt;&amp;lt; &amp;#34;F&amp;#34;; } else if (V &amp;lt; A + B) { cout &amp;lt;&amp;lt; &amp;#34;M&amp;#34;; } else { cout &amp;lt;&amp;lt; &amp;#34;T&amp;#34;; } return 0; } B.</description>
+int main() { int V, A, B, C; cin &amp;gt;&amp;gt; V &amp;gt;&amp;gt; A &amp;gt;&amp;gt; B &amp;gt;&amp;gt; C; V %= A + B + C; if (V &amp;lt; A) { cout &amp;lt;&amp;lt; &amp;#34;F&amp;#34;; } else if (V &amp;lt; A + B) { cout &amp;lt;&amp;lt; &amp;#34;M&amp;#34;; } else { cout &amp;lt;&amp;lt; &amp;#34;T&amp;#34;; } return 0; } 全部代码请看：Atcoder/ABC243/ABC243A.</description>
     </item>
     
     <item>

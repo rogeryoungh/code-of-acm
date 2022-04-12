@@ -1,3 +1,5 @@
+double a[N][N];
+
 bool Gauss(int n) {
 	for (int i = 0; i < n; i++) {
 		int mi = i;

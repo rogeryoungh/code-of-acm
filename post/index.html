@@ -171,7 +171,7 @@
     <p>复习一下。
 A. 串 计算长度不超过 $n$ 且蕴含 us 作为子串的字符串有多少个。
 分析 读错题目了，还以为是容斥。对 “出现 us”、“出现 u”、“其他” 三种情况分别 DP。
-int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; for (int i = 1; i &lt;= n; i&#43;&#43;) { ll t0 = dp0 * 25 % P; ll tu = (dpu * 25 &#43; dp0) % P; ll ts = (dpu &#43; dps * 26) % P; dp0 = t0, dpu = tu, dps = ts; ans = (ans &#43; dps) % P; } cout &lt;&lt; ans; return 0; } 实际上计算可以做到 $\log n$。记三种情况分别为 $o_n, u_n, s_n$，可以解得...</p>
+int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; for (int i = 1; i &lt;= n; i&#43;&#43;) { ll t0 = dp0 * 25 % P; ll tu = (dpu * 25 &#43; dp0) % P; ll ts = (dpu &#43; dps * 26) % P; dp0 = t0, dpu = tu, dps = ts; ans = (ans &#43; dps) % P; } cout &lt;&lt; ans; return 0; } 全部代码请看：Nowcoder/NC9981/A....</p>
   </section>
   <footer class="entry-footer">April 6, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to 2021 牛客寒假算法基础集训营 1" href="https://rogeryoungh.github.io/code-of-acm/post/2022-04/nc9981/"></a>
@@ -184,7 +184,8 @@ int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; fo
   <section class="entry-content">
     <p>A. T-shirt 前 $A$ 名一定获得衣服，在 $[A&#43;1, B]$ 之间的人将随机挑 $C$ 个人获得衣服。
 若已知他排名于 $X$，求其获得衣服的概率。
-分析 int main() { int A, B, C, X; cin &gt;&gt; A &gt;&gt; B &gt;&gt; C &gt;&gt; X; double ans = 0; if (X &lt;= A) { ans = 1; } else if (X &lt;= B &amp;&amp; A != B) { ans = 1.0 * C / (B - A); } printf(&#34;%.12lf&#34;, ans); return 0; } B. Minimize Ordering 给定一个字符串 $S$，请找到 $S$ 的重排 $S’$，并且使其字典序尽可能小。...</p>
+分析 int main() { int A, B, C, X; cin &gt;&gt; A &gt;&gt; B &gt;&gt; C &gt;&gt; X; double ans = 0; if (X &lt;= A) { ans = 1; } else if (X &lt;= B &amp;&amp; A != B) { ans = 1.0 * C / (B - A); } printf(&#34;%.12lf&#34;, ans); return 0; } 全部代码请看：Atcoder/ABC242/ABC242A.cpp。
+B. Minimize Ordering 给定一个字符串 $S$，请找到 $S$ 的重排 $S’$，并且使其字典序尽可能小。...</p>
   </section>
   <footer class="entry-footer">March 15, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to AtCoder Beginner Contest 242(A-E)" href="https://rogeryoungh.github.io/code-of-acm/post/2022-03/abc242/"></a>
@@ -199,7 +200,7 @@ int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; fo
 A. Shampoo 三个人 F, M, T 按顺序洗澡，其中洗发液用量分别是 $A, B, C$。
 现在洗发液的量 $V$，问谁先无法洗澡？
 分析 第一次没认真读，WA 了一发。
-int main() { int V, A, B, C; cin &gt;&gt; V &gt;&gt; A &gt;&gt; B &gt;&gt; C; V %= A &#43; B &#43; C; if (V &lt; A) { cout &lt;&lt; &#34;F&#34;; } else if (V &lt; A &#43; B) { cout &lt;&lt; &#34;M&#34;; } else { cout &lt;&lt; &#34;T&#34;; } return 0; } B....</p>
+int main() { int V, A, B, C; cin &gt;&gt; V &gt;&gt; A &gt;&gt; B &gt;&gt; C; V %= A &#43; B &#43; C; if (V &lt; A) { cout &lt;&lt; &#34;F&#34;; } else if (V &lt; A &#43; B) { cout &lt;&lt; &#34;M&#34;; } else { cout &lt;&lt; &#34;T&#34;; } return 0; } 全部代码请看：Atcoder/ABC243/ABC243A....</p>
   </section>
   <footer class="entry-footer">March 12, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to AtCoder Beginner Contest 243(A-G)" href="https://rogeryoungh.github.io/code-of-acm/post/2022-03/abc243/"></a>
