@@ -1,19 +1,9 @@
-#include <bits/stdc++.h>
-
-using namespace std;
-using ll = long long;
-
-int ____ = (ios::sync_with_stdio(0), cin.tie(0), cout.tie(0), 1);
-
-// END OF HEADER | Author: Roger Young
-
 using i128 = __int128_t;
 
-using img = std::complex<long double>;
+using img = std::complex<double>;
 
-using Poly_f = std::vector<img>;
-using Poly_i = std::vector<int>;
-Poly_f w;
+using Poly = std::vector<img>;
+Poly w;
 
 int get_lim(int sum) {
 	int lim = 1, k = 0;
@@ -41,10 +31,11 @@ void pre_w(int n) {
 	LIM = lim;
 }
 
-void fft(Poly_f &f, int n) {
-	pre_w(n);
-	for (int l = n / 2; l; l >>= 1)
-		for (int i = 0; i < n; i += l * 2)
+void fft(Poly &f) {
+	int deg = f.size();
+	pre_w(deg);
+	for (int l = deg >> 1; l; l >>= 1)
+		for (int i = 0; i < deg; i += (l << 1))
 			for (int j = 0; j < l; j++) {
 				img x = f[i + j] + f[i + j + l];
 				f[i + j + l] = w[j + l] * (f[i + j] - f[i + j + l]);
@@ -52,40 +43,41 @@ void fft(Poly_f &f, int n) {
 			}
 }
 
-void ifft(Poly_f &f, int n) {
-	pre_w(n);
-	for (int l = 1; l < n; l <<= 1)
-		for (int i = 0; i < n; i += (l << 1))
+void ifft(Poly &f) {
+	int deg = f.size();
+	pre_w(deg);
+	for (int l = 1; l < deg; l <<= 1)
+		for (int i = 0; i < deg; i += (l << 1))
 			for (int j = 0; j < l; j++) {
 				img x = f[i + j], y = f[i + j + l] * w[j + l];
 				f[i + j] = x + y, f[i + j + l] = x - y;
 			}
-	for (int i = 0; i < n; i++)
-		f[i] /= n;
+	for (int i = 0; i < deg; i++)
+		f[i] /= deg;
 	std::reverse(f.begin() + 1, f.end());
 }
 
-Poly_i mul(const Poly_i &a, const Poly_i &b) {
+vector<int> mul(const vector<int> &a, const vector<int> &b) {
 	int n = a.size(), m = b.size(), lim = get_lim(n + m - 1);
-	Poly_f f(lim);
+	Poly f(lim);
 	for (int i = 0; i < n; i++)
 		f[i] += img(a[i], 0);
 	for (int i = 0; i < m; i++)
 		f[i] += img(0, b[i]);
-	fft(f, lim);
+	fft(f);
 	for (int i = 0; i < lim; i++)
 		f[i] = f[i] * f[i];
-	ifft(f, lim);
-	Poly_i ans(n + m - 1);
+	ifft(f);
+	vector<int> ans(n + m - 1);
 	for (int i = 0; i < n + m - 1; i++)
 		ans[i] = int(f[i].imag() / 2 + 0.5);
 	return ans;
 }
 
-Poly_i intmod_mul(const Poly_i &a, const Poly_i &b, int p) {
+vector<i128> intmod_mul(const vector<int> &a, const vector<int> &b, int p) {
 	const int LIM = 1 << 16;
 	int n = a.size(), m = b.size(), lim = get_lim(n + m - 1);
-	Poly_f A1(lim), A2(lim), Q(lim);
+	Poly A1(lim), A2(lim), Q(lim);
 	for (int i = 0; i < n; i++) {
 		A1[i] = img(a[i] / LIM, a[i] % LIM);
 		A2[i] = img(a[i] / LIM, -a[i] % LIM);
@@ -93,39 +85,21 @@ Poly_i intmod_mul(const Poly_i &a, const Poly_i &b, int p) {
 	for (int i = 0; i < m; i++) {
 		Q[i] = img(b[i] / LIM, b[i] % LIM);
 	}
-	fft(A1, lim), fft(A2, lim), fft(Q, lim);
+	fft(A1), fft(A2), fft(Q);
 	for (int i = 0; i < lim; i++)
 		A1[i] *= Q[i];
 	for (int i = 0; i < lim; i++)
 		A2[i] *= Q[i];
-	ifft(A1, lim), ifft(A2, lim);
-	Poly_i ans(n + m - 1);
+	ifft(A1);
+	ifft(A2);
+	vector<i128> ans(n + m - 1);
 
 	for (int i = 0; i < m + n - 1; i++) {
-		ll a1b1 = (A1[i].real() + A2[i].real() + 1) / 2;
-		ll a1b2 = (A1[i].imag() + A2[i].imag() + 1) / 2;
-		ll a2b1 = (A1[i].imag() - A2[i].imag() + 1) / 2;
-		ll a2b2 = (A2[i].real() - A1[i].real() + 1) / 2;
-		ll t = (a1b1 * LIM + a1b2 + a2b1) % p * LIM + a2b2;
-		ans[i] = t % p;
+		i128 a1b1 = (A1[i].real() + A2[i].real() + 1) / 2;
+		i128 a1b2 = (A1[i].imag() + A2[i].imag() + 1) / 2;
+		i128 a2b1 = (A1[i].imag() - A2[i].imag() + 1) / 2;
+		i128 a2b2 = (A2[i].real() - A1[i].real() + 1) / 2;
+		ans[i] = (a1b1 * LIM + a1b2 + a2b1) * LIM + a2b2;
 	}
 	return ans;
-}
-
-int main() {
-	int n, m;
-	cin >> n >> m;
-	Poly_i a(n), b(m);
-
-	for (int i = 0; i < n; i++) {
-		cin >> a[i];
-	}
-	for (int i = 0; i < m; i++) {
-		cin >> b[i];
-	}
-	auto ans = intmod_mul(a, b, 1E9 + 7);
-	for (int i = 0; i < m + n - 1; i++) {
-		cout << ans[i] << " ";
-	}
-	return 0;
 }
