@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.96.0" />
+<meta name="generator" content="Hugo 0.97.3" />
 <link rel="alternate" type="application/rss+xml" href="https://rogeryoungh.github.io/code-of-acm/post/index.xml">
 
 
@@ -165,6 +165,20 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P1990 覆盖墙壁</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 有 I 形和 L 形两种砖头，分别能覆盖 2 个单元和 3 个单元。求 $2 \times n$ 的墙有多少不重复的覆盖方式，结果对 $10^4$ 取模。
+分析 其中 I 形砖块仅有横放和竖放两种。关键在于 L 形，两个 L 形之间可以用 I 形填充，这让情况变得复杂起来。
+对于 $F_n$ 的递推，我们可以想到
+ 在 $F_{n-1}$ 后放一个 I 形砖块。 在 $F_{n-2}$ 后放两个横着的 I 形砖块。 对于更前面的递推，较为复杂。  两个 L 形砖块对齐，上下翻转也可以，即 $2 F_{n-3}$。 两个 L 形砖块可以对顶放，空缺恰用一个 I 填充，即 $2 F_{n-4}$。 类似 $2F_{n-3}$，中间可以再插入两个 I 形，即 $2 F_{n-5}$。 …… 直到 I 形和 L 形砖块恰好铺满墙壁，即 $2F_{0}$。    容易得到我们的递推式...</p>
+  </section>
+  <footer class="entry-footer">October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1990 覆盖墙壁" href="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1990/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P4995 跳跳！</h2>
   </header>
   <section class="entry-content">
@@ -299,20 +313,10 @@ $$ dp[h,x_1,x_2] = \max\left\{ \begin{matrix} dp[h-1,x_1,x_2] \\ dp[h-1,x_1,x_2-
   <footer class="entry-footer"></footer>
   <a class="entry-link" aria-label="post link to 模板生成" href="https://rogeryoungh.github.io/code-of-acm/post/other/template-gen/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>贴代码</h2>
-  </header>
-  <section class="entry-content">
-    <p></p>
-  </section>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to 贴代码" href="https://rogeryoungh.github.io/code-of-acm/post/other/code/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="https://rogeryoungh.github.io/code-of-acm/post/page/6/">« Prev Page</a>
+    <a class="next" href="https://rogeryoungh.github.io/code-of-acm/post/page/8/">Next Page »</a>
   </nav>
 </footer>
     </main>

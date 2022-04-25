@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.96.0" />
+<meta name="generator" content="Hugo 0.97.3" />
 <link rel="alternate" type="application/rss+xml" href="https://rogeryoungh.github.io/code-of-acm/post/index.xml">
 
 
@@ -162,6 +162,23 @@
 <header class="page-header">
   <h1>Posts</h1>
 </header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P6492 STEP</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定一个长度为 $n$ 的字符序列，初始全是 L。
+有 $q$ 次操作，每次将 $a_x$ 在 L 和 R 中切换。
+求每次操作后字符串中最长交错序列的长度。
+分析 首先需要逐位异或，把交错序列变成相同元素。我想到的是另一种办法，如果 $a_i$ 相对与 $a_{i-1}$ 是变化的，那么 $b_i$ 为 $1$。原问题即被转化为维护最长 $1$ 的个数。
+用线段树维护每一层的信息，其中 $l$ 表示左边界上的最长长度，$r$ 表示右边界上的最长长度，$val$ 表示整个区间上的最长长度。
+关键在于如何编写 pull 合并信息。
+ 如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。  struct SegmentTree { vector&lt;int&gt; l, r, val; int N; SegmentTree(int n) { N = 2 &lt;&lt; std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 &#43; 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] &#43;= l[rs]; if (r[rs] == len) r[p] &#43;= r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] &#43; l[rs]}); } void modify(int i) { i &#43;= N; l[i] = r[i] = val[i] = !...</p>
+  </section>
+  <footer class="entry-footer">February 22, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P6492 STEP" href="https://rogeryoungh.github.io/code-of-acm/post/2022-02/p6492/"></a>
+</article>
 
 <article class="post-entry"> 
   <header class="entry-header">
@@ -308,28 +325,6 @@ template &lt;class T&gt; struct SegmentTree { vector&lt;T&gt; tr; int N; Segment
   </section>
   <footer class="entry-footer">January 28, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P5057 简单题" href="https://rogeryoungh.github.io/code-of-acm/post/2022-01/p5057/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>代码模板</h2>
-  </header>
-  <section class="entry-content">
-    <p>我的代码模板依赖于我自定义的预处理器，它通过 DFS 把所有引入的模板展开。
- index.hpp：公共文件头。  我的模板风格是简单封装：在保持易用的同时，封装尽量的薄。
-Data Struct 基础数据结构。
- fwtree/1.hpp：普通树状数组。 fwtree/2.hpp：支持区间修改、区间查询的树状数组。 SegmentTree/1.hpp：普通线段树示例，不可引入。 SegmentTree/2.hpp：带懒标记的线段树示例，不可引入。  Math 基础数学算法。
- qpow.hpp：快速幂。 qpow128.hpp：64 位类型的快速幂。  Basic 我也不知道这东西该放哪，就放到这里吧。
- modint：m32。  NTT-int 简化多项式板子，码量少，常数较大。
- fps/O.hpp：多项式基础结构，用牛顿迭代完成操作。 fps/F.hpp：与上面的相同，略卡常数。 cdq.hpp：非递归 CDQ 分治。 eval.hpp：多点插值，多点求值。  没有用的 NTT-mint 基于 modint 的多项式板子，注重易用性和常数，码量较大。
-每一种算法可能有多种实现。
-多项式类的定义
- poly/1.hpp：继承于 vector&lt;m32&gt;。  NTT
- ntt/1.hpp：无 rev 的 NTT。 ntt/2.hpp：略微卡常的 NTT。  多项式逆
- inv/1.hpp：12E 的牛顿迭代 inv，和 16E 的牛顿迭代 div。 inv/2.hpp：10E 的牛顿迭代 inv，和 13E 的牛顿迭代 div。 inv/3....</p>
-  </section>
-  <footer class="entry-footer">January 22, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to 代码模板" href="https://rogeryoungh.github.io/code-of-acm/post/other/docs/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

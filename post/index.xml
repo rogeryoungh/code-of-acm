@@ -7,7 +7,24 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© 2021 [Roger Young](https://rogeryoungh.github.io/blog/about/)</copyright>
-    <lastBuildDate>Wed, 06 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Codeforces Round #707</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-04/cf1501/</link>
+      <pubDate>Mon, 25 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-04/cf1501/</guid>
+      <description>咕了好久。
+A. Alexey and Train 奇怪的模拟。略。
+全部代码请看：Codeforces/CF1501/CF1501B.cpp。
+B. Napoleon Cake 略。
+全部代码请看：Codeforces/CF1501/CF1501B.cpp。
+C. Going Home 给定一个数组，请给出是否存在四元组使得
+$$ a_w + a_v = a_x + a_y $$
+分析 这题很诈骗。注意到 $x+y$ 最多只有 $5 \times 10^6$ 种情况，暴力即可。
+int main() { int n; cin &amp;gt;&amp;gt; n; vector&amp;lt;int&amp;gt; a(n); for (auto &amp;amp;ai : a) { cin &amp;gt;&amp;gt; ai; } vector&amp;lt;pii&amp;gt; u(N + 1); for (int i = 0; i &amp;lt; n; i++) { for (int j = 0; j &amp;lt; i; j++) { int sum = a[i] + a[j]; if (u[sum] !</description>
+    </item>
+    
     <item>
       <title>2021 牛客寒假算法基础集训营 1</title>
       <link>https://rogeryoungh.github.io/code-of-acm/post/2022-04/nc9981/</link>

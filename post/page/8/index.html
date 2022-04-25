@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Mobius 反演 | Roger Young</title>
+<title>Posts | Roger Young</title>
 <meta name="keywords" content="" />
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/tags/mobius-%E5%8F%8D%E6%BC%94/" />
+<link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/" />
 <link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
 <link rel="icon" href="https://rogeryoungh.github.io/code-of-acm/favicon.ico">
@@ -20,20 +20,35 @@
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.97.3" />
-<link rel="alternate" type="application/rss+xml" href="https://rogeryoungh.github.io/code-of-acm/tags/mobius-%E5%8F%8D%E6%BC%94/index.xml">
+<link rel="alternate" type="application/rss+xml" href="https://rogeryoungh.github.io/code-of-acm/post/index.xml">
 
 
 
 
-<meta property="og:title" content="Mobius 反演" />
+<meta property="og:title" content="Posts" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/tags/mobius-%E5%8F%8D%E6%BC%94/" />
+<meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Mobius 反演"/>
+<meta name="twitter:title" content="Posts"/>
 <meta name="twitter:description" content=""/>
 
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Posts",
+      "item": "https://rogeryoungh.github.io/code-of-acm/post/"
+    }
+  ]
+}
+</script>
 </head>
 
 <body class="list" id="top">
@@ -145,62 +160,24 @@
 </header>
 <main class="main"> 
 <header class="page-header">
-  <h1>Mobius 反演</h1>
+  <h1>Posts</h1>
 </header>
 
-<article class="post-entry tag-entry"> 
+<article class="post-entry"> 
   <header class="entry-header">
-    <h2>HDU6750 Function</h2>
+    <h2>贴代码</h2>
   </header>
   <section class="entry-content">
-    <p>题目大意 定义
-$$ f (n) = \sum_{d \mid n} d \left[ \gcd \left( d, \frac{n}{d} \right) = 1 \right] $$
-求其前缀和 $S(n)$。
-分析 首先 Min25 筛是过不了的，内存不够。先推式子
-$$ \begin{aligned} S (n) &amp;= \sum_{i = 1}^n \sum_{d \mid i} d \left[ \gcd \left( d, \frac{i}{d} \right) = 1 \right] \\ &amp;= \sum_{d = 1}^n \sum_{i = 1}^n d [d \mid i] \left[\gcd \left( d, \frac{i}{d} \right) = 1 \right] \\ &amp;= \sum_{d = 1}^n \sum_{i = 1}^{n / d} d [\gcd (i, d) = 1] \end{aligned} $$...</p>
+    <p></p>
   </section>
-  <footer class="entry-footer">September 22, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to HDU6750 Function" href="https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6750/"></a>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to 贴代码" href="https://rogeryoungh.github.io/code-of-acm/post/other/code/"></a>
 </article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2>P2257 YY 的 GCD</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 即求
-$$ \sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) \in \mathbb{P}] $$
-分析 先转化一下
-$$ \sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) \in \mathbb{P}] = \sum_{p}\sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) = p] $$
-在 P2522 中得到
-$$ \sum_{i=1}^x \sum_{j=1}^y [\gcd(i,j) = k] = \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tk} \right\rfloor \left\lfloor \frac{y}{tk} \right\rfloor $$
-代入有
-$$ \sum_{p} \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tp} \right\rfloor \left\lfloor \frac{y}{tp} \right\rfloor $$
-令 $T = tp$，$T$ 的上界应还是 $\min(x,y)$，代入有
-$$ \sum_{T=1}^{\min(x,y)} \left\lfloor \frac{x}{T} \right\rfloor \left\lfloor \frac{y}{T} \right\rfloor \sum_{p \mid T} \mu\left(\frac{T}{p}\right) $$...</p>
-  </section>
-  <footer class="entry-footer">May 26, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P2257 YY 的 GCD" href="https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2257/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2>P2522 Problem B</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 即求
-$$ \sum_{i=a}^b \sum_{j=c}^d [\gcd(i,j) = k] $$
-分析 容易想到，独立出函数 $f(k)$ 使得
-$$ f(k) = \sum_{i=1}^x \sum_{j=1}^y [\gcd(i,j) = k] $$
-利用 Mobius 反演化简，设 $F(d)$
-$$ F(n) = \sum_{n \mid d} f(d) = \sum_{i=1}^x \sum_{j=1}^y [n \mid i][n \mid j] = \left\lfloor \frac{x}{n} \right\rfloor \left\lfloor \frac{y}{n} \right\rfloor $$
-反演化简有
-$$ f(n) = \sum_{n \mid d} \mu\left(\frac{d}{n}\right)F(d) = \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tn} \right\rfloor \left\lfloor \frac{y}{tn} \right\rfloor $$
-预处理出 $\mu(t)$ 的前缀和，剩下的就是一个二重分块了。...</p>
-  </section>
-  <footer class="entry-footer">May 19, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P2522 Problem B" href="https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2522/"></a>
-</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://rogeryoungh.github.io/code-of-acm/post/page/7/">« Prev Page</a>
+  </nav>
+</footer>
     </main>
     <footer class="footer">
     <span>© 2021 <a href="https://rogeryoungh.github.io/blog/about/">Roger Young</a></span>

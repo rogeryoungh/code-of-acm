@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.96.0" />
+<meta name="generator" content="Hugo 0.97.3" />
 <link rel="alternate" type="application/rss+xml" href="https://rogeryoungh.github.io/code-of-acm/post/index.xml">
 
 
@@ -162,6 +162,28 @@
 <header class="page-header">
   <h1>Posts</h1>
 </header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>代码模板</h2>
+  </header>
+  <section class="entry-content">
+    <p>我的代码模板依赖于我自定义的预处理器，它通过 DFS 把所有引入的模板展开。
+ index.hpp：公共文件头。  我的模板风格是简单封装：在保持易用的同时，封装尽量的薄。
+Data Struct 基础数据结构。
+ fwtree/1.hpp：普通树状数组。 fwtree/2.hpp：支持区间修改、区间查询的树状数组。 SegmentTree/1.hpp：普通线段树示例，不可引入。 SegmentTree/2.hpp：带懒标记的线段树示例，不可引入。  Math 基础数学算法。
+ qpow.hpp：快速幂。 qpow128.hpp：64 位类型的快速幂。  Basic 我也不知道这东西该放哪，就放到这里吧。
+ modint：m32。  NTT-int 简化多项式板子，码量少，常数较大。
+ fps/O.hpp：多项式基础结构，用牛顿迭代完成操作。 fps/F.hpp：与上面的相同，略卡常数。 cdq.hpp：非递归 CDQ 分治。 eval.hpp：多点插值，多点求值。  没有用的 NTT-mint 基于 modint 的多项式板子，注重易用性和常数，码量较大。
+每一种算法可能有多种实现。
+多项式类的定义
+ poly/1.hpp：继承于 vector&lt;m32&gt;。  NTT
+ ntt/1.hpp：无 rev 的 NTT。 ntt/2.hpp：略微卡常的 NTT。  多项式逆
+ inv/1.hpp：12E 的牛顿迭代 inv，和 16E 的牛顿迭代 div。 inv/2.hpp：10E 的牛顿迭代 inv，和 13E 的牛顿迭代 div。 inv/3....</p>
+  </section>
+  <footer class="entry-footer">January 22, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to 代码模板" href="https://rogeryoungh.github.io/code-of-acm/post/other/docs/"></a>
+</article>
 
 <article class="post-entry"> 
   <header class="entry-header">
@@ -328,21 +350,6 @@ $$ \begin{aligned} {\rm DP}_0[i, j] &amp;= \max\{ {\rm DP}_0[i - 1, j - 1], {\rm
   </section>
   <footer class="entry-footer">October 17, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P4059 找爸爸" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/p4059/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>HDU6955 Xor sum</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 给定整数序列 $\{a_n\}$，寻找满足区间异或和大于等于 $k$ 的连续序列中最短的。
-若有多个同样长度的答案，输出位置靠前的，若不存在输出 -1。
-分析 看到异或最值就应该想到 01trie。做前缀异或和，这样我们的问题就变成找到最靠近的两个数，其异或大于等于 $k$。
-因为要求位置最靠前的，所以我选择倒着遍历。当遍历到第 $i$ 个数 $a_i$ 时，字典树已经维护好此位置之后的数据，即每个值出现最左边的位置。
-const int maxn = 1e5 &#43; 10, o = 30 - 1; int trie[maxn * 30][2], val[maxn * 30], tot, n, k; void insert(int ai, int i) { int p = 1; for (int j = o; j &gt;= 0; j--) { int ch = (ai &gt;&gt; j) &amp; 1; if (trie[p][ch] == 0) trie[p][ch] = &#43;&#43;tot; p = trie[p][ch]; val[p] = i; } } 我们只需从高位到低位遍历第 $j$ 位，分类讨论：...</p>
-  </section>
-  <footer class="entry-footer">October 11, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to HDU6955 Xor sum" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/hdu6955/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
