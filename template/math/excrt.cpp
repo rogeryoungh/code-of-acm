@@ -6,16 +6,18 @@ std::tuple<ll, ll, ll> exgcd(ll a, ll b) {
 	return {x, y - a / b * x, g};
 }
 
-ll excrt(const vector<ll> &aa, const vector<ll> &nn) {
-	ll ans = aa[0], M = nn[0];
+ll excrt(const vector<ll> &aa, const vector<ll> &mm) {
+	ll ans = aa[0], M = mm[0];
 	for (int i = 1; i < aa.size(); i++) {
-		if (M % nn[i] == 0 && ans % nn[i] == aa[i])
+		if (M % mm[i] == 0 && ans % mm[i] == aa[i])
 			continue;
-		ll B = (aa[i] - ans % nn[i] + nn[i]) % nn[i];
-		auto [x, y, gcd] = exgcd(M, nn[i]);
-		x = (i128)x * (B / gcd) % nn[i];
+		ll B = (aa[i] - ans % mm[i] + mm[i]) % mm[i];
+		auto [x, y, gcd] = exgcd(M, mm[i]);
+		if (B % gcd != 0)
+			return -1;
+		x = (i128)x * (B / gcd) % (mm[i] / gcd);
 		ans += M * x;
-		M *= nn[i] / gcd;
+		M *= mm[i] / gcd;
 		ans = (ans + M) % M;
 	}
 	return ans;
