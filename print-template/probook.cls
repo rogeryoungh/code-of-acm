@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{probook}[2021/03/16 v0.0.1 Program Document Class]
 
-\LoadClass[a4paper,oneside,UTF8,fontset=none]{ctexbook}
+\LoadClass[a4paper,oneside,UTF8,fontset=foundr]{ctexbook}
 
 %%%% pronote 设置
 
@@ -12,7 +12,7 @@
 \RequirePackage{amssymb}
 \RequirePackage{mathtools}
 \RequirePackage{mathrsfs}
-\RequirePackage[xindy]{imakeidx}
+% \RequirePackage[xindy]{imakeidx}
 
 %% 页面设置
 
@@ -70,19 +70,19 @@
 %\setCJKfamilyfont{zhsong}{FZShuSong-Z01}
 %\setCJKfamilyfont{zhhei}{FZHei-B01}
 %\setCJKfamilyfont{zhbsong}{方正小标宋_GBK}
-\setCJKmainfont[BoldFont={Noto Serif CJK SC Bold},ItalicFont={Noto Sans CJK SC}]{Noto Serif CJK SC}
-\setCJKsansfont{Noto Sans CJK SC}
-\setCJKmonofont{Sarasa Mono SC}
-\setCJKfamilyfont{zhsong}{Noto Serif CJK SC}
-\setCJKfamilyfont{zhhei}{Noto Sans CJK SC}
-\setCJKfamilyfont{zhkai}{FZKai-Z03}
-\setCJKfamilyfont{zhfs}{FZFangSong-Z02}
-\setCJKfamilyfont{zhbsong}{Noto Serif CJK SC Bold}
-\newcommand*{\fzsong}{\CJKfamily{zhsong}}
-\newcommand*{\fzhei}{\CJKfamily{zhhei}}
-\newcommand*{\fzkai}{\CJKfamily{zhkai}}
-\newcommand*{\fzxbs}{\CJKfamily{zhbsong}}
-\newcommand*{\fzfs}{\CJKfamily{zhfs}}
+% \setCJKmainfont[BoldFont={Noto Serif CJK SC Bold},ItalicFont={Noto Sans CJK SC}]{Noto Serif CJK SC}
+% \setCJKsansfont{Noto Sans CJK SC}
+% \setCJKmonofont{Sarasa Mono SC}
+% \setCJKfamilyfont{zhsong}{Noto Serif CJK SC}
+% \setCJKfamilyfont{zhhei}{Noto Sans CJK SC}
+% \setCJKfamilyfont{zhkai}{FZKai-Z03}
+% \setCJKfamilyfont{zhfs}{FZFangSong-Z02}
+% \setCJKfamilyfont{zhbsong}{Noto Serif CJK SC Bold}
+% \newcommand*{\fzsong}{\CJKfamily{zhsong}}
+% \newcommand*{\fzhei}{\CJKfamily{zhhei}}
+% \newcommand*{\fzkai}{\CJKfamily{zhkai}}
+% \newcommand*{\fzxbs}{\CJKfamily{zhbsong}}
+% \newcommand*{\fzfs}{\CJKfamily{zhfs}}
 
 %% 代码
 
