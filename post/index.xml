@@ -7,7 +7,24 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© 2021 [Roger Young](https://rogeryoungh.github.io/blog/about/)</copyright>
-    <lastBuildDate>Mon, 25 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>P8240 偷铀计划</title>
+      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-05/p8240/</link>
+      <pubDate>Sun, 01 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-05/p8240/</guid>
+      <description>随机到了一个神秘题目。
+题目大意 在 $n$ 个点的无向图中，有 $k$ 个点有守卫。假如你携带有 $x$ 千克的铀，那么你在移动时与这些守卫的距离必须都大于 $x$。
+多组询问，回答从点 $x$ 运输到点 $y$ 最多能运输多少铀。
+分析 这题对算法的考察较为综合，卡了我一天。
+首先需要求出每个点到最近的守卫的距离 $dis$，在 dijkstra 时设置多个起点即可。
+把每个边的权值设置为两个端点 $dis$ 的最小值，重新建图 $G_2$。
+接下来是关键的一步：得到 $G_2$ 的最大生成树 $G_3$，任何运输路径都在最大生成树上。
+最后用 LCA 维护树两点之间路径的权值 $\min$。
+int main() { int n, m; cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m; for (int i = 0; i &amp;lt; m; i++) { int x, y, z; cin &amp;gt;&amp;gt; x &amp;gt;&amp;gt; y &amp;gt;&amp;gt; z; G1[x].push_back({y, z}); G1[y].push_back({x, z}); } int k; cin &amp;gt;&amp;gt; k; vector&amp;lt;int&amp;gt; start(k); for (auto &amp;amp;si : start) cin &amp;gt;&amp;gt; si; auto dis = dijkstra(n, start); for (int u = 1; u &amp;lt;= n; u++) { for (auto [v, w] : G1[u]) { ll tw = min(dis[u], dis[v]); G2[u].</description>
+    </item>
+    
     <item>
       <title>Codeforces Round #707</title>
       <link>https://rogeryoungh.github.io/code-of-acm/post/2022-04/cf1501/</link>

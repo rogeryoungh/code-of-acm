@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.97.3" />
+<meta name="generator" content="Hugo 0.98.0" />
 <link rel="alternate" type="application/rss+xml" href="https://rogeryoungh.github.io/code-of-acm/post/index.xml">
 
 
@@ -165,6 +165,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P1019 单词接龙</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 对于字符串 $a,b$，若 $a$ 的末尾与 $b$ 的开头有部分字符串相同，则其可以拼接起来。例如 at &#43; tact = atact。
+给定词典和初始字母，每个单词最多出现两次，求最大拼接长度。
+分析 我是没想出来，经题解提示了拼接函数才写出来的。
+设 $mt(x,y)$ 为第 $x$ 和 $y$ 个单词拼接后的最小重合长度，其可简单的通过匹配得到。
+char s[30][100]; ll len[30]; ll mt[30][30]; void init(int x, int y) { ll ml = min(len[x], len[y]) - 1; for (ll i = 1; i &lt;= ml; i&#43;&#43;) { int flag = 1; for (ll j = 0; j &lt;= i - 1; j&#43;&#43;) { if (s[x][len[x] &#43; j - i] !...</p>
+  </section>
+  <footer class="entry-footer">March 29, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1019 单词接龙" href="https://rogeryoungh.github.io/code-of-acm/post/2021-03/p1019/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P2678 跳石头</h2>
   </header>
   <section class="entry-content">
@@ -307,20 +322,6 @@ ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l &
   </section>
   <footer class="entry-footer">October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P1923 求第 $k$ 小的数" href="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1923/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P1928 外星密码</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 我们将重复的 $n$ 个字符串 S 压缩为 [nS]，且存在多重压缩。给定一个压缩结果，展开它。
-分析 我考虑用类似状态机的方式解析字符串。
- 当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$  写成 BNF 更直观一点
-&lt;pwd&gt; ::= &lt;EMPTY&gt; | {&lt;ALPHA&gt;} | &lt;pwd&gt; &#34;[&#34; &lt;NUMBER&gt; &lt;pwd&gt; &#34;]&#34; &lt;pwd&gt; string read() { string s = &#34;&#34;; char c; while (cin &gt;&gt; c) { if (c == &#39;[&#39;) { int n; cin &gt;&gt; n; string ts = read(); while (n--) s &#43;= ts; } else if (c == &#39;]&#39;) { return s; } else { s &#43;= c; } } return s; } int main() { cout &lt;&lt; read(); return 0; } </p>
-  </section>
-  <footer class="entry-footer">October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P1928 外星密码" href="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1928/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.97.3" />
+<meta name="generator" content="Hugo 0.98.0" />
 <link rel="alternate" type="application/rss+xml" href="https://rogeryoungh.github.io/code-of-acm/post/index.xml">
 
 
@@ -162,6 +162,20 @@
 <header class="page-header">
   <h1>Posts</h1>
 </header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P5057 简单题</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定一个 01 序列，有如下操作：
+ 将区间 $[l,r]$ 上的数 01 翻转。 询问第 $i$ 个数的值。  分析 区间操作，单点查询，很自然的想到了差分。
+用异或或者加减代替翻转都可以，用树状数组维护。我选择了加减，这样询问时对 $2$ 取余即可。
+#include &#34;template/ds/fwtree/0.hpp&#34; int main() { int n = rr(), m = rr(); fwtree_1&lt;int&gt; tr(n &#43; 2); while (m--) { int t = rr(); if (t == 1) { int l = rr() &#43; 1, r = rr() &#43; 1; tr.modify(l - 1, -1), tr.modify(r, 1); } else { int i = rr(); i = tr....</p>
+  </section>
+  <footer class="entry-footer">January 28, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P5057 简单题" href="https://rogeryoungh.github.io/code-of-acm/post/2022-01/p5057/"></a>
+</article>
 
 <article class="post-entry"> 
   <header class="entry-header">
@@ -333,23 +347,6 @@ const int maxn = 18; ll ci[maxn]; ll ff[1 &lt;&lt; maxn], gg[1 &lt;&lt; maxn]; i
   </section>
   <footer class="entry-footer">October 18, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P3052 Cows in a Skyscraper G" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/p3052/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P4059 找爸爸</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 给定两串 DNA 序列，可以在其中任意插空格，然后逐位比较，当两位都是字母时查表得到相似度。
-长度为 $k$ 的空格有额外相似度 $- A - B(k - 1)$。求两序列的最大相似度。
-分析 若不考虑空格的贡献，容易想到二维 DP，记 ${\rm DP}[i,j]$ 是 $A$ 串到位置 $i$ 同时 $B$ 串到位置 $j$ 时最大的相似度，有
-$$ {\rm DP}[i, j] = \max\{ {\rm DP}[i - 1, j - 1] &#43; D[i, j], {\rm DP}[i - 1, j], {\rm DP}[i, j - 1] \} $$
-当我们考虑空格的贡献时，可以发现空格的额外贡献只与前面一位有关。若两个序列此位都是空格，则把去掉后相似度一定会增加，故只有三种可能：设 ${\rm DP}_0$ 是结尾没有空格；${\rm DP}_1$ 是空格在 $A$ 串；${\rm DP}_2$ 是空格在 $B$ 串。
-思考最后一个空格的转移方式，自然有方程
-$$ \begin{aligned} {\rm DP}_0[i, j] &amp;= \max\{ {\rm DP}_0[i - 1, j - 1], {\rm DP}_1[i - 1, j - 1], {\rm DP}_2[i - 1, j - 1] \} &#43; D[i, j] \\ {\rm DP}_1[i, j] &amp;= \max\{ {\rm DP}_0[i, j - 1] - A, {\rm DP}_1[i, j - 1]- B, {\rm DP}_2[i, j - 1] - A\} \\ {\rm DP}_2[i, j] &amp;= \max\{ {\rm DP}_0[i - 1, j] - A, {\rm DP}_1[i - 1, j] - A, {\rm DP}_2[i, j - 1] - B \} \\ \end{aligned} $$...</p>
-  </section>
-  <footer class="entry-footer">October 17, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P4059 找爸爸" href="https://rogeryoungh.github.io/code-of-acm/post/2021-10/p4059/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

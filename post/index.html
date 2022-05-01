@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.97.3" />
+<meta name="generator" content="Hugo 0.98.0" />
 <link rel="alternate" type="application/rss+xml" href="https://rogeryoungh.github.io/code-of-acm/post/index.xml">
 
 
@@ -165,6 +165,25 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P8240 偷铀计划</h2>
+  </header>
+  <section class="entry-content">
+    <p>随机到了一个神秘题目。
+题目大意 在 $n$ 个点的无向图中，有 $k$ 个点有守卫。假如你携带有 $x$ 千克的铀，那么你在移动时与这些守卫的距离必须都大于 $x$。
+多组询问，回答从点 $x$ 运输到点 $y$ 最多能运输多少铀。
+分析 这题对算法的考察较为综合，卡了我一天。
+首先需要求出每个点到最近的守卫的距离 $dis$，在 dijkstra 时设置多个起点即可。
+把每个边的权值设置为两个端点 $dis$ 的最小值，重新建图 $G_2$。
+接下来是关键的一步：得到 $G_2$ 的最大生成树 $G_3$，任何运输路径都在最大生成树上。
+最后用 LCA 维护树两点之间路径的权值 $\min$。
+int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; for (int i = 0; i &lt; m; i&#43;&#43;) { int x, y, z; cin &gt;&gt; x &gt;&gt; y &gt;&gt; z; G1[x].push_back({y, z}); G1[y].push_back({x, z}); } int k; cin &gt;&gt; k; vector&lt;int&gt; start(k); for (auto &amp;si : start) cin &gt;&gt; si; auto dis = dijkstra(n, start); for (int u = 1; u &lt;= n; u&#43;&#43;) { for (auto [v, w] : G1[u]) { ll tw = min(dis[u], dis[v]); G2[u]....</p>
+  </section>
+  <footer class="entry-footer">May 1, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P8240 偷铀计划" href="https://rogeryoungh.github.io/code-of-acm/post/2022-05/p8240/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Codeforces Round #707</h2>
   </header>
   <section class="entry-content">
@@ -301,19 +320,6 @@ int main() { int T; cin &gt;&gt; T; while (T--) { string s; cin &gt;&gt; s; vect
   </section>
   <footer class="entry-footer">February 23, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to Educational Codeforces Round 123 (Rated for Div. 2)(A-C)" href="https://rogeryoungh.github.io/code-of-acm/post/2022-02/cf1644/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>CF242E XOR on Segment</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 给定一个长为 $n$ 的数列 $\{a_i\}$，有如下操作
- 询问区间 $[l, r]$ 上的和。 对 $[l, r]$ 区间上每个数异或上一个数 $x$。  分析 只需注意到异或是不进位的，我们可以单独维护数列的每一位。开二十棵线段树即可。
-int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; a(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { cin &gt;&gt; a[i]; } vector&lt;SegmentTree&lt;int&gt;&gt; tr; for (int k = 0; k &lt; 20; k&#43;&#43;) { tr.push_back(SegmentTree&lt;int&gt;(n &#43; 1)); vector&lt;int&gt; tmp(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { if ((1 &lt;&lt; k) &amp; a[i]) tmp[i] = 1; } tr[k]....</p>
-  </section>
-  <footer class="entry-footer">February 22, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to CF242E XOR on Segment" href="https://rogeryoungh.github.io/code-of-acm/post/2022-02/cf242e/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
