@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>二分 on Roger Young</title>
-    <link>https://rogeryoungh.github.io/code-of-acm/tags/%E4%BA%8C%E5%88%86/</link>
+    <link>https://acm.rogery.dev/tags/%E4%BA%8C%E5%88%86/</link>
     <description>Recent content in 二分 on Roger Young</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <copyright>© 2021 [Roger Young](https://rogeryoungh.github.io/blog/about/)</copyright>
-    <lastBuildDate>Tue, 13 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/tags/%E4%BA%8C%E5%88%86/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2021 [Roger Young](https://acm.rogery.dev)</copyright>
+    <lastBuildDate>Tue, 13 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/tags/%E4%BA%8C%E5%88%86/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>P1314 聪明的质检员</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-04/p1314/</link>
+      <link>https://acm.rogery.dev/post/2021-04/p1314/</link>
       <pubDate>Tue, 13 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-04/p1314/</guid>
+      <guid>https://acm.rogery.dev/post/2021-04/p1314/</guid>
       <description>题目大意 对于一个区间 $[l_i,r_i]$，计算矿石在这个区间上的检验值 $y_i$：
 $$ y_i=\sum_{j=l_i}^{r_i}[w_j \geqslant W] \times \sum_{j=l_i}^{r_i}[w_j \geqslant W]v_j $$
 记检验结果为 $y=\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。
@@ -23,10 +23,10 @@ const ll MN = 2e5 + 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; ll n,
     
     <item>
       <title>P2678 跳石头</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-03/p2678/</link>
+      <link>https://acm.rogery.dev/post/2021-03/p2678/</link>
       <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-03/p2678/</guid>
+      <guid>https://acm.rogery.dev/post/2021-03/p2678/</guid>
       <description>题目大意 在 $0$ 到 $L$ 的位置间，有 $N$ 块岩石。若要使得岩石间距最小值最大，允许移除 $M$ 块，求此时间距最小值。
 分析 定义函数 $f(x)$，输入为最小值，输出为被移除岩石的个数，实现如下
 ll L, N, M, aa[100086]; ll f(ll x) { ll ans = 0; ll l = 0, r = 1; while (r &amp;lt;= N) { if (aa[r] - aa[l] &amp;gt;= x) l = r; else ans++; r++; } return ans; } 显然 $f(x)$ 是单调递减的函数，二分查找即可。

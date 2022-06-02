@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Roger Young</title>
-    <link>https://rogeryoungh.github.io/code-of-acm/</link>
+    <link>https://acm.rogery.dev/</link>
     <description>Recent content on Roger Young</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <copyright>© 2021 [Roger Young](https://rogeryoungh.github.io/blog/about/)</copyright>
-    <lastBuildDate>Sun, 01 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2021 [Roger Young](https://acm.rogery.dev)</copyright>
+    <lastBuildDate>Sun, 01 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>P8240 偷铀计划</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-05/p8240/</link>
+      <link>https://acm.rogery.dev/post/2022-05/p8240/</link>
       <pubDate>Sun, 01 May 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-05/p8240/</guid>
+      <guid>https://acm.rogery.dev/post/2022-05/p8240/</guid>
       <description>随机到了一个神秘题目。
 题目大意 在 $n$ 个点的无向图中，有 $k$ 个点有守卫。假如你携带有 $x$ 千克的铀，那么你在移动时与这些守卫的距离必须都大于 $x$。
 多组询问，回答从点 $x$ 运输到点 $y$ 最多能运输多少铀。
@@ -27,10 +27,10 @@ int main() { int n, m; cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m; for (int i = 0
     
     <item>
       <title>Codeforces Round #707</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-04/cf1501/</link>
+      <link>https://acm.rogery.dev/post/2022-04/cf1501/</link>
       <pubDate>Mon, 25 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-04/cf1501/</guid>
+      <guid>https://acm.rogery.dev/post/2022-04/cf1501/</guid>
       <description>咕了好久。
 A. Alexey and Train 奇怪的模拟。略。
 全部代码请看：Codeforces/CF1501/CF1501B.cpp。
@@ -44,10 +44,10 @@ int main() { int n; cin &amp;gt;&amp;gt; n; vector&amp;lt;int&amp;gt; a(n); for 
     
     <item>
       <title>2021 牛客寒假算法基础集训营 1</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-04/nc9981/</link>
+      <link>https://acm.rogery.dev/post/2022-04/nc9981/</link>
       <pubDate>Wed, 06 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-04/nc9981/</guid>
+      <guid>https://acm.rogery.dev/post/2022-04/nc9981/</guid>
       <description>复习一下。
 A. 串 计算长度不超过 $n$ 且蕴含 us 作为子串的字符串有多少个。
 分析 读错题目了，还以为是容斥。对 “出现 us”、“出现 u”、“其他” 三种情况分别 DP。
@@ -56,10 +56,10 @@ int main() { int n; cin &amp;gt;&amp;gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps
     
     <item>
       <title>AtCoder Beginner Contest 242(A-E)</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-03/abc242/</link>
+      <link>https://acm.rogery.dev/post/2022-03/abc242/</link>
       <pubDate>Tue, 15 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-03/abc242/</guid>
+      <guid>https://acm.rogery.dev/post/2022-03/abc242/</guid>
       <description>A. T-shirt 前 $A$ 名一定获得衣服，在 $[A+1, B]$ 之间的人将随机挑 $C$ 个人获得衣服。
 若已知他排名于 $X$，求其获得衣服的概率。
 分析 int main() { int A, B, C, X; cin &amp;gt;&amp;gt; A &amp;gt;&amp;gt; B &amp;gt;&amp;gt; C &amp;gt;&amp;gt; X; double ans = 0; if (X &amp;lt;= A) { ans = 1; } else if (X &amp;lt;= B &amp;amp;&amp;amp; A != B) { ans = 1.0 * C / (B - A); } printf(&amp;#34;%.12lf&amp;#34;, ans); return 0; } 全部代码请看：Atcoder/ABC242/ABC242A.cpp。
@@ -68,10 +68,10 @@ B. Minimize Ordering 给定一个字符串 $S$，请找到 $S$ 的重排 $S&amp;
     
     <item>
       <title>AtCoder Beginner Contest 243(A-G)</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-03/abc243/</link>
+      <link>https://acm.rogery.dev/post/2022-03/abc243/</link>
       <pubDate>Sat, 12 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-03/abc243/</guid>
+      <guid>https://acm.rogery.dev/post/2022-03/abc243/</guid>
       <description>数学不行，摆烂。
 A. Shampoo 三个人 F, M, T 按顺序洗澡，其中洗发液用量分别是 $A, B, C$。
 现在洗发液的量 $V$，问谁先无法洗澡？
@@ -81,10 +81,10 @@ int main() { int V, A, B, C; cin &amp;gt;&amp;gt; V &amp;gt;&amp;gt; A &amp;gt;&
     
     <item>
       <title>Codeforces Round #657 (Div. 2)(A-C)</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-03/cf1379/</link>
+      <link>https://acm.rogery.dev/post/2022-03/cf1379/</link>
       <pubDate>Sat, 12 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-03/cf1379/</guid>
+      <guid>https://acm.rogery.dev/post/2022-03/cf1379/</guid>
       <description>这场属实阴间。
 A. Acacius and String 替换字符串 $s$ 中的 ?，使得出现且仅出现一次 abacaba。
 分析 本题较为难写，因为很难判断恰好出现了一次。但是数据规模很小，可以采用非常暴力的写法。
@@ -95,10 +95,10 @@ string what = &amp;#34;abacaba&amp;#34;; int N = what.length(); void solve() { i
     
     <item>
       <title>AtCoder Regular Contest 136 (ABD)</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-02/arc136/</link>
+      <link>https://acm.rogery.dev/post/2022-02/arc136/</link>
       <pubDate>Sun, 27 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-02/arc136/</guid>
+      <guid>https://acm.rogery.dev/post/2022-02/arc136/</guid>
       <description>后悔没把 D 写快点。
 A. A ↔ BB 给定一个长为 $N$ 的仅包含 ABC 的字符串 $S$。可以做以下两种操作
 把 A 替换为 BB 把 BB 替换为 A 求操作后 $S$ 的字典序最小是多少。
@@ -108,10 +108,10 @@ int main() { int N; string s; cin &amp;gt;&amp;gt; N &amp;gt;&amp;gt; s; for (in
     
     <item>
       <title>AtCoder Beginner Contest 241 (A-E)</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-02/abc241/</link>
+      <link>https://acm.rogery.dev/post/2022-02/abc241/</link>
       <pubDate>Sat, 26 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-02/abc241/</guid>
+      <guid>https://acm.rogery.dev/post/2022-02/abc241/</guid>
       <description>这场感觉好卡。
 A - Digit Machine 如果当前数字是 $k$，按下一次后会变成 $a_k$。求按 $3$ 次后的数字。
 分析 模拟即可。
@@ -123,10 +123,10 @@ int main() { int n, m; cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m; multiset&amp;l
     
     <item>
       <title>Codeforces Round #773 (Div. 2)  (A-D)</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-02/cf1642/</link>
+      <link>https://acm.rogery.dev/post/2022-02/cf1642/</link>
       <pubDate>Wed, 23 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-02/cf1642/</guid>
+      <guid>https://acm.rogery.dev/post/2022-02/cf1642/</guid>
       <description>在学长的提示下成功做出 D，蓝了，开心。
 A. Hard Way 给定一个在第一象限的三角形座标，你可以从 $y=0$ 的任意位置出发，在平面中沿着折线前进但不能穿过三角形。
 问三角形的边界上无法到达的位置，其总长度是多少。
@@ -138,10 +138,10 @@ using pii = pair&amp;lt;int, int&amp;gt;; int main() { int T; cin &amp;gt;&amp;g
     
     <item>
       <title>Educational Codeforces Round 123 (Rated for Div. 2)(A-C)</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-02/cf1644/</link>
+      <link>https://acm.rogery.dev/post/2022-02/cf1644/</link>
       <pubDate>Wed, 23 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-02/cf1644/</guid>
+      <guid>https://acm.rogery.dev/post/2022-02/cf1644/</guid>
       <description>A. Doors and Keys 有 RGB 三种门，和 rgb 三种钥匙。如果门先于其对应的钥匙出现，则会卡关。判断字符串是否意味着卡关。
 分析 枚举即可。
 int main() { int T; cin &amp;gt;&amp;gt; T; while (T--) { string s; cin &amp;gt;&amp;gt; s; vector&amp;lt;int&amp;gt; flag(26); bool ans = true; for (char si : s) { if (si &amp;gt;= &amp;#39;a&amp;#39;) { flag[si - &amp;#39;a&amp;#39;] = true; } else { if (!flag[si - &amp;#39;A&amp;#39;]) { ans = false; } } } if (ans) cout &amp;lt;&amp;lt; &amp;#34;YES\n&amp;#34;; else cout &amp;lt;&amp;lt; &amp;#34;NO\n&amp;#34;; } return 0; } B.</description>
@@ -149,10 +149,10 @@ int main() { int T; cin &amp;gt;&amp;gt; T; while (T--) { string s; cin &amp;gt;
     
     <item>
       <title>CF242E XOR on Segment</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-02/cf242e/</link>
+      <link>https://acm.rogery.dev/post/2022-02/cf242e/</link>
       <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-02/cf242e/</guid>
+      <guid>https://acm.rogery.dev/post/2022-02/cf242e/</guid>
       <description>题目大意 给定一个长为 $n$ 的数列 $\{a_i\}$，有如下操作
 询问区间 $[l, r]$ 上的和。 对 $[l, r]$ 区间上每个数异或上一个数 $x$。 分析 只需注意到异或是不进位的，我们可以单独维护数列的每一位。开二十棵线段树即可。
 int main() { int n; cin &amp;gt;&amp;gt; n; vector&amp;lt;int&amp;gt; a(n + 1); for (int i = 1; i &amp;lt;= n; i++) { cin &amp;gt;&amp;gt; a[i]; } vector&amp;lt;SegmentTree&amp;lt;int&amp;gt;&amp;gt; tr; for (int k = 0; k &amp;lt; 20; k++) { tr.push_back(SegmentTree&amp;lt;int&amp;gt;(n + 1)); vector&amp;lt;int&amp;gt; tmp(n + 1); for (int i = 1; i &amp;lt;= n; i++) { if ((1 &amp;lt;&amp;lt; k) &amp;amp; a[i]) tmp[i] = 1; } tr[k].</description>
@@ -160,10 +160,10 @@ int main() { int n; cin &amp;gt;&amp;gt; n; vector&amp;lt;int&amp;gt; a(n + 1); 
     
     <item>
       <title>P6492 STEP</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-02/p6492/</link>
+      <link>https://acm.rogery.dev/post/2022-02/p6492/</link>
       <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-02/p6492/</guid>
+      <guid>https://acm.rogery.dev/post/2022-02/p6492/</guid>
       <description>题目大意 给定一个长度为 $n$ 的字符序列，初始全是 L。
 有 $q$ 次操作，每次将 $a_x$ 在 L 和 R 中切换。
 求每次操作后字符串中最长交错序列的长度。
@@ -175,10 +175,10 @@ int main() { int n; cin &amp;gt;&amp;gt; n; vector&amp;lt;int&amp;gt; a(n + 1); 
     
     <item>
       <title>ZAFU 2022.02.16 个人赛题解</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-02/hj6/</link>
+      <link>https://acm.rogery.dev/post/2022-02/hj6/</link>
       <pubDate>Wed, 16 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-02/hj6/</guid>
+      <guid>https://acm.rogery.dev/post/2022-02/hj6/</guid>
       <description>本次比赛 A 题还是出了小锅，幸好发现的比较早，最后影响还算不大。
 A - ABC202A 签到，不讲。我没想到读假了还能过（
 int main() { int a, b, c; cin &amp;gt;&amp;gt; a &amp;gt;&amp;gt; b &amp;gt;&amp;gt; c; cout &amp;lt;&amp;lt; 21 - a - b - c; return 0; } B - CF567A 注意到座标是按照从小到大顺序的，那么对于第 $i$ 个人，最小值显然在 $x_{i-1}, x_{i+1}$ 中取到，最大值在 $x_{1}, x_n$ 中取到。
@@ -188,10 +188,10 @@ int main() { int n; cin &amp;gt;&amp;gt; n; vector&amp;lt;int&amp;gt; v(n); for 
     
     <item>
       <title>ZAFU 2022.02.14 个人赛题解</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-02/hj5/</link>
+      <link>https://acm.rogery.dev/post/2022-02/hj5/</link>
       <pubDate>Mon, 14 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-02/hj5/</guid>
+      <guid>https://acm.rogery.dev/post/2022-02/hj5/</guid>
       <description>本次比赛翻译出现了大问题，想大家道歉。
 同时一些同学反映已经做过，下次个人赛会再拉更早的题目。
 A - ABC222A 签到，不讲。
@@ -203,10 +203,10 @@ bool check(const vector&amp;lt;int&amp;gt; &amp;amp;v) { vector&amp;lt;int&amp;g
     
     <item>
       <title>2022 年刷题日志</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/other/log2022/</link>
+      <link>https://acm.rogery.dev/post/other/log2022/</link>
       <pubDate>Fri, 11 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/other/log2022/</guid>
+      <guid>https://acm.rogery.dev/post/other/log2022/</guid>
       <description>新的一年，一样的菜。
 过于简单的题不记录。
 2022 年 01 月 01-14 | UOJ50 链式反应
@@ -227,10 +227,10 @@ bool check(const vector&amp;lt;int&amp;gt; &amp;amp;v) { vector&amp;lt;int&amp;g
     
     <item>
       <title>P6186 冒泡排序</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-02/p6186/</link>
+      <link>https://acm.rogery.dev/post/2022-02/p6186/</link>
       <pubDate>Fri, 11 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-02/p6186/</guid>
+      <guid>https://acm.rogery.dev/post/2022-02/p6186/</guid>
       <description>题目大意 给定一个长为 $n$ 的排列 $p$，有如下操作
 交换 $p_{x}, p_{x+1}$。 询问排列经过 $k$ 轮冒泡排序后的逆序数。 分析 难点在观察冒泡排序对逆序数的影响，考虑一个数 $p_i$ 受其前面的数影响：
 如果 $p_i$ 前面没有比 $p_i$ 大的，冒泡后 $p_{i&amp;rsquo;}$ 仍不贡献逆序数。 如果 $p_i$ 前面有 $j$ 个比当前数大的，冒泡后有且仅有一个数穿过了 $p_{i&amp;rsquo;}$，贡献的逆序数减 $1$。 故第 $k$ 轮冒泡后，即每个数贡献的逆序数都要减 $k$。又因为不应减到负数，因此需要用两个树状数组维护。
@@ -239,10 +239,10 @@ bool check(const vector&amp;lt;int&amp;gt; &amp;amp;v) { vector&amp;lt;int&amp;g
     
     <item>
       <title>P5431 乘法逆元 2</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p5431/</link>
+      <link>https://acm.rogery.dev/post/2022-01/p5431/</link>
       <pubDate>Sat, 29 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p5431/</guid>
+      <guid>https://acm.rogery.dev/post/2022-01/p5431/</guid>
       <description>题目大意 给定 $n$ 个正整数 $\{a_i\}$ 和 $k$，求在模 $p$ 意义下的
 $$ \sum_{i=1}^n \frac{k^i}{a_i} \bmod p $$
 分析 逐个求逆元是 $O(n \log p)$ 的，肯定会 T，需要想想别的办法。
@@ -254,10 +254,10 @@ vi get_inv(const vi &amp;amp;a, int p) { int n = a.size() - 1; vi prod(n + 1); p
     
     <item>
       <title>P1637 三元上升子序列</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p1637/</link>
+      <link>https://acm.rogery.dev/post/2022-01/p1637/</link>
       <pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p1637/</guid>
+      <guid>https://acm.rogery.dev/post/2022-01/p1637/</guid>
       <description>题目大意 给定一个序列，求其中三元上升子序列的个数
 对于 $i,j,k$，若 $a_i &amp;lt; a_j &amp;lt; a_k$，则是一个满足要求的三元对。 分析 考虑枚举中间的数 $j$，设其左边有 $a$ 个数比它小，右边有 $b$ 个数比它大，则中间为 $j$ 的三元对个数为 $ab$。
 至此就和逆序对类似了，离散化后用树状数组即可。
@@ -266,10 +266,10 @@ vi get_inv(const vi &amp;amp;a, int p) { int n = a.size() - 1; vi prod(n + 1); p
     
     <item>
       <title>P3373 线段树 2</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p3373/</link>
+      <link>https://acm.rogery.dev/post/2022-01/p3373/</link>
       <pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p3373/</guid>
+      <guid>https://acm.rogery.dev/post/2022-01/p3373/</guid>
       <description>题目大意 给定一个数列，有如下操作：
 将区间 $[l,r]$ 上的数乘上 $x$ 将区间 $[l,r]$ 上的数加上 $x$ 询问区间 $[l,r]$ 上的数之和 分析 很经典的线段树教学题，写完后对线段树的理解确实更深了。
 从一次函数的角度考虑问题感觉更清晰。我们实际上在对每个序列上的值做一次函数
@@ -280,10 +280,10 @@ template &amp;lt;class T&amp;gt; struct SegmentTree { vector&amp;lt;Seg&amp;gt; 
     
     <item>
       <title>P4588 数学计算</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p4588/</link>
+      <link>https://acm.rogery.dev/post/2022-01/p4588/</link>
       <pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p4588/</guid>
+      <guid>https://acm.rogery.dev/post/2022-01/p4588/</guid>
       <description>题目大意 初始是 $x=1$，我们每轮对 $x$ 做一个操作
 将 $x$ 变为 $k x$，并输出 $x \bmod M$。 将 $x$ 变为 $x / k_i$，即取消第 $i$ 次操作，并输出 $x \bmod M$。 保证每个操作 1 的 $k$ 在操作 2 中至多被除一次。
 分析 $M$ 并不保证是质数，逆元可能不存在。
@@ -295,10 +295,10 @@ template &amp;lt;class T&amp;gt; struct SegmentTree { vector&amp;lt;T&amp;gt; tr
     
     <item>
       <title>P5057 简单题</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p5057/</link>
+      <link>https://acm.rogery.dev/post/2022-01/p5057/</link>
       <pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p5057/</guid>
+      <guid>https://acm.rogery.dev/post/2022-01/p5057/</guid>
       <description>题目大意 给定一个 01 序列，有如下操作：
 将区间 $[l,r]$ 上的数 01 翻转。 询问第 $i$ 个数的值。 分析 区间操作，单点查询，很自然的想到了差分。
 用异或或者加减代替翻转都可以，用树状数组维护。我选择了加减，这样询问时对 $2$ 取余即可。
@@ -307,10 +307,10 @@ template &amp;lt;class T&amp;gt; struct SegmentTree { vector&amp;lt;T&amp;gt; tr
     
     <item>
       <title>代码模板</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/other/docs/</link>
+      <link>https://acm.rogery.dev/post/other/docs/</link>
       <pubDate>Sat, 22 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/other/docs/</guid>
+      <guid>https://acm.rogery.dev/post/other/docs/</guid>
       <description>我的代码模板依赖于我自定义的预处理器，它通过 DFS 把所有引入的模板展开。
 index.hpp：公共文件头。 我的模板风格是简单封装：在保持易用的同时，封装尽量的薄。
 Data Struct 基础数据结构。
@@ -327,10 +327,10 @@ inv/1.hpp：12E 的牛顿迭代 inv，和 16E 的牛顿迭代 div。 inv/2.hpp�
     
     <item>
       <title>About</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/about/</link>
+      <link>https://acm.rogery.dev/about/</link>
       <pubDate>Fri, 21 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/about/</guid>
+      <guid>https://acm.rogery.dev/about/</guid>
       <description>你好！
 如你所见，这里放的都是我的 ACM 刷题记录。主博客在 这里。
 刷题日志 2020 年刷题日志
@@ -343,10 +343,10 @@ inv/1.hpp：12E 的牛顿迭代 inv，和 16E 的牛顿迭代 div。 inv/2.hpp�
     
     <item>
       <title>ZAFU 2022.01.18 个人赛题解</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2022-01/hj1/</link>
+      <link>https://acm.rogery.dev/post/2022-01/hj1/</link>
       <pubDate>Fri, 21 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-01/hj1/</guid>
+      <guid>https://acm.rogery.dev/post/2022-01/hj1/</guid>
       <description>非常抱歉，本次比赛对难度估计不当，给大家造成了不好的体验，在此向大家致歉。
 A - CF1379A 见 CF Round #657 (Div. 2) 。
 B - CF1379B 见 CF Round #657 (Div. 2) 。
@@ -359,10 +359,10 @@ C - CF1313B 题目大意 有 $n$ 位参赛者参加两轮比赛，ff 获得的�
     
     <item>
       <title>CF Round 706(Div 2)</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-11/cf1496/</link>
+      <link>https://acm.rogery.dev/post/2021-11/cf1496/</link>
       <pubDate>Thu, 11 Nov 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-11/cf1496/</guid>
+      <guid>https://acm.rogery.dev/post/2021-11/cf1496/</guid>
       <description>D. Let&#39;s Go Hiking 两人在序列上移动，Qingshan 只能往值更高的地方走，Daniel 只能往低处走。两人不能重叠，求 Qingshan 中有多少可以赢的位置。
 分析 其实我们只用关注上升和下降的序列有多长，而不必关心它们具体是几。
 如果 Qingshan 选边界上的坡，或者不选在坡顶，那么 Daniel 可以紧挨着它，从而必输。
@@ -381,10 +381,10 @@ F. BFS Trees 第一次补题补到 F 耶！什么时候才能在赛中做到 F �
     
     <item>
       <title>2021 年刷题日志</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/other/log2021/</link>
+      <link>https://acm.rogery.dev/post/other/log2021/</link>
       <pubDate>Wed, 10 Nov 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/other/log2021/</guid>
+      <guid>https://acm.rogery.dev/post/other/log2021/</guid>
       <description>过于简单的题不记录。
 洛谷：更新至：2021.11.10(&amp;ndash;.&amp;ndash;)
 CodeForces：更新至：&amp;ndash;.&amp;ndash;
@@ -406,10 +406,10 @@ HDU：更新至：&amp;ndash;.&amp;ndash;
     
     <item>
       <title>P1393 Mivik 的标题</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-11/p1393/</link>
+      <link>https://acm.rogery.dev/post/2021-11/p1393/</link>
       <pubDate>Tue, 02 Nov 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-11/p1393/</guid>
+      <guid>https://acm.rogery.dev/post/2021-11/p1393/</guid>
       <description>题目大意 在字符集中有 $m$ 个不同的字符，求给定字符串 $S$ 在长度为 $n$ 的字符串的全集中出现的概率。
 分析 参考 Mivik 的字符串公开赛。
 定义 $A$ 类字符串为，在整个字符串中 $S$ 只出现过一次，且恰好 $S$ 出现在末尾的字符串。
@@ -423,10 +423,10 @@ $$ s_i = [i \ \text{is a period of}\ S] $$
     
     <item>
       <title>P5179 Fraction</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-10/p5179/</link>
+      <link>https://acm.rogery.dev/post/2021-10/p5179/</link>
       <pubDate>Sat, 30 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-10/p5179/</guid>
+      <guid>https://acm.rogery.dev/post/2021-10/p5179/</guid>
       <description>题目大意 求最简分数 $p/q$ 满足
 $$ \frac{a}{b} &amp;lt; \frac{p}{q} &amp;lt; \frac{c}{d} $$
 若有多组解，输出 $q$ 最小的；仍有多组解，输出 $p$ 最小的一组。
@@ -436,10 +436,10 @@ $$ \frac{a}{b} &amp;lt; \frac{p}{q} &amp;lt; \frac{c}{d} $$
     
     <item>
       <title>P5171 Earthquake</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-10/p5171/</link>
+      <link>https://acm.rogery.dev/post/2021-10/p5171/</link>
       <pubDate>Thu, 28 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-10/p5171/</guid>
+      <guid>https://acm.rogery.dev/post/2021-10/p5171/</guid>
       <description>题目大意 给定 $a,b,c$，求满足方程 $ax + by \leqslant c$ 的非负整数解的个数。
 分析 令 $n = \lfloor c / a \rfloor$，容易推出让我们求的是
 $$ n + 1 + \sum_{x = 0}^{n} \left\lfloor \frac{c - ax}{b} \right\rfloor $$
@@ -451,10 +451,10 @@ $$ n + 1 + \sum_{x = 0}^{n} \left\lfloor \frac{ax + c - an}{b} \right\rfloor $$
     
     <item>
       <title>NC11255B Sample Game</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-10/nc11255b/</link>
+      <link>https://acm.rogery.dev/post/2021-10/nc11255b/</link>
       <pubDate>Tue, 19 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-10/nc11255b/</guid>
+      <guid>https://acm.rogery.dev/post/2021-10/nc11255b/</guid>
       <description>题目大意 给定生成 $1$ 到 $n$ 数字的概率分布，不断生成随机数 $x$ 直到 $x$ 不是已经生成过的最大的数停止，求生成次数平方的期望。
 分析 设期望的随机次数为 $f_x = E(x)$，我们需要计算的次数为 $g_x = E(x^2)$。
 关于 $f_i$ 的 DP 是显然的，计算有
@@ -467,10 +467,10 @@ $$ E((x + 1)^2) = E(x^2) + 2 E(x) + 1 $$</description>
     
     <item>
       <title>P3052 Cows in a Skyscraper G</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-10/p3052/</link>
+      <link>https://acm.rogery.dev/post/2021-10/p3052/</link>
       <pubDate>Mon, 18 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-10/p3052/</guid>
+      <guid>https://acm.rogery.dev/post/2021-10/p3052/</guid>
       <description>题目大意 有 $n$ 头牛坐电梯，重量分别为 $c_i$，电梯的最大限额是 $W$，求最少分多少次能够全部上去。
 分析 注意 $n \leqslant 18$，枚举全排列是不行的。考虑用状态压缩，将第 $j$ 头奶牛的选和不选用状态 $i$ 的第 $j$ 位数字表示。设 $f_i$ 表示状态为 $i$ 时最小乘电梯次数，$g_i$ 表示此状态下最新那个电梯已经有的重量。
 首先令 cow = i &amp;lt;&amp;lt; (j - 1)，若 i &amp;amp; cow 为 $1$ 则说明这个奶牛已经坐上电梯了，不计算。 当 $W - g_i \geqslant c_i$ 时，最后那个电梯坐的下这头牛。 当 $W - g_i &amp;lt; c_i$ 时，只能新开一个电梯。 还是代码更清晰
@@ -479,10 +479,10 @@ const int maxn = 18; ll ci[maxn]; ll ff[1 &amp;lt;&amp;lt; maxn], gg[1 &amp;lt;&
     
     <item>
       <title>P4059 找爸爸</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-10/p4059/</link>
+      <link>https://acm.rogery.dev/post/2021-10/p4059/</link>
       <pubDate>Sun, 17 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-10/p4059/</guid>
+      <guid>https://acm.rogery.dev/post/2021-10/p4059/</guid>
       <description>题目大意 给定两串 DNA 序列，可以在其中任意插空格，然后逐位比较，当两位都是字母时查表得到相似度。
 长度为 $k$ 的空格有额外相似度 $- A - B(k - 1)$。求两序列的最大相似度。
 分析 若不考虑空格的贡献，容易想到二维 DP，记 ${\rm DP}[i,j]$ 是 $A$ 串到位置 $i$ 同时 $B$ 串到位置 $j$ 时最大的相似度，有
@@ -494,10 +494,10 @@ $$ \begin{aligned} {\rm DP}_0[i, j] &amp;amp;= \max\{ {\rm DP}_0[i - 1, j - 1], 
     
     <item>
       <title>HDU6955 Xor sum</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-10/hdu6955/</link>
+      <link>https://acm.rogery.dev/post/2021-10/hdu6955/</link>
       <pubDate>Mon, 11 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-10/hdu6955/</guid>
+      <guid>https://acm.rogery.dev/post/2021-10/hdu6955/</guid>
       <description>题目大意 给定整数序列 $\{a_n\}$，寻找满足区间异或和大于等于 $k$ 的连续序列中最短的。
 若有多个同样长度的答案，输出位置靠前的，若不存在输出 -1。
 分析 看到异或最值就应该想到 01trie。做前缀异或和，这样我们的问题就变成找到最靠近的两个数，其异或大于等于 $k$。
@@ -507,10 +507,10 @@ const int maxn = 1e5 + 10, o = 30 - 1; int trie[maxn * 30][2], val[maxn * 30], t
     
     <item>
       <title>HDU6833 A Very Easy Math Problem</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6833/</link>
+      <link>https://acm.rogery.dev/post/2021-09/hdu6833/</link>
       <pubDate>Fri, 24 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6833/</guid>
+      <guid>https://acm.rogery.dev/post/2021-09/hdu6833/</guid>
       <description>题目大意 即求
 $$ S (n) = \sum^n_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd \{ a_x \}) \gcd \{ a_x \} $$
 我自己随便简写了，全打太麻烦了。
@@ -522,10 +522,10 @@ $$ \begin{aligned} &amp;amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x
     
     <item>
       <title>HDU6755 Fibonacci Sum</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6755/</link>
+      <link>https://acm.rogery.dev/post/2021-09/hdu6755/</link>
       <pubDate>Thu, 23 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6755/</guid>
+      <guid>https://acm.rogery.dev/post/2021-09/hdu6755/</guid>
       <description>题目大意 设 Fibonacci 数列第 $i$ 项为 $F_i$，求
 $$ S = \sum_{i = 0}^n (F_{i c})^k $$
 分析 由特征方程法，设
@@ -538,10 +538,10 @@ $$ (F_{i c})^k = \left( \frac{A^{i c} - B^{i c}}{A - B} \right)^k = \frac{1}{(A 
     
     <item>
       <title>HDU6537 Neko and function</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6537/</link>
+      <link>https://acm.rogery.dev/post/2021-09/hdu6537/</link>
       <pubDate>Wed, 22 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6537/</guid>
+      <guid>https://acm.rogery.dev/post/2021-09/hdu6537/</guid>
       <description>题目大意 定义 $f(n, k)$ 为满足如下要求的，长度为 $k$ 的数列 $\\{a_i\\}$ 个数：
 要求每个数字都大于 $1$； 数列各项之积恰为 $n$。 求其前缀和 $S(n, k) = \sum f(i, k)$。
 分析 多组输入好坑啊。
@@ -555,10 +555,10 @@ $$ f (n, k) = \sum_{i = 1}^k (- 1)^{k - i} \binom{k}{i} g (n, i) $$</description
     
     <item>
       <title>HDU6750 Function</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6750/</link>
+      <link>https://acm.rogery.dev/post/2021-09/hdu6750/</link>
       <pubDate>Wed, 22 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6750/</guid>
+      <guid>https://acm.rogery.dev/post/2021-09/hdu6750/</guid>
       <description>题目大意 定义
 $$ f (n) = \sum_{d \mid n} d \left[ \gcd \left( d, \frac{n}{d} \right) = 1 \right] $$
 求其前缀和 $S(n)$。
@@ -568,10 +568,10 @@ $$ \begin{aligned} S (n) &amp;amp;= \sum_{i = 1}^n \sum_{d \mid i} d \left[ \gcd
     
     <item>
       <title>P5349 幂</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-09/p5349/</link>
+      <link>https://acm.rogery.dev/post/2021-09/p5349/</link>
       <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-09/p5349/</guid>
+      <guid>https://acm.rogery.dev/post/2021-09/p5349/</guid>
       <description>题目大意 即求
 $$ S = \sum_{n=0}^\infty f(n)r^n $$
 分析 换序
@@ -584,10 +584,10 @@ $$ (1 - r) S_i = 1 + \sum_{n = 1}^{\infty} n^i r^n - \sum_{n = 1}^{\infty} (n - 
     
     <item>
       <title>LOJ6053 简单的函数</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-08/loj6053/</link>
+      <link>https://acm.rogery.dev/post/2021-08/loj6053/</link>
       <pubDate>Sun, 15 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-08/loj6053/</guid>
+      <guid>https://acm.rogery.dev/post/2021-08/loj6053/</guid>
       <description>题目大意 给定积性函数 $f(p^c) = p \oplus c$。对 $1000000007$ 取模求前缀和。
 分析 Min25 板子题。
 const ll mod = 1000000007, inv2 = 500000004; const int maxn = 200001; ll n, prime[maxn], cnt, w[maxn], s[maxn], c[maxn]; ll sqrt_n, m; ll mo(ll x) { return (x + mod) % mod; } ll f_p(ll p, ll e) { return p ^ e; } int id(ll x) { return x &amp;lt;= sqrt_n ? x : m - (n / x) + 1; } ll F(long long n, int k) { if (n &amp;lt;= prime[k]) return 0; ll ret = s[id(n)] - s[prime[k]]; for (int i = k + 1; i &amp;lt;= cnt &amp;amp;&amp;amp; prime[i] * prime[i] &amp;lt;= n; i++) { ll pi = prime[i], pk = pi; for (int c = 1; pk * pi &amp;lt;= n; c++, pk *= pi) ret += f_p(pi, c) * F(n / pk, i) + f_p(pi, c + 1); } return mo(ret); } int main() { n = rr(); sqrt_n = sqrt(n + 0.</description>
@@ -595,10 +595,10 @@ const ll mod = 1000000007, inv2 = 500000004; const int maxn = 200001; ll n, prim
     
     <item>
       <title>HDU6975 Forgiving Matching</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-07/hdu6975/</link>
+      <link>https://acm.rogery.dev/post/2021-07/hdu6975/</link>
       <pubDate>Fri, 30 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-07/hdu6975/</guid>
+      <guid>https://acm.rogery.dev/post/2021-07/hdu6975/</guid>
       <description>题目大意 给定文本串 $S$ 和模式串 $T$，对每个位置进行匹配，得到失配次数。
 统计此失配次数，计算前缀和。
 分析 我是没料到 HDOJ 没有 M_PI，CE 了几发。
@@ -608,10 +608,10 @@ FFT 字符串匹配模板题，我在 ZAFU Wiki 中讲过，即对每个字符�
     
     <item>
       <title>P4173 残缺的字符串</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-07/p4173/</link>
+      <link>https://acm.rogery.dev/post/2021-07/p4173/</link>
       <pubDate>Wed, 28 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-07/p4173/</guid>
+      <guid>https://acm.rogery.dev/post/2021-07/p4173/</guid>
       <description>魔改 KMP 大概是不行的，卷积在这里出现的很妙。
 卷积处理匹配 定义匹配函数
 $$ d(x,y) = [x = y] $$
@@ -625,10 +625,10 @@ $$ \begin{aligned} f(k) &amp;amp;= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{
     
     <item>
       <title>P1762 偶数</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-07/p1762/</link>
+      <link>https://acm.rogery.dev/post/2021-07/p1762/</link>
       <pubDate>Mon, 12 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-07/p1762/</guid>
+      <guid>https://acm.rogery.dev/post/2021-07/p1762/</guid>
       <description>题目大意 求杨辉三角形前 $n$ 行的偶数个数，对 $1000003$ 取模。
 分析 对杨辉三角奇数打表。
 1 1 1 1 1 1 1 1 1 1	1 1 1	1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	1 1 1	1 1 1 1	1 1 1 1 1 1	1 1 1 1 1	1	1	1 1 1	1 1	1 1	1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	1 1 1	1 1 1 1	1 1 1 1 1 1	1 1 1 1 1	1	1	1 1 1	1 1	1 1	1 1 1 1 1 1	1 1 1 1 1 1 1 1 1 1 1 1	1 1 1 1 1 1 1 1 1	1	1	1 1 1	1 1	1 1	1 1 1 1	1 1	1 1	1 1 1 1 1 1	1 1 1 1	1 1 1 1	1 1 1 1 1	1	1	1	1	1	1	1 1 1	1 1	1 1	1 1	1 1	1 1	1 1	1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 于是递推公式</description>
@@ -636,10 +636,10 @@ $$ \begin{aligned} f(k) &amp;amp;= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{
     
     <item>
       <title>P2257 YY 的 GCD</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2257/</link>
+      <link>https://acm.rogery.dev/post/2021-05/p2257/</link>
       <pubDate>Wed, 26 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2257/</guid>
+      <guid>https://acm.rogery.dev/post/2021-05/p2257/</guid>
       <description>题目大意 即求
 $$ \sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) \in \mathbb{P}] $$
 分析 先转化一下
@@ -654,10 +654,10 @@ $$ \sum_{T=1}^{\min(x,y)} \left\lfloor \frac{x}{T} \right\rfloor \left\lfloor \f
     
     <item>
       <title>P2350 外星人</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2350/</link>
+      <link>https://acm.rogery.dev/post/2021-05/p2350/</link>
       <pubDate>Tue, 25 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2350/</guid>
+      <guid>https://acm.rogery.dev/post/2021-05/p2350/</guid>
       <description>题目大意 设
 $$ \varphi_{x+1}(m) = \varphi(\varphi_x(m)) $$
 求最小的 $x$ 使得 $\varphi_x(m) = 1$。
@@ -673,10 +673,10 @@ const ll MN = 1e5 + 10; bool notp[1000001]; int prime[200001], cnt, phi[1000001]
     
     <item>
       <title>CF1389E Calendar Ambiguity</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-05/cf1389e/</link>
+      <link>https://acm.rogery.dev/post/2021-05/cf1389e/</link>
       <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-05/cf1389e/</guid>
+      <guid>https://acm.rogery.dev/post/2021-05/cf1389e/</guid>
       <description>Berland 年有 $m$ 月，每月 $d$ 天。一周有 $w$ 天。
 若第 $x$ 月的第 $y$ 天和第 $y$ 月的第 $x$ 天是同一个星期，则称 $(x,y)$ 是一对。
 求一年有几对。
@@ -691,10 +691,10 @@ int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll 
     
     <item>
       <title>P2303 Longge 的问题</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2303/</link>
+      <link>https://acm.rogery.dev/post/2021-05/p2303/</link>
       <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2303/</guid>
+      <guid>https://acm.rogery.dev/post/2021-05/p2303/</guid>
       <description>题目大意 即求
 $$ \sum_{i=1}^n \gcd(i,n) $$
 分析 联想到
@@ -708,10 +708,10 @@ $$ nf(n) = \sum_{d \mid n} d \varphi(n/d) = n\sum_{d \mid n} \frac{\varphi(d)}{d
     
     <item>
       <title>P4721 分治 FFT</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p4721/</link>
+      <link>https://acm.rogery.dev/post/2021-05/p4721/</link>
       <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p4721/</guid>
+      <guid>https://acm.rogery.dev/post/2021-05/p4721/</guid>
       <description>题目大意 给定 $g[1], \cdots, g[m]$，求序列 $f$。
 $$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$
 分析 不妨令 $g [0] = 0$，$h (x) = g (x) + h [0]$，我们要解方程
@@ -721,10 +721,10 @@ $$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$
     
     <item>
       <title>P2522 Problem B</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2522/</link>
+      <link>https://acm.rogery.dev/post/2021-05/p2522/</link>
       <pubDate>Wed, 19 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2522/</guid>
+      <guid>https://acm.rogery.dev/post/2021-05/p2522/</guid>
       <description>题目大意 即求
 $$ \sum_{i=a}^b \sum_{j=c}^d [\gcd(i,j) = k] $$
 分析 容易想到，独立出函数 $f(k)$ 使得
@@ -738,10 +738,10 @@ $$ f(n) = \sum_{n \mid d} \mu\left(\frac{d}{n}\right)F(d) = \sum_{t=1}^{\min(x,y
     
     <item>
       <title>P2261 余数求和</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-04/p2261/</link>
+      <link>https://acm.rogery.dev/post/2021-04/p2261/</link>
       <pubDate>Fri, 30 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-04/p2261/</guid>
+      <guid>https://acm.rogery.dev/post/2021-04/p2261/</guid>
       <description>题目大意 给出正整数 $n$ 和 $k$，请计算
 $$ G(n, k) = \sum_{i = 1}^n k \bmod i $$
 分析 因为
@@ -754,10 +754,10 @@ int main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l 
     
     <item>
       <title>P1314 聪明的质检员</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-04/p1314/</link>
+      <link>https://acm.rogery.dev/post/2021-04/p1314/</link>
       <pubDate>Tue, 13 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-04/p1314/</guid>
+      <guid>https://acm.rogery.dev/post/2021-04/p1314/</guid>
       <description>题目大意 对于一个区间 $[l_i,r_i]$，计算矿石在这个区间上的检验值 $y_i$：
 $$ y_i=\sum_{j=l_i}^{r_i}[w_j \geqslant W] \times \sum_{j=l_i}^{r_i}[w_j \geqslant W]v_j $$
 记检验结果为 $y=\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。
@@ -767,10 +767,10 @@ const ll MN = 2e5 + 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; ll n,
     
     <item>
       <title>CF1494 Educational Round 105 (Rated for Div. 2)</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-03/cfedu105/</link>
+      <link>https://acm.rogery.dev/post/2021-03/cfedu105/</link>
       <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-03/cfedu105/</guid>
+      <guid>https://acm.rogery.dev/post/2021-03/cfedu105/</guid>
       <description>题目链接：Link 。
 A. ABC String 这么水的题竟然 wa 了 4 发。。
 题目大意 给定一个长 $n$ 的字符串 $a$，仅由 A，B，C 组成，$n$ 为偶数。
@@ -783,10 +783,10 @@ char ss[60]; int main() { ll ttt = rr(); while (ttt--) { scanf(&amp;#34;%s&amp;#
     
     <item>
       <title>P1019 单词接龙</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-03/p1019/</link>
+      <link>https://acm.rogery.dev/post/2021-03/p1019/</link>
       <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-03/p1019/</guid>
+      <guid>https://acm.rogery.dev/post/2021-03/p1019/</guid>
       <description>题目大意 对于字符串 $a,b$，若 $a$ 的末尾与 $b$ 的开头有部分字符串相同，则其可以拼接起来。例如 at + tact = atact。
 给定词典和初始字母，每个单词最多出现两次，求最大拼接长度。
 分析 我是没想出来，经题解提示了拼接函数才写出来的。
@@ -796,10 +796,10 @@ char s[30][100]; ll len[30]; ll mt[30][30]; void init(int x, int y) { ll ml = mi
     
     <item>
       <title>P2678 跳石头</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-03/p2678/</link>
+      <link>https://acm.rogery.dev/post/2021-03/p2678/</link>
       <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-03/p2678/</guid>
+      <guid>https://acm.rogery.dev/post/2021-03/p2678/</guid>
       <description>题目大意 在 $0$ 到 $L$ 的位置间，有 $N$ 块岩石。若要使得岩石间距最小值最大，允许移除 $M$ 块，求此时间距最小值。
 分析 定义函数 $f(x)$，输入为最小值，输出为被移除岩石的个数，实现如下
 ll L, N, M, aa[100086]; ll f(ll x) { ll ans = 0; ll l = 0, r = 1; while (r &amp;lt;= N) { if (aa[r] - aa[l] &amp;gt;= x) l = r; else ans++; r++; } return ans; } 显然 $f(x)$ 是单调递减的函数，二分查找即可。
@@ -808,10 +808,10 @@ int main() { L = rr(), N = rr(), M = rr(); for (ll i = 1; i &amp;lt;= N; i++) aa
     
     <item>
       <title>2020 年刷题日志</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/other/log2020/</link>
+      <link>https://acm.rogery.dev/post/other/log2020/</link>
       <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/other/log2020/</guid>
+      <guid>https://acm.rogery.dev/post/other/log2020/</guid>
       <description>过于简单的题不记录。
 洛谷：更新至：2020.12.31(2020.10)
 CodeForces：更新至：&amp;ndash;.&amp;ndash;
@@ -834,10 +834,10 @@ HDU：更新至：&amp;ndash;.&amp;ndash;
     
     <item>
       <title>P1880 石子合并</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1880/</link>
+      <link>https://acm.rogery.dev/post/2020-11/p1880/</link>
       <pubDate>Mon, 30 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1880/</guid>
+      <guid>https://acm.rogery.dev/post/2020-11/p1880/</guid>
       <description>题目大意 环形队列上有 $n$ 堆石子，可以把相邻的两堆合成一堆，每次合并的得分是新一堆的石子数。
 求最终分数的最小值和最大值。
 分析 考虑 $dp(i,j)$ 是将区间 $[i,j]$ 的石子全部合并的最大值。于是状态转移方程为
@@ -850,10 +850,10 @@ int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(
     
     <item>
       <title>P1833 樱花</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1833/</link>
+      <link>https://acm.rogery.dev/post/2020-11/p1833/</link>
       <pubDate>Wed, 11 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1833/</guid>
+      <guid>https://acm.rogery.dev/post/2020-11/p1833/</guid>
       <description>题目大意 混合背包。每棵树都有美学值 $C_i$，共有三种：
 一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。 分析 对于混合背包，我们可以对物品拆分，得到多个物品。
 ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), teh = rr(), tem = rr(); int tsum = (teh - tsh) * 60 + tem - tsm; int n = rr(); int tp = 1; for (ll i = 1; i &amp;lt;= n; i++) { int t = rr(), c = rr(), p = rr(); if (p == 1) { tt[tp] = t, cc[tp] = c; tp++; } else { p = p !</description>
@@ -861,10 +861,10 @@ ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), te
     
     <item>
       <title>P1541 乌龟棋</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1541/</link>
+      <link>https://acm.rogery.dev/post/2020-11/p1541/</link>
       <pubDate>Tue, 10 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1541/</guid>
+      <guid>https://acm.rogery.dev/post/2020-11/p1541/</guid>
       <description>题目大意 初始有四种卡片，消耗后分别可以前进 $1$、$2$、$3$ 和 $4$ 格。棋盘上每个点都有个分数，求从第 $1$ 格到达第 $N$ 格途径分数的最大值。
 分析 设状态 $F[i, j, k, w]$ 为使用 $i$ 张前进 $1$、……、$w$ 张前进 $4$ 之后的状态，容易得到转移方程
 $$ F[i, j, k, w] = \max\left\{ \begin{matrix} dp[i - 1, j, k, w] \\ dp[i, j - 1, k, w] \\ dp[i, j, k - 1, w] \\ dp[i, j, k, w - 1] \end{matrix}\right\} + a[i + 2j + 3k + 4w] $$
@@ -874,10 +874,10 @@ ll dp[50][50][50], aa[400], tt[10]; int main() { ll n = rr(), m = rr(); for (ll 
     
     <item>
       <title>P3842 线段</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2020-11/p3842/</link>
+      <link>https://acm.rogery.dev/post/2020-11/p3842/</link>
       <pubDate>Tue, 10 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-11/p3842/</guid>
+      <guid>https://acm.rogery.dev/post/2020-11/p3842/</guid>
       <description>题目大意 在 $n \times n$ 的格上，在每行中各有一条线段 $(i, l_i) \to (i, r_i)$。
 你从 $(1,1)$ 出发，只能沿着格子直走，最终走到 $(n,n)$。要求沿途经过所有的线段，且所走路程长度尽量的短。
 分析 显然是一行一行的递推。维护两个数据，一个是走完该行后停留在左侧的，记作 ${\rm DP}_l$，相应的停留在右侧的记作 ${\rm DP}_r$。
@@ -889,10 +889,10 @@ int main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll 
     
     <item>
       <title>P1077 摆花</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1077/</link>
+      <link>https://acm.rogery.dev/post/2020-10/p1077/</link>
       <pubDate>Fri, 16 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1077/</guid>
+      <guid>https://acm.rogery.dev/post/2020-10/p1077/</guid>
       <description>题目大意 要从 $n$ 种花中挑出 $m$ 盆展览，其中第 $i$ 种花不得多于 $a_i$ 种。求有几种选法。
 分析 考虑动态规划，记状态 $dp[i,j]$ 为摆完前 $i$ 种花，共 $j$ 盆时的方案数。容易得到递推式
 $$ dp[i,j] = \sum_{k = j - \min(a_i, j)}^j dp[i-1,k] $$
@@ -902,10 +902,10 @@ const ll mod = 1e6 + 7; ll dp[110], aa[110], sum[110]; int main() { ll n = rr(),
     
     <item>
       <title>P1090 合并果子</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1090/</link>
+      <link>https://acm.rogery.dev/post/2020-10/p1090/</link>
       <pubDate>Fri, 16 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1090/</guid>
+      <guid>https://acm.rogery.dev/post/2020-10/p1090/</guid>
       <description>题目大意 可以合并两堆果子成一堆新果子，消耗两堆果子数目之和的体力。给定 $n$ 堆果子的数目 $a_i$，求体力耗费最小的方案。
 分析 很容易猜到贪心结论，不断选取两个最小的堆进行合并。
 priority_queue&amp;lt;int, vector&amp;lt;int&amp;gt;, greater&amp;lt;int&amp;gt; &amp;gt; q; int main() { int n = rr(); for (ll i = 1; i &amp;lt;= n; i++) { int t = rr(); q.push(t); } int sum = 0; while (q.size() &amp;gt;= 2) { int x = q.top(); q.pop(); int y = q.top(); q.pop(); sum += x + y; q.push(x + y); } printf(&amp;#34;%d\n&amp;#34;, sum); return 0; } 本质上是证明 Huffman 树的构造的正确性，有点复杂。</description>
@@ -913,10 +913,10 @@ priority_queue&amp;lt;int, vector&amp;lt;int&amp;gt;, greater&amp;lt;int&amp;gt;
     
     <item>
       <title>P1923 求第 $k$ 小的数</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1923/</link>
+      <link>https://acm.rogery.dev/post/2020-10/p1923/</link>
       <pubDate>Fri, 16 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1923/</guid>
+      <guid>https://acm.rogery.dev/post/2020-10/p1923/</guid>
       <description>题目大意 给定数列，求第 $k$ 小的数。
 分析 模板题。考虑分治，随便选一个数 $x$，然后把比 $x$ 大的数移到右边，比 $x$ 小的数移到左边。因此得到了数 $x$ 的排位，若恰为第 $k$ 个则返回，否则根据大小在左右寻找。
 该算法是不稳定的，期望复杂度 $O(n)$，最坏复杂度 $O(n^2)$。
@@ -926,10 +926,10 @@ ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l +
     
     <item>
       <title>P1928 外星密码</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1928/</link>
+      <link>https://acm.rogery.dev/post/2020-10/p1928/</link>
       <pubDate>Fri, 16 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1928/</guid>
+      <guid>https://acm.rogery.dev/post/2020-10/p1928/</guid>
       <description>题目大意 我们将重复的 $n$ 个字符串 S 压缩为 [nS]，且存在多重压缩。给定一个压缩结果，展开它。
 分析 我考虑用类似状态机的方式解析字符串。
 当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$ 写成 BNF 更直观一点
@@ -938,10 +938,10 @@ ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l +
     
     <item>
       <title>P1990 覆盖墙壁</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1990/</link>
+      <link>https://acm.rogery.dev/post/2020-10/p1990/</link>
       <pubDate>Fri, 16 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1990/</guid>
+      <guid>https://acm.rogery.dev/post/2020-10/p1990/</guid>
       <description>题目大意 有 I 形和 L 形两种砖头，分别能覆盖 2 个单元和 3 个单元。求 $2 \times n$ 的墙有多少不重复的覆盖方式，结果对 $10^4$ 取模。
 分析 其中 I 形砖块仅有横放和竖放两种。关键在于 L 形，两个 L 形之间可以用 I 形填充，这让情况变得复杂起来。
 对于 $F_n$ 的递推，我们可以想到
@@ -951,10 +951,10 @@ $$ F_n = F_{n-1} + F_{n-2} + 2 \sum_{i=0}^{n-3} F_i $$</description>
     
     <item>
       <title>P4995 跳跳！</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p4995/</link>
+      <link>https://acm.rogery.dev/post/2020-10/p4995/</link>
       <pubDate>Fri, 16 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p4995/</guid>
+      <guid>https://acm.rogery.dev/post/2020-10/p4995/</guid>
       <description>题目大意 给定石头的高度 $h$，从第 $i$ 块石头跳到第 $j$ 块上耗费体力 $(h_i-h_j)^2$ ，求最耗体力的路径。
 分析 容易猜到贪心结论，是不断的在剩余石头中最大最小的来回跳。
 考虑证明结论，设 $h_i$ 是将要跳的序列，展开求和式
@@ -969,10 +969,10 @@ ll nn[310]; int main() { ll n = rr(); for (ll i = 1; i &amp;lt;= n; i++) nn[i] =
     
     <item>
       <title>P5143 攀爬者</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p5143/</link>
+      <link>https://acm.rogery.dev/post/2020-10/p5143/</link>
       <pubDate>Tue, 13 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p5143/</guid>
+      <guid>https://acm.rogery.dev/post/2020-10/p5143/</guid>
       <description>题目大意 在三维空间中，HKE 只能往上走，求攀爬总长。
 分析 对所有座标的 $z$ 分量排序即可。
 struct POINT { double x, y, z; bool operator&amp;lt;(POINT p) { return z &amp;gt; p.z; } } nn[50010]; double dis(POINT &amp;amp;p1, POINT &amp;amp;p2) { double t1 = p1.x - p2.x, t2 = p1.y - p2.y, t3 = p1.z - p2.z; return sqrt(t1 * t1 + t2 * t2 + t3 * t3); } int main() { int n = rr(); for (ll i = 1; i &amp;lt;= n; i++) cin &amp;gt;&amp;gt; nn[i].</description>
@@ -980,10 +980,10 @@ struct POINT { double x, y, z; bool operator&amp;lt;(POINT p) { return z &amp;gt
     
     <item>
       <title>P1095 守望者的逃离</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1095/</link>
+      <link>https://acm.rogery.dev/post/2020-10/p1095/</link>
       <pubDate>Fri, 09 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1095/</guid>
+      <guid>https://acm.rogery.dev/post/2020-10/p1095/</guid>
       <description>P1095 守望者的逃离 题目大意 守望者的可以在一秒逃出 $17 {\rm m}$，或者消耗 $10$ 点魔法值闪现 $60 {\rm m}$。原地休息时每秒回复 $4$ 点魔法值。
 守望者开始有 $M$ 点魔法，需要在 $T$ 秒内逃离距离 $S$。若能逃离则求最短逃离时间，否则求最远距离。
 分析 设 $s_1$为一直走路，$s_2$ 为一直闪现恢复。当 $s_2$ 快了就把 $s_1$ 更新为 $s_2$。
@@ -992,10 +992,10 @@ int main() { int m = rr(), s = rr(), t = rr(); int time = t, s1 = 0, s2 = 0; whi
     
     <item>
       <title>P1042 乒乓球</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2020-09/p1042/</link>
+      <link>https://acm.rogery.dev/post/2020-09/p1042/</link>
       <pubDate>Wed, 23 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-09/p1042/</guid>
+      <guid>https://acm.rogery.dev/post/2020-09/p1042/</guid>
       <description>题目大意 赢 11 分并且压对手两分以上则一局结束，否则要追分至压对手两分。
 给定 $\texttt{WL}$ 序列，分别求 11 分制和 21 分制下每场比分，$\texttt{E}$ 是结束符。
 分析 这是一道比较烦的模拟题，很绕。
@@ -1004,10 +1004,10 @@ char ch[62510]; int solve(int win, int len) { int w = 0, l = 0; for (ll i = 0; i
     
     <item>
       <title>P2181 对角线</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2020-09/p2181/</link>
+      <link>https://acm.rogery.dev/post/2020-09/p2181/</link>
       <pubDate>Tue, 22 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-09/p2181/</guid>
+      <guid>https://acm.rogery.dev/post/2020-09/p2181/</guid>
       <description>题目大意 凸 $n$ 边形中，任意三条对角线不共点，求所有对角线交点的个数。
 分析 注意到一个交点对应凸多边形 $4$ 个定点，于是等价于 $n$ 个点任选 $4$ 个点的选法种数，即
 $$ \binom{n}{4} = \frac{n(n-1)(n-2)(n-3)}{24} $$
@@ -1017,10 +1017,10 @@ int main() { unsigned long long n; scanf(&amp;#34;%llu&amp;#34;, &amp;amp;n); n 
     
     <item>
       <title>CF1384B2 Koa and the Beach</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2020-09/cf1384b2/</link>
+      <link>https://acm.rogery.dev/post/2020-09/cf1384b2/</link>
       <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-09/cf1384b2/</guid>
+      <guid>https://acm.rogery.dev/post/2020-09/cf1384b2/</guid>
       <description>题目大意 海里每一个位置都有一个深度，而且水里随着时间有锯齿状周期为 $2k$ 的潮汐。
 当潮汐与深度之和大于给定值 $l$ 时 Koa 会溺水，游泳、海岸、岛上永远是安全的。
 在任意时间 Koa 可以选择游到 $x+1$ 或停留在 $x$，试问 Koa 是否能够安全的从海岸 $0$ 到达岛上 $n+1$。
@@ -1033,10 +1033,10 @@ int main() { int ttt = rr(); while (ttt--) { int n = rr(), k = rr(), l = rr(); i
     
     <item>
       <title>P1004 方格取数</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2020-09/p1004/</link>
+      <link>https://acm.rogery.dev/post/2020-09/p1004/</link>
       <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-09/p1004/</guid>
+      <guid>https://acm.rogery.dev/post/2020-09/p1004/</guid>
       <description>题目大意 在 $n \times n$ 的方格（$n \leqslant 9$）中存在一些正整数，经过格子时获得格子上的数，但只能获得一次。
 某人只能向右或向下走，从格子的左上角走到到右下角，共走两次，求最大能取得的数字。
 分析 考虑把先走后走转化为两个人同时走，只需要处理遇到两次的值即可。
@@ -1053,29 +1053,29 @@ $$ dp[h,x_1,x_2] = \max\left\{ \begin{matrix} dp[h-1,x_1,x_2] \\ dp[h-1,x_1,x_2-
     
     <item>
       <title>OJ 题目跳转</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/other/jump/</link>
+      <link>https://acm.rogery.dev/post/other/jump/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/other/jump/</guid>
+      <guid>https://acm.rogery.dev/post/other/jump/</guid>
       <description></description>
     </item>
     
     
     <item>
       <title>模板生成</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/other/template-gen/</link>
+      <link>https://acm.rogery.dev/post/other/template-gen/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/other/template-gen/</guid>
+      <guid>https://acm.rogery.dev/post/other/template-gen/</guid>
       <description></description>
     </item>
     
     <item>
       <title>贴代码</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/other/code/</link>
+      <link>https://acm.rogery.dev/post/other/code/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/other/code/</guid>
+      <guid>https://acm.rogery.dev/post/other/code/</guid>
       <description></description>
     </item>
     

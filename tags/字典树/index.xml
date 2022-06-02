@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>字典树 on Roger Young</title>
-    <link>https://rogeryoungh.github.io/code-of-acm/tags/%E5%AD%97%E5%85%B8%E6%A0%91/</link>
+    <link>https://acm.rogery.dev/tags/%E5%AD%97%E5%85%B8%E6%A0%91/</link>
     <description>Recent content in 字典树 on Roger Young</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <copyright>© 2021 [Roger Young](https://rogeryoungh.github.io/blog/about/)</copyright>
-    <lastBuildDate>Sun, 17 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/tags/%E5%AD%97%E5%85%B8%E6%A0%91/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2021 [Roger Young](https://acm.rogery.dev)</copyright>
+    <lastBuildDate>Sun, 17 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/tags/%E5%AD%97%E5%85%B8%E6%A0%91/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>P4059 找爸爸</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-10/p4059/</link>
+      <link>https://acm.rogery.dev/post/2021-10/p4059/</link>
       <pubDate>Sun, 17 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-10/p4059/</guid>
+      <guid>https://acm.rogery.dev/post/2021-10/p4059/</guid>
       <description>题目大意 给定两串 DNA 序列，可以在其中任意插空格，然后逐位比较，当两位都是字母时查表得到相似度。
 长度为 $k$ 的空格有额外相似度 $- A - B(k - 1)$。求两序列的最大相似度。
 分析 若不考虑空格的贡献，容易想到二维 DP，记 ${\rm DP}[i,j]$ 是 $A$ 串到位置 $i$ 同时 $B$ 串到位置 $j$ 时最大的相似度，有
@@ -25,10 +25,10 @@ $$ \begin{aligned} {\rm DP}_0[i, j] &amp;amp;= \max\{ {\rm DP}_0[i - 1, j - 1], 
     
     <item>
       <title>HDU6955 Xor sum</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-10/hdu6955/</link>
+      <link>https://acm.rogery.dev/post/2021-10/hdu6955/</link>
       <pubDate>Mon, 11 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-10/hdu6955/</guid>
+      <guid>https://acm.rogery.dev/post/2021-10/hdu6955/</guid>
       <description>题目大意 给定整数序列 $\{a_n\}$，寻找满足区间异或和大于等于 $k$ 的连续序列中最短的。
 若有多个同样长度的答案，输出位置靠前的，若不存在输出 -1。
 分析 看到异或最值就应该想到 01trie。做前缀异或和，这样我们的问题就变成找到最靠近的两个数，其异或大于等于 $k$。

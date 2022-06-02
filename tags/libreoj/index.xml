@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>LibreOJ on Roger Young</title>
-    <link>https://rogeryoungh.github.io/code-of-acm/tags/libreoj/</link>
+    <link>https://acm.rogery.dev/tags/libreoj/</link>
     <description>Recent content in LibreOJ on Roger Young</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <copyright>© 2021 [Roger Young](https://rogeryoungh.github.io/blog/about/)</copyright>
-    <lastBuildDate>Sun, 15 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/tags/libreoj/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2021 [Roger Young](https://acm.rogery.dev)</copyright>
+    <lastBuildDate>Sun, 15 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/tags/libreoj/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>LOJ6053 简单的函数</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-08/loj6053/</link>
+      <link>https://acm.rogery.dev/post/2021-08/loj6053/</link>
       <pubDate>Sun, 15 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-08/loj6053/</guid>
+      <guid>https://acm.rogery.dev/post/2021-08/loj6053/</guid>
       <description>题目大意 给定积性函数 $f(p^c) = p \oplus c$。对 $1000000007$ 取模求前缀和。
 分析 Min25 板子题。
 const ll mod = 1000000007, inv2 = 500000004; const int maxn = 200001; ll n, prime[maxn], cnt, w[maxn], s[maxn], c[maxn]; ll sqrt_n, m; ll mo(ll x) { return (x + mod) % mod; } ll f_p(ll p, ll e) { return p ^ e; } int id(ll x) { return x &amp;lt;= sqrt_n ? x : m - (n / x) + 1; } ll F(long long n, int k) { if (n &amp;lt;= prime[k]) return 0; ll ret = s[id(n)] - s[prime[k]]; for (int i = k + 1; i &amp;lt;= cnt &amp;amp;&amp;amp; prime[i] * prime[i] &amp;lt;= n; i++) { ll pi = prime[i], pk = pi; for (int c = 1; pk * pi &amp;lt;= n; c++, pk *= pi) ret += f_p(pi, c) * F(n / pk, i) + f_p(pi, c + 1); } return mo(ret); } int main() { n = rr(); sqrt_n = sqrt(n + 0.</description>

@@ -9,18 +9,18 @@
 <meta name="keywords" content="" />
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/" />
-<link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
-<link rel="preload" href="https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png" as="image">
-<link rel="icon" href="https://rogeryoungh.github.io/code-of-acm/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://rogeryoungh.github.io/code-of-acm/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://rogeryoungh.github.io/code-of-acm/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://rogeryoungh.github.io/code-of-acm/apple-touch-icon.png">
-<link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
+<link rel="canonical" href="https://acm.rogery.dev/post/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
+<link rel="preload" href="https://blog.rogery.dev/avatar.png" as="image">
+<link rel="icon" href="https://acm.rogery.dev/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://acm.rogery.dev/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://acm.rogery.dev/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://acm.rogery.dev/apple-touch-icon.png">
+<link rel="mask-icon" href="https://acm.rogery.dev/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.100.1" />
-<link rel="alternate" type="application/rss+xml" href="https://rogeryoungh.github.io/code-of-acm/post/index.xml">
+<link rel="alternate" type="application/rss+xml" href="https://acm.rogery.dev/post/index.xml">
 
 
 
@@ -28,7 +28,7 @@
 <meta property="og:title" content="Posts" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/" />
+<meta property="og:url" content="https://acm.rogery.dev/post/" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Posts"/>
@@ -44,7 +44,7 @@
       "@type": "ListItem",
       "position":  2 ,
       "name": "Posts",
-      "item": "https://rogeryoungh.github.io/code-of-acm/post/"
+      "item": "https://acm.rogery.dev/post/"
     }
   ]
 }
@@ -109,7 +109,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://rogeryoungh.github.io/code-of-acm" accesskey="h" title="Roger Young (Alt + H)">Roger Young</a>
+            <a href="https://acm.rogery.dev" accesskey="h" title="Roger Young (Alt + H)">Roger Young</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -136,22 +136,22 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://rogeryoungh.github.io/code-of-acm/archives" title="Archive">
+                <a href="https://acm.rogery.dev/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://rogeryoungh.github.io/code-of-acm/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://acm.rogery.dev/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://rogeryoungh.github.io/code-of-acm/tags/" title="Tags">
+                <a href="https://acm.rogery.dev/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://rogeryoungh.github.io/code-of-acm/about/" title="About">
+                <a href="https://acm.rogery.dev/about/" title="About">
                     <span>About</span>
                 </a>
             </li>
@@ -179,7 +179,7 @@
 int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; for (int i = 0; i &lt; m; i&#43;&#43;) { int x, y, z; cin &gt;&gt; x &gt;&gt; y &gt;&gt; z; G1[x].push_back({y, z}); G1[y].push_back({x, z}); } int k; cin &gt;&gt; k; vector&lt;int&gt; start(k); for (auto &amp;si : start) cin &gt;&gt; si; auto dis = dijkstra(n, start); for (int u = 1; u &lt;= n; u&#43;&#43;) { for (auto [v, w] : G1[u]) { ll tw = min(dis[u], dis[v]); G2[u]....</p>
   </section>
   <footer class="entry-footer">May 1, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P8240 偷铀计划" href="https://rogeryoungh.github.io/code-of-acm/post/2022-05/p8240/"></a>
+  <a class="entry-link" aria-label="post link to P8240 偷铀计划" href="https://acm.rogery.dev/post/2022-05/p8240/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -198,7 +198,7 @@ $$ a_w &#43; a_v = a_x &#43; a_y $$
 int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; a(n); for (auto &amp;ai : a) { cin &gt;&gt; ai; } vector&lt;pii&gt; u(N &#43; 1); for (int i = 0; i &lt; n; i&#43;&#43;) { for (int j = 0; j &lt; i; j&#43;&#43;) { int sum = a[i] &#43; a[j]; if (u[sum] !...</p>
   </section>
   <footer class="entry-footer">April 25, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to Codeforces Round #707" href="https://rogeryoungh.github.io/code-of-acm/post/2022-04/cf1501/"></a>
+  <a class="entry-link" aria-label="post link to Codeforces Round #707" href="https://acm.rogery.dev/post/2022-04/cf1501/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -212,7 +212,7 @@ A. 串 计算长度不超过 $n$ 且蕴含 us 作为子串的字符串有多少�
 int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; for (int i = 1; i &lt;= n; i&#43;&#43;) { ll t0 = dp0 * 25 % P; ll tu = (dpu * 25 &#43; dp0) % P; ll ts = (dpu &#43; dps * 26) % P; dp0 = t0, dpu = tu, dps = ts; ans = (ans &#43; dps) % P; } cout &lt;&lt; ans; return 0; } 全部代码请看：Nowcoder/NC9981/A....</p>
   </section>
   <footer class="entry-footer">April 6, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to 2021 牛客寒假算法基础集训营 1" href="https://rogeryoungh.github.io/code-of-acm/post/2022-04/nc9981/"></a>
+  <a class="entry-link" aria-label="post link to 2021 牛客寒假算法基础集训营 1" href="https://acm.rogery.dev/post/2022-04/nc9981/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -226,7 +226,7 @@ int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; fo
 B. Minimize Ordering 给定一个字符串 $S$，请找到 $S$ 的重排 $S’$，并且使其字典序尽可能小。...</p>
   </section>
   <footer class="entry-footer">March 15, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to AtCoder Beginner Contest 242(A-E)" href="https://rogeryoungh.github.io/code-of-acm/post/2022-03/abc242/"></a>
+  <a class="entry-link" aria-label="post link to AtCoder Beginner Contest 242(A-E)" href="https://acm.rogery.dev/post/2022-03/abc242/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -241,7 +241,7 @@ A. Shampoo 三个人 F, M, T 按顺序洗澡，其中洗发液用量分别是 $A
 int main() { int V, A, B, C; cin &gt;&gt; V &gt;&gt; A &gt;&gt; B &gt;&gt; C; V %= A &#43; B &#43; C; if (V &lt; A) { cout &lt;&lt; &#34;F&#34;; } else if (V &lt; A &#43; B) { cout &lt;&lt; &#34;M&#34;; } else { cout &lt;&lt; &#34;T&#34;; } return 0; } 全部代码请看：Atcoder/ABC243/ABC243A....</p>
   </section>
   <footer class="entry-footer">March 12, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to AtCoder Beginner Contest 243(A-G)" href="https://rogeryoungh.github.io/code-of-acm/post/2022-03/abc243/"></a>
+  <a class="entry-link" aria-label="post link to AtCoder Beginner Contest 243(A-G)" href="https://acm.rogery.dev/post/2022-03/abc243/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -257,7 +257,7 @@ A. Acacius and String 替换字符串 $s$ 中的 ?，使得出现且仅出现一
 string what = &#34;abacaba&#34;; int N = what.length(); void solve() { int n; string s; cin &gt;&gt; n &gt;&gt; s; for (int i = 0; i &lt;= n - N; i&#43;&#43;) { string tmp = s; for (int j = 0; j &lt; N; j&#43;&#43;) { if (tmp[i &#43; j] == &#39;?...</p>
   </section>
   <footer class="entry-footer">March 12, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to Codeforces Round #657 (Div. 2)(A-C)" href="https://rogeryoungh.github.io/code-of-acm/post/2022-03/cf1379/"></a>
+  <a class="entry-link" aria-label="post link to Codeforces Round #657 (Div. 2)(A-C)" href="https://acm.rogery.dev/post/2022-03/cf1379/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -272,7 +272,7 @@ A. A ↔ BB 给定一个长为 $N$ 的仅包含 ABC 的字符串 $S$。可以做
 int main() { int N; string s; cin &gt;&gt; N &gt;&gt; s; for (int i = 0; i &lt; s.size() - 1; i&#43;&#43;) { if (s[i] == &#39;B&#39; &amp;&amp; s[i &#43; 1] == &#39;B&#39;) { s[i] = &#39;A&#39;; s.erase(s.begin() &#43; i &#43; 1); } if (s[i] == &#39;B&#39; &amp;&amp; s[i &#43; 1] == &#39;A&#39;) { swap(s[i], s[i &#43; 1]); } } cout &lt;&lt; s; return 0; } 全部代码请看：Atcoder/ARC136/ARC136A....</p>
   </section>
   <footer class="entry-footer">February 27, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to AtCoder Regular Contest 136 (ABD)" href="https://rogeryoungh.github.io/code-of-acm/post/2022-02/arc136/"></a>
+  <a class="entry-link" aria-label="post link to AtCoder Regular Contest 136 (ABD)" href="https://acm.rogery.dev/post/2022-02/arc136/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -289,7 +289,7 @@ B - Pasta 把数组 $\{b_m\}$ 的数字映射到 $\{a_n\}$ 上，不能重复。
 int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; multiset&lt;int&gt; s; for (int i = 0; i &lt; n; i&#43;&#43;) { int t; cin &gt;&gt; t; s....</p>
   </section>
   <footer class="entry-footer">February 26, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to AtCoder Beginner Contest 241 (A-E)" href="https://rogeryoungh.github.io/code-of-acm/post/2022-02/abc241/"></a>
+  <a class="entry-link" aria-label="post link to AtCoder Beginner Contest 241 (A-E)" href="https://acm.rogery.dev/post/2022-02/abc241/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -306,7 +306,7 @@ A. Hard Way 给定一个在第一象限的三角形座标，你可以从 $y=0$ �
 using pii = pair&lt;int, int&gt;; int main() { int T; cin &gt;&gt; T; while (T--) { vector&lt;pii&gt; v(3); for (auto &amp;[x, y] : v) { cin &gt;&gt; x &gt;&gt; y; } sort(v.begin(), v.end(), [](pii a, pii b) { if (a.second == b.second) return a.first &lt; b.first; return a.second &gt; b.second; }); if (v[0].second == v[1].second) cout &lt;&lt; abs(v[0]....</p>
   </section>
   <footer class="entry-footer">February 23, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to Codeforces Round #773 (Div. 2)  (A-D)" href="https://rogeryoungh.github.io/code-of-acm/post/2022-02/cf1642/"></a>
+  <a class="entry-link" aria-label="post link to Codeforces Round #773 (Div. 2)  (A-D)" href="https://acm.rogery.dev/post/2022-02/cf1642/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -319,16 +319,16 @@ using pii = pair&lt;int, int&gt;; int main() { int T; cin &gt;&gt; T; while (T--
 int main() { int T; cin &gt;&gt; T; while (T--) { string s; cin &gt;&gt; s; vector&lt;int&gt; flag(26); bool ans = true; for (char si : s) { if (si &gt;= &#39;a&#39;) { flag[si - &#39;a&#39;] = true; } else { if (!flag[si - &#39;A&#39;]) { ans = false; } } } if (ans) cout &lt;&lt; &#34;YES\n&#34;; else cout &lt;&lt; &#34;NO\n&#34;; } return 0; } B....</p>
   </section>
   <footer class="entry-footer">February 23, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to Educational Codeforces Round 123 (Rated for Div. 2)(A-C)" href="https://rogeryoungh.github.io/code-of-acm/post/2022-02/cf1644/"></a>
+  <a class="entry-link" aria-label="post link to Educational Codeforces Round 123 (Rated for Div. 2)(A-C)" href="https://acm.rogery.dev/post/2022-02/cf1644/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
-    <a class="next" href="https://rogeryoungh.github.io/code-of-acm/post/page/2/">Next Page »</a>
+    <a class="next" href="https://acm.rogery.dev/post/page/2/">Next Page »</a>
   </nav>
 </footer>
     </main>
     <footer class="footer">
-    <span>© 2021 <a href="https://rogeryoungh.github.io/blog/about/">Roger Young</a></span>
+    <span>© 2021 <a href="https://acm.rogery.dev">Roger Young</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

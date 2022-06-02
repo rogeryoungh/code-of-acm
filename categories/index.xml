@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Categories on Roger Young</title>
-    <link>https://rogeryoungh.github.io/code-of-acm/categories/</link>
+    <link>https://acm.rogery.dev/categories/</link>
     <description>Recent content in Categories on Roger Young</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <copyright>© 2021 [Roger Young](https://rogeryoungh.github.io/blog/about/)</copyright><atom:link href="https://rogeryoungh.github.io/code-of-acm/categories/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2021 [Roger Young](https://acm.rogery.dev)</copyright><atom:link href="https://acm.rogery.dev/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>数论 on Roger Young</title>
-    <link>https://rogeryoungh.github.io/code-of-acm/tags/%E6%95%B0%E8%AE%BA/</link>
+    <link>https://acm.rogery.dev/tags/%E6%95%B0%E8%AE%BA/</link>
     <description>Recent content in 数论 on Roger Young</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <copyright>© 2021 [Roger Young](https://rogeryoungh.github.io/blog/about/)</copyright>
-    <lastBuildDate>Fri, 24 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/tags/%E6%95%B0%E8%AE%BA/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2021 [Roger Young](https://acm.rogery.dev)</copyright>
+    <lastBuildDate>Fri, 24 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/tags/%E6%95%B0%E8%AE%BA/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>HDU6833 A Very Easy Math Problem</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6833/</link>
+      <link>https://acm.rogery.dev/post/2021-09/hdu6833/</link>
       <pubDate>Fri, 24 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6833/</guid>
+      <guid>https://acm.rogery.dev/post/2021-09/hdu6833/</guid>
       <description>题目大意 即求
 $$ S (n) = \sum^n_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd \{ a_x \}) \gcd \{ a_x \} $$
 我自己随便简写了，全打太麻烦了。
@@ -25,10 +25,10 @@ $$ \begin{aligned} &amp;amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x
     
     <item>
       <title>HDU6755 Fibonacci Sum</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6755/</link>
+      <link>https://acm.rogery.dev/post/2021-09/hdu6755/</link>
       <pubDate>Thu, 23 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6755/</guid>
+      <guid>https://acm.rogery.dev/post/2021-09/hdu6755/</guid>
       <description>题目大意 设 Fibonacci 数列第 $i$ 项为 $F_i$，求
 $$ S = \sum_{i = 0}^n (F_{i c})^k $$
 分析 由特征方程法，设
@@ -41,10 +41,10 @@ $$ (F_{i c})^k = \left( \frac{A^{i c} - B^{i c}}{A - B} \right)^k = \frac{1}{(A 
     
     <item>
       <title>HDU6537 Neko and function</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6537/</link>
+      <link>https://acm.rogery.dev/post/2021-09/hdu6537/</link>
       <pubDate>Wed, 22 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6537/</guid>
+      <guid>https://acm.rogery.dev/post/2021-09/hdu6537/</guid>
       <description>题目大意 定义 $f(n, k)$ 为满足如下要求的，长度为 $k$ 的数列 $\\{a_i\\}$ 个数：
 要求每个数字都大于 $1$； 数列各项之积恰为 $n$。 求其前缀和 $S(n, k) = \sum f(i, k)$。
 分析 多组输入好坑啊。
@@ -58,10 +58,10 @@ $$ f (n, k) = \sum_{i = 1}^k (- 1)^{k - i} \binom{k}{i} g (n, i) $$</description
     
     <item>
       <title>HDU6750 Function</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6750/</link>
+      <link>https://acm.rogery.dev/post/2021-09/hdu6750/</link>
       <pubDate>Wed, 22 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6750/</guid>
+      <guid>https://acm.rogery.dev/post/2021-09/hdu6750/</guid>
       <description>题目大意 定义
 $$ f (n) = \sum_{d \mid n} d \left[ \gcd \left( d, \frac{n}{d} \right) = 1 \right] $$
 求其前缀和 $S(n)$。
@@ -71,10 +71,10 @@ $$ \begin{aligned} S (n) &amp;amp;= \sum_{i = 1}^n \sum_{d \mid i} d \left[ \gcd
     
     <item>
       <title>P5349 幂</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-09/p5349/</link>
+      <link>https://acm.rogery.dev/post/2021-09/p5349/</link>
       <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-09/p5349/</guid>
+      <guid>https://acm.rogery.dev/post/2021-09/p5349/</guid>
       <description>题目大意 即求
 $$ S = \sum_{n=0}^\infty f(n)r^n $$
 分析 换序
@@ -87,10 +87,10 @@ $$ (1 - r) S_i = 1 + \sum_{n = 1}^{\infty} n^i r^n - \sum_{n = 1}^{\infty} (n - 
     
     <item>
       <title>LOJ6053 简单的函数</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-08/loj6053/</link>
+      <link>https://acm.rogery.dev/post/2021-08/loj6053/</link>
       <pubDate>Sun, 15 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-08/loj6053/</guid>
+      <guid>https://acm.rogery.dev/post/2021-08/loj6053/</guid>
       <description>题目大意 给定积性函数 $f(p^c) = p \oplus c$。对 $1000000007$ 取模求前缀和。
 分析 Min25 板子题。
 const ll mod = 1000000007, inv2 = 500000004; const int maxn = 200001; ll n, prime[maxn], cnt, w[maxn], s[maxn], c[maxn]; ll sqrt_n, m; ll mo(ll x) { return (x + mod) % mod; } ll f_p(ll p, ll e) { return p ^ e; } int id(ll x) { return x &amp;lt;= sqrt_n ? x : m - (n / x) + 1; } ll F(long long n, int k) { if (n &amp;lt;= prime[k]) return 0; ll ret = s[id(n)] - s[prime[k]]; for (int i = k + 1; i &amp;lt;= cnt &amp;amp;&amp;amp; prime[i] * prime[i] &amp;lt;= n; i++) { ll pi = prime[i], pk = pi; for (int c = 1; pk * pi &amp;lt;= n; c++, pk *= pi) ret += f_p(pi, c) * F(n / pk, i) + f_p(pi, c + 1); } return mo(ret); } int main() { n = rr(); sqrt_n = sqrt(n + 0.</description>
@@ -98,10 +98,10 @@ const ll mod = 1000000007, inv2 = 500000004; const int maxn = 200001; ll n, prim
     
     <item>
       <title>P2257 YY 的 GCD</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2257/</link>
+      <link>https://acm.rogery.dev/post/2021-05/p2257/</link>
       <pubDate>Wed, 26 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2257/</guid>
+      <guid>https://acm.rogery.dev/post/2021-05/p2257/</guid>
       <description>题目大意 即求
 $$ \sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) \in \mathbb{P}] $$
 分析 先转化一下
@@ -116,10 +116,10 @@ $$ \sum_{T=1}^{\min(x,y)} \left\lfloor \frac{x}{T} \right\rfloor \left\lfloor \f
     
     <item>
       <title>P2350 外星人</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2350/</link>
+      <link>https://acm.rogery.dev/post/2021-05/p2350/</link>
       <pubDate>Tue, 25 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2350/</guid>
+      <guid>https://acm.rogery.dev/post/2021-05/p2350/</guid>
       <description>题目大意 设
 $$ \varphi_{x+1}(m) = \varphi(\varphi_x(m)) $$
 求最小的 $x$ 使得 $\varphi_x(m) = 1$。
@@ -135,10 +135,10 @@ const ll MN = 1e5 + 10; bool notp[1000001]; int prime[200001], cnt, phi[1000001]
     
     <item>
       <title>CF1389E Calendar Ambiguity</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-05/cf1389e/</link>
+      <link>https://acm.rogery.dev/post/2021-05/cf1389e/</link>
       <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-05/cf1389e/</guid>
+      <guid>https://acm.rogery.dev/post/2021-05/cf1389e/</guid>
       <description>Berland 年有 $m$ 月，每月 $d$ 天。一周有 $w$ 天。
 若第 $x$ 月的第 $y$ 天和第 $y$ 月的第 $x$ 天是同一个星期，则称 $(x,y)$ 是一对。
 求一年有几对。
@@ -153,10 +153,10 @@ int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll 
     
     <item>
       <title>P2303 Longge 的问题</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2303/</link>
+      <link>https://acm.rogery.dev/post/2021-05/p2303/</link>
       <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2303/</guid>
+      <guid>https://acm.rogery.dev/post/2021-05/p2303/</guid>
       <description>题目大意 即求
 $$ \sum_{i=1}^n \gcd(i,n) $$
 分析 联想到
@@ -170,10 +170,10 @@ $$ nf(n) = \sum_{d \mid n} d \varphi(n/d) = n\sum_{d \mid n} \frac{\varphi(d)}{d
     
     <item>
       <title>P2522 Problem B</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2522/</link>
+      <link>https://acm.rogery.dev/post/2021-05/p2522/</link>
       <pubDate>Wed, 19 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-05/p2522/</guid>
+      <guid>https://acm.rogery.dev/post/2021-05/p2522/</guid>
       <description>题目大意 即求
 $$ \sum_{i=a}^b \sum_{j=c}^d [\gcd(i,j) = k] $$
 分析 容易想到，独立出函数 $f(k)$ 使得
@@ -187,10 +187,10 @@ $$ f(n) = \sum_{n \mid d} \mu\left(\frac{d}{n}\right)F(d) = \sum_{t=1}^{\min(x,y
     
     <item>
       <title>P2261 余数求和</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-04/p2261/</link>
+      <link>https://acm.rogery.dev/post/2021-04/p2261/</link>
       <pubDate>Fri, 30 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-04/p2261/</guid>
+      <guid>https://acm.rogery.dev/post/2021-04/p2261/</guid>
       <description>题目大意 给出正整数 $n$ 和 $k$，请计算
 $$ G(n, k) = \sum_{i = 1}^n k \bmod i $$
 分析 因为

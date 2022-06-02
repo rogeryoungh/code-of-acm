@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>字符串 on Roger Young</title>
-    <link>https://rogeryoungh.github.io/code-of-acm/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/</link>
+    <link>https://acm.rogery.dev/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/</link>
     <description>Recent content in 字符串 on Roger Young</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <copyright>© 2021 [Roger Young](https://rogeryoungh.github.io/blog/about/)</copyright>
-    <lastBuildDate>Wed, 28 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rogeryoungh.github.io/code-of-acm/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2021 [Roger Young](https://acm.rogery.dev)</copyright>
+    <lastBuildDate>Wed, 28 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>P4173 残缺的字符串</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2021-07/p4173/</link>
+      <link>https://acm.rogery.dev/post/2021-07/p4173/</link>
       <pubDate>Wed, 28 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-07/p4173/</guid>
+      <guid>https://acm.rogery.dev/post/2021-07/p4173/</guid>
       <description>魔改 KMP 大概是不行的，卷积在这里出现的很妙。
 卷积处理匹配 定义匹配函数
 $$ d(x,y) = [x = y] $$
@@ -27,10 +27,10 @@ $$ \begin{aligned} f(k) &amp;amp;= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{
     
     <item>
       <title>P1928 外星密码</title>
-      <link>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1928/</link>
+      <link>https://acm.rogery.dev/post/2020-10/p1928/</link>
       <pubDate>Fri, 16 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1928/</guid>
+      <guid>https://acm.rogery.dev/post/2020-10/p1928/</guid>
       <description>题目大意 我们将重复的 $n$ 个字符串 S 压缩为 [nS]，且存在多重压缩。给定一个压缩结果，展开它。
 分析 我考虑用类似状态机的方式解析字符串。
 当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$ 写成 BNF 更直观一点
