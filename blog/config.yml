@@ -1,4 +1,4 @@
-baseURL: "https://rogeryoungh.github.io/code-of-acm"
+baseURL: "https://acm.rogery.dev"
 languageCode: "zh"
 title: "Roger Young"
 theme: "paper-mod"
@@ -27,7 +27,7 @@ markup:
     renderer:
       unsafe: true
 
-Copyright: © 2021 [Roger Young](https://rogeryoungh.github.io/blog/about/)
+Copyright: © 2021 [Roger Young](https://acm.rogery.dev)
 
 params:
   ShowCodeCopyButtons: true
@@ -39,7 +39,7 @@ params:
     enabled: true
     title: "Roger Young" # optional default will be site title
     subtitle: "Code of ACM"
-    imageUrl: https://cdn.jsdelivr.net/gh/rogeryoungh/blog@gh-pages/avatar.png
+    imageUrl: https://blog.rogery.dev/avatar.png
     buttons:
     - name: All of my Posts
       url: "./archives"
