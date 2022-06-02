@@ -1,5 +1,6 @@
 .vscode/
 archive-code/
+temp/
 
 *.pdf
 __latexident*.tex
