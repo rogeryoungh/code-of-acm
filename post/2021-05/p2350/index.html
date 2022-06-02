@@ -31,7 +31,7 @@ const ll MN = 1e5 &#43; 10; bool notp[1000001]; int prime[200001], cnt, phi[1000
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -120,7 +120,7 @@ const ll MN = 1e5 &#43; 10; bool notp[1000001]; int prime[200001], cnt, phi[1000
   "keywords": [
     "洛谷", "数论"
   ],
-  "articleBody": "题目大意 设\n$$ \\varphi_{x+1}(m) = \\varphi(\\varphi_x(m)) $$\n求最小的 $x$ 使得 $\\varphi_x(m) = 1$。\n其中 $\\varphi(m)$ 是欧拉函数。\n分析 注意到仅有 $\\varphi(1) = \\varphi(2) = 1$，再有公式\n$$ \\varphi\\left(\\prod_{i=1}^mp_i^{q_i}\\right) = \\prod_{i=1}^m(p_i-1)p_i^{q_i-1} $$\n因此从唯一分解形式的角度来看，迭代一次消去了一个 $2$，也生成了一些 $2$。\n考虑设 $f(n)$ 为 $\\varphi(n)$ 中因子 $2$ 的个数。\n设 $\\gcd(a,b) = 1$，可以证明 $f(ab) = f(a) f(b)$。同时 $f(p) = f(p-1)$。\n这说明 $f(x)$ 是一个积性函数，可以用 Euler 筛递推。\nconst ll MN = 1e5 + 10; bool notp[1000001]; int prime[200001], cnt, phi[1000001]; void sieve(int n) { phi[1] = 1; for (ll i = 2; i  n; i++) { if (!notp[i]) { prime[++cnt] = i; phi[i] = phi[i - 1]; } int t = n / i; for (ll j = 1; j  cnt; j++) { if (prime[j]  t) break; int ti = i * prime[j]; notp[ti] = true; phi[ti] = phi[i] + phi[prime[j]]; if (i % prime[j] == 0) break; } } } 然后在 main 中输出即可。注意若没有质因子 $2$，则答案需要加 $1$。\nint main() { sieve(MN - 10); ll ttt = rr(); while (ttt--) { ll m = rr(), ans = 1; for (ll i = 1; i  m; i++) { ll p = rr(), q = rr(); if (p == 2) ans--; ans += phi[p] * q; } printf(\"%lld\\n\", ans); } return 0; } ",
+  "articleBody": "题目大意 设\n$$ \\varphi_{x+1}(m) = \\varphi(\\varphi_x(m)) $$\n求最小的 $x$ 使得 $\\varphi_x(m) = 1$。\n其中 $\\varphi(m)$ 是欧拉函数。\n分析 注意到仅有 $\\varphi(1) = \\varphi(2) = 1$，再有公式\n$$ \\varphi\\left(\\prod_{i=1}^mp_i^{q_i}\\right) = \\prod_{i=1}^m(p_i-1)p_i^{q_i-1} $$\n因此从唯一分解形式的角度来看，迭代一次消去了一个 $2$，也生成了一些 $2$。\n考虑设 $f(n)$ 为 $\\varphi(n)$ 中因子 $2$ 的个数。\n设 $\\gcd(a,b) = 1$，可以证明 $f(ab) = f(a) f(b)$。同时 $f(p) = f(p-1)$。\n这说明 $f(x)$ 是一个积性函数，可以用 Euler 筛递推。\nconst ll MN = 1e5 + 10; bool notp[1000001]; int prime[200001], cnt, phi[1000001]; void sieve(int n) { phi[1] = 1; for (ll i = 2; i \u003c= n; i++) { if (!notp[i]) { prime[++cnt] = i; phi[i] = phi[i - 1]; } int t = n / i; for (ll j = 1; j \u003c= cnt; j++) { if (prime[j] \u003e t) break; int ti = i * prime[j]; notp[ti] = true; phi[ti] = phi[i] + phi[prime[j]]; if (i % prime[j] == 0) break; } } } 然后在 main 中输出即可。注意若没有质因子 $2$，则答案需要加 $1$。\nint main() { sieve(MN - 10); ll ttt = rr(); while (ttt--) { ll m = rr(), ans = 1; for (ll i = 1; i \u003c= m; i++) { ll p = rr(), q = rr(); if (p == 2) ans--; ans += phi[p] * q; } printf(\"%lld\\n\", ans); } return 0; } ",
   "wordCount" : "200",
   "inLanguage": "en",
   "datePublished": "2021-05-25T00:00:00Z",

@@ -8,8 +8,8 @@
 <title>P6186 冒泡排序 | Roger Young</title>
 <meta name="keywords" content="" />
 <meta name="description" content="题目大意 给定一个长为 $n$ 的排列 $p$，有如下操作
- 交换 $p_{x}, p_{x&#43;1}$。 询问排列经过 $k$ 轮冒泡排序后的逆序数。  分析 难点在观察冒泡排序对逆序数的影响，考虑一个数 $p_i$ 受其前面的数影响：
- 如果 $p_i$ 前面没有比 $p_i$ 大的，冒泡后 $p_{i&rsquo;}$ 仍不贡献逆序数。 如果 $p_i$ 前面有 $j$ 个比当前数大的，冒泡后有且仅有一个数穿过了 $p_{i&rsquo;}$，贡献的逆序数减 $1$。  故第 $k$ 轮冒泡后，即每个数贡献的逆序数都要减 $k$。又因为不应减到负数，因此需要用两个树状数组维护。
+交换 $p_{x}, p_{x&#43;1}$。 询问排列经过 $k$ 轮冒泡排序后的逆序数。 分析 难点在观察冒泡排序对逆序数的影响，考虑一个数 $p_i$ 受其前面的数影响：
+如果 $p_i$ 前面没有比 $p_i$ 大的，冒泡后 $p_{i&rsquo;}$ 仍不贡献逆序数。 如果 $p_i$ 前面有 $j$ 个比当前数大的，冒泡后有且仅有一个数穿过了 $p_{i&rsquo;}$，贡献的逆序数减 $1$。 故第 $k$ 轮冒泡后，即每个数贡献的逆序数都要减 $k$。又因为不应减到负数，因此需要用两个树状数组维护。
 #include &#34;template/ds/fwtree/1.hpp&#34; int main() { int n = rr(), m = rr(); vector&lt;int&gt; p(n); for (int i = 0; i &lt; n; i&#43;&#43;) p[i] = rr(); vector&lt;ll&gt; inver(n); { vector&lt;pii&gt; tp(n); for (int i = 0; i &lt; n; i&#43;&#43;) tp[i] = {p[i], i &#43; 1}; sort(tp.">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2022-02/p6186/" />
@@ -24,7 +24,7 @@
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -53,8 +53,8 @@
 
 <meta property="og:title" content="P6186 冒泡排序" />
 <meta property="og:description" content="题目大意 给定一个长为 $n$ 的排列 $p$，有如下操作
- 交换 $p_{x}, p_{x&#43;1}$。 询问排列经过 $k$ 轮冒泡排序后的逆序数。  分析 难点在观察冒泡排序对逆序数的影响，考虑一个数 $p_i$ 受其前面的数影响：
- 如果 $p_i$ 前面没有比 $p_i$ 大的，冒泡后 $p_{i&rsquo;}$ 仍不贡献逆序数。 如果 $p_i$ 前面有 $j$ 个比当前数大的，冒泡后有且仅有一个数穿过了 $p_{i&rsquo;}$，贡献的逆序数减 $1$。  故第 $k$ 轮冒泡后，即每个数贡献的逆序数都要减 $k$。又因为不应减到负数，因此需要用两个树状数组维护。
+交换 $p_{x}, p_{x&#43;1}$。 询问排列经过 $k$ 轮冒泡排序后的逆序数。 分析 难点在观察冒泡排序对逆序数的影响，考虑一个数 $p_i$ 受其前面的数影响：
+如果 $p_i$ 前面没有比 $p_i$ 大的，冒泡后 $p_{i&rsquo;}$ 仍不贡献逆序数。 如果 $p_i$ 前面有 $j$ 个比当前数大的，冒泡后有且仅有一个数穿过了 $p_{i&rsquo;}$，贡献的逆序数减 $1$。 故第 $k$ 轮冒泡后，即每个数贡献的逆序数都要减 $k$。又因为不应减到负数，因此需要用两个树状数组维护。
 #include &#34;template/ds/fwtree/1.hpp&#34; int main() { int n = rr(), m = rr(); vector&lt;int&gt; p(n); for (int i = 0; i &lt; n; i&#43;&#43;) p[i] = rr(); vector&lt;ll&gt; inver(n); { vector&lt;pii&gt; tp(n); for (int i = 0; i &lt; n; i&#43;&#43;) tp[i] = {p[i], i &#43; 1}; sort(tp." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/2022-02/p6186/" /><meta property="article:section" content="post" />
@@ -64,8 +64,8 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="P6186 冒泡排序"/>
 <meta name="twitter:description" content="题目大意 给定一个长为 $n$ 的排列 $p$，有如下操作
- 交换 $p_{x}, p_{x&#43;1}$。 询问排列经过 $k$ 轮冒泡排序后的逆序数。  分析 难点在观察冒泡排序对逆序数的影响，考虑一个数 $p_i$ 受其前面的数影响：
- 如果 $p_i$ 前面没有比 $p_i$ 大的，冒泡后 $p_{i&rsquo;}$ 仍不贡献逆序数。 如果 $p_i$ 前面有 $j$ 个比当前数大的，冒泡后有且仅有一个数穿过了 $p_{i&rsquo;}$，贡献的逆序数减 $1$。  故第 $k$ 轮冒泡后，即每个数贡献的逆序数都要减 $k$。又因为不应减到负数，因此需要用两个树状数组维护。
+交换 $p_{x}, p_{x&#43;1}$。 询问排列经过 $k$ 轮冒泡排序后的逆序数。 分析 难点在观察冒泡排序对逆序数的影响，考虑一个数 $p_i$ 受其前面的数影响：
+如果 $p_i$ 前面没有比 $p_i$ 大的，冒泡后 $p_{i&rsquo;}$ 仍不贡献逆序数。 如果 $p_i$ 前面有 $j$ 个比当前数大的，冒泡后有且仅有一个数穿过了 $p_{i&rsquo;}$，贡献的逆序数减 $1$。 故第 $k$ 轮冒泡后，即每个数贡献的逆序数都要减 $k$。又因为不应减到负数，因此需要用两个树状数组维护。
 #include &#34;template/ds/fwtree/1.hpp&#34; int main() { int n = rr(), m = rr(); vector&lt;int&gt; p(n); for (int i = 0; i &lt; n; i&#43;&#43;) p[i] = rr(); vector&lt;ll&gt; inver(n); { vector&lt;pii&gt; tp(n); for (int i = 0; i &lt; n; i&#43;&#43;) tp[i] = {p[i], i &#43; 1}; sort(tp."/>
 
 
@@ -95,11 +95,11 @@
   "@type": "BlogPosting",
   "headline": "P6186 冒泡排序",
   "name": "P6186 冒泡排序",
-  "description": "题目大意 给定一个长为 $n$ 的排列 $p$，有如下操作\n 交换 $p_{x}, p_{x+1}$。 询问排列经过 $k$ 轮冒泡排序后的逆序数。  分析 难点在观察冒泡排序对逆序数的影响，考虑一个数 $p_i$ 受其前面的数影响：\n 如果 $p_i$ 前面没有比 $p_i$ 大的，冒泡后 $p_{i\u0026rsquo;}$ 仍不贡献逆序数。 如果 $p_i$ 前面有 $j$ 个比当前数大的，冒泡后有且仅有一个数穿过了 $p_{i\u0026rsquo;}$，贡献的逆序数减 $1$。  故第 $k$ 轮冒泡后，即每个数贡献的逆序数都要减 $k$。又因为不应减到负数，因此需要用两个树状数组维护。\n#include \u0026#34;template/ds/fwtree/1.hpp\u0026#34; int main() { int n = rr(), m = rr(); vector\u0026lt;int\u0026gt; p(n); for (int i = 0; i \u0026lt; n; i++) p[i] = rr(); vector\u0026lt;ll\u0026gt; inver(n); { vector\u0026lt;pii\u0026gt; tp(n); for (int i = 0; i \u0026lt; n; i++) tp[i] = {p[i], i + 1}; sort(tp.",
+  "description": "题目大意 给定一个长为 $n$ 的排列 $p$，有如下操作\n交换 $p_{x}, p_{x+1}$。 询问排列经过 $k$ 轮冒泡排序后的逆序数。 分析 难点在观察冒泡排序对逆序数的影响，考虑一个数 $p_i$ 受其前面的数影响：\n如果 $p_i$ 前面没有比 $p_i$ 大的，冒泡后 $p_{i\u0026rsquo;}$ 仍不贡献逆序数。 如果 $p_i$ 前面有 $j$ 个比当前数大的，冒泡后有且仅有一个数穿过了 $p_{i\u0026rsquo;}$，贡献的逆序数减 $1$。 故第 $k$ 轮冒泡后，即每个数贡献的逆序数都要减 $k$。又因为不应减到负数，因此需要用两个树状数组维护。\n#include \u0026#34;template/ds/fwtree/1.hpp\u0026#34; int main() { int n = rr(), m = rr(); vector\u0026lt;int\u0026gt; p(n); for (int i = 0; i \u0026lt; n; i++) p[i] = rr(); vector\u0026lt;ll\u0026gt; inver(n); { vector\u0026lt;pii\u0026gt; tp(n); for (int i = 0; i \u0026lt; n; i++) tp[i] = {p[i], i + 1}; sort(tp.",
   "keywords": [
     
   ],
-  "articleBody": "题目大意 给定一个长为 $n$ 的排列 $p$，有如下操作\n 交换 $p_{x}, p_{x+1}$。 询问排列经过 $k$ 轮冒泡排序后的逆序数。  分析 难点在观察冒泡排序对逆序数的影响，考虑一个数 $p_i$ 受其前面的数影响：\n 如果 $p_i$ 前面没有比 $p_i$ 大的，冒泡后 $p_{i’}$ 仍不贡献逆序数。 如果 $p_i$ 前面有 $j$ 个比当前数大的，冒泡后有且仅有一个数穿过了 $p_{i’}$，贡献的逆序数减 $1$。  故第 $k$ 轮冒泡后，即每个数贡献的逆序数都要减 $k$。又因为不应减到负数，因此需要用两个树状数组维护。\n#include \"template/ds/fwtree/1.hpp\" int main() { int n = rr(), m = rr(); vectorint p(n); for (int i = 0; i  n; i++) p[i] = rr(); vectorll inver(n); { vectorpii tp(n); for (int i = 0; i  n; i++) tp[i] = {p[i], i + 1}; sort(tp.begin(), tp.end()); fwtree_1ll tr(n + 1); for (auto [x, i] : tp) { inver[i - 1] = i - 1 - tr.sum(1, i); tr.add(i, 1); } } fwtree_1ll tr1(n + 1), tr2(n + 1); for (auto ii : inver) { tr1.add(ii, 1), tr2.add(ii, ii); } while (m--) { int op = rr(); if (op == 1) { int x = rr() - 1; swap(p[x], p[x + 1]); swap(inver[x], inver[x + 1]); if (p[x]  p[x + 1]) { auto \u0026ii = inver[x]; tr1.add(ii, -1); tr2.add(ii, -ii); ii--; tr1.add(ii, 1); tr2.add(ii, ii); } else { auto \u0026ii = inver[x + 1]; tr1.add(ii, -1); tr2.add(ii, -ii); ii++; tr1.add(ii, 1); tr2.add(ii, ii); } } else { ll k = rr(); if (k  n) { printf(\"0\\n\"); } else { ll ans = tr2.sum(k, n); ans -= tr1.sum(k, n) * k; printf(\"%lld\\n\", ans); } } } return 0; } ",
+  "articleBody": "题目大意 给定一个长为 $n$ 的排列 $p$，有如下操作\n交换 $p_{x}, p_{x+1}$。 询问排列经过 $k$ 轮冒泡排序后的逆序数。 分析 难点在观察冒泡排序对逆序数的影响，考虑一个数 $p_i$ 受其前面的数影响：\n如果 $p_i$ 前面没有比 $p_i$ 大的，冒泡后 $p_{i’}$ 仍不贡献逆序数。 如果 $p_i$ 前面有 $j$ 个比当前数大的，冒泡后有且仅有一个数穿过了 $p_{i’}$，贡献的逆序数减 $1$。 故第 $k$ 轮冒泡后，即每个数贡献的逆序数都要减 $k$。又因为不应减到负数，因此需要用两个树状数组维护。\n#include \"template/ds/fwtree/1.hpp\" int main() { int n = rr(), m = rr(); vector\u003cint\u003e p(n); for (int i = 0; i \u003c n; i++) p[i] = rr(); vector\u003cll\u003e inver(n); { vector\u003cpii\u003e tp(n); for (int i = 0; i \u003c n; i++) tp[i] = {p[i], i + 1}; sort(tp.begin(), tp.end()); fwtree_1\u003cll\u003e tr(n + 1); for (auto [x, i] : tp) { inver[i - 1] = i - 1 - tr.sum(1, i); tr.add(i, 1); } } fwtree_1\u003cll\u003e tr1(n + 1), tr2(n + 1); for (auto ii : inver) { tr1.add(ii, 1), tr2.add(ii, ii); } while (m--) { int op = rr(); if (op == 1) { int x = rr() - 1; swap(p[x], p[x + 1]); swap(inver[x], inver[x + 1]); if (p[x] \u003c p[x + 1]) { auto \u0026ii = inver[x]; tr1.add(ii, -1); tr2.add(ii, -ii); ii--; tr1.add(ii, 1); tr2.add(ii, ii); } else { auto \u0026ii = inver[x + 1]; tr1.add(ii, -1); tr2.add(ii, -ii); ii++; tr1.add(ii, 1); tr2.add(ii, ii); } } else { ll k = rr(); if (k \u003e n) { printf(\"0\\n\"); } else { ll ans = tr2.sum(k, n); ans -= tr1.sum(k, n) * k; printf(\"%lld\\n\", ans); } } } return 0; } ",
   "wordCount" : "224",
   "inLanguage": "en",
   "datePublished": "2022-02-11T00:00:00Z",

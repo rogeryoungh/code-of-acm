@@ -8,10 +8,10 @@
 <title>P4588 数学计算 | Roger Young</title>
 <meta name="keywords" content="" />
 <meta name="description" content="题目大意 初始是 $x=1$，我们每轮对 $x$ 做一个操作
- 将 $x$ 变为 $k x$，并输出 $x \bmod M$。 将 $x$ 变为 $x / k_i$，即取消第 $i$ 次操作，并输出 $x \bmod M$。  保证每个操作 1 的 $k$ 在操作 2 中至多被除一次。
+将 $x$ 变为 $k x$，并输出 $x \bmod M$。 将 $x$ 变为 $x / k_i$，即取消第 $i$ 次操作，并输出 $x \bmod M$。 保证每个操作 1 的 $k$ 在操作 2 中至多被除一次。
 分析 $M$ 并不保证是质数，逆元可能不存在。
 可以把操作序列看作一个乘积式，初始情况下全为 $1$。
- 操作 1 即是把第 $i$ 个数变为 $k$。 操作 2 即是把第 $i$ 个数变回 $1$。  修改结束后，询问所有数的乘积。单点修改，区间查询，标准的线段树。
+操作 1 即是把第 $i$ 个数变为 $k$。 操作 2 即是把第 $i$ 个数变回 $1$。 修改结束后，询问所有数的乘积。单点修改，区间查询，标准的线段树。
 因为只询问全体和，zkw 好写的多。
 template &lt;class T&gt; struct SegmentTree { vector&lt;T&gt; tr; int N; SegmentTree(int l, int r) { int n = r - l &#43; 1; N = 2 &lt;&lt; std::__lg(n); tr.">
 <meta name="author" content="rogeryoungh">
@@ -27,7 +27,7 @@ template &lt;class T&gt; struct SegmentTree { vector&lt;T&gt; tr; int N; Segment
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -56,10 +56,10 @@ template &lt;class T&gt; struct SegmentTree { vector&lt;T&gt; tr; int N; Segment
 
 <meta property="og:title" content="P4588 数学计算" />
 <meta property="og:description" content="题目大意 初始是 $x=1$，我们每轮对 $x$ 做一个操作
- 将 $x$ 变为 $k x$，并输出 $x \bmod M$。 将 $x$ 变为 $x / k_i$，即取消第 $i$ 次操作，并输出 $x \bmod M$。  保证每个操作 1 的 $k$ 在操作 2 中至多被除一次。
+将 $x$ 变为 $k x$，并输出 $x \bmod M$。 将 $x$ 变为 $x / k_i$，即取消第 $i$ 次操作，并输出 $x \bmod M$。 保证每个操作 1 的 $k$ 在操作 2 中至多被除一次。
 分析 $M$ 并不保证是质数，逆元可能不存在。
 可以把操作序列看作一个乘积式，初始情况下全为 $1$。
- 操作 1 即是把第 $i$ 个数变为 $k$。 操作 2 即是把第 $i$ 个数变回 $1$。  修改结束后，询问所有数的乘积。单点修改，区间查询，标准的线段树。
+操作 1 即是把第 $i$ 个数变为 $k$。 操作 2 即是把第 $i$ 个数变回 $1$。 修改结束后，询问所有数的乘积。单点修改，区间查询，标准的线段树。
 因为只询问全体和，zkw 好写的多。
 template &lt;class T&gt; struct SegmentTree { vector&lt;T&gt; tr; int N; SegmentTree(int l, int r) { int n = r - l &#43; 1; N = 2 &lt;&lt; std::__lg(n); tr." />
 <meta property="og:type" content="article" />
@@ -70,10 +70,10 @@ template &lt;class T&gt; struct SegmentTree { vector&lt;T&gt; tr; int N; Segment
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="P4588 数学计算"/>
 <meta name="twitter:description" content="题目大意 初始是 $x=1$，我们每轮对 $x$ 做一个操作
- 将 $x$ 变为 $k x$，并输出 $x \bmod M$。 将 $x$ 变为 $x / k_i$，即取消第 $i$ 次操作，并输出 $x \bmod M$。  保证每个操作 1 的 $k$ 在操作 2 中至多被除一次。
+将 $x$ 变为 $k x$，并输出 $x \bmod M$。 将 $x$ 变为 $x / k_i$，即取消第 $i$ 次操作，并输出 $x \bmod M$。 保证每个操作 1 的 $k$ 在操作 2 中至多被除一次。
 分析 $M$ 并不保证是质数，逆元可能不存在。
 可以把操作序列看作一个乘积式，初始情况下全为 $1$。
- 操作 1 即是把第 $i$ 个数变为 $k$。 操作 2 即是把第 $i$ 个数变回 $1$。  修改结束后，询问所有数的乘积。单点修改，区间查询，标准的线段树。
+操作 1 即是把第 $i$ 个数变为 $k$。 操作 2 即是把第 $i$ 个数变回 $1$。 修改结束后，询问所有数的乘积。单点修改，区间查询，标准的线段树。
 因为只询问全体和，zkw 好写的多。
 template &lt;class T&gt; struct SegmentTree { vector&lt;T&gt; tr; int N; SegmentTree(int l, int r) { int n = r - l &#43; 1; N = 2 &lt;&lt; std::__lg(n); tr."/>
 
@@ -104,11 +104,11 @@ template &lt;class T&gt; struct SegmentTree { vector&lt;T&gt; tr; int N; Segment
   "@type": "BlogPosting",
   "headline": "P4588 数学计算",
   "name": "P4588 数学计算",
-  "description": "题目大意 初始是 $x=1$，我们每轮对 $x$ 做一个操作\n 将 $x$ 变为 $k x$，并输出 $x \\bmod M$。 将 $x$ 变为 $x / k_i$，即取消第 $i$ 次操作，并输出 $x \\bmod M$。  保证每个操作 1 的 $k$ 在操作 2 中至多被除一次。\n分析 $M$ 并不保证是质数，逆元可能不存在。\n可以把操作序列看作一个乘积式，初始情况下全为 $1$。\n 操作 1 即是把第 $i$ 个数变为 $k$。 操作 2 即是把第 $i$ 个数变回 $1$。  修改结束后，询问所有数的乘积。单点修改，区间查询，标准的线段树。\n因为只询问全体和，zkw 好写的多。\ntemplate \u0026lt;class T\u0026gt; struct SegmentTree { vector\u0026lt;T\u0026gt; tr; int N; SegmentTree(int l, int r) { int n = r - l + 1; N = 2 \u0026lt;\u0026lt; std::__lg(n); tr.",
+  "description": "题目大意 初始是 $x=1$，我们每轮对 $x$ 做一个操作\n将 $x$ 变为 $k x$，并输出 $x \\bmod M$。 将 $x$ 变为 $x / k_i$，即取消第 $i$ 次操作，并输出 $x \\bmod M$。 保证每个操作 1 的 $k$ 在操作 2 中至多被除一次。\n分析 $M$ 并不保证是质数，逆元可能不存在。\n可以把操作序列看作一个乘积式，初始情况下全为 $1$。\n操作 1 即是把第 $i$ 个数变为 $k$。 操作 2 即是把第 $i$ 个数变回 $1$。 修改结束后，询问所有数的乘积。单点修改，区间查询，标准的线段树。\n因为只询问全体和，zkw 好写的多。\ntemplate \u0026lt;class T\u0026gt; struct SegmentTree { vector\u0026lt;T\u0026gt; tr; int N; SegmentTree(int l, int r) { int n = r - l + 1; N = 2 \u0026lt;\u0026lt; std::__lg(n); tr.",
   "keywords": [
     
   ],
-  "articleBody": "题目大意 初始是 $x=1$，我们每轮对 $x$ 做一个操作\n 将 $x$ 变为 $k x$，并输出 $x \\bmod M$。 将 $x$ 变为 $x / k_i$，即取消第 $i$ 次操作，并输出 $x \\bmod M$。  保证每个操作 1 的 $k$ 在操作 2 中至多被除一次。\n分析 $M$ 并不保证是质数，逆元可能不存在。\n可以把操作序列看作一个乘积式，初始情况下全为 $1$。\n 操作 1 即是把第 $i$ 个数变为 $k$。 操作 2 即是把第 $i$ 个数变回 $1$。  修改结束后，询问所有数的乘积。单点修改，区间查询，标准的线段树。\n因为只询问全体和，zkw 好写的多。\ntemplate class T struct SegmentTree { vectorT tr; int N; SegmentTree(int l, int r) { int n = r - l + 1; N = 2  std::__lg(n); tr.resize(N * 2 + 2, 1); } void pushdown(int i) { tr[i] = 1ll * tr[i * 2] * tr[i * 2 + 1] % M; } void modify(int i, T x) { tr[i += N] = x; for (i /= 2; i; i /= 2) { pushdown(i); } } }; 附：代码，展开\n",
+  "articleBody": "题目大意 初始是 $x=1$，我们每轮对 $x$ 做一个操作\n将 $x$ 变为 $k x$，并输出 $x \\bmod M$。 将 $x$ 变为 $x / k_i$，即取消第 $i$ 次操作，并输出 $x \\bmod M$。 保证每个操作 1 的 $k$ 在操作 2 中至多被除一次。\n分析 $M$ 并不保证是质数，逆元可能不存在。\n可以把操作序列看作一个乘积式，初始情况下全为 $1$。\n操作 1 即是把第 $i$ 个数变为 $k$。 操作 2 即是把第 $i$ 个数变回 $1$。 修改结束后，询问所有数的乘积。单点修改，区间查询，标准的线段树。\n因为只询问全体和，zkw 好写的多。\ntemplate \u003cclass T\u003e struct SegmentTree { vector\u003cT\u003e tr; int N; SegmentTree(int l, int r) { int n = r - l + 1; N = 2 \u003c\u003c std::__lg(n); tr.resize(N * 2 + 2, 1); } void pushdown(int i) { tr[i] = 1ll * tr[i * 2] * tr[i * 2 + 1] % M; } void modify(int i, T x) { tr[i += N] = x; for (i /= 2; i; i /= 2) { pushdown(i); } } }; 附：代码，展开\n",
   "wordCount" : "131",
   "inLanguage": "en",
   "datePublished": "2022-01-28T00:00:00Z",

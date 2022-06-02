@@ -8,17 +8,17 @@
 <title>代码模板 | Roger Young</title>
 <meta name="keywords" content="" />
 <meta name="description" content="我的代码模板依赖于我自定义的预处理器，它通过 DFS 把所有引入的模板展开。
- index.hpp：公共文件头。  我的模板风格是简单封装：在保持易用的同时，封装尽量的薄。
+index.hpp：公共文件头。 我的模板风格是简单封装：在保持易用的同时，封装尽量的薄。
 Data Struct 基础数据结构。
- fwtree/1.hpp：普通树状数组。 fwtree/2.hpp：支持区间修改、区间查询的树状数组。 SegmentTree/1.hpp：普通线段树示例，不可引入。 SegmentTree/2.hpp：带懒标记的线段树示例，不可引入。  Math 基础数学算法。
- qpow.hpp：快速幂。 qpow128.hpp：64 位类型的快速幂。  Basic 我也不知道这东西该放哪，就放到这里吧。
- modint：m32。  NTT-int 简化多项式板子，码量少，常数较大。
- fps/O.hpp：多项式基础结构，用牛顿迭代完成操作。 fps/F.hpp：与上面的相同，略卡常数。 cdq.hpp：非递归 CDQ 分治。 eval.hpp：多点插值，多点求值。  没有用的 NTT-mint 基于 modint 的多项式板子，注重易用性和常数，码量较大。
+fwtree/1.hpp：普通树状数组。 fwtree/2.hpp：支持区间修改、区间查询的树状数组。 SegmentTree/1.hpp：普通线段树示例，不可引入。 SegmentTree/2.hpp：带懒标记的线段树示例，不可引入。 Math 基础数学算法。
+qpow.hpp：快速幂。 qpow128.hpp：64 位类型的快速幂。 Basic 我也不知道这东西该放哪，就放到这里吧。
+modint：m32。 NTT-int 简化多项式板子，码量少，常数较大。
+fps/O.hpp：多项式基础结构，用牛顿迭代完成操作。 fps/F.hpp：与上面的相同，略卡常数。 cdq.hpp：非递归 CDQ 分治。 eval.hpp：多点插值，多点求值。 没有用的 NTT-mint 基于 modint 的多项式板子，注重易用性和常数，码量较大。
 每一种算法可能有多种实现。
 多项式类的定义
- poly/1.hpp：继承于 vector&lt;m32&gt;。  NTT
- ntt/1.hpp：无 rev 的 NTT。 ntt/2.hpp：略微卡常的 NTT。  多项式逆
- inv/1.hpp：12E 的牛顿迭代 inv，和 16E 的牛顿迭代 div。 inv/2.hpp：10E 的牛顿迭代 inv，和 13E 的牛顿迭代 div。 inv/3.">
+poly/1.hpp：继承于 vector&lt;m32&gt;。 NTT
+ntt/1.hpp：无 rev 的 NTT。 ntt/2.hpp：略微卡常的 NTT。 多项式逆
+inv/1.hpp：12E 的牛顿迭代 inv，和 16E 的牛顿迭代 div。 inv/2.hpp：10E 的牛顿迭代 inv，和 13E 的牛顿迭代 div。 inv/3.hpp：24E 的牛顿迭代 inv，和 28E 的牛顿迭代 div。 inv/6.hpp：半在线卷积实现的 inv &amp; div。 inv/7.hpp：全在线卷积实现的 inv &amp; div。（没啥用） inv/8.">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/other/docs/" />
 <link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
@@ -32,7 +32,7 @@ Data Struct 基础数据结构。
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -61,17 +61,17 @@ Data Struct 基础数据结构。
 
 <meta property="og:title" content="代码模板" />
 <meta property="og:description" content="我的代码模板依赖于我自定义的预处理器，它通过 DFS 把所有引入的模板展开。
- index.hpp：公共文件头。  我的模板风格是简单封装：在保持易用的同时，封装尽量的薄。
+index.hpp：公共文件头。 我的模板风格是简单封装：在保持易用的同时，封装尽量的薄。
 Data Struct 基础数据结构。
- fwtree/1.hpp：普通树状数组。 fwtree/2.hpp：支持区间修改、区间查询的树状数组。 SegmentTree/1.hpp：普通线段树示例，不可引入。 SegmentTree/2.hpp：带懒标记的线段树示例，不可引入。  Math 基础数学算法。
- qpow.hpp：快速幂。 qpow128.hpp：64 位类型的快速幂。  Basic 我也不知道这东西该放哪，就放到这里吧。
- modint：m32。  NTT-int 简化多项式板子，码量少，常数较大。
- fps/O.hpp：多项式基础结构，用牛顿迭代完成操作。 fps/F.hpp：与上面的相同，略卡常数。 cdq.hpp：非递归 CDQ 分治。 eval.hpp：多点插值，多点求值。  没有用的 NTT-mint 基于 modint 的多项式板子，注重易用性和常数，码量较大。
+fwtree/1.hpp：普通树状数组。 fwtree/2.hpp：支持区间修改、区间查询的树状数组。 SegmentTree/1.hpp：普通线段树示例，不可引入。 SegmentTree/2.hpp：带懒标记的线段树示例，不可引入。 Math 基础数学算法。
+qpow.hpp：快速幂。 qpow128.hpp：64 位类型的快速幂。 Basic 我也不知道这东西该放哪，就放到这里吧。
+modint：m32。 NTT-int 简化多项式板子，码量少，常数较大。
+fps/O.hpp：多项式基础结构，用牛顿迭代完成操作。 fps/F.hpp：与上面的相同，略卡常数。 cdq.hpp：非递归 CDQ 分治。 eval.hpp：多点插值，多点求值。 没有用的 NTT-mint 基于 modint 的多项式板子，注重易用性和常数，码量较大。
 每一种算法可能有多种实现。
 多项式类的定义
- poly/1.hpp：继承于 vector&lt;m32&gt;。  NTT
- ntt/1.hpp：无 rev 的 NTT。 ntt/2.hpp：略微卡常的 NTT。  多项式逆
- inv/1.hpp：12E 的牛顿迭代 inv，和 16E 的牛顿迭代 div。 inv/2.hpp：10E 的牛顿迭代 inv，和 13E 的牛顿迭代 div。 inv/3." />
+poly/1.hpp：继承于 vector&lt;m32&gt;。 NTT
+ntt/1.hpp：无 rev 的 NTT。 ntt/2.hpp：略微卡常的 NTT。 多项式逆
+inv/1.hpp：12E 的牛顿迭代 inv，和 16E 的牛顿迭代 div。 inv/2.hpp：10E 的牛顿迭代 inv，和 13E 的牛顿迭代 div。 inv/3.hpp：24E 的牛顿迭代 inv，和 28E 的牛顿迭代 div。 inv/6.hpp：半在线卷积实现的 inv &amp; div。 inv/7.hpp：全在线卷积实现的 inv &amp; div。（没啥用） inv/8." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/other/docs/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-01-22T00:00:00&#43;00:00" />
@@ -80,17 +80,17 @@ Data Struct 基础数据结构。
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="代码模板"/>
 <meta name="twitter:description" content="我的代码模板依赖于我自定义的预处理器，它通过 DFS 把所有引入的模板展开。
- index.hpp：公共文件头。  我的模板风格是简单封装：在保持易用的同时，封装尽量的薄。
+index.hpp：公共文件头。 我的模板风格是简单封装：在保持易用的同时，封装尽量的薄。
 Data Struct 基础数据结构。
- fwtree/1.hpp：普通树状数组。 fwtree/2.hpp：支持区间修改、区间查询的树状数组。 SegmentTree/1.hpp：普通线段树示例，不可引入。 SegmentTree/2.hpp：带懒标记的线段树示例，不可引入。  Math 基础数学算法。
- qpow.hpp：快速幂。 qpow128.hpp：64 位类型的快速幂。  Basic 我也不知道这东西该放哪，就放到这里吧。
- modint：m32。  NTT-int 简化多项式板子，码量少，常数较大。
- fps/O.hpp：多项式基础结构，用牛顿迭代完成操作。 fps/F.hpp：与上面的相同，略卡常数。 cdq.hpp：非递归 CDQ 分治。 eval.hpp：多点插值，多点求值。  没有用的 NTT-mint 基于 modint 的多项式板子，注重易用性和常数，码量较大。
+fwtree/1.hpp：普通树状数组。 fwtree/2.hpp：支持区间修改、区间查询的树状数组。 SegmentTree/1.hpp：普通线段树示例，不可引入。 SegmentTree/2.hpp：带懒标记的线段树示例，不可引入。 Math 基础数学算法。
+qpow.hpp：快速幂。 qpow128.hpp：64 位类型的快速幂。 Basic 我也不知道这东西该放哪，就放到这里吧。
+modint：m32。 NTT-int 简化多项式板子，码量少，常数较大。
+fps/O.hpp：多项式基础结构，用牛顿迭代完成操作。 fps/F.hpp：与上面的相同，略卡常数。 cdq.hpp：非递归 CDQ 分治。 eval.hpp：多点插值，多点求值。 没有用的 NTT-mint 基于 modint 的多项式板子，注重易用性和常数，码量较大。
 每一种算法可能有多种实现。
 多项式类的定义
- poly/1.hpp：继承于 vector&lt;m32&gt;。  NTT
- ntt/1.hpp：无 rev 的 NTT。 ntt/2.hpp：略微卡常的 NTT。  多项式逆
- inv/1.hpp：12E 的牛顿迭代 inv，和 16E 的牛顿迭代 div。 inv/2.hpp：10E 的牛顿迭代 inv，和 13E 的牛顿迭代 div。 inv/3."/>
+poly/1.hpp：继承于 vector&lt;m32&gt;。 NTT
+ntt/1.hpp：无 rev 的 NTT。 ntt/2.hpp：略微卡常的 NTT。 多项式逆
+inv/1.hpp：12E 的牛顿迭代 inv，和 16E 的牛顿迭代 div。 inv/2.hpp：10E 的牛顿迭代 inv，和 13E 的牛顿迭代 div。 inv/3.hpp：24E 的牛顿迭代 inv，和 28E 的牛顿迭代 div。 inv/6.hpp：半在线卷积实现的 inv &amp; div。 inv/7.hpp：全在线卷积实现的 inv &amp; div。（没啥用） inv/8."/>
 
 
 <script type="application/ld+json">
@@ -119,11 +119,11 @@ Data Struct 基础数据结构。
   "@type": "BlogPosting",
   "headline": "代码模板",
   "name": "代码模板",
-  "description": "我的代码模板依赖于我自定义的预处理器，它通过 DFS 把所有引入的模板展开。\n index.hpp：公共文件头。  我的模板风格是简单封装：在保持易用的同时，封装尽量的薄。\nData Struct 基础数据结构。\n fwtree/1.hpp：普通树状数组。 fwtree/2.hpp：支持区间修改、区间查询的树状数组。 SegmentTree/1.hpp：普通线段树示例，不可引入。 SegmentTree/2.hpp：带懒标记的线段树示例，不可引入。  Math 基础数学算法。\n qpow.hpp：快速幂。 qpow128.hpp：64 位类型的快速幂。  Basic 我也不知道这东西该放哪，就放到这里吧。\n modint：m32。  NTT-int 简化多项式板子，码量少，常数较大。\n fps/O.hpp：多项式基础结构，用牛顿迭代完成操作。 fps/F.hpp：与上面的相同，略卡常数。 cdq.hpp：非递归 CDQ 分治。 eval.hpp：多点插值，多点求值。  没有用的 NTT-mint 基于 modint 的多项式板子，注重易用性和常数，码量较大。\n每一种算法可能有多种实现。\n多项式类的定义\n poly/1.hpp：继承于 vector\u0026lt;m32\u0026gt;。  NTT\n ntt/1.hpp：无 rev 的 NTT。 ntt/2.hpp：略微卡常的 NTT。  多项式逆\n inv/1.hpp：12E 的牛顿迭代 inv，和 16E 的牛顿迭代 div。 inv/2.hpp：10E 的牛顿迭代 inv，和 13E 的牛顿迭代 div。 inv/3.",
+  "description": "我的代码模板依赖于我自定义的预处理器，它通过 DFS 把所有引入的模板展开。\nindex.hpp：公共文件头。 我的模板风格是简单封装：在保持易用的同时，封装尽量的薄。\nData Struct 基础数据结构。\nfwtree/1.hpp：普通树状数组。 fwtree/2.hpp：支持区间修改、区间查询的树状数组。 SegmentTree/1.hpp：普通线段树示例，不可引入。 SegmentTree/2.hpp：带懒标记的线段树示例，不可引入。 Math 基础数学算法。\nqpow.hpp：快速幂。 qpow128.hpp：64 位类型的快速幂。 Basic 我也不知道这东西该放哪，就放到这里吧。\nmodint：m32。 NTT-int 简化多项式板子，码量少，常数较大。\nfps/O.hpp：多项式基础结构，用牛顿迭代完成操作。 fps/F.hpp：与上面的相同，略卡常数。 cdq.hpp：非递归 CDQ 分治。 eval.hpp：多点插值，多点求值。 没有用的 NTT-mint 基于 modint 的多项式板子，注重易用性和常数，码量较大。\n每一种算法可能有多种实现。\n多项式类的定义\npoly/1.hpp：继承于 vector\u0026lt;m32\u0026gt;。 NTT\nntt/1.hpp：无 rev 的 NTT。 ntt/2.hpp：略微卡常的 NTT。 多项式逆\ninv/1.hpp：12E 的牛顿迭代 inv，和 16E 的牛顿迭代 div。 inv/2.hpp：10E 的牛顿迭代 inv，和 13E 的牛顿迭代 div。 inv/3.hpp：24E 的牛顿迭代 inv，和 28E 的牛顿迭代 div。 inv/6.hpp：半在线卷积实现的 inv \u0026amp; div。 inv/7.hpp：全在线卷积实现的 inv \u0026amp; div。（没啥用） inv/8.",
   "keywords": [
     
   ],
-  "articleBody": "我的代码模板依赖于我自定义的预处理器，它通过 DFS 把所有引入的模板展开。\n index.hpp：公共文件头。  我的模板风格是简单封装：在保持易用的同时，封装尽量的薄。\nData Struct 基础数据结构。\n fwtree/1.hpp：普通树状数组。 fwtree/2.hpp：支持区间修改、区间查询的树状数组。 SegmentTree/1.hpp：普通线段树示例，不可引入。 SegmentTree/2.hpp：带懒标记的线段树示例，不可引入。  Math 基础数学算法。\n qpow.hpp：快速幂。 qpow128.hpp：64 位类型的快速幂。  Basic 我也不知道这东西该放哪，就放到这里吧。\n modint：m32。  NTT-int 简化多项式板子，码量少，常数较大。\n fps/O.hpp：多项式基础结构，用牛顿迭代完成操作。 fps/F.hpp：与上面的相同，略卡常数。 cdq.hpp：非递归 CDQ 分治。 eval.hpp：多点插值，多点求值。  没有用的 NTT-mint 基于 modint 的多项式板子，注重易用性和常数，码量较大。\n每一种算法可能有多种实现。\n多项式类的定义\n poly/1.hpp：继承于 vector。  NTT\n ntt/1.hpp：无 rev 的 NTT。 ntt/2.hpp：略微卡常的 NTT。  多项式逆\n inv/1.hpp：12E 的牛顿迭代 inv，和 16E 的牛顿迭代 div。 inv/2.hpp：10E 的牛顿迭代 inv，和 13E 的牛顿迭代 div。 inv/3.hpp：24E 的牛顿迭代 inv，和 28E 的牛顿迭代 div。 inv/6.hpp：半在线卷积实现的 inv \u0026 div。 inv/7.hpp：全在线卷积实现的 inv \u0026 div。（没啥用） inv/8.hpp：10E 的分块牛顿迭代 inv，和 10E 的分块牛顿迭代 div。  多项式 exp\n exp/1.hpp：20E 的牛顿迭代 exp。 exp/2.hpp：17E 的牛顿迭代 exp。 exp/3.hpp：32E 的牛顿迭代 exp。 exp/5.hpp：半在线卷积实现的 exp。 exp/6.hpp：全在线卷积实现的 exp。（没啥用） exp/7.hpp：14E 的分块牛顿迭代 exp。  半在线卷积（CDQ 分治）\n cdq/3.hpp：2 叉的半在线卷积实现，不保存卷积结果。 cdq/4.hpp：B 叉的半在线卷积实现，不保存卷积结果。 cdq/5.hpp：2 叉的半在线卷积实现，保存卷积结果。 cdq/6.hpp：B 叉的半在线卷积实现，保存卷积结果。 cdq/7.hpp：略微卡常的 B 叉在线卷积实现。  全在线卷积\n oc/1.hpp：全在线卷积的实现。（感觉挺快的  多项式 sqrt\n sqrt/1.hpp：11E 的牛顿迭代 sqrt。 sqrt/5.hpp：全在线卷积实现的 sqrt。 sqrt/8.hpp：8E 的分块牛顿迭代 sqrt。  积分、求导、多点求值、多点插值、快速幂。\n",
+  "articleBody": "我的代码模板依赖于我自定义的预处理器，它通过 DFS 把所有引入的模板展开。\nindex.hpp：公共文件头。 我的模板风格是简单封装：在保持易用的同时，封装尽量的薄。\nData Struct 基础数据结构。\nfwtree/1.hpp：普通树状数组。 fwtree/2.hpp：支持区间修改、区间查询的树状数组。 SegmentTree/1.hpp：普通线段树示例，不可引入。 SegmentTree/2.hpp：带懒标记的线段树示例，不可引入。 Math 基础数学算法。\nqpow.hpp：快速幂。 qpow128.hpp：64 位类型的快速幂。 Basic 我也不知道这东西该放哪，就放到这里吧。\nmodint：m32。 NTT-int 简化多项式板子，码量少，常数较大。\nfps/O.hpp：多项式基础结构，用牛顿迭代完成操作。 fps/F.hpp：与上面的相同，略卡常数。 cdq.hpp：非递归 CDQ 分治。 eval.hpp：多点插值，多点求值。 没有用的 NTT-mint 基于 modint 的多项式板子，注重易用性和常数，码量较大。\n每一种算法可能有多种实现。\n多项式类的定义\npoly/1.hpp：继承于 vector。 NTT\nntt/1.hpp：无 rev 的 NTT。 ntt/2.hpp：略微卡常的 NTT。 多项式逆\ninv/1.hpp：12E 的牛顿迭代 inv，和 16E 的牛顿迭代 div。 inv/2.hpp：10E 的牛顿迭代 inv，和 13E 的牛顿迭代 div。 inv/3.hpp：24E 的牛顿迭代 inv，和 28E 的牛顿迭代 div。 inv/6.hpp：半在线卷积实现的 inv \u0026 div。 inv/7.hpp：全在线卷积实现的 inv \u0026 div。（没啥用） inv/8.hpp：10E 的分块牛顿迭代 inv，和 10E 的分块牛顿迭代 div。 多项式 exp\nexp/1.hpp：20E 的牛顿迭代 exp。 exp/2.hpp：17E 的牛顿迭代 exp。 exp/3.hpp：32E 的牛顿迭代 exp。 exp/5.hpp：半在线卷积实现的 exp。 exp/6.hpp：全在线卷积实现的 exp。（没啥用） exp/7.hpp：14E 的分块牛顿迭代 exp。 半在线卷积（CDQ 分治）\ncdq/3.hpp：2 叉的半在线卷积实现，不保存卷积结果。 cdq/4.hpp：B 叉的半在线卷积实现，不保存卷积结果。 cdq/5.hpp：2 叉的半在线卷积实现，保存卷积结果。 cdq/6.hpp：B 叉的半在线卷积实现，保存卷积结果。 cdq/7.hpp：略微卡常的 B 叉在线卷积实现。 全在线卷积\noc/1.hpp：全在线卷积的实现。（感觉挺快的 多项式 sqrt\nsqrt/1.hpp：11E 的牛顿迭代 sqrt。 sqrt/5.hpp：全在线卷积实现的 sqrt。 sqrt/8.hpp：8E 的分块牛顿迭代 sqrt。 积分、求导、多点求值、多点插值、快速幂。\n",
   "wordCount" : "121",
   "inLanguage": "en",
   "datePublished": "2022-01-22T00:00:00Z",

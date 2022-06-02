@@ -25,7 +25,7 @@ ll dp[50][50][50], aa[400], tt[10]; int main() { ll n = rr(), m = rr(); for (ll 
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -102,7 +102,7 @@ ll dp[50][50][50], aa[400], tt[10]; int main() { ll n = rr(), m = rr(); for (ll 
   "keywords": [
     "洛谷", "DP"
   ],
-  "articleBody": "题目大意 初始有四种卡片，消耗后分别可以前进 $1$、$2$、$3$ 和 $4$ 格。棋盘上每个点都有个分数，求从第 $1$ 格到达第 $N$ 格途径分数的最大值。\n分析 设状态 $F[i, j, k, w]$ 为使用 $i$ 张前进 $1$、……、$w$ 张前进 $4$ 之后的状态，容易得到转移方程\n$$ F[i, j, k, w] = \\max\\left\\{ \\begin{matrix} dp[i - 1, j, k, w] \\\\ dp[i, j - 1, k, w] \\\\ dp[i, j, k - 1, w] \\\\ dp[i, j, k, w - 1] \\end{matrix}\\right\\} + a[i + 2j + 3k + 4w] $$\n处理一下边界情况，滚动数组即可。\nll dp[50][50][50], aa[400], tt[10]; int main() { ll n = rr(), m = rr(); for (ll i = 1; i  n; i++) { aa[i] = rr(); } for (ll i = 1; i  m; i++) { tt[rr()]++; } for (ll i = 0; i  tt[1]; i++) { for (ll j = 0; j  tt[2]; j++) { for (ll k = 0; k  tt[3]; k++) { for (ll w = 0; w  tt[4]; w++) { dp[j][k][w] = aa[i * 1 + j * 2 + k * 3 + w * 4 + 1] + max4( j == 0 ? 0 : dp[j - 1][k][w], k == 0 ? 0 : dp[j][k - 1][w], w == 0 ? 0 : dp[j][k][w - 1], dp[j][k][w]); } } } } printf(\"%lld\\n\", dp[tt[2]][tt[3]][tt[4]]); return 0; } ",
+  "articleBody": "题目大意 初始有四种卡片，消耗后分别可以前进 $1$、$2$、$3$ 和 $4$ 格。棋盘上每个点都有个分数，求从第 $1$ 格到达第 $N$ 格途径分数的最大值。\n分析 设状态 $F[i, j, k, w]$ 为使用 $i$ 张前进 $1$、……、$w$ 张前进 $4$ 之后的状态，容易得到转移方程\n$$ F[i, j, k, w] = \\max\\left\\{ \\begin{matrix} dp[i - 1, j, k, w] \\\\ dp[i, j - 1, k, w] \\\\ dp[i, j, k - 1, w] \\\\ dp[i, j, k, w - 1] \\end{matrix}\\right\\} + a[i + 2j + 3k + 4w] $$\n处理一下边界情况，滚动数组即可。\nll dp[50][50][50], aa[400], tt[10]; int main() { ll n = rr(), m = rr(); for (ll i = 1; i \u003c= n; i++) { aa[i] = rr(); } for (ll i = 1; i \u003c= m; i++) { tt[rr()]++; } for (ll i = 0; i \u003c= tt[1]; i++) { for (ll j = 0; j \u003c= tt[2]; j++) { for (ll k = 0; k \u003c= tt[3]; k++) { for (ll w = 0; w \u003c= tt[4]; w++) { dp[j][k][w] = aa[i * 1 + j * 2 + k * 3 + w * 4 + 1] + max4( j == 0 ? 0 : dp[j - 1][k][w], k == 0 ? 0 : dp[j][k - 1][w], w == 0 ? 0 : dp[j][k][w - 1], dp[j][k][w]); } } } } printf(\"%lld\\n\", dp[tt[2]][tt[3]][tt[4]]); return 0; } ",
   "wordCount" : "207",
   "inLanguage": "en",
   "datePublished": "2020-11-10T00:00:00Z",

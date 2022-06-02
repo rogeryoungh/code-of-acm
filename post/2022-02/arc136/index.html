@@ -9,7 +9,7 @@
 <meta name="keywords" content="" />
 <meta name="description" content="后悔没把 D 写快点。
 A. A ↔ BB 给定一个长为 $N$ 的仅包含 ABC 的字符串 $S$。可以做以下两种操作
- 把 A 替换为 BB 把 BB 替换为 A  求操作后 $S$ 的字典序最小是多少。
+把 A 替换为 BB 把 BB 替换为 A 求操作后 $S$ 的字典序最小是多少。
 分析 我赛时是想到 BA 可以变为 AB，从而降低字典序。
 int main() { int N; string s; cin &gt;&gt; N &gt;&gt; s; for (int i = 0; i &lt; s.size() - 1; i&#43;&#43;) { if (s[i] == &#39;B&#39; &amp;&amp; s[i &#43; 1] == &#39;B&#39;) { s[i] = &#39;A&#39;; s.erase(s.begin() &#43; i &#43; 1); } if (s[i] == &#39;B&#39; &amp;&amp; s[i &#43; 1] == &#39;A&#39;) { swap(s[i], s[i &#43; 1]); } } cout &lt;&lt; s; return 0; } 全部代码请看：Atcoder/ARC136/ARC136A.">
 <meta name="author" content="rogeryoungh">
@@ -25,7 +25,7 @@ int main() { int N; string s; cin &gt;&gt; N &gt;&gt; s; for (int i = 0; i &lt; 
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -55,7 +55,7 @@ int main() { int N; string s; cin &gt;&gt; N &gt;&gt; s; for (int i = 0; i &lt; 
 <meta property="og:title" content="AtCoder Regular Contest 136 (ABD)" />
 <meta property="og:description" content="后悔没把 D 写快点。
 A. A ↔ BB 给定一个长为 $N$ 的仅包含 ABC 的字符串 $S$。可以做以下两种操作
- 把 A 替换为 BB 把 BB 替换为 A  求操作后 $S$ 的字典序最小是多少。
+把 A 替换为 BB 把 BB 替换为 A 求操作后 $S$ 的字典序最小是多少。
 分析 我赛时是想到 BA 可以变为 AB，从而降低字典序。
 int main() { int N; string s; cin &gt;&gt; N &gt;&gt; s; for (int i = 0; i &lt; s.size() - 1; i&#43;&#43;) { if (s[i] == &#39;B&#39; &amp;&amp; s[i &#43; 1] == &#39;B&#39;) { s[i] = &#39;A&#39;; s.erase(s.begin() &#43; i &#43; 1); } if (s[i] == &#39;B&#39; &amp;&amp; s[i &#43; 1] == &#39;A&#39;) { swap(s[i], s[i &#43; 1]); } } cout &lt;&lt; s; return 0; } 全部代码请看：Atcoder/ARC136/ARC136A." />
 <meta property="og:type" content="article" />
@@ -67,7 +67,7 @@ int main() { int N; string s; cin &gt;&gt; N &gt;&gt; s; for (int i = 0; i &lt; 
 <meta name="twitter:title" content="AtCoder Regular Contest 136 (ABD)"/>
 <meta name="twitter:description" content="后悔没把 D 写快点。
 A. A ↔ BB 给定一个长为 $N$ 的仅包含 ABC 的字符串 $S$。可以做以下两种操作
- 把 A 替换为 BB 把 BB 替换为 A  求操作后 $S$ 的字典序最小是多少。
+把 A 替换为 BB 把 BB 替换为 A 求操作后 $S$ 的字典序最小是多少。
 分析 我赛时是想到 BA 可以变为 AB，从而降低字典序。
 int main() { int N; string s; cin &gt;&gt; N &gt;&gt; s; for (int i = 0; i &lt; s.size() - 1; i&#43;&#43;) { if (s[i] == &#39;B&#39; &amp;&amp; s[i &#43; 1] == &#39;B&#39;) { s[i] = &#39;A&#39;; s.erase(s.begin() &#43; i &#43; 1); } if (s[i] == &#39;B&#39; &amp;&amp; s[i &#43; 1] == &#39;A&#39;) { swap(s[i], s[i &#43; 1]); } } cout &lt;&lt; s; return 0; } 全部代码请看：Atcoder/ARC136/ARC136A."/>
 
@@ -98,11 +98,11 @@ int main() { int N; string s; cin &gt;&gt; N &gt;&gt; s; for (int i = 0; i &lt; 
   "@type": "BlogPosting",
   "headline": "AtCoder Regular Contest 136 (ABD)",
   "name": "AtCoder Regular Contest 136 (ABD)",
-  "description": "后悔没把 D 写快点。\nA. A ↔ BB 给定一个长为 $N$ 的仅包含 ABC 的字符串 $S$。可以做以下两种操作\n 把 A 替换为 BB 把 BB 替换为 A  求操作后 $S$ 的字典序最小是多少。\n分析 我赛时是想到 BA 可以变为 AB，从而降低字典序。\nint main() { int N; string s; cin \u0026gt;\u0026gt; N \u0026gt;\u0026gt; s; for (int i = 0; i \u0026lt; s.size() - 1; i++) { if (s[i] == \u0026#39;B\u0026#39; \u0026amp;\u0026amp; s[i + 1] == \u0026#39;B\u0026#39;) { s[i] = \u0026#39;A\u0026#39;; s.erase(s.begin() + i + 1); } if (s[i] == \u0026#39;B\u0026#39; \u0026amp;\u0026amp; s[i + 1] == \u0026#39;A\u0026#39;) { swap(s[i], s[i + 1]); } } cout \u0026lt;\u0026lt; s; return 0; } 全部代码请看：Atcoder/ARC136/ARC136A.",
+  "description": "后悔没把 D 写快点。\nA. A ↔ BB 给定一个长为 $N$ 的仅包含 ABC 的字符串 $S$。可以做以下两种操作\n把 A 替换为 BB 把 BB 替换为 A 求操作后 $S$ 的字典序最小是多少。\n分析 我赛时是想到 BA 可以变为 AB，从而降低字典序。\nint main() { int N; string s; cin \u0026gt;\u0026gt; N \u0026gt;\u0026gt; s; for (int i = 0; i \u0026lt; s.size() - 1; i++) { if (s[i] == \u0026#39;B\u0026#39; \u0026amp;\u0026amp; s[i + 1] == \u0026#39;B\u0026#39;) { s[i] = \u0026#39;A\u0026#39;; s.erase(s.begin() + i + 1); } if (s[i] == \u0026#39;B\u0026#39; \u0026amp;\u0026amp; s[i + 1] == \u0026#39;A\u0026#39;) { swap(s[i], s[i + 1]); } } cout \u0026lt;\u0026lt; s; return 0; } 全部代码请看：Atcoder/ARC136/ARC136A.",
   "keywords": [
     
   ],
-  "articleBody": "后悔没把 D 写快点。\nA. A ↔ BB 给定一个长为 $N$ 的仅包含 ABC 的字符串 $S$。可以做以下两种操作\n 把 A 替换为 BB 把 BB 替换为 A  求操作后 $S$ 的字典序最小是多少。\n分析 我赛时是想到 BA 可以变为 AB，从而降低字典序。\nint main() { int N; string s; cin  N  s; for (int i = 0; i  s.size() - 1; i++) { if (s[i] == 'B' \u0026\u0026 s[i + 1] == 'B') { s[i] = 'A'; s.erase(s.begin() + i + 1); } if (s[i] == 'B' \u0026\u0026 s[i + 1] == 'A') { swap(s[i], s[i + 1]); } } cout  s; return 0; } 全部代码请看：Atcoder/ARC136/ARC136A.cpp。\n现在想来，先进行操作 1 再进行操作 2 足以。\ninput() s = input() print(s.replace('A','BB').replace('BB','A')) B. Triple Shift 给定两个长为 $N$ 的排列 $A,B$，每一次操作可以选择 $A_{i},A_{i+1},A_{i+2}$ 变成 $A_{i+2}, A_{i}, A_{i+1}$。\n是否存在操作方法能够把 $A$ 变成 $B$。\n分析 第一想法就是观察到操作操作不改变逆序数的奇偶性，判断奇偶性是否相同即可。\n而且若序列中有相同的数，那么其奇偶性可以被任意的指定。\n至于具体为什么，我不会证。\nint inver(const vectorint \u0026v) { int ans = 0, n = v.size(); for (int i = 0; i  n; i++) { for (int j = i + 1; j  n; j++) { ans += v[i]  v[j]; } } return ans; } int main() { int N; cin  N; vectorint A(N), B(N); for (auto \u0026ai : A) cin  ai; for (auto \u0026bi : B) cin  bi; int ivA = inver(A), ivB = inver(B); sort(A.begin(), A.end()); sort(B.begin(), B.end()); if (A == B) { bool same = false; for (int i = 0; i  N - 1; i++) same = same || A[i] == A[i + 1]; if (same || (ivA + ivB) % 2 == 0) cout  \"Yes\"; else cout  \"No\"; } else { cout  \"No\"; } return 0; } 全部代码请看：Atcoder/ARC136/ARC136B.cpp。\nD. Without Carry 给定一个 $N$ 个数的序列，求使得 $A_i+A_j$ 不发生进位的二元对个数 $(i,j)$，且 $1 \\leqslant i 分析 我赛中写了一个六维 DP，调起来很费劲，赛后才发现写难了。\n我的六维 DP 的定义是小于 DP 位的数的个数，就是个六维前缀和。我想办法用 6 维容斥转移，勉强能过。\n实际上 6 维前缀和容斥转移需要 $2^6=64$ 个数参与计算，用刷表可以只用 $6$ 次。\nconst int M = 1E6; bool check(int x) { while (x) { if (x % 10 = 5) return false; x /= 10; } return true; } int main() { int N; cin  N; vectorint a(N), dp(M); for (int i = 0; i  N; i++) { cin  a[i]; dp[a[i]]++; } for (int k = 1; k  M; k *= 10) { for (int i = 0; i  M; i += k * 10) { for (int j = 0; j  k * 9; j++) { dp[i + j + k] += dp[i + j]; } } } ll ans = 0; for (int i = 0; i  N; i++) { ans += dp[M - 1 - a[i]] - check(a[i]); } cout  ans / 2; return 0; } 全部代码请看：Atcoder/ARC136/ARC136D.cpp。\n",
+  "articleBody": "后悔没把 D 写快点。\nA. A ↔ BB 给定一个长为 $N$ 的仅包含 ABC 的字符串 $S$。可以做以下两种操作\n把 A 替换为 BB 把 BB 替换为 A 求操作后 $S$ 的字典序最小是多少。\n分析 我赛时是想到 BA 可以变为 AB，从而降低字典序。\nint main() { int N; string s; cin \u003e\u003e N \u003e\u003e s; for (int i = 0; i \u003c s.size() - 1; i++) { if (s[i] == 'B' \u0026\u0026 s[i + 1] == 'B') { s[i] = 'A'; s.erase(s.begin() + i + 1); } if (s[i] == 'B' \u0026\u0026 s[i + 1] == 'A') { swap(s[i], s[i + 1]); } } cout \u003c\u003c s; return 0; } 全部代码请看：Atcoder/ARC136/ARC136A.cpp。\n现在想来，先进行操作 1 再进行操作 2 足以。\ninput() s = input() print(s.replace('A','BB').replace('BB','A')) B. Triple Shift 给定两个长为 $N$ 的排列 $A,B$，每一次操作可以选择 $A_{i},A_{i+1},A_{i+2}$ 变成 $A_{i+2}, A_{i}, A_{i+1}$。\n是否存在操作方法能够把 $A$ 变成 $B$。\n分析 第一想法就是观察到操作操作不改变逆序数的奇偶性，判断奇偶性是否相同即可。\n而且若序列中有相同的数，那么其奇偶性可以被任意的指定。\n至于具体为什么，我不会证。\nint inver(const vector\u003cint\u003e \u0026v) { int ans = 0, n = v.size(); for (int i = 0; i \u003c n; i++) { for (int j = i + 1; j \u003c n; j++) { ans += v[i] \u003e v[j]; } } return ans; } int main() { int N; cin \u003e\u003e N; vector\u003cint\u003e A(N), B(N); for (auto \u0026ai : A) cin \u003e\u003e ai; for (auto \u0026bi : B) cin \u003e\u003e bi; int ivA = inver(A), ivB = inver(B); sort(A.begin(), A.end()); sort(B.begin(), B.end()); if (A == B) { bool same = false; for (int i = 0; i \u003c N - 1; i++) same = same || A[i] == A[i + 1]; if (same || (ivA + ivB) % 2 == 0) cout \u003c\u003c \"Yes\"; else cout \u003c\u003c \"No\"; } else { cout \u003c\u003c \"No\"; } return 0; } 全部代码请看：Atcoder/ARC136/ARC136B.cpp。\nD. Without Carry 给定一个 $N$ 个数的序列，求使得 $A_i+A_j$ 不发生进位的二元对个数 $(i,j)$，且 $1 \\leqslant i \u003c j \\leqslant N$。\n分析 我赛中写了一个六维 DP，调起来很费劲，赛后才发现写难了。\n我的六维 DP 的定义是小于 DP 位的数的个数，就是个六维前缀和。我想办法用 6 维容斥转移，勉强能过。\n实际上 6 维前缀和容斥转移需要 $2^6=64$ 个数参与计算，用刷表可以只用 $6$ 次。\nconst int M = 1E6; bool check(int x) { while (x) { if (x % 10 \u003e= 5) return false; x /= 10; } return true; } int main() { int N; cin \u003e\u003e N; vector\u003cint\u003e a(N), dp(M); for (int i = 0; i \u003c N; i++) { cin \u003e\u003e a[i]; dp[a[i]]++; } for (int k = 1; k \u003c M; k *= 10) { for (int i = 0; i \u003c M; i += k * 10) { for (int j = 0; j \u003c k * 9; j++) { dp[i + j + k] += dp[i + j]; } } } ll ans = 0; for (int i = 0; i \u003c N; i++) { ans += dp[M - 1 - a[i]] - check(a[i]); } cout \u003c\u003c ans / 2; return 0; } 全部代码请看：Atcoder/ARC136/ARC136D.cpp。\n",
   "wordCount" : "435",
   "inLanguage": "en",
   "datePublished": "2022-02-27T00:00:00Z",

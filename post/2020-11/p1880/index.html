@@ -28,7 +28,7 @@ int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -111,7 +111,7 @@ int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(
   "keywords": [
     "洛谷", "DP"
   ],
-  "articleBody": "题目大意 环形队列上有 $n$ 堆石子，可以把相邻的两堆合成一堆，每次合并的得分是新一堆的石子数。\n求最终分数的最小值和最大值。\n分析 考虑 $dp(i,j)$ 是将区间 $[i,j]$ 的石子全部合并的最大值。于是状态转移方程为\n$$ dp(i,j) = \\max_{i \\leqslant k \\leqslant j}(dp(i,k) + dp(k+1,j) + s(i,j)) $$\n其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。\n然而不能通过先 $i$ 再 $j$ 再 $k$ 的循环来递推，运算顺序值得注意。\n细节：前缀和、循环开两倍。\nint dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(); for (ll i = 1; i  n; i++) f[i + n] = f[i] = rr(); for (ll i = 1; i  n * 2; i++) s[i] = s[i - 1] + f[i]; for (ll len = 2; len  n; len++) { for (ll i = 1; i  2 * n - len + 1; i++) { int j = i + len - 1; int tmax = 0, tmin = 0x3f3f3f3f; int ss = s[j] - s[i - 1]; for (ll k = i; k  j - 1; k++) { tmax = max(tmax, dmax[i][k] + dmax[k + 1][j] + ss); tmin = min(tmin, dmin[i][k] + dmin[k + 1][j] + ss); } dmax[i][j] = tmax; dmin[i][j] = tmin; } } int mmin = 0x3f3f3f3f, mmax = 0; for (ll p = 0; p  n - 1; p++) { mmin = min(mmin, dmin[p + 1][p + n]); mmax = max(mmax, dmax[p + 1][p + n]); } printf(\"%d\\n%d\\n\", mmin, mmax); return 0; } ",
+  "articleBody": "题目大意 环形队列上有 $n$ 堆石子，可以把相邻的两堆合成一堆，每次合并的得分是新一堆的石子数。\n求最终分数的最小值和最大值。\n分析 考虑 $dp(i,j)$ 是将区间 $[i,j]$ 的石子全部合并的最大值。于是状态转移方程为\n$$ dp(i,j) = \\max_{i \\leqslant k \\leqslant j}(dp(i,k) + dp(k+1,j) + s(i,j)) $$\n其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。\n然而不能通过先 $i$ 再 $j$ 再 $k$ 的循环来递推，运算顺序值得注意。\n细节：前缀和、循环开两倍。\nint dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(); for (ll i = 1; i \u003c= n; i++) f[i + n] = f[i] = rr(); for (ll i = 1; i \u003c= n * 2; i++) s[i] = s[i - 1] + f[i]; for (ll len = 2; len \u003c= n; len++) { for (ll i = 1; i \u003c= 2 * n - len + 1; i++) { int j = i + len - 1; int tmax = 0, tmin = 0x3f3f3f3f; int ss = s[j] - s[i - 1]; for (ll k = i; k \u003c= j - 1; k++) { tmax = max(tmax, dmax[i][k] + dmax[k + 1][j] + ss); tmin = min(tmin, dmin[i][k] + dmin[k + 1][j] + ss); } dmax[i][j] = tmax; dmin[i][j] = tmin; } } int mmin = 0x3f3f3f3f, mmax = 0; for (ll p = 0; p \u003c= n - 1; p++) { mmin = min(mmin, dmin[p + 1][p + n]); mmax = max(mmax, dmax[p + 1][p + n]); } printf(\"%d\\n%d\\n\", mmin, mmax); return 0; } ",
   "wordCount" : "216",
   "inLanguage": "en",
   "datePublished": "2020-11-30T00:00:00Z",

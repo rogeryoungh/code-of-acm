@@ -101,7 +101,7 @@ string what = &amp;#34;abacaba&amp;#34;; int N = what.length(); void solve() { i
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-02/arc136/</guid>
       <description>后悔没把 D 写快点。
 A. A ↔ BB 给定一个长为 $N$ 的仅包含 ABC 的字符串 $S$。可以做以下两种操作
- 把 A 替换为 BB 把 BB 替换为 A  求操作后 $S$ 的字典序最小是多少。
+把 A 替换为 BB 把 BB 替换为 A 求操作后 $S$ 的字典序最小是多少。
 分析 我赛时是想到 BA 可以变为 AB，从而降低字典序。
 int main() { int N; string s; cin &amp;gt;&amp;gt; N &amp;gt;&amp;gt; s; for (int i = 0; i &amp;lt; s.size() - 1; i++) { if (s[i] == &amp;#39;B&amp;#39; &amp;amp;&amp;amp; s[i + 1] == &amp;#39;B&amp;#39;) { s[i] = &amp;#39;A&amp;#39;; s.erase(s.begin() + i + 1); } if (s[i] == &amp;#39;B&amp;#39; &amp;amp;&amp;amp; s[i + 1] == &amp;#39;A&amp;#39;) { swap(s[i], s[i + 1]); } } cout &amp;lt;&amp;lt; s; return 0; } 全部代码请看：Atcoder/ARC136/ARC136A.</description>
     </item>
@@ -154,7 +154,7 @@ int main() { int T; cin &amp;gt;&amp;gt; T; while (T--) { string s; cin &amp;gt;
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-02/cf242e/</guid>
       <description>题目大意 给定一个长为 $n$ 的数列 $\{a_i\}$，有如下操作
- 询问区间 $[l, r]$ 上的和。 对 $[l, r]$ 区间上每个数异或上一个数 $x$。  分析 只需注意到异或是不进位的，我们可以单独维护数列的每一位。开二十棵线段树即可。
+询问区间 $[l, r]$ 上的和。 对 $[l, r]$ 区间上每个数异或上一个数 $x$。 分析 只需注意到异或是不进位的，我们可以单独维护数列的每一位。开二十棵线段树即可。
 int main() { int n; cin &amp;gt;&amp;gt; n; vector&amp;lt;int&amp;gt; a(n + 1); for (int i = 1; i &amp;lt;= n; i++) { cin &amp;gt;&amp;gt; a[i]; } vector&amp;lt;SegmentTree&amp;lt;int&amp;gt;&amp;gt; tr; for (int k = 0; k &amp;lt; 20; k++) { tr.push_back(SegmentTree&amp;lt;int&amp;gt;(n + 1)); vector&amp;lt;int&amp;gt; tmp(n + 1); for (int i = 1; i &amp;lt;= n; i++) { if ((1 &amp;lt;&amp;lt; k) &amp;amp; a[i]) tmp[i] = 1; } tr[k].</description>
     </item>
     
@@ -170,7 +170,7 @@ int main() { int n; cin &amp;gt;&amp;gt; n; vector&amp;lt;int&amp;gt; a(n + 1); 
 分析 首先需要逐位异或，把交错序列变成相同元素。我想到的是另一种办法，如果 $a_i$ 相对与 $a_{i-1}$ 是变化的，那么 $b_i$ 为 $1$。原问题即被转化为维护最长 $1$ 的个数。
 用线段树维护每一层的信息，其中 $l$ 表示左边界上的最长长度，$r$ 表示右边界上的最长长度，$val$ 表示整个区间上的最长长度。
 关键在于如何编写 pull 合并信息。
- 如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。  struct SegmentTree { vector&amp;lt;int&amp;gt; l, r, val; int N; SegmentTree(int n) { N = 2 &amp;lt;&amp;lt; std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 + 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] += l[rs]; if (r[rs] == len) r[p] += r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] + l[rs]}); } void modify(int i) { i += N; l[i] = r[i] = val[i] = !</description>
+如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。 struct SegmentTree { vector&amp;lt;int&amp;gt; l, r, val; int N; SegmentTree(int n) { N = 2 &amp;lt;&amp;lt; std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 + 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] += l[rs]; if (r[rs] == len) r[p] += r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] + l[rs]}); } void modify(int i) { i += N; l[i] = r[i] = val[i] = !</description>
     </item>
     
     <item>
@@ -209,17 +209,20 @@ bool check(const vector&amp;lt;int&amp;gt; &amp;amp;v) { vector&amp;lt;int&amp;g
       <guid>https://rogeryoungh.github.io/code-of-acm/post/other/log2022/</guid>
       <description>新的一年，一样的菜。
 过于简单的题不记录。
-2022 年 01 月 01-14 |  UOJ50 链式反应
-01-21 |  ZAFU 2022.01.18 个人赛题解
-01-27 |  P3373 线段树 2
-01-27 |  P2023 维护序列
-01-28 |  P1531 I Hate It
-01-28 |  P5057 简单题
-01-28 |  P4588 数学计算
-01-28 |  P1637 三元上升子序列
-01-29 |  P5431 乘法逆元 2
-2022 年 02 月 02-11 |  P6186 冒泡排序
-02-14 |  ZAFU 2022.02.14 个人赛题解</description>
+2022 年 01 月 01-14 | UOJ50 链式反应
+01-21 | ZAFU 2022.01.18 个人赛题解
+01-27 | P3373 线段树 2
+01-27 | P2023 维护序列
+01-28 | P1531 I Hate It
+01-28 | P5057 简单题
+01-28 | P4588 数学计算
+01-28 | P1637 三元上升子序列
+01-29 | P5431 乘法逆元 2
+2022 年 02 月 02-11 | P6186 冒泡排序
+02-14 | ZAFU 2022.02.14 个人赛题解
+02-16 | ZAFU 2022.02.16 个人赛题解
+02-22 | P6492 STEP
+2022 年 03 月 03-09 | P4717 快速莫比乌斯/沃尔什变换</description>
     </item>
     
     <item>
@@ -229,8 +232,8 @@ bool check(const vector&amp;lt;int&amp;gt; &amp;amp;v) { vector&amp;lt;int&amp;g
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-02/p6186/</guid>
       <description>题目大意 给定一个长为 $n$ 的排列 $p$，有如下操作
- 交换 $p_{x}, p_{x+1}$。 询问排列经过 $k$ 轮冒泡排序后的逆序数。  分析 难点在观察冒泡排序对逆序数的影响，考虑一个数 $p_i$ 受其前面的数影响：
- 如果 $p_i$ 前面没有比 $p_i$ 大的，冒泡后 $p_{i&amp;rsquo;}$ 仍不贡献逆序数。 如果 $p_i$ 前面有 $j$ 个比当前数大的，冒泡后有且仅有一个数穿过了 $p_{i&amp;rsquo;}$，贡献的逆序数减 $1$。  故第 $k$ 轮冒泡后，即每个数贡献的逆序数都要减 $k$。又因为不应减到负数，因此需要用两个树状数组维护。
+交换 $p_{x}, p_{x+1}$。 询问排列经过 $k$ 轮冒泡排序后的逆序数。 分析 难点在观察冒泡排序对逆序数的影响，考虑一个数 $p_i$ 受其前面的数影响：
+如果 $p_i$ 前面没有比 $p_i$ 大的，冒泡后 $p_{i&amp;rsquo;}$ 仍不贡献逆序数。 如果 $p_i$ 前面有 $j$ 个比当前数大的，冒泡后有且仅有一个数穿过了 $p_{i&amp;rsquo;}$，贡献的逆序数减 $1$。 故第 $k$ 轮冒泡后，即每个数贡献的逆序数都要减 $k$。又因为不应减到负数，因此需要用两个树状数组维护。
 #include &amp;#34;template/ds/fwtree/1.hpp&amp;#34; int main() { int n = rr(), m = rr(); vector&amp;lt;int&amp;gt; p(n); for (int i = 0; i &amp;lt; n; i++) p[i] = rr(); vector&amp;lt;ll&amp;gt; inver(n); { vector&amp;lt;pii&amp;gt; tp(n); for (int i = 0; i &amp;lt; n; i++) tp[i] = {p[i], i + 1}; sort(tp.</description>
     </item>
     
@@ -256,7 +259,7 @@ vi get_inv(const vi &amp;amp;a, int p) { int n = a.size() - 1; vi prod(n + 1); p
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p1637/</guid>
       <description>题目大意 给定一个序列，求其中三元上升子序列的个数
- 对于 $i,j,k$，若 $a_i &amp;lt; a_j &amp;lt; a_k$，则是一个满足要求的三元对。  分析 考虑枚举中间的数 $j$，设其左边有 $a$ 个数比它小，右边有 $b$ 个数比它大，则中间为 $j$ 的三元对个数为 $ab$。
+对于 $i,j,k$，若 $a_i &amp;lt; a_j &amp;lt; a_k$，则是一个满足要求的三元对。 分析 考虑枚举中间的数 $j$，设其左边有 $a$ 个数比它小，右边有 $b$ 个数比它大，则中间为 $j$ 的三元对个数为 $ab$。
 至此就和逆序对类似了，离散化后用树状数组即可。
 #include &amp;#34;template/ds/fwtree/0.hpp&amp;#34; int main() { int n = rr(); vector&amp;lt;pii&amp;gt; v(n + 1); for (int i = 1; i &amp;lt;= n; i++) { v[i] = {rr(), i}; } sort(v.begin(), v.end(), [](pii a, pii b) { if (a.first == b.first) return a.second &amp;gt; b.second; return a.first &amp;lt; b.first; }); fwtree_1&amp;lt;int&amp;gt; tr(n + 1); vector&amp;lt;ll&amp;gt; al(n + 1), ar(n + 1); for (int i = 1; i &amp;lt;= n; i++) { al[i] = tr.</description>
     </item>
@@ -268,7 +271,7 @@ vi get_inv(const vi &amp;amp;a, int p) { int n = a.size() - 1; vi prod(n + 1); p
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p3373/</guid>
       <description>题目大意 给定一个数列，有如下操作：
- 将区间 $[l,r]$ 上的数乘上 $x$ 将区间 $[l,r]$ 上的数加上 $x$ 询问区间 $[l,r]$ 上的数之和  分析 很经典的线段树教学题，写完后对线段树的理解确实更深了。
+将区间 $[l,r]$ 上的数乘上 $x$ 将区间 $[l,r]$ 上的数加上 $x$ 询问区间 $[l,r]$ 上的数之和 分析 很经典的线段树教学题，写完后对线段树的理解确实更深了。
 从一次函数的角度考虑问题感觉更清晰。我们实际上在对每个序列上的值做一次函数
 $$ f_i(x) = k_i x + m_i $$
 先来看本题线段树的结构
@@ -282,10 +285,10 @@ template &amp;lt;class T&amp;gt; struct SegmentTree { vector&amp;lt;Seg&amp;gt; 
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p4588/</guid>
       <description>题目大意 初始是 $x=1$，我们每轮对 $x$ 做一个操作
- 将 $x$ 变为 $k x$，并输出 $x \bmod M$。 将 $x$ 变为 $x / k_i$，即取消第 $i$ 次操作，并输出 $x \bmod M$。  保证每个操作 1 的 $k$ 在操作 2 中至多被除一次。
+将 $x$ 变为 $k x$，并输出 $x \bmod M$。 将 $x$ 变为 $x / k_i$，即取消第 $i$ 次操作，并输出 $x \bmod M$。 保证每个操作 1 的 $k$ 在操作 2 中至多被除一次。
 分析 $M$ 并不保证是质数，逆元可能不存在。
 可以把操作序列看作一个乘积式，初始情况下全为 $1$。
- 操作 1 即是把第 $i$ 个数变为 $k$。 操作 2 即是把第 $i$ 个数变回 $1$。  修改结束后，询问所有数的乘积。单点修改，区间查询，标准的线段树。
+操作 1 即是把第 $i$ 个数变为 $k$。 操作 2 即是把第 $i$ 个数变回 $1$。 修改结束后，询问所有数的乘积。单点修改，区间查询，标准的线段树。
 因为只询问全体和，zkw 好写的多。
 template &amp;lt;class T&amp;gt; struct SegmentTree { vector&amp;lt;T&amp;gt; tr; int N; SegmentTree(int l, int r) { int n = r - l + 1; N = 2 &amp;lt;&amp;lt; std::__lg(n); tr.</description>
     </item>
@@ -297,7 +300,7 @@ template &amp;lt;class T&amp;gt; struct SegmentTree { vector&amp;lt;T&amp;gt; tr
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2022-01/p5057/</guid>
       <description>题目大意 给定一个 01 序列，有如下操作：
- 将区间 $[l,r]$ 上的数 01 翻转。 询问第 $i$ 个数的值。  分析 区间操作，单点查询，很自然的想到了差分。
+将区间 $[l,r]$ 上的数 01 翻转。 询问第 $i$ 个数的值。 分析 区间操作，单点查询，很自然的想到了差分。
 用异或或者加减代替翻转都可以，用树状数组维护。我选择了加减，这样询问时对 $2$ 取余即可。
 #include &amp;#34;template/ds/fwtree/0.hpp&amp;#34; int main() { int n = rr(), m = rr(); fwtree_1&amp;lt;int&amp;gt; tr(n + 2); while (m--) { int t = rr(); if (t == 1) { int l = rr() + 1, r = rr() + 1; tr.modify(l - 1, -1), tr.modify(r, 1); } else { int i = rr(); i = tr.</description>
     </item>
@@ -309,17 +312,17 @@ template &amp;lt;class T&amp;gt; struct SegmentTree { vector&amp;lt;T&amp;gt; tr
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/other/docs/</guid>
       <description>我的代码模板依赖于我自定义的预处理器，它通过 DFS 把所有引入的模板展开。
- index.hpp：公共文件头。  我的模板风格是简单封装：在保持易用的同时，封装尽量的薄。
+index.hpp：公共文件头。 我的模板风格是简单封装：在保持易用的同时，封装尽量的薄。
 Data Struct 基础数据结构。
- fwtree/1.hpp：普通树状数组。 fwtree/2.hpp：支持区间修改、区间查询的树状数组。 SegmentTree/1.hpp：普通线段树示例，不可引入。 SegmentTree/2.hpp：带懒标记的线段树示例，不可引入。  Math 基础数学算法。
- qpow.hpp：快速幂。 qpow128.hpp：64 位类型的快速幂。  Basic 我也不知道这东西该放哪，就放到这里吧。
- modint：m32。  NTT-int 简化多项式板子，码量少，常数较大。
- fps/O.hpp：多项式基础结构，用牛顿迭代完成操作。 fps/F.hpp：与上面的相同，略卡常数。 cdq.hpp：非递归 CDQ 分治。 eval.hpp：多点插值，多点求值。  没有用的 NTT-mint 基于 modint 的多项式板子，注重易用性和常数，码量较大。
+fwtree/1.hpp：普通树状数组。 fwtree/2.hpp：支持区间修改、区间查询的树状数组。 SegmentTree/1.hpp：普通线段树示例，不可引入。 SegmentTree/2.hpp：带懒标记的线段树示例，不可引入。 Math 基础数学算法。
+qpow.hpp：快速幂。 qpow128.hpp：64 位类型的快速幂。 Basic 我也不知道这东西该放哪，就放到这里吧。
+modint：m32。 NTT-int 简化多项式板子，码量少，常数较大。
+fps/O.hpp：多项式基础结构，用牛顿迭代完成操作。 fps/F.hpp：与上面的相同，略卡常数。 cdq.hpp：非递归 CDQ 分治。 eval.hpp：多点插值，多点求值。 没有用的 NTT-mint 基于 modint 的多项式板子，注重易用性和常数，码量较大。
 每一种算法可能有多种实现。
 多项式类的定义
- poly/1.hpp：继承于 vector&amp;lt;m32&amp;gt;。  NTT
- ntt/1.hpp：无 rev 的 NTT。 ntt/2.hpp：略微卡常的 NTT。  多项式逆
- inv/1.hpp：12E 的牛顿迭代 inv，和 16E 的牛顿迭代 div。 inv/2.hpp：10E 的牛顿迭代 inv，和 13E 的牛顿迭代 div。 inv/3.</description>
+poly/1.hpp：继承于 vector&amp;lt;m32&amp;gt;。 NTT
+ntt/1.hpp：无 rev 的 NTT。 ntt/2.hpp：略微卡常的 NTT。 多项式逆
+inv/1.hpp：12E 的牛顿迭代 inv，和 16E 的牛顿迭代 div。 inv/2.hpp：10E 的牛顿迭代 inv，和 13E 的牛顿迭代 div。 inv/3.hpp：24E 的牛顿迭代 inv，和 28E 的牛顿迭代 div。 inv/6.hpp：半在线卷积实现的 inv &amp;amp; div。 inv/7.hpp：全在线卷积实现的 inv &amp;amp; div。（没啥用） inv/8.</description>
     </item>
     
     <item>
@@ -334,7 +337,7 @@ B - CF1379B 见 CF Round #657 (Div. 2) 。
 C - CF1313B 题目大意 有 $n$ 位参赛者参加两轮比赛，ff 获得的名次分别是 $x$ 和 $y$，其他人的名次是未知的，求 ff 最终可能的最高排名和最低排名。
 分析 结论是很容易猜到的，证明有些困难。
 首先构造最低排名，让尽量多的同学有总分 $x+y$，此时 ff 的排名为 $S_1 = \min(n, x + y - 1)$。
- 证明
+证明
 如果某人的总分满足 $x_i + y_i \leqslant x + y$，那么其两次排名一定满足 $$ x_i \leqslant x+y-1\ 且\ y_i \leqslant x+y-1$$ 这样的数对显然是不多于 $\min(n, x + y - 1) = S_1$ 个的，而 $S_1$ 的构造已给出，故最多为 $S_1$ 个。</description>
     </item>
     
@@ -350,14 +353,14 @@ C - CF1313B 题目大意 有 $n$ 位参赛者参加两轮比赛，ff 获得的�
 如果 Qingshan 不选最长的坡，则 Danniel 可以选最长的坡，从而必输。
 如果最长的坡存在没有公共最高点的两个，Danniel 可以避开 Qingshan 选，从而必输。
 剩下的情况只有两种：
- 最长的坡只有一个，Qingshan 只能选在此坡坡顶，Danniel 可以选在靠近坡底的地方，使得两人碰面，从而必输。 最长的坡有两个且有公共最高点，Qingshan 选在坡顶，则可以选择避开 Danniel 下坡，从而必胜。  附：代码，展开
+最长的坡只有一个，Qingshan 只能选在此坡坡顶，Danniel 可以选在靠近坡底的地方，使得两人碰面，从而必输。 最长的坡有两个且有公共最高点，Qingshan 选在坡顶，则可以选择避开 Danniel 下坡，从而必胜。 附：代码，展开
 E. Garden of the Sun 在棋盘的格子中有不连续的 X，请连接使得其满足如下条件
- X 组成的图案是连通的。 X 组成的图案不存在环。  分析 X 不连续是一个比较强的性质。
+X 组成的图案是连通的。 X 组成的图案不存在环。 分析 X 不连续是一个比较强的性质。
 构造类似 丰 字形的图案，横与横之间空两行，这样可以使得所有 X 都附在一条横上，且互相不连接。
 接下来考虑如何把横连起来，可以发现只用在第一列、第二列中选一列进行连接即可。
 附：代码，展开
-F. BFS Trees  第一次补题补到 F 耶！什么时候才能在赛中做到 F 呢……
- 我们定义一个图上的生成树是以 $s$ 点为根的 BFS 树，当且仅当：对于任意的节点 $t$，$s\to t$ 在 BFS 树上的最短路等于图上的最短路。</description>
+F. BFS Trees 第一次补题补到 F 耶！什么时候才能在赛中做到 F 呢……
+我们定义一个图上的生成树是以 $s$ 点为根的 BFS 树，当且仅当：对于任意的节点 $t$，$s\to t$ 在 BFS 树上的最短路等于图上的最短路。</description>
     </item>
     
     <item>
@@ -371,16 +374,18 @@ F. BFS Trees  第一次补题补到 F 耶！什么时候才能在赛中做到 F 
 CodeForces：更新至：&amp;ndash;.&amp;ndash;
 牛客：更新至：&amp;ndash;.&amp;ndash;
 HDU：更新至：&amp;ndash;.&amp;ndash;
-2021 年 01 月 01-25 |  P3378 堆
-2021 年 02 月 02-28 |  P1216 数字三角形
-2021 年 03 月 03-02 |  P3382 三分法
-03-06 |  P3865 ST 表
-03-17 |  P1162 填涂颜色
-03-17 |  P1019 单词接龙
-03-19 |  P1014 Cantor 表
-03-19 |  P3370 字符串哈希
-03-20 |  P3375 KMP 字符串匹配
-03-20 |  P3374 树状数组 1</description>
+2021 年 01 月 01-25 | P3378 堆
+2021 年 02 月 02-28 | P1216 数字三角形
+2021 年 03 月 03-02 | P3382 三分法
+03-06 | P3865 ST 表
+03-17 | P1162 填涂颜色
+03-17 | P1019 单词接龙
+03-19 | P1014 Cantor 表
+03-19 | P3370 字符串哈希
+03-20 | P3375 KMP 字符串匹配
+03-20 | P3374 树状数组 1
+03-20 | P3368 树状数组 2
+03-28 | P1177 快速排序</description>
     </item>
     
     <item>
@@ -410,7 +415,7 @@ $$ s_i = [i \ \text{is a period of}\ S] $$
 $$ \frac{a}{b} &amp;lt; \frac{p}{q} &amp;lt; \frac{c}{d} $$
 若有多组解，输出 $q$ 最小的；仍有多组解，输出 $p$ 最小的一组。
 分析 分类讨论：
- 首先当 $\lfloor a/b \rfloor + 1 \leqslant \lceil c/d \rceil - 1$ 时，说明两个数之间存在一个整数，直接返回 $p = 1, q = \lfloor a / b \rfloor + 1$ 即可。 其次当 $a = 0$ 时，直接解得 $p = 1, q = \lfloor d / c \rfloor + 1$。 当 $a &amp;lt; b$ 时，这意味着我们无法直接求解。考虑翻转，转化问题为 $$ \frac{d}{c} &amp;lt; \frac{q}{p} &amp;lt; \frac{b}{a} $$ 递归即可。 当 $a &amp;gt; b$ 时，考虑求解 $$ \frac{a}{b} - \left\lfloor\frac{a}{b}\right\rfloor &amp;lt; \frac{p}{q} - \left\lfloor\frac{a}{b}\right\rfloor &amp;lt; \frac{c}{d} - \left\lfloor\frac{a}{b}\right\rfloor $$ 也是递归即可，还原出结果以后返回。  唯一需要确认的就是，翻转后仍是最优解，考虑反证。</description>
+首先当 $\lfloor a/b \rfloor + 1 \leqslant \lceil c/d \rceil - 1$ 时，说明两个数之间存在一个整数，直接返回 $p = 1, q = \lfloor a / b \rfloor + 1$ 即可。 其次当 $a = 0$ 时，直接解得 $p = 1, q = \lfloor d / c \rfloor + 1$。 当 $a &amp;lt; b$ 时，这意味着我们无法直接求解。考虑翻转，转化问题为 $$ \frac{d}{c} &amp;lt; \frac{q}{p} &amp;lt; \frac{b}{a} $$ 递归即可。 当 $a &amp;gt; b$ 时，考虑求解 $$ \frac{a}{b} - \left\lfloor\frac{a}{b}\right\rfloor &amp;lt; \frac{p}{q} - \left\lfloor\frac{a}{b}\right\rfloor &amp;lt; \frac{c}{d} - \left\lfloor\frac{a}{b}\right\rfloor $$ 也是递归即可，还原出结果以后返回。 唯一需要确认的就是，翻转后仍是最优解，考虑反证。</description>
     </item>
     
     <item>
@@ -452,7 +457,7 @@ $$ E((x + 1)^2) = E(x^2) + 2 E(x) + 1 $$</description>
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-10/p3052/</guid>
       <description>题目大意 有 $n$ 头牛坐电梯，重量分别为 $c_i$，电梯的最大限额是 $W$，求最少分多少次能够全部上去。
 分析 注意 $n \leqslant 18$，枚举全排列是不行的。考虑用状态压缩，将第 $j$ 头奶牛的选和不选用状态 $i$ 的第 $j$ 位数字表示。设 $f_i$ 表示状态为 $i$ 时最小乘电梯次数，$g_i$ 表示此状态下最新那个电梯已经有的重量。
- 首先令 cow = i &amp;lt;&amp;lt; (j - 1)，若 i &amp;amp; cow 为 $1$ 则说明这个奶牛已经坐上电梯了，不计算。 当 $W - g_i \geqslant c_i$ 时，最后那个电梯坐的下这头牛。 当 $W - g_i &amp;lt; c_i$ 时，只能新开一个电梯。  还是代码更清晰
+首先令 cow = i &amp;lt;&amp;lt; (j - 1)，若 i &amp;amp; cow 为 $1$ 则说明这个奶牛已经坐上电梯了，不计算。 当 $W - g_i \geqslant c_i$ 时，最后那个电梯坐的下这头牛。 当 $W - g_i &amp;lt; c_i$ 时，只能新开一个电梯。 还是代码更清晰
 const int maxn = 18; ll ci[maxn]; ll ff[1 &amp;lt;&amp;lt; maxn], gg[1 &amp;lt;&amp;lt; maxn]; int main() { ll n = rr(), W = rr(); for (int i = 1; i &amp;lt;= n; i++) ci[i] = rr(); fill_n(ff, 1 &amp;lt;&amp;lt; maxn, n); fill_n(gg, 1 &amp;lt;&amp;lt; maxn, W); ff[0] = 1, gg[0] = 0; for (int i = 0; i &amp;lt; (1 &amp;lt;&amp;lt; n); i++) { for (int j = 1; j &amp;lt;= n; j++) { ll cow = 1 &amp;lt;&amp;lt; (j - 1); if (i &amp;amp; cow) continue; if (W - gg[i] &amp;gt;= ci[j]) { ff[i | cow] = ff[i]; gg[i | cow] = min(gg[i | cow], gg[i] + ci[j]); } else if (W - gg[i] &amp;lt; ci[j] &amp;amp;&amp;amp; ff[i | cow] &amp;gt;= ff[i] + 1) { ff[i | cow] = ff[i] + 1; gg[i | cow] = min(gg[i | cow], ci[j]); } } } printf(&amp;#34;%lld&amp;#34;, ff[(1 &amp;lt;&amp;lt; n) - 1]); return 0; } </description>
     </item>
     
@@ -522,7 +527,7 @@ $$ (F_{i c})^k = \left( \frac{A^{i c} - B^{i c}}{A - B} \right)^k = \frac{1}{(A 
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2021-09/hdu6537/</guid>
       <description>题目大意 定义 $f(n, k)$ 为满足如下要求的，长度为 $k$ 的数列 $\\{a_i\\}$ 个数：
- 要求每个数字都大于 $1$； 数列各项之积恰为 $n$。  求其前缀和 $S(n, k) = \sum f(i, k)$。
+要求每个数字都大于 $1$； 数列各项之积恰为 $n$。 求其前缀和 $S(n, k) = \sum f(i, k)$。
 分析 多组输入好坑啊。
 先允许 $a_i=1$，将结果记为 $g(n,k)$，容易利用隔板法求得
 $$ g (p^c, k) = \binom{t + k - 1}{k - 1} $$
@@ -582,7 +587,7 @@ const ll mod = 1000000007, inv2 = 500000004; const int maxn = 200001; ll n, prim
 统计此失配次数，计算前缀和。
 分析 我是没料到 HDOJ 没有 M_PI，CE 了几发。
 FFT 字符串匹配模板题，我在 ZAFU Wiki 中讲过，即对每个字符卷积。
-#include &amp;#34;template/basic/complex.hpp&amp;#34; const int maxn = 1 &amp;lt;&amp;lt; 20; using img = Complex&amp;lt;double&amp;gt;; using poly_t = vector&amp;lt;img&amp;gt;; poly_t w; #include &amp;#34;template/poly-fft/fft_init.hpp&amp;#34;#include &amp;#34;template/poly-fft/fft.hpp&amp;#34; char a[maxn], b[maxn]; int sum[maxn], ans[maxn]; char ch[] = &amp;#34;0123456789*&amp;#34;; int main() { w = fft_init(maxn); int ttt = rr(); while (ttt--) { int n = rr(), m = rr(); fill(sum, sum + m + n + 12, 0); fill(ans, ans + m + 12, 0); int lim = getlim(m, n); scanf(&amp;#34;%s %s&amp;#34;, b, a); int tsum = 0; for (int i = 0; i &amp;lt; m - 1; i++) { tsum += b[i] == &amp;#39;*&amp;#39;; tsum += a[i] == &amp;#39;*&amp;#39;; } tsum += a[m - 1] == &amp;#39;*&amp;#39;; reverse(a, a + m + 1); for (int k = 0; k &amp;lt;= 10; k++) { poly_t SS(lim); for (int i = 0; i &amp;lt; n; i++) SS[i].</description>
+#include &amp;#34;template/basic/complex.hpp&amp;#34; const int maxn = 1 &amp;lt;&amp;lt; 20; using img = Complex&amp;lt;double&amp;gt;; using poly_t = vector&amp;lt;img&amp;gt;; poly_t w; #include &amp;#34;template/poly-fft/fft_init.hpp&amp;#34; #include &amp;#34;template/poly-fft/fft.hpp&amp;#34; char a[maxn], b[maxn]; int sum[maxn], ans[maxn]; char ch[] = &amp;#34;0123456789*&amp;#34;; int main() { w = fft_init(maxn); int ttt = rr(); while (ttt--) { int n = rr(), m = rr(); fill(sum, sum + m + n + 12, 0); fill(ans, ans + m + 12, 0); int lim = getlim(m, n); scanf(&amp;#34;%s %s&amp;#34;, b, a); int tsum = 0; for (int i = 0; i &amp;lt; m - 1; i++) { tsum += b[i] == &amp;#39;*&amp;#39;; tsum += a[i] == &amp;#39;*&amp;#39;; } tsum += a[m - 1] == &amp;#39;*&amp;#39;; reverse(a, a + m + 1); for (int k = 0; k &amp;lt;= 10; k++) { poly_t SS(lim); for (int i = 0; i &amp;lt; n; i++) SS[i].</description>
     </item>
     
     <item>
@@ -797,16 +802,18 @@ CodeForces：更新至：&amp;ndash;.&amp;ndash;
 牛客：更新至：&amp;ndash;.&amp;ndash;
 HDU：更新至：&amp;ndash;.&amp;ndash;
 2020 年 09 月 开始 ACM。不记录 HDU 150 的基础题。
-09-20 |  CF1384B2 Koa and the Beach
-09-20 |  P1004 方格取数
-09-22 |  P2181 对角线
-09-23 |  P1042 乒乓球
-2020 年 10 月 10-09 |  P1095 守望者的逃离
-10-13 |  P5143 攀爬者
-10-16 |  P1923 求第 $k$ 小的数
-10-16 |  P1928 外星密码
-10-16 |  P1990 覆盖墙壁
-10-16 |  P1090 合并果子</description>
+09-20 | CF1384B2 Koa and the Beach
+09-20 | P1004 方格取数
+09-22 | P2181 对角线
+09-23 | P1042 乒乓球
+2020 年 10 月 10-09 | P1095 守望者的逃离
+10-13 | P5143 攀爬者
+10-16 | P1923 求第 $k$ 小的数
+10-16 | P1928 外星密码
+10-16 | P1990 覆盖墙壁
+10-16 | P1090 合并果子
+10-16 | P4995 跳跳！
+10-16 | P1077 摆花</description>
     </item>
     
     <item>
@@ -832,7 +839,7 @@ int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1833/</guid>
       <description>题目大意 混合背包。每棵树都有美学值 $C_i$，共有三种：
- 一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。  分析 对于混合背包，我们可以对物品拆分，得到多个物品。
+一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。 分析 对于混合背包，我们可以对物品拆分，得到多个物品。
 ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), teh = rr(), tem = rr(); int tsum = (teh - tsh) * 60 + tem - tsm; int n = rr(); int tp = 1; for (ll i = 1; i &amp;lt;= n; i++) { int t = rr(), c = rr(), p = rr(); if (p == 1) { tt[tp] = t, cc[tp] = c; tp++; } else { p = p !</description>
     </item>
     
@@ -898,7 +905,7 @@ priority_queue&amp;lt;int, vector&amp;lt;int&amp;gt;, greater&amp;lt;int&amp;gt;
 分析 模板题。考虑分治，随便选一个数 $x$，然后把比 $x$ 大的数移到右边，比 $x$ 小的数移到左边。因此得到了数 $x$ 的排位，若恰为第 $k$ 个则返回，否则根据大小在左右寻找。
 该算法是不稳定的，期望复杂度 $O(n)$，最坏复杂度 $O(n^2)$。
 实际上存在最坏复杂度为 $O(n)$ 的 BFPTR 算法，但因为其常数过大实现复杂而很少应用。
-ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l + r) / 2]; while (i &amp;lt;= j) { while (nn[j] &amp;gt; x) j--; while (nn[i] &amp;lt; x) i++; if (i &amp;lt;= j) { swap(nn[i], nn[j]); i++, j--; } } // l &amp;lt;= j &amp;lt;= i &amp;lt;=r 	if (k &amp;lt;= j) return quicksort(l, j); else if (k &amp;gt;= i) return quicksort(i, r); else return nn[k + 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i &amp;lt;= n; i++) scanf(&amp;#34;%lld&amp;#34;, &amp;amp;nn[i]); printf(&amp;#34;%lld&amp;#34;, quicksort(1, n)); return 0; } </description>
+ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l + r) / 2]; while (i &amp;lt;= j) { while (nn[j] &amp;gt; x) j--; while (nn[i] &amp;lt; x) i++; if (i &amp;lt;= j) { swap(nn[i], nn[j]); i++, j--; } } // l &amp;lt;= j &amp;lt;= i &amp;lt;=r if (k &amp;lt;= j) return quicksort(l, j); else if (k &amp;gt;= i) return quicksort(i, r); else return nn[k + 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i &amp;lt;= n; i++) scanf(&amp;#34;%lld&amp;#34;, &amp;amp;nn[i]); printf(&amp;#34;%lld&amp;#34;, quicksort(1, n)); return 0; } </description>
     </item>
     
     <item>
@@ -909,7 +916,7 @@ ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l +
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1928/</guid>
       <description>题目大意 我们将重复的 $n$ 个字符串 S 压缩为 [nS]，且存在多重压缩。给定一个压缩结果，展开它。
 分析 我考虑用类似状态机的方式解析字符串。
- 当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$  写成 BNF 更直观一点
+当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$ 写成 BNF 更直观一点
 &amp;lt;pwd&amp;gt; ::= &amp;lt;EMPTY&amp;gt; | {&amp;lt;ALPHA&amp;gt;} | &amp;lt;pwd&amp;gt; &amp;#34;[&amp;#34; &amp;lt;NUMBER&amp;gt; &amp;lt;pwd&amp;gt; &amp;#34;]&amp;#34; &amp;lt;pwd&amp;gt; string read() { string s = &amp;#34;&amp;#34;; char c; while (cin &amp;gt;&amp;gt; c) { if (c == &amp;#39;[&amp;#39;) { int n; cin &amp;gt;&amp;gt; n; string ts = read(); while (n--) s += ts; } else if (c == &amp;#39;]&amp;#39;) { return s; } else { s += c; } } return s; } int main() { cout &amp;lt;&amp;lt; read(); return 0; } </description>
     </item>
     
@@ -922,7 +929,8 @@ ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l +
       <description>题目大意 有 I 形和 L 形两种砖头，分别能覆盖 2 个单元和 3 个单元。求 $2 \times n$ 的墙有多少不重复的覆盖方式，结果对 $10^4$ 取模。
 分析 其中 I 形砖块仅有横放和竖放两种。关键在于 L 形，两个 L 形之间可以用 I 形填充，这让情况变得复杂起来。
 对于 $F_n$ 的递推，我们可以想到
- 在 $F_{n-1}$ 后放一个 I 形砖块。 在 $F_{n-2}$ 后放两个横着的 I 形砖块。 对于更前面的递推，较为复杂。  两个 L 形砖块对齐，上下翻转也可以，即 $2 F_{n-3}$。 两个 L 形砖块可以对顶放，空缺恰用一个 I 填充，即 $2 F_{n-4}$。 类似 $2F_{n-3}$，中间可以再插入两个 I 形，即 $2 F_{n-5}$。 …… 直到 I 形和 L 形砖块恰好铺满墙壁，即 $2F_{0}$。    容易得到我们的递推式</description>
+在 $F_{n-1}$ 后放一个 I 形砖块。 在 $F_{n-2}$ 后放两个横着的 I 形砖块。 对于更前面的递推，较为复杂。 两个 L 形砖块对齐，上下翻转也可以，即 $2 F_{n-3}$。 两个 L 形砖块可以对顶放，空缺恰用一个 I 填充，即 $2 F_{n-4}$。 类似 $2F_{n-3}$，中间可以再插入两个 I 形，即 $2 F_{n-5}$。 …… 直到 I 形和 L 形砖块恰好铺满墙壁，即 $2F_{0}$。 容易得到我们的递推式
+$$ F_n = F_{n-1} + F_{n-2} + 2 \sum_{i=0}^{n-3} F_i $$</description>
     </item>
     
     <item>

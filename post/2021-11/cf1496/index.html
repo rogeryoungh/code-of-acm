@@ -13,14 +13,14 @@
 如果 Qingshan 不选最长的坡，则 Danniel 可以选最长的坡，从而必输。
 如果最长的坡存在没有公共最高点的两个，Danniel 可以避开 Qingshan 选，从而必输。
 剩下的情况只有两种：
- 最长的坡只有一个，Qingshan 只能选在此坡坡顶，Danniel 可以选在靠近坡底的地方，使得两人碰面，从而必输。 最长的坡有两个且有公共最高点，Qingshan 选在坡顶，则可以选择避开 Danniel 下坡，从而必胜。  附：代码，展开
+最长的坡只有一个，Qingshan 只能选在此坡坡顶，Danniel 可以选在靠近坡底的地方，使得两人碰面，从而必输。 最长的坡有两个且有公共最高点，Qingshan 选在坡顶，则可以选择避开 Danniel 下坡，从而必胜。 附：代码，展开
 E. Garden of the Sun 在棋盘的格子中有不连续的 X，请连接使得其满足如下条件
- X 组成的图案是连通的。 X 组成的图案不存在环。  分析 X 不连续是一个比较强的性质。
+X 组成的图案是连通的。 X 组成的图案不存在环。 分析 X 不连续是一个比较强的性质。
 构造类似 丰 字形的图案，横与横之间空两行，这样可以使得所有 X 都附在一条横上，且互相不连接。
 接下来考虑如何把横连起来，可以发现只用在第一列、第二列中选一列进行连接即可。
 附：代码，展开
-F. BFS Trees  第一次补题补到 F 耶！什么时候才能在赛中做到 F 呢……
- 我们定义一个图上的生成树是以 $s$ 点为根的 BFS 树，当且仅当：对于任意的节点 $t$，$s\to t$ 在 BFS 树上的最短路等于图上的最短路。">
+F. BFS Trees 第一次补题补到 F 耶！什么时候才能在赛中做到 F 呢……
+我们定义一个图上的生成树是以 $s$ 点为根的 BFS 树，当且仅当：对于任意的节点 $t$，$s\to t$ 在 BFS 树上的最短路等于图上的最短路。">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2021-11/cf1496/" />
 <link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
@@ -34,7 +34,7 @@ F. BFS Trees  第一次补题补到 F 耶！什么时候才能在赛中做到 F 
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -68,14 +68,14 @@ F. BFS Trees  第一次补题补到 F 耶！什么时候才能在赛中做到 F 
 如果 Qingshan 不选最长的坡，则 Danniel 可以选最长的坡，从而必输。
 如果最长的坡存在没有公共最高点的两个，Danniel 可以避开 Qingshan 选，从而必输。
 剩下的情况只有两种：
- 最长的坡只有一个，Qingshan 只能选在此坡坡顶，Danniel 可以选在靠近坡底的地方，使得两人碰面，从而必输。 最长的坡有两个且有公共最高点，Qingshan 选在坡顶，则可以选择避开 Danniel 下坡，从而必胜。  附：代码，展开
+最长的坡只有一个，Qingshan 只能选在此坡坡顶，Danniel 可以选在靠近坡底的地方，使得两人碰面，从而必输。 最长的坡有两个且有公共最高点，Qingshan 选在坡顶，则可以选择避开 Danniel 下坡，从而必胜。 附：代码，展开
 E. Garden of the Sun 在棋盘的格子中有不连续的 X，请连接使得其满足如下条件
- X 组成的图案是连通的。 X 组成的图案不存在环。  分析 X 不连续是一个比较强的性质。
+X 组成的图案是连通的。 X 组成的图案不存在环。 分析 X 不连续是一个比较强的性质。
 构造类似 丰 字形的图案，横与横之间空两行，这样可以使得所有 X 都附在一条横上，且互相不连接。
 接下来考虑如何把横连起来，可以发现只用在第一列、第二列中选一列进行连接即可。
 附：代码，展开
-F. BFS Trees  第一次补题补到 F 耶！什么时候才能在赛中做到 F 呢……
- 我们定义一个图上的生成树是以 $s$ 点为根的 BFS 树，当且仅当：对于任意的节点 $t$，$s\to t$ 在 BFS 树上的最短路等于图上的最短路。" />
+F. BFS Trees 第一次补题补到 F 耶！什么时候才能在赛中做到 F 呢……
+我们定义一个图上的生成树是以 $s$ 点为根的 BFS 树，当且仅当：对于任意的节点 $t$，$s\to t$ 在 BFS 树上的最短路等于图上的最短路。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/2021-11/cf1496/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-11-11T00:00:00&#43;00:00" />
@@ -89,14 +89,14 @@ F. BFS Trees  第一次补题补到 F 耶！什么时候才能在赛中做到 F 
 如果 Qingshan 不选最长的坡，则 Danniel 可以选最长的坡，从而必输。
 如果最长的坡存在没有公共最高点的两个，Danniel 可以避开 Qingshan 选，从而必输。
 剩下的情况只有两种：
- 最长的坡只有一个，Qingshan 只能选在此坡坡顶，Danniel 可以选在靠近坡底的地方，使得两人碰面，从而必输。 最长的坡有两个且有公共最高点，Qingshan 选在坡顶，则可以选择避开 Danniel 下坡，从而必胜。  附：代码，展开
+最长的坡只有一个，Qingshan 只能选在此坡坡顶，Danniel 可以选在靠近坡底的地方，使得两人碰面，从而必输。 最长的坡有两个且有公共最高点，Qingshan 选在坡顶，则可以选择避开 Danniel 下坡，从而必胜。 附：代码，展开
 E. Garden of the Sun 在棋盘的格子中有不连续的 X，请连接使得其满足如下条件
- X 组成的图案是连通的。 X 组成的图案不存在环。  分析 X 不连续是一个比较强的性质。
+X 组成的图案是连通的。 X 组成的图案不存在环。 分析 X 不连续是一个比较强的性质。
 构造类似 丰 字形的图案，横与横之间空两行，这样可以使得所有 X 都附在一条横上，且互相不连接。
 接下来考虑如何把横连起来，可以发现只用在第一列、第二列中选一列进行连接即可。
 附：代码，展开
-F. BFS Trees  第一次补题补到 F 耶！什么时候才能在赛中做到 F 呢……
- 我们定义一个图上的生成树是以 $s$ 点为根的 BFS 树，当且仅当：对于任意的节点 $t$，$s\to t$ 在 BFS 树上的最短路等于图上的最短路。"/>
+F. BFS Trees 第一次补题补到 F 耶！什么时候才能在赛中做到 F 呢……
+我们定义一个图上的生成树是以 $s$ 点为根的 BFS 树，当且仅当：对于任意的节点 $t$，$s\to t$ 在 BFS 树上的最短路等于图上的最短路。"/>
 
 
 <script type="application/ld+json">
@@ -125,11 +125,11 @@ F. BFS Trees  第一次补题补到 F 耶！什么时候才能在赛中做到 F 
   "@type": "BlogPosting",
   "headline": "CF Round 706(Div 2)",
   "name": "CF Round 706(Div 2)",
-  "description": "D. Let's Go Hiking 两人在序列上移动，Qingshan 只能往值更高的地方走，Daniel 只能往低处走。两人不能重叠，求 Qingshan 中有多少可以赢的位置。\n分析 其实我们只用关注上升和下降的序列有多长，而不必关心它们具体是几。\n如果 Qingshan 选边界上的坡，或者不选在坡顶，那么 Daniel 可以紧挨着它，从而必输。\n如果 Qingshan 不选最长的坡，则 Danniel 可以选最长的坡，从而必输。\n如果最长的坡存在没有公共最高点的两个，Danniel 可以避开 Qingshan 选，从而必输。\n剩下的情况只有两种：\n 最长的坡只有一个，Qingshan 只能选在此坡坡顶，Danniel 可以选在靠近坡底的地方，使得两人碰面，从而必输。 最长的坡有两个且有公共最高点，Qingshan 选在坡顶，则可以选择避开 Danniel 下坡，从而必胜。  附：代码，展开\nE. Garden of the Sun 在棋盘的格子中有不连续的 X，请连接使得其满足如下条件\n X 组成的图案是连通的。 X 组成的图案不存在环。  分析 X 不连续是一个比较强的性质。\n构造类似 丰 字形的图案，横与横之间空两行，这样可以使得所有 X 都附在一条横上，且互相不连接。\n接下来考虑如何把横连起来，可以发现只用在第一列、第二列中选一列进行连接即可。\n附：代码，展开\nF. BFS Trees  第一次补题补到 F 耶！什么时候才能在赛中做到 F 呢……\n 我们定义一个图上的生成树是以 $s$ 点为根的 BFS 树，当且仅当：对于任意的节点 $t$，$s\\to t$ 在 BFS 树上的最短路等于图上的最短路。",
+  "description": "D. Let's Go Hiking 两人在序列上移动，Qingshan 只能往值更高的地方走，Daniel 只能往低处走。两人不能重叠，求 Qingshan 中有多少可以赢的位置。\n分析 其实我们只用关注上升和下降的序列有多长，而不必关心它们具体是几。\n如果 Qingshan 选边界上的坡，或者不选在坡顶，那么 Daniel 可以紧挨着它，从而必输。\n如果 Qingshan 不选最长的坡，则 Danniel 可以选最长的坡，从而必输。\n如果最长的坡存在没有公共最高点的两个，Danniel 可以避开 Qingshan 选，从而必输。\n剩下的情况只有两种：\n最长的坡只有一个，Qingshan 只能选在此坡坡顶，Danniel 可以选在靠近坡底的地方，使得两人碰面，从而必输。 最长的坡有两个且有公共最高点，Qingshan 选在坡顶，则可以选择避开 Danniel 下坡，从而必胜。 附：代码，展开\nE. Garden of the Sun 在棋盘的格子中有不连续的 X，请连接使得其满足如下条件\nX 组成的图案是连通的。 X 组成的图案不存在环。 分析 X 不连续是一个比较强的性质。\n构造类似 丰 字形的图案，横与横之间空两行，这样可以使得所有 X 都附在一条横上，且互相不连接。\n接下来考虑如何把横连起来，可以发现只用在第一列、第二列中选一列进行连接即可。\n附：代码，展开\nF. BFS Trees 第一次补题补到 F 耶！什么时候才能在赛中做到 F 呢……\n我们定义一个图上的生成树是以 $s$ 点为根的 BFS 树，当且仅当：对于任意的节点 $t$，$s\\to t$ 在 BFS 树上的最短路等于图上的最短路。",
   "keywords": [
     
   ],
-  "articleBody": "D. Let's Go Hiking 两人在序列上移动，Qingshan 只能往值更高的地方走，Daniel 只能往低处走。两人不能重叠，求 Qingshan 中有多少可以赢的位置。\n分析 其实我们只用关注上升和下降的序列有多长，而不必关心它们具体是几。\n如果 Qingshan 选边界上的坡，或者不选在坡顶，那么 Daniel 可以紧挨着它，从而必输。\n如果 Qingshan 不选最长的坡，则 Danniel 可以选最长的坡，从而必输。\n如果最长的坡存在没有公共最高点的两个，Danniel 可以避开 Qingshan 选，从而必输。\n剩下的情况只有两种：\n 最长的坡只有一个，Qingshan 只能选在此坡坡顶，Danniel 可以选在靠近坡底的地方，使得两人碰面，从而必输。 最长的坡有两个且有公共最高点，Qingshan 选在坡顶，则可以选择避开 Danniel 下坡，从而必胜。  附：代码，展开\nE. Garden of the Sun 在棋盘的格子中有不连续的 X，请连接使得其满足如下条件\n X 组成的图案是连通的。 X 组成的图案不存在环。  分析 X 不连续是一个比较强的性质。\n构造类似 丰 字形的图案，横与横之间空两行，这样可以使得所有 X 都附在一条横上，且互相不连接。\n接下来考虑如何把横连起来，可以发现只用在第一列、第二列中选一列进行连接即可。\n附：代码，展开\nF. BFS Trees  第一次补题补到 F 耶！什么时候才能在赛中做到 F 呢……\n 我们定义一个图上的生成树是以 $s$ 点为根的 BFS 树，当且仅当：对于任意的节点 $t$，$s\\to t$ 在 BFS 树上的最短路等于图上的最短路。\n定义 $f(i,j)$ 为根可以在 $i$ 且可以在 $j$ 的 BFS 树的个数，求所有的 $f(i,j) \\bmod P$。\n分析 题目有点绕，要好好的读一读。\n注意到一个关键点：若 $i \\to j$ 最短路有两条，而在生成树中只能有一条，则这些被断掉的节点到 $i,j$ 的最短路一定不能同时取到最小值，故答案不存在，即 $f(i,j) = 0$。\n因此 $i \\to j$ 只能有一条路。想象 $i$ 侧剩余的点按照到 $i$ 的距离分成层级，每个点 $k$ 满足 BFS 树条件的接入方式就是连到更近一层的点 $e$，即判据为\n$$ dis(i, e) + 1 = dis(i, k)\\ \\text{且}\\ dis(j, e) + 1 = dis(j, k) $$\n注意到每次接入是独立的，答案即用乘法合并。\n至于判最短路的条数，注意到 $dis(i,k) + dis(k,j) = dis(i,j)$ 即意味着 $k$ 在 $i \\to j$ 的最短路上，计算满足条件的点数是否是 $dis(i,j) + 1$ 即可。\nfor (int i = 1; i  n; i++) { for (int j = i; j  n; j++) { ll tans = 1, cnt = 0; for (int k = 1; k  n; k++) { if (f[i][k] + f[j][k] == f[i][j]) { cnt++; } else { int s = 0; for (auto e : G[k]) { s += f[i][e] + 1 == f[i][k] \u0026\u0026 f[e][j] + 1 == f[k][j]; } tans = tans * s % P; } } if (cnt != f[i][j] + 1) { tans = 0; } ans[i][j] = ans[j][i] = tans; } } 附：代码，展开\n",
+  "articleBody": "D. Let's Go Hiking 两人在序列上移动，Qingshan 只能往值更高的地方走，Daniel 只能往低处走。两人不能重叠，求 Qingshan 中有多少可以赢的位置。\n分析 其实我们只用关注上升和下降的序列有多长，而不必关心它们具体是几。\n如果 Qingshan 选边界上的坡，或者不选在坡顶，那么 Daniel 可以紧挨着它，从而必输。\n如果 Qingshan 不选最长的坡，则 Danniel 可以选最长的坡，从而必输。\n如果最长的坡存在没有公共最高点的两个，Danniel 可以避开 Qingshan 选，从而必输。\n剩下的情况只有两种：\n最长的坡只有一个，Qingshan 只能选在此坡坡顶，Danniel 可以选在靠近坡底的地方，使得两人碰面，从而必输。 最长的坡有两个且有公共最高点，Qingshan 选在坡顶，则可以选择避开 Danniel 下坡，从而必胜。 附：代码，展开\nE. Garden of the Sun 在棋盘的格子中有不连续的 X，请连接使得其满足如下条件\nX 组成的图案是连通的。 X 组成的图案不存在环。 分析 X 不连续是一个比较强的性质。\n构造类似 丰 字形的图案，横与横之间空两行，这样可以使得所有 X 都附在一条横上，且互相不连接。\n接下来考虑如何把横连起来，可以发现只用在第一列、第二列中选一列进行连接即可。\n附：代码，展开\nF. BFS Trees 第一次补题补到 F 耶！什么时候才能在赛中做到 F 呢……\n我们定义一个图上的生成树是以 $s$ 点为根的 BFS 树，当且仅当：对于任意的节点 $t$，$s\\to t$ 在 BFS 树上的最短路等于图上的最短路。\n定义 $f(i,j)$ 为根可以在 $i$ 且可以在 $j$ 的 BFS 树的个数，求所有的 $f(i,j) \\bmod P$。\n分析 题目有点绕，要好好的读一读。\n注意到一个关键点：若 $i \\to j$ 最短路有两条，而在生成树中只能有一条，则这些被断掉的节点到 $i,j$ 的最短路一定不能同时取到最小值，故答案不存在，即 $f(i,j) = 0$。\n因此 $i \\to j$ 只能有一条路。想象 $i$ 侧剩余的点按照到 $i$ 的距离分成层级，每个点 $k$ 满足 BFS 树条件的接入方式就是连到更近一层的点 $e$，即判据为\n$$ dis(i, e) + 1 = dis(i, k)\\ \\text{且}\\ dis(j, e) + 1 = dis(j, k) $$\n注意到每次接入是独立的，答案即用乘法合并。\n至于判最短路的条数，注意到 $dis(i,k) + dis(k,j) = dis(i,j)$ 即意味着 $k$ 在 $i \\to j$ 的最短路上，计算满足条件的点数是否是 $dis(i,j) + 1$ 即可。\nfor (int i = 1; i \u003c= n; i++) { for (int j = i; j \u003c= n; j++) { ll tans = 1, cnt = 0; for (int k = 1; k \u003c= n; k++) { if (f[i][k] + f[j][k] == f[i][j]) { cnt++; } else { int s = 0; for (auto e : G[k]) { s += f[i][e] + 1 == f[i][k] \u0026\u0026 f[e][j] + 1 == f[k][j]; } tans = tans * s % P; } } if (cnt != f[i][j] + 1) { tans = 0; } ans[i][j] = ans[j][i] = tans; } } 附：代码，展开\n",
   "wordCount" : "246",
   "inLanguage": "en",
   "datePublished": "2021-11-11T00:00:00Z",

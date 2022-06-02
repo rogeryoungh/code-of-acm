@@ -9,7 +9,7 @@
 <meta name="keywords" content="洛谷, 字符串" />
 <meta name="description" content="题目大意 我们将重复的 $n$ 个字符串 S 压缩为 [nS]，且存在多重压缩。给定一个压缩结果，展开它。
 分析 我考虑用类似状态机的方式解析字符串。
- 当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$  写成 BNF 更直观一点
+当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$ 写成 BNF 更直观一点
 &lt;pwd&gt; ::= &lt;EMPTY&gt; | {&lt;ALPHA&gt;} | &lt;pwd&gt; &#34;[&#34; &lt;NUMBER&gt; &lt;pwd&gt; &#34;]&#34; &lt;pwd&gt; string read() { string s = &#34;&#34;; char c; while (cin &gt;&gt; c) { if (c == &#39;[&#39;) { int n; cin &gt;&gt; n; string ts = read(); while (n--) s &#43;= ts; } else if (c == &#39;]&#39;) { return s; } else { s &#43;= c; } } return s; } int main() { cout &lt;&lt; read(); return 0; } ">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1928/" />
@@ -24,7 +24,7 @@
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -54,7 +54,7 @@
 <meta property="og:title" content="P1928 外星密码" />
 <meta property="og:description" content="题目大意 我们将重复的 $n$ 个字符串 S 压缩为 [nS]，且存在多重压缩。给定一个压缩结果，展开它。
 分析 我考虑用类似状态机的方式解析字符串。
- 当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$  写成 BNF 更直观一点
+当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$ 写成 BNF 更直观一点
 &lt;pwd&gt; ::= &lt;EMPTY&gt; | {&lt;ALPHA&gt;} | &lt;pwd&gt; &#34;[&#34; &lt;NUMBER&gt; &lt;pwd&gt; &#34;]&#34; &lt;pwd&gt; string read() { string s = &#34;&#34;; char c; while (cin &gt;&gt; c) { if (c == &#39;[&#39;) { int n; cin &gt;&gt; n; string ts = read(); while (n--) s &#43;= ts; } else if (c == &#39;]&#39;) { return s; } else { s &#43;= c; } } return s; } int main() { cout &lt;&lt; read(); return 0; } " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1928/" /><meta property="article:section" content="post" />
@@ -65,7 +65,7 @@
 <meta name="twitter:title" content="P1928 外星密码"/>
 <meta name="twitter:description" content="题目大意 我们将重复的 $n$ 个字符串 S 压缩为 [nS]，且存在多重压缩。给定一个压缩结果，展开它。
 分析 我考虑用类似状态机的方式解析字符串。
- 当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$  写成 BNF 更直观一点
+当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$ 写成 BNF 更直观一点
 &lt;pwd&gt; ::= &lt;EMPTY&gt; | {&lt;ALPHA&gt;} | &lt;pwd&gt; &#34;[&#34; &lt;NUMBER&gt; &lt;pwd&gt; &#34;]&#34; &lt;pwd&gt; string read() { string s = &#34;&#34;; char c; while (cin &gt;&gt; c) { if (c == &#39;[&#39;) { int n; cin &gt;&gt; n; string ts = read(); while (n--) s &#43;= ts; } else if (c == &#39;]&#39;) { return s; } else { s &#43;= c; } } return s; } int main() { cout &lt;&lt; read(); return 0; } "/>
 
 
@@ -95,11 +95,11 @@
   "@type": "BlogPosting",
   "headline": "P1928 外星密码",
   "name": "P1928 外星密码",
-  "description": "题目大意 我们将重复的 $n$ 个字符串 S 压缩为 [nS]，且存在多重压缩。给定一个压缩结果，展开它。\n分析 我考虑用类似状态机的方式解析字符串。\n 当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$  写成 BNF 更直观一点\n\u0026lt;pwd\u0026gt; ::= \u0026lt;EMPTY\u0026gt; | {\u0026lt;ALPHA\u0026gt;} | \u0026lt;pwd\u0026gt; \u0026#34;[\u0026#34; \u0026lt;NUMBER\u0026gt; \u0026lt;pwd\u0026gt; \u0026#34;]\u0026#34; \u0026lt;pwd\u0026gt; string read() { string s = \u0026#34;\u0026#34;; char c; while (cin \u0026gt;\u0026gt; c) { if (c == \u0026#39;[\u0026#39;) { int n; cin \u0026gt;\u0026gt; n; string ts = read(); while (n--) s += ts; } else if (c == \u0026#39;]\u0026#39;) { return s; } else { s += c; } } return s; } int main() { cout \u0026lt;\u0026lt; read(); return 0; } ",
+  "description": "题目大意 我们将重复的 $n$ 个字符串 S 压缩为 [nS]，且存在多重压缩。给定一个压缩结果，展开它。\n分析 我考虑用类似状态机的方式解析字符串。\n当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$ 写成 BNF 更直观一点\n\u0026lt;pwd\u0026gt; ::= \u0026lt;EMPTY\u0026gt; | {\u0026lt;ALPHA\u0026gt;} | \u0026lt;pwd\u0026gt; \u0026#34;[\u0026#34; \u0026lt;NUMBER\u0026gt; \u0026lt;pwd\u0026gt; \u0026#34;]\u0026#34; \u0026lt;pwd\u0026gt; string read() { string s = \u0026#34;\u0026#34;; char c; while (cin \u0026gt;\u0026gt; c) { if (c == \u0026#39;[\u0026#39;) { int n; cin \u0026gt;\u0026gt; n; string ts = read(); while (n--) s += ts; } else if (c == \u0026#39;]\u0026#39;) { return s; } else { s += c; } } return s; } int main() { cout \u0026lt;\u0026lt; read(); return 0; } ",
   "keywords": [
     "洛谷", "字符串"
   ],
-  "articleBody": "题目大意 我们将重复的 $n$ 个字符串 S 压缩为 [nS]，且存在多重压缩。给定一个压缩结果，展开它。\n分析 我考虑用类似状态机的方式解析字符串。\n 当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$  写成 BNF 更直观一点\npwd ::= EMPTY | {ALPHA} | pwd \"[\" NUMBER pwd \"]\" pwd string read() { string s = \"\"; char c; while (cin  c) { if (c == '[') { int n; cin  n; string ts = read(); while (n--) s += ts; } else if (c == ']') { return s; } else { s += c; } } return s; } int main() { cout  read(); return 0; } ",
+  "articleBody": "题目大意 我们将重复的 $n$ 个字符串 S 压缩为 [nS]，且存在多重压缩。给定一个压缩结果，展开它。\n分析 我考虑用类似状态机的方式解析字符串。\n当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$ 写成 BNF 更直观一点\n\u003cpwd\u003e ::= \u003cEMPTY\u003e | {\u003cALPHA\u003e} | \u003cpwd\u003e \"[\" \u003cNUMBER\u003e \u003cpwd\u003e \"]\" \u003cpwd\u003e string read() { string s = \"\"; char c; while (cin \u003e\u003e c) { if (c == '[') { int n; cin \u003e\u003e n; string ts = read(); while (n--) s += ts; } else if (c == ']') { return s; } else { s += c; } } return s; } int main() { cout \u003c\u003c read(); return 0; } ",
   "wordCount" : "97",
   "inLanguage": "en",
   "datePublished": "2020-10-16T00:00:00Z",

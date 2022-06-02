@@ -197,7 +197,7 @@ int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(
       
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1833/</guid>
       <description>题目大意 混合背包。每棵树都有美学值 $C_i$，共有三种：
- 一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。  分析 对于混合背包，我们可以对物品拆分，得到多个物品。
+一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。 分析 对于混合背包，我们可以对物品拆分，得到多个物品。
 ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), teh = rr(), tem = rr(); int tsum = (teh - tsh) * 60 + tem - tsm; int n = rr(); int tp = 1; for (ll i = 1; i &amp;lt;= n; i++) { int t = rr(), c = rr(), p = rr(); if (p == 1) { tt[tp] = t, cc[tp] = c; tp++; } else { p = p !</description>
     </item>
     
@@ -263,7 +263,7 @@ priority_queue&amp;lt;int, vector&amp;lt;int&amp;gt;, greater&amp;lt;int&amp;gt;
 分析 模板题。考虑分治，随便选一个数 $x$，然后把比 $x$ 大的数移到右边，比 $x$ 小的数移到左边。因此得到了数 $x$ 的排位，若恰为第 $k$ 个则返回，否则根据大小在左右寻找。
 该算法是不稳定的，期望复杂度 $O(n)$，最坏复杂度 $O(n^2)$。
 实际上存在最坏复杂度为 $O(n)$ 的 BFPTR 算法，但因为其常数过大实现复杂而很少应用。
-ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l + r) / 2]; while (i &amp;lt;= j) { while (nn[j] &amp;gt; x) j--; while (nn[i] &amp;lt; x) i++; if (i &amp;lt;= j) { swap(nn[i], nn[j]); i++, j--; } } // l &amp;lt;= j &amp;lt;= i &amp;lt;=r 	if (k &amp;lt;= j) return quicksort(l, j); else if (k &amp;gt;= i) return quicksort(i, r); else return nn[k + 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i &amp;lt;= n; i++) scanf(&amp;#34;%lld&amp;#34;, &amp;amp;nn[i]); printf(&amp;#34;%lld&amp;#34;, quicksort(1, n)); return 0; } </description>
+ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l + r) / 2]; while (i &amp;lt;= j) { while (nn[j] &amp;gt; x) j--; while (nn[i] &amp;lt; x) i++; if (i &amp;lt;= j) { swap(nn[i], nn[j]); i++, j--; } } // l &amp;lt;= j &amp;lt;= i &amp;lt;=r if (k &amp;lt;= j) return quicksort(l, j); else if (k &amp;gt;= i) return quicksort(i, r); else return nn[k + 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i &amp;lt;= n; i++) scanf(&amp;#34;%lld&amp;#34;, &amp;amp;nn[i]); printf(&amp;#34;%lld&amp;#34;, quicksort(1, n)); return 0; } </description>
     </item>
     
     <item>
@@ -274,7 +274,7 @@ ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l +
       <guid>https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1928/</guid>
       <description>题目大意 我们将重复的 $n$ 个字符串 S 压缩为 [nS]，且存在多重压缩。给定一个压缩结果，展开它。
 分析 我考虑用类似状态机的方式解析字符串。
- 当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$  写成 BNF 更直观一点
+当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$ 写成 BNF 更直观一点
 &amp;lt;pwd&amp;gt; ::= &amp;lt;EMPTY&amp;gt; | {&amp;lt;ALPHA&amp;gt;} | &amp;lt;pwd&amp;gt; &amp;#34;[&amp;#34; &amp;lt;NUMBER&amp;gt; &amp;lt;pwd&amp;gt; &amp;#34;]&amp;#34; &amp;lt;pwd&amp;gt; string read() { string s = &amp;#34;&amp;#34;; char c; while (cin &amp;gt;&amp;gt; c) { if (c == &amp;#39;[&amp;#39;) { int n; cin &amp;gt;&amp;gt; n; string ts = read(); while (n--) s += ts; } else if (c == &amp;#39;]&amp;#39;) { return s; } else { s += c; } } return s; } int main() { cout &amp;lt;&amp;lt; read(); return 0; } </description>
     </item>
     
@@ -287,7 +287,8 @@ ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l +
       <description>题目大意 有 I 形和 L 形两种砖头，分别能覆盖 2 个单元和 3 个单元。求 $2 \times n$ 的墙有多少不重复的覆盖方式，结果对 $10^4$ 取模。
 分析 其中 I 形砖块仅有横放和竖放两种。关键在于 L 形，两个 L 形之间可以用 I 形填充，这让情况变得复杂起来。
 对于 $F_n$ 的递推，我们可以想到
- 在 $F_{n-1}$ 后放一个 I 形砖块。 在 $F_{n-2}$ 后放两个横着的 I 形砖块。 对于更前面的递推，较为复杂。  两个 L 形砖块对齐，上下翻转也可以，即 $2 F_{n-3}$。 两个 L 形砖块可以对顶放，空缺恰用一个 I 填充，即 $2 F_{n-4}$。 类似 $2F_{n-3}$，中间可以再插入两个 I 形，即 $2 F_{n-5}$。 …… 直到 I 形和 L 形砖块恰好铺满墙壁，即 $2F_{0}$。    容易得到我们的递推式</description>
+在 $F_{n-1}$ 后放一个 I 形砖块。 在 $F_{n-2}$ 后放两个横着的 I 形砖块。 对于更前面的递推，较为复杂。 两个 L 形砖块对齐，上下翻转也可以，即 $2 F_{n-3}$。 两个 L 形砖块可以对顶放，空缺恰用一个 I 填充，即 $2 F_{n-4}$。 类似 $2F_{n-3}$，中间可以再插入两个 I 形，即 $2 F_{n-5}$。 …… 直到 I 形和 L 形砖块恰好铺满墙壁，即 $2F_{0}$。 容易得到我们的递推式
+$$ F_n = F_{n-1} + F_{n-2} + 2 \sum_{i=0}^{n-3} F_i $$</description>
     </item>
     
     <item>

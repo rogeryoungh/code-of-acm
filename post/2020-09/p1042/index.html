@@ -24,7 +24,7 @@ char ch[62510]; int solve(int win, int len) { int w = 0, l = 0; for (ll i = 0; i
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -99,7 +99,7 @@ char ch[62510]; int solve(int win, int len) { int w = 0, l = 0; for (ll i = 0; i
   "keywords": [
     "洛谷", "数学"
   ],
-  "articleBody": "题目大意 赢 11 分并且压对手两分以上则一局结束，否则要追分至压对手两分。\n给定 $\\texttt{WL}$ 序列，分别求 11 分制和 21 分制下每场比分，$\\texttt{E}$ 是结束符。\n分析 这是一道比较烦的模拟题，很绕。\nchar ch[62510]; int solve(int win, int len) { int w = 0, l = 0; for (ll i = 0; i  len; i++) { w += ch[i] == 'W'; l += ch[i] == 'L'; if (max(w, l) = win \u0026\u0026 abs(w - l) = 2) { printf(\"%d:%d\\n\", w, l); w = l = 0; } } printf(\"%d:%d\\n\", w, l); } int main() { char ccc; int len = 0; while (scanf(\"%c\", \u0026ccc) != EOF) { if (ccc != 'E') ch[len++] = ccc; else break; } solve(11, len); LN; solve(21, len); return 0; } ",
+  "articleBody": "题目大意 赢 11 分并且压对手两分以上则一局结束，否则要追分至压对手两分。\n给定 $\\texttt{WL}$ 序列，分别求 11 分制和 21 分制下每场比分，$\\texttt{E}$ 是结束符。\n分析 这是一道比较烦的模拟题，很绕。\nchar ch[62510]; int solve(int win, int len) { int w = 0, l = 0; for (ll i = 0; i \u003c len; i++) { w += ch[i] == 'W'; l += ch[i] == 'L'; if (max(w, l) \u003e= win \u0026\u0026 abs(w - l) \u003e= 2) { printf(\"%d:%d\\n\", w, l); w = l = 0; } } printf(\"%d:%d\\n\", w, l); } int main() { char ccc; int len = 0; while (scanf(\"%c\", \u0026ccc) != EOF) { if (ccc != 'E') ch[len++] = ccc; else break; } solve(11, len); LN; solve(21, len); return 0; } ",
   "wordCount" : "108",
   "inLanguage": "en",
   "datePublished": "2020-09-23T00:00:00Z",

@@ -25,7 +25,7 @@ const ll MN = 2e5 &#43; 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; l
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -102,7 +102,7 @@ const ll MN = 2e5 &#43; 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; l
   "keywords": [
     "洛谷", "二分"
   ],
-  "articleBody": "题目大意 对于一个区间 $[l_i,r_i]$，计算矿石在这个区间上的检验值 $y_i$：\n$$ y_i=\\sum_{j=l_i}^{r_i}[w_j \\geqslant W] \\times \\sum_{j=l_i}^{r_i}[w_j \\geqslant W]v_j $$\n记检验结果为 $y=\\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。\n分析 注意到 $y(w)$ 是关于 $W$ 的递减函数，对 $w$ 在 $[w_{\\min},w_{\\max}]$ 上进行二分。\nconst ll MN = 2e5 + 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; ll n, m, s; int main() { n = rr(), m = rr(), s = rr(); ll minw = 0x3f3f3f3f, maxw = 0; f1[0] = f2[0] = 0; for (ll i = 1; i  n; i++) { ww[i] = rr(), vv[i] = rr(); maxw = max(ww[i], maxw); minw = min(ww[i], minw); } for (ll i = 1; i  m; i++) { li[i] = rr(), ri[i] = rr(); } ll l = minw, r = maxw + 1; while (l  r) { int mid = (l + r)  1; if (sum(mid)  s) r = mid; else l = mid + 1; } ll rst = min(sum(l - 1) - s, s - sum(l)); printf(\"%lld\", rst); return 0; } 区间求和可以用前缀和优化。\nll f1[MN], f2[MN]; ll sum(ll w) { for (ll i = 1; i  n; i++) { ll f = ww[i] = w; f1[i] = f1[i - 1] + f; f2[i] = f2[i - 1] + f * vv[i]; } ll sum = 0; for (ll k = 1; k  m; k++) { ll l = li[k], r = ri[k]; sum += (f1[r] - f1[l - 1]) * (f2[r] - f2[l - 1]); } return sum; } ",
+  "articleBody": "题目大意 对于一个区间 $[l_i,r_i]$，计算矿石在这个区间上的检验值 $y_i$：\n$$ y_i=\\sum_{j=l_i}^{r_i}[w_j \\geqslant W] \\times \\sum_{j=l_i}^{r_i}[w_j \\geqslant W]v_j $$\n记检验结果为 $y=\\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。\n分析 注意到 $y(w)$ 是关于 $W$ 的递减函数，对 $w$ 在 $[w_{\\min},w_{\\max}]$ 上进行二分。\nconst ll MN = 2e5 + 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; ll n, m, s; int main() { n = rr(), m = rr(), s = rr(); ll minw = 0x3f3f3f3f, maxw = 0; f1[0] = f2[0] = 0; for (ll i = 1; i \u003c= n; i++) { ww[i] = rr(), vv[i] = rr(); maxw = max(ww[i], maxw); minw = min(ww[i], minw); } for (ll i = 1; i \u003c= m; i++) { li[i] = rr(), ri[i] = rr(); } ll l = minw, r = maxw + 1; while (l \u003c r) { int mid = (l + r) \u003e\u003e 1; if (sum(mid) \u003c= s) r = mid; else l = mid + 1; } ll rst = min(sum(l - 1) - s, s - sum(l)); printf(\"%lld\", rst); return 0; } 区间求和可以用前缀和优化。\nll f1[MN], f2[MN]; ll sum(ll w) { for (ll i = 1; i \u003c= n; i++) { ll f = ww[i] \u003e= w; f1[i] = f1[i - 1] + f; f2[i] = f2[i - 1] + f * vv[i]; } ll sum = 0; for (ll k = 1; k \u003c= m; k++) { ll l = li[k], r = ri[k]; sum += (f1[r] - f1[l - 1]) * (f2[r] - f2[l - 1]); } return sum; } ",
   "wordCount" : "244",
   "inLanguage": "en",
   "datePublished": "2021-04-13T00:00:00Z",

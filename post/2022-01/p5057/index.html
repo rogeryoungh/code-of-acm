@@ -8,7 +8,7 @@
 <title>P5057 简单题 | Roger Young</title>
 <meta name="keywords" content="" />
 <meta name="description" content="题目大意 给定一个 01 序列，有如下操作：
- 将区间 $[l,r]$ 上的数 01 翻转。 询问第 $i$ 个数的值。  分析 区间操作，单点查询，很自然的想到了差分。
+将区间 $[l,r]$ 上的数 01 翻转。 询问第 $i$ 个数的值。 分析 区间操作，单点查询，很自然的想到了差分。
 用异或或者加减代替翻转都可以，用树状数组维护。我选择了加减，这样询问时对 $2$ 取余即可。
 #include &#34;template/ds/fwtree/0.hpp&#34; int main() { int n = rr(), m = rr(); fwtree_1&lt;int&gt; tr(n &#43; 2); while (m--) { int t = rr(); if (t == 1) { int l = rr() &#43; 1, r = rr() &#43; 1; tr.modify(l - 1, -1), tr.modify(r, 1); } else { int i = rr(); i = tr.">
 <meta name="author" content="rogeryoungh">
@@ -24,7 +24,7 @@
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -53,7 +53,7 @@
 
 <meta property="og:title" content="P5057 简单题" />
 <meta property="og:description" content="题目大意 给定一个 01 序列，有如下操作：
- 将区间 $[l,r]$ 上的数 01 翻转。 询问第 $i$ 个数的值。  分析 区间操作，单点查询，很自然的想到了差分。
+将区间 $[l,r]$ 上的数 01 翻转。 询问第 $i$ 个数的值。 分析 区间操作，单点查询，很自然的想到了差分。
 用异或或者加减代替翻转都可以，用树状数组维护。我选择了加减，这样询问时对 $2$ 取余即可。
 #include &#34;template/ds/fwtree/0.hpp&#34; int main() { int n = rr(), m = rr(); fwtree_1&lt;int&gt; tr(n &#43; 2); while (m--) { int t = rr(); if (t == 1) { int l = rr() &#43; 1, r = rr() &#43; 1; tr.modify(l - 1, -1), tr.modify(r, 1); } else { int i = rr(); i = tr." />
 <meta property="og:type" content="article" />
@@ -64,7 +64,7 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="P5057 简单题"/>
 <meta name="twitter:description" content="题目大意 给定一个 01 序列，有如下操作：
- 将区间 $[l,r]$ 上的数 01 翻转。 询问第 $i$ 个数的值。  分析 区间操作，单点查询，很自然的想到了差分。
+将区间 $[l,r]$ 上的数 01 翻转。 询问第 $i$ 个数的值。 分析 区间操作，单点查询，很自然的想到了差分。
 用异或或者加减代替翻转都可以，用树状数组维护。我选择了加减，这样询问时对 $2$ 取余即可。
 #include &#34;template/ds/fwtree/0.hpp&#34; int main() { int n = rr(), m = rr(); fwtree_1&lt;int&gt; tr(n &#43; 2); while (m--) { int t = rr(); if (t == 1) { int l = rr() &#43; 1, r = rr() &#43; 1; tr.modify(l - 1, -1), tr.modify(r, 1); } else { int i = rr(); i = tr."/>
 
@@ -95,11 +95,11 @@
   "@type": "BlogPosting",
   "headline": "P5057 简单题",
   "name": "P5057 简单题",
-  "description": "题目大意 给定一个 01 序列，有如下操作：\n 将区间 $[l,r]$ 上的数 01 翻转。 询问第 $i$ 个数的值。  分析 区间操作，单点查询，很自然的想到了差分。\n用异或或者加减代替翻转都可以，用树状数组维护。我选择了加减，这样询问时对 $2$ 取余即可。\n#include \u0026#34;template/ds/fwtree/0.hpp\u0026#34; int main() { int n = rr(), m = rr(); fwtree_1\u0026lt;int\u0026gt; tr(n + 2); while (m--) { int t = rr(); if (t == 1) { int l = rr() + 1, r = rr() + 1; tr.modify(l - 1, -1), tr.modify(r, 1); } else { int i = rr(); i = tr.",
+  "description": "题目大意 给定一个 01 序列，有如下操作：\n将区间 $[l,r]$ 上的数 01 翻转。 询问第 $i$ 个数的值。 分析 区间操作，单点查询，很自然的想到了差分。\n用异或或者加减代替翻转都可以，用树状数组维护。我选择了加减，这样询问时对 $2$ 取余即可。\n#include \u0026#34;template/ds/fwtree/0.hpp\u0026#34; int main() { int n = rr(), m = rr(); fwtree_1\u0026lt;int\u0026gt; tr(n + 2); while (m--) { int t = rr(); if (t == 1) { int l = rr() + 1, r = rr() + 1; tr.modify(l - 1, -1), tr.modify(r, 1); } else { int i = rr(); i = tr.",
   "keywords": [
     
   ],
-  "articleBody": "题目大意 给定一个 01 序列，有如下操作：\n 将区间 $[l,r]$ 上的数 01 翻转。 询问第 $i$ 个数的值。  分析 区间操作，单点查询，很自然的想到了差分。\n用异或或者加减代替翻转都可以，用树状数组维护。我选择了加减，这样询问时对 $2$ 取余即可。\n#include \"template/ds/fwtree/0.hpp\" int main() { int n = rr(), m = rr(); fwtree_1int tr(n + 2); while (m--) { int t = rr(); if (t == 1) { int l = rr() + 1, r = rr() + 1; tr.modify(l - 1, -1), tr.modify(r, 1); } else { int i = rr(); i = tr.query(i); printf(\"%d\\n\", i \u0026 1); } } return 0; } ",
+  "articleBody": "题目大意 给定一个 01 序列，有如下操作：\n将区间 $[l,r]$ 上的数 01 翻转。 询问第 $i$ 个数的值。 分析 区间操作，单点查询，很自然的想到了差分。\n用异或或者加减代替翻转都可以，用树状数组维护。我选择了加减，这样询问时对 $2$ 取余即可。\n#include \"template/ds/fwtree/0.hpp\" int main() { int n = rr(), m = rr(); fwtree_1\u003cint\u003e tr(n + 2); while (m--) { int t = rr(); if (t == 1) { int l = rr() + 1, r = rr() + 1; tr.modify(l - 1, -1), tr.modify(r, 1); } else { int i = rr(); i = tr.query(i); printf(\"%d\\n\", i \u0026 1); } } return 0; } ",
   "wordCount" : "81",
   "inLanguage": "en",
   "datePublished": "2022-01-28T00:00:00Z",

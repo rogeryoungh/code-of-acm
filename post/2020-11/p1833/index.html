@@ -8,7 +8,7 @@
 <title>P1833 樱花 | Roger Young</title>
 <meta name="keywords" content="洛谷, DP" />
 <meta name="description" content="题目大意 混合背包。每棵树都有美学值 $C_i$，共有三种：
- 一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。  分析 对于混合背包，我们可以对物品拆分，得到多个物品。
+一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。 分析 对于混合背包，我们可以对物品拆分，得到多个物品。
 ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), teh = rr(), tem = rr(); int tsum = (teh - tsh) * 60 &#43; tem - tsm; int n = rr(); int tp = 1; for (ll i = 1; i &lt;= n; i&#43;&#43;) { int t = rr(), c = rr(), p = rr(); if (p == 1) { tt[tp] = t, cc[tp] = c; tp&#43;&#43;; } else { p = p !">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1833/" />
@@ -23,7 +23,7 @@ ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), te
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -52,7 +52,7 @@ ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), te
 
 <meta property="og:title" content="P1833 樱花" />
 <meta property="og:description" content="题目大意 混合背包。每棵树都有美学值 $C_i$，共有三种：
- 一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。  分析 对于混合背包，我们可以对物品拆分，得到多个物品。
+一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。 分析 对于混合背包，我们可以对物品拆分，得到多个物品。
 ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), teh = rr(), tem = rr(); int tsum = (teh - tsh) * 60 &#43; tem - tsm; int n = rr(); int tp = 1; for (ll i = 1; i &lt;= n; i&#43;&#43;) { int t = rr(), c = rr(), p = rr(); if (p == 1) { tt[tp] = t, cc[tp] = c; tp&#43;&#43;; } else { p = p !" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/2020-11/p1833/" /><meta property="article:section" content="post" />
@@ -62,7 +62,7 @@ ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), te
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="P1833 樱花"/>
 <meta name="twitter:description" content="题目大意 混合背包。每棵树都有美学值 $C_i$，共有三种：
- 一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。  分析 对于混合背包，我们可以对物品拆分，得到多个物品。
+一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。 分析 对于混合背包，我们可以对物品拆分，得到多个物品。
 ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), teh = rr(), tem = rr(); int tsum = (teh - tsh) * 60 &#43; tem - tsm; int n = rr(); int tp = 1; for (ll i = 1; i &lt;= n; i&#43;&#43;) { int t = rr(), c = rr(), p = rr(); if (p == 1) { tt[tp] = t, cc[tp] = c; tp&#43;&#43;; } else { p = p !"/>
 
 
@@ -92,11 +92,11 @@ ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), te
   "@type": "BlogPosting",
   "headline": "P1833 樱花",
   "name": "P1833 樱花",
-  "description": "题目大意 混合背包。每棵树都有美学值 $C_i$，共有三种：\n 一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。  分析 对于混合背包，我们可以对物品拆分，得到多个物品。\nll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), teh = rr(), tem = rr(); int tsum = (teh - tsh) * 60 + tem - tsm; int n = rr(); int tp = 1; for (ll i = 1; i \u0026lt;= n; i++) { int t = rr(), c = rr(), p = rr(); if (p == 1) { tt[tp] = t, cc[tp] = c; tp++; } else { p = p !",
+  "description": "题目大意 混合背包。每棵树都有美学值 $C_i$，共有三种：\n一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。 分析 对于混合背包，我们可以对物品拆分，得到多个物品。\nll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), teh = rr(), tem = rr(); int tsum = (teh - tsh) * 60 + tem - tsm; int n = rr(); int tp = 1; for (ll i = 1; i \u0026lt;= n; i++) { int t = rr(), c = rr(), p = rr(); if (p == 1) { tt[tp] = t, cc[tp] = c; tp++; } else { p = p !",
   "keywords": [
     "洛谷", "DP"
   ],
-  "articleBody": "题目大意 混合背包。每棵树都有美学值 $C_i$，共有三种：\n 一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。  分析 对于混合背包，我们可以对物品拆分，得到多个物品。\nll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), teh = rr(), tem = rr(); int tsum = (teh - tsh) * 60 + tem - tsm; int n = rr(); int tp = 1; for (ll i = 1; i  n; i++) { int t = rr(), c = rr(), p = rr(); if (p == 1) { tt[tp] = t, cc[tp] = c; tp++; } else { p = p != 0 ? p : 99999; int b = 1; while (b  p) { tt[tp] = t * b, cc[tp] = c * b; p -= b, b *= 2; tp++; } tt[tp] = t * p, cc[tp] = c * p; tp++; } } for (ll i = 1; i  tp - 1; i++) { for (ll j = tsum; j = tt[i]; j--) { dp[j] = max(dp[j], dp[j - tt[i]] + cc[i]); } } ll ans = 0; for (ll ic = 0; ic  tsum; ic++) { ans = max(dp[ic], ans); } printf(\"%lld\\n\", ans); return 0; } ",
+  "articleBody": "题目大意 混合背包。每棵树都有美学值 $C_i$，共有三种：\n一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。 分析 对于混合背包，我们可以对物品拆分，得到多个物品。\nll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), teh = rr(), tem = rr(); int tsum = (teh - tsh) * 60 + tem - tsm; int n = rr(); int tp = 1; for (ll i = 1; i \u003c= n; i++) { int t = rr(), c = rr(), p = rr(); if (p == 1) { tt[tp] = t, cc[tp] = c; tp++; } else { p = p != 0 ? p : 99999; int b = 1; while (b \u003c p) { tt[tp] = t * b, cc[tp] = c * b; p -= b, b *= 2; tp++; } tt[tp] = t * p, cc[tp] = c * p; tp++; } } for (ll i = 1; i \u003c= tp - 1; i++) { for (ll j = tsum; j \u003e= tt[i]; j--) { dp[j] = max(dp[j], dp[j - tt[i]] + cc[i]); } } ll ans = 0; for (ll ic = 0; ic \u003c= tsum; ic++) { ans = max(dp[ic], ans); } printf(\"%lld\\n\", ans); return 0; } ",
   "wordCount" : "190",
   "inLanguage": "en",
   "datePublished": "2020-11-11T00:00:00Z",

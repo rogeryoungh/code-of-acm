@@ -11,7 +11,7 @@
 分析 模板题。考虑分治，随便选一个数 $x$，然后把比 $x$ 大的数移到右边，比 $x$ 小的数移到左边。因此得到了数 $x$ 的排位，若恰为第 $k$ 个则返回，否则根据大小在左右寻找。
 该算法是不稳定的，期望复杂度 $O(n)$，最坏复杂度 $O(n^2)$。
 实际上存在最坏复杂度为 $O(n)$ 的 BFPTR 算法，但因为其常数过大实现复杂而很少应用。
-ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l &#43; r) / 2]; while (i &lt;= j) { while (nn[j] &gt; x) j--; while (nn[i] &lt; x) i&#43;&#43;; if (i &lt;= j) { swap(nn[i], nn[j]); i&#43;&#43;, j--; } } // l &lt;= j &lt;= i &lt;=r 	if (k &lt;= j) return quicksort(l, j); else if (k &gt;= i) return quicksort(i, r); else return nn[k &#43; 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) scanf(&#34;%lld&#34;, &amp;nn[i]); printf(&#34;%lld&#34;, quicksort(1, n)); return 0; } ">
+ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l &#43; r) / 2]; while (i &lt;= j) { while (nn[j] &gt; x) j--; while (nn[i] &lt; x) i&#43;&#43;; if (i &lt;= j) { swap(nn[i], nn[j]); i&#43;&#43;, j--; } } // l &lt;= j &lt;= i &lt;=r if (k &lt;= j) return quicksort(l, j); else if (k &gt;= i) return quicksort(i, r); else return nn[k &#43; 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) scanf(&#34;%lld&#34;, &amp;nn[i]); printf(&#34;%lld&#34;, quicksort(1, n)); return 0; } ">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1923/" />
 <link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
@@ -25,7 +25,7 @@ ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l &
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -57,7 +57,7 @@ ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l &
 分析 模板题。考虑分治，随便选一个数 $x$，然后把比 $x$ 大的数移到右边，比 $x$ 小的数移到左边。因此得到了数 $x$ 的排位，若恰为第 $k$ 个则返回，否则根据大小在左右寻找。
 该算法是不稳定的，期望复杂度 $O(n)$，最坏复杂度 $O(n^2)$。
 实际上存在最坏复杂度为 $O(n)$ 的 BFPTR 算法，但因为其常数过大实现复杂而很少应用。
-ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l &#43; r) / 2]; while (i &lt;= j) { while (nn[j] &gt; x) j--; while (nn[i] &lt; x) i&#43;&#43;; if (i &lt;= j) { swap(nn[i], nn[j]); i&#43;&#43;, j--; } } // l &lt;= j &lt;= i &lt;=r 	if (k &lt;= j) return quicksort(l, j); else if (k &gt;= i) return quicksort(i, r); else return nn[k &#43; 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) scanf(&#34;%lld&#34;, &amp;nn[i]); printf(&#34;%lld&#34;, quicksort(1, n)); return 0; } " />
+ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l &#43; r) / 2]; while (i &lt;= j) { while (nn[j] &gt; x) j--; while (nn[i] &lt; x) i&#43;&#43;; if (i &lt;= j) { swap(nn[i], nn[j]); i&#43;&#43;, j--; } } // l &lt;= j &lt;= i &lt;=r if (k &lt;= j) return quicksort(l, j); else if (k &gt;= i) return quicksort(i, r); else return nn[k &#43; 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) scanf(&#34;%lld&#34;, &amp;nn[i]); printf(&#34;%lld&#34;, quicksort(1, n)); return 0; } " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1923/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-10-16T00:00:00&#43;00:00" />
@@ -69,7 +69,7 @@ ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l &
 分析 模板题。考虑分治，随便选一个数 $x$，然后把比 $x$ 大的数移到右边，比 $x$ 小的数移到左边。因此得到了数 $x$ 的排位，若恰为第 $k$ 个则返回，否则根据大小在左右寻找。
 该算法是不稳定的，期望复杂度 $O(n)$，最坏复杂度 $O(n^2)$。
 实际上存在最坏复杂度为 $O(n)$ 的 BFPTR 算法，但因为其常数过大实现复杂而很少应用。
-ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l &#43; r) / 2]; while (i &lt;= j) { while (nn[j] &gt; x) j--; while (nn[i] &lt; x) i&#43;&#43;; if (i &lt;= j) { swap(nn[i], nn[j]); i&#43;&#43;, j--; } } // l &lt;= j &lt;= i &lt;=r 	if (k &lt;= j) return quicksort(l, j); else if (k &gt;= i) return quicksort(i, r); else return nn[k &#43; 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) scanf(&#34;%lld&#34;, &amp;nn[i]); printf(&#34;%lld&#34;, quicksort(1, n)); return 0; } "/>
+ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l &#43; r) / 2]; while (i &lt;= j) { while (nn[j] &gt; x) j--; while (nn[i] &lt; x) i&#43;&#43;; if (i &lt;= j) { swap(nn[i], nn[j]); i&#43;&#43;, j--; } } // l &lt;= j &lt;= i &lt;=r if (k &lt;= j) return quicksort(l, j); else if (k &gt;= i) return quicksort(i, r); else return nn[k &#43; 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) scanf(&#34;%lld&#34;, &amp;nn[i]); printf(&#34;%lld&#34;, quicksort(1, n)); return 0; } "/>
 
 
 <script type="application/ld+json">
@@ -98,11 +98,11 @@ ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l &
   "@type": "BlogPosting",
   "headline": "P1923 求第 $k$ 小的数",
   "name": "P1923 求第 $k$ 小的数",
-  "description": "题目大意 给定数列，求第 $k$ 小的数。\n分析 模板题。考虑分治，随便选一个数 $x$，然后把比 $x$ 大的数移到右边，比 $x$ 小的数移到左边。因此得到了数 $x$ 的排位，若恰为第 $k$ 个则返回，否则根据大小在左右寻找。\n该算法是不稳定的，期望复杂度 $O(n)$，最坏复杂度 $O(n^2)$。\n实际上存在最坏复杂度为 $O(n)$ 的 BFPTR 算法，但因为其常数过大实现复杂而很少应用。\nll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l + r) / 2]; while (i \u0026lt;= j) { while (nn[j] \u0026gt; x) j--; while (nn[i] \u0026lt; x) i++; if (i \u0026lt;= j) { swap(nn[i], nn[j]); i++, j--; } } // l \u0026lt;= j \u0026lt;= i \u0026lt;=r \tif (k \u0026lt;= j) return quicksort(l, j); else if (k \u0026gt;= i) return quicksort(i, r); else return nn[k + 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i \u0026lt;= n; i++) scanf(\u0026#34;%lld\u0026#34;, \u0026amp;nn[i]); printf(\u0026#34;%lld\u0026#34;, quicksort(1, n)); return 0; } ",
+  "description": "题目大意 给定数列，求第 $k$ 小的数。\n分析 模板题。考虑分治，随便选一个数 $x$，然后把比 $x$ 大的数移到右边，比 $x$ 小的数移到左边。因此得到了数 $x$ 的排位，若恰为第 $k$ 个则返回，否则根据大小在左右寻找。\n该算法是不稳定的，期望复杂度 $O(n)$，最坏复杂度 $O(n^2)$。\n实际上存在最坏复杂度为 $O(n)$ 的 BFPTR 算法，但因为其常数过大实现复杂而很少应用。\nll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l + r) / 2]; while (i \u0026lt;= j) { while (nn[j] \u0026gt; x) j--; while (nn[i] \u0026lt; x) i++; if (i \u0026lt;= j) { swap(nn[i], nn[j]); i++, j--; } } // l \u0026lt;= j \u0026lt;= i \u0026lt;=r if (k \u0026lt;= j) return quicksort(l, j); else if (k \u0026gt;= i) return quicksort(i, r); else return nn[k + 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i \u0026lt;= n; i++) scanf(\u0026#34;%lld\u0026#34;, \u0026amp;nn[i]); printf(\u0026#34;%lld\u0026#34;, quicksort(1, n)); return 0; } ",
   "keywords": [
     "洛谷", "分治"
   ],
-  "articleBody": "题目大意 给定数列，求第 $k$ 小的数。\n分析 模板题。考虑分治，随便选一个数 $x$，然后把比 $x$ 大的数移到右边，比 $x$ 小的数移到左边。因此得到了数 $x$ 的排位，若恰为第 $k$ 个则返回，否则根据大小在左右寻找。\n该算法是不稳定的，期望复杂度 $O(n)$，最坏复杂度 $O(n^2)$。\n实际上存在最坏复杂度为 $O(n)$ 的 BFPTR 算法，但因为其常数过大实现复杂而很少应用。\nll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l + r) / 2]; while (i  j) { while (nn[j]  x) j--; while (nn[i]  x) i++; if (i  j) { swap(nn[i], nn[j]); i++, j--; } } // l \tif (k  j) return quicksort(l, j); else if (k = i) return quicksort(i, r); else return nn[k + 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i  n; i++) scanf(\"%lld\", \u0026nn[i]); printf(\"%lld\", quicksort(1, n)); return 0; } ",
+  "articleBody": "题目大意 给定数列，求第 $k$ 小的数。\n分析 模板题。考虑分治，随便选一个数 $x$，然后把比 $x$ 大的数移到右边，比 $x$ 小的数移到左边。因此得到了数 $x$ 的排位，若恰为第 $k$ 个则返回，否则根据大小在左右寻找。\n该算法是不稳定的，期望复杂度 $O(n)$，最坏复杂度 $O(n^2)$。\n实际上存在最坏复杂度为 $O(n)$ 的 BFPTR 算法，但因为其常数过大实现复杂而很少应用。\nll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l + r) / 2]; while (i \u003c= j) { while (nn[j] \u003e x) j--; while (nn[i] \u003c x) i++; if (i \u003c= j) { swap(nn[i], nn[j]); i++, j--; } } // l \u003c= j \u003c= i \u003c=r if (k \u003c= j) return quicksort(l, j); else if (k \u003e= i) return quicksort(i, r); else return nn[k + 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i \u003c= n; i++) scanf(\"%lld\", \u0026nn[i]); printf(\"%lld\", quicksort(1, n)); return 0; } ",
   "wordCount" : "128",
   "inLanguage": "en",
   "datePublished": "2020-10-16T00:00:00Z",

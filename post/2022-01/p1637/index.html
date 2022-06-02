@@ -8,7 +8,7 @@
 <title>P1637 三元上升子序列 | Roger Young</title>
 <meta name="keywords" content="" />
 <meta name="description" content="题目大意 给定一个序列，求其中三元上升子序列的个数
- 对于 $i,j,k$，若 $a_i &lt; a_j &lt; a_k$，则是一个满足要求的三元对。  分析 考虑枚举中间的数 $j$，设其左边有 $a$ 个数比它小，右边有 $b$ 个数比它大，则中间为 $j$ 的三元对个数为 $ab$。
+对于 $i,j,k$，若 $a_i &lt; a_j &lt; a_k$，则是一个满足要求的三元对。 分析 考虑枚举中间的数 $j$，设其左边有 $a$ 个数比它小，右边有 $b$ 个数比它大，则中间为 $j$ 的三元对个数为 $ab$。
 至此就和逆序对类似了，离散化后用树状数组即可。
 #include &#34;template/ds/fwtree/0.hpp&#34; int main() { int n = rr(); vector&lt;pii&gt; v(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { v[i] = {rr(), i}; } sort(v.begin(), v.end(), [](pii a, pii b) { if (a.first == b.first) return a.second &gt; b.second; return a.first &lt; b.first; }); fwtree_1&lt;int&gt; tr(n &#43; 1); vector&lt;ll&gt; al(n &#43; 1), ar(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { al[i] = tr.">
 <meta name="author" content="rogeryoungh">
@@ -24,7 +24,7 @@
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -53,7 +53,7 @@
 
 <meta property="og:title" content="P1637 三元上升子序列" />
 <meta property="og:description" content="题目大意 给定一个序列，求其中三元上升子序列的个数
- 对于 $i,j,k$，若 $a_i &lt; a_j &lt; a_k$，则是一个满足要求的三元对。  分析 考虑枚举中间的数 $j$，设其左边有 $a$ 个数比它小，右边有 $b$ 个数比它大，则中间为 $j$ 的三元对个数为 $ab$。
+对于 $i,j,k$，若 $a_i &lt; a_j &lt; a_k$，则是一个满足要求的三元对。 分析 考虑枚举中间的数 $j$，设其左边有 $a$ 个数比它小，右边有 $b$ 个数比它大，则中间为 $j$ 的三元对个数为 $ab$。
 至此就和逆序对类似了，离散化后用树状数组即可。
 #include &#34;template/ds/fwtree/0.hpp&#34; int main() { int n = rr(); vector&lt;pii&gt; v(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { v[i] = {rr(), i}; } sort(v.begin(), v.end(), [](pii a, pii b) { if (a.first == b.first) return a.second &gt; b.second; return a.first &lt; b.first; }); fwtree_1&lt;int&gt; tr(n &#43; 1); vector&lt;ll&gt; al(n &#43; 1), ar(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { al[i] = tr." />
 <meta property="og:type" content="article" />
@@ -64,7 +64,7 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="P1637 三元上升子序列"/>
 <meta name="twitter:description" content="题目大意 给定一个序列，求其中三元上升子序列的个数
- 对于 $i,j,k$，若 $a_i &lt; a_j &lt; a_k$，则是一个满足要求的三元对。  分析 考虑枚举中间的数 $j$，设其左边有 $a$ 个数比它小，右边有 $b$ 个数比它大，则中间为 $j$ 的三元对个数为 $ab$。
+对于 $i,j,k$，若 $a_i &lt; a_j &lt; a_k$，则是一个满足要求的三元对。 分析 考虑枚举中间的数 $j$，设其左边有 $a$ 个数比它小，右边有 $b$ 个数比它大，则中间为 $j$ 的三元对个数为 $ab$。
 至此就和逆序对类似了，离散化后用树状数组即可。
 #include &#34;template/ds/fwtree/0.hpp&#34; int main() { int n = rr(); vector&lt;pii&gt; v(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { v[i] = {rr(), i}; } sort(v.begin(), v.end(), [](pii a, pii b) { if (a.first == b.first) return a.second &gt; b.second; return a.first &lt; b.first; }); fwtree_1&lt;int&gt; tr(n &#43; 1); vector&lt;ll&gt; al(n &#43; 1), ar(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { al[i] = tr."/>
 
@@ -95,11 +95,11 @@
   "@type": "BlogPosting",
   "headline": "P1637 三元上升子序列",
   "name": "P1637 三元上升子序列",
-  "description": "题目大意 给定一个序列，求其中三元上升子序列的个数\n 对于 $i,j,k$，若 $a_i \u0026lt; a_j \u0026lt; a_k$，则是一个满足要求的三元对。  分析 考虑枚举中间的数 $j$，设其左边有 $a$ 个数比它小，右边有 $b$ 个数比它大，则中间为 $j$ 的三元对个数为 $ab$。\n至此就和逆序对类似了，离散化后用树状数组即可。\n#include \u0026#34;template/ds/fwtree/0.hpp\u0026#34; int main() { int n = rr(); vector\u0026lt;pii\u0026gt; v(n + 1); for (int i = 1; i \u0026lt;= n; i++) { v[i] = {rr(), i}; } sort(v.begin(), v.end(), [](pii a, pii b) { if (a.first == b.first) return a.second \u0026gt; b.second; return a.first \u0026lt; b.first; }); fwtree_1\u0026lt;int\u0026gt; tr(n + 1); vector\u0026lt;ll\u0026gt; al(n + 1), ar(n + 1); for (int i = 1; i \u0026lt;= n; i++) { al[i] = tr.",
+  "description": "题目大意 给定一个序列，求其中三元上升子序列的个数\n对于 $i,j,k$，若 $a_i \u0026lt; a_j \u0026lt; a_k$，则是一个满足要求的三元对。 分析 考虑枚举中间的数 $j$，设其左边有 $a$ 个数比它小，右边有 $b$ 个数比它大，则中间为 $j$ 的三元对个数为 $ab$。\n至此就和逆序对类似了，离散化后用树状数组即可。\n#include \u0026#34;template/ds/fwtree/0.hpp\u0026#34; int main() { int n = rr(); vector\u0026lt;pii\u0026gt; v(n + 1); for (int i = 1; i \u0026lt;= n; i++) { v[i] = {rr(), i}; } sort(v.begin(), v.end(), [](pii a, pii b) { if (a.first == b.first) return a.second \u0026gt; b.second; return a.first \u0026lt; b.first; }); fwtree_1\u0026lt;int\u0026gt; tr(n + 1); vector\u0026lt;ll\u0026gt; al(n + 1), ar(n + 1); for (int i = 1; i \u0026lt;= n; i++) { al[i] = tr.",
   "keywords": [
     
   ],
-  "articleBody": "题目大意 给定一个序列，求其中三元上升子序列的个数\n 对于 $i,j,k$，若 $a_i  分析 考虑枚举中间的数 $j$，设其左边有 $a$ 个数比它小，右边有 $b$ 个数比它大，则中间为 $j$ 的三元对个数为 $ab$。\n至此就和逆序对类似了，离散化后用树状数组即可。\n#include \"template/ds/fwtree/0.hpp\" int main() { int n = rr(); vectorpii v(n + 1); for (int i = 1; i  n; i++) { v[i] = {rr(), i}; } sort(v.begin(), v.end(), [](pii a, pii b) { if (a.first == b.first) return a.second  b.second; return a.first  b.first; }); fwtree_1int tr(n + 1); vectorll al(n + 1), ar(n + 1); for (int i = 1; i  n; i++) { al[i] = tr.sum(1, v[i].second); tr.add(v[i].second, 1); } tr = fwtree_1int(n + 1); for (int i = n; i = 1; i--) { ar[i] = tr.sum(v[i].second, n); tr.add(v[i].second, 1); } ll ans = 0; for (int i = 1; i  n; i++) ans += 1ll * al[i] * ar[i]; printf(\"%lld\\n\", ans); return 0; } ",
+  "articleBody": "题目大意 给定一个序列，求其中三元上升子序列的个数\n对于 $i,j,k$，若 $a_i \u003c a_j \u003c a_k$，则是一个满足要求的三元对。 分析 考虑枚举中间的数 $j$，设其左边有 $a$ 个数比它小，右边有 $b$ 个数比它大，则中间为 $j$ 的三元对个数为 $ab$。\n至此就和逆序对类似了，离散化后用树状数组即可。\n#include \"template/ds/fwtree/0.hpp\" int main() { int n = rr(); vector\u003cpii\u003e v(n + 1); for (int i = 1; i \u003c= n; i++) { v[i] = {rr(), i}; } sort(v.begin(), v.end(), [](pii a, pii b) { if (a.first == b.first) return a.second \u003e b.second; return a.first \u003c b.first; }); fwtree_1\u003cint\u003e tr(n + 1); vector\u003cll\u003e al(n + 1), ar(n + 1); for (int i = 1; i \u003c= n; i++) { al[i] = tr.sum(1, v[i].second); tr.add(v[i].second, 1); } tr = fwtree_1\u003cint\u003e(n + 1); for (int i = n; i \u003e= 1; i--) { ar[i] = tr.sum(v[i].second, n); tr.add(v[i].second, 1); } ll ans = 0; for (int i = 1; i \u003c= n; i++) ans += 1ll * al[i] * ar[i]; printf(\"%lld\\n\", ans); return 0; } ",
   "wordCount" : "143",
   "inLanguage": "en",
   "datePublished": "2022-01-28T00:00:00Z",

@@ -25,7 +25,7 @@ char s[30][100]; ll len[30]; ll mt[30][30]; void init(int x, int y) { ll ml = mi
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -102,7 +102,7 @@ char s[30][100]; ll len[30]; ll mt[30][30]; void init(int x, int y) { ll ml = mi
   "keywords": [
     "洛谷", "搜索"
   ],
-  "articleBody": "题目大意 对于字符串 $a,b$，若 $a$ 的末尾与 $b$ 的开头有部分字符串相同，则其可以拼接起来。例如 at + tact = atact。\n给定词典和初始字母，每个单词最多出现两次，求最大拼接长度。\n分析 我是没想出来，经题解提示了拼接函数才写出来的。\n设 $mt(x,y)$ 为第 $x$ 和 $y$ 个单词拼接后的最小重合长度，其可简单的通过匹配得到。\nchar s[30][100]; ll len[30]; ll mt[30][30]; void init(int x, int y) { ll ml = min(len[x], len[y]) - 1; for (ll i = 1; i  ml; i++) { int flag = 1; for (ll j = 0; j  i - 1; j++) { if (s[x][len[x] + j - i] != s[y][j]) { flag = 0; break; } } if (flag) { mt[x][y] = i; break; } } } 然后回溯 dfs，搜索即可。\nll n; int vis[30]; ll dfs(int x) { if (vis[x] = 2) return 0; vis[x]++; ll maxlen = 0; for (ll i = 1; i  n; i++) { if (mt[x][i]  0) { maxlen = max(maxlen, dfs(i) - mt[x][i]); } } vis[x]--; return maxlen + len[x]; } int main() { n = rr(); for (ll i = 1; i  n; i++) { scanf(\"%s\", s[i]); len[i] = strlen(s[i]); } for (ll i = 1; i  n; i++) { for (ll j = 1; j  n; j++) { init(i, j); } } ll maxlen = 0; scanf(\"%s\", s[0]); for (ll i = 1; i  n; i++) { if (s[i][0] == s[0][0]) { maxlen = max(maxlen, dfs(i)); } } printf(\"%lld\\n\", maxlen); return 0; } ",
+  "articleBody": "题目大意 对于字符串 $a,b$，若 $a$ 的末尾与 $b$ 的开头有部分字符串相同，则其可以拼接起来。例如 at + tact = atact。\n给定词典和初始字母，每个单词最多出现两次，求最大拼接长度。\n分析 我是没想出来，经题解提示了拼接函数才写出来的。\n设 $mt(x,y)$ 为第 $x$ 和 $y$ 个单词拼接后的最小重合长度，其可简单的通过匹配得到。\nchar s[30][100]; ll len[30]; ll mt[30][30]; void init(int x, int y) { ll ml = min(len[x], len[y]) - 1; for (ll i = 1; i \u003c= ml; i++) { int flag = 1; for (ll j = 0; j \u003c= i - 1; j++) { if (s[x][len[x] + j - i] != s[y][j]) { flag = 0; break; } } if (flag) { mt[x][y] = i; break; } } } 然后回溯 dfs，搜索即可。\nll n; int vis[30]; ll dfs(int x) { if (vis[x] \u003e= 2) return 0; vis[x]++; ll maxlen = 0; for (ll i = 1; i \u003c= n; i++) { if (mt[x][i] \u003e 0) { maxlen = max(maxlen, dfs(i) - mt[x][i]); } } vis[x]--; return maxlen + len[x]; } int main() { n = rr(); for (ll i = 1; i \u003c= n; i++) { scanf(\"%s\", s[i]); len[i] = strlen(s[i]); } for (ll i = 1; i \u003c= n; i++) { for (ll j = 1; j \u003c= n; j++) { init(i, j); } } ll maxlen = 0; scanf(\"%s\", s[0]); for (ll i = 1; i \u003c= n; i++) { if (s[i][0] == s[0][0]) { maxlen = max(maxlen, dfs(i)); } } printf(\"%lld\\n\", maxlen); return 0; } ",
   "wordCount" : "220",
   "inLanguage": "en",
   "datePublished": "2021-03-29T00:00:00Z",

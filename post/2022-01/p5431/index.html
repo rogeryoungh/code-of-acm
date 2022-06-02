@@ -27,7 +27,7 @@ vi get_inv(const vi &amp;a, int p) { int n = a.size() - 1; vi prod(n &#43; 1); p
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -108,7 +108,7 @@ vi get_inv(const vi &amp;a, int p) { int n = a.size() - 1; vi prod(n &#43; 1); p
   "keywords": [
     
   ],
-  "articleBody": "题目大意 给定 $n$ 个正整数 $\\{a_i\\}$ 和 $k$，求在模 $p$ 意义下的\n$$ \\sum_{i=1}^n \\frac{k^i}{a_i} \\bmod p $$\n分析 逐个求逆元是 $O(n \\log p)$ 的，肯定会 T，需要想想别的办法。\n批量求逆元的一个技巧，先求出 $a_i$ 的前缀积，然后求出全部积的逆元，再逐个往前推。即\n$$ (a_n)^{-1} = \\left(\\prod_{i=1}^{n-1} a_i\\right) \\left(\\prod_{i=1}^n a_i\\right)^{-1} $$\n显然，$\\{a_n\\}$ 中不能有 $0$。\nvi get_inv(const vi \u0026a, int p) { int n = a.size() - 1; vi prod(n + 1); prod[0] = 1; for (int i = 1; i  n; i++) { prod[i] = 1ll * prod[i - 1] * a[i] % p; } prod[n] = qpow(prod[n], p - 2, p); vi iva(n + 1); for (int i = n; i = 1; i--) { iva[i] = 1ll * prod[i] * prod[i - 1] % p; prod[i - 1] = 1ll * prod[i] * a[i] % p; } return iva; } ",
+  "articleBody": "题目大意 给定 $n$ 个正整数 $\\{a_i\\}$ 和 $k$，求在模 $p$ 意义下的\n$$ \\sum_{i=1}^n \\frac{k^i}{a_i} \\bmod p $$\n分析 逐个求逆元是 $O(n \\log p)$ 的，肯定会 T，需要想想别的办法。\n批量求逆元的一个技巧，先求出 $a_i$ 的前缀积，然后求出全部积的逆元，再逐个往前推。即\n$$ (a_n)^{-1} = \\left(\\prod_{i=1}^{n-1} a_i\\right) \\left(\\prod_{i=1}^n a_i\\right)^{-1} $$\n显然，$\\{a_n\\}$ 中不能有 $0$。\nvi get_inv(const vi \u0026a, int p) { int n = a.size() - 1; vi prod(n + 1); prod[0] = 1; for (int i = 1; i \u003c= n; i++) { prod[i] = 1ll * prod[i - 1] * a[i] % p; } prod[n] = qpow(prod[n], p - 2, p); vi iva(n + 1); for (int i = n; i \u003e= 1; i--) { iva[i] = 1ll * prod[i] * prod[i - 1] % p; prod[i - 1] = 1ll * prod[i] * a[i] % p; } return iva; } ",
   "wordCount" : "125",
   "inLanguage": "en",
   "datePublished": "2022-01-29T00:00:00Z",

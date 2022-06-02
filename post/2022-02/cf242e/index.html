@@ -8,7 +8,7 @@
 <title>CF242E XOR on Segment | Roger Young</title>
 <meta name="keywords" content="" />
 <meta name="description" content="题目大意 给定一个长为 $n$ 的数列 $\{a_i\}$，有如下操作
- 询问区间 $[l, r]$ 上的和。 对 $[l, r]$ 区间上每个数异或上一个数 $x$。  分析 只需注意到异或是不进位的，我们可以单独维护数列的每一位。开二十棵线段树即可。
+询问区间 $[l, r]$ 上的和。 对 $[l, r]$ 区间上每个数异或上一个数 $x$。 分析 只需注意到异或是不进位的，我们可以单独维护数列的每一位。开二十棵线段树即可。
 int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; a(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { cin &gt;&gt; a[i]; } vector&lt;SegmentTree&lt;int&gt;&gt; tr; for (int k = 0; k &lt; 20; k&#43;&#43;) { tr.push_back(SegmentTree&lt;int&gt;(n &#43; 1)); vector&lt;int&gt; tmp(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { if ((1 &lt;&lt; k) &amp; a[i]) tmp[i] = 1; } tr[k].">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2022-02/cf242e/" />
@@ -23,7 +23,7 @@ int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; a(n &#43; 1); for (int i =
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -52,7 +52,7 @@ int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; a(n &#43; 1); for (int i =
 
 <meta property="og:title" content="CF242E XOR on Segment" />
 <meta property="og:description" content="题目大意 给定一个长为 $n$ 的数列 $\{a_i\}$，有如下操作
- 询问区间 $[l, r]$ 上的和。 对 $[l, r]$ 区间上每个数异或上一个数 $x$。  分析 只需注意到异或是不进位的，我们可以单独维护数列的每一位。开二十棵线段树即可。
+询问区间 $[l, r]$ 上的和。 对 $[l, r]$ 区间上每个数异或上一个数 $x$。 分析 只需注意到异或是不进位的，我们可以单独维护数列的每一位。开二十棵线段树即可。
 int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; a(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { cin &gt;&gt; a[i]; } vector&lt;SegmentTree&lt;int&gt;&gt; tr; for (int k = 0; k &lt; 20; k&#43;&#43;) { tr.push_back(SegmentTree&lt;int&gt;(n &#43; 1)); vector&lt;int&gt; tmp(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { if ((1 &lt;&lt; k) &amp; a[i]) tmp[i] = 1; } tr[k]." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/2022-02/cf242e/" /><meta property="article:section" content="post" />
@@ -62,7 +62,7 @@ int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; a(n &#43; 1); for (int i =
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="CF242E XOR on Segment"/>
 <meta name="twitter:description" content="题目大意 给定一个长为 $n$ 的数列 $\{a_i\}$，有如下操作
- 询问区间 $[l, r]$ 上的和。 对 $[l, r]$ 区间上每个数异或上一个数 $x$。  分析 只需注意到异或是不进位的，我们可以单独维护数列的每一位。开二十棵线段树即可。
+询问区间 $[l, r]$ 上的和。 对 $[l, r]$ 区间上每个数异或上一个数 $x$。 分析 只需注意到异或是不进位的，我们可以单独维护数列的每一位。开二十棵线段树即可。
 int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; a(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { cin &gt;&gt; a[i]; } vector&lt;SegmentTree&lt;int&gt;&gt; tr; for (int k = 0; k &lt; 20; k&#43;&#43;) { tr.push_back(SegmentTree&lt;int&gt;(n &#43; 1)); vector&lt;int&gt; tmp(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { if ((1 &lt;&lt; k) &amp; a[i]) tmp[i] = 1; } tr[k]."/>
 
 
@@ -92,11 +92,11 @@ int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; a(n &#43; 1); for (int i =
   "@type": "BlogPosting",
   "headline": "CF242E XOR on Segment",
   "name": "CF242E XOR on Segment",
-  "description": "题目大意 给定一个长为 $n$ 的数列 $\\{a_i\\}$，有如下操作\n 询问区间 $[l, r]$ 上的和。 对 $[l, r]$ 区间上每个数异或上一个数 $x$。  分析 只需注意到异或是不进位的，我们可以单独维护数列的每一位。开二十棵线段树即可。\nint main() { int n; cin \u0026gt;\u0026gt; n; vector\u0026lt;int\u0026gt; a(n + 1); for (int i = 1; i \u0026lt;= n; i++) { cin \u0026gt;\u0026gt; a[i]; } vector\u0026lt;SegmentTree\u0026lt;int\u0026gt;\u0026gt; tr; for (int k = 0; k \u0026lt; 20; k++) { tr.push_back(SegmentTree\u0026lt;int\u0026gt;(n + 1)); vector\u0026lt;int\u0026gt; tmp(n + 1); for (int i = 1; i \u0026lt;= n; i++) { if ((1 \u0026lt;\u0026lt; k) \u0026amp; a[i]) tmp[i] = 1; } tr[k].",
+  "description": "题目大意 给定一个长为 $n$ 的数列 $\\{a_i\\}$，有如下操作\n询问区间 $[l, r]$ 上的和。 对 $[l, r]$ 区间上每个数异或上一个数 $x$。 分析 只需注意到异或是不进位的，我们可以单独维护数列的每一位。开二十棵线段树即可。\nint main() { int n; cin \u0026gt;\u0026gt; n; vector\u0026lt;int\u0026gt; a(n + 1); for (int i = 1; i \u0026lt;= n; i++) { cin \u0026gt;\u0026gt; a[i]; } vector\u0026lt;SegmentTree\u0026lt;int\u0026gt;\u0026gt; tr; for (int k = 0; k \u0026lt; 20; k++) { tr.push_back(SegmentTree\u0026lt;int\u0026gt;(n + 1)); vector\u0026lt;int\u0026gt; tmp(n + 1); for (int i = 1; i \u0026lt;= n; i++) { if ((1 \u0026lt;\u0026lt; k) \u0026amp; a[i]) tmp[i] = 1; } tr[k].",
   "keywords": [
     
   ],
-  "articleBody": "题目大意 给定一个长为 $n$ 的数列 $\\{a_i\\}$，有如下操作\n 询问区间 $[l, r]$ 上的和。 对 $[l, r]$ 区间上每个数异或上一个数 $x$。  分析 只需注意到异或是不进位的，我们可以单独维护数列的每一位。开二十棵线段树即可。\nint main() { int n; cin  n; vectorint a(n + 1); for (int i = 1; i  n; i++) { cin  a[i]; } vectorSegmentTreeint tr; for (int k = 0; k  20; k++) { tr.push_back(SegmentTreeint(n + 1)); vectorint tmp(n + 1); for (int i = 1; i  n; i++) { if ((1  k) \u0026 a[i]) tmp[i] = 1; } tr[k].build(tmp); } int Q; cin  Q; while (Q--) { int op, l, r; cin  op  l  r; if (op == 1) { ll ans = 0; for (int k = 0; k  20; k++) { ans += 1ll * tr[k].query(l, r)  k; } cout  ans  \"\\n\"; } else { int x; cin  x; for (int k = 0; k  20; k++) { if (x \u0026 (1  k)) { tr[k].modify(l, r, 1); } } } } return 0; } ",
+  "articleBody": "题目大意 给定一个长为 $n$ 的数列 $\\{a_i\\}$，有如下操作\n询问区间 $[l, r]$ 上的和。 对 $[l, r]$ 区间上每个数异或上一个数 $x$。 分析 只需注意到异或是不进位的，我们可以单独维护数列的每一位。开二十棵线段树即可。\nint main() { int n; cin \u003e\u003e n; vector\u003cint\u003e a(n + 1); for (int i = 1; i \u003c= n; i++) { cin \u003e\u003e a[i]; } vector\u003cSegmentTree\u003cint\u003e\u003e tr; for (int k = 0; k \u003c 20; k++) { tr.push_back(SegmentTree\u003cint\u003e(n + 1)); vector\u003cint\u003e tmp(n + 1); for (int i = 1; i \u003c= n; i++) { if ((1 \u003c\u003c k) \u0026 a[i]) tmp[i] = 1; } tr[k].build(tmp); } int Q; cin \u003e\u003e Q; while (Q--) { int op, l, r; cin \u003e\u003e op \u003e\u003e l \u003e\u003e r; if (op == 1) { ll ans = 0; for (int k = 0; k \u003c 20; k++) { ans += 1ll * tr[k].query(l, r) \u003c\u003c k; } cout \u003c\u003c ans \u003c\u003c \"\\n\"; } else { int x; cin \u003e\u003e x; for (int k = 0; k \u003c 20; k++) { if (x \u0026 (1 \u003c\u003c k)) { tr[k].modify(l, r, 1); } } } } return 0; } ",
   "wordCount" : "170",
   "inLanguage": "en",
   "datePublished": "2022-02-22T00:00:00Z",

@@ -30,7 +30,7 @@ int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll 
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -117,7 +117,7 @@ int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll 
   "keywords": [
     "CodeForces", "数论"
   ],
-  "articleBody": "Berland 年有 $m$ 月，每月 $d$ 天。一周有 $w$ 天。\n若第 $x$ 月的第 $y$ 天和第 $y$ 月的第 $x$ 天是同一个星期，则称 $(x,y)$ 是一对。\n求一年有几对。\n$$ xd+y \\equiv yd+x \\pmod w $$\n即\n$$ (x-y)(d-1) \\equiv 0 \\Rightarrow (x-y)(d-1) \\in w\\mathbb{Z} $$\n于是有\n$$ y-x = \\frac{wk}{\\gcd(w,d-1)} $$\n又 $x int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll g = w / gcd(w, d - 1); ll max_y = min(m, d) - 1; ll div = (max_y + 1) / g, mod = (max_y + 1) % g; ll sum = (div - 1) * div / 2 * g + mod * div; printf(\"%lld\\n\", sum); } return 0; } ",
+  "articleBody": "Berland 年有 $m$ 月，每月 $d$ 天。一周有 $w$ 天。\n若第 $x$ 月的第 $y$ 天和第 $y$ 月的第 $x$ 天是同一个星期，则称 $(x,y)$ 是一对。\n求一年有几对。\n$$ xd+y \\equiv yd+x \\pmod w $$\n即\n$$ (x-y)(d-1) \\equiv 0 \\Rightarrow (x-y)(d-1) \\in w\\mathbb{Z} $$\n于是有\n$$ y-x = \\frac{wk}{\\gcd(w,d-1)} $$\n又 $x \u003c y \\leqslant \\min(m,d)$​，\nint main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll g = w / gcd(w, d - 1); ll max_y = min(m, d) - 1; ll div = (max_y + 1) / g, mod = (max_y + 1) % g; ll sum = (div - 1) * div / 2 * g + mod * div; printf(\"%lld\\n\", sum); } return 0; } ",
   "wordCount" : "122",
   "inLanguage": "en",
   "datePublished": "2021-05-24T00:00:00Z",

@@ -13,7 +13,7 @@
 分析 首先需要逐位异或，把交错序列变成相同元素。我想到的是另一种办法，如果 $a_i$ 相对与 $a_{i-1}$ 是变化的，那么 $b_i$ 为 $1$。原问题即被转化为维护最长 $1$ 的个数。
 用线段树维护每一层的信息，其中 $l$ 表示左边界上的最长长度，$r$ 表示右边界上的最长长度，$val$ 表示整个区间上的最长长度。
 关键在于如何编写 pull 合并信息。
- 如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。  struct SegmentTree { vector&lt;int&gt; l, r, val; int N; SegmentTree(int n) { N = 2 &lt;&lt; std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 &#43; 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] &#43;= l[rs]; if (r[rs] == len) r[p] &#43;= r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] &#43; l[rs]}); } void modify(int i) { i &#43;= N; l[i] = r[i] = val[i] = !">
+如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。 struct SegmentTree { vector&lt;int&gt; l, r, val; int N; SegmentTree(int n) { N = 2 &lt;&lt; std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 &#43; 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] &#43;= l[rs]; if (r[rs] == len) r[p] &#43;= r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] &#43; l[rs]}); } void modify(int i) { i &#43;= N; l[i] = r[i] = val[i] = !">
 <meta name="author" content="rogeryoungh">
 <link rel="canonical" href="https://rogeryoungh.github.io/code-of-acm/post/2022-02/p6492/" />
 <link crossorigin="anonymous" href="/code-of-acm/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
@@ -27,7 +27,7 @@
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -61,7 +61,7 @@
 分析 首先需要逐位异或，把交错序列变成相同元素。我想到的是另一种办法，如果 $a_i$ 相对与 $a_{i-1}$ 是变化的，那么 $b_i$ 为 $1$。原问题即被转化为维护最长 $1$ 的个数。
 用线段树维护每一层的信息，其中 $l$ 表示左边界上的最长长度，$r$ 表示右边界上的最长长度，$val$ 表示整个区间上的最长长度。
 关键在于如何编写 pull 合并信息。
- 如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。  struct SegmentTree { vector&lt;int&gt; l, r, val; int N; SegmentTree(int n) { N = 2 &lt;&lt; std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 &#43; 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] &#43;= l[rs]; if (r[rs] == len) r[p] &#43;= r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] &#43; l[rs]}); } void modify(int i) { i &#43;= N; l[i] = r[i] = val[i] = !" />
+如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。 struct SegmentTree { vector&lt;int&gt; l, r, val; int N; SegmentTree(int n) { N = 2 &lt;&lt; std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 &#43; 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] &#43;= l[rs]; if (r[rs] == len) r[p] &#43;= r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] &#43; l[rs]}); } void modify(int i) { i &#43;= N; l[i] = r[i] = val[i] = !" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rogeryoungh.github.io/code-of-acm/post/2022-02/p6492/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-02-22T00:00:00&#43;00:00" />
@@ -75,7 +75,7 @@
 分析 首先需要逐位异或，把交错序列变成相同元素。我想到的是另一种办法，如果 $a_i$ 相对与 $a_{i-1}$ 是变化的，那么 $b_i$ 为 $1$。原问题即被转化为维护最长 $1$ 的个数。
 用线段树维护每一层的信息，其中 $l$ 表示左边界上的最长长度，$r$ 表示右边界上的最长长度，$val$ 表示整个区间上的最长长度。
 关键在于如何编写 pull 合并信息。
- 如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。  struct SegmentTree { vector&lt;int&gt; l, r, val; int N; SegmentTree(int n) { N = 2 &lt;&lt; std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 &#43; 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] &#43;= l[rs]; if (r[rs] == len) r[p] &#43;= r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] &#43; l[rs]}); } void modify(int i) { i &#43;= N; l[i] = r[i] = val[i] = !"/>
+如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。 struct SegmentTree { vector&lt;int&gt; l, r, val; int N; SegmentTree(int n) { N = 2 &lt;&lt; std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 &#43; 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] &#43;= l[rs]; if (r[rs] == len) r[p] &#43;= r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] &#43; l[rs]}); } void modify(int i) { i &#43;= N; l[i] = r[i] = val[i] = !"/>
 
 
 <script type="application/ld+json">
@@ -104,11 +104,11 @@
   "@type": "BlogPosting",
   "headline": "P6492 STEP",
   "name": "P6492 STEP",
-  "description": "题目大意 给定一个长度为 $n$ 的字符序列，初始全是 L。\n有 $q$ 次操作，每次将 $a_x$ 在 L 和 R 中切换。\n求每次操作后字符串中最长交错序列的长度。\n分析 首先需要逐位异或，把交错序列变成相同元素。我想到的是另一种办法，如果 $a_i$ 相对与 $a_{i-1}$ 是变化的，那么 $b_i$ 为 $1$。原问题即被转化为维护最长 $1$ 的个数。\n用线段树维护每一层的信息，其中 $l$ 表示左边界上的最长长度，$r$ 表示右边界上的最长长度，$val$ 表示整个区间上的最长长度。\n关键在于如何编写 pull 合并信息。\n 如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。  struct SegmentTree { vector\u0026lt;int\u0026gt; l, r, val; int N; SegmentTree(int n) { N = 2 \u0026lt;\u0026lt; std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 + 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] += l[rs]; if (r[rs] == len) r[p] += r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] + l[rs]}); } void modify(int i) { i += N; l[i] = r[i] = val[i] = !",
+  "description": "题目大意 给定一个长度为 $n$ 的字符序列，初始全是 L。\n有 $q$ 次操作，每次将 $a_x$ 在 L 和 R 中切换。\n求每次操作后字符串中最长交错序列的长度。\n分析 首先需要逐位异或，把交错序列变成相同元素。我想到的是另一种办法，如果 $a_i$ 相对与 $a_{i-1}$ 是变化的，那么 $b_i$ 为 $1$。原问题即被转化为维护最长 $1$ 的个数。\n用线段树维护每一层的信息，其中 $l$ 表示左边界上的最长长度，$r$ 表示右边界上的最长长度，$val$ 表示整个区间上的最长长度。\n关键在于如何编写 pull 合并信息。\n如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。 struct SegmentTree { vector\u0026lt;int\u0026gt; l, r, val; int N; SegmentTree(int n) { N = 2 \u0026lt;\u0026lt; std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 + 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] += l[rs]; if (r[rs] == len) r[p] += r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] + l[rs]}); } void modify(int i) { i += N; l[i] = r[i] = val[i] = !",
   "keywords": [
     
   ],
-  "articleBody": "题目大意 给定一个长度为 $n$ 的字符序列，初始全是 L。\n有 $q$ 次操作，每次将 $a_x$ 在 L 和 R 中切换。\n求每次操作后字符串中最长交错序列的长度。\n分析 首先需要逐位异或，把交错序列变成相同元素。我想到的是另一种办法，如果 $a_i$ 相对与 $a_{i-1}$ 是变化的，那么 $b_i$ 为 $1$。原问题即被转化为维护最长 $1$ 的个数。\n用线段树维护每一层的信息，其中 $l$ 表示左边界上的最长长度，$r$ 表示右边界上的最长长度，$val$ 表示整个区间上的最长长度。\n关键在于如何编写 pull 合并信息。\n 如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。  struct SegmentTree { vectorint l, r, val; int N; SegmentTree(int n) { N = 2  std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 + 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] += l[rs]; if (r[rs] == len) r[p] += r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] + l[rs]}); } void modify(int i) { i += N; l[i] = r[i] = val[i] = !val[i]; int len = 1; for (int k = i / 2; k = 1; k /= 2, len *= 2) { pull(k, len); } } }; ",
+  "articleBody": "题目大意 给定一个长度为 $n$ 的字符序列，初始全是 L。\n有 $q$ 次操作，每次将 $a_x$ 在 L 和 R 中切换。\n求每次操作后字符串中最长交错序列的长度。\n分析 首先需要逐位异或，把交错序列变成相同元素。我想到的是另一种办法，如果 $a_i$ 相对与 $a_{i-1}$ 是变化的，那么 $b_i$ 为 $1$。原问题即被转化为维护最长 $1$ 的个数。\n用线段树维护每一层的信息，其中 $l$ 表示左边界上的最长长度，$r$ 表示右边界上的最长长度，$val$ 表示整个区间上的最长长度。\n关键在于如何编写 pull 合并信息。\n如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。 struct SegmentTree { vector\u003cint\u003e l, r, val; int N; SegmentTree(int n) { N = 2 \u003c\u003c std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 + 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] += l[rs]; if (r[rs] == len) r[p] += r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] + l[rs]}); } void modify(int i) { i += N; l[i] = r[i] = val[i] = !val[i]; int len = 1; for (int k = i / 2; k \u003e= 1; k /= 2, len *= 2) { pull(k, len); } } }; ",
   "wordCount" : "158",
   "inLanguage": "en",
   "datePublished": "2022-02-22T00:00:00Z",

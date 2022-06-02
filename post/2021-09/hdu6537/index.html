@@ -8,7 +8,7 @@
 <title>HDU6537 Neko and function | Roger Young</title>
 <meta name="keywords" content="数论" />
 <meta name="description" content="题目大意 定义 $f(n, k)$ 为满足如下要求的，长度为 $k$ 的数列 $\\{a_i\\}$ 个数：
- 要求每个数字都大于 $1$； 数列各项之积恰为 $n$。  求其前缀和 $S(n, k) = \sum f(i, k)$。
+要求每个数字都大于 $1$； 数列各项之积恰为 $n$。 求其前缀和 $S(n, k) = \sum f(i, k)$。
 分析 多组输入好坑啊。
 先允许 $a_i=1$，将结果记为 $g(n,k)$，容易利用隔板法求得
 $$ g (p^c, k) = \binom{t &#43; k - 1}{k - 1} $$
@@ -29,7 +29,7 @@ $$ f (n, k) = \sum_{i = 1}^k (- 1)^{k - i} \binom{k}{i} g (n, i) $$">
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -58,7 +58,7 @@ $$ f (n, k) = \sum_{i = 1}^k (- 1)^{k - i} \binom{k}{i} g (n, i) $$">
 
 <meta property="og:title" content="HDU6537 Neko and function" />
 <meta property="og:description" content="题目大意 定义 $f(n, k)$ 为满足如下要求的，长度为 $k$ 的数列 $\\{a_i\\}$ 个数：
- 要求每个数字都大于 $1$； 数列各项之积恰为 $n$。  求其前缀和 $S(n, k) = \sum f(i, k)$。
+要求每个数字都大于 $1$； 数列各项之积恰为 $n$。 求其前缀和 $S(n, k) = \sum f(i, k)$。
 分析 多组输入好坑啊。
 先允许 $a_i=1$，将结果记为 $g(n,k)$，容易利用隔板法求得
 $$ g (p^c, k) = \binom{t &#43; k - 1}{k - 1} $$
@@ -74,7 +74,7 @@ $$ f (n, k) = \sum_{i = 1}^k (- 1)^{k - i} \binom{k}{i} g (n, i) $$" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="HDU6537 Neko and function"/>
 <meta name="twitter:description" content="题目大意 定义 $f(n, k)$ 为满足如下要求的，长度为 $k$ 的数列 $\\{a_i\\}$ 个数：
- 要求每个数字都大于 $1$； 数列各项之积恰为 $n$。  求其前缀和 $S(n, k) = \sum f(i, k)$。
+要求每个数字都大于 $1$； 数列各项之积恰为 $n$。 求其前缀和 $S(n, k) = \sum f(i, k)$。
 分析 多组输入好坑啊。
 先允许 $a_i=1$，将结果记为 $g(n,k)$，容易利用隔板法求得
 $$ g (p^c, k) = \binom{t &#43; k - 1}{k - 1} $$
@@ -110,11 +110,11 @@ $$ f (n, k) = \sum_{i = 1}^k (- 1)^{k - i} \binom{k}{i} g (n, i) $$"/>
   "@type": "BlogPosting",
   "headline": "HDU6537 Neko and function",
   "name": "HDU6537 Neko and function",
-  "description": "题目大意 定义 $f(n, k)$ 为满足如下要求的，长度为 $k$ 的数列 $\\\\{a_i\\\\}$ 个数：\n 要求每个数字都大于 $1$； 数列各项之积恰为 $n$。  求其前缀和 $S(n, k) = \\sum f(i, k)$。\n分析 多组输入好坑啊。\n先允许 $a_i=1$，将结果记为 $g(n,k)$，容易利用隔板法求得\n$$ g (p^c, k) = \\binom{t + k - 1}{k - 1} $$\n对于多个质因数，显然其贡献是相互独立的，即 $g$ 是积性函数。考虑选取 $i$ 个数令其 $a_i\u0026gt;1$，枚举有\n$$ g (n, k) = \\sum_{i = 1}^k \\binom{n}{i} f (n, i) $$\n二项式反演（或者直接容斥）有\n$$ f (n, k) = \\sum_{i = 1}^k (- 1)^{k - i} \\binom{k}{i} g (n, i) $$",
+  "description": "题目大意 定义 $f(n, k)$ 为满足如下要求的，长度为 $k$ 的数列 $\\\\{a_i\\\\}$ 个数：\n要求每个数字都大于 $1$； 数列各项之积恰为 $n$。 求其前缀和 $S(n, k) = \\sum f(i, k)$。\n分析 多组输入好坑啊。\n先允许 $a_i=1$，将结果记为 $g(n,k)$，容易利用隔板法求得\n$$ g (p^c, k) = \\binom{t + k - 1}{k - 1} $$\n对于多个质因数，显然其贡献是相互独立的，即 $g$ 是积性函数。考虑选取 $i$ 个数令其 $a_i\u0026gt;1$，枚举有\n$$ g (n, k) = \\sum_{i = 1}^k \\binom{n}{i} f (n, i) $$\n二项式反演（或者直接容斥）有\n$$ f (n, k) = \\sum_{i = 1}^k (- 1)^{k - i} \\binom{k}{i} g (n, i) $$",
   "keywords": [
     "数论"
   ],
-  "articleBody": "题目大意 定义 $f(n, k)$ 为满足如下要求的，长度为 $k$ 的数列 $\\\\{a_i\\\\}$ 个数：\n 要求每个数字都大于 $1$； 数列各项之积恰为 $n$。  求其前缀和 $S(n, k) = \\sum f(i, k)$。\n分析 多组输入好坑啊。\n先允许 $a_i=1$，将结果记为 $g(n,k)$，容易利用隔板法求得\n$$ g (p^c, k) = \\binom{t + k - 1}{k - 1} $$\n对于多个质因数，显然其贡献是相互独立的，即 $g$ 是积性函数。考虑选取 $i$ 个数令其 $a_i1$，枚举有\n$$ g (n, k) = \\sum_{i = 1}^k \\binom{n}{i} f (n, i) $$\n二项式反演（或者直接容斥）有\n$$ f (n, k) = \\sum_{i = 1}^k (- 1)^{k - i} \\binom{k}{i} g (n, i) $$\n求和并换序\n$$ \\begin{aligned} \\sum_{i = 1}^x f (i, k) \u0026= \\sum_{n = 1}^x \\sum_{i = 1}^k (- 1)^{k - i} \\binom{k}{i} g (n, i) \\\\ \u0026= \\sum_{i = 1}^k (- 1)^{k - i} \\binom{k}{i} \\sum_{n = 1}^x g (n, i) \\end{aligned} $$\n后面即是 $g$ 的前缀和，可以用 Min25 筛。\nconst ll mod = 1e9 + 7; const int maxn = 1e6 + 5; ll cc[70][70]; void pre_binom(ll n) { for (ll i = 0; i  n; i++) { cc[i][0] = 1; for (ll j = 1; j  i; j++) { cc[i][j] = (cc[i - 1][j - 1] + cc[i - 1][j]) % mod; } } } namespace min25 { ll n, prime[maxn], cnt, w[maxn], c[maxn]; ll sqrt_n, m, kkk; ll f_p(ll e, ll k) { return cc[e + k - 1][k - 1]; } int id(ll x) { return x  sqrt_n ? x : m - (n / x) + 1; } void pre(ll _n) { n = _n, sqrt_n = sqrt(n + 0.01); m = cnt = 0; for (ll l = 1, r; l  n; l = r + 1) { w[++m] = r = n / (n / l); c[m] = r - 1; } for (ll p = 2; p  sqrt_n; p++) { if (c[p] != c[p - 1]) { prime[++cnt] = p; for (ll j = m; w[j] = p * p; j--) { c[j] -= c[id(w[j] / p)] - c[p - 1]; } } } } ll F(ll n, int k, int tk) { if (n  prime[k]) return 0; ll ret = (c[id(n)] - c[prime[k]]) * tk; for (int i = k + 1; i  cnt \u0026\u0026 prime[i] * prime[i]  n; i++) { ll pi = prime[i], pk = pi; for (int e = 1; pk * pi  n; e++, pk *= pi) ret = (ret + f_p(e, tk) * F(n / pk, i, tk) + f_p(e + 1, tk)); } return ret % mod; } ll solve(ll n, ll k) { return F(n, 0, k); } } // namespace min25  int main() { ll x, k; pre_binom(70); while (scanf(\"%lld %lld\", \u0026x, \u0026k) != EOF) { min25::pre(x); ll ans = 0; for (ll i = 1; i  k; i++) { if (cc[k][i] == 0) continue; ll tsum = cc[k][i] * min25::solve(x, i); if ((k - i) % 2 == 1) tsum *= -1; ans += tsum; } printf(\"%lld\\n\", (ans % mod + mod) % mod); } return 0; } ",
+  "articleBody": "题目大意 定义 $f(n, k)$ 为满足如下要求的，长度为 $k$ 的数列 $\\\\{a_i\\\\}$ 个数：\n要求每个数字都大于 $1$； 数列各项之积恰为 $n$。 求其前缀和 $S(n, k) = \\sum f(i, k)$。\n分析 多组输入好坑啊。\n先允许 $a_i=1$，将结果记为 $g(n,k)$，容易利用隔板法求得\n$$ g (p^c, k) = \\binom{t + k - 1}{k - 1} $$\n对于多个质因数，显然其贡献是相互独立的，即 $g$ 是积性函数。考虑选取 $i$ 个数令其 $a_i\u003e1$，枚举有\n$$ g (n, k) = \\sum_{i = 1}^k \\binom{n}{i} f (n, i) $$\n二项式反演（或者直接容斥）有\n$$ f (n, k) = \\sum_{i = 1}^k (- 1)^{k - i} \\binom{k}{i} g (n, i) $$\n求和并换序\n$$ \\begin{aligned} \\sum_{i = 1}^x f (i, k) \u0026= \\sum_{n = 1}^x \\sum_{i = 1}^k (- 1)^{k - i} \\binom{k}{i} g (n, i) \\\\ \u0026= \\sum_{i = 1}^k (- 1)^{k - i} \\binom{k}{i} \\sum_{n = 1}^x g (n, i) \\end{aligned} $$\n后面即是 $g$ 的前缀和，可以用 Min25 筛。\nconst ll mod = 1e9 + 7; const int maxn = 1e6 + 5; ll cc[70][70]; void pre_binom(ll n) { for (ll i = 0; i \u003c= n; i++) { cc[i][0] = 1; for (ll j = 1; j \u003c= i; j++) { cc[i][j] = (cc[i - 1][j - 1] + cc[i - 1][j]) % mod; } } } namespace min25 { ll n, prime[maxn], cnt, w[maxn], c[maxn]; ll sqrt_n, m, kkk; ll f_p(ll e, ll k) { return cc[e + k - 1][k - 1]; } int id(ll x) { return x \u003c= sqrt_n ? x : m - (n / x) + 1; } void pre(ll _n) { n = _n, sqrt_n = sqrt(n + 0.01); m = cnt = 0; for (ll l = 1, r; l \u003c= n; l = r + 1) { w[++m] = r = n / (n / l); c[m] = r - 1; } for (ll p = 2; p \u003c= sqrt_n; p++) { if (c[p] != c[p - 1]) { prime[++cnt] = p; for (ll j = m; w[j] \u003e= p * p; j--) { c[j] -= c[id(w[j] / p)] - c[p - 1]; } } } } ll F(ll n, int k, int tk) { if (n \u003c= prime[k]) return 0; ll ret = (c[id(n)] - c[prime[k]]) * tk; for (int i = k + 1; i \u003c= cnt \u0026\u0026 prime[i] * prime[i] \u003c= n; i++) { ll pi = prime[i], pk = pi; for (int e = 1; pk * pi \u003c= n; e++, pk *= pi) ret = (ret + f_p(e, tk) * F(n / pk, i, tk) + f_p(e + 1, tk)); } return ret % mod; } ll solve(ll n, ll k) { return F(n, 0, k); } } // namespace min25 int main() { ll x, k; pre_binom(70); while (scanf(\"%lld %lld\", \u0026x, \u0026k) != EOF) { min25::pre(x); ll ans = 0; for (ll i = 1; i \u003c= k; i++) { if (cc[k][i] == 0) continue; ll tsum = cc[k][i] * min25::solve(x, i); if ((k - i) % 2 == 1) tsum *= -1; ans += tsum; } printf(\"%lld\\n\", (ans % mod + mod) % mod); } return 0; } ",
   "wordCount" : "488",
   "inLanguage": "en",
   "datePublished": "2021-09-22T00:00:00Z",

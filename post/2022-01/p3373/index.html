@@ -8,7 +8,7 @@
 <title>P3373 线段树 2 | Roger Young</title>
 <meta name="keywords" content="" />
 <meta name="description" content="题目大意 给定一个数列，有如下操作：
- 将区间 $[l,r]$ 上的数乘上 $x$ 将区间 $[l,r]$ 上的数加上 $x$ 询问区间 $[l,r]$ 上的数之和  分析 很经典的线段树教学题，写完后对线段树的理解确实更深了。
+将区间 $[l,r]$ 上的数乘上 $x$ 将区间 $[l,r]$ 上的数加上 $x$ 询问区间 $[l,r]$ 上的数之和 分析 很经典的线段树教学题，写完后对线段树的理解确实更深了。
 从一次函数的角度考虑问题感觉更清晰。我们实际上在对每个序列上的值做一次函数
 $$ f_i(x) = k_i x &#43; m_i $$
 先来看本题线段树的结构
@@ -26,7 +26,7 @@ template &lt;class T&gt; struct SegmentTree { vector&lt;Seg&gt; tr; void pushup(
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -55,7 +55,7 @@ template &lt;class T&gt; struct SegmentTree { vector&lt;Seg&gt; tr; void pushup(
 
 <meta property="og:title" content="P3373 线段树 2" />
 <meta property="og:description" content="题目大意 给定一个数列，有如下操作：
- 将区间 $[l,r]$ 上的数乘上 $x$ 将区间 $[l,r]$ 上的数加上 $x$ 询问区间 $[l,r]$ 上的数之和  分析 很经典的线段树教学题，写完后对线段树的理解确实更深了。
+将区间 $[l,r]$ 上的数乘上 $x$ 将区间 $[l,r]$ 上的数加上 $x$ 询问区间 $[l,r]$ 上的数之和 分析 很经典的线段树教学题，写完后对线段树的理解确实更深了。
 从一次函数的角度考虑问题感觉更清晰。我们实际上在对每个序列上的值做一次函数
 $$ f_i(x) = k_i x &#43; m_i $$
 先来看本题线段树的结构
@@ -68,7 +68,7 @@ template &lt;class T&gt; struct SegmentTree { vector&lt;Seg&gt; tr; void pushup(
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="P3373 线段树 2"/>
 <meta name="twitter:description" content="题目大意 给定一个数列，有如下操作：
- 将区间 $[l,r]$ 上的数乘上 $x$ 将区间 $[l,r]$ 上的数加上 $x$ 询问区间 $[l,r]$ 上的数之和  分析 很经典的线段树教学题，写完后对线段树的理解确实更深了。
+将区间 $[l,r]$ 上的数乘上 $x$ 将区间 $[l,r]$ 上的数加上 $x$ 询问区间 $[l,r]$ 上的数之和 分析 很经典的线段树教学题，写完后对线段树的理解确实更深了。
 从一次函数的角度考虑问题感觉更清晰。我们实际上在对每个序列上的值做一次函数
 $$ f_i(x) = k_i x &#43; m_i $$
 先来看本题线段树的结构
@@ -101,11 +101,11 @@ template &lt;class T&gt; struct SegmentTree { vector&lt;Seg&gt; tr; void pushup(
   "@type": "BlogPosting",
   "headline": "P3373 线段树 2",
   "name": "P3373 线段树 2",
-  "description": "题目大意 给定一个数列，有如下操作：\n 将区间 $[l,r]$ 上的数乘上 $x$ 将区间 $[l,r]$ 上的数加上 $x$ 询问区间 $[l,r]$ 上的数之和  分析 很经典的线段树教学题，写完后对线段树的理解确实更深了。\n从一次函数的角度考虑问题感觉更清晰。我们实际上在对每个序列上的值做一次函数\n$$ f_i(x) = k_i x + m_i $$\n先来看本题线段树的结构\ntemplate \u0026lt;class T\u0026gt; struct SegmentTree { vector\u0026lt;Seg\u0026gt; tr; void pushup(int p); void pushdown(int p); void build(int l, int r, int p = 1); void modify(int l, int r, T k, T m, int p = 1); T query(int l, int r, int p = 1); }; 懒标记：在知道一段当前值的情况下，可以立刻知道该段被操作后的值，不必重新计算所有的数。因此可以把当前的操作存起来，询问的时候再对子节点做真实操作。",
+  "description": "题目大意 给定一个数列，有如下操作：\n将区间 $[l,r]$ 上的数乘上 $x$ 将区间 $[l,r]$ 上的数加上 $x$ 询问区间 $[l,r]$ 上的数之和 分析 很经典的线段树教学题，写完后对线段树的理解确实更深了。\n从一次函数的角度考虑问题感觉更清晰。我们实际上在对每个序列上的值做一次函数\n$$ f_i(x) = k_i x + m_i $$\n先来看本题线段树的结构\ntemplate \u0026lt;class T\u0026gt; struct SegmentTree { vector\u0026lt;Seg\u0026gt; tr; void pushup(int p); void pushdown(int p); void build(int l, int r, int p = 1); void modify(int l, int r, T k, T m, int p = 1); T query(int l, int r, int p = 1); }; 懒标记：在知道一段当前值的情况下，可以立刻知道该段被操作后的值，不必重新计算所有的数。因此可以把当前的操作存起来，询问的时候再对子节点做真实操作。",
   "keywords": [
     
   ],
-  "articleBody": "题目大意 给定一个数列，有如下操作：\n 将区间 $[l,r]$ 上的数乘上 $x$ 将区间 $[l,r]$ 上的数加上 $x$ 询问区间 $[l,r]$ 上的数之和  分析 很经典的线段树教学题，写完后对线段树的理解确实更深了。\n从一次函数的角度考虑问题感觉更清晰。我们实际上在对每个序列上的值做一次函数\n$$ f_i(x) = k_i x + m_i $$\n先来看本题线段树的结构\ntemplate class T struct SegmentTree { vectorSeg tr; void pushup(int p); void pushdown(int p); void build(int l, int r, int p = 1); void modify(int l, int r, T k, T m, int p = 1); T query(int l, int r, int p = 1); }; 懒标记：在知道一段当前值的情况下，可以立刻知道该段被操作后的值，不必重新计算所有的数。因此可以把当前的操作存起来，询问的时候再对子节点做真实操作。\n真实操作也称永久化，操作后懒标记就被下放子节点。懒标记意味着当前节点已经完成了永久化，子节点没有完成，故询问子节点值前需要更新。\n pushup：当 $p$ 的子节点被改变时，需要用此方法对节点 $p$ 的值进行更新。 pushdown：当询问 $p$ 的子节点的值时，如果 $p$ 节点有懒标记，则下放到 $p$ 的子节点。 modify：对所有在 $[l,r]$ 区间内的节点做永久化，并打上懒标记。 query：询问在 $[l,r]$ 区间内的节点。  当子节点懒标记上已经有值时，下放标记需要合并，即是函数复合。\n$$ f_i(f_j(x)) = a_i(a_j x + b_j) + b_i = a_ia_j x + a_i b_j + b_i $$\n附：代码，展开\n",
+  "articleBody": "题目大意 给定一个数列，有如下操作：\n将区间 $[l,r]$ 上的数乘上 $x$ 将区间 $[l,r]$ 上的数加上 $x$ 询问区间 $[l,r]$ 上的数之和 分析 很经典的线段树教学题，写完后对线段树的理解确实更深了。\n从一次函数的角度考虑问题感觉更清晰。我们实际上在对每个序列上的值做一次函数\n$$ f_i(x) = k_i x + m_i $$\n先来看本题线段树的结构\ntemplate \u003cclass T\u003e struct SegmentTree { vector\u003cSeg\u003e tr; void pushup(int p); void pushdown(int p); void build(int l, int r, int p = 1); void modify(int l, int r, T k, T m, int p = 1); T query(int l, int r, int p = 1); }; 懒标记：在知道一段当前值的情况下，可以立刻知道该段被操作后的值，不必重新计算所有的数。因此可以把当前的操作存起来，询问的时候再对子节点做真实操作。\n真实操作也称永久化，操作后懒标记就被下放子节点。懒标记意味着当前节点已经完成了永久化，子节点没有完成，故询问子节点值前需要更新。\npushup：当 $p$ 的子节点被改变时，需要用此方法对节点 $p$ 的值进行更新。 pushdown：当询问 $p$ 的子节点的值时，如果 $p$ 节点有懒标记，则下放到 $p$ 的子节点。 modify：对所有在 $[l,r]$ 区间内的节点做永久化，并打上懒标记。 query：询问在 $[l,r]$ 区间内的节点。 当子节点懒标记上已经有值时，下放标记需要合并，即是函数复合。\n$$ f_i(f_j(x)) = a_i(a_j x + b_j) + b_i = a_ia_j x + a_i b_j + b_i $$\n附：代码，展开\n",
   "wordCount" : "111",
   "inLanguage": "en",
   "datePublished": "2022-01-28T00:00:00Z",

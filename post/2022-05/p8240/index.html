@@ -29,7 +29,7 @@ int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; for (int i = 0; i &lt; m; i&#4
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -114,7 +114,7 @@ int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; for (int i = 0; i &lt; m; i&#4
   "keywords": [
     
   ],
-  "articleBody": "随机到了一个神秘题目。\n题目大意 在 $n$ 个点的无向图中，有 $k$ 个点有守卫。假如你携带有 $x$ 千克的铀，那么你在移动时与这些守卫的距离必须都大于 $x$。\n多组询问，回答从点 $x$ 运输到点 $y$ 最多能运输多少铀。\n分析 这题对算法的考察较为综合，卡了我一天。\n首先需要求出每个点到最近的守卫的距离 $dis$，在 dijkstra 时设置多个起点即可。\n把每个边的权值设置为两个端点 $dis$ 的最小值，重新建图 $G_2$。\n接下来是关键的一步：得到 $G_2$ 的最大生成树 $G_3$，任何运输路径都在最大生成树上。\n最后用 LCA 维护树两点之间路径的权值 $\\min$。\nint main() { int n, m; cin  n  m; for (int i = 0; i  m; i++) { int x, y, z; cin  x  y  z; G1[x].push_back({y, z}); G1[y].push_back({x, z}); } int k; cin  k; vectorint start(k); for (auto \u0026si : start) cin  si; auto dis = dijkstra(n, start); for (int u = 1; u  n; u++) { for (auto [v, w] : G1[u]) { ll tw = min(dis[u], dis[v]); G2[u].push_back({v, maxll(0, tw - 1)}); } } kruskal(n); int Q; cin  Q; LCAN lca(n + 1, 1); while (Q--) { int x, y; cin  x  y; cout  lca.query(x, y)  \"\\n\"; } return 0; } 全部代码请看：Luogu/8x/P8240.cpp。\n",
+  "articleBody": "随机到了一个神秘题目。\n题目大意 在 $n$ 个点的无向图中，有 $k$ 个点有守卫。假如你携带有 $x$ 千克的铀，那么你在移动时与这些守卫的距离必须都大于 $x$。\n多组询问，回答从点 $x$ 运输到点 $y$ 最多能运输多少铀。\n分析 这题对算法的考察较为综合，卡了我一天。\n首先需要求出每个点到最近的守卫的距离 $dis$，在 dijkstra 时设置多个起点即可。\n把每个边的权值设置为两个端点 $dis$ 的最小值，重新建图 $G_2$。\n接下来是关键的一步：得到 $G_2$ 的最大生成树 $G_3$，任何运输路径都在最大生成树上。\n最后用 LCA 维护树两点之间路径的权值 $\\min$。\nint main() { int n, m; cin \u003e\u003e n \u003e\u003e m; for (int i = 0; i \u003c m; i++) { int x, y, z; cin \u003e\u003e x \u003e\u003e y \u003e\u003e z; G1[x].push_back({y, z}); G1[y].push_back({x, z}); } int k; cin \u003e\u003e k; vector\u003cint\u003e start(k); for (auto \u0026si : start) cin \u003e\u003e si; auto dis = dijkstra(n, start); for (int u = 1; u \u003c= n; u++) { for (auto [v, w] : G1[u]) { ll tw = min(dis[u], dis[v]); G2[u].push_back({v, max\u003cll\u003e(0, tw - 1)}); } } kruskal(n); int Q; cin \u003e\u003e Q; LCA\u003cN\u003e lca(n + 1, 1); while (Q--) { int x, y; cin \u003e\u003e x \u003e\u003e y; cout \u003c\u003c lca.query(x, y) \u003c\u003c \"\\n\"; } return 0; } 全部代码请看：Luogu/8x/P8240.cpp。\n",
   "wordCount" : "152",
   "inLanguage": "en",
   "datePublished": "2022-05-01T00:00:00Z",

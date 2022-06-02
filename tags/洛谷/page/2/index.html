@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 <link rel="alternate" type="application/rss+xml" href="https://rogeryoungh.github.io/code-of-acm/tags/%E6%B4%9B%E8%B0%B7/index.xml">
 
 
@@ -186,7 +186,7 @@ int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(
   </header>
   <section class="entry-content">
     <p>题目大意 混合背包。每棵树都有美学值 $C_i$，共有三种：
- 一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。  分析 对于混合背包，我们可以对物品拆分，得到多个物品。
+一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。 分析 对于混合背包，我们可以对物品拆分，得到多个物品。
 ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), teh = rr(), tem = rr(); int tsum = (teh - tsh) * 60 &#43; tem - tsm; int n = rr(); int tp = 1; for (ll i = 1; i &lt;= n; i&#43;&#43;) { int t = rr(), c = rr(), p = rr(); if (p == 1) { tt[tp] = t, cc[tp] = c; tp&#43;&#43;; } else { p = p !...</p>
   </section>
   <footer class="entry-footer">November 11, 2020&nbsp;·&nbsp;rogeryoungh</footer>
@@ -262,7 +262,7 @@ priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; &gt; q; int main() 
 分析 模板题。考虑分治，随便选一个数 $x$，然后把比 $x$ 大的数移到右边，比 $x$ 小的数移到左边。因此得到了数 $x$ 的排位，若恰为第 $k$ 个则返回，否则根据大小在左右寻找。
 该算法是不稳定的，期望复杂度 $O(n)$，最坏复杂度 $O(n^2)$。
 实际上存在最坏复杂度为 $O(n)$ 的 BFPTR 算法，但因为其常数过大实现复杂而很少应用。
-ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l &#43; r) / 2]; while (i &lt;= j) { while (nn[j] &gt; x) j--; while (nn[i] &lt; x) i&#43;&#43;; if (i &lt;= j) { swap(nn[i], nn[j]); i&#43;&#43;, j--; } } // l &lt;= j &lt;= i &lt;=r 	if (k &lt;= j) return quicksort(l, j); else if (k &gt;= i) return quicksort(i, r); else return nn[k &#43; 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) scanf(&#34;%lld&#34;, &amp;nn[i]); printf(&#34;%lld&#34;, quicksort(1, n)); return 0; } </p>
+ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l &#43; r) / 2]; while (i &lt;= j) { while (nn[j] &gt; x) j--; while (nn[i] &lt; x) i&#43;&#43;; if (i &lt;= j) { swap(nn[i], nn[j]); i&#43;&#43;, j--; } } // l &lt;= j &lt;= i &lt;=r if (k &lt;= j) return quicksort(l, j); else if (k &gt;= i) return quicksort(i, r); else return nn[k &#43; 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) scanf(&#34;%lld&#34;, &amp;nn[i]); printf(&#34;%lld&#34;, quicksort(1, n)); return 0; } </p>
   </section>
   <footer class="entry-footer">October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P1923 求第 $k$ 小的数" href="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1923/"></a>
@@ -275,7 +275,7 @@ ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l &
   <section class="entry-content">
     <p>题目大意 我们将重复的 $n$ 个字符串 S 压缩为 [nS]，且存在多重压缩。给定一个压缩结果，展开它。
 分析 我考虑用类似状态机的方式解析字符串。
- 当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$  写成 BNF 更直观一点
+当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$ 写成 BNF 更直观一点
 &lt;pwd&gt; ::= &lt;EMPTY&gt; | {&lt;ALPHA&gt;} | &lt;pwd&gt; &#34;[&#34; &lt;NUMBER&gt; &lt;pwd&gt; &#34;]&#34; &lt;pwd&gt; string read() { string s = &#34;&#34;; char c; while (cin &gt;&gt; c) { if (c == &#39;[&#39;) { int n; cin &gt;&gt; n; string ts = read(); while (n--) s &#43;= ts; } else if (c == &#39;]&#39;) { return s; } else { s &#43;= c; } } return s; } int main() { cout &lt;&lt; read(); return 0; } </p>
   </section>
   <footer class="entry-footer">October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
@@ -290,7 +290,8 @@ ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l &
     <p>题目大意 有 I 形和 L 形两种砖头，分别能覆盖 2 个单元和 3 个单元。求 $2 \times n$ 的墙有多少不重复的覆盖方式，结果对 $10^4$ 取模。
 分析 其中 I 形砖块仅有横放和竖放两种。关键在于 L 形，两个 L 形之间可以用 I 形填充，这让情况变得复杂起来。
 对于 $F_n$ 的递推，我们可以想到
- 在 $F_{n-1}$ 后放一个 I 形砖块。 在 $F_{n-2}$ 后放两个横着的 I 形砖块。 对于更前面的递推，较为复杂。  两个 L 形砖块对齐，上下翻转也可以，即 $2 F_{n-3}$。 两个 L 形砖块可以对顶放，空缺恰用一个 I 填充，即 $2 F_{n-4}$。 类似 $2F_{n-3}$，中间可以再插入两个 I 形，即 $2 F_{n-5}$。 …… 直到 I 形和 L 形砖块恰好铺满墙壁，即 $2F_{0}$。    容易得到我们的递推式...</p>
+在 $F_{n-1}$ 后放一个 I 形砖块。 在 $F_{n-2}$ 后放两个横着的 I 形砖块。 对于更前面的递推，较为复杂。 两个 L 形砖块对齐，上下翻转也可以，即 $2 F_{n-3}$。 两个 L 形砖块可以对顶放，空缺恰用一个 I 填充，即 $2 F_{n-4}$。 类似 $2F_{n-3}$，中间可以再插入两个 I 形，即 $2 F_{n-5}$。 …… 直到 I 形和 L 形砖块恰好铺满墙壁，即 $2F_{0}$。 容易得到我们的递推式
+$$ F_n = F_{n-1} &#43; F_{n-2} &#43; 2 \sum_{i=0}^{n-3} F_i $$...</p>
   </section>
   <footer class="entry-footer">October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P1990 覆盖墙壁" href="https://rogeryoungh.github.io/code-of-acm/post/2020-10/p1990/"></a>

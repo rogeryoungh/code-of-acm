@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 <link rel="alternate" type="application/rss+xml" href="https://rogeryoungh.github.io/code-of-acm/post/index.xml">
 
 
@@ -169,7 +169,7 @@
   </header>
   <section class="entry-content">
     <p>题目大意 给定一个长为 $n$ 的数列 $\{a_i\}$，有如下操作
- 询问区间 $[l, r]$ 上的和。 对 $[l, r]$ 区间上每个数异或上一个数 $x$。  分析 只需注意到异或是不进位的，我们可以单独维护数列的每一位。开二十棵线段树即可。
+询问区间 $[l, r]$ 上的和。 对 $[l, r]$ 区间上每个数异或上一个数 $x$。 分析 只需注意到异或是不进位的，我们可以单独维护数列的每一位。开二十棵线段树即可。
 int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; a(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { cin &gt;&gt; a[i]; } vector&lt;SegmentTree&lt;int&gt;&gt; tr; for (int k = 0; k &lt; 20; k&#43;&#43;) { tr.push_back(SegmentTree&lt;int&gt;(n &#43; 1)); vector&lt;int&gt; tmp(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { if ((1 &lt;&lt; k) &amp; a[i]) tmp[i] = 1; } tr[k]....</p>
   </section>
   <footer class="entry-footer">February 22, 2022&nbsp;·&nbsp;rogeryoungh</footer>
@@ -187,7 +187,7 @@ int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; a(n &#43; 1); for (int i =
 分析 首先需要逐位异或，把交错序列变成相同元素。我想到的是另一种办法，如果 $a_i$ 相对与 $a_{i-1}$ 是变化的，那么 $b_i$ 为 $1$。原问题即被转化为维护最长 $1$ 的个数。
 用线段树维护每一层的信息，其中 $l$ 表示左边界上的最长长度，$r$ 表示右边界上的最长长度，$val$ 表示整个区间上的最长长度。
 关键在于如何编写 pull 合并信息。
- 如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。  struct SegmentTree { vector&lt;int&gt; l, r, val; int N; SegmentTree(int n) { N = 2 &lt;&lt; std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 &#43; 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] &#43;= l[rs]; if (r[rs] == len) r[p] &#43;= r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] &#43; l[rs]}); } void modify(int i) { i &#43;= N; l[i] = r[i] = val[i] = !...</p>
+如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。 struct SegmentTree { vector&lt;int&gt; l, r, val; int N; SegmentTree(int n) { N = 2 &lt;&lt; std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 &#43; 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] &#43;= l[rs]; if (r[rs] == len) r[p] &#43;= r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] &#43; l[rs]}); } void modify(int i) { i &#43;= N; l[i] = r[i] = val[i] = !...</p>
   </section>
   <footer class="entry-footer">February 22, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P6492 STEP" href="https://rogeryoungh.github.io/code-of-acm/post/2022-02/p6492/"></a>
@@ -232,17 +232,20 @@ bool check(const vector&lt;int&gt; &amp;v) { vector&lt;int&gt; cnt(2); for (auto
   <section class="entry-content">
     <p>新的一年，一样的菜。
 过于简单的题不记录。
-2022 年 01 月 01-14 |  UOJ50 链式反应
-01-21 |  ZAFU 2022.01.18 个人赛题解
-01-27 |  P3373 线段树 2
-01-27 |  P2023 维护序列
-01-28 |  P1531 I Hate It
-01-28 |  P5057 简单题
-01-28 |  P4588 数学计算
-01-28 |  P1637 三元上升子序列
-01-29 |  P5431 乘法逆元 2
-2022 年 02 月 02-11 |  P6186 冒泡排序
-02-14 |  ZAFU 2022.02.14 个人赛题解...</p>
+2022 年 01 月 01-14 | UOJ50 链式反应
+01-21 | ZAFU 2022.01.18 个人赛题解
+01-27 | P3373 线段树 2
+01-27 | P2023 维护序列
+01-28 | P1531 I Hate It
+01-28 | P5057 简单题
+01-28 | P4588 数学计算
+01-28 | P1637 三元上升子序列
+01-29 | P5431 乘法逆元 2
+2022 年 02 月 02-11 | P6186 冒泡排序
+02-14 | ZAFU 2022.02.14 个人赛题解
+02-16 | ZAFU 2022.02.16 个人赛题解
+02-22 | P6492 STEP
+2022 年 03 月 03-09 | P4717 快速莫比乌斯/沃尔什变换...</p>
   </section>
   <footer class="entry-footer">February 11, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to 2022 年刷题日志" href="https://rogeryoungh.github.io/code-of-acm/post/other/log2022/"></a>
@@ -254,8 +257,8 @@ bool check(const vector&lt;int&gt; &amp;v) { vector&lt;int&gt; cnt(2); for (auto
   </header>
   <section class="entry-content">
     <p>题目大意 给定一个长为 $n$ 的排列 $p$，有如下操作
- 交换 $p_{x}, p_{x&#43;1}$。 询问排列经过 $k$ 轮冒泡排序后的逆序数。  分析 难点在观察冒泡排序对逆序数的影响，考虑一个数 $p_i$ 受其前面的数影响：
- 如果 $p_i$ 前面没有比 $p_i$ 大的，冒泡后 $p_{i’}$ 仍不贡献逆序数。 如果 $p_i$ 前面有 $j$ 个比当前数大的，冒泡后有且仅有一个数穿过了 $p_{i’}$，贡献的逆序数减 $1$。  故第 $k$ 轮冒泡后，即每个数贡献的逆序数都要减 $k$。又因为不应减到负数，因此需要用两个树状数组维护。
+交换 $p_{x}, p_{x&#43;1}$。 询问排列经过 $k$ 轮冒泡排序后的逆序数。 分析 难点在观察冒泡排序对逆序数的影响，考虑一个数 $p_i$ 受其前面的数影响：
+如果 $p_i$ 前面没有比 $p_i$ 大的，冒泡后 $p_{i’}$ 仍不贡献逆序数。 如果 $p_i$ 前面有 $j$ 个比当前数大的，冒泡后有且仅有一个数穿过了 $p_{i’}$，贡献的逆序数减 $1$。 故第 $k$ 轮冒泡后，即每个数贡献的逆序数都要减 $k$。又因为不应减到负数，因此需要用两个树状数组维护。
 #include &#34;template/ds/fwtree/1.hpp&#34; int main() { int n = rr(), m = rr(); vector&lt;int&gt; p(n); for (int i = 0; i &lt; n; i&#43;&#43;) p[i] = rr(); vector&lt;ll&gt; inver(n); { vector&lt;pii&gt; tp(n); for (int i = 0; i &lt; n; i&#43;&#43;) tp[i] = {p[i], i &#43; 1}; sort(tp....</p>
   </section>
   <footer class="entry-footer">February 11, 2022&nbsp;·&nbsp;rogeryoungh</footer>
@@ -285,7 +288,7 @@ vi get_inv(const vi &amp;a, int p) { int n = a.size() - 1; vi prod(n &#43; 1); p
   </header>
   <section class="entry-content">
     <p>题目大意 给定一个序列，求其中三元上升子序列的个数
- 对于 $i,j,k$，若 $a_i &lt; a_j &lt; a_k$，则是一个满足要求的三元对。  分析 考虑枚举中间的数 $j$，设其左边有 $a$ 个数比它小，右边有 $b$ 个数比它大，则中间为 $j$ 的三元对个数为 $ab$。
+对于 $i,j,k$，若 $a_i &lt; a_j &lt; a_k$，则是一个满足要求的三元对。 分析 考虑枚举中间的数 $j$，设其左边有 $a$ 个数比它小，右边有 $b$ 个数比它大，则中间为 $j$ 的三元对个数为 $ab$。
 至此就和逆序对类似了，离散化后用树状数组即可。
 #include &#34;template/ds/fwtree/0.hpp&#34; int main() { int n = rr(); vector&lt;pii&gt; v(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { v[i] = {rr(), i}; } sort(v.begin(), v.end(), [](pii a, pii b) { if (a.first == b.first) return a.second &gt; b.second; return a.first &lt; b.first; }); fwtree_1&lt;int&gt; tr(n &#43; 1); vector&lt;ll&gt; al(n &#43; 1), ar(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { al[i] = tr....</p>
   </section>
@@ -299,7 +302,7 @@ vi get_inv(const vi &amp;a, int p) { int n = a.size() - 1; vi prod(n &#43; 1); p
   </header>
   <section class="entry-content">
     <p>题目大意 给定一个数列，有如下操作：
- 将区间 $[l,r]$ 上的数乘上 $x$ 将区间 $[l,r]$ 上的数加上 $x$ 询问区间 $[l,r]$ 上的数之和  分析 很经典的线段树教学题，写完后对线段树的理解确实更深了。
+将区间 $[l,r]$ 上的数乘上 $x$ 将区间 $[l,r]$ 上的数加上 $x$ 询问区间 $[l,r]$ 上的数之和 分析 很经典的线段树教学题，写完后对线段树的理解确实更深了。
 从一次函数的角度考虑问题感觉更清晰。我们实际上在对每个序列上的值做一次函数
 $$ f_i(x) = k_i x &#43; m_i $$
 先来看本题线段树的结构
@@ -315,10 +318,10 @@ template &lt;class T&gt; struct SegmentTree { vector&lt;Seg&gt; tr; void pushup(
   </header>
   <section class="entry-content">
     <p>题目大意 初始是 $x=1$，我们每轮对 $x$ 做一个操作
- 将 $x$ 变为 $k x$，并输出 $x \bmod M$。 将 $x$ 变为 $x / k_i$，即取消第 $i$ 次操作，并输出 $x \bmod M$。  保证每个操作 1 的 $k$ 在操作 2 中至多被除一次。
+将 $x$ 变为 $k x$，并输出 $x \bmod M$。 将 $x$ 变为 $x / k_i$，即取消第 $i$ 次操作，并输出 $x \bmod M$。 保证每个操作 1 的 $k$ 在操作 2 中至多被除一次。
 分析 $M$ 并不保证是质数，逆元可能不存在。
 可以把操作序列看作一个乘积式，初始情况下全为 $1$。
- 操作 1 即是把第 $i$ 个数变为 $k$。 操作 2 即是把第 $i$ 个数变回 $1$。  修改结束后，询问所有数的乘积。单点修改，区间查询，标准的线段树。
+操作 1 即是把第 $i$ 个数变为 $k$。 操作 2 即是把第 $i$ 个数变回 $1$。 修改结束后，询问所有数的乘积。单点修改，区间查询，标准的线段树。
 因为只询问全体和，zkw 好写的多。
 template &lt;class T&gt; struct SegmentTree { vector&lt;T&gt; tr; int N; SegmentTree(int l, int r) { int n = r - l &#43; 1; N = 2 &lt;&lt; std::__lg(n); tr....</p>
   </section>

@@ -25,7 +25,7 @@ $$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -102,8 +102,8 @@ $$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$
   "keywords": [
     "洛谷", "多项式"
   ],
-  "articleBody": "题目大意 给定 $g[1], \\cdots, g[m]$，求序列 $f$。\n$$ f [n] = \\sum_{j = 1}^n f [n - j] g [j] = \\sum_{j = 1}^n f [n - j] h [j] $$\n分析 不妨令 $g [0] = 0$，$h (x) = g (x) + h [0]$，我们要解方程\n$$ f [n] = \\sum_{j = 1}^n f [n - j] g [j] = \\sum_{j = 1}^n f [n - j] h [j] $$\n这个形式看似卷积，但实际上它缺了一项。对 $n  0$ 凑卷积\n$$ f [n] (h [0] + 1) = \\sum_{j = 0}^n f [n - j] h [j] = (f \\ast h) [n] $$\n又 $f [0] = 1$，有\n$$ f \\ast (1 + h [0]) - f \\ast h = f [0] (1 + h [0]) - f [0] h [0] = f [0] $$\n解得\n$$ f (x) = \\frac{f [0]}{1 + h [0] - h (x)} = \\frac{1}{1 - g (x)} $$\n于是求逆即可\n#define ACM_MOD 998244353 const int mod = ACM_MOD; using poly_t = vectorint; poly_t w; #include \"template/basic/qpow.hpp\"#include \"template/basic/mint.hpp\"#include \"template/basic/inv.hpp\" #include \"template/poly-ntt/ntt_init.hpp\"#include \"template/poly-ntt/ntt.hpp\"#include \"template/poly-ntt/ntt_inv.hpp\" int main() { int n = rr(); int lim = getlin(n, n); w = ntt_init(lim); poly_t ans, ff(lim); for (int i = 1; i  n; i++) ff[i] = mod - rr(); ff[0] = 1; ans = ntt_inv(ff, lim); for (int i = 0; i  n; i++) printf(\"%d \", ans[i]); return 0; } ",
-  "wordCount" : "223",
+  "articleBody": "题目大意 给定 $g[1], \\cdots, g[m]$，求序列 $f$。\n$$ f [n] = \\sum_{j = 1}^n f [n - j] g [j] = \\sum_{j = 1}^n f [n - j] h [j] $$\n分析 不妨令 $g [0] = 0$，$h (x) = g (x) + h [0]$，我们要解方程\n$$ f [n] = \\sum_{j = 1}^n f [n - j] g [j] = \\sum_{j = 1}^n f [n - j] h [j] $$\n这个形式看似卷积，但实际上它缺了一项。对 $n \u003e 0$ 凑卷积\n$$ f [n] (h [0] + 1) = \\sum_{j = 0}^n f [n - j] h [j] = (f \\ast h) [n] $$\n又 $f [0] = 1$，有\n$$ f \\ast (1 + h [0]) - f \\ast h = f [0] (1 + h [0]) - f [0] h [0] = f [0] $$\n解得\n$$ f (x) = \\frac{f [0]}{1 + h [0] - h (x)} = \\frac{1}{1 - g (x)} $$\n于是求逆即可\n#define ACM_MOD 998244353 const int mod = ACM_MOD; using poly_t = vector\u003cint\u003e; poly_t w; #include \"template/basic/qpow.hpp\" #include \"template/basic/mint.hpp\" #include \"template/basic/inv.hpp\" #include \"template/poly-ntt/ntt_init.hpp\" #include \"template/poly-ntt/ntt.hpp\" #include \"template/poly-ntt/ntt_inv.hpp\" int main() { int n = rr(); int lim = getlin(n, n); w = ntt_init(lim); poly_t ans, ff(lim); for (int i = 1; i \u003c n; i++) ff[i] = mod - rr(); ff[0] = 1; ans = ntt_inv(ff, lim); for (int i = 0; i \u003c n; i++) printf(\"%d \", ans[i]); return 0; } ",
+  "wordCount" : "227",
   "inLanguage": "en",
   "datePublished": "2021-05-24T00:00:00Z",
   "dateModified": "2021-05-24T00:00:00Z",

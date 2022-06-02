@@ -23,7 +23,7 @@ priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; &gt; q; int main() 
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -96,7 +96,7 @@ priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; &gt; q; int main() 
   "keywords": [
     "洛谷", "贪心"
   ],
-  "articleBody": "题目大意 可以合并两堆果子成一堆新果子，消耗两堆果子数目之和的体力。给定 $n$ 堆果子的数目 $a_i$，求体力耗费最小的方案。\n分析 很容易猜到贪心结论，不断选取两个最小的堆进行合并。\npriority_queueint, vectorint, greaterint  q; int main() { int n = rr(); for (ll i = 1; i  n; i++) { int t = rr(); q.push(t); } int sum = 0; while (q.size() = 2) { int x = q.top(); q.pop(); int y = q.top(); q.pop(); sum += x + y; q.push(x + y); } printf(\"%d\\n\", sum); return 0; } 本质上是证明 Huffman 树的构造的正确性，有点复杂。\n",
+  "articleBody": "题目大意 可以合并两堆果子成一堆新果子，消耗两堆果子数目之和的体力。给定 $n$ 堆果子的数目 $a_i$，求体力耗费最小的方案。\n分析 很容易猜到贪心结论，不断选取两个最小的堆进行合并。\npriority_queue\u003cint, vector\u003cint\u003e, greater\u003cint\u003e \u003e q; int main() { int n = rr(); for (ll i = 1; i \u003c= n; i++) { int t = rr(); q.push(t); } int sum = 0; while (q.size() \u003e= 2) { int x = q.top(); q.pop(); int y = q.top(); q.pop(); sum += x + y; q.push(x + y); } printf(\"%d\\n\", sum); return 0; } 本质上是证明 Huffman 树的构造的正确性，有点复杂。\n",
   "wordCount" : "71",
   "inLanguage": "en",
   "datePublished": "2020-10-16T00:00:00Z",

@@ -18,7 +18,7 @@
 分析 模板题。考虑分治，随便选一个数 $x$，然后把比 $x$ 大的数移到右边，比 $x$ 小的数移到左边。因此得到了数 $x$ 的排位，若恰为第 $k$ 个则返回，否则根据大小在左右寻找。
 该算法是不稳定的，期望复杂度 $O(n)$，最坏复杂度 $O(n^2)$。
 实际上存在最坏复杂度为 $O(n)$ 的 BFPTR 算法，但因为其常数过大实现复杂而很少应用。
-ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l + r) / 2]; while (i &amp;lt;= j) { while (nn[j] &amp;gt; x) j--; while (nn[i] &amp;lt; x) i++; if (i &amp;lt;= j) { swap(nn[i], nn[j]); i++, j--; } } // l &amp;lt;= j &amp;lt;= i &amp;lt;=r 	if (k &amp;lt;= j) return quicksort(l, j); else if (k &amp;gt;= i) return quicksort(i, r); else return nn[k + 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i &amp;lt;= n; i++) scanf(&amp;#34;%lld&amp;#34;, &amp;amp;nn[i]); printf(&amp;#34;%lld&amp;#34;, quicksort(1, n)); return 0; } </description>
+ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l + r) / 2]; while (i &amp;lt;= j) { while (nn[j] &amp;gt; x) j--; while (nn[i] &amp;lt; x) i++; if (i &amp;lt;= j) { swap(nn[i], nn[j]); i++, j--; } } // l &amp;lt;= j &amp;lt;= i &amp;lt;=r if (k &amp;lt;= j) return quicksort(l, j); else if (k &amp;gt;= i) return quicksort(i, r); else return nn[k + 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i &amp;lt;= n; i++) scanf(&amp;#34;%lld&amp;#34;, &amp;amp;nn[i]); printf(&amp;#34;%lld&amp;#34;, quicksort(1, n)); return 0; } </description>
     </item>
     
   </channel>

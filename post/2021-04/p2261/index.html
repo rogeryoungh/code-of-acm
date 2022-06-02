@@ -28,7 +28,7 @@ int main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l 
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -111,7 +111,7 @@ int main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l 
   "keywords": [
     "洛谷", "数论", "分块"
   ],
-  "articleBody": "题目大意 给出正整数 $n$ 和 $k$，请计算\n$$ G(n, k) = \\sum_{i = 1}^n k \\bmod i $$\n分析 因为\n$$ k \\bmod i = k - i \\left\\lfloor \\frac{k}{i} \\right\\rfloor $$\n因此有\n$$ G(n,k) = nk - \\sum_{i=1}^n i \\left\\lfloor \\frac{k}{i} \\right\\rfloor $$\n后面需要整数分块。\nint main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l = 1, r; l  n; l = r + 1) { r = min(n, k / (k / l)); ll t = (l + r) * (r - l + 1) / 2; sum -= t * (k / l); } printf(\"%lld\", sum); return 0; } ",
+  "articleBody": "题目大意 给出正整数 $n$ 和 $k$，请计算\n$$ G(n, k) = \\sum_{i = 1}^n k \\bmod i $$\n分析 因为\n$$ k \\bmod i = k - i \\left\\lfloor \\frac{k}{i} \\right\\rfloor $$\n因此有\n$$ G(n,k) = nk - \\sum_{i=1}^n i \\left\\lfloor \\frac{k}{i} \\right\\rfloor $$\n后面需要整数分块。\nint main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l = 1, r; l \u003c= n; l = r + 1) { r = min(n, k / (k / l)); ll t = (l + r) * (r - l + 1) / 2; sum -= t * (k / l); } printf(\"%lld\", sum); return 0; } ",
   "wordCount" : "114",
   "inLanguage": "en",
   "datePublished": "2021-04-30T00:00:00Z",

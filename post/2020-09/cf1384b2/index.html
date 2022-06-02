@@ -28,7 +28,7 @@ int main() { int ttt = rr(); while (ttt--) { int n = rr(), k = rr(), l = rr(); i
 <link rel="mask-icon" href="https://rogeryoungh.github.io/code-of-acm/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.98.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
@@ -111,7 +111,7 @@ int main() { int ttt = rr(); while (ttt--) { int n = rr(), k = rr(), l = rr(); i
   "keywords": [
     "Codeforces", "贪心"
   ],
-  "articleBody": "题目大意 海里每一个位置都有一个深度，而且水里随着时间有锯齿状周期为 $2k$ 的潮汐。\n当潮汐与深度之和大于给定值 $l$ 时 Koa 会溺水，游泳、海岸、岛上永远是安全的。\n在任意时间 Koa 可以选择游到 $x+1$ 或停留在 $x$，试问 Koa 是否能够安全的从海岸 $0$ 到达岛上 $n+1$。\n分析 开始的想法是随着时间 DP，更好的解法是贪心。\n若一个位置在水位最高时仍不会溺水，则称这个位置是安全的，并且可以任意选择出发时机。\n即安全位置之间是相互独立的，我们只需判断可达性，尽量到达每一个安全位置。若之后 $2k$ 个位置没有安全位置，必死。\nKoa 的最优决策是在刚退潮时出发，如果能走就尽量往前走，不能走就等，等到涨潮就说明不存在通过方法。\nint main() { int ttt = rr(); while (ttt--) { int n = rr(), k = rr(), l = rr(); int flag = 0; int last = k; for (ll i = 1; i  n; i++) { int d = rr(); flag += l  d; if (l - d = k) last = k; else last = min(last - 1, l - d); flag += abs(last)  l - d; } if (flag) printf(\"No\\n\"); else printf(\"Yes\\n\"); } return 0; } ",
+  "articleBody": "题目大意 海里每一个位置都有一个深度，而且水里随着时间有锯齿状周期为 $2k$ 的潮汐。\n当潮汐与深度之和大于给定值 $l$ 时 Koa 会溺水，游泳、海岸、岛上永远是安全的。\n在任意时间 Koa 可以选择游到 $x+1$ 或停留在 $x$，试问 Koa 是否能够安全的从海岸 $0$ 到达岛上 $n+1$。\n分析 开始的想法是随着时间 DP，更好的解法是贪心。\n若一个位置在水位最高时仍不会溺水，则称这个位置是安全的，并且可以任意选择出发时机。\n即安全位置之间是相互独立的，我们只需判断可达性，尽量到达每一个安全位置。若之后 $2k$ 个位置没有安全位置，必死。\nKoa 的最优决策是在刚退潮时出发，如果能走就尽量往前走，不能走就等，等到涨潮就说明不存在通过方法。\nint main() { int ttt = rr(); while (ttt--) { int n = rr(), k = rr(), l = rr(); int flag = 0; int last = k; for (ll i = 1; i \u003c= n; i++) { int d = rr(); flag += l \u003c d; if (l - d \u003e= k) last = k; else last = min(last - 1, l - d); flag += abs(last) \u003e l - d; } if (flag) printf(\"No\\n\"); else printf(\"Yes\\n\"); } return 0; } ",
   "wordCount" : "111",
   "inLanguage": "en",
   "datePublished": "2020-09-20T00:00:00Z",
