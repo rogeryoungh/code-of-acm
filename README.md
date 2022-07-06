@@ -44,6 +44,10 @@ int ____ = (ios::sync_with_stdio(0), cin.tie(0), cout.tie(0), 1);
 
 Linux 独有：各种分析检测。
 
+```bash
+-fsanitize=address,undefined -g
 ```
 
-```
+## 模板
+
+除了（可以使用模板的）比赛或多项式，**其余时间避免使用模板**，手敲一遍加深印象。

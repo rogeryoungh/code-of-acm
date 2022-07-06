@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 using ll = long long;
-int ____ = (ios::sync_with_stdio(0), cin.tie(0), 0);
+
+int ____ = cin.tie(0)->sync_with_stdio(0);
+#define endl '\n'
 
 // END OF HEADER | Author: Roger Young
 
@@ -10,7 +11,7 @@ int main() {
 	int T;
 	cin >> T;
 	while (T--) {
-		cout << "X\n";
+		cout << "X" << endl;
 	}
 	return 0;
 }

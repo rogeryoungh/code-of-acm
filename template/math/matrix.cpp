@@ -6,10 +6,10 @@ struct Mtx {
 		m.resize(x * y);
 	}
 	auto operator[](int i) {
-		return m.begin() + i * x;
+		return m.begin() + i * y;
 	}
 	auto operator[](int i) const {
-		return m.begin() + i * x;
+		return m.begin() + i * y;
 	}
 	void read() {
 		ll t;
@@ -46,9 +46,9 @@ struct Mtx {
 	vector<T> m;
 	Mtx(int a, int b) : x(a), y(b), m(a * b) {}
 	auto operator[](int i) {
-		return m.begin() + i * x;
+		return m.begin() + i * y;
 	}
 	auto operator[](int i) const {
-		return m.begin() + i * x;
+		return m.begin() + i * y;
 	}
 };
