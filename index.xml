@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© 2021 [Roger Young](https://acm.rogery.dev)</copyright>
-    <lastBuildDate>Sun, 01 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ZAFU 2022.07.06 个人赛题解</title>
+      <link>https://acm.rogery.dev/post/2022-07/sj1/</link>
+      <pubDate>Wed, 06 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2022-07/sj1/</guid>
+      <description>A - CF540A 签到，不讲。
+int main() { int n; string a, b; cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; a &amp;gt;&amp;gt; b; int ans = 0; for (int i = 0; i &amp;lt; n; i++) { int diff = std::abs(a[i] - b[i]); ans += std::min(diff, 10 - diff); } cout &amp;lt;&amp;lt; ans; return 0; } B - CF339B 题目大意 环形的路上有 $n$ 个房子，需要以如下的顺序访问 $$ 1 \to a_1 \to a_2 \to \cdots \to a_n $$ 智能顺时针移动，问需要走几步？</description>
+    </item>
+    
     <item>
       <title>P8240 偷铀计划</title>
       <link>https://acm.rogery.dev/post/2022-05/p8240/</link>

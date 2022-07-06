@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://acm.rogery.dev/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.100.1" />
+<meta name="generator" content="Hugo 0.101.0" />
 <link rel="alternate" type="application/rss+xml" href="https://acm.rogery.dev/post/index.xml">
 
 
@@ -162,6 +162,24 @@
 <header class="page-header">
   <h1>Posts</h1>
 </header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>CF1494 Educational Round 105 (Rated for Div. 2)</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目链接：Link 。
+A. ABC String 这么水的题竟然 wa 了 4 发。。
+题目大意 给定一个长 $n$ 的字符串 $a$，仅由 A，B，C 组成，$n$ 为偶数。
+对于仅含 ( 和 ) 的括号序列，当我们能够在其中添加 1 使得其为合法的表达式，则序列合法。
+构造合法的长为 $n$ 的括号序列 $b$，要求在 $a$ 同为 A 的，在 $b$ 中也要相同；B，C 也是如此。
+分析 序列合法的定义即对任意位置，其左侧的 ) 总比 ( 少，且整体左右括号数相等。
+首个字母必为左括号，末尾字母必为右括号。剩下的那个讨论一下即可。
+char ss[60]; int main() { ll ttt = rr(); while (ttt--) { scanf(&#34;%s&#34;, ss &#43; 1); ll len = strlen(ss &#43; 1); if (ss[1] == ss[len]) { printf(&#34;NO\n&#34;); continue; } ll sa[3] = {0, 0, 0}; for (ll i = 1; i &lt;= len; i&#43;&#43;) sa[ss[i] - &#39;A&#39;]&#43;&#43;; ll sl = ss[1] - &#39;A&#39;, sr = ss[len] - &#39;A&#39;; ll sm = 3ll - sl - sr; bool flag = false; sa[0] = sa[1] = sa[2] = 0; if (sa[sl] &#43; sa[sm] == sa[sr]) { for (ll i = 1; i &lt;= len; i&#43;&#43;) { sa[ss[i] - &#39;A&#39;]&#43;&#43;; flag = flag || sa[sl] &#43; sa[sm] &lt; sa[sr]; } } else if (sa[sl] == sa[sm] &#43; sa[sr]) { for (ll i = 1; i &lt;= len; i&#43;&#43;) { sa[ss[i] - &#39;A&#39;]&#43;&#43;; flag = flag || sa[sl] &lt; sa[sm] &#43; sa[sr]; } } else { printf(&#34;NO\n&#34;); continue; } if (flag) printf(&#34;NO\n&#34;); else printf(&#34;YES\n&#34;); } return 0; } B....</p>
+  </section>
+  <footer class="entry-footer">March 29, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to CF1494 Educational Round 105 (Rated for Div. 2)" href="https://acm.rogery.dev/post/2021-03/cfedu105/"></a>
+</article>
 
 <article class="post-entry"> 
   <header class="entry-header">
@@ -309,21 +327,6 @@ priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; &gt; q; int main() 
   </section>
   <footer class="entry-footer">October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P1090 合并果子" href="https://acm.rogery.dev/post/2020-10/p1090/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P1923 求第 $k$ 小的数</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 给定数列，求第 $k$ 小的数。
-分析 模板题。考虑分治，随便选一个数 $x$，然后把比 $x$ 大的数移到右边，比 $x$ 小的数移到左边。因此得到了数 $x$ 的排位，若恰为第 $k$ 个则返回，否则根据大小在左右寻找。
-该算法是不稳定的，期望复杂度 $O(n)$，最坏复杂度 $O(n^2)$。
-实际上存在最坏复杂度为 $O(n)$ 的 BFPTR 算法，但因为其常数过大实现复杂而很少应用。
-ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l &#43; r) / 2]; while (i &lt;= j) { while (nn[j] &gt; x) j--; while (nn[i] &lt; x) i&#43;&#43;; if (i &lt;= j) { swap(nn[i], nn[j]); i&#43;&#43;, j--; } } // l &lt;= j &lt;= i &lt;=r if (k &lt;= j) return quicksort(l, j); else if (k &gt;= i) return quicksort(i, r); else return nn[k &#43; 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) scanf(&#34;%lld&#34;, &amp;nn[i]); printf(&#34;%lld&#34;, quicksort(1, n)); return 0; } </p>
-  </section>
-  <footer class="entry-footer">October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P1923 求第 $k$ 小的数" href="https://acm.rogery.dev/post/2020-10/p1923/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

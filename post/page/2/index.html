@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://acm.rogery.dev/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.100.1" />
+<meta name="generator" content="Hugo 0.101.0" />
 <link rel="alternate" type="application/rss+xml" href="https://acm.rogery.dev/post/index.xml">
 
 
@@ -162,6 +162,19 @@
 <header class="page-header">
   <h1>Posts</h1>
 </header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Educational Codeforces Round 123 (Rated for Div. 2)(A-C)</h2>
+  </header>
+  <section class="entry-content">
+    <p>A. Doors and Keys 有 RGB 三种门，和 rgb 三种钥匙。如果门先于其对应的钥匙出现，则会卡关。判断字符串是否意味着卡关。
+分析 枚举即可。
+int main() { int T; cin &gt;&gt; T; while (T--) { string s; cin &gt;&gt; s; vector&lt;int&gt; flag(26); bool ans = true; for (char si : s) { if (si &gt;= &#39;a&#39;) { flag[si - &#39;a&#39;] = true; } else { if (!flag[si - &#39;A&#39;]) { ans = false; } } } if (ans) cout &lt;&lt; &#34;YES\n&#34;; else cout &lt;&lt; &#34;NO\n&#34;; } return 0; } B....</p>
+  </section>
+  <footer class="entry-footer">February 23, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to Educational Codeforces Round 123 (Rated for Div. 2)(A-C)" href="https://acm.rogery.dev/post/2022-02/cf1644/"></a>
+</article>
 
 <article class="post-entry"> 
   <header class="entry-header">
@@ -310,23 +323,6 @@ template &lt;class T&gt; struct SegmentTree { vector&lt;Seg&gt; tr; void pushup(
   </section>
   <footer class="entry-footer">January 28, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P3373 线段树 2" href="https://acm.rogery.dev/post/2022-01/p3373/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P4588 数学计算</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 初始是 $x=1$，我们每轮对 $x$ 做一个操作
-将 $x$ 变为 $k x$，并输出 $x \bmod M$。 将 $x$ 变为 $x / k_i$，即取消第 $i$ 次操作，并输出 $x \bmod M$。 保证每个操作 1 的 $k$ 在操作 2 中至多被除一次。
-分析 $M$ 并不保证是质数，逆元可能不存在。
-可以把操作序列看作一个乘积式，初始情况下全为 $1$。
-操作 1 即是把第 $i$ 个数变为 $k$。 操作 2 即是把第 $i$ 个数变回 $1$。 修改结束后，询问所有数的乘积。单点修改，区间查询，标准的线段树。
-因为只询问全体和，zkw 好写的多。
-template &lt;class T&gt; struct SegmentTree { vector&lt;T&gt; tr; int N; SegmentTree(int l, int r) { int n = r - l &#43; 1; N = 2 &lt;&lt; std::__lg(n); tr....</p>
-  </section>
-  <footer class="entry-footer">January 28, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P4588 数学计算" href="https://acm.rogery.dev/post/2022-01/p4588/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

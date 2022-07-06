@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://acm.rogery.dev/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.100.1" />
+<meta name="generator" content="Hugo 0.101.0" />
 <link rel="alternate" type="application/rss+xml" href="https://acm.rogery.dev/post/index.xml">
 
 
@@ -165,6 +165,18 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>ZAFU 2022.07.06 个人赛题解</h2>
+  </header>
+  <section class="entry-content">
+    <p>A - CF540A 签到，不讲。
+int main() { int n; string a, b; cin &gt;&gt; n &gt;&gt; a &gt;&gt; b; int ans = 0; for (int i = 0; i &lt; n; i&#43;&#43;) { int diff = std::abs(a[i] - b[i]); ans &#43;= std::min(diff, 10 - diff); } cout &lt;&lt; ans; return 0; } B - CF339B 题目大意 环形的路上有 $n$ 个房子，需要以如下的顺序访问 $$ 1 \to a_1 \to a_2 \to \cdots \to a_n $$ 智能顺时针移动，问需要走几步？...</p>
+  </section>
+  <footer class="entry-footer">July 6, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to ZAFU 2022.07.06 个人赛题解" href="https://acm.rogery.dev/post/2022-07/sj1/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P8240 偷铀计划</h2>
   </header>
   <section class="entry-content">
@@ -307,19 +319,6 @@ using pii = pair&lt;int, int&gt;; int main() { int T; cin &gt;&gt; T; while (T--
   </section>
   <footer class="entry-footer">February 23, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to Codeforces Round #773 (Div. 2)  (A-D)" href="https://acm.rogery.dev/post/2022-02/cf1642/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Educational Codeforces Round 123 (Rated for Div. 2)(A-C)</h2>
-  </header>
-  <section class="entry-content">
-    <p>A. Doors and Keys 有 RGB 三种门，和 rgb 三种钥匙。如果门先于其对应的钥匙出现，则会卡关。判断字符串是否意味着卡关。
-分析 枚举即可。
-int main() { int T; cin &gt;&gt; T; while (T--) { string s; cin &gt;&gt; s; vector&lt;int&gt; flag(26); bool ans = true; for (char si : s) { if (si &gt;= &#39;a&#39;) { flag[si - &#39;a&#39;] = true; } else { if (!flag[si - &#39;A&#39;]) { ans = false; } } } if (ans) cout &lt;&lt; &#34;YES\n&#34;; else cout &lt;&lt; &#34;NO\n&#34;; } return 0; } B....</p>
-  </section>
-  <footer class="entry-footer">February 23, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to Educational Codeforces Round 123 (Rated for Div. 2)(A-C)" href="https://acm.rogery.dev/post/2022-02/cf1644/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

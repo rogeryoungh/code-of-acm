@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://acm.rogery.dev/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.100.1" />
+<meta name="generator" content="Hugo 0.101.0" />
 <link rel="alternate" type="application/rss+xml" href="https://acm.rogery.dev/post/index.xml">
 
 
@@ -165,6 +165,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P1923 求第 $k$ 小的数</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定数列，求第 $k$ 小的数。
+分析 模板题。考虑分治，随便选一个数 $x$，然后把比 $x$ 大的数移到右边，比 $x$ 小的数移到左边。因此得到了数 $x$ 的排位，若恰为第 $k$ 个则返回，否则根据大小在左右寻找。
+该算法是不稳定的，期望复杂度 $O(n)$，最坏复杂度 $O(n^2)$。
+实际上存在最坏复杂度为 $O(n)$ 的 BFPTR 算法，但因为其常数过大实现复杂而很少应用。
+ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l &#43; r) / 2]; while (i &lt;= j) { while (nn[j] &gt; x) j--; while (nn[i] &lt; x) i&#43;&#43;; if (i &lt;= j) { swap(nn[i], nn[j]); i&#43;&#43;, j--; } } // l &lt;= j &lt;= i &lt;=r if (k &lt;= j) return quicksort(l, j); else if (k &gt;= i) return quicksort(i, r); else return nn[k &#43; 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) scanf(&#34;%lld&#34;, &amp;nn[i]); printf(&#34;%lld&#34;, quicksort(1, n)); return 0; } </p>
+  </section>
+  <footer class="entry-footer">October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1923 求第 $k$ 小的数" href="https://acm.rogery.dev/post/2020-10/p1923/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P1928 外星密码</h2>
   </header>
   <section class="entry-content">
@@ -305,17 +320,6 @@ $$ dp[h,x_1,x_2] = \max\left\{ \begin{matrix} dp[h-1,x_1,x_2] \\ dp[h-1,x_1,x_2-
   </section>
   <footer class="entry-footer">September 20, 2020&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P1004 方格取数" href="https://acm.rogery.dev/post/2020-09/p1004/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>OJ 题目跳转</h2>
-  </header>
-  <section class="entry-content">
-    <p></p>
-  </section>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to OJ 题目跳转" href="https://acm.rogery.dev/post/other/jump/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

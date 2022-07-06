@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://acm.rogery.dev/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.100.1" />
+<meta name="generator" content="Hugo 0.101.0" />
 <link rel="alternate" type="application/rss+xml" href="https://acm.rogery.dev/post/index.xml">
 
 
@@ -162,6 +162,25 @@
 <header class="page-header">
   <h1>Posts</h1>
 </header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P4173 残缺的字符串</h2>
+  </header>
+  <section class="entry-content">
+    <p>魔改 KMP 大概是不行的，卷积在这里出现的很妙。
+卷积处理匹配 定义匹配函数
+$$ d(x,y) = [x = y] $$
+给定文本串 $B$ 和长为 $m$ 的模式串 $A$，要找出 $A$ 在 $B$ 的所有出现，可以定义
+$$ f(k) = \sum_{i=0}^{m-1} d(A_{i}, B_{i-m&#43;k}) $$
+即 $f(k) = 0$ 时有完全匹配 $A = B[k-m\ldots k-1]$。考虑让 $d$ 函数更 “数学” 一点，以更好的计算
+$$ d(x,y) = (x - y)^2 $$
+再提供模式串 $A$ 的翻转 $S$，即 $A_i = S_{m-i}$，展开有
+$$ \begin{aligned} f(k) &amp;= \sum_{i=0}^{m-1}A_{i}^2 &#43; \sum_{i=0}^{m-1}B_{i-m&#43;k}^2 - 2\sum_{i=0}^{m-1} A_{i}B_{i-m&#43;k}\\ &amp;= \sum_{i=0}^{m-1}A_{i}^2 &#43; \sum_{i=0}^{m-1}B_{i-m&#43;k}^2 - 2\sum_{i=0}^{m-1} S_{m-i}B_{i-m&#43;k} \end{aligned} $$...</p>
+  </section>
+  <footer class="entry-footer">July 28, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P4173 残缺的字符串" href="https://acm.rogery.dev/post/2021-07/p4173/"></a>
+</article>
 
 <article class="post-entry"> 
   <header class="entry-header">
@@ -321,24 +340,6 @@ const ll MN = 2e5 &#43; 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; l
   </section>
   <footer class="entry-footer">April 13, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P1314 聪明的质检员" href="https://acm.rogery.dev/post/2021-04/p1314/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>CF1494 Educational Round 105 (Rated for Div. 2)</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目链接：Link 。
-A. ABC String 这么水的题竟然 wa 了 4 发。。
-题目大意 给定一个长 $n$ 的字符串 $a$，仅由 A，B，C 组成，$n$ 为偶数。
-对于仅含 ( 和 ) 的括号序列，当我们能够在其中添加 1 使得其为合法的表达式，则序列合法。
-构造合法的长为 $n$ 的括号序列 $b$，要求在 $a$ 同为 A 的，在 $b$ 中也要相同；B，C 也是如此。
-分析 序列合法的定义即对任意位置，其左侧的 ) 总比 ( 少，且整体左右括号数相等。
-首个字母必为左括号，末尾字母必为右括号。剩下的那个讨论一下即可。
-char ss[60]; int main() { ll ttt = rr(); while (ttt--) { scanf(&#34;%s&#34;, ss &#43; 1); ll len = strlen(ss &#43; 1); if (ss[1] == ss[len]) { printf(&#34;NO\n&#34;); continue; } ll sa[3] = {0, 0, 0}; for (ll i = 1; i &lt;= len; i&#43;&#43;) sa[ss[i] - &#39;A&#39;]&#43;&#43;; ll sl = ss[1] - &#39;A&#39;, sr = ss[len] - &#39;A&#39;; ll sm = 3ll - sl - sr; bool flag = false; sa[0] = sa[1] = sa[2] = 0; if (sa[sl] &#43; sa[sm] == sa[sr]) { for (ll i = 1; i &lt;= len; i&#43;&#43;) { sa[ss[i] - &#39;A&#39;]&#43;&#43;; flag = flag || sa[sl] &#43; sa[sm] &lt; sa[sr]; } } else if (sa[sl] == sa[sm] &#43; sa[sr]) { for (ll i = 1; i &lt;= len; i&#43;&#43;) { sa[ss[i] - &#39;A&#39;]&#43;&#43;; flag = flag || sa[sl] &lt; sa[sm] &#43; sa[sr]; } } else { printf(&#34;NO\n&#34;); continue; } if (flag) printf(&#34;NO\n&#34;); else printf(&#34;YES\n&#34;); } return 0; } B....</p>
-  </section>
-  <footer class="entry-footer">March 29, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to CF1494 Educational Round 105 (Rated for Div. 2)" href="https://acm.rogery.dev/post/2021-03/cfedu105/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
