@@ -165,6 +165,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>ZAFU 2022.07.08 个人赛题解</h2>
+  </header>
+  <section class="entry-content">
+    <p>A - CF515A 判断一下是否恰好用 $k$ 步能从 $(0，0)$ 点走到 $(a, b)$ 点。
+分析 判断一下步数是否足够走到，且剩余的步数的奇偶性即可。
+int main() { ll a, b, s; cin &gt;&gt; a &gt;&gt; b &gt;&gt; s; a = abs(a), b = abs(b); if (a &#43; b &lt;= s &amp;&amp; (s - a - b) % 2 == 0) { cout &lt;&lt; &#34;Yes&#34;; } else { cout &lt;&lt; &#34;No&#34;; } return 0; } B - CF430B “祖玛游戏”，问最多能消除多少个球。
+分析 暴力枚举在哪个位置插入球，计算答案，维护全局最大值即可。
+可以使用双指针，也可以借助 vector。...</p>
+  </section>
+  <footer class="entry-footer">July 8, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to ZAFU 2022.07.08 个人赛题解" href="https://acm.rogery.dev/post/2022-07/sj2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>ZAFU 2022.07.06 个人赛题解</h2>
   </header>
   <section class="entry-content">
@@ -302,23 +317,6 @@ int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; multiset&lt;int&gt; s; for (in
   </section>
   <footer class="entry-footer">February 26, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to AtCoder Beginner Contest 241 (A-E)" href="https://acm.rogery.dev/post/2022-02/abc241/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Codeforces Round #773 (Div. 2)  (A-D)</h2>
-  </header>
-  <section class="entry-content">
-    <p>在学长的提示下成功做出 D，蓝了，开心。
-A. Hard Way 给定一个在第一象限的三角形座标，你可以从 $y=0$ 的任意位置出发，在平面中沿着折线前进但不能穿过三角形。
-问三角形的边界上无法到达的位置，其总长度是多少。
-分析 题面真 TM 难读，什么玩意。
-注意到如果这条边是斜的，那么我们总是可以走一条更斜的线直接到达。如果此边水平，则不能到达。
-即输出三角形水平边的长度。
-using pii = pair&lt;int, int&gt;; int main() { int T; cin &gt;&gt; T; while (T--) { vector&lt;pii&gt; v(3); for (auto &amp;[x, y] : v) { cin &gt;&gt; x &gt;&gt; y; } sort(v.begin(), v.end(), [](pii a, pii b) { if (a.second == b.second) return a.first &lt; b.first; return a.second &gt; b.second; }); if (v[0].second == v[1].second) cout &lt;&lt; abs(v[0]....</p>
-  </section>
-  <footer class="entry-footer">February 23, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to Codeforces Round #773 (Div. 2)  (A-D)" href="https://acm.rogery.dev/post/2022-02/cf1642/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

@@ -1,8 +1,14 @@
+#include <vector>
+using namespace std;
+
+// @description 树状数组
+// @problem https://judge.yosupo.jp/problem/point_add_range_sum
+
 template <class T>
-struct fwtree_1 {
+struct fwtree {
 	vector<T> v;
-	fwtree_1(int n = 0) : v(n) {}
-	int len() {
+	fwtree(int n = 0) : v(n) {}
+	int len() const {
 		return v.size();
 	}
 	void add(int i, T x) {
@@ -17,7 +23,7 @@ struct fwtree_1 {
 				v[j] += v[i];
 		}
 	}
-	T sum(int i) {
+	T sum(int i) const {
 		T sum = 0;
 		for (; i > 0; i -= i & -i)
 			sum += v[i];

@@ -165,6 +165,22 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P3373 线段树 2</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定一个数列，有如下操作：
+将区间 $[l,r]$ 上的数乘上 $x$ 将区间 $[l,r]$ 上的数加上 $x$ 询问区间 $[l,r]$ 上的数之和 分析 很经典的线段树教学题，写完后对线段树的理解确实更深了。
+从一次函数的角度考虑问题感觉更清晰。我们实际上在对每个序列上的值做一次函数
+$$ f_i(x) = k_i x &#43; m_i $$
+先来看本题线段树的结构
+template &lt;class T&gt; struct SegmentTree { vector&lt;Seg&gt; tr; void pushup(int p); void pushdown(int p); void build(int l, int r, int p = 1); void modify(int l, int r, T k, T m, int p = 1); T query(int l, int r, int p = 1); }; 懒标记：在知道一段当前值的情况下，可以立刻知道该段被操作后的值，不必重新计算所有的数。因此可以把当前的操作存起来，询问的时候再对子节点做真实操作。...</p>
+  </section>
+  <footer class="entry-footer">January 28, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P3373 线段树 2" href="https://acm.rogery.dev/post/2022-01/p3373/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P4588 数学计算</h2>
   </header>
   <section class="entry-content">
@@ -334,24 +350,6 @@ $$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{ax &#43; c - an}{b} \righ
   </section>
   <footer class="entry-footer">October 28, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P5171 Earthquake" href="https://acm.rogery.dev/post/2021-10/p5171/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>NC11255B Sample Game</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 给定生成 $1$ 到 $n$ 数字的概率分布，不断生成随机数 $x$ 直到 $x$ 不是已经生成过的最大的数停止，求生成次数平方的期望。
-分析 设期望的随机次数为 $f_x = E(x)$，我们需要计算的次数为 $g_x = E(x^2)$。
-关于 $f_i$ 的 DP 是显然的，计算有
-$$ f_x = \sum_{i = 1}^{x - 1} p_i &#43; \sum_{i = x}^n p_i(1 &#43; f_i) = 1 &#43; \sum_{i = x}^n p_i f_i $$
-容易观察到
-$$ f_{x &#43; 1} =(1 - p_x) f_x \Rightarrow f_x = \prod_{i = x}^n \frac{1}{1 - p_x} $$
-接下来需要一个套路
-$$ E((x &#43; 1)^2) = E(x^2) &#43; 2 E(x) &#43; 1 $$...</p>
-  </section>
-  <footer class="entry-footer">October 19, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to NC11255B Sample Game" href="https://acm.rogery.dev/post/2021-10/nc11255b/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

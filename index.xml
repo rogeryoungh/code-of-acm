@@ -7,7 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© 2021 [Roger Young](https://acm.rogery.dev)</copyright>
-    <lastBuildDate>Wed, 06 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 08 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ZAFU 2022.07.08 个人赛题解</title>
+      <link>https://acm.rogery.dev/post/2022-07/sj2/</link>
+      <pubDate>Fri, 08 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2022-07/sj2/</guid>
+      <description>A - CF515A 判断一下是否恰好用 $k$ 步能从 $(0，0)$ 点走到 $(a, b)$ 点。
+分析 判断一下步数是否足够走到，且剩余的步数的奇偶性即可。
+int main() { ll a, b, s; cin &amp;gt;&amp;gt; a &amp;gt;&amp;gt; b &amp;gt;&amp;gt; s; a = abs(a), b = abs(b); if (a + b &amp;lt;= s &amp;amp;&amp;amp; (s - a - b) % 2 == 0) { cout &amp;lt;&amp;lt; &amp;#34;Yes&amp;#34;; } else { cout &amp;lt;&amp;lt; &amp;#34;No&amp;#34;; } return 0; } B - CF430B “祖玛游戏”，问最多能消除多少个球。
+分析 暴力枚举在哪个位置插入球，计算答案，维护全局最大值即可。
+可以使用双指针，也可以借助 vector。</description>
+    </item>
+    
     <item>
       <title>ZAFU 2022.07.06 个人赛题解</title>
       <link>https://acm.rogery.dev/post/2022-07/sj1/</link>

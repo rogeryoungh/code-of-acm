@@ -165,6 +165,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>HDU6975 Forgiving Matching</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定文本串 $S$ 和模式串 $T$，对每个位置进行匹配，得到失配次数。
+统计此失配次数，计算前缀和。
+分析 我是没料到 HDOJ 没有 M_PI，CE 了几发。
+FFT 字符串匹配模板题，我在 ZAFU Wiki 中讲过，即对每个字符卷积。
+#include &#34;template/basic/complex.hpp&#34; const int maxn = 1 &lt;&lt; 20; using img = Complex&lt;double&gt;; using poly_t = vector&lt;img&gt;; poly_t w; #include &#34;template/poly-fft/fft_init.hpp&#34; #include &#34;template/poly-fft/fft.hpp&#34; char a[maxn], b[maxn]; int sum[maxn], ans[maxn]; char ch[] = &#34;0123456789*&#34;; int main() { w = fft_init(maxn); int ttt = rr(); while (ttt--) { int n = rr(), m = rr(); fill(sum, sum &#43; m &#43; n &#43; 12, 0); fill(ans, ans &#43; m &#43; 12, 0); int lim = getlim(m, n); scanf(&#34;%s %s&#34;, b, a); int tsum = 0; for (int i = 0; i &lt; m - 1; i&#43;&#43;) { tsum &#43;= b[i] == &#39;*&#39;; tsum &#43;= a[i] == &#39;*&#39;; } tsum &#43;= a[m - 1] == &#39;*&#39;; reverse(a, a &#43; m &#43; 1); for (int k = 0; k &lt;= 10; k&#43;&#43;) { poly_t SS(lim); for (int i = 0; i &lt; n; i&#43;&#43;) SS[i]....</p>
+  </section>
+  <footer class="entry-footer">July 30, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to HDU6975 Forgiving Matching" href="https://acm.rogery.dev/post/2021-07/hdu6975/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P4173 残缺的字符串</h2>
   </header>
   <section class="entry-content">
@@ -325,21 +340,6 @@ int main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l 
   </section>
   <footer class="entry-footer">April 30, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P2261 余数求和" href="https://acm.rogery.dev/post/2021-04/p2261/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P1314 聪明的质检员</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 对于一个区间 $[l_i,r_i]$，计算矿石在这个区间上的检验值 $y_i$：
-$$ y_i=\sum_{j=l_i}^{r_i}[w_j \geqslant W] \times \sum_{j=l_i}^{r_i}[w_j \geqslant W]v_j $$
-记检验结果为 $y=\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。
-分析 注意到 $y(w)$ 是关于 $W$ 的递减函数，对 $w$ 在 $[w_{\min},w_{\max}]$ 上进行二分。
-const ll MN = 2e5 &#43; 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; ll n, m, s; int main() { n = rr(), m = rr(), s = rr(); ll minw = 0x3f3f3f3f, maxw = 0; f1[0] = f2[0] = 0; for (ll i = 1; i &lt;= n; i&#43;&#43;) { ww[i] = rr(), vv[i] = rr(); maxw = max(ww[i], maxw); minw = min(ww[i], minw); } for (ll i = 1; i &lt;= m; i&#43;&#43;) { li[i] = rr(), ri[i] = rr(); } ll l = minw, r = maxw &#43; 1; while (l &lt; r) { int mid = (l &#43; r) &gt;&gt; 1; if (sum(mid) &lt;= s) r = mid; else l = mid &#43; 1; } ll rst = min(sum(l - 1) - s, s - sum(l)); printf(&#34;%lld&#34;, rst); return 0; } 区间求和可以用前缀和优化。...</p>
-  </section>
-  <footer class="entry-footer">April 13, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P1314 聪明的质检员" href="https://acm.rogery.dev/post/2021-04/p1314/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

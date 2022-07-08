@@ -165,6 +165,24 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>NC11255B Sample Game</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定生成 $1$ 到 $n$ 数字的概率分布，不断生成随机数 $x$ 直到 $x$ 不是已经生成过的最大的数停止，求生成次数平方的期望。
+分析 设期望的随机次数为 $f_x = E(x)$，我们需要计算的次数为 $g_x = E(x^2)$。
+关于 $f_i$ 的 DP 是显然的，计算有
+$$ f_x = \sum_{i = 1}^{x - 1} p_i &#43; \sum_{i = x}^n p_i(1 &#43; f_i) = 1 &#43; \sum_{i = x}^n p_i f_i $$
+容易观察到
+$$ f_{x &#43; 1} =(1 - p_x) f_x \Rightarrow f_x = \prod_{i = x}^n \frac{1}{1 - p_x} $$
+接下来需要一个套路
+$$ E((x &#43; 1)^2) = E(x^2) &#43; 2 E(x) &#43; 1 $$...</p>
+  </section>
+  <footer class="entry-footer">October 19, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to NC11255B Sample Game" href="https://acm.rogery.dev/post/2021-10/nc11255b/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P3052 Cows in a Skyscraper G</h2>
   </header>
   <section class="entry-content">
@@ -307,21 +325,6 @@ const ll mod = 1000000007, inv2 = 500000004; const int maxn = 200001; ll n, prim
   </section>
   <footer class="entry-footer">August 15, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to LOJ6053 简单的函数" href="https://acm.rogery.dev/post/2021-08/loj6053/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>HDU6975 Forgiving Matching</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 给定文本串 $S$ 和模式串 $T$，对每个位置进行匹配，得到失配次数。
-统计此失配次数，计算前缀和。
-分析 我是没料到 HDOJ 没有 M_PI，CE 了几发。
-FFT 字符串匹配模板题，我在 ZAFU Wiki 中讲过，即对每个字符卷积。
-#include &#34;template/basic/complex.hpp&#34; const int maxn = 1 &lt;&lt; 20; using img = Complex&lt;double&gt;; using poly_t = vector&lt;img&gt;; poly_t w; #include &#34;template/poly-fft/fft_init.hpp&#34; #include &#34;template/poly-fft/fft.hpp&#34; char a[maxn], b[maxn]; int sum[maxn], ans[maxn]; char ch[] = &#34;0123456789*&#34;; int main() { w = fft_init(maxn); int ttt = rr(); while (ttt--) { int n = rr(), m = rr(); fill(sum, sum &#43; m &#43; n &#43; 12, 0); fill(ans, ans &#43; m &#43; 12, 0); int lim = getlim(m, n); scanf(&#34;%s %s&#34;, b, a); int tsum = 0; for (int i = 0; i &lt; m - 1; i&#43;&#43;) { tsum &#43;= b[i] == &#39;*&#39;; tsum &#43;= a[i] == &#39;*&#39;; } tsum &#43;= a[m - 1] == &#39;*&#39;; reverse(a, a &#43; m &#43; 1); for (int k = 0; k &lt;= 10; k&#43;&#43;) { poly_t SS(lim); for (int i = 0; i &lt; n; i&#43;&#43;) SS[i]....</p>
-  </section>
-  <footer class="entry-footer">July 30, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to HDU6975 Forgiving Matching" href="https://acm.rogery.dev/post/2021-07/hdu6975/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
