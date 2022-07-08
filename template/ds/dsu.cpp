@@ -1,3 +1,9 @@
+#include <vector>
+using namespace std;
+
+// @description 朴素并查集
+// @problem https://judge.yosupo.jp/problem/unionfind
+
 struct DSU {
 	vector<int> fa;
 	DSU(int n) : fa(n) {
@@ -5,9 +11,7 @@ struct DSU {
 			fa[i] = i;
 	}
 	int find(int x) {
-		if (fa[x] == x)
-			return x;
-		return fa[x] = find(fa[x]);
+		return fa[x] == x ? x : fa[x] = find(fa[x]);
 	}
 	void merge(int x, int y) {
 		x = find(x), y = find(y);
