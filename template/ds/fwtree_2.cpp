@@ -1,37 +1,31 @@
+#include <vector>
+using namespace std;
+
+// @description 区间加 & 区间更新（树状数组实现）
+// @problem https://loj.ac/p/132
+// @dependices
+
+#include "./fwtree.cpp"
+
 template <class T>
 struct fwtree_2 {
-	int len;
-	vector<T> v1, v2, u;
-	fwtree_2(int l = 0) : len(l), u(len), v1(len), v2(len) {}
-	void init(const vector<T> &a) {
-		for (int i = 1; i < len; i++) {
-			u[i] += a[i];
-			int j = i + (i & -i);
-			if (j < len)
-				u[j] += u[i];
+	fwtree<T> f1, f2;
+	vector<T> u;
+	fwtree_2(int n = 0) : f1(n), f2(n) {}
+	void init(const vector<T> &v) {
+		u = v;
+		for (int i = 1; i < v.size(); i++) {
+			u[i] += u[i - 1];
 		}
 	}
-	void add(int l, int r, T k) {
-		add(v1, l, k);
-		add(v1, r + 1, -k);
-		add(v2, l, l * k);
-		add(v2, r + 1, -(r + 1) * k);
+	void add(int l, int r, const T &t) {
+		f1.add(l, t), f2.add(l, l * t);
+		f1.add(r + 1, -t), f2.add(r + 1, -(r + 1) * t);
 	}
-	T sum(int l, int r) {
+	T sum(int i) const {
+		return T(i + 1) * f1.sum(i) + u[i] - f2.sum(i);
+	}
+	T sum(int l, int r) const {
 		return sum(r) - sum(l - 1);
-	}
-  private:
-	void add(vector<T> &v, int i, T x) {
-		for (; i < len; i += i & -i)
-			v[i] += x;
-	}
-	T sum(vector<T> &v, int i) {
-		T sum = 0;
-		for (; i > 0; i -= i & -i)
-			sum += v[i];
-		return sum;
-	}
-	T sum(int i) {
-		return T(i + 1) * sum(v1, i) + sum(u, i) - sum(v2, i);
 	}
 };

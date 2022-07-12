@@ -10,11 +10,14 @@ struct DSU {
 		for (int i = 0; i < n; i++)
 			fa[i] = i;
 	}
-	int find(int x) {
-		return fa[x] == x ? x : fa[x] = find(fa[x]);
+	int leader(int x) {
+		return fa[x] == x ? x : fa[x] = leader(fa[x]);
+	}
+	bool same(int x, int y) {
+		return leader(x) == leader(y);
 	}
 	void merge(int x, int y) {
-		x = find(x), y = find(y);
+		x = leader(x), y = leader(y);
 		fa[x] = y;
 	}
 };
