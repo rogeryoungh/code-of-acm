@@ -165,6 +165,20 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>ZAFU 2022.07.12 个人赛题解</h2>
+  </header>
+  <section class="entry-content">
+    <p>A - CF545A 给定一个 $n \times n$ 的矩阵，当 $a_{ij}=1$ 时第 $i$ 辆车翻车，当$a_{ij}=2$ 时第 $j$ 辆车翻车，当 $a_{ij}=3$ 时第 $i$ 辆车和第 $j$ 辆车一起翻车。
+问最后有几辆车没翻车，输出没翻的车的编号。
+分析 使用一个数组来纪录每一辆车的状态，最后按照要求输出即可。
+int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; vis(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { for (int j = 1; j &lt;= n; j&#43;&#43;) { int aij; cin &gt;&gt; aij; if (aij == 1) { vis[i] = true; } else if (aij == 2) { vis[j] = true; } else if (aij == 3) { vis[i] = vis[j] = true; } } } int ans = 0; for (int i = 1; i &lt;= n; i&#43;&#43;) { ans &#43;= vis[i]; } cout &lt;&lt; n - ans &lt;&lt; endl; for (int i = 1; i &lt;= n; i&#43;&#43;) { if (not vis[i]) { cout &lt;&lt; i &lt;&lt; &#39; &#39;; } } return 0; } B - CF259B 给定一个 $3*3$ 的矩阵，主对角线为 $0$，构造主对角线的三个元素使得满足行、列和对角线的整数之和相等。...</p>
+  </section>
+  <footer class="entry-footer">July 12, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to ZAFU 2022.07.12 个人赛题解" href="https://acm.rogery.dev/post/2022-07/sj3/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>ZAFU 2022.07.08 个人赛题解</h2>
   </header>
   <section class="entry-content">
@@ -300,23 +314,6 @@ int main() { int N; string s; cin &gt;&gt; N &gt;&gt; s; for (int i = 0; i &lt; 
   </section>
   <footer class="entry-footer">February 27, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to AtCoder Regular Contest 136 (ABD)" href="https://acm.rogery.dev/post/2022-02/arc136/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>AtCoder Beginner Contest 241 (A-E)</h2>
-  </header>
-  <section class="entry-content">
-    <p>这场感觉好卡。
-A - Digit Machine 如果当前数字是 $k$，按下一次后会变成 $a_k$。求按 $3$ 次后的数字。
-分析 模拟即可。
-int main() { vector&lt;int&gt; v(10); for (auto &amp;vi : v) cin &gt;&gt; vi; int x = 0; for (int i = 0; i &lt; 3; i&#43;&#43;) x = v[x]; cout &lt;&lt; x; return 0; } 全部代码请看：Atcoder/ABC241/ABC241A.cpp。
-B - Pasta 把数组 $\{b_m\}$ 的数字映射到 $\{a_n\}$ 上，不能重复。问是否能够完全映射。
-分析 用 mutiset&lt;int&gt; 模拟即可。
-int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; multiset&lt;int&gt; s; for (int i = 0; i &lt; n; i&#43;&#43;) { int t; cin &gt;&gt; t; s....</p>
-  </section>
-  <footer class="entry-footer">February 26, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to AtCoder Beginner Contest 241 (A-E)" href="https://acm.rogery.dev/post/2022-02/abc241/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

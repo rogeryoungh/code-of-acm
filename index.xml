@@ -7,7 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© 2021 [Roger Young](https://acm.rogery.dev)</copyright>
-    <lastBuildDate>Fri, 08 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ZAFU 2022.07.12 个人赛题解</title>
+      <link>https://acm.rogery.dev/post/2022-07/sj3/</link>
+      <pubDate>Tue, 12 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2022-07/sj3/</guid>
+      <description>A - CF545A 给定一个 $n \times n$ 的矩阵，当 $a_{ij}=1$ 时第 $i$ 辆车翻车，当$a_{ij}=2$ 时第 $j$ 辆车翻车，当 $a_{ij}=3$ 时第 $i$ 辆车和第 $j$ 辆车一起翻车。
+问最后有几辆车没翻车，输出没翻的车的编号。
+分析 使用一个数组来纪录每一辆车的状态，最后按照要求输出即可。
+int main() { int n; cin &amp;gt;&amp;gt; n; vector&amp;lt;int&amp;gt; vis(n + 1); for (int i = 1; i &amp;lt;= n; i++) { for (int j = 1; j &amp;lt;= n; j++) { int aij; cin &amp;gt;&amp;gt; aij; if (aij == 1) { vis[i] = true; } else if (aij == 2) { vis[j] = true; } else if (aij == 3) { vis[i] = vis[j] = true; } } } int ans = 0; for (int i = 1; i &amp;lt;= n; i++) { ans += vis[i]; } cout &amp;lt;&amp;lt; n - ans &amp;lt;&amp;lt; endl; for (int i = 1; i &amp;lt;= n; i++) { if (not vis[i]) { cout &amp;lt;&amp;lt; i &amp;lt;&amp;lt; &amp;#39; &amp;#39;; } } return 0; } B - CF259B 给定一个 $3*3$ 的矩阵，主对角线为 $0$，构造主对角线的三个元素使得满足行、列和对角线的整数之和相等。</description>
+    </item>
+    
     <item>
       <title>ZAFU 2022.07.08 个人赛题解</title>
       <link>https://acm.rogery.dev/post/2022-07/sj2/</link>

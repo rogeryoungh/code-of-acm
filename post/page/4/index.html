@@ -165,6 +165,23 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P5171 Earthquake</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定 $a,b,c$，求满足方程 $ax &#43; by \leqslant c$ 的非负整数解的个数。
+分析 令 $n = \lfloor c / a \rfloor$，容易推出让我们求的是
+$$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{c - ax}{b} \right\rfloor $$
+直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \to (n - x)$，代入有
+$$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{ax &#43; c - an}{b} \right\rfloor $$
+显然 $c - an$ 是 c % a，于是套类欧即可
+附：代码，展开</p>
+  </section>
+  <footer class="entry-footer">October 28, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P5171 Earthquake" href="https://acm.rogery.dev/post/2021-10/p5171/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>NC11255B Sample Game</h2>
   </header>
   <section class="entry-content">
@@ -312,19 +329,6 @@ $$ (1 - r) S_i = 1 &#43; \sum_{n = 1}^{\infty} n^i r^n - \sum_{n = 1}^{\infty} (
   </section>
   <footer class="entry-footer">September 9, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P5349 幂" href="https://acm.rogery.dev/post/2021-09/p5349/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>LOJ6053 简单的函数</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 给定积性函数 $f(p^c) = p \oplus c$。对 $1000000007$ 取模求前缀和。
-分析 Min25 板子题。
-const ll mod = 1000000007, inv2 = 500000004; const int maxn = 200001; ll n, prime[maxn], cnt, w[maxn], s[maxn], c[maxn]; ll sqrt_n, m; ll mo(ll x) { return (x &#43; mod) % mod; } ll f_p(ll p, ll e) { return p ^ e; } int id(ll x) { return x &lt;= sqrt_n ? x : m - (n / x) &#43; 1; } ll F(long long n, int k) { if (n &lt;= prime[k]) return 0; ll ret = s[id(n)] - s[prime[k]]; for (int i = k &#43; 1; i &lt;= cnt &amp;&amp; prime[i] * prime[i] &lt;= n; i&#43;&#43;) { ll pi = prime[i], pk = pi; for (int c = 1; pk * pi &lt;= n; c&#43;&#43;, pk *= pi) ret &#43;= f_p(pi, c) * F(n / pk, i) &#43; f_p(pi, c &#43; 1); } return mo(ret); } int main() { n = rr(); sqrt_n = sqrt(n &#43; 0....</p>
-  </section>
-  <footer class="entry-footer">August 15, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to LOJ6053 简单的函数" href="https://acm.rogery.dev/post/2021-08/loj6053/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

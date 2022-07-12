@@ -165,6 +165,24 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>CF1384B2 Koa and the Beach</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 海里每一个位置都有一个深度，而且水里随着时间有锯齿状周期为 $2k$ 的潮汐。
+当潮汐与深度之和大于给定值 $l$ 时 Koa 会溺水，游泳、海岸、岛上永远是安全的。
+在任意时间 Koa 可以选择游到 $x&#43;1$ 或停留在 $x$，试问 Koa 是否能够安全的从海岸 $0$ 到达岛上 $n&#43;1$。
+分析 开始的想法是随着时间 DP，更好的解法是贪心。
+若一个位置在水位最高时仍不会溺水，则称这个位置是安全的，并且可以任意选择出发时机。
+即安全位置之间是相互独立的，我们只需判断可达性，尽量到达每一个安全位置。若之后 $2k$ 个位置没有安全位置，必死。
+Koa 的最优决策是在刚退潮时出发，如果能走就尽量往前走，不能走就等，等到涨潮就说明不存在通过方法。
+int main() { int ttt = rr(); while (ttt--) { int n = rr(), k = rr(), l = rr(); int flag = 0; int last = k; for (ll i = 1; i &lt;= n; i&#43;&#43;) { int d = rr(); flag &#43;= l &lt; d; if (l - d &gt;= k) last = k; else last = min(last - 1, l - d); flag &#43;= abs(last) &gt; l - d; } if (flag) printf(&#34;No\n&#34;); else printf(&#34;Yes\n&#34;); } return 0; } </p>
+  </section>
+  <footer class="entry-footer">September 20, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to CF1384B2 Koa and the Beach" href="https://acm.rogery.dev/post/2020-09/cf1384b2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P1004 方格取数</h2>
   </header>
   <section class="entry-content">

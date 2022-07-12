@@ -165,6 +165,23 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>AtCoder Beginner Contest 241 (A-E)</h2>
+  </header>
+  <section class="entry-content">
+    <p>这场感觉好卡。
+A - Digit Machine 如果当前数字是 $k$，按下一次后会变成 $a_k$。求按 $3$ 次后的数字。
+分析 模拟即可。
+int main() { vector&lt;int&gt; v(10); for (auto &amp;vi : v) cin &gt;&gt; vi; int x = 0; for (int i = 0; i &lt; 3; i&#43;&#43;) x = v[x]; cout &lt;&lt; x; return 0; } 全部代码请看：Atcoder/ABC241/ABC241A.cpp。
+B - Pasta 把数组 $\{b_m\}$ 的数字映射到 $\{a_n\}$ 上，不能重复。问是否能够完全映射。
+分析 用 mutiset&lt;int&gt; 模拟即可。
+int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; multiset&lt;int&gt; s; for (int i = 0; i &lt; n; i&#43;&#43;) { int t; cin &gt;&gt; t; s....</p>
+  </section>
+  <footer class="entry-footer">February 26, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to AtCoder Beginner Contest 241 (A-E)" href="https://acm.rogery.dev/post/2022-02/abc241/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Codeforces Round #773 (Div. 2)  (A-D)</h2>
   </header>
   <section class="entry-content">
@@ -310,20 +327,6 @@ vi get_inv(const vi &amp;a, int p) { int n = a.size() - 1; vi prod(n &#43; 1); p
   </section>
   <footer class="entry-footer">January 29, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P5431 乘法逆元 2" href="https://acm.rogery.dev/post/2022-01/p5431/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P1637 三元上升子序列</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 给定一个序列，求其中三元上升子序列的个数
-对于 $i,j,k$，若 $a_i &lt; a_j &lt; a_k$，则是一个满足要求的三元对。 分析 考虑枚举中间的数 $j$，设其左边有 $a$ 个数比它小，右边有 $b$ 个数比它大，则中间为 $j$ 的三元对个数为 $ab$。
-至此就和逆序对类似了，离散化后用树状数组即可。
-#include &#34;template/ds/fwtree/0.hpp&#34; int main() { int n = rr(); vector&lt;pii&gt; v(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { v[i] = {rr(), i}; } sort(v.begin(), v.end(), [](pii a, pii b) { if (a.first == b.first) return a.second &gt; b.second; return a.first &lt; b.first; }); fwtree_1&lt;int&gt; tr(n &#43; 1); vector&lt;ll&gt; al(n &#43; 1), ar(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { al[i] = tr....</p>
-  </section>
-  <footer class="entry-footer">January 28, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P1637 三元上升子序列" href="https://acm.rogery.dev/post/2022-01/p1637/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
