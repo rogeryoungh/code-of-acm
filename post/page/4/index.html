@@ -165,6 +165,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P5179 Fraction</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 求最简分数 $p/q$ 满足
+$$ \frac{a}{b} &lt; \frac{p}{q} &lt; \frac{c}{d} $$
+若有多组解，输出 $q$ 最小的；仍有多组解，输出 $p$ 最小的一组。
+分析 分类讨论：
+首先当 $\lfloor a/b \rfloor &#43; 1 \leqslant \lceil c/d \rceil - 1$ 时，说明两个数之间存在一个整数，直接返回 $p = 1, q = \lfloor a / b \rfloor &#43; 1$ 即可。 其次当 $a = 0$ 时，直接解得 $p = 1, q = \lfloor d / c \rfloor &#43; 1$。 当 $a &lt; b$ 时，这意味着我们无法直接求解。考虑翻转，转化问题为 $$ \frac{d}{c} &lt; \frac{q}{p} &lt; \frac{b}{a} $$ 递归即可。 当 $a &gt; b$ 时，考虑求解 $$ \frac{a}{b} - \left\lfloor\frac{a}{b}\right\rfloor &lt; \frac{p}{q} - \left\lfloor\frac{a}{b}\right\rfloor &lt; \frac{c}{d} - \left\lfloor\frac{a}{b}\right\rfloor $$ 也是递归即可，还原出结果以后返回。 唯一需要确认的就是，翻转后仍是最优解，考虑反证。...</p>
+  </section>
+  <footer class="entry-footer">October 30, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P5179 Fraction" href="https://acm.rogery.dev/post/2021-10/p5179/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P5171 Earthquake</h2>
   </header>
   <section class="entry-content">
@@ -311,24 +326,6 @@ $$ \begin{aligned} S (n) &amp;= \sum_{i = 1}^n \sum_{d \mid i} d \left[ \gcd \le
   </section>
   <footer class="entry-footer">September 22, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to HDU6750 Function" href="https://acm.rogery.dev/post/2021-09/hdu6750/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P5349 幂</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 即求
-$$ S = \sum_{n=0}^\infty f(n)r^n $$
-分析 换序
-$$ S = \sum_{n = 0}^{\infty} \left( \sum_{i = 0}^m f_i n^i \right) r^n = \sum_{i = 0}^m f_i \sum_{n = 0}^{\infty} n^i r^n $$
-令
-$$ S_i = \sum_{n = 0}^{\infty} n^i r^n $$
-套路的逐项相减，主动的凑二项式
-$$ (1 - r) S_i = 1 &#43; \sum_{n = 1}^{\infty} n^i r^n - \sum_{n = 1}^{\infty} (n - 1)^i r^n = 1 &#43; \sum_{n = 0}^{\infty} r^{n &#43; 1} \sum_{j = 0}^{i - 1} \binom{k}{j} n^j $$...</p>
-  </section>
-  <footer class="entry-footer">September 9, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P5349 幂" href="https://acm.rogery.dev/post/2021-09/p5349/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

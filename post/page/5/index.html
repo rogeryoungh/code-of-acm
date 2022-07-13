@@ -165,6 +165,24 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P5349 幂</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 即求
+$$ S = \sum_{n=0}^\infty f(n)r^n $$
+分析 换序
+$$ S = \sum_{n = 0}^{\infty} \left( \sum_{i = 0}^m f_i n^i \right) r^n = \sum_{i = 0}^m f_i \sum_{n = 0}^{\infty} n^i r^n $$
+令
+$$ S_i = \sum_{n = 0}^{\infty} n^i r^n $$
+套路的逐项相减，主动的凑二项式
+$$ (1 - r) S_i = 1 &#43; \sum_{n = 1}^{\infty} n^i r^n - \sum_{n = 1}^{\infty} (n - 1)^i r^n = 1 &#43; \sum_{n = 0}^{\infty} r^{n &#43; 1} \sum_{j = 0}^{i - 1} \binom{k}{j} n^j $$...</p>
+  </section>
+  <footer class="entry-footer">September 9, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P5349 幂" href="https://acm.rogery.dev/post/2021-09/p5349/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>LOJ6053 简单的函数</h2>
   </header>
   <section class="entry-content">
@@ -316,25 +334,6 @@ $$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$
   </section>
   <footer class="entry-footer">May 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P4721 分治 FFT" href="https://acm.rogery.dev/post/2021-05/p4721/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P2522 Problem B</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 即求
-$$ \sum_{i=a}^b \sum_{j=c}^d [\gcd(i,j) = k] $$
-分析 容易想到，独立出函数 $f(k)$ 使得
-$$ f(k) = \sum_{i=1}^x \sum_{j=1}^y [\gcd(i,j) = k] $$
-利用 Mobius 反演化简，设 $F(d)$
-$$ F(n) = \sum_{n \mid d} f(d) = \sum_{i=1}^x \sum_{j=1}^y [n \mid i][n \mid j] = \left\lfloor \frac{x}{n} \right\rfloor \left\lfloor \frac{y}{n} \right\rfloor $$
-反演化简有
-$$ f(n) = \sum_{n \mid d} \mu\left(\frac{d}{n}\right)F(d) = \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tn} \right\rfloor \left\lfloor \frac{y}{tn} \right\rfloor $$
-预处理出 $\mu(t)$ 的前缀和，剩下的就是一个二重分块了。...</p>
-  </section>
-  <footer class="entry-footer">May 19, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P2522 Problem B" href="https://acm.rogery.dev/post/2021-05/p2522/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

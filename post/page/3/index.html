@@ -165,6 +165,23 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P5431 乘法逆元 2</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定 $n$ 个正整数 $\{a_i\}$ 和 $k$，求在模 $p$ 意义下的
+$$ \sum_{i=1}^n \frac{k^i}{a_i} \bmod p $$
+分析 逐个求逆元是 $O(n \log p)$ 的，肯定会 T，需要想想别的办法。
+批量求逆元的一个技巧，先求出 $a_i$ 的前缀积，然后求出全部积的逆元，再逐个往前推。即
+$$ (a_n)^{-1} = \left(\prod_{i=1}^{n-1} a_i\right) \left(\prod_{i=1}^n a_i\right)^{-1} $$
+显然，$\{a_n\}$ 中不能有 $0$。
+vi get_inv(const vi &amp;a, int p) { int n = a.size() - 1; vi prod(n &#43; 1); prod[0] = 1; for (int i = 1; i &lt;= n; i&#43;&#43;) { prod[i] = 1ll * prod[i - 1] * a[i] % p; } prod[n] = qpow(prod[n], p - 2, p); vi iva(n &#43; 1); for (int i = n; i &gt;= 1; i--) { iva[i] = 1ll * prod[i] * prod[i - 1] % p; prod[i - 1] = 1ll * prod[i] * a[i] % p; } return iva; } </p>
+  </section>
+  <footer class="entry-footer">January 29, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P5431 乘法逆元 2" href="https://acm.rogery.dev/post/2022-01/p5431/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P1637 三元上升子序列</h2>
   </header>
   <section class="entry-content">
@@ -332,21 +349,6 @@ $$ s_i = [i \ \text{is a period of}\ S] $$
   </section>
   <footer class="entry-footer">November 2, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P1393 Mivik 的标题" href="https://acm.rogery.dev/post/2021-11/p1393/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P5179 Fraction</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 求最简分数 $p/q$ 满足
-$$ \frac{a}{b} &lt; \frac{p}{q} &lt; \frac{c}{d} $$
-若有多组解，输出 $q$ 最小的；仍有多组解，输出 $p$ 最小的一组。
-分析 分类讨论：
-首先当 $\lfloor a/b \rfloor &#43; 1 \leqslant \lceil c/d \rceil - 1$ 时，说明两个数之间存在一个整数，直接返回 $p = 1, q = \lfloor a / b \rfloor &#43; 1$ 即可。 其次当 $a = 0$ 时，直接解得 $p = 1, q = \lfloor d / c \rfloor &#43; 1$。 当 $a &lt; b$ 时，这意味着我们无法直接求解。考虑翻转，转化问题为 $$ \frac{d}{c} &lt; \frac{q}{p} &lt; \frac{b}{a} $$ 递归即可。 当 $a &gt; b$ 时，考虑求解 $$ \frac{a}{b} - \left\lfloor\frac{a}{b}\right\rfloor &lt; \frac{p}{q} - \left\lfloor\frac{a}{b}\right\rfloor &lt; \frac{c}{d} - \left\lfloor\frac{a}{b}\right\rfloor $$ 也是递归即可，还原出结果以后返回。 唯一需要确认的就是，翻转后仍是最优解，考虑反证。...</p>
-  </section>
-  <footer class="entry-footer">October 30, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P5179 Fraction" href="https://acm.rogery.dev/post/2021-10/p5179/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

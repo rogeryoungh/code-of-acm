@@ -7,7 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© 2021 [Roger Young](https://acm.rogery.dev)</copyright>
-    <lastBuildDate>Tue, 12 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 13 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ZAFU 2022.07.13 个人赛题解</title>
+      <link>https://acm.rogery.dev/post/2022-07/sj4/</link>
+      <pubDate>Wed, 13 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2022-07/sj4/</guid>
+      <description>A - ABC143C 给定一串由小写字母组成的字符串 $S$，两个相同的相邻字母可以合并，问最后字符串的长度。
+分析 从前往后枚举，只要当前字母和下一个字母不同就让 $ans + 1$。
+int main() { int n; string s; cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; s; s.push_back(&amp;#39;$&amp;#39;); int ans = 0; for (int i = 1; i &amp;lt; s.size(); i++) { if (s[i] != s[i - 1]) { ans += 1; } } cout &amp;lt;&amp;lt; ans; return 0; } B - CF451B 给定长度为 $n$ 的不含相同数字的序列，判断是否可以翻转一段子区间，使这个数组递增。
+分析 寻找序列的拐点。如果拐点数量不等于 $2$，则答案是显然的。
+如果恰有两个拐点，则反转后判断一下是否排序即可。
+int main() { int n; cin &amp;gt;&amp;gt; n; vector&amp;lt;ll&amp;gt; v(n + 2); v[0] = -1, v[n + 1] = 1E9 + 9; for (int i = 1; i &amp;lt;= n; i++) { cin &amp;gt;&amp;gt; v[i]; } vector&amp;lt;int&amp;gt; pos; for (int i = 1; i &amp;lt;= n; i++) { if ((v[i] - v[i - 1]) * (v[i + 1] - v[i]) &amp;lt; 0) { pos.</description>
+    </item>
+    
     <item>
       <title>ZAFU 2022.07.12 个人赛题解</title>
       <link>https://acm.rogery.dev/post/2022-07/sj3/</link>

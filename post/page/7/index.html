@@ -165,6 +165,23 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P3842 线段</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 在 $n \times n$ 的格上，在每行中各有一条线段 $(i, l_i) \to (i, r_i)$。
+你从 $(1,1)$ 出发，只能沿着格子直走，最终走到 $(n,n)$。要求沿途经过所有的线段，且所走路程长度尽量的短。
+分析 显然是一行一行的递推。维护两个数据，一个是走完该行后停留在左侧的，记作 ${\rm DP}_l$，相应的停留在右侧的记作 ${\rm DP}_r$。
+若停在左侧，可能从上一行的右侧走来，也可能是由左侧走来，故转移方程有
+$$ {\rm DP}_l[i] = r_i - l_i &#43; \min\{{\rm DP}_l[i - 1] &#43; |l_{i-1} - r_i|, {\rm DP}_r[i - 1] &#43; |r_{i - 1} - r_i|\} $$
+右侧类似，故可以写出代码
+int main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll i = 1; i &lt;= n; i&#43;&#43;) { ll l = rr(), r = rr(); ll tl = min(dpl &#43; abs(past_l - r), dpr &#43; abs(past_r - r)) &#43; r - l; ll tr = min(dpl &#43; abs(past_l - l), dpr &#43; abs(past_r - l)) &#43; r - l; dpl = tl, dpr = tr; past_l = l, past_r = r; } printf(&#34;%lld\n&#34;, min(dpl &#43; n - past_l, dpr &#43; n - past_r) &#43; n - 1); return 0; } </p>
+  </section>
+  <footer class="entry-footer">November 10, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P3842 线段" href="https://acm.rogery.dev/post/2020-11/p3842/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P1077 摆花</h2>
   </header>
   <section class="entry-content">
@@ -294,21 +311,6 @@ char ch[62510]; int solve(int win, int len) { int w = 0, l = 0; for (ll i = 0; i
   </section>
   <footer class="entry-footer">September 23, 2020&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P1042 乒乓球" href="https://acm.rogery.dev/post/2020-09/p1042/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P2181 对角线</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 凸 $n$ 边形中，任意三条对角线不共点，求所有对角线交点的个数。
-分析 注意到一个交点对应凸多边形 $4$ 个定点，于是等价于 $n$ 个点任选 $4$ 个点的选法种数，即
-$$ \binom{n}{4} = \frac{n(n-1)(n-2)(n-3)}{24} $$
-注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。
-int main() { unsigned long long n; scanf(&#34;%llu&#34;, &amp;n); n = n * (n - 1) / 2 * (n - 2) / 3 * (n - 3) / 4; printf(&#34;%llu&#34;, n); return 0; } </p>
-  </section>
-  <footer class="entry-footer">September 22, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P2181 对角线" href="https://acm.rogery.dev/post/2020-09/p2181/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

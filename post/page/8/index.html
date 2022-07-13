@@ -165,6 +165,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P2181 对角线</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 凸 $n$ 边形中，任意三条对角线不共点，求所有对角线交点的个数。
+分析 注意到一个交点对应凸多边形 $4$ 个定点，于是等价于 $n$ 个点任选 $4$ 个点的选法种数，即
+$$ \binom{n}{4} = \frac{n(n-1)(n-2)(n-3)}{24} $$
+注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。
+int main() { unsigned long long n; scanf(&#34;%llu&#34;, &amp;n); n = n * (n - 1) / 2 * (n - 2) / 3 * (n - 3) / 4; printf(&#34;%llu&#34;, n); return 0; } </p>
+  </section>
+  <footer class="entry-footer">September 22, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P2181 对角线" href="https://acm.rogery.dev/post/2020-09/p2181/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>CF1384B2 Koa and the Beach</h2>
   </header>
   <section class="entry-content">

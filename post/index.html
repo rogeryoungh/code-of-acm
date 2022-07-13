@@ -165,6 +165,22 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>ZAFU 2022.07.13 个人赛题解</h2>
+  </header>
+  <section class="entry-content">
+    <p>A - ABC143C 给定一串由小写字母组成的字符串 $S$，两个相同的相邻字母可以合并，问最后字符串的长度。
+分析 从前往后枚举，只要当前字母和下一个字母不同就让 $ans &#43; 1$。
+int main() { int n; string s; cin &gt;&gt; n &gt;&gt; s; s.push_back(&#39;$&#39;); int ans = 0; for (int i = 1; i &lt; s.size(); i&#43;&#43;) { if (s[i] != s[i - 1]) { ans &#43;= 1; } } cout &lt;&lt; ans; return 0; } B - CF451B 给定长度为 $n$ 的不含相同数字的序列，判断是否可以翻转一段子区间，使这个数组递增。
+分析 寻找序列的拐点。如果拐点数量不等于 $2$，则答案是显然的。
+如果恰有两个拐点，则反转后判断一下是否排序即可。
+int main() { int n; cin &gt;&gt; n; vector&lt;ll&gt; v(n &#43; 2); v[0] = -1, v[n &#43; 1] = 1E9 &#43; 9; for (int i = 1; i &lt;= n; i&#43;&#43;) { cin &gt;&gt; v[i]; } vector&lt;int&gt; pos; for (int i = 1; i &lt;= n; i&#43;&#43;) { if ((v[i] - v[i - 1]) * (v[i &#43; 1] - v[i]) &lt; 0) { pos....</p>
+  </section>
+  <footer class="entry-footer">July 13, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to ZAFU 2022.07.13 个人赛题解" href="https://acm.rogery.dev/post/2022-07/sj4/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>ZAFU 2022.07.12 个人赛题解</h2>
   </header>
   <section class="entry-content">
@@ -299,21 +315,6 @@ string what = &#34;abacaba&#34;; int N = what.length(); void solve() { int n; st
   </section>
   <footer class="entry-footer">March 12, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to Codeforces Round #657 (Div. 2)(A-C)" href="https://acm.rogery.dev/post/2022-03/cf1379/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>AtCoder Regular Contest 136 (ABD)</h2>
-  </header>
-  <section class="entry-content">
-    <p>后悔没把 D 写快点。
-A. A ↔ BB 给定一个长为 $N$ 的仅包含 ABC 的字符串 $S$。可以做以下两种操作
-把 A 替换为 BB 把 BB 替换为 A 求操作后 $S$ 的字典序最小是多少。
-分析 我赛时是想到 BA 可以变为 AB，从而降低字典序。
-int main() { int N; string s; cin &gt;&gt; N &gt;&gt; s; for (int i = 0; i &lt; s.size() - 1; i&#43;&#43;) { if (s[i] == &#39;B&#39; &amp;&amp; s[i &#43; 1] == &#39;B&#39;) { s[i] = &#39;A&#39;; s.erase(s.begin() &#43; i &#43; 1); } if (s[i] == &#39;B&#39; &amp;&amp; s[i &#43; 1] == &#39;A&#39;) { swap(s[i], s[i &#43; 1]); } } cout &lt;&lt; s; return 0; } 全部代码请看：Atcoder/ARC136/ARC136A....</p>
-  </section>
-  <footer class="entry-footer">February 27, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to AtCoder Regular Contest 136 (ABD)" href="https://acm.rogery.dev/post/2022-02/arc136/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
