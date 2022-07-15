@@ -1,16 +1,21 @@
+#include <vector>
+using namespace std;
+
+// @description 小根堆
+// @problem https://www.luogu.com.cn/problem/P3378
+
 template <class T>
 struct Heap {
-	vector<int> v;
+	vector<T> v;
 	Heap() : v(1) {}
-	int update(int p) {
-		if (v[p] < v[p / 2]) {
+	bool update(int p) {
+		bool f = v[p] < v[p / 2];
+		if (f) {
 			swap(v[p], v[p / 2]);
-			return false;
-		} else {
-			return true;
 		}
+		return !f;
 	}
-	int top() {
+	T top() {
 		return v[1];
 	}
 	void put(T x) {
