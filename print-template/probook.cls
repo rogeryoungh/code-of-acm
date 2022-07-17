@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{probook}[2021/03/16 v0.0.1 Program Document Class]
 
-\LoadClass[a4paper,oneside,UTF8,fontset=foundr]{ctexbook}
+\LoadClass[a4paper,oneside,UTF8,fontset=founder]{ctexbook}
 
 %%%% pronote 设置
 
