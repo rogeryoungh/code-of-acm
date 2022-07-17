@@ -4,6 +4,7 @@ using namespace std;
 // @description 树状数组
 // @problem https://judge.yosupo.jp/problem/point_add_range_sum
 // @problem https://loj.ac/p/130
+// @reference "ds/fwtree_2.cpp"
 
 template <class T>
 struct fwtree {

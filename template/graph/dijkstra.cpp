@@ -1,3 +1,16 @@
+#include <vector>
+#include <queue>
+using namespace std;
+
+const int N = 1E5 + 10;
+using pii = pair<int, int>;
+vector<pii> G[N];
+
+// @description Dijkstra 最短路
+// @problem https://www.luogu.com.cn/problem/P3371
+// @problem https://www.luogu.com.cn/problem/P4779
+// @problem https://www.luogu.com.cn/problem/P1629 也不是不能用
+
 auto dijkstra(int n, int s) {
 	vector<int> dis(n + 1, 1E9);
 	vector<char> vis(n + 1);

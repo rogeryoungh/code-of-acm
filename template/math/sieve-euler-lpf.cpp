@@ -1,0 +1,21 @@
+#include <vector>
+using namespace std;
+
+// @description 线性筛(LPF)
+// @problem https://www.luogu.com.cn/problem/P3383
+
+vector<int> lpf, primes;
+void Euler(int n) {
+	lpf.resize(n + 1);
+	for (int i = 2; i <= n; i++) {
+		if (!lpf[i])
+			lpf[i] = i, primes.push_back(i);
+		for (auto pj : primes) {
+			if (pj > (n - 1) / i)
+				break;
+			lpf[i * pj] = pj;
+			if (i % pj == 0)
+				break;
+		}
+	}
+}
