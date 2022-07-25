@@ -1,4 +1,10 @@
-template <class T>
+#include <vector>
+using namespace std;
+
+// @description 线段树
+// @problem https://www.luogu.com.cn/problem/P3374
+
+template <class T, T E = T()>
 struct SegmentTree {
 	vector<T> val;
 	int N;
@@ -7,11 +13,10 @@ struct SegmentTree {
 	SegmentTree(int n = 0) {
 		// 0 ~ N - 1
 		N = 2 << std::__lg(n + 1);
-		val.resize(N * 2);
+		val.resize(N * 2, E);
 	}
 	void build(const vector<T> &a) {
-		for (int i = 0; i < a.size(); i++)
-			val[i + N] = a[i];
+		std::copy(a.begin(), a.end(), val.begin() + N);
 		for (int i = N - 1; i >= 1; i--)
 			pull(i);
 	}
@@ -19,7 +24,7 @@ struct SegmentTree {
 		modify(i, x, 1, 0, N);
 	}
 	T query(int l, int r) {
-		return query(l, r, 1, 0, N);
+		return query(l, r + 1, 1, 0, N);
 	}
 
   private:
@@ -43,11 +48,11 @@ struct SegmentTree {
 			return val[p];
 		}
 		int M = (L + R) / 2;
-		T v = T();
+		T v = E;
 		if (l < M)
-			v += query(l, r, ls, L, M);
+			v = v + query(l, r, ls, L, M);
 		if (r > M)
-			v += query(l, r, rs, M, R);
+			v = v + query(l, r, rs, M, R);
 		return v;
 	}
 #undef ls

@@ -10,7 +10,7 @@ vector<pii> G[N];
 // @problem https://www.luogu.com.cn/problem/P1629 也不是不能用
 
 auto queue_bellman_ford(int n, int s) {
-	std::queue<int> q;
+	queue<int> q;
 	vector<int> dis(n + 1, 1E9);
 	dis[s] = 0;
 	q.push(s);

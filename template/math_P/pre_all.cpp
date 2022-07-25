@@ -10,7 +10,7 @@ int qpow(int a, int b = P - 2, int m = P) {
 	return ret;
 }
 
-vector<int> Inv{1, 1}, fac{1}, ifac{1};
+vector<int> iv{1, 1}, fac{1}, ifac{1};
 
 void pre_all(int n) {
 	Inv.resize(n + 1), fac.resize(n + 1), ifac.resize(n + 1);

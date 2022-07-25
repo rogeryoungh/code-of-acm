@@ -1,3 +1,10 @@
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+// @description 多项式乘法
+// @problem https://loj.ac/p/150
+
 const int P = 998244353;
 
 int qpow(int a, int b = P - 2, int m = P) {
@@ -28,7 +35,7 @@ void pre_w(int n) {
 		return;
 	w.resize(n);
 	for (int l = lim; l < n; l *= 2) {
-		int p = qpow(3, (P - 1) / l / 2, P);
+		int p = qpow(3, (P - 1) / l / 2);
 		for (int i = 0; i < l; i += 2) {
 			w[(l + i)] = w[(l + i) / 2];
 			w[l + i + 1] = 1ll * w[l + i] * p % P;
@@ -61,13 +68,11 @@ void intt(iter f, int n) {
 				int y = 1ll * w[j + l] * f[i + j + l] % P;
 				f[i + j] = mo(x + y), f[i + j + l] = mo(x - y + P);
 			}
-	const int iv = qpow(n);
+	const int ivn = P - (P - 1) / n;
 	for (int i = 0; i < n; i++)
-		f[i] = 1ll * f[i] * iv % P;
+		f[i] = 1ll * f[i] * ivn % P;
 	reverse(f + 1, f + n);
 }
-
-using Poly = vector<int>;
 
 Poly &mul(Poly &f, Poly &g, int n) {
 	f.resize(n), g.resize(n);
@@ -82,4 +87,22 @@ Poly operator*(Poly f, Poly g) {
 	int m = f.size() + g.size() - 1;
 	mul(f, g, get_lim(m));
 	return f.resize(m), f;
+}
+
+Poly operator+(Poly f, Poly g) {
+	int n = max(f.size(), g.size());
+	f.resize(n);
+	for (int i = 0; i < n; i++) {
+		f[i] = mo(f[i] + g[i]);
+	}
+	return f;
+}
+
+Poly operator-(Poly f, Poly g) {
+	int n = max(f.size(), g.size());
+	f.resize(n);
+	for (int i = 0; i < n; i++) {
+		f[i] = mo(f[i] - g[i] + P);
+	}
+	return f;
 }

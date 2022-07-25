@@ -21,6 +21,9 @@ struct DSU {
 	}
 	void merge(int x, int y) {
 		x = leader(x), y = leader(y);
+		if (sz[x] > sz[y]) {
+			swap(x, y);
+		}
 		sz[y] += sz[x], fa[x] = y;
 		sz[x] = 0;
 	}

@@ -15,14 +15,6 @@ struct fwtree {
 			v[i] += x;
 		}
 	}
-	void init(const vector<T> &a) {
-		for (int i = 1; i < n; i++) {
-			v[i] += a[i];
-			int j = i + (i & -i);
-			if (j < n)
-				v[j] += v[i];
-		}
-	}
 	T sum(int i) const {
 		T sum = T();
 		for (; i > 0; i -= i & -i)

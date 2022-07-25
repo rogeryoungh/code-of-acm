@@ -1,3 +1,10 @@
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+// @description 多项式牛顿迭代(m32, 卡常)
+// @problem https://loj.ac/p/150
+
 const int P = 998244353;
 
 int qpow(int a, int b = P - 2, int m = P) {
@@ -10,14 +17,55 @@ int qpow(int a, int b = P - 2, int m = P) {
 	return ret;
 }
 
-std::vector<int> w{1, 1}, Inv{1, 1}, fac{1}, ifac{1};
+#define OPERATOR(U, op)                                       \
+	friend inline U operator op(const U &lhs, const U &rhs) { \
+		return U(lhs) op## = rhs;                             \
+	}
+
+struct Z {
+	int v;
+	Z(int a = 0) : v(a) {}
+	Z &operator=(const int &m) {
+		v = m;
+		return *this;
+	}
+	Z pow(int n) const {
+		return qpow(v, n, P);
+	}
+	Z inv() const {
+		return qpow(v);
+	}
+	Z &operator+=(const Z &m) {
+		v = (v += m.v) >= P ? v - P : v;
+		return *this;
+	}
+	Z &operator-=(const Z &m) {
+		v = (v -= m.v) < 0 ? v + P : v;
+		return *this;
+	}
+	Z &operator*=(const Z &m) {
+		v = 1ll * v * m.v % P;
+		return *this;
+	}
+	Z &operator/=(const Z &m) {
+		return *this *= m.inv();
+	}
+	OPERATOR(Z, +);
+	OPERATOR(Z, -);
+	OPERATOR(Z, *);
+	OPERATOR(Z, /);
+	Z operator-() const {
+		return v == 0 ? 0 : P - v;
+	}
+	static int mod() {
+		return P;
+	}
+};
+
+vector<Z> w{1, 1}, iv{1, 1}, fac{1}, ifac{1};
 
 inline int get_lim(int m) {
 	return 2 << std::__lg(m - (m > 1));
-}
-
-int mo(int u) {
-	return u >= P ? u - P : u;
 }
 
 void pre_w(int n) {
@@ -27,24 +75,29 @@ void pre_w(int n) {
 		return;
 	w.resize(n);
 	for (int l = lim; l < n; l *= 2) {
-		int p = qpow(3, (P - 1) / l / 2, P);
+		Z p = qpow(3, (P - 1) / l / 2);
 		for (int i = 0; i < l; i += 2) {
 			w[(l + i)] = w[(l + i) / 2];
-			w[l + i + 1] = 1ll * w[l + i] * p % P;
+			w[l + i + 1] = w[l + i] * p;
 		}
 	}
 	lim = n;
 }
 
-void pre_inv(int n) {
-	int lim = Inv.size();
-	if (n <= lim)
-		return;
-	Inv.resize(n);
-	for (int i = lim; i < n; i++) {
-		Inv[i] = 1ll * Inv[P % i] * (P - P / i) % P;
+void pre_all(int n) {
+	iv.resize(n + 1), fac.resize(n + 1), ifac.resize(n + 1);
+	for (int i = 1; i <= n; i++) {
+		fac[i] = i * fac[i - 1];
 	}
-	lim = n;
+	ifac[n] = fac[n].inv(), iv[n] = Z(n).inv();
+	for (int i = n - 1; i > 0; i--) {
+		ifac[i] = ifac[i + 1] * (i + 1);
+		iv[i] = ifac[i] * fac[i - 1];
+	}
+}
+
+Z choose(int n, int m) {
+	return fac[n] * ifac[m] * ifac[n - m];
 }
 
 static int ntt_size = 0;
@@ -55,9 +108,9 @@ void ntt(iter f, int n) {
 	for (int l = n / 2; l; l >>= 1)
 		for (int i = 0; i < n; i += l * 2)
 			for (int j = 0; j < l; j++) {
-				int x = f[i + j], y = f[i + j + l];
-				f[i + j + l] = 1ll * (x - y + P) * w[j + l] % P;
-				f[i + j] = mo(x + y);
+				Z x = f[i + j], y = f[i + j + l];
+				f[i + j + l] = w[j + l] * (x - y);
+				f[i + j] = x + y;
 			}
 }
 
@@ -67,17 +120,16 @@ void intt(iter f, int n) {
 	for (int l = 1; l < n; l <<= 1)
 		for (int i = 0; i < n; i += l * 2)
 			for (int j = 0; j < l; j++) {
-				int x = f[i + j];
-				int y = 1ll * w[j + l] * f[i + j + l] % P;
-				f[i + j] = mo(x + y), f[i + j + l] = mo(x - y + P);
+				Z x = f[i + j], y = w[j + l] * f[i + j + l];
+				f[i + j] = x + y, f[i + j + l] = x - y;
 			}
-	const int iv = qpow(n);
+	const int ivn = P - (P - 1) / n;
 	for (int i = 0; i < n; i++)
-		f[i] = 1ll * f[i] * iv % P;
+		f[i] *= ivn;
 	reverse(f + 1, f + n);
 }
 
-struct Poly : vector<int> { // 大常数板子
+struct Poly : vector<Z> { // 卡常板子
 	using vector::vector;
 	bool isNTT = false;
 #define T (*this)
@@ -90,22 +142,24 @@ struct Poly : vector<int> { // 大常数板子
 	Poly cut(int m, int l = 0) const {
 		return {begin() + l, begin() + min(m + l, deg())};
 	}
-	friend Poly operator+(const Poly &f, const Poly &g) {
-		Poly h = Poly(f).redeg(max(f.deg(), g.deg()));
+	Poly &operator+=(const Poly &g) {
+		redeg(max(deg(), g.deg()));
 		for (int i = 0; i < g.deg(); i++)
-			h[i] = mo(h[i] + g[i]);
-		return h;
+			T[i] += g[i];
+		return T;
 	}
-	friend Poly operator-(const Poly &f, const Poly &g) {
-		Poly h = Poly(f).redeg(max(f.deg(), g.deg()));
+	Poly &operator-=(const Poly &g) {
+		redeg(max(deg(), g.deg()));
 		for (int i = 0; i < g.deg(); i++)
-			h[i] = mo(h[i] - g[i] + P);
-		return h;
+			T[i] -= g[i];
+		return T;
 	}
+	OPERATOR(Poly, +);
+	OPERATOR(Poly, -);
 	Poly operator*(int k) {
 		Poly f = T;
-		for (int &fi : f)
-			fi = 1ll * fi * k % P;
+		for (Z &fi : f)
+			fi *= k;
 		return f;
 	}
 	Poly &ntt(int n) {
@@ -122,7 +176,7 @@ struct Poly : vector<int> { // 大常数板子
 	static Poly &mul(Poly &f, Poly &g, int n) {
 		f.ntt(n), g.ntt(n);
 		for (int i = 0; i < n; i++)
-			f[i] = 1ll * f[i] * g[i] % P;
+			f[i] *= g[i];
 		return f.intt(n);
 	}
 	friend Poly operator*(Poly f, Poly g) {
@@ -132,14 +186,13 @@ struct Poly : vector<int> { // 大常数板子
 	Poly deriv() const {
 		Poly f(deg() - 1);
 		for (int i = 1; i < deg(); i++)
-			f[i - 1] = 1ll * i * T[i] % P;
+			f[i - 1] = i * T[i];
 		return f;
 	}
 	Poly integr() const {
 		Poly f(deg() + 1);
-		pre_inv(deg() + 1);
 		for (int i = deg(); i > 0; --i)
-			f[i] = 1ll * Inv[i] * T[i - 1] % P;
+			f[i] = iv[i] * T[i - 1];
 		return f;
 	}
 	Poly &fill0L(int m) {
@@ -155,12 +208,12 @@ struct Poly : vector<int> { // 大常数板子
 		mul(f2, nx, t);			  // 4E
 		redeg(t);
 		for (int i = t / 2; i < t; i++) {
-			T[i] = mo(P - f2[i]);
+			T[i] = -f2[i];
 		}
 		return T;
 	}
 	Poly inv(int m) const { // 10E
-		Poly x = {qpow(T[0])};
+		Poly x = {qpow(T[0].v)};
 		for (int t = 2; t < m * 2; t *= 2) {
 			x.invD(cut(t), x.cut(m), t);
 		}
@@ -174,10 +227,10 @@ struct Poly : vector<int> { // 大常数板子
 		Poly q = mul(x, u, t).cut(t / 2);	   // 6E
 		mul(q, g, t).fill0L(t);				   // 6E
 		for (int i = t / 2; i < min(t, deg()); i++)
-			q[i] = mo(q[i] - T[i] + P);
+			q[i] -= T[i];
 		mul(q, u, t); // 4E
 		for (int i = t / 2; i < t; i++)
-			x[i] = mo(P - q[i]);
+			x[i] = -q[i];
 		return x.cut(m);
 	}
 	Poly ln(int m) const {
@@ -187,19 +240,18 @@ struct Poly : vector<int> { // 大常数板子
 		if (m == 1)
 			return {1};
 		Poly f = {1, T[1]}, g = {1}, nf, ng = g;
-		pre_inv(get_lim(m));
 		for (int t = 4; t < m * 2; t <<= 1) {
 			nf = Poly(f).ntt(t);		// 2E
 			ng = g.invD(nf, ng, t / 2); // 3E
 			Poly q = cut(t / 2);
 			for (int i = 0; i < q.deg(); i++)
-				q[i] = 1ll * i * q[i] % P;
+				q[i] *= i;
 			mul(q, nf, t / 2); // 2E
 			for (int i = 0; i < t / 2; i++)
-				q[i] = (q[i] + 1ll * f[i] * (P - i)) % P;
+				q[i] -= i * f[i];
 			mul(q, ng, t); // 6E
 			for (int i = t / 2; i < min(t, deg()); i++)
-				q[i] = (T[i] + 1ll * q[i - t / 2] * Inv[i]) % P;
+				q[i] = T[i] + q[i - t / 2] * iv[i];
 			mul(q.fill0L(t), nf, t); // 4E
 			f.redeg(t);
 			for (int i = t / 2; i < t; i++)
@@ -209,9 +261,6 @@ struct Poly : vector<int> { // 大常数板子
 	}
 	Poly sqrt(int m) const { // 36E
 		Poly x = {1};
-#ifdef ACM_MATH_CIPOLLA_H
-		x[0] = Cipolla(front(), P).first;
-#endif
 		for (int t = 2; t < m * 2; t *= 2) {
 			x = (x + cut(t).div(t, x)) * qpow(2);
 		}
