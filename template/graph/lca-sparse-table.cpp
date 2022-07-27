@@ -6,10 +6,11 @@ using pii = pair<int, int>;
 const int N = 5E5 + 10;
 std::vector<int> G[N];
 
-// @description LCA(Sparse Table)
 // @problem https://www.luogu.com.cn/problem/P3379
 // @dependices "ds/vec2.cpp"
 // @dependices "ds/sparse-table.cpp"
+
+// @description 二维数组
 
 template <class T>
 struct VV {
@@ -23,6 +24,8 @@ struct VV {
 		return m.begin() + i * y;
 	}
 };
+
+// @description LCA(Sparse Table)
 
 template <class T>
 struct SparseTable {
@@ -59,7 +62,7 @@ struct LCA {
 	void dfs(int x, int fa) {
 		dfn[x] = ++cnt;
 		rnk[cnt] = {dfn[fa], fa};
-		for (auto u : G[x]) {
+		for (int u : G[x]) {
 			if (u != fa) {
 				dfs(u, x);
 			}

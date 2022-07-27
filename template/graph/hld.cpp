@@ -4,20 +4,20 @@ using namespace std;
 const int N = 1E5 + 5;
 vector<int> G[N];
 
-// @description 树链剖分 LCA
 // @problem https://www.luogu.com.cn/problem/P3379
+
+// @description 树链剖分 LCA
 
 struct HLD {
 	vector<int> sz, dep, fa, son, top, dfn;
+	int cnt = 0;
 	HLD(int n, int r = 1) : sz(n), dep(n), fa(n), son(n), top(n), dfn(n) {
 		dfs1(r), dfs2(r, r);
 	}
 	void dfs1(int u, int f = 0) {
 		dep[u] = dep[f] + 1;
-		fa[u] = f;
-		sz[u] = 1;
-		top[u] = u;
-		for (auto v : G[u]) {
+		fa[u] = f, sz[u] = 1, top[u] = u;
+		for (int v : G[u]) {
 			if (v != f) {
 				dfs1(v, u);
 				sz[u] += sz[v];
@@ -28,12 +28,10 @@ struct HLD {
 		}
 	}
 	void dfs2(int u, int tp, int f = 0) {
-		static int cnt = 0;
-		top[u] = tp;
-		dfn[u] = ++cnt;
+		top[u] = tp, dfn[u] = ++cnt;
 		if (son[u] != 0) {
 			dfs2(son[u], tp, u);
-			for (auto v : G[u]) {
+			for (int v : G[u]) {
 				if (v != f && v != son[u]) {
 					dfs2(v, v, u);
 				}

@@ -1,7 +1,16 @@
-vector<int> factor(int n) {
+#include <vector>
+using ll = long long;
+using pii = std::pair<int, int>;
+using namespace std;
+
+vector<int> primes;
+
+// @description 质因子分解
+
+vector<int> factor(ll n) {
 	vector<int> ans;
-	for (auto i : primes) {
-		if (i * i > n)
+	for (int i : primes) {
+		if (1ll * i * i > n)
 			break;
 		while (n % i == 0) {
 			ans.push_back(i);
@@ -13,9 +22,11 @@ vector<int> factor(int n) {
 	return ans;
 }
 
-vector<pii> factor(int n) {
+// @description 质因子(p^k)
+
+vector<pii> factor_pii(ll n) {
 	vector<pii> ans;
-	for (auto p : primes) {
+	for (int p : primes) {
 		if (p * p > n)
 			break;
 		int cnt = 0;

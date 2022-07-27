@@ -1,41 +1,48 @@
+#include <vector>
+#include <algorithm>
+#include <functional>
+using ll = long long;
+using i128 = __int128_t;
+using namespace std;
+
+// @problem https://www.luogu.com.cn/problem/P4718
+
+// @description 快速幂(i128)
+
 ll qpow128(ll a, ll b, ll m) {
 	ll ret = m != 1;
-	for (; b; b >>= 1) {
-		if (b & 1)
-			ret = (i128)ret * a % m;
-		a = (i128)a * a % m;
+	for (; b; b /= 2) {
+		if (b % 2 == 1)
+			ret = i128(ret) * a % m;
+		a = i128(a) * a % m;
 	}
 	return ret;
 }
 
+// @description 素性测试(Miller Rabbin)
+
 bool miller_rabbin(ll n) {
 	if (n <= 3)
 		return n >= 2;
-	ll a = n - 1, b = 0;
-	while (1 - (a & 1))
-		a >>= 1, ++b;
-	for (auto p : {2, 3, 5, 7, 11, 13, 17, 19, 23}) {
-		if (n == p)
+	if (n % 2 == 0)
+		return false;
+	ll a = n - 1;
+	while (a % 2 == 0)
+		a /= 2;
+	for (int p : {2, 3, 5, 7, 11, 13, 17, 19, 23}) {
+		if (n <= p)
 			return true;
-		ll v = qpow128(p, a, n);
-		if (v == 1 || v == n - 1)
-			continue;
-		for (int j = 0; j < b && v != 1; j++) {
-			ll w = (i128)v * v % n;
-			if (v != n - 1 && w == 1)
-				return false;
-			v = w;
+		ll t = a, v = qpow128(p, t, n);
+		while (t != n - 1 && v != 1 && v != n - 1) {
+			v = i128(v) * v % n, t *= 2;
 		}
-		if (v != 1)
+		if (v != n - 1 && t % 2 == 0)
 			return false;
 	}
 	return true;
 }
 
-ll pr_rnd(ll r) {
-	static std::mt19937 eng(19260817);
-	return std::uniform_int_distribution<ll>(0, r)(eng);
-}
+// @description Pollard Rho
 
 ll pollard_rho(ll N) {
 	if (N % 2 == 0)
@@ -43,35 +50,31 @@ ll pollard_rho(ll N) {
 	if (miller_rabbin(N))
 		return N;
 	while (true) {
-		ll c = pr_rnd(N - 1) + 1;
-		auto f = [&](ll x) {
-			return ((i128)x * x + c) % N;
+		auto f = [N, c = rand() % (N - 1) + 1](ll x) {
+			return (i128(x) * x + c) % N;
 		};
-		ll t = 0, r = 0, p = 1, q;
+		ll x = 0, y = 0, p = 1, q = 1;
 		do {
-			for (int i = 0; i < 128; ++i) {
-				t = f(t), r = f(f(r));
-				if (t == r)
-					break;
-				if ((q = (i128)p * abs(t - r) % N) == 0)
-					break;
-				p = q;
-			}
+			int w = 128;
+			do {
+				p = q, x = f(x), y = f(f(y));
+				q = i128(p) * abs(x - y) % N;
+			} while (w-- && q != 0);
 			ll d = std::__gcd(p, N);
 			if (d > 1 && d != N)
 				return d;
-		} while (t != r);
+		} while (x != y);
 	}
 }
 
 auto factor(ll x) {
 	vector<ll> v;
-	std::function<void(ll)> dfs = [&](ll x) {
-		ll fac = pollard_rho(x);
-		if (fac == x)
-			v.push_back(x);
+	std::function<void(ll)> dfs = [&](ll u) {
+		ll fac = pollard_rho(u);
+		if (fac == u)
+			v.push_back(u);
 		else
-			dfs(fac), dfs(x / fac);
+			dfs(fac), dfs(u / fac);
 	};
 	dfs(x);
 	sort(v.begin(), v.end());

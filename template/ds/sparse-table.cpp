@@ -1,9 +1,10 @@
 #include <vector>
 using namespace std;
 
-// @description Sparse Table
 // @problem https://www.luogu.com.cn/problem/P3865
 // @dependices "ds/vec2.cpp"
+
+// @description 二维数组
 
 template <class T>
 struct VV {
@@ -17,6 +18,8 @@ struct VV {
 		return m.begin() + i * y;
 	}
 };
+
+// @description Sparse Table
 
 template <class T>
 struct SparseTable {

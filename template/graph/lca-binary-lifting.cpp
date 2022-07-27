@@ -4,8 +4,9 @@ using namespace std;
 const int N = 5E5 + 10;
 vector<int> G[N];
 
-// @description LCA(倍增)
 // @problem https://www.luogu.com.cn/problem/P3379
+
+// @description 二维数组
 
 template <class T>
 struct VV {
@@ -19,6 +20,8 @@ struct VV {
 		return m.begin() + i * y;
 	}
 };
+
+// @description LCA(倍增)
 
 struct LCA {
 	const int lgn;
@@ -35,7 +38,7 @@ struct LCA {
 	void dfs(int x, int fa) {
 		f[x][0] = fa;
 		dep[x] = dep[fa] + 1;
-		for (auto u : G[x]) {
+		for (int u : G[x]) {
 			if (u != fa) {
 				dfs(u, x);
 			}

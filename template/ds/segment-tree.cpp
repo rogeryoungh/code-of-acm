@@ -1,8 +1,9 @@
 #include <vector>
 using namespace std;
 
-// @description 线段树
 // @problem https://www.luogu.com.cn/problem/P3374
+
+// @description 线段树
 
 template <class T, T E = T()>
 struct SegmentTree {

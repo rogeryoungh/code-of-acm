@@ -1,8 +1,9 @@
 #include <vector>
 using namespace std;
 
-// @description 滑动窗口
 // @problem https://www.luogu.com.cn/problem/P1886
+
+// @description 滑动窗口
 
 template <class T>
 auto sliding(const vector<T> &v, int k) {

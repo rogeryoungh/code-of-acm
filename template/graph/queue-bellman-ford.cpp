@@ -6,8 +6,9 @@ const int N = 1E5 + 5;
 using pii = pair<int, int>;
 vector<pii> G[N];
 
-// @description 队列优化 Bellman Ford 最短路
 // @problem https://www.luogu.com.cn/problem/P1629 也不是不能用
+
+// @description 队列优化 Bellman Ford 最短路
 
 auto queue_bellman_ford(int n, int s) {
 	queue<int> q;
