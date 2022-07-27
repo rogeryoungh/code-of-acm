@@ -1,8 +1,9 @@
 #include <vector>
 using namespace std;
 
-// @description 朴素并查集
 // @problem https://judge.yosupo.jp/problem/unionfind
+
+// @description 朴素并查集
 
 struct DSU {
 	vector<int> fa;

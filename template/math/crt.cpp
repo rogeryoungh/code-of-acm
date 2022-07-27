@@ -1,3 +1,9 @@
+#include <vector>
+using ll = long long;
+using namespace std;
+
+// @problem https://www.luogu.com.cn/problem/P1495
+
 pair<ll, ll> exgcd(ll a, ll b) {
 	if (!b) {
 		return {1, 0};
@@ -6,19 +12,19 @@ pair<ll, ll> exgcd(ll a, ll b) {
 	return {x, y - a / b * x};
 }
 
-ll inv(ll a, ll p) {
-	auto [x, y] = exgcd(a, p);
-	return (x % p + p) % p;
+ll inv_mod(ll a, ll p) {
+	return (exgcd(a, p).first % p + p) % p;
 }
 
-ll crt(const vector<ll> &aa, const vector<ll> &nn) {
+// @description 中国剩余定理
+
+ll crt(const vector<ll> &aa, const vector<ll> &m) {
 	ll prod = 1, ret = 0, n = aa.size();
-	for (auto ni : nn)
+	for (ll ni : m)
 		prod *= ni;
 	for (int i = 0; i < n; i++) {
-		ll m = prod / nn[i];
-		ret += aa[i] * m * inv(m, nn[i]);
-		ret %= prod;
+		ll u = prod / m[i], v = inv_mod(u, m[i]);
+		ret = (ret + aa[i] * u * v) % prod;
 	}
 	return ret;
 }

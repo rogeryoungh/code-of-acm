@@ -1,9 +1,10 @@
 #include <vector>
 using namespace std;
 
-// @description 区间加 & 区间更新（树状数组实现）
 // @problem https://loj.ac/p/132
 // @dependices "ds/fwtree.cpp"
+
+// @description 区间加 & 区间更新（树状数组实现）
 
 template <class T>
 struct fwtree {
@@ -13,14 +14,6 @@ struct fwtree {
 	void add(int i, T x) {
 		for (; 0 < i && i < n; i += i & -i) {
 			v[i] += x;
-		}
-	}
-	void init(const vector<T> &a) {
-		for (int i = 1; i < n; i++) {
-			v[i] += a[i];
-			int j = i + (i & -i);
-			if (j < n)
-				v[j] += v[i];
 		}
 	}
 	T sum(int i) const {

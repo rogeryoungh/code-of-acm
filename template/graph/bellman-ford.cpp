@@ -5,9 +5,10 @@ const int N = 1E5 + 5;
 using pii = pair<int, int>;
 vector<pii> G[N];
 
-// @description Bellman Ford 最短路
 // @problem https://www.luogu.com.cn/problem/P3371
 // @problem https://www.luogu.com.cn/problem/P1629 也不是不能用
+
+// @description Bellman Ford 最短路
 
 auto bellman_ford(int n, int s) {
 	vector<int> dis(n + 1, 1E9);
