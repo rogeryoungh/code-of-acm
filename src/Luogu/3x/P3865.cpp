@@ -1,45 +1,58 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 using ll = long long;
 
-int ____ = (ios::sync_with_stdio(0), cin.tie(0), cout.tie(0), 1);
+int ____ = cin.tie(0)->sync_with_stdio(0);
+#define endl '\n'
+
+#define dbg(x) #x << " = " << (x) << ", "
+#define in(x) x = (cin >> x, x)
 
 // END OF HEADER | Author: Roger Young
 
 template <class T>
-struct ST {
-	using vec = vector<T>;
-	vec st[32];
-	ST(const vec &v) {
-		int n = v.size(), lgn = std::__lg(n);
-		st[0] = v;
-		for (int j = 1; j <= lgn; j++) {
-			st[j].resize(n);
-			int tj = 1 << (j - 1);
-			for (int i = 0; i <= n - tj * 2; i++) {
-				st[j][i] = max(st[j - 1][i], st[j - 1][i + tj]);
+struct VV {
+	int x, y;
+	vector<T> m;
+	VV(int a, int b) : x(a), y(b), m(a * b) {}
+	auto operator[](int i) {
+		return m.begin() + i * y;
+	}
+	auto operator[](int i) const {
+		return m.begin() + i * y;
+	}
+};
+
+template <class T>
+struct SparseTable {
+	int n, lgn;
+	VV<T> v;
+	SparseTable(const vector<T> &o) : n(o.size()), lgn(1 + std::__lg(n)), v(lgn, n) {
+		std::copy(o.begin(), o.end(), v[0]);
+		for (int i = 1; i < lgn; i++) {
+			int ti = 1 << (i - 1);
+			for (int j = 0; j <= n - 2 * ti; j++) {
+				v[i][j] = max(v[i - 1][j], v[i - 1][j + ti]);
 			}
 		}
 	}
 	T query(int l, int r) {
 		int s = std::__lg(r - l + 1);
-		return max(st[s][l], st[s][r - (1 << s) + 1]);
+		return max(v[s][l], v[s][r - (1 << s) + 1]);
 	}
 };
 
 int main() {
-	int n, m;
-	cin >> n >> m;
+	int in(n), in(Q);
 	vector<int> v(n + 1);
 	for (int i = 1; i <= n; i++) {
 		cin >> v[i];
 	}
-	ST<int> st(v);
-	while (m--) {
-		int x, y;
-		cin >> x >> y;
-		cout << st.query(x, y) << "\n";
+	SparseTable<int> st(v);
+	while (Q--) {
+		int in(x), in(y);
+		cout << st.query(x, y) << endl;
 	}
+
 	return 0;
 }

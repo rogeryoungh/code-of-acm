@@ -1,9 +1,10 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 using ll = long long;
 
-int ____ = (ios::sync_with_stdio(0), cin.tie(0), cout.tie(0), 1);
+#define dbg(x) #x << " = " << (x) << ", "
+int ____ = cin.tie(0)->sync_with_stdio(0);
+#define endl '\n'
 
 // END OF HEADER | Author: Roger Young
 
@@ -17,7 +18,7 @@ int qpow(int a, int b, int m) {
 	return ret;
 }
 
-template <typename T>
+template <class T>
 T tpow(T a, ll b) {
 	T ret;
 	for (; b; b >>= 1) {
@@ -28,10 +29,6 @@ T tpow(T a, ll b) {
 	return ret;
 }
 
-ll legendre(ll a, ll p) {
-	return qpow(a, (p - 1) / 2, p);
-}
-
 struct FP2 {
 	inline static ll P, I;
 	ll a = 1, b = 0; // a+bi, i^2=a^2-n
@@ -40,18 +37,20 @@ struct FP2 {
 	}
 };
 
+ll legendre(ll a, ll p) {
+	return qpow(a, (p - 1) / 2, p);
+}
+
 ll cipolla(ll n, ll p) {
-	FP2::P = p;
 	if (n % p == 0)
 		return 0;
 	if (legendre(n, p) != 1)
 		return -1;
-
 	ll a = -1;
 	for (a = 0; a < p; a++) {
 		ll i = (a * a - n + p) % p;
 		if (legendre(i, p) == p - 1) {
-			FP2::I = i;
+			FP2::P = p, FP2::I = i;
 			break;
 		}
 	}

@@ -1,13 +1,14 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 using ll = long long;
 
-int ____ = (ios::sync_with_stdio(0), cin.tie(0), cout.tie(0), 1);
+#define dbg(x) #x << " = " << (x) << ", "
+int ____ = cin.tie(0)->sync_with_stdio(0);
+#define endl '\n'
 
 // END OF HEADER | Author: Roger Young
 
-pair<int, int> exgcd(ll a, ll b) {
+pair<ll, ll> exgcd(ll a, ll b) {
 	if (!b) {
 		return {1, 0};
 	}
@@ -15,19 +16,17 @@ pair<int, int> exgcd(ll a, ll b) {
 	return {x, y - a / b * x};
 }
 
-ll inv(ll a, ll p) {
-	auto [x, y] = exgcd(a, p);
-	return (x % p + p) % p;
+ll inv_mod(ll a, ll p) {
+	return (exgcd(a, p).first % p + p) % p;
 }
 
 ll crt(const vector<ll> &aa, const vector<ll> &nn) {
 	ll prod = 1, ret = 0, n = aa.size();
-	for (auto ni : nn)
+	for (ll ni : nn)
 		prod *= ni;
 	for (int i = 0; i < n; i++) {
 		ll m = prod / nn[i];
-		ret += aa[i] * m * inv(m, nn[i]);
-		ret %= prod;
+		ret = (ret + aa[i] * m * inv_mod(m, nn[i])) % prod;
 	}
 	return ret;
 }
@@ -40,6 +39,5 @@ int main() {
 		cin >> nn[i] >> aa[i];
 	}
 	cout << crt(aa, nn);
-
 	return 0;
 }

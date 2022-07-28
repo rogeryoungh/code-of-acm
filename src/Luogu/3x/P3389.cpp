@@ -1,57 +1,72 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 using ll = long long;
 
-int ____ = (ios::sync_with_stdio(0), cin.tie(0), cout.tie(0), 1);
+#define dbg(x) #x << " = " << (x) << ", "
+int ____ = cin.tie(0)->sync_with_stdio(0);
+#define endl '\n'
 
 // END OF HEADER | Author: Roger Young
 
-const int N = 100 + 5;
 const double eps = 1E-6;
-double a[N][N];
 
-bool Gauss(int n) {
+template <class T>
+struct VV {
+	int x, y;
+	vector<T> m;
+	VV(int a, int b) : x(a), y(b), m(a * b) {}
+	auto operator[](int i) {
+		return m.data() + i * y;
+	}
+	auto operator[](int i) const {
+		return m.data() + i * y;
+	}
+};
+
+auto Gauss(VV<double> v) {
+	assert(v.x == v.y - 1);
+	int n = v.x;
 	for (int i = 0; i < n; i++) {
 		int mi = i;
 		for (int j = i + 1; j < n; j++) {
-			if (fabs(a[j][i]) > fabs(a[mi][i])) {
+			if (fabs(v[j][i]) > fabs(v[mi][i])) {
 				mi = j;
 			}
 		}
 		for (int j = 0; j < n + 1; j++) {
-			swap(a[i][j], a[mi][j]);
+			swap(v[i][j], v[mi][j]);
 		}
-		if (fabs(a[i][i]) < eps) {
-			return false;
+		if (fabs(v[i][i]) < eps) {
+			return VV<double>(0, 0);
 		}
 		for (int j = 0; j < n; j++) {
 			if (j != i) {
-				double tmp = a[j][i] / a[i][i];
+				double tmp = v[j][i] / v[i][i];
 				for (int k = i + 1; k < n + 1; k++) {
-					a[j][k] -= a[i][k] * tmp;
+					v[j][k] -= v[i][k] * tmp;
 				}
 			}
 		}
 	}
-	return true;
+	return v;
 }
 
 int main() {
 	int n;
 	cin >> n;
+	VV<double> v(n, n + 1);
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n + 1; j++) {
-			cin >> a[i][j];
+			cin >> v[i][j];
 		}
 	}
-	bool ret = Gauss(n);
-	if (!ret) {
+	auto ret = Gauss(v);
+	if (ret.x == 0) {
 		cout << "No Solution\n";
 		return 0;
 	}
 	for (int i = 0; i < n; i++) {
-		printf("%.2lf\n", a[i][n] / a[i][i]);
+		printf("%.2lf\n", ret[i][n] / ret[i][i]);
 	}
 	return 0;
 }

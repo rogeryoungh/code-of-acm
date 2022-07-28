@@ -1,64 +1,63 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 using ll = long long;
 
-int ____ = (ios::sync_with_stdio(0), cin.tie(0), cout.tie(0), 1);
+#define dbg(x) #x << " = " << (x) << ", "
+int ____ = cin.tie(0)->sync_with_stdio(0);
+#define endl '\n'
 
 // END OF HEADER | Author: Roger Young
 
-const ll P = 1e9 + 7;
+const int P = 1E9 + 7;
 
 struct Mtx {
-    vector<ll> m;
-    int x, y;
-    Mtx(int x_, int y_) {
-        x = x_, y = y_;
-        m.resize(x * y);
-    }
-    auto operator[](int i) {
-        return m.begin() + i * x;
-    }
-    auto operator[](int i) const {
-        return m.begin() + i * x;
-    }
-    void read() {
-        ll t;
-        for (int i = 0; i < x * y; i++) {
-            cin >> t;
-            m[i] = (t + P) % P;
-        }
-    }
-    void print() {
-        for (int i = 0; i < x * y; i++) {
-            cout << m[i] << " \n"[(i + 1) % x == 0];
-        }
-    }
+	int x, y;
+	vector<ll> m;
+	Mtx(int a, int b) : x(a), y(b), m(x * y) {}
+	auto operator[](int i) {
+		return m.begin() + i * y;
+	}
+	auto operator[](int i) const {
+		return m.begin() + i * y;
+	}
 };
 
+istream &operator>>(istream &is, Mtx &m) {
+	ll t;
+	for (int i = 0; i < m.x * m.y; i++) {
+		is >> t;
+		m.m[i] = (t + P) % P;
+	}
+	return is;
+}
+
+ostream &operator<<(ostream &os, Mtx &m) {
+	for (int i = 0; i < m.x * m.y; i++) {
+		os << m.m[i] << " \n"[(i + 1) % m.y == 0];
+	}
+	return os;
+}
+
 Mtx operator*(const Mtx &lhs, const Mtx &rhs) {
-    assert(lhs.x == rhs.y);
-    Mtx u(rhs.x, lhs.y);
-    for (int i = 0; i < lhs.y; i++) {
-        for (int k = 0; k < lhs.x; k++) {
-            ll t = lhs[i][k];
-            for (int j = 0; j < rhs.x; j++) {
-                u[i][j] += rhs[k][j] * t;
-                u[i][j] %= P;
-            }
-        }
-    }
-    return u;
+	assert(lhs.y == rhs.x);
+	Mtx u(lhs.x, rhs.y);
+	for (int i = 0; i < lhs.x; i++) {
+		for (int k = 0; k < rhs.x; k++) {
+			ll t = lhs[i][k];
+			for (int j = 0; j < rhs.y; j++) {
+				(u[i][j] += rhs[k][j] * t) %= P;
+			}
+		}
+	}
+	return u;
 }
 
 int main() {
-    int n, p, m;
-    cin >> n >> p >> m;
-    Mtx aa(p, n), bb(m, p);
-    aa.read();
-    bb.read();
-    Mtx cc = aa * bb;
-    cc.print();
-
-    return 0;
+	int n, p, m;
+	cin >> n >> p >> m;
+	Mtx A(n, p), B(p, m);
+	cin >> A >> B;
+	Mtx ans = A * B;
+	cout << ans;
+	return 0;
 }
