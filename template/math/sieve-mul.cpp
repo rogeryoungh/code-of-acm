@@ -6,16 +6,15 @@ using namespace std;
 vector<bool> not_p;
 vector<int> primes, phi, mu;
 void Euler(int n) {
-	not_p.resize(n + 1);
-	phi.resize(n + 1);
-	mu.resize(n + 1);
+	not_p.resize(n);
+	phi = mu = vector<int>(n);
 	mu[1] = phi[1] = 1;
-	for (int i = 2; i <= n; i++) {
+	for (int i = 2; i < n; i++) {
 		if (!not_p[i]) {
 			primes.push_back(i);
 			phi[i] = i - 1, mu[i] = -1;
 		}
-		for (auto pj : primes) {
+		for (int pj : primes) {
 			if (pj > (n - 1) / i)
 				break;
 			not_p[i * pj] = true;

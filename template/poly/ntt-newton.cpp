@@ -96,7 +96,7 @@ void pre_all(int n) {
 	}
 }
 
-Z choose(int n, int m) {
+Z C(int n, int m) {
 	return fac[n] * ifac[m] * ifac[n - m];
 }
 

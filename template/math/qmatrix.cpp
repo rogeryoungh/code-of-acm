@@ -52,3 +52,20 @@ QMtx QMtx::pow(ll w) {
 	}
 	return ret;
 }
+
+istream &operator>>(istream &is, QMtx &m) {
+	ll t;
+	for (int i = 0; i < m.n * m.n; i++) {
+		is >> t;
+		m.m[i] = (t + P) % P;
+	}
+	return is;
+}
+
+ostream &operator<<(ostream &os, QMtx &m) {
+	for (int i = 0; i < m.n * m.n; i++) {
+		os << m.m[i] << " \n"[(i + 1) % m.n == 0];
+	}
+	return os;
+}
+

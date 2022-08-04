@@ -7,7 +7,72 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© 2021 [Roger Young](https://acm.rogery.dev)</copyright>
-    <lastBuildDate>Wed, 13 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 30 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>P6055 GCD</title>
+      <link>https://acm.rogery.dev/post/2022-07/p6055/</link>
+      <pubDate>Sat, 30 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2022-07/p6055/</guid>
+      <description>题目大意 求
+$$ \sum_{i=1}^N \sum_{j=1}^N \sum_{p=1}^{\left\lfloor \frac{N}{j}\right\rfloor} \sum_{q=1}^{\left\lfloor \frac{N}{j}\right\rfloor} [\gcd(i,j)=1][\gcd(p,q)=1] $$
+分析 注意到一个神奇的事情
+$$ \begin{aligned} &amp;amp;[\gcd(i,j)=1][\gcd(p,q)=1] \\ =&amp;amp;[\gcd(i,j) = 1][\gcd(pj,qj)=j]\\ =&amp;amp;[\gcd(i, pj, qj) = 1] \end{aligned} $$
+因此
+$$ \begin{aligned} ans &amp;amp;= \sum_{i=1}^N \sum_{p=1}^N\sum_{q=1}^N [\gcd(i, j, k) = 1] \\ &amp;amp;= \sum_{d=1}^N \mu(d) \left\lfloor \frac{N}{d} \right\rfloor^3 \end{aligned} $$
+整除分块即可。
+int main() { ll n; cin &amp;gt;&amp;gt; n; Euler(1E6); SumMu smu(1E6); ll ans = 0; for (ll l = 1, r; l &amp;lt;= n; l = r + 1) { r = n / (n / l); int s = (smu.</description>
+    </item>
+    
+    <item>
+      <title>P1447 能量采集</title>
+      <link>https://acm.rogery.dev/post/2022-07/p1447/</link>
+      <pubDate>Fri, 29 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2022-07/p1447/</guid>
+      <description>题目大意 在 $n \times m$ 的花园中，设 $(0, 0) \to (i, j)$ 之间的格点数为 $k$，则 $(i, j)$ 的贡献为 $2k+1$。求整个花园的累计贡献。
+分析 首先，格点数为 $\gcd(i, j) - 1$，不要拿 $\min(n/i, m/j)$ 去算，算不清楚的。
+因此答案为
+$$ ans = \sum_{i=1}^n \sum_{j=1}^m (2\gcd(i, j) - 1) $$
+由欧拉反演
+$$ \sum_{d \mid n} \varphi(d) = n $$
+因此
+$$ \begin{aligned} ans &amp;amp;= 2 \sum_{i=1}^n \sum_{j=1}^m \sum_{d \mid \gcd(i, j)} \varphi(d) - nm\\ &amp;amp;= 2\sum_{d=1}\varphi(d) \left\lfloor \frac{n}{d}\right\rfloor \left\lfloor \frac{m}{d}\right\rfloor - nm \end{aligned} $$</description>
+    </item>
+    
+    <item>
+      <title>P3768 简单的数学题</title>
+      <link>https://acm.rogery.dev/post/2022-07/p3768/</link>
+      <pubDate>Fri, 29 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2022-07/p3768/</guid>
+      <description>题目大意 求
+$$ \sum_{i=1}^n \sum_{j=1}^n ij \gcd(i, j) $$
+分析 显然欧拉反演
+$$ \begin{aligned} ans &amp;amp;= \sum_{i=1}^n \sum_{j=1}^n ij \sum_{d \mid \gcd(i, j)} \varphi(d) \\ &amp;amp;= \sum_{d=1} d^2\varphi(d) \sum_{i=1}^{n/d} \sum_{j=1}^{n/d} ij \\ &amp;amp;= \sum_{d=1} d^2\varphi(d) \frac{1}{4}\lfloor n/d\rfloor^2(\lfloor n/d \rfloor + 1)^2 \end{aligned} $$
+整除分块 + 杜教筛即可。
+int main() { int n, m; cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m; int x = min(n, m); Euler(x + 1); vector&amp;lt;ll&amp;gt; sphi(x + 1); for (int i = 1; i &amp;lt;= x; i++) { sphi[i] = sphi[i - 1] + phi[i]; } ll ans = 0; for (int l = 1, r; l &amp;lt;= x; l = r + 1) { r = min(n / (n / l), m / (m / l)); ans += 1ll * (sphi[r] - sphi[l - 1]) * (n / l) * (m / l); } cout &amp;lt;&amp;lt; ans * 2 - 1ll * n * m; return 0; } 全部代码请看：Luogu/8x/P8240.</description>
+    </item>
+    
+    <item>
+      <title>P4062 Yazid 的新生舞会</title>
+      <link>https://acm.rogery.dev/post/2022-07/p4062/</link>
+      <pubDate>Fri, 29 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2022-07/p4062/</guid>
+      <description>题目大意 在长为 $n$ 的序列 $A$，问有多少区间 $[l,r]$ 满足区间众数的出现次数严格大于 $\frac{r-l+1}{2}$。
+分析 我发现我真的不会数据结构，只会推推式子啥的，这种要想的题根本想不来。
+设区间 $[l,r]$ 中存在众数 $w$（显然满足题意必唯一），有
+$$ \sum_{i=l}^r [a_i=w] &amp;gt; \frac{r-l+1}{2} $$
+分离变量，可以得到
+$$ 2\sum_{i=1}^l [a_i=w] - l &amp;lt; 2\sum_{i=1}^r [a_i=w] - r $$
+考虑设置函数
+$$ S_w(x) = 2\sum_{i=1}^x [a_i = w] - x = \sum_{i=1}^x [a_i = w] - \sum_{i=1}^x [a_i \ne w] $$
+观察 $S_w(x)$ 的特性，即可发现其只由 $1, -1$ 组成，可以转化为二阶前缀和问题。
+解释待补充。
+template &amp;lt;class T&amp;gt; struct fwtree_2 { fwtree&amp;lt;T&amp;gt; f1, f2, f3; vector&amp;lt;T&amp;gt; u; fwtree_2(int n = 0) : f1(n), f2(n), f3(n), u(n) {} template &amp;lt;class iter&amp;gt; void init(iter first, iter last) { copy(first, last, u.</description>
+    </item>
+    
     <item>
       <title>ZAFU 2022.07.13 个人赛题解</title>
       <link>https://acm.rogery.dev/post/2022-07/sj4/</link>

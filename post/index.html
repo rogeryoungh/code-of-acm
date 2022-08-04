@@ -165,6 +165,79 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P6055 GCD</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 求
+$$ \sum_{i=1}^N \sum_{j=1}^N \sum_{p=1}^{\left\lfloor \frac{N}{j}\right\rfloor} \sum_{q=1}^{\left\lfloor \frac{N}{j}\right\rfloor} [\gcd(i,j)=1][\gcd(p,q)=1] $$
+分析 注意到一个神奇的事情
+$$ \begin{aligned} &amp;[\gcd(i,j)=1][\gcd(p,q)=1] \\ =&amp;[\gcd(i,j) = 1][\gcd(pj,qj)=j]\\ =&amp;[\gcd(i, pj, qj) = 1] \end{aligned} $$
+因此
+$$ \begin{aligned} ans &amp;= \sum_{i=1}^N \sum_{p=1}^N\sum_{q=1}^N [\gcd(i, j, k) = 1] \\ &amp;= \sum_{d=1}^N \mu(d) \left\lfloor \frac{N}{d} \right\rfloor^3 \end{aligned} $$
+整除分块即可。
+int main() { ll n; cin &gt;&gt; n; Euler(1E6); SumMu smu(1E6); ll ans = 0; for (ll l = 1, r; l &lt;= n; l = r &#43; 1) { r = n / (n / l); int s = (smu....</p>
+  </section>
+  <footer class="entry-footer">July 30, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P6055 GCD" href="https://acm.rogery.dev/post/2022-07/p6055/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P1447 能量采集</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 在 $n \times m$ 的花园中，设 $(0, 0) \to (i, j)$ 之间的格点数为 $k$，则 $(i, j)$ 的贡献为 $2k&#43;1$。求整个花园的累计贡献。
+分析 首先，格点数为 $\gcd(i, j) - 1$，不要拿 $\min(n/i, m/j)$ 去算，算不清楚的。
+因此答案为
+$$ ans = \sum_{i=1}^n \sum_{j=1}^m (2\gcd(i, j) - 1) $$
+由欧拉反演
+$$ \sum_{d \mid n} \varphi(d) = n $$
+因此
+$$ \begin{aligned} ans &amp;= 2 \sum_{i=1}^n \sum_{j=1}^m \sum_{d \mid \gcd(i, j)} \varphi(d) - nm\\ &amp;= 2\sum_{d=1}\varphi(d) \left\lfloor \frac{n}{d}\right\rfloor \left\lfloor \frac{m}{d}\right\rfloor - nm \end{aligned} $$...</p>
+  </section>
+  <footer class="entry-footer">July 29, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1447 能量采集" href="https://acm.rogery.dev/post/2022-07/p1447/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P3768 简单的数学题</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 求
+$$ \sum_{i=1}^n \sum_{j=1}^n ij \gcd(i, j) $$
+分析 显然欧拉反演
+$$ \begin{aligned} ans &amp;= \sum_{i=1}^n \sum_{j=1}^n ij \sum_{d \mid \gcd(i, j)} \varphi(d) \\ &amp;= \sum_{d=1} d^2\varphi(d) \sum_{i=1}^{n/d} \sum_{j=1}^{n/d} ij \\ &amp;= \sum_{d=1} d^2\varphi(d) \frac{1}{4}\lfloor n/d\rfloor^2(\lfloor n/d \rfloor &#43; 1)^2 \end{aligned} $$
+整除分块 &#43; 杜教筛即可。
+int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; int x = min(n, m); Euler(x &#43; 1); vector&lt;ll&gt; sphi(x &#43; 1); for (int i = 1; i &lt;= x; i&#43;&#43;) { sphi[i] = sphi[i - 1] &#43; phi[i]; } ll ans = 0; for (int l = 1, r; l &lt;= x; l = r &#43; 1) { r = min(n / (n / l), m / (m / l)); ans &#43;= 1ll * (sphi[r] - sphi[l - 1]) * (n / l) * (m / l); } cout &lt;&lt; ans * 2 - 1ll * n * m; return 0; } 全部代码请看：Luogu/8x/P8240....</p>
+  </section>
+  <footer class="entry-footer">July 29, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P3768 简单的数学题" href="https://acm.rogery.dev/post/2022-07/p3768/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P4062 Yazid 的新生舞会</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 在长为 $n$ 的序列 $A$，问有多少区间 $[l,r]$ 满足区间众数的出现次数严格大于 $\frac{r-l&#43;1}{2}$。
+分析 我发现我真的不会数据结构，只会推推式子啥的，这种要想的题根本想不来。
+设区间 $[l,r]$ 中存在众数 $w$（显然满足题意必唯一），有
+$$ \sum_{i=l}^r [a_i=w] &gt; \frac{r-l&#43;1}{2} $$
+分离变量，可以得到
+$$ 2\sum_{i=1}^l [a_i=w] - l &lt; 2\sum_{i=1}^r [a_i=w] - r $$
+考虑设置函数
+$$ S_w(x) = 2\sum_{i=1}^x [a_i = w] - x = \sum_{i=1}^x [a_i = w] - \sum_{i=1}^x [a_i \ne w] $$
+观察 $S_w(x)$ 的特性，即可发现其只由 $1, -1$ 组成，可以转化为二阶前缀和问题。
+解释待补充。
+template &lt;class T&gt; struct fwtree_2 { fwtree&lt;T&gt; f1, f2, f3; vector&lt;T&gt; u; fwtree_2(int n = 0) : f1(n), f2(n), f3(n), u(n) {} template &lt;class iter&gt; void init(iter first, iter last) { copy(first, last, u....</p>
+  </section>
+  <footer class="entry-footer">July 29, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P4062 Yazid 的新生舞会" href="https://acm.rogery.dev/post/2022-07/p4062/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>ZAFU 2022.07.13 个人赛题解</h2>
   </header>
   <section class="entry-content">
@@ -256,65 +329,6 @@ int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; a(n); for (auto &amp;ai : 
   </section>
   <footer class="entry-footer">April 25, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to Codeforces Round #707" href="https://acm.rogery.dev/post/2022-04/cf1501/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>2021 牛客寒假算法基础集训营 1</h2>
-  </header>
-  <section class="entry-content">
-    <p>复习一下。
-A. 串 计算长度不超过 $n$ 且蕴含 us 作为子串的字符串有多少个。
-分析 读错题目了，还以为是容斥。对 “出现 us”、“出现 u”、“其他” 三种情况分别 DP。
-int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; for (int i = 1; i &lt;= n; i&#43;&#43;) { ll t0 = dp0 * 25 % P; ll tu = (dpu * 25 &#43; dp0) % P; ll ts = (dpu &#43; dps * 26) % P; dp0 = t0, dpu = tu, dps = ts; ans = (ans &#43; dps) % P; } cout &lt;&lt; ans; return 0; } 全部代码请看：Nowcoder/NC9981/A....</p>
-  </section>
-  <footer class="entry-footer">April 6, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to 2021 牛客寒假算法基础集训营 1" href="https://acm.rogery.dev/post/2022-04/nc9981/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>AtCoder Beginner Contest 242(A-E)</h2>
-  </header>
-  <section class="entry-content">
-    <p>A. T-shirt 前 $A$ 名一定获得衣服，在 $[A&#43;1, B]$ 之间的人将随机挑 $C$ 个人获得衣服。
-若已知他排名于 $X$，求其获得衣服的概率。
-分析 int main() { int A, B, C, X; cin &gt;&gt; A &gt;&gt; B &gt;&gt; C &gt;&gt; X; double ans = 0; if (X &lt;= A) { ans = 1; } else if (X &lt;= B &amp;&amp; A != B) { ans = 1.0 * C / (B - A); } printf(&#34;%.12lf&#34;, ans); return 0; } 全部代码请看：Atcoder/ABC242/ABC242A.cpp。
-B. Minimize Ordering 给定一个字符串 $S$，请找到 $S$ 的重排 $S’$，并且使其字典序尽可能小。...</p>
-  </section>
-  <footer class="entry-footer">March 15, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to AtCoder Beginner Contest 242(A-E)" href="https://acm.rogery.dev/post/2022-03/abc242/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>AtCoder Beginner Contest 243(A-G)</h2>
-  </header>
-  <section class="entry-content">
-    <p>数学不行，摆烂。
-A. Shampoo 三个人 F, M, T 按顺序洗澡，其中洗发液用量分别是 $A, B, C$。
-现在洗发液的量 $V$，问谁先无法洗澡？
-分析 第一次没认真读，WA 了一发。
-int main() { int V, A, B, C; cin &gt;&gt; V &gt;&gt; A &gt;&gt; B &gt;&gt; C; V %= A &#43; B &#43; C; if (V &lt; A) { cout &lt;&lt; &#34;F&#34;; } else if (V &lt; A &#43; B) { cout &lt;&lt; &#34;M&#34;; } else { cout &lt;&lt; &#34;T&#34;; } return 0; } 全部代码请看：Atcoder/ABC243/ABC243A....</p>
-  </section>
-  <footer class="entry-footer">March 12, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to AtCoder Beginner Contest 243(A-G)" href="https://acm.rogery.dev/post/2022-03/abc243/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Codeforces Round #657 (Div. 2)(A-C)</h2>
-  </header>
-  <section class="entry-content">
-    <p>这场属实阴间。
-A. Acacius and String 替换字符串 $s$ 中的 ?，使得出现且仅出现一次 abacaba。
-分析 本题较为难写，因为很难判断恰好出现了一次。但是数据规模很小，可以采用非常暴力的写法。
-一种想法是，枚举每个出现 abacaba 的位置 $i$，把当前 $s[i, i &#43; 6]$ 中的 ? 设为给定串，这样就得到了字符串 $t$。
-然后判断字符串 $t$ 中只出现了一次 abacaba，可以通过 substr 枚举所有长为 $6$ 的子串。
-string what = &#34;abacaba&#34;; int N = what.length(); void solve() { int n; string s; cin &gt;&gt; n &gt;&gt; s; for (int i = 0; i &lt;= n - N; i&#43;&#43;) { string tmp = s; for (int j = 0; j &lt; N; j&#43;&#43;) { if (tmp[i &#43; j] == &#39;?...</p>
-  </section>
-  <footer class="entry-footer">March 12, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to Codeforces Round #657 (Div. 2)(A-C)" href="https://acm.rogery.dev/post/2022-03/cf1379/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
