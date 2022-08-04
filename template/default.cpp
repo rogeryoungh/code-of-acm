@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
-using ll = long long;
+using ll = int64_t;
 
-#define dbg(x) #x << " = " << (x) << ", "
-int ____ = cin.tie(0)->sync_with_stdio(0);
-#define endl '\n'
+int ____ = cin.tie(nullptr)->sync_with_stdio(false);
 
 // END OF HEADER | Author: Roger Young
 
@@ -12,7 +10,7 @@ int main() {
 	int T;
 	cin >> T;
 	while (T--) {
-		cout << "X" << endl;
+		cout << "X" << '\n';
 	}
 	return 0;
 }

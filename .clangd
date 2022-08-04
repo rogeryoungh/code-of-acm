@@ -1,0 +1,11 @@
+Diagnostics:
+  ClangTidy:
+    Add: [ performance-*, portability-*, modernize-* ]
+    Remove: [ modernize-use-trailing-return-type ]
+    CheckOptions:
+      readability-identifier-naming.VariableCase: CamelCase
+  UnusedIncludes: Strict
+
+CompileFlags:
+  Add: [-xc++, -Wall, -Wextra, -std=c++20, -Wno-sign-compare]
+  Compiler: clang++

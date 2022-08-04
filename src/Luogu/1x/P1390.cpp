@@ -1,7 +1,12 @@
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
+using ll = int64_t;
 
-// @description 线性筛积性函数
+#define dbg(x) #x << " = " << (x) << ", "
+int ____ = cin.tie(0)->sync_with_stdio(0);
+#define endl '\n'
+
+// END OF HEADER | Author: Roger Young
 
 vector<bool> not_p;
 vector<int> primes, phi, mu;
@@ -27,4 +32,21 @@ void Euler(int n) {
 			mu[i * pj] = -mu[i];
 		}
 	}
+}
+
+int main() {
+	int n;
+	cin >> n;
+	Euler(n + 1);
+	ll ans = 0;
+	vector<ll> sphi(n + 1);
+	for (int i = 1; i <= n; i++) {
+		sphi[i] = sphi[i - 1] + phi[i];
+	}
+	for (int i = 1; i <= n; i++) {
+		ans += i * (2 * sphi[n / i] - 1);
+	}
+	ans = (ans - 1ll * n * (n + 1) / 2) / 2;
+	cout << ans;
+	return 0;
 }

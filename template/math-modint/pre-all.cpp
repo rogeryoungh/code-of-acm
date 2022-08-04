@@ -52,9 +52,6 @@ struct Z {
 		return *this *= m.inv();
 	}
 	OPERATOR(Z, /);
-	explicit operator int() const {
-		return v;
-	}
 };
 
 // @description 预处理逆元、阶乘、阶乘逆元

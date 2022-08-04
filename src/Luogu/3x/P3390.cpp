@@ -1,8 +1,12 @@
-#include <vector>
-#include <iostream>
-#include <cassert>
-using ll = long long;
+#include <bits/stdc++.h>
 using namespace std;
+using ll = long long;
+
+#define dbg(x) #x << " = " << (x) << ", "
+int ____ = cin.tie(0)->sync_with_stdio(0);
+#define endl '\n'
+
+// END OF HEADER | Author: Roger Young
 
 const int P = 1E9 + 7;
 
@@ -69,3 +73,12 @@ ostream &operator<<(ostream &os, QMtx &m) {
 	return os;
 }
 
+int main() {
+	ll n, k;
+	cin >> n >> k;
+	QMtx mtx(n);
+	cin >> mtx;
+	QMtx ans = mtx.pow(k);
+	cout << ans;
+	return 0;
+}

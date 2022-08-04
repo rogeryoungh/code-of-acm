@@ -1,15 +1,15 @@
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
+using ll = int64_t;
 
-// @problem https://loj.ac/p/132
-// @dependices "ds/fwtree.cpp"
+int ____ = std::cin.tie(nullptr)->sync_with_stdio(false);
 
-// @description 区间加 & 区间更新（树状数组实现）
+// END OF HEADER | Author: Roger Young
 
 template <class T>
 struct fwtree {
 	int n;
-	vector<T> v;
+	std::vector<T> v;
 	fwtree(int n_ = 0) : n(n_), v(n) {}
 	void add(int i, T x) {
 		for (; 0 < i && i < n; i += i & -i) {
@@ -81,3 +81,42 @@ struct fwtree_2 {
 		return sum(r) - sum(l - 1);
 	}
 };
+
+using pii = pair<int, int>;
+
+int main() {
+	int n, type_;
+	cin >> n >> type_;
+	vector<vector<int>> B(n + 1);
+	vector<int> a(n + 1);
+	for (int i = 1; i <= n; i++) {
+		cin >> a[i];
+		B[a[i]].push_back(i);
+	}
+
+	ll ans = 0;
+	const int off = n + 3;
+	fwtree_2<ll> tr(n * 2 + 5);
+	for (int i = 0; i < n; i++) {
+		if (B[i].empty()) {
+			continue;
+		}
+		B[i].push_back(n + 1);
+		int last = 0, past_bi = 0;
+
+		vector<pii> v;
+		for (auto bi : B[i]) {
+			int dif = bi - past_bi;
+			int x = last - (dif - 1), y = last;
+			ans += tr.sum(x - 1 + off, y - 1 + off);
+			tr.add(x + off, y + off, 1);
+			v.emplace_back(x + off, y + off);
+			past_bi = bi, last -= dif - 2;
+		}
+		for (auto [x, y] : v) {
+			tr.add(x, y, -1);
+		}
+	}
+	cout << ans;
+	return 0;
+}

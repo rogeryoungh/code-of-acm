@@ -1,8 +1,9 @@
 #include <istream>
 using namespace std;
 using ll = int64_t;
+using i128 = __int128_t;
 
-const int P = 998244353;
+const ll P = 998244353998244353;
 
 // @description 取模整数
 
@@ -12,10 +13,10 @@ const int P = 998244353;
 	}
 
 struct Z {
-	int v;
-	Z(int a = 0) : v(a) {}
-	Z(ll a = 0) : v(a % P) {}
-	Z &operator=(const int &m) {
+	ll v;
+	Z(ll a = 0) : v(a) {}
+	Z(i128 a = 0) : v(a % P) {}
+	Z &operator=(const ll &m) {
 		v = m;
 		return *this;
 	}
@@ -28,18 +29,18 @@ struct Z {
 		return *this;
 	}
 	Z &operator*=(const Z &m) {
-		v = 1ll * v * m.v % P;
+		v = i128(v) * m.v % P;
 		return *this;
 	}
 	OPERATOR(Z, +);
 	OPERATOR(Z, -);
 	OPERATOR(Z, *);
-	Z pow(int n) const {
-		int ret = P != 1, a = v;
+	Z pow(ll n) const {
+		ll ret = P != 1, a = v;
 		for (; n; n /= 2) {
 			if (n % 2 == 1)
-				ret = 1ll * ret * a % P;
-			a = 1ll * a * a % P;
+				ret = i128(ret) * a % P;
+			a = i128(a) * a % P;
 		}
 		return ret;
 	}
