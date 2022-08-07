@@ -1,7 +1,7 @@
 ---
 author: "rogeryoungh"
 title: "ZAFU 2022.08.07 个人赛题解"
-date: "2022-08-17"
+date: "2022-08-07"
 katex: true
 showtoc: true
 ---
