@@ -14,7 +14,7 @@ const int P = 998244353;
 struct Z {
 	int v;
 	Z(int a = 0) : v(a) {}
-	Z(ll a = 0) : v(a % P) {}
+	Z(ll a) : v(a % P) {}
 	Z &operator=(const int &m) {
 		v = m;
 		return *this;

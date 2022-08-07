@@ -1,3 +1,7 @@
+#include <map>
+
+struct Poly;
+
 struct PolyCDQ {
 	int now = 0;
 	const int M = 32;
@@ -6,25 +10,25 @@ struct PolyCDQ {
 
 	PolyCDQ(Poly &f, Poly &g) : F(f), G(g), conv(M) {}
 
-	int next() { // return  (F * G)[now] - F[0] G[now]
-		conv[now] = (conv[now] + 1ll * G[now] * F[0]) % P;
+	Z next() { // return  (F * G)[now] - F[0] G[now]
+		conv[now] += G[now] * F[0];
 		now++;
 		int len = now & -now, l = now - len;
 		if (len < M) {
-			u64 s = 0;
 			for (int j = now & -M; j < now; ++j) {
-				s += 1ll * G[j] * F[now - j] % P;
+				conv[now] += G[j] * F[now - j];
 			}
-			conv[now] = (conv[now] + s) % P;
 		} else {
 			Poly a = G.cut(len, l).ntt(len * 2), &b = nf[len];
-			if (l == 0)
-				b = F.cut(len * 2).ntt(len * 2), conv.redeg(now * 2);
+			if (l == 0) {
+				b = F.cut(len * 2).ntt(len * 2);
+				conv.redeg(now * 2);
+			}
 			for (int i = 0; i < len * 2; i++)
-				a[i] = 1ll * a[i] * b[i] % P;
+				a[i] *= b[i];
 			a.intt(len * 2);
 			for (int i = len; i < len * 2; i++)
-				conv[l + i] = mo(a[i] + conv[l + i]);
+				conv[l + i] += a[i];
 		}
 		return conv[now];
 	}

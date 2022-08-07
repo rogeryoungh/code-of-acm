@@ -1,6 +1,9 @@
 #include <vector>
 #include <algorithm>
+#include <iostream>
+#include <cassert>
 using namespace std;
+using ll = int64_t;
 
 // @description 多项式牛顿迭代(m32)
 // @problem https://loj.ac/p/150
@@ -25,15 +28,10 @@ int qpow(int a, int b = P - 2, int m = P) {
 struct Z {
 	int v;
 	Z(int a = 0) : v(a) {}
+	Z(ll a) : v(a % P) {}
 	Z &operator=(const int &m) {
 		v = m;
 		return *this;
-	}
-	Z pow(int n) const {
-		return qpow(v, n, P);
-	}
-	Z inv() const {
-		return qpow(v);
 	}
 	Z &operator+=(const Z &m) {
 		v = (v += m.v) >= P ? v - P : v;
@@ -47,20 +45,38 @@ struct Z {
 		v = 1ll * v * m.v % P;
 		return *this;
 	}
-	Z &operator/=(const Z &m) {
-		return *this *= m.inv();
-	}
 	OPERATOR(Z, +);
 	OPERATOR(Z, -);
 	OPERATOR(Z, *);
-	OPERATOR(Z, /);
+	Z pow(int n) const {
+		int ret = P != 1, a = v;
+		for (; n; n /= 2) {
+			if (n % 2 == 1)
+				ret = 1ll * ret * a % P;
+			a = 1ll * a * a % P;
+		}
+		return ret;
+	}
+	Z inv() const {
+		return pow(P - 2);
+	}
+	// useless
 	Z operator-() const {
 		return v == 0 ? 0 : P - v;
 	}
-	static int mod() {
-		return P;
+	Z &operator/=(const Z &m) {
+		return *this *= m.inv();
 	}
+	OPERATOR(Z, /);
 };
+
+istream &operator>>(istream &is, Z &z) {
+	return is >> z.v;
+}
+
+ostream &operator<<(ostream &os, const Z &z) {
+	return os << z.v;
+}
 
 vector<Z> w{1, 1}, iv{1, 1}, fac{1}, ifac{1};
 
@@ -153,9 +169,10 @@ struct Poly : vector<Z> { // 大常数板子
 			T[i] -= g[i];
 		return T;
 	}
+
 	OPERATOR(Poly, +);
 	OPERATOR(Poly, -);
-	Poly operator*(int k) {
+	Poly operator*(Z k) {
 		Poly f = T;
 		for (Z &fi : f)
 			fi *= k;
@@ -177,15 +194,15 @@ struct Poly : vector<Z> { // 大常数板子
 		int m = f.deg() + g.deg() - 1;
 		return mul(f, g, get_lim(m)).redeg(m);
 	}
-	Poly deriv() const {
-		Poly f(deg() - 1);
-		for (int i = 1; i < deg(); i++)
+	Poly deriv(int m) const {
+		Poly f(m);
+		for (int i = 1; i < min(deg(), m + 1); i++)
 			f[i - 1] = T[i] * i;
 		return f;
 	}
-	Poly integr() const {
-		Poly f(deg() + 1);
-		for (int i = deg(); i > 0; --i)
+	Poly integr(int m) const {
+		Poly f(m);
+		for (int i = min(deg(), m - 1); i > 0; --i)
 			f[i] = iv[i] * T[i - 1];
 		return f;
 	}
@@ -206,9 +223,11 @@ struct Poly : vector<Z> { // 大常数板子
 		return (cut(m) * g.inv(m)).redeg(m);
 	}
 	Poly ln(int m) const {
-		return deriv().div(m - 1, cut(m)).integr();
+		assert(T[0].v == 1);
+		return deriv(m).div(m - 1, cut(m)).integr(m);
 	}
 	Poly exp(int m) const { // 48E
+		assert(T[0].v == 0);
 		Poly x = {1};
 		for (int t = 2; t < m * 2; t *= 2) {
 			x = x * (cut(t) - x.ln(t) + Poly{1}), x.redeg(t);
@@ -228,10 +247,6 @@ struct Poly : vector<Z> { // 大常数板子
 	Poly rev() const {
 		return {rbegin(), rend()};
 	}
-	friend Poly operator/(const Poly &f, const Poly &g) {
-		int m = f.deg() - g.deg() + 1;
-		return f.rev().div(m, g.rev()).rev();
-	}
 	Poly shift(int c) {
 		int n = deg();
 		Poly A(n), B(n);
@@ -248,5 +263,26 @@ struct Poly : vector<Z> { // 大常数板子
 		}
 		return B;
 	}
+	friend Poly operator/(const Poly &f, const Poly &g) {
+		int m = f.deg() - g.deg() + 1;
+		return f.rev().div(m, g.rev()).rev();
+	}
+	Poly pow_safe(int m, ll k) const {
+		int pos = 0;
+		while (pos < deg() && T[pos].v == 0) {
+			++pos;
+		}
+		if (pos == deg() || pos > (m - 1) / k) {
+			return Poly(m, 0);
+		}
+		Z x = T[pos];
+		Poly f = Poly(begin() + pos, end()) * x.inv();
+		f = f.pow(m - pos * k, k % P) * x.pow(k % (P - 1));
+		f.insert(f.begin(), pos * k, 0);
+		assert(f.deg() == m);
+		return f;
+	}
 #undef T
 };
+
+
