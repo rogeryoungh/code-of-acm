@@ -5,16 +5,17 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>P3768 简单的数学题 | Roger Young</title>
+<title>P1829 能量采集 | Roger Young</title>
 <meta name="keywords" content="" />
-<meta name="description" content="题目大意 求
-$$ \sum_{i=1}^n \sum_{j=1}^n ij \gcd(i, j) $$
-分析 显然欧拉反演
-$$ \begin{aligned} ans &amp;= \sum_{i=1}^n \sum_{j=1}^n ij \sum_{d \mid \gcd(i, j)} \varphi(d) \\ &amp;= \sum_{d=1} d^2\varphi(d) \sum_{i=1}^{n/d} \sum_{j=1}^{n/d} ij \\ &amp;= \sum_{d=1} d^2\varphi(d) \frac{1}{4}\lfloor n/d\rfloor^2(\lfloor n/d \rfloor &#43; 1)^2 \end{aligned} $$
-整除分块 &#43; 杜教筛即可。
-int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; int x = min(n, m); Euler(x &#43; 1); vector&lt;ll&gt; sphi(x &#43; 1); for (int i = 1; i &lt;= x; i&#43;&#43;) { sphi[i] = sphi[i - 1] &#43; phi[i]; } ll ans = 0; for (int l = 1, r; l &lt;= x; l = r &#43; 1) { r = min(n / (n / l), m / (m / l)); ans &#43;= 1ll * (sphi[r] - sphi[l - 1]) * (n / l) * (m / l); } cout &lt;&lt; ans * 2 - 1ll * n * m; return 0; } 全部代码请看：Luogu/3x/P3768.">
+<meta name="description" content="题目大意 计算
+$$ \sum_{i=1}^n \sum_{j=1}^m \operatorname{lcm}(i, j) $$
+分析 先化 $\gcd$ 出来
+$$ ans = \sum_{i=1}^n \sum_{j=1}^m \frac{ij}{\gcd(i, j)} $$
+显然套 Mobius 反演，朝着那个方向化就行。
+$$ \begin{aligned} ans &amp;= \sum_{d=1}^n \sum_{i=1}^n \sum_{j=1}^m \frac{ij}{d} [\gcd(i, j) = d] \\ &amp;= \sum_{d=1} d \sum_{i=1}^{n / d} \sum_{j=1}^{m / d} ij [\gcd(i, j) = 1] \\ &amp;= \sum_{d=1} d \sum_{x=1}^{\min(n/d, m/d)} x^2\mu(x) S_1 \left(\left\lfloor \frac{m}{dx} \right\rfloor \right) S_1 \left(\left\lfloor \frac{n}{dx} \right\rfloor \right) \end{aligned} $$
+其中 $x^2 \mu(x)$ 可以线性筛预处理，后者可以整除分块嵌套一下。">
 <meta name="author" content="rogeryoungh">
-<link rel="canonical" href="https://acm.rogery.dev/post/2022-07/p3768/" />
+<link rel="canonical" href="https://acm.rogery.dev/post/2022-08/p1829/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
 <link rel="preload" href="https://blog.rogery.dev/avatar.png" as="image">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.171e6917ef25f5282cc5011c5e372dbc64cb3e01191099757f7b3a243d6edc7b.js" integrity="sha256-Fx5pF&#43;8l9SgsxQEcXjctvGTLPgEZEJl1f3s6JD1u3Hs="
@@ -53,26 +54,28 @@ int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; int x = min(n, m); Euler(x &#4
 
 
 
-<meta property="og:title" content="P3768 简单的数学题" />
-<meta property="og:description" content="题目大意 求
-$$ \sum_{i=1}^n \sum_{j=1}^n ij \gcd(i, j) $$
-分析 显然欧拉反演
-$$ \begin{aligned} ans &amp;= \sum_{i=1}^n \sum_{j=1}^n ij \sum_{d \mid \gcd(i, j)} \varphi(d) \\ &amp;= \sum_{d=1} d^2\varphi(d) \sum_{i=1}^{n/d} \sum_{j=1}^{n/d} ij \\ &amp;= \sum_{d=1} d^2\varphi(d) \frac{1}{4}\lfloor n/d\rfloor^2(\lfloor n/d \rfloor &#43; 1)^2 \end{aligned} $$
-整除分块 &#43; 杜教筛即可。
-int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; int x = min(n, m); Euler(x &#43; 1); vector&lt;ll&gt; sphi(x &#43; 1); for (int i = 1; i &lt;= x; i&#43;&#43;) { sphi[i] = sphi[i - 1] &#43; phi[i]; } ll ans = 0; for (int l = 1, r; l &lt;= x; l = r &#43; 1) { r = min(n / (n / l), m / (m / l)); ans &#43;= 1ll * (sphi[r] - sphi[l - 1]) * (n / l) * (m / l); } cout &lt;&lt; ans * 2 - 1ll * n * m; return 0; } 全部代码请看：Luogu/3x/P3768." />
+<meta property="og:title" content="P1829 能量采集" />
+<meta property="og:description" content="题目大意 计算
+$$ \sum_{i=1}^n \sum_{j=1}^m \operatorname{lcm}(i, j) $$
+分析 先化 $\gcd$ 出来
+$$ ans = \sum_{i=1}^n \sum_{j=1}^m \frac{ij}{\gcd(i, j)} $$
+显然套 Mobius 反演，朝着那个方向化就行。
+$$ \begin{aligned} ans &amp;= \sum_{d=1}^n \sum_{i=1}^n \sum_{j=1}^m \frac{ij}{d} [\gcd(i, j) = d] \\ &amp;= \sum_{d=1} d \sum_{i=1}^{n / d} \sum_{j=1}^{m / d} ij [\gcd(i, j) = 1] \\ &amp;= \sum_{d=1} d \sum_{x=1}^{\min(n/d, m/d)} x^2\mu(x) S_1 \left(\left\lfloor \frac{m}{dx} \right\rfloor \right) S_1 \left(\left\lfloor \frac{n}{dx} \right\rfloor \right) \end{aligned} $$
+其中 $x^2 \mu(x)$ 可以线性筛预处理，后者可以整除分块嵌套一下。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://acm.rogery.dev/post/2022-07/p3768/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://acm.rogery.dev/post/2022-08/p1829/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-07-29T00:00:00&#43;00:00" />
 <meta property="article:modified_time" content="2022-07-29T00:00:00&#43;00:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="P3768 简单的数学题"/>
-<meta name="twitter:description" content="题目大意 求
-$$ \sum_{i=1}^n \sum_{j=1}^n ij \gcd(i, j) $$
-分析 显然欧拉反演
-$$ \begin{aligned} ans &amp;= \sum_{i=1}^n \sum_{j=1}^n ij \sum_{d \mid \gcd(i, j)} \varphi(d) \\ &amp;= \sum_{d=1} d^2\varphi(d) \sum_{i=1}^{n/d} \sum_{j=1}^{n/d} ij \\ &amp;= \sum_{d=1} d^2\varphi(d) \frac{1}{4}\lfloor n/d\rfloor^2(\lfloor n/d \rfloor &#43; 1)^2 \end{aligned} $$
-整除分块 &#43; 杜教筛即可。
-int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; int x = min(n, m); Euler(x &#43; 1); vector&lt;ll&gt; sphi(x &#43; 1); for (int i = 1; i &lt;= x; i&#43;&#43;) { sphi[i] = sphi[i - 1] &#43; phi[i]; } ll ans = 0; for (int l = 1, r; l &lt;= x; l = r &#43; 1) { r = min(n / (n / l), m / (m / l)); ans &#43;= 1ll * (sphi[r] - sphi[l - 1]) * (n / l) * (m / l); } cout &lt;&lt; ans * 2 - 1ll * n * m; return 0; } 全部代码请看：Luogu/3x/P3768."/>
+<meta name="twitter:title" content="P1829 能量采集"/>
+<meta name="twitter:description" content="题目大意 计算
+$$ \sum_{i=1}^n \sum_{j=1}^m \operatorname{lcm}(i, j) $$
+分析 先化 $\gcd$ 出来
+$$ ans = \sum_{i=1}^n \sum_{j=1}^m \frac{ij}{\gcd(i, j)} $$
+显然套 Mobius 反演，朝着那个方向化就行。
+$$ \begin{aligned} ans &amp;= \sum_{d=1}^n \sum_{i=1}^n \sum_{j=1}^m \frac{ij}{d} [\gcd(i, j) = d] \\ &amp;= \sum_{d=1} d \sum_{i=1}^{n / d} \sum_{j=1}^{m / d} ij [\gcd(i, j) = 1] \\ &amp;= \sum_{d=1} d \sum_{x=1}^{\min(n/d, m/d)} x^2\mu(x) S_1 \left(\left\lfloor \frac{m}{dx} \right\rfloor \right) S_1 \left(\left\lfloor \frac{n}{dx} \right\rfloor \right) \end{aligned} $$
+其中 $x^2 \mu(x)$ 可以线性筛预处理，后者可以整除分块嵌套一下。"/>
 
 
 <script type="application/ld+json">
@@ -89,8 +92,8 @@ int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; int x = min(n, m); Euler(x &#4
     {
       "@type": "ListItem",
       "position":  3 ,
-      "name": "P3768 简单的数学题",
-      "item": "https://acm.rogery.dev/post/2022-07/p3768/"
+      "name": "P1829 能量采集",
+      "item": "https://acm.rogery.dev/post/2022-08/p1829/"
     }
   ]
 }
@@ -99,14 +102,14 @@ int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; int x = min(n, m); Euler(x &#4
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "P3768 简单的数学题",
-  "name": "P3768 简单的数学题",
-  "description": "题目大意 求\n$$ \\sum_{i=1}^n \\sum_{j=1}^n ij \\gcd(i, j) $$\n分析 显然欧拉反演\n$$ \\begin{aligned} ans \u0026amp;= \\sum_{i=1}^n \\sum_{j=1}^n ij \\sum_{d \\mid \\gcd(i, j)} \\varphi(d) \\\\ \u0026amp;= \\sum_{d=1} d^2\\varphi(d) \\sum_{i=1}^{n/d} \\sum_{j=1}^{n/d} ij \\\\ \u0026amp;= \\sum_{d=1} d^2\\varphi(d) \\frac{1}{4}\\lfloor n/d\\rfloor^2(\\lfloor n/d \\rfloor + 1)^2 \\end{aligned} $$\n整除分块 + 杜教筛即可。\nint main() { int n, m; cin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; m; int x = min(n, m); Euler(x + 1); vector\u0026lt;ll\u0026gt; sphi(x + 1); for (int i = 1; i \u0026lt;= x; i++) { sphi[i] = sphi[i - 1] + phi[i]; } ll ans = 0; for (int l = 1, r; l \u0026lt;= x; l = r + 1) { r = min(n / (n / l), m / (m / l)); ans += 1ll * (sphi[r] - sphi[l - 1]) * (n / l) * (m / l); } cout \u0026lt;\u0026lt; ans * 2 - 1ll * n * m; return 0; } 全部代码请看：Luogu/3x/P3768.",
+  "headline": "P1829 能量采集",
+  "name": "P1829 能量采集",
+  "description": "题目大意 计算\n$$ \\sum_{i=1}^n \\sum_{j=1}^m \\operatorname{lcm}(i, j) $$\n分析 先化 $\\gcd$ 出来\n$$ ans = \\sum_{i=1}^n \\sum_{j=1}^m \\frac{ij}{\\gcd(i, j)} $$\n显然套 Mobius 反演，朝着那个方向化就行。\n$$ \\begin{aligned} ans \u0026amp;= \\sum_{d=1}^n \\sum_{i=1}^n \\sum_{j=1}^m \\frac{ij}{d} [\\gcd(i, j) = d] \\\\ \u0026amp;= \\sum_{d=1} d \\sum_{i=1}^{n / d} \\sum_{j=1}^{m / d} ij [\\gcd(i, j) = 1] \\\\ \u0026amp;= \\sum_{d=1} d \\sum_{x=1}^{\\min(n/d, m/d)} x^2\\mu(x) S_1 \\left(\\left\\lfloor \\frac{m}{dx} \\right\\rfloor \\right) S_1 \\left(\\left\\lfloor \\frac{n}{dx} \\right\\rfloor \\right) \\end{aligned} $$\n其中 $x^2 \\mu(x)$ 可以线性筛预处理，后者可以整除分块嵌套一下。",
   "keywords": [
     
   ],
-  "articleBody": "题目大意 求\n$$ \\sum_{i=1}^n \\sum_{j=1}^n ij \\gcd(i, j) $$\n分析 显然欧拉反演\n$$ \\begin{aligned} ans \u0026= \\sum_{i=1}^n \\sum_{j=1}^n ij \\sum_{d \\mid \\gcd(i, j)} \\varphi(d) \\\\ \u0026= \\sum_{d=1} d^2\\varphi(d) \\sum_{i=1}^{n/d} \\sum_{j=1}^{n/d} ij \\\\ \u0026= \\sum_{d=1} d^2\\varphi(d) \\frac{1}{4}\\lfloor n/d\\rfloor^2(\\lfloor n/d \\rfloor + 1)^2 \\end{aligned} $$\n整除分块 + 杜教筛即可。\nint main() { int n, m; cin \u003e\u003e n \u003e\u003e m; int x = min(n, m); Euler(x + 1); vector\u003cll\u003e sphi(x + 1); for (int i = 1; i \u003c= x; i++) { sphi[i] = sphi[i - 1] + phi[i]; } ll ans = 0; for (int l = 1, r; l \u003c= x; l = r + 1) { r = min(n / (n / l), m / (m / l)); ans += 1ll * (sphi[r] - sphi[l - 1]) * (n / l) * (m / l); } cout \u003c\u003c ans * 2 - 1ll * n * m; return 0; } 全部代码请看：Luogu/3x/P3768.cpp。\n",
-  "wordCount" : "150",
+  "articleBody": "题目大意 计算\n$$ \\sum_{i=1}^n \\sum_{j=1}^m \\operatorname{lcm}(i, j) $$\n分析 先化 $\\gcd$ 出来\n$$ ans = \\sum_{i=1}^n \\sum_{j=1}^m \\frac{ij}{\\gcd(i, j)} $$\n显然套 Mobius 反演，朝着那个方向化就行。\n$$ \\begin{aligned} ans \u0026= \\sum_{d=1}^n \\sum_{i=1}^n \\sum_{j=1}^m \\frac{ij}{d} [\\gcd(i, j) = d] \\\\ \u0026= \\sum_{d=1} d \\sum_{i=1}^{n / d} \\sum_{j=1}^{m / d} ij [\\gcd(i, j) = 1] \\\\ \u0026= \\sum_{d=1} d \\sum_{x=1}^{\\min(n/d, m/d)} x^2\\mu(x) S_1 \\left(\\left\\lfloor \\frac{m}{dx} \\right\\rfloor \\right) S_1 \\left(\\left\\lfloor \\frac{n}{dx} \\right\\rfloor \\right) \\end{aligned} $$\n其中 $x^2 \\mu(x)$ 可以线性筛预处理，后者可以整除分块嵌套一下。\nZ iv2 = Z(2).inv(); Z S1(Z x) { return x * (x + 1) * iv2; } Z sol1(int md, int nd) { Z ans = 0; for (int l = 1, r; l \u003c= min(md, nd); l = r + 1) { r = min(md / (md / l), nd / (nd / l)); ans += (smu[r] - smu[l - 1]) * S1(nd / l) * S1(md / l); } return ans; } int main() { int n, m; cin \u003e\u003e n \u003e\u003e m; Z ans = 0; Euler(max(n, m) + 10); for (int l = 1, r; l \u003c= min(n, m); l = r + 1) { r = min(n / (n / l), m / (m / l)); ans += (S1(r) - S1(l - 1)) * sol1(n / l, m / l); } cout \u003c\u003c ans; return 0; } 全部代码请看：Luogu/1x/P1829.cpp。\n",
+  "wordCount" : "216",
   "inLanguage": "en",
   "datePublished": "2022-07-29T00:00:00Z",
   "dateModified": "2022-07-29T00:00:00Z",
@@ -116,7 +119,7 @@ int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; int x = min(n, m); Euler(x &#4
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://acm.rogery.dev/post/2022-07/p3768/"
+    "@id": "https://acm.rogery.dev/post/2022-08/p1829/"
   },
   "publisher": {
     "@type": "Organization",
@@ -243,7 +246,7 @@ int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; int x = min(n, m); Euler(x &#4
   <header class="post-header">
     
     <h1 class="post-title">
-      P3768 简单的数学题
+      P1829 能量采集
     </h1>
     <div class="post-meta">July 29, 2022&nbsp;·&nbsp;rogeryoungh
 </div>
@@ -264,55 +267,67 @@ int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; int x = min(n, m); Euler(x &#4
 </div>
 
   <div class="post-content"><h2 id="题目大意">题目大意<a hidden class="anchor" aria-hidden="true" href="#题目大意">#</a></h2>
-<p>求</p>
+<p>计算</p>
 <p>$$
-\sum_{i=1}^n \sum_{j=1}^n ij \gcd(i, j)
+\sum_{i=1}^n \sum_{j=1}^m \operatorname{lcm}(i, j)
 $$</p>
 <h2 id="分析">分析<a hidden class="anchor" aria-hidden="true" href="#分析">#</a></h2>
-<p>显然欧拉反演</p>
+<p>先化 $\gcd$ 出来</p>
+<p>$$
+ans = \sum_{i=1}^n \sum_{j=1}^m \frac{ij}{\gcd(i, j)}
+$$</p>
+<p>显然套 Mobius 反演，朝着那个方向化就行。</p>
 <p>$$
 \begin{aligned}
-ans &amp;= \sum_{i=1}^n \sum_{j=1}^n ij \sum_{d \mid \gcd(i, j)} \varphi(d) \\
-&amp;= \sum_{d=1} d^2\varphi(d) \sum_{i=1}^{n/d} \sum_{j=1}^{n/d} ij \\
-&amp;= \sum_{d=1} d^2\varphi(d) \frac{1}{4}\lfloor n/d\rfloor^2(\lfloor n/d \rfloor + 1)^2
+ans &amp;= \sum_{d=1}^n \sum_{i=1}^n \sum_{j=1}^m \frac{ij}{d} [\gcd(i, j) = d] \\
+&amp;= \sum_{d=1} d \sum_{i=1}^{n / d} \sum_{j=1}^{m / d} ij [\gcd(i, j) = 1] \\
+&amp;= \sum_{d=1} d  \sum_{x=1}^{\min(n/d, m/d)} x^2\mu(x)  S_1 \left(\left\lfloor \frac{m}{dx} \right\rfloor \right) S_1 \left(\left\lfloor \frac{n}{dx} \right\rfloor \right)
 \end{aligned}
 $$</p>
-<p>整除分块 + 杜教筛即可。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<p>其中 $x^2 \mu(x)$ 可以线性筛预处理，后者可以整除分块嵌套一下。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Z</span> <span class="n">iv2</span> <span class="o">=</span> <span class="n">Z</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">inv</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Z</span> <span class="nf">S1</span><span class="p">(</span><span class="n">Z</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">iv2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Z</span> <span class="nf">sol1</span><span class="p">(</span><span class="kt">int</span> <span class="n">md</span><span class="p">,</span> <span class="kt">int</span> <span class="n">nd</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Z</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">;</span> <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">min</span><span class="p">(</span><span class="n">md</span><span class="p">,</span> <span class="n">nd</span><span class="p">);</span> <span class="n">l</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">r</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">md</span> <span class="o">/</span> <span class="p">(</span><span class="n">md</span> <span class="o">/</span> <span class="n">l</span><span class="p">),</span> <span class="n">nd</span> <span class="o">/</span> <span class="p">(</span><span class="n">nd</span> <span class="o">/</span> <span class="n">l</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ans</span> <span class="o">+=</span> <span class="p">(</span><span class="n">smu</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">-</span> <span class="n">smu</span><span class="p">[</span><span class="n">l</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">S1</span><span class="p">(</span><span class="n">nd</span> <span class="o">/</span> <span class="n">l</span><span class="p">)</span> <span class="o">*</span> <span class="n">S1</span><span class="p">(</span><span class="n">md</span> <span class="o">/</span> <span class="n">l</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">m</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Euler</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">sphi</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">sphi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sphi</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">ll</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">;</span> <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="p">;</span> <span class="n">l</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Z</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Euler</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">;</span> <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">min</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">);</span> <span class="n">l</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="n">r</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">l</span><span class="p">),</span> <span class="n">m</span> <span class="o">/</span> <span class="p">(</span><span class="n">m</span> <span class="o">/</span> <span class="n">l</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">		<span class="n">ans</span> <span class="o">+=</span> <span class="mi">1ll</span> <span class="o">*</span> <span class="p">(</span><span class="n">sphi</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">-</span> <span class="n">sphi</span><span class="p">[</span><span class="n">l</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">l</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span> <span class="o">/</span> <span class="n">l</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ans</span> <span class="o">+=</span> <span class="p">(</span><span class="n">S1</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">-</span> <span class="n">S1</span><span class="p">(</span><span class="n">l</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="n">sol1</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">l</span><span class="p">,</span> <span class="n">m</span> <span class="o">/</span> <span class="n">l</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1ll</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>全部代码请看：<a href="https://github.com/rogeryoungh/code-of-acm/blob/main/src/Luogu/3x/P3768.cpp">Luogu/3x/P3768.cpp</a>。</p>
+</span></span></code></pre></div><p>全部代码请看：<a href="https://github.com/rogeryoungh/code-of-acm/blob/main/src/Luogu/1x/P1829.cpp">Luogu/1x/P1829.cpp</a>。</p>
 
 
 
   </div>
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://acm.rogery.dev/post/2022-08/p1829/">
+  <a class="prev" href="https://acm.rogery.dev/post/2022-07/p1447/">
     <span class="title">« Prev Page</span>
     <br>
-    <span>P1829 能量采集</span>
+    <span>P1447 能量采集</span>
   </a>
-  <a class="next" href="https://acm.rogery.dev/post/2022-07/p4062/">
+  <a class="next" href="https://acm.rogery.dev/post/2022-07/p3768/">
     <span class="title">Next Page »</span>
     <br>
-    <span>P4062 Yazid 的新生舞会</span>
+    <span>P3768 简单的数学题</span>
   </a>
 </nav>
 <blockquote>
@@ -323,7 +338,7 @@ $$</p>
     </p>
     <p class="copyright-item">
         撰写时间：2022-07-29，
-        <a href="https://github.com/rogeryoungh/code-of-acm/#/commits/main/content/post/2022-07/P3768.md" target="_blank">更新历史</a>。
+        <a href="https://github.com/rogeryoungh/code-of-acm/#/commits/main/content/post/2022-08/P1829.md" target="_blank">更新历史</a>。
     </p>
 </blockquote>
   </footer><div id="vcomments"></div>

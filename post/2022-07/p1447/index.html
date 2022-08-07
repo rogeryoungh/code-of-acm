@@ -111,7 +111,7 @@ $$ \begin{aligned} ans &amp;= 2 \sum_{i=1}^n \sum_{j=1}^m \sum_{d \mid \gcd(i, j
   "keywords": [
     
   ],
-  "articleBody": "题目大意 在 $n \\times m$ 的花园中，设 $(0, 0) \\to (i, j)$ 之间的格点数为 $k$，则 $(i, j)$ 的贡献为 $2k+1$。求整个花园的累计贡献。\n分析 首先，格点数为 $\\gcd(i, j) - 1$，不要拿 $\\min(n/i, m/j)$ 去算，算不清楚的。\n因此答案为\n$$ ans = \\sum_{i=1}^n \\sum_{j=1}^m (2\\gcd(i, j) - 1) $$\n由欧拉反演\n$$ \\sum_{d \\mid n} \\varphi(d) = n $$\n因此\n$$ \\begin{aligned} ans \u0026= 2 \\sum_{i=1}^n \\sum_{j=1}^m \\sum_{d \\mid \\gcd(i, j)} \\varphi(d) - nm\\\\ \u0026= 2\\sum_{d=1}\\varphi(d) \\left\\lfloor \\frac{n}{d}\\right\\rfloor \\left\\lfloor \\frac{m}{d}\\right\\rfloor - nm \\end{aligned} $$\n整除分块即可。\nint main() { int n, m; cin \u003e\u003e n \u003e\u003e m; int x = min(n, m); Euler(x + 1); vector\u003cll\u003e sphi(x + 1); for (int i = 1; i \u003c= x; i++) { sphi[i] = sphi[i - 1] + phi[i]; } ll ans = 0; for (int l = 1, r; l \u003c= x; l = r + 1) { r = min(n / (n / l), m / (m / l)); ans += 1ll * (sphi[r] - sphi[l - 1]) * (n / l) * (m / l); } cout \u003c\u003c ans * 2 - 1ll * n * m; return 0; } 全部代码请看：Luogu/8x/P8240.cpp。\n",
+  "articleBody": "题目大意 在 $n \\times m$ 的花园中，设 $(0, 0) \\to (i, j)$ 之间的格点数为 $k$，则 $(i, j)$ 的贡献为 $2k+1$。求整个花园的累计贡献。\n分析 首先，格点数为 $\\gcd(i, j) - 1$，不要拿 $\\min(n/i, m/j)$ 去算，算不清楚的。\n因此答案为\n$$ ans = \\sum_{i=1}^n \\sum_{j=1}^m (2\\gcd(i, j) - 1) $$\n由欧拉反演\n$$ \\sum_{d \\mid n} \\varphi(d) = n $$\n因此\n$$ \\begin{aligned} ans \u0026= 2 \\sum_{i=1}^n \\sum_{j=1}^m \\sum_{d \\mid \\gcd(i, j)} \\varphi(d) - nm\\\\ \u0026= 2\\sum_{d=1}\\varphi(d) \\left\\lfloor \\frac{n}{d}\\right\\rfloor \\left\\lfloor \\frac{m}{d}\\right\\rfloor - nm \\end{aligned} $$\n整除分块即可。\nint main() { int n, m; cin \u003e\u003e n \u003e\u003e m; int x = min(n, m); Euler(x + 1); vector\u003cll\u003e sphi(x + 1); for (int i = 1; i \u003c= x; i++) { sphi[i] = sphi[i - 1] + phi[i]; } ll ans = 0; for (int l = 1, r; l \u003c= x; l = r + 1) { r = min(n / (n / l), m / (m / l)); ans += 1ll * (sphi[r] - sphi[l - 1]) * (n / l) * (m / l); } cout \u003c\u003c ans * 2 - 1ll * n * m; return 0; } 全部代码请看：Luogu/1x/P1447.cpp。\n",
   "wordCount" : "177",
   "inLanguage": "en",
   "datePublished": "2022-07-29T00:00:00Z",
@@ -308,7 +308,7 @@ $$</p>
 </span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1ll</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">m</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>全部代码请看：<a href="https://github.com/rogeryoungh/code-of-acm/blob/main/src/Luogu/8x/P8240.cpp">Luogu/8x/P8240.cpp</a>。</p>
+</span></span></code></pre></div><p>全部代码请看：<a href="https://github.com/rogeryoungh/code-of-acm/blob/main/src/Luogu/1x/P1447.cpp">Luogu/1x/P1447.cpp</a>。</p>
 
 
 
@@ -320,10 +320,10 @@ $$</p>
     <br>
     <span>P6055 GCD</span>
   </a>
-  <a class="next" href="https://acm.rogery.dev/post/2022-07/p3768/">
+  <a class="next" href="https://acm.rogery.dev/post/2022-08/p1829/">
     <span class="title">Next Page »</span>
     <br>
-    <span>P3768 简单的数学题</span>
+    <span>P1829 能量采集</span>
   </a>
 </nav>
 <blockquote>

@@ -201,6 +201,23 @@ $$ \begin{aligned} ans &amp;= 2 \sum_{i=1}^n \sum_{j=1}^m \sum_{d \mid \gcd(i, j
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P1829 能量采集</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 计算
+$$ \sum_{i=1}^n \sum_{j=1}^m \operatorname{lcm}(i, j) $$
+分析 先化 $\gcd$ 出来
+$$ ans = \sum_{i=1}^n \sum_{j=1}^m \frac{ij}{\gcd(i, j)} $$
+显然套 Mobius 反演，朝着那个方向化就行。
+$$ \begin{aligned} ans &amp;= \sum_{d=1}^n \sum_{i=1}^n \sum_{j=1}^m \frac{ij}{d} [\gcd(i, j) = d] \\ &amp;= \sum_{d=1} d \sum_{i=1}^{n / d} \sum_{j=1}^{m / d} ij [\gcd(i, j) = 1] \\ &amp;= \sum_{d=1} d \sum_{x=1}^{\min(n/d, m/d)} x^2\mu(x) S_1 \left(\left\lfloor \frac{m}{dx} \right\rfloor \right) S_1 \left(\left\lfloor \frac{n}{dx} \right\rfloor \right) \end{aligned} $$
+其中 $x^2 \mu(x)$ 可以线性筛预处理，后者可以整除分块嵌套一下。...</p>
+  </section>
+  <footer class="entry-footer">July 29, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1829 能量采集" href="https://acm.rogery.dev/post/2022-08/p1829/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P3768 简单的数学题</h2>
   </header>
   <section class="entry-content">
@@ -209,7 +226,7 @@ $$ \sum_{i=1}^n \sum_{j=1}^n ij \gcd(i, j) $$
 分析 显然欧拉反演
 $$ \begin{aligned} ans &amp;= \sum_{i=1}^n \sum_{j=1}^n ij \sum_{d \mid \gcd(i, j)} \varphi(d) \\ &amp;= \sum_{d=1} d^2\varphi(d) \sum_{i=1}^{n/d} \sum_{j=1}^{n/d} ij \\ &amp;= \sum_{d=1} d^2\varphi(d) \frac{1}{4}\lfloor n/d\rfloor^2(\lfloor n/d \rfloor &#43; 1)^2 \end{aligned} $$
 整除分块 &#43; 杜教筛即可。
-int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; int x = min(n, m); Euler(x &#43; 1); vector&lt;ll&gt; sphi(x &#43; 1); for (int i = 1; i &lt;= x; i&#43;&#43;) { sphi[i] = sphi[i - 1] &#43; phi[i]; } ll ans = 0; for (int l = 1, r; l &lt;= x; l = r &#43; 1) { r = min(n / (n / l), m / (m / l)); ans &#43;= 1ll * (sphi[r] - sphi[l - 1]) * (n / l) * (m / l); } cout &lt;&lt; ans * 2 - 1ll * n * m; return 0; } 全部代码请看：Luogu/8x/P8240....</p>
+int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; int x = min(n, m); Euler(x &#43; 1); vector&lt;ll&gt; sphi(x &#43; 1); for (int i = 1; i &lt;= x; i&#43;&#43;) { sphi[i] = sphi[i - 1] &#43; phi[i]; } ll ans = 0; for (int l = 1, r; l &lt;= x; l = r &#43; 1) { r = min(n / (n / l), m / (m / l)); ans &#43;= 1ll * (sphi[r] - sphi[l - 1]) * (n / l) * (m / l); } cout &lt;&lt; ans * 2 - 1ll * n * m; return 0; } 全部代码请看：Luogu/3x/P3768....</p>
   </section>
   <footer class="entry-footer">July 29, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P3768 简单的数学题" href="https://acm.rogery.dev/post/2022-07/p3768/"></a>
@@ -310,25 +327,6 @@ int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; for (int i = 0; i &lt; m; i&#4
   </section>
   <footer class="entry-footer">May 1, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P8240 偷铀计划" href="https://acm.rogery.dev/post/2022-05/p8240/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Codeforces Round #707</h2>
-  </header>
-  <section class="entry-content">
-    <p>咕了好久。
-A. Alexey and Train 奇怪的模拟。略。
-全部代码请看：Codeforces/CF1501/CF1501B.cpp。
-B. Napoleon Cake 略。
-全部代码请看：Codeforces/CF1501/CF1501B.cpp。
-C. Going Home 给定一个数组，请给出是否存在四元组使得
-$$ a_w &#43; a_v = a_x &#43; a_y $$
-分析 这题很诈骗。注意到 $x&#43;y$ 最多只有 $5 \times 10^6$ 种情况，暴力即可。
-int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; a(n); for (auto &amp;ai : a) { cin &gt;&gt; ai; } vector&lt;pii&gt; u(N &#43; 1); for (int i = 0; i &lt; n; i&#43;&#43;) { for (int j = 0; j &lt; i; j&#43;&#43;) { int sum = a[i] &#43; a[j]; if (u[sum] !...</p>
-  </section>
-  <footer class="entry-footer">April 25, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to Codeforces Round #707" href="https://acm.rogery.dev/post/2022-04/cf1501/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

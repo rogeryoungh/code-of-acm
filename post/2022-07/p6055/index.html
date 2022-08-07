@@ -111,7 +111,7 @@ int main() { ll n; cin &gt;&gt; n; Euler(1E6); SumMu smu(1E6); ll ans = 0; for (
   "keywords": [
     
   ],
-  "articleBody": "题目大意 求\n$$ \\sum_{i=1}^N \\sum_{j=1}^N \\sum_{p=1}^{\\left\\lfloor \\frac{N}{j}\\right\\rfloor} \\sum_{q=1}^{\\left\\lfloor \\frac{N}{j}\\right\\rfloor} [\\gcd(i,j)=1][\\gcd(p,q)=1] $$\n分析 注意到一个神奇的事情\n$$ \\begin{aligned} \u0026[\\gcd(i,j)=1][\\gcd(p,q)=1] \\\\ =\u0026[\\gcd(i,j) = 1][\\gcd(pj,qj)=j]\\\\ =\u0026[\\gcd(i, pj, qj) = 1] \\end{aligned} $$\n因此\n$$ \\begin{aligned} ans \u0026= \\sum_{i=1}^N \\sum_{p=1}^N\\sum_{q=1}^N [\\gcd(i, j, k) = 1] \\\\ \u0026= \\sum_{d=1}^N \\mu(d) \\left\\lfloor \\frac{N}{d} \\right\\rfloor^3 \\end{aligned} $$\n整除分块即可。\nint main() { ll n; cin \u003e\u003e n; Euler(1E6); SumMu smu(1E6); ll ans = 0; for (ll l = 1, r; l \u003c= n; l = r + 1) { r = n / (n / l); int s = (smu.S(r) - smu.S(l - 1) + P) % P; ll t = n / l; ans += s * t % P * t % P * t % P; } cout \u003c\u003c ans % P; return 0; } 全部代码请看：Luogu/8x/P8240.cpp。\n",
+  "articleBody": "题目大意 求\n$$ \\sum_{i=1}^N \\sum_{j=1}^N \\sum_{p=1}^{\\left\\lfloor \\frac{N}{j}\\right\\rfloor} \\sum_{q=1}^{\\left\\lfloor \\frac{N}{j}\\right\\rfloor} [\\gcd(i,j)=1][\\gcd(p,q)=1] $$\n分析 注意到一个神奇的事情\n$$ \\begin{aligned} \u0026[\\gcd(i,j)=1][\\gcd(p,q)=1] \\\\ =\u0026[\\gcd(i,j) = 1][\\gcd(pj,qj)=j]\\\\ =\u0026[\\gcd(i, pj, qj) = 1] \\end{aligned} $$\n因此\n$$ \\begin{aligned} ans \u0026= \\sum_{i=1}^N \\sum_{p=1}^N\\sum_{q=1}^N [\\gcd(i, j, k) = 1] \\\\ \u0026= \\sum_{d=1}^N \\mu(d) \\left\\lfloor \\frac{N}{d} \\right\\rfloor^3 \\end{aligned} $$\n整除分块即可。\nint main() { ll n; cin \u003e\u003e n; Euler(1E6); SumMu smu(1E6); ll ans = 0; for (ll l = 1, r; l \u003c= n; l = r + 1) { r = n / (n / l); int s = (smu.S(r) - smu.S(l - 1) + P) % P; ll t = n / l; ans += s * t % P * t % P * t % P; } cout \u003c\u003c ans % P; return 0; } 全部代码请看：Luogu/6x/P6055.cpp。\n",
   "wordCount" : "129",
   "inLanguage": "en",
   "datePublished": "2022-07-30T00:00:00Z",
@@ -308,7 +308,7 @@ $$</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>全部代码请看：<a href="https://github.com/rogeryoungh/code-of-acm/blob/main/src/Luogu/8x/P8240.cpp">Luogu/8x/P8240.cpp</a>。</p>
+</span></span></code></pre></div><p>全部代码请看：<a href="https://github.com/rogeryoungh/code-of-acm/blob/main/src/Luogu/6x/P6055.cpp">Luogu/6x/P6055.cpp</a>。</p>
 
 
 

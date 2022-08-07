@@ -80,8 +80,11 @@ ostream &operator<<(ostream &os, const Z &z) {
 
 vector<Z> w{1, 1}, iv{1, 1}, fac{1}, ifac{1};
 
-inline int get_lim(int m) {
-	return 2 << std::__lg(m - (m > 1));
+inline int get_lim(int n) {
+	int m = 1;
+	while (m < n)
+		m *= 2;
+	return m;
 }
 
 void pre_w(int n) {
@@ -219,78 +222,13 @@ struct Poly : vector<Z> { // 卡常板子
 		fill_n(begin() + m / 2, m / 2, 0);
 		return T;
 	}
-	Poly &invD(Poly f2, Poly nx, int t) {
-		mul(f2, nx, t).fill0L(t); // 6E
-		mul(f2, nx, t);			  // 4E
-		redeg(t);
-		for (int i = t / 2; i < t; i++) {
-			T[i] = -f2[i];
-		}
-		return T;
-	}
-	Poly inv(int m) const { // 10E
-		Poly x = {qpow(T[0].v)};
-		for (int t = 2; t < m * 2; t *= 2) {
-			x.invD(cut(t), x.cut(m), t);
-		}
-		return x.redeg(m);
-	}
-	Poly div(int m, Poly g) const { // 13E
-		if (deg() == 0)
-			return {};
-		int t = get_lim(m);
-		Poly x = cut(t / 2), u = g.inv(t / 2); // 10E
-		Poly q = mul(x, u, t).cut(t / 2);	   // 6E
-		mul(q, g, t).fill0L(t);				   // 6E
-		for (int i = t / 2; i < min(t, deg()); i++)
-			q[i] -= T[i];
-		mul(q, u, t); // 4E
-		for (int i = t / 2; i < t; i++)
-			x[i] = -q[i];
-		return x.cut(m);
-	}
+	Poly inv(int m) const;
+	Poly div(int m, Poly g) const;
 	Poly ln(int m) const {
 		return deriv(m).div(m, cut(m)).integr(m);
 	}
-	Poly exp(int m) const { // 17E
-		if (m == 1)
-			return {1};
-		Poly f = {1, T[1]}, g = {1}, nf, ng = g;
-		for (int t = 4; t < m * 2; t <<= 1) {
-			nf = Poly(f).ntt(t);		// 2E
-			ng = g.invD(nf, ng, t / 2); // 3E
-			Poly q = cut(t / 2);
-			for (int i = 0; i < q.deg(); i++)
-				q[i] *= i;
-			mul(q, nf, t / 2); // 2E
-			for (int i = 0; i < t / 2; i++)
-				q[i] -= i * f[i];
-			mul(q, ng, t); // 6E
-			for (int i = t / 2; i < min(t, deg()); i++)
-				q[i] = T[i] + q[i - t / 2] * iv[i];
-			mul(q.fill0L(t), nf, t); // 4E
-			f.redeg(t);
-			for (int i = t / 2; i < t; i++)
-				f[i] = q[i];
-		}
-		return f.cut(m);
-	}
-	Poly sqrt(int m) const { // 11E
-		Poly x = {1}, g = x.inv(1), ng = g;
-		for (int t = 2; t < m * 2; t <<= 1) {
-			Poly f = Poly(x).ntt(t / 2); // 2E
-			if (t >= 4)
-				ng = g.invD(f, ng, t / 2); // 3E
-			mul(f, f, t / 2).redeg(t);				  // 1E
-			for (int i = t / 2; i < min(t, deg()); i++)
-				f[i] = T[i - t / 2] + T[i] - f[i - t / 2];
-			mul(f.fill0L(t), ng, t); // 6E
-			x.redeg(t);
-			for (int i = t / 2; i < t; i++)
-				x[i] = f[i] * iv[2];
-		}
-		return x.cut(deg());
-	}
+	Poly exp(int m) const;
+	Poly sqrt(int m) const;
 	Poly pow(int m, int k) const {
 		return (ln(m) * k).exp(m);
 	}
@@ -303,3 +241,138 @@ struct Poly : vector<Z> { // 卡常板子
 	}
 #undef T
 };
+
+Poly Poly::inv(int u) const { // 10E
+	if (u == 1) {
+		return {front().inv()};
+	}
+	const int R = 16;
+	int m = get_lim((u - 1) / R + 1);
+	Poly x = inv(m);
+	vector<Poly> nf(R), ng(R);
+	nf[0] = cut(m).ntt(m * 2);
+	for (int k = 1; x.deg() < u; k++) {
+		nf[k] = cut(m, k * m).ntt(m * 2);			  // 2E
+		ng[k - 1] = x.cut(m, (k - 1) * m).ntt(m * 2); // 2E
+		Poly psi(m * 2);
+		for (int j = 0; j < k; j++) {
+			for (int i = 0; i < m; i++)
+				psi[i] -= ng[j][i] * (nf[k - j][i] + nf[k - 1 - j][i]);
+			for (int i = m; i < m * 2; i++)
+				psi[i] -= ng[j][i] * (nf[k - j][i] - nf[k - 1 - j][i]);
+		}
+		psi.intt(m * 2).fill0H(m * 2); // 2E
+		mul(psi, ng[0], m * 2);		   // 4E
+		x.redeg((k + 1) * m);
+		for (int i = 0; i < m; i++)
+			x[m * k + i] = psi[i];
+	}
+	return x.cut(u);
+}
+
+Poly Poly::sqrt(int u) const { // 8E
+	if (u == 1) {
+		return {1};
+	}
+	const int R = 16;
+	int m = get_lim((u - 1) / R + 1);
+	Poly x = sqrt(m), h = x.inv(m).ntt(m * 2);
+	vector<Poly> ng(R);
+
+	for (int k = 1; x.deg() < u; k++) {
+		ng[k - 1] = x.cut(m, (k - 1) * m).ntt(m * 2);
+		Poly psi(m * 2);
+		for (int j = 0; j < k; j++) {
+			if (j >= 1) {
+				for (int i = 0; i < m; i++)
+					psi[i] -= ng[j][i] * (ng[k - j][i] + ng[k - 1 - j][i]);
+				for (int i = m; i < m * 2; i++)
+					psi[i] -= ng[j][i] * (ng[k - j][i] - ng[k - 1 - j][i]);
+			} else {
+				for (int i = 0; i < m; i++)
+					psi[i] -= ng[j][i] * ng[k - 1 - j][i];
+				for (int i = m; i < m * 2; i++)
+					psi[i] += ng[j][i] * ng[k - 1 - j][i];
+			}
+		}
+		psi.intt(m * 2).fill0H(m * 2);
+		for (int j = 0; j < min(m, deg() - m * k); j++)
+			psi[j] += (*this)[m * k + j];
+		mul(psi, h, m * 2);
+		x.redeg((k + 1) * m);
+		for (int i = 0; i < m; i++)
+			x[m * k + i] = psi[i] * iv[2];
+	}
+	return x.cut(u);
+}
+
+Poly Poly::div(int u, Poly f) const { // 10E
+	if (u == 1) {
+		return {front() * f[0].inv()};
+	}
+	f.redeg(u);
+	const int R = 16;
+	int m = get_lim((u - 1) / R + 1);
+	Poly x = div(m, f), h = f.inv(m).ntt(m * 2);
+
+	vector<Poly> nf(R), ng(R);
+
+	nf[0] = f.cut(m).ntt(m * 2);
+	for (int k = 1; x.deg() < u; k++) {
+		nf[k] = f.cut(m, k * m).ntt(m * 2);
+		ng[k - 1] = x.cut(m, (k - 1) * m).ntt(m * 2);
+		Poly psi(m * 2);
+		for (int j = 0; j < k; j++) {
+			for (int i = 0; i < m; i++)
+				psi[i] -= ng[j][i] * (nf[k - j][i] + nf[k - 1 - j][i]);
+			for (int i = m; i < m * 2; i++)
+				psi[i] -= ng[j][i] * (nf[k - j][i] - nf[k - 1 - j][i]);
+		}
+		psi.intt(m * 2).fill0H(m * 2);
+		for (int j = 0; j < min(m, deg() - m * k); j++)
+			psi[j] += (*this)[m * k + j];
+		mul(psi, h, m * 2);
+		x.redeg((k + 1) * m);
+		for (int i = 0; i < m; i++)
+			x[m * k + i] = psi[i];
+	}
+	return x.cut(u);
+}
+
+Poly Poly::exp(int u) const { // 14E
+	if (u == 1) {
+		return {1};
+	}
+	const int R = 16;
+	int m = get_lim((u - 1) / R + 1);
+	Poly x = exp(m), y = x.inv(m);
+	vector<Poly> nf(R), ng(R);
+
+	Poly df = *this;
+	for (int i = 0; i < df.deg(); i++)
+		df[i] *= i;
+	y.ntt(m * 2);
+	nf[0] = df.cut(m).ntt(m * 2);
+
+	for (int k = 1; x.deg() < u; k++) {
+		nf[k] = df.cut(m, k * m).ntt(m * 2);
+		ng[k - 1] = x.cut(m, m * (k - 1)).ntt(m * 2);
+		Poly psi(m * 2);
+		for (int j = 0; j < k; j++) {
+			for (int i = 0; i < m; i++)
+				psi[i] += ng[j][i] * (nf[k - j][i] + nf[k - 1 - j][i]);
+			for (int i = m; i < m * 2; i++)
+				psi[i] += ng[j][i] * (nf[k - j][i] - nf[k - 1 - j][i]);
+		}
+		psi.intt(m * 2).fill0H(m * 2);
+
+		mul(psi, y, m * 2).fill0H(m * 2);
+		for (int i = 0; i < m * 2; i++)
+			psi[i] *= iv[m * k + i];
+		mul(psi, ng[0], m * 2).fill0H(m * 2);
+		x.redeg((k + 1) * m);
+		for (int i = 0; i < m; i++)
+			x[m * k + i] = psi[i];
+	}
+	return x.cut(u);
+}

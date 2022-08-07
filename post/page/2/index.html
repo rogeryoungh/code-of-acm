@@ -165,6 +165,25 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Codeforces Round #707</h2>
+  </header>
+  <section class="entry-content">
+    <p>咕了好久。
+A. Alexey and Train 奇怪的模拟。略。
+全部代码请看：Codeforces/CF1501/CF1501B.cpp。
+B. Napoleon Cake 略。
+全部代码请看：Codeforces/CF1501/CF1501B.cpp。
+C. Going Home 给定一个数组，请给出是否存在四元组使得
+$$ a_w &#43; a_v = a_x &#43; a_y $$
+分析 这题很诈骗。注意到 $x&#43;y$ 最多只有 $5 \times 10^6$ 种情况，暴力即可。
+int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; a(n); for (auto &amp;ai : a) { cin &gt;&gt; ai; } vector&lt;pii&gt; u(N &#43; 1); for (int i = 0; i &lt; n; i&#43;&#43;) { for (int j = 0; j &lt; i; j&#43;&#43;) { int sum = a[i] &#43; a[j]; if (u[sum] !...</p>
+  </section>
+  <footer class="entry-footer">April 25, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to Codeforces Round #707" href="https://acm.rogery.dev/post/2022-04/cf1501/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>2021 牛客寒假算法基础集训营 1</h2>
   </header>
   <section class="entry-content">
@@ -295,23 +314,6 @@ int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; a(n &#43; 1); for (int i =
   </section>
   <footer class="entry-footer">February 22, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to CF242E XOR on Segment" href="https://acm.rogery.dev/post/2022-02/cf242e/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P6492 STEP</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 给定一个长度为 $n$ 的字符序列，初始全是 L。
-有 $q$ 次操作，每次将 $a_x$ 在 L 和 R 中切换。
-求每次操作后字符串中最长交错序列的长度。
-分析 首先需要逐位异或，把交错序列变成相同元素。我想到的是另一种办法，如果 $a_i$ 相对与 $a_{i-1}$ 是变化的，那么 $b_i$ 为 $1$。原问题即被转化为维护最长 $1$ 的个数。
-用线段树维护每一层的信息，其中 $l$ 表示左边界上的最长长度，$r$ 表示右边界上的最长长度，$val$ 表示整个区间上的最长长度。
-关键在于如何编写 pull 合并信息。
-如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。 struct SegmentTree { vector&lt;int&gt; l, r, val; int N; SegmentTree(int n) { N = 2 &lt;&lt; std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 &#43; 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] &#43;= l[rs]; if (r[rs] == len) r[p] &#43;= r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] &#43; l[rs]}); } void modify(int i) { i &#43;= N; l[i] = r[i] = val[i] = !...</p>
-  </section>
-  <footer class="entry-footer">February 22, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P6492 STEP" href="https://acm.rogery.dev/post/2022-02/p6492/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
