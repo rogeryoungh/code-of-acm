@@ -165,6 +165,23 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P4059 找爸爸</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定两串 DNA 序列，可以在其中任意插空格，然后逐位比较，当两位都是字母时查表得到相似度。
+长度为 $k$ 的空格有额外相似度 $- A - B(k - 1)$。求两序列的最大相似度。
+分析 若不考虑空格的贡献，容易想到二维 DP，记 ${\rm DP}[i,j]$ 是 $A$ 串到位置 $i$ 同时 $B$ 串到位置 $j$ 时最大的相似度，有
+$$ {\rm DP}[i, j] = \max\{ {\rm DP}[i - 1, j - 1] &#43; D[i, j], {\rm DP}[i - 1, j], {\rm DP}[i, j - 1] \} $$
+当我们考虑空格的贡献时，可以发现空格的额外贡献只与前面一位有关。若两个序列此位都是空格，则把去掉后相似度一定会增加，故只有三种可能：设 ${\rm DP}_0$ 是结尾没有空格；${\rm DP}_1$ 是空格在 $A$ 串；${\rm DP}_2$ 是空格在 $B$ 串。
+思考最后一个空格的转移方式，自然有方程
+$$ \begin{aligned} {\rm DP}_0[i, j] &amp;= \max\{ {\rm DP}_0[i - 1, j - 1], {\rm DP}_1[i - 1, j - 1], {\rm DP}_2[i - 1, j - 1] \} &#43; D[i, j] \\ {\rm DP}_1[i, j] &amp;= \max\{ {\rm DP}_0[i, j - 1] - A, {\rm DP}_1[i, j - 1]- B, {\rm DP}_2[i, j - 1] - A\} \\ {\rm DP}_2[i, j] &amp;= \max\{ {\rm DP}_0[i - 1, j] - A, {\rm DP}_1[i - 1, j] - A, {\rm DP}_2[i, j - 1] - B \} \\ \end{aligned} $$...</p>
+  </section>
+  <footer class="entry-footer">October 17, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P4059 找爸爸" href="https://acm.rogery.dev/post/2021-10/p4059/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>HDU6955 Xor sum</h2>
   </header>
   <section class="entry-content">
@@ -310,19 +327,6 @@ $$ \begin{aligned} f(k) &amp;= \sum_{i=0}^{m-1}A_{i}^2 &#43; \sum_{i=0}^{m-1}B_{
   </section>
   <footer class="entry-footer">July 28, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P4173 残缺的字符串" href="https://acm.rogery.dev/post/2021-07/p4173/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P1762 偶数</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 求杨辉三角形前 $n$ 行的偶数个数，对 $1000003$ 取模。
-分析 对杨辉三角奇数打表。
-1 1 1 1 1 1 1 1 1 1	1 1 1	1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	1 1 1	1 1 1 1	1 1 1 1 1 1	1 1 1 1 1	1	1	1 1 1	1 1	1 1	1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	1 1 1	1 1 1 1	1 1 1 1 1 1	1 1 1 1 1	1	1	1 1 1	1 1	1 1	1 1 1 1 1 1	1 1 1 1 1 1 1 1 1 1 1 1	1 1 1 1 1 1 1 1 1	1	1	1 1 1	1 1	1 1	1 1 1 1	1 1	1 1	1 1 1 1 1 1	1 1 1 1	1 1 1 1	1 1 1 1 1	1	1	1	1	1	1	1 1 1	1 1	1 1	1 1	1 1	1 1	1 1	1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 于是递推公式...</p>
-  </section>
-  <footer class="entry-footer">July 12, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P1762 偶数" href="https://acm.rogery.dev/post/2021-07/p1762/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

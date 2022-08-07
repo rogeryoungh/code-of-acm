@@ -7,7 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© 2021 [Roger Young](https://acm.rogery.dev)</copyright>
-    <lastBuildDate>Sat, 30 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 07 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ZAFU 2022.08.07 个人赛题解</title>
+      <link>https://acm.rogery.dev/post/2022-08/sj5/</link>
+      <pubDate>Sun, 07 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2022-08/sj5/</guid>
+      <description>本场比赛的过题情况非常不好。这场没有什么高深的知识点，都是很基础的题目，希望大家能够好好补题。
+暑假已经过半，希望各位能继续努力。
+A - CF115A 员工 $i$ 的主管是 $p_i$，员工不能和自己的上司（上司的主管也是上司）同组，求最小组数。
+分析 可以将属于同一个上级的员工看作一棵树，由题意得一颗树上不同深度的人不能放在一起，因此答案为树的最大深度。
+int main() { int n; cin &amp;gt;&amp;gt; n; vector&amp;lt;int&amp;gt; v(n + 1); for (int i = 1; i &amp;lt;= n; i++) { cin &amp;gt;&amp;gt; v[i]; } std::function&amp;lt;int(int)&amp;gt; dfs = [&amp;amp;](int u) { return v[u] == -1 ? 1 : dfs(v[u]) + 1; }; int ans = 0; for (int i = 1; i &amp;lt;= n; i++) { ans = max(ans, dfs(i)); } cout &amp;lt;&amp;lt; ans; return 0; } B - ABC248C 求满足条件</description>
+    </item>
+    
     <item>
       <title>P6055 GCD</title>
       <link>https://acm.rogery.dev/post/2022-07/p6055/</link>

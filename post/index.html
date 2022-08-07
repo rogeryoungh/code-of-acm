@@ -165,6 +165,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>ZAFU 2022.08.07 个人赛题解</h2>
+  </header>
+  <section class="entry-content">
+    <p>本场比赛的过题情况非常不好。这场没有什么高深的知识点，都是很基础的题目，希望大家能够好好补题。
+暑假已经过半，希望各位能继续努力。
+A - CF115A 员工 $i$ 的主管是 $p_i$，员工不能和自己的上司（上司的主管也是上司）同组，求最小组数。
+分析 可以将属于同一个上级的员工看作一棵树，由题意得一颗树上不同深度的人不能放在一起，因此答案为树的最大深度。
+int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; v(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { cin &gt;&gt; v[i]; } std::function&lt;int(int)&gt; dfs = [&amp;](int u) { return v[u] == -1 ? 1 : dfs(v[u]) &#43; 1; }; int ans = 0; for (int i = 1; i &lt;= n; i&#43;&#43;) { ans = max(ans, dfs(i)); } cout &lt;&lt; ans; return 0; } B - ABC248C 求满足条件...</p>
+  </section>
+  <footer class="entry-footer">August 7, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to ZAFU 2022.08.07 个人赛题解" href="https://acm.rogery.dev/post/2022-08/sj5/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P6055 GCD</h2>
   </header>
   <section class="entry-content">
@@ -308,25 +323,6 @@ int main() { int n; string a, b; cin &gt;&gt; n &gt;&gt; a &gt;&gt; b; int ans =
   </section>
   <footer class="entry-footer">July 6, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to ZAFU 2022.07.06 个人赛题解" href="https://acm.rogery.dev/post/2022-07/sj1/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P8240 偷铀计划</h2>
-  </header>
-  <section class="entry-content">
-    <p>随机到了一个神秘题目。
-题目大意 在 $n$ 个点的无向图中，有 $k$ 个点有守卫。假如你携带有 $x$ 千克的铀，那么你在移动时与这些守卫的距离必须都大于 $x$。
-多组询问，回答从点 $x$ 运输到点 $y$ 最多能运输多少铀。
-分析 这题对算法的考察较为综合，卡了我一天。
-首先需要求出每个点到最近的守卫的距离 $dis$，在 dijkstra 时设置多个起点即可。
-把每个边的权值设置为两个端点 $dis$ 的最小值，重新建图 $G_2$。
-接下来是关键的一步：得到 $G_2$ 的最大生成树 $G_3$，任何运输路径都在最大生成树上。
-最后用 LCA 维护树两点之间路径的权值 $\min$。
-int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; for (int i = 0; i &lt; m; i&#43;&#43;) { int x, y, z; cin &gt;&gt; x &gt;&gt; y &gt;&gt; z; G1[x].push_back({y, z}); G1[y].push_back({x, z}); } int k; cin &gt;&gt; k; vector&lt;int&gt; start(k); for (auto &amp;si : start) cin &gt;&gt; si; auto dis = dijkstra(n, start); for (int u = 1; u &lt;= n; u&#43;&#43;) { for (auto [v, w] : G1[u]) { ll tw = min(dis[u], dis[v]); G2[u]....</p>
-  </section>
-  <footer class="entry-footer">May 1, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P8240 偷铀计划" href="https://acm.rogery.dev/post/2022-05/p8240/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

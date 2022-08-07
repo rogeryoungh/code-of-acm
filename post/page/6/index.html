@@ -165,6 +165,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P1762 偶数</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 求杨辉三角形前 $n$ 行的偶数个数，对 $1000003$ 取模。
+分析 对杨辉三角奇数打表。
+1 1 1 1 1 1 1 1 1 1	1 1 1	1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	1 1 1	1 1 1 1	1 1 1 1 1 1	1 1 1 1 1	1	1	1 1 1	1 1	1 1	1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	1 1 1	1 1 1 1	1 1 1 1 1 1	1 1 1 1 1	1	1	1 1 1	1 1	1 1	1 1 1 1 1 1	1 1 1 1 1 1 1 1 1 1 1 1	1 1 1 1 1 1 1 1 1	1	1	1 1 1	1 1	1 1	1 1 1 1	1 1	1 1	1 1 1 1 1 1	1 1 1 1	1 1 1 1	1 1 1 1 1	1	1	1	1	1	1	1 1 1	1 1	1 1	1 1	1 1	1 1	1 1	1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 于是递推公式...</p>
+  </section>
+  <footer class="entry-footer">July 12, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1762 偶数" href="https://acm.rogery.dev/post/2021-07/p1762/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P2257 YY 的 GCD</h2>
   </header>
   <section class="entry-content">
@@ -326,21 +339,6 @@ char ss[60]; int main() { ll ttt = rr(); while (ttt--) { scanf(&#34;%s&#34;, ss 
   </section>
   <footer class="entry-footer">March 29, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to CF1494 Educational Round 105 (Rated for Div. 2)" href="https://acm.rogery.dev/post/2021-03/cfedu105/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P1019 单词接龙</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 对于字符串 $a,b$，若 $a$ 的末尾与 $b$ 的开头有部分字符串相同，则其可以拼接起来。例如 at &#43; tact = atact。
-给定词典和初始字母，每个单词最多出现两次，求最大拼接长度。
-分析 我是没想出来，经题解提示了拼接函数才写出来的。
-设 $mt(x,y)$ 为第 $x$ 和 $y$ 个单词拼接后的最小重合长度，其可简单的通过匹配得到。
-char s[30][100]; ll len[30]; ll mt[30][30]; void init(int x, int y) { ll ml = min(len[x], len[y]) - 1; for (ll i = 1; i &lt;= ml; i&#43;&#43;) { int flag = 1; for (ll j = 0; j &lt;= i - 1; j&#43;&#43;) { if (s[x][len[x] &#43; j - i] !...</p>
-  </section>
-  <footer class="entry-footer">March 29, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P1019 单词接龙" href="https://acm.rogery.dev/post/2021-03/p1019/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

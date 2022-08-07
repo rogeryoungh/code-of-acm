@@ -165,6 +165,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>CF242E XOR on Segment</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定一个长为 $n$ 的数列 $\{a_i\}$，有如下操作
+询问区间 $[l, r]$ 上的和。 对 $[l, r]$ 区间上每个数异或上一个数 $x$。 分析 只需注意到异或是不进位的，我们可以单独维护数列的每一位。开二十棵线段树即可。
+int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; a(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { cin &gt;&gt; a[i]; } vector&lt;SegmentTree&lt;int&gt;&gt; tr; for (int k = 0; k &lt; 20; k&#43;&#43;) { tr.push_back(SegmentTree&lt;int&gt;(n &#43; 1)); vector&lt;int&gt; tmp(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { if ((1 &lt;&lt; k) &amp; a[i]) tmp[i] = 1; } tr[k]....</p>
+  </section>
+  <footer class="entry-footer">February 22, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to CF242E XOR on Segment" href="https://acm.rogery.dev/post/2022-02/cf242e/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P6492 STEP</h2>
   </header>
   <section class="entry-content">
@@ -314,20 +327,6 @@ template &lt;class T&gt; struct SegmentTree { vector&lt;T&gt; tr; int N; Segment
   </section>
   <footer class="entry-footer">January 28, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P4588 数学计算" href="https://acm.rogery.dev/post/2022-01/p4588/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P5057 简单题</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 给定一个 01 序列，有如下操作：
-将区间 $[l,r]$ 上的数 01 翻转。 询问第 $i$ 个数的值。 分析 区间操作，单点查询，很自然的想到了差分。
-用异或或者加减代替翻转都可以，用树状数组维护。我选择了加减，这样询问时对 $2$ 取余即可。
-#include &#34;template/ds/fwtree/0.hpp&#34; int main() { int n = rr(), m = rr(); fwtree_1&lt;int&gt; tr(n &#43; 2); while (m--) { int t = rr(); if (t == 1) { int l = rr() &#43; 1, r = rr() &#43; 1; tr.modify(l - 1, -1), tr.modify(r, 1); } else { int i = rr(); i = tr....</p>
-  </section>
-  <footer class="entry-footer">January 28, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P5057 简单题" href="https://acm.rogery.dev/post/2022-01/p5057/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
