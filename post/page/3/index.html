@@ -165,6 +165,36 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Codeforces Round #773 (Div. 2)  (A-D)</h2>
+  </header>
+  <section class="entry-content">
+    <p>在学长的提示下成功做出 D，蓝了，开心。
+A. Hard Way 给定一个在第一象限的三角形座标，你可以从 $y=0$ 的任意位置出发，在平面中沿着折线前进但不能穿过三角形。
+问三角形的边界上无法到达的位置，其总长度是多少。
+分析 题面真 TM 难读，什么玩意。
+注意到如果这条边是斜的，那么我们总是可以走一条更斜的线直接到达。如果此边水平，则不能到达。
+即输出三角形水平边的长度。
+using pii = pair&lt;int, int&gt;; int main() { int T; cin &gt;&gt; T; while (T--) { vector&lt;pii&gt; v(3); for (auto &amp;[x, y] : v) { cin &gt;&gt; x &gt;&gt; y; } sort(v.begin(), v.end(), [](pii a, pii b) { if (a.second == b.second) return a.first &lt; b.first; return a.second &gt; b.second; }); if (v[0].second == v[1].second) cout &lt;&lt; abs(v[0]....</p>
+  </section>
+  <footer class="entry-footer">February 23, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to Codeforces Round #773 (Div. 2)  (A-D)" href="https://acm.rogery.dev/post/2022-02/cf1642/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Educational Codeforces Round 123 (Rated for Div. 2)(A-C)</h2>
+  </header>
+  <section class="entry-content">
+    <p>A. Doors and Keys 有 RGB 三种门，和 rgb 三种钥匙。如果门先于其对应的钥匙出现，则会卡关。判断字符串是否意味着卡关。
+分析 枚举即可。
+int main() { int T; cin &gt;&gt; T; while (T--) { string s; cin &gt;&gt; s; vector&lt;int&gt; flag(26); bool ans = true; for (char si : s) { if (si &gt;= &#39;a&#39;) { flag[si - &#39;a&#39;] = true; } else { if (!flag[si - &#39;A&#39;]) { ans = false; } } } if (ans) cout &lt;&lt; &#34;YES\n&#34;; else cout &lt;&lt; &#34;NO\n&#34;; } return 0; } B....</p>
+  </section>
+  <footer class="entry-footer">February 23, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to Educational Codeforces Round 123 (Rated for Div. 2)(A-C)" href="https://acm.rogery.dev/post/2022-02/cf1644/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>CF242E XOR on Segment</h2>
   </header>
   <section class="entry-content">
@@ -294,39 +324,6 @@ vi get_inv(const vi &amp;a, int p) { int n = a.size() - 1; vi prod(n &#43; 1); p
   </section>
   <footer class="entry-footer">January 28, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P1637 三元上升子序列" href="https://acm.rogery.dev/post/2022-01/p1637/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P3373 线段树 2</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 给定一个数列，有如下操作：
-将区间 $[l,r]$ 上的数乘上 $x$ 将区间 $[l,r]$ 上的数加上 $x$ 询问区间 $[l,r]$ 上的数之和 分析 很经典的线段树教学题，写完后对线段树的理解确实更深了。
-从一次函数的角度考虑问题感觉更清晰。我们实际上在对每个序列上的值做一次函数
-$$ f_i(x) = k_i x &#43; m_i $$
-先来看本题线段树的结构
-template &lt;class T&gt; struct SegmentTree { vector&lt;Seg&gt; tr; void pushup(int p); void pushdown(int p); void build(int l, int r, int p = 1); void modify(int l, int r, T k, T m, int p = 1); T query(int l, int r, int p = 1); }; 懒标记：在知道一段当前值的情况下，可以立刻知道该段被操作后的值，不必重新计算所有的数。因此可以把当前的操作存起来，询问的时候再对子节点做真实操作。...</p>
-  </section>
-  <footer class="entry-footer">January 28, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P3373 线段树 2" href="https://acm.rogery.dev/post/2022-01/p3373/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P4588 数学计算</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 初始是 $x=1$，我们每轮对 $x$ 做一个操作
-将 $x$ 变为 $k x$，并输出 $x \bmod M$。 将 $x$ 变为 $x / k_i$，即取消第 $i$ 次操作，并输出 $x \bmod M$。 保证每个操作 1 的 $k$ 在操作 2 中至多被除一次。
-分析 $M$ 并不保证是质数，逆元可能不存在。
-可以把操作序列看作一个乘积式，初始情况下全为 $1$。
-操作 1 即是把第 $i$ 个数变为 $k$。 操作 2 即是把第 $i$ 个数变回 $1$。 修改结束后，询问所有数的乘积。单点修改，区间查询，标准的线段树。
-因为只询问全体和，zkw 好写的多。
-template &lt;class T&gt; struct SegmentTree { vector&lt;T&gt; tr; int N; SegmentTree(int l, int r) { int n = r - l &#43; 1; N = 2 &lt;&lt; std::__lg(n); tr....</p>
-  </section>
-  <footer class="entry-footer">January 28, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P4588 数学计算" href="https://acm.rogery.dev/post/2022-01/p4588/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

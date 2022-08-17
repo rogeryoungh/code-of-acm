@@ -165,6 +165,42 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>UOJ21 缩进优化</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 选取 $x$，最小化
+$$ \sum_{i=1}^n \left\lfloor \frac{a_i}{x} \right\rfloor &#43; (a_i \bmod x) $$
+分析 最小化
+$$ ans = \sum_{i=1}^n a_i - (x-1)\sum_{i=1}^n \left\lfloor \frac{a_i}{x} \right\rfloor $$
+然后我只想到了用树状数组在整除分块时维护和，后来想了想可以差分，但显然是 TLE 的。
+关键在于枚举 $a_i$ 计算的开销是不可承受的，需要想办法统一计算。
+注意到我们可以枚举 $a_i / x$ 的值 $t$，那么值为 $t$ 的个数便是 $[tx, (t&#43;1)x)$ 内 $a_i$ 的个数。不难发现 $t$ 的值不会超过 $A / x$。
+const int M = 1E6; int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; a(n), v(M &#43; 1); ll asum = 0; for (auto &amp;ai : a) { cin &gt;&gt; ai; v[ai]&#43;&#43;; asum &#43;= ai; } for (int i = 1; i &lt;= M; i&#43;&#43;) { v[i] &#43;= v[i - 1]; } ll ans = 1E15; for (int x = 1; x &lt;= M; x&#43;&#43;) { ll sum = 0; for (int i = 1; i &lt;= M / x; i&#43;&#43;) { int l = i * x - 1 , r = (i &#43; 1) * x - 1; r = min(r, M); sum &#43;= 1ll * (v[r] - v[l]) * i; } sum = asum - sum * (x - 1); ans = min(ans, sum); } cout &lt;&lt; ans; return 0; } 全部代码请看：Luogu/3x/P3312....</p>
+  </section>
+  <footer class="entry-footer">August 17, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to UOJ21 缩进优化" href="https://acm.rogery.dev/post/2022-08/uoj21/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P1829 能量采集</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 计算
+$$ \sum_{i=1}^n \sum_{j=1}^m \sigma_1(\gcd(i, j)) [\sigma_1(\gcd(i, j)) \leqslant a] $$
+分析 若不考虑 $a$ 的限制，就是非常套路的 Mobius 反演
+$$ ans = \sum_{d=1} \sigma_1(d) [d \leqslant a] \sum_{x=1} \mu(x) \left\lfloor \frac{n}{dx} \right\rfloor \left\lfloor \frac{m}{dx} \right\rfloor $$
+但是这个 $a$ 的限制比较头疼。考虑 $y=dx$ 代换，有
+$$ ans = \sum_{y=1} \left\lfloor \frac{n}{y} \right\rfloor \left\lfloor \frac{m}{y} \right\rfloor \sum_{d \mid y} \sigma_1(d) \mu\left(\frac{y}{d}\right) [d \leqslant a] $$
+因此我们可以将询问対 $a$ 排序，后者使用树状数组维护。
+int main() { Euler(N); int T; cin &gt;&gt; T; vector&lt;i4&gt; v(T); for (int i = 0; i &lt; T; i&#43;&#43;) { int n, m, a; cin &gt;&gt; n &gt;&gt; m &gt;&gt; a; v[i] = {n, m, a, i}; } sort(v....</p>
+  </section>
+  <footer class="entry-footer">August 7, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1829 能量采集" href="https://acm.rogery.dev/post/2022-08/p3312/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>ZAFU 2022.08.07 个人赛题解</h2>
   </header>
   <section class="entry-content">
@@ -296,33 +332,6 @@ int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; vis(n &#43; 1); for (int i
   </section>
   <footer class="entry-footer">July 12, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to ZAFU 2022.07.12 个人赛题解" href="https://acm.rogery.dev/post/2022-07/sj3/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>ZAFU 2022.07.08 个人赛题解</h2>
-  </header>
-  <section class="entry-content">
-    <p>A - CF515A 判断一下是否恰好用 $k$ 步能从 $(0，0)$ 点走到 $(a, b)$ 点。
-分析 判断一下步数是否足够走到，且剩余的步数的奇偶性即可。
-int main() { ll a, b, s; cin &gt;&gt; a &gt;&gt; b &gt;&gt; s; a = abs(a), b = abs(b); if (a &#43; b &lt;= s &amp;&amp; (s - a - b) % 2 == 0) { cout &lt;&lt; &#34;Yes&#34;; } else { cout &lt;&lt; &#34;No&#34;; } return 0; } B - CF430B “祖玛游戏”，问最多能消除多少个球。
-分析 暴力枚举在哪个位置插入球，计算答案，维护全局最大值即可。
-可以使用双指针，也可以借助 vector。...</p>
-  </section>
-  <footer class="entry-footer">July 8, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to ZAFU 2022.07.08 个人赛题解" href="https://acm.rogery.dev/post/2022-07/sj2/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>ZAFU 2022.07.06 个人赛题解</h2>
-  </header>
-  <section class="entry-content">
-    <p>A - CF540A 签到，不讲。
-int main() { int n; string a, b; cin &gt;&gt; n &gt;&gt; a &gt;&gt; b; int ans = 0; for (int i = 0; i &lt; n; i&#43;&#43;) { int diff = std::abs(a[i] - b[i]); ans &#43;= std::min(diff, 10 - diff); } cout &lt;&lt; ans; return 0; } B - CF339B 题目大意 环形的路上有 $n$ 个房子，需要以如下的顺序访问 $$ 1 \to a_1 \to a_2 \to \cdots \to a_n $$ 智能顺时针移动，问需要走几步？...</p>
-  </section>
-  <footer class="entry-footer">July 6, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to ZAFU 2022.07.06 个人赛题解" href="https://acm.rogery.dev/post/2022-07/sj1/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

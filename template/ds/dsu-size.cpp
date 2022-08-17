@@ -11,17 +11,17 @@ struct DSU {
 		for (int i = 0; i < n; i++)
 			fa[i] = i;
 	}
-	int leader(int x) {
-		return fa[x] == x ? x : fa[x] = leader(fa[x]);
+	int find(int x) {
+		return fa[x] == x ? x : fa[x] = find(fa[x]);
 	}
 	bool same(int x, int y) {
-		return leader(x) == leader(y);
+		return find(x) == find(y);
 	}
 	int size(int x) {
-		return sz[leader(x)];
+		return sz[find(x)];
 	}
 	void merge(int x, int y) {
-		x = leader(x), y = leader(y);
+		x = find(x), y = find(y);
 		if (sz[x] > sz[y]) {
 			swap(x, y);
 		}

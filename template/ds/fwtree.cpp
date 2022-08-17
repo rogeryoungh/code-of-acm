@@ -1,3 +1,4 @@
+#include <cassert>
 #include <vector>
 using namespace std;
 
@@ -11,27 +12,31 @@ template <class T>
 struct fwtree {
 	int n;
 	vector<T> v;
-	fwtree(int n_ = 0) : n(n_), v(n) {}
+	fwtree(int a = 0) : n(a), v(n + 1) {}
 	void add(int i, T x) {
-		for (; 0 < i && i < n; i += i & -i) {
+		for (i++; i <= n; i += i & -i) {
 			v[i] += x;
 		}
 	}
-	void init(const vector<T> &a) {
-		for (int i = 1; i < n; i++) {
-			v[i] += a[i];
+	template <class iter>
+	void init(iter first, iter last) {
+		copy(first, last, v.begin() + 1);
+		for (int i = 1; i <= n; i++) {
 			int j = i + (i & -i);
-			if (j < n)
+			if (j <= n) {
 				v[j] += v[i];
+			}
 		}
 	}
 	T sum(int i) const {
+		assert(i < n);
 		T sum = T();
-		for (; i > 0; i -= i & -i)
+		for (i++; i > 0; i -= i & -i)
 			sum += v[i];
 		return sum;
 	}
 	T sum(int l, int r) {
+		assert(0 <= l && l <= r && r < n);
 		return sum(r) - sum(l - 1);
 	}
 };

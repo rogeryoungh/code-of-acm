@@ -3,10 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://acm.rogery.dev/</loc>
-    <lastmod>2022-08-07T00:00:00+00:00</lastmod>
+    <lastmod>2022-08-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url><url>
     <loc>https://acm.rogery.dev/post/</loc>
+    <lastmod>2022-08-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://acm.rogery.dev/post/2022-08/uoj21/</loc>
+    <lastmod>2022-08-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://acm.rogery.dev/post/2022-08/p3312/</loc>
     <lastmod>2022-08-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://acm.rogery.dev/post/2022-08/sj5/</loc>

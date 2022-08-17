@@ -7,7 +7,39 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© 2021 [Roger Young](https://acm.rogery.dev)</copyright>
-    <lastBuildDate>Sun, 07 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>UOJ21 缩进优化</title>
+      <link>https://acm.rogery.dev/post/2022-08/uoj21/</link>
+      <pubDate>Wed, 17 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2022-08/uoj21/</guid>
+      <description>题目大意 选取 $x$，最小化
+$$ \sum_{i=1}^n \left\lfloor \frac{a_i}{x} \right\rfloor + (a_i \bmod x) $$
+分析 最小化
+$$ ans = \sum_{i=1}^n a_i - (x-1)\sum_{i=1}^n \left\lfloor \frac{a_i}{x} \right\rfloor $$
+然后我只想到了用树状数组在整除分块时维护和，后来想了想可以差分，但显然是 TLE 的。
+关键在于枚举 $a_i$ 计算的开销是不可承受的，需要想办法统一计算。
+注意到我们可以枚举 $a_i / x$ 的值 $t$，那么值为 $t$ 的个数便是 $[tx, (t+1)x)$ 内 $a_i$ 的个数。不难发现 $t$ 的值不会超过 $A / x$。
+const int M = 1E6; int main() { int n; cin &amp;gt;&amp;gt; n; vector&amp;lt;int&amp;gt; a(n), v(M + 1); ll asum = 0; for (auto &amp;amp;ai : a) { cin &amp;gt;&amp;gt; ai; v[ai]++; asum += ai; } for (int i = 1; i &amp;lt;= M; i++) { v[i] += v[i - 1]; } ll ans = 1E15; for (int x = 1; x &amp;lt;= M; x++) { ll sum = 0; for (int i = 1; i &amp;lt;= M / x; i++) { int l = i * x - 1 , r = (i + 1) * x - 1; r = min(r, M); sum += 1ll * (v[r] - v[l]) * i; } sum = asum - sum * (x - 1); ans = min(ans, sum); } cout &amp;lt;&amp;lt; ans; return 0; } 全部代码请看：Luogu/3x/P3312.</description>
+    </item>
+    
+    <item>
+      <title>P1829 能量采集</title>
+      <link>https://acm.rogery.dev/post/2022-08/p3312/</link>
+      <pubDate>Sun, 07 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2022-08/p3312/</guid>
+      <description>题目大意 计算
+$$ \sum_{i=1}^n \sum_{j=1}^m \sigma_1(\gcd(i, j)) [\sigma_1(\gcd(i, j)) \leqslant a] $$
+分析 若不考虑 $a$ 的限制，就是非常套路的 Mobius 反演
+$$ ans = \sum_{d=1} \sigma_1(d) [d \leqslant a] \sum_{x=1} \mu(x) \left\lfloor \frac{n}{dx} \right\rfloor \left\lfloor \frac{m}{dx} \right\rfloor $$
+但是这个 $a$ 的限制比较头疼。考虑 $y=dx$ 代换，有
+$$ ans = \sum_{y=1} \left\lfloor \frac{n}{y} \right\rfloor \left\lfloor \frac{m}{y} \right\rfloor \sum_{d \mid y} \sigma_1(d) \mu\left(\frac{y}{d}\right) [d \leqslant a] $$
+因此我们可以将询问対 $a$ 排序，后者使用树状数组维护。
+int main() { Euler(N); int T; cin &amp;gt;&amp;gt; T; vector&amp;lt;i4&amp;gt; v(T); for (int i = 0; i &amp;lt; T; i++) { int n, m, a; cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m &amp;gt;&amp;gt; a; v[i] = {n, m, a, i}; } sort(v.</description>
+    </item>
+    
     <item>
       <title>ZAFU 2022.08.07 个人赛题解</title>
       <link>https://acm.rogery.dev/post/2022-08/sj5/</link>
