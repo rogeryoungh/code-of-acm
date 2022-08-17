@@ -1,3 +1,4 @@
+#include <filesystem>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -7,13 +8,17 @@ using std::endl;
 using std::ifstream;
 using std::string;
 
+namespace fs = std::filesystem;
+
 #error EDIT HERE
-#define TMP_PATH "<tmp-path>/fast-g++"
-#define CXX_FLAG
+const fs::path TMP_PATH;
+const fs::path CXX_PATH = "/usr/bin/g++";
 
-const char *bits_stdcpp_path = TMP_PATH "/bits/stdc++.h";
+const fs::path CACHE_PATH = TMP_PATH / "cache";
+const fs::path INCLUDE_PATH = TMP_PATH / "include";
+const fs::path BITS_STDCPP_PATH = INCLUDE_PATH / "bits" / "stdc++.h";
 
-string read_file(const string &path) {
+string read_file(const fs::path &path) {
 	ifstream input_file(path);
 	if (!input_file.is_open()) {
 		cerr << "Could not open the file - '" << path << "'" << endl;
@@ -21,7 +26,7 @@ string read_file(const string &path) {
 	}
 	auto start = std::istreambuf_iterator<char>(input_file);
 	auto finish = std::istreambuf_iterator<char>();
-	return string(start, finish);
+	return {start, finish};
 }
 
 string HEADER(const string &name) {
@@ -33,7 +38,7 @@ string pre_header(const string &content) {
 		return content.find(pattern) != string::npos;
 	};
 
-	string header = HEADER("iostream") + HEADER("algorithm");
+	string header = HEADER("personal_config.hpp");
 
 	auto add_if_need = [&](const string &pattern) {
 		if (contains(pattern)) {
@@ -46,34 +51,70 @@ string pre_header(const string &content) {
 	add_if_need("queue");
 	add_if_need("deque");
 	add_if_need("map");
-	add_if_need("un_ordermap");
+	add_if_need("un_orderedmap");
 	add_if_need("list");
 	add_if_need("set");
 	add_if_need("stack");
 	add_if_need("array");
 	add_if_need("complex");
+	add_if_need("tuple");
 
 	if (contains("mt19937")) {
 		header += HEADER("random");
+	}
+
+	if (contains("iota")) {
+		header += HEADER("numeric");
+	}
+
+	if (contains("function")) {
+		header += HEADER("functional");
+	}
+
+	if (contains("memset")) {
+		header += HEADER("memory.h");
+	}
+
+	if (contains("assert")) {
+		header += HEADER("cassert");
 	}
 
 	return header;
 }
 
 int main(int argc, const char *argv[]) {
-	if (argc == 1) {
-		cerr << "usage: cp-g++ <file> [option]" << endl;
-		return 1;
+	if (argc <= 3) {
+		cerr << "usage: cp-g++ <src> -o <out> [option]" << endl;
+		std::exit(1);
 	}
-	const string content = read_file(argv[1]);
-	std::ofstream(bits_stdcpp_path) << pre_header(content);
-	string command = "g++";
-	for (int i = 1; i < argc; i++) {
-		command.push_back(' ');
-		command += argv[i];
+	fs::path source_path = argv[1];
+	fs::path target_path = argv[3];
+
+	const string content = read_file(source_path);
+
+	const string source_hash = std::to_string(std::hash<string>()(content));
+	const fs::path cache_bin_path = CACHE_PATH / (source_hash + ".out");
+
+	if (not std::filesystem::exists(cache_bin_path)) {
+		std::ofstream(BITS_STDCPP_PATH) << pre_header(content);
+
+		auto surround_with_quote = [](const string &s) {
+			return '"' + s + '"';
+		};
+		const char space = ' ';
+		string command = CXX_PATH.string();
+		command += space + surround_with_quote(source_path.string());
+		command += space + string("-o");
+		command += space + surround_with_quote(cache_bin_path.string());
+		for (int i = 4; i < argc; i++) {
+			command += space + surround_with_quote(argv[i]);
+		}
+		int ret = std::system(command.c_str());
+		if (ret != 0) {
+			cerr << "COMPILE FAILED" << endl;
+			std::exit(1);
+		}
 	}
-	command += " -I" TMP_PATH;
-	// cerr << command;
-	system(command.c_str());
+	std::filesystem::copy_file(cache_bin_path, target_path, fs::copy_options::overwrite_existing);
 	return 0;
 }
