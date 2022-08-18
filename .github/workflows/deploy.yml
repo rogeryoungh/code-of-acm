@@ -24,6 +24,10 @@ jobs:
       - name: Build
         run: |
           bash scripts/build.sh
+
+      - name: Build
+        run: |
+          bash scripts/build-template-docs.sh
           
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -31,3 +35,11 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./blog/public
+          
+      - name: Deploy Template Docs
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./template/book
+          publish_branch: docs-gh-page
