@@ -1,9 +1,9 @@
 [book]
-authors = ["zafu-acm-team"]
+authors = ["rogeryoungh"]
 language = "zh-cn"
 multilingual = false
 src = "src"
-title = "ZAFU ACM Wiki"
+title = "Roger Young 的板子"
 
 [preprocessor.katex]
 

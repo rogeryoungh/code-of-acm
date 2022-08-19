@@ -2,6 +2,7 @@
 archive-code/
 temp/
 template/book/
+template/**/*.cpp.full
 
 *.pdf
 __latexident*.tex
