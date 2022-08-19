@@ -1,11 +1,8 @@
-#include <vector>
-using namespace std;
-
-// @problem https://www.luogu.com.cn/problem/P3383
+#include "basic/index.hpp"
 
 // @description 快速幂(i32)
 
-int qpow(int a, int b, int m) {
+int qpow(int a, ll b, int m) {
 	int ret = m != 1;
 	for (; b > 0; b /= 2) {
 		if (b % 2 == 1)

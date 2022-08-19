@@ -1,8 +1,4 @@
-#include <vector>
-using namespace std;
-
-// @reference "ds/sparse-table.cpp"
-// @reference "graph/lca-sparse-table.cpp"
+#include "basic/index.hpp"
 
 // @description 二维数组
 

@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-using ll = int64_t;
+using ll = long long;
 
 int ____ = cin.tie(nullptr)->sync_with_stdio(false);
 

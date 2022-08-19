@@ -44,7 +44,7 @@ def replace_dfs(content: List[str], is_test: bool):
             content_split = []
             if path not in maps:
                 header = ''
-                if not path.startswith('intro') or is_test:
+                if path != 'basic/index.hpp' or is_test:
                     header = read_file(template_dir + path)
                 maps.add(path)
                 content_split = replace_dfs(header.splitlines(), is_test)
@@ -56,6 +56,7 @@ def replace_dfs(content: List[str], is_test: bool):
 
 def process(file_name: str, is_test: bool):
     print('PROCESS ' + file_name)
+    maps.clear()
     before = read_file(file_name)
     after = replace_dfs(before.splitlines(), is_test)
     while len(after) > 0 and after[0] == "":
