@@ -187,7 +187,58 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div id="content" class="content">
                     <main>
                         <h1 id="矩阵"><a class="header" href="#矩阵">矩阵</a></h1>
-<pre><code class="language-cpp">{{#include matrix.cpp.full}}
+<pre><code class="language-cpp">#include &lt;vector&gt;
+#include &lt;iostream&gt;
+#include &lt;cassert&gt;
+using ll = long long;
+using namespace std;
+
+const int P = 1E9 + 7;
+
+// @description 矩阵乘法
+// @problem https://loj.ac/p/100
+
+struct Mtx {
+	int x, y;
+	vector&lt;ll&gt; m;
+	Mtx(int a, int b) : x(a), y(b), m(x * y) {}
+	auto operator[](int i) {
+		return m.begin() + i * y;
+	}
+	auto operator[](int i) const {
+		return m.begin() + i * y;
+	}
+};
+
+Mtx operator*(const Mtx &amp;lhs, const Mtx &amp;rhs) {
+	assert(lhs.y == rhs.x);
+	Mtx u(lhs.x, rhs.y);
+	for (int i = 0; i &lt; lhs.x; i++) {
+		for (int k = 0; k &lt; rhs.x; k++) {
+			ll t = lhs[i][k];
+			for (int j = 0; j &lt; rhs.y; j++) {
+				(u[i][j] += rhs[k][j] * t) %= P;
+			}
+		}
+	}
+	return u;
+}
+
+istream &amp;operator&gt;&gt;(istream &amp;is, Mtx &amp;m) {
+	ll t;
+	for (int i = 0; i &lt; m.x * m.y; i++) {
+		is &gt;&gt; t;
+		m.m[i] = (t + P) % P;
+	}
+	return is;
+}
+
+ostream &amp;operator&lt;&lt;(ostream &amp;os, Mtx &amp;m) {
+	for (int i = 0; i &lt; m.x * m.y; i++) {
+		os &lt;&lt; m.m[i] &lt;&lt; &quot; \n&quot;[(i + 1) % m.y == 0];
+	}
+	return os;
+}
 </code></pre>
 <h2 id="测试例题"><a class="header" href="#测试例题">测试例题</a></h2>
 <ul>

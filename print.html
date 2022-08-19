@@ -238,35 +238,274 @@ ll upper(ll l, ll r, Comp check) {
 <li><a href="https://www.luogu.com.cn/problem/P1873">P1873 EKO / 砍树</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="矩阵"><a class="header" href="#矩阵">矩阵</a></h1>
-<pre><code class="language-cpp">{{#include matrix.cpp.full}}
+<pre><code class="language-cpp">#include &lt;vector&gt;
+#include &lt;iostream&gt;
+#include &lt;cassert&gt;
+using ll = long long;
+using namespace std;
+
+const int P = 1E9 + 7;
+
+// @description 矩阵乘法
+// @problem https://loj.ac/p/100
+
+struct Mtx {
+	int x, y;
+	vector&lt;ll&gt; m;
+	Mtx(int a, int b) : x(a), y(b), m(x * y) {}
+	auto operator[](int i) {
+		return m.begin() + i * y;
+	}
+	auto operator[](int i) const {
+		return m.begin() + i * y;
+	}
+};
+
+Mtx operator*(const Mtx &amp;lhs, const Mtx &amp;rhs) {
+	assert(lhs.y == rhs.x);
+	Mtx u(lhs.x, rhs.y);
+	for (int i = 0; i &lt; lhs.x; i++) {
+		for (int k = 0; k &lt; rhs.x; k++) {
+			ll t = lhs[i][k];
+			for (int j = 0; j &lt; rhs.y; j++) {
+				(u[i][j] += rhs[k][j] * t) %= P;
+			}
+		}
+	}
+	return u;
+}
+
+istream &amp;operator&gt;&gt;(istream &amp;is, Mtx &amp;m) {
+	ll t;
+	for (int i = 0; i &lt; m.x * m.y; i++) {
+		is &gt;&gt; t;
+		m.m[i] = (t + P) % P;
+	}
+	return is;
+}
+
+ostream &amp;operator&lt;&lt;(ostream &amp;os, Mtx &amp;m) {
+	for (int i = 0; i &lt; m.x * m.y; i++) {
+		os &lt;&lt; m.m[i] &lt;&lt; &quot; \n&quot;[(i + 1) % m.y == 0];
+	}
+	return os;
+}
 </code></pre>
 <h2 id="测试例题-1"><a class="header" href="#测试例题-1">测试例题</a></h2>
 <ul>
 <li><a href="https://loj.ac/p/100">LOJ100 矩阵乘法</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="miller-rabbin-素性测试"><a class="header" href="#miller-rabbin-素性测试">Miller Rabbin 素性测试</a></h1>
-<pre><code class="language-cpp">{{#include miller-rabbin.cpp.full}}
+<pre><code class="language-cpp">using i128 = __int128_t;
+
+// @problem https://loj.ac/p/143
+
+// @description 快速幂(i128)
+
+ll qpow128(ll a, ll b, ll m) {
+	ll ret = m != 1;
+	for (; b; b /= 2) {
+		if (b % 2 == 1)
+			ret = i128(ret) * a % m;
+		a = i128(a) * a % m;
+	}
+	return ret;
+}
+
+// @description 素性测试(Miller Rabbin)
+
+bool miller_rabbin(ll n) {
+	if (n &lt;= 3)
+		return n &gt;= 2;
+	if (n % 2 == 0)
+		return false;
+	ll a = n - 1;
+	while (a % 2 == 0)
+		a /= 2;
+	for (int p : {2, 3, 5, 7, 11, 13, 17, 19, 23}) {
+		if (n &lt;= p)
+			return true;
+		ll t = a, v = qpow128(p, t, n);
+		while (t != n - 1 &amp;&amp; v != 1 &amp;&amp; v != n - 1) {
+			v = i128(v) * v % n, t *= 2;
+		}
+		if (v != n - 1 &amp;&amp; t % 2 == 0)
+			return false;
+	}
+	return true;
+}
 </code></pre>
 <h2 id="测试例题-2"><a class="header" href="#测试例题-2">测试例题</a></h2>
 <ul>
 <li><a href="https://loj.ac/p/143">LOJ143 质数判定</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="pollard-rho-因式分解"><a class="header" href="#pollard-rho-因式分解">Pollard Rho 因式分解</a></h1>
-<pre><code class="language-cpp">{{#include pollard-rho.cpp.full}}
+<pre><code class="language-cpp">using i128 = __int128_t;
+
+// @problem https://loj.ac/p/143
+
+// @description 快速幂(i128)
+
+ll qpow128(ll a, ll b, ll m) {
+	ll ret = m != 1;
+	for (; b; b /= 2) {
+		if (b % 2 == 1)
+			ret = i128(ret) * a % m;
+		a = i128(a) * a % m;
+	}
+	return ret;
+}
+
+// @description 素性测试(Miller Rabbin)
+
+bool miller_rabbin(ll n) {
+	if (n &lt;= 3)
+		return n &gt;= 2;
+	if (n % 2 == 0)
+		return false;
+	ll a = n - 1;
+	while (a % 2 == 0)
+		a /= 2;
+	for (int p : {2, 3, 5, 7, 11, 13, 17, 19, 23}) {
+		if (n &lt;= p)
+			return true;
+		ll t = a, v = qpow128(p, t, n);
+		while (t != n - 1 &amp;&amp; v != 1 &amp;&amp; v != n - 1) {
+			v = i128(v) * v % n, t *= 2;
+		}
+		if (v != n - 1 &amp;&amp; t % 2 == 0)
+			return false;
+	}
+	return true;
+}
+
+// @description Pollard Rho
+
+ll pollard_rho(ll N) {
+	if (N % 2 == 0)
+		return 2;
+	if (miller_rabbin(N))
+		return N;
+	while (true) {
+		auto f = [N, c = rand() % (N - 1) + 1](ll x) {
+			return (i128(x) * x + c) % N;
+		};
+		ll x = 0, y = 0, p = 1, q = 1;
+		do {
+			int w = 128;
+			do {
+				p = q, x = f(x), y = f(f(y));
+				q = i128(p) * abs(x - y) % N;
+			} while (w-- &amp;&amp; q != 0);
+			ll d = std::__gcd(p, N);
+			if (d &gt; 1 &amp;&amp; d != N)
+				return d;
+		} while (x != y);
+	}
+}
+
+auto factor(ll x) {
+	vector&lt;ll&gt; v;
+	std::function&lt;void(ll)&gt; dfs = [&amp;](ll u) {
+		ll fac = pollard_rho(u);
+		if (fac == u)
+			v.push_back(u);
+		else
+			dfs(fac), dfs(u / fac);
+	};
+	dfs(x);
+	sort(v.begin(), v.end());
+	return v;
+}
 </code></pre>
 <h2 id="测试例题-3"><a class="header" href="#测试例题-3">测试例题</a></h2>
 <ul>
 <li><a href="https://www.luogu.com.cn/problem/P4718">P4718 Pollard-Rho算法</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="floor-sum"><a class="header" href="#floor-sum">Floor Sum</a></h1>
-<pre><code class="language-cpp">{{#include floor-sum.cpp.full}}
+<pre><code class="language-cpp">using ll = long long;
+
+// @problem https://www.luogu.com.cn/problem/P5171
+// @problem https://judge.yosupo.jp/problem/sum_of_floor_of_linear
+
+// @description 类欧几里得算法
+
+ll floor_sum(ll a, ll b, ll c, ll n) {
+	ll m = (a * n + b) / c, S1 = n * (n + 1) / 2;
+	if (a == 0) {
+		return b / c * (n + 1);
+	} else if (a &gt;= c || b &gt;= c) {
+		ll f = S1 * (a / c) + b / c * (n + 1);
+		return f + floor_sum(a % c, b % c, c, n);
+	} else {
+		return m * n - floor_sum(c, c - b - 1, a, m - 1);
+	}
+}
 </code></pre>
 <h2 id="测试例题-4"><a class="header" href="#测试例题-4">测试例题</a></h2>
 <ul>
 <li><a href="https://www.luogu.com.cn/problem/P5171">P5171 Earthquake</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cipolla-二次剩余"><a class="header" href="#cipolla-二次剩余">Cipolla 二次剩余</a></h1>
-<pre><code class="language-cpp">{{#include cipolla.cpp.full}}
+<pre><code class="language-cpp">#include &lt;algorithm&gt;
+using ll = long long;
+using namespace std;
+
+// @problem https://www.luogu.com.cn/problem/P5491
+
+// @description 快速幂(i32)
+
+int qpow(int a, int b, int m) {
+	int ret = m != 1;
+	for (; b &gt; 0; b /= 2) {
+		if (b % 2 == 1)
+			ret = 1ll * ret * a % m;
+		a = 1ll * a * a % m;
+	}
+	return ret;
+}
+
+// @description 二次剩余(cipolla)
+
+template &lt;class T&gt;
+T tpow(T a, ll b) {
+	T ret;
+	for (; b; b /= 2) {
+		if (b % 2 == 1)
+			ret = ret * a;
+		a = a * a;
+	}
+	return ret;
+}
+
+struct FP2 {
+	inline static ll P, I;
+	ll a = 1, b = 0; // a+bi, i^2=a^2-n
+	friend FP2 operator*(FP2 i1, FP2 i2) {
+		return FP2{(i1.a * i2.a + i1.b * i2.b % P * I) % P, (i1.b * i2.a + i1.a * i2.b) % P};
+	}
+};
+
+ll legendre(ll a, ll p) {
+	return qpow(a, (p - 1) / 2, p);
+}
+
+ll cipolla(ll n, ll p) {
+	if (n % p == 0)
+		return 0;
+	if (legendre(n, p) != 1)
+		return -1;
+	ll a = -1;
+	for (a = 0; a &lt; p; a++) {
+		ll i = (a * a - n + p) % p;
+		if (legendre(i, p) == p - 1) {
+			FP2::P = p, FP2::I = i;
+			break;
+		}
+	}
+	ll ans = tpow(FP2{a, 1}, (p + 1) / 2).a;
+	return min(ans, p - ans);
+}
 </code></pre>
 <h2 id="测试例题-5"><a class="header" href="#测试例题-5">测试例题</a></h2>
 <ul>
