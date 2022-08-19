@@ -1,5 +1,5 @@
-#include <initializer_list>
-using ll = long long;
+#include "intro/index.hpp"
+
 using i128 = __int128_t;
 
 // @problem https://loj.ac/p/143
