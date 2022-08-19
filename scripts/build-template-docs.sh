@@ -13,4 +13,5 @@ chmod +x $HOME/bin/preprocessor-md-tex
 export PATH="$HOME/bin:$PATH"
 
 preprocessor-md-tex ./template/src/
+python ./scripts/extract.py
 cd ./template && mdbook build
