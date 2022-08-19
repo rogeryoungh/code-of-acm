@@ -7,6 +7,8 @@ import sys
 import datetime
 import re
 
+from typing import List
+
 template_dir = "./template/src/"
 
 links = "// GENERATE FROM https://github.com/rogeryoungh/code-of-acm"
@@ -32,7 +34,7 @@ maps = set()
 
 # 将旧内容中的 include 替换为文件内容
 
-def replace_dfs(content: list[str], is_test: bool):
+def replace_dfs(content: List[str], is_test: bool):
     index = 0
     while index < len(content):
         line = content[index]
