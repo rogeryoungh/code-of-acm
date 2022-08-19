@@ -1,4 +1,4 @@
-#include "intro/index.hpp"
+#include "basic/index.hpp"
 
 #include "math/miller-rabbin.cpp"
 
@@ -29,6 +29,8 @@ ll pollard_rho(ll N) {
 
 auto factor(ll x) {
 	vector<ll> v;
+	if (x == 1)
+		return v;
 	std::function<void(ll)> dfs = [&](ll u) {
 		ll fac = pollard_rho(u);
 		if (fac == u)
