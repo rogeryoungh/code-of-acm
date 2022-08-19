@@ -1,7 +1,4 @@
-using ll = long long;
-
-// @problem https://www.luogu.com.cn/problem/P5171
-// @problem https://judge.yosupo.jp/problem/sum_of_floor_of_linear
+#include "basic/index.hpp"
 
 // @description 类欧几里得算法
 

@@ -1,7 +1,6 @@
-using ll = long long;
+#include "basic/index.hpp"
 
 // @description 二分
-// @problem https://www.luogu.com.cn/problem/P1873
 
 template <class Comp> // last true
 ll lower(ll l, ll r, Comp check) {

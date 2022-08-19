@@ -1,8 +1,4 @@
-#include <cctype>
-#include <cstdint>
-#include <cstdio>
-#include <functional>
-using namespace std;
+#include "basic/index.hpp"
 
 struct FastI {
 	char s[1 << 20], *t = s;

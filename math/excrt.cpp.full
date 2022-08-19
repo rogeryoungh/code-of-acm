@@ -1,33 +1,35 @@
-#include <vector>
-#include <tuple>
-using ll = long long;
-using i128 = __int128_t;
-using namespace std;
-
-// @problem https://www.luogu.com.cn/problem/P1495
+// @description 扩展欧几里得
 
 tuple<ll, ll, ll> exgcd(ll a, ll b) {
-	if (!b) {
-		return {1, 0, a};
+	if (b == 0) {
+		ll s = a >= 0 ? 1 : -1;
+		return {s, 0, a * s};
+	} else {
+		auto [y, x, g] = exgcd(b, a % b);
+		return {x, y - a / b * x, g};
 	}
-	auto [y, x, g] = exgcd(b, a % b);
-	return {x, y - a / b * x, g};
+}
+
+ll inv_gcd(ll a, ll p) {
+	return (get<0>(exgcd(a, p)) % p + p) % p;
 }
 
 // @description 扩展中国剩余定理
 
-ll excrt(const vector<ll> &aa, const vector<ll> &mm) {
-	ll ans = aa[0], M = mm[0];
-	for (int i = 1; i < aa.size(); i++) {
-		if (M % mm[i] == 0 && ans % mm[i] == aa[i])
+using i128 = __int128_t;
+
+template<class PAIR>
+ll excrt(const vector<PAIR> &am) {
+	auto [ans, M] = am[0];
+	for (auto [a, m] : am) {
+		if (M % m == 0 && ans % m == a)
 			continue;
-		ll B = (aa[i] - ans % mm[i] + mm[i]) % mm[i];
-		auto [x, y, g] = exgcd(M, mm[i]);
+		ll B = (a - ans % m + m) % m;
+		auto [x, y, g] = exgcd(M, m);
 		if (B % g != 0)
 			return -1;
-		x = (i128)x * (B / g) % (mm[i] / g);
-		ans += M * x;
-		M *= mm[i] / g;
+		x = i128(x) * (B / g) % (m / g);
+		ans += M * x, M *= m /g;
 		ans = (ans + M) % M;
 	}
 	return ans;
