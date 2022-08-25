@@ -165,6 +165,24 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P2261 余数求和</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给出正整数 $n$ 和 $k$，请计算
+$$ G(n, k) = \sum_{i = 1}^n k \bmod i $$
+分析 因为
+$$ k \bmod i = k - i \left\lfloor \frac{k}{i} \right\rfloor $$
+因此有
+$$ G(n,k) = nk - \sum_{i=1}^n i \left\lfloor \frac{k}{i} \right\rfloor $$
+后面需要整数分块。
+int main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l = 1, r; l &lt;= n; l = r &#43; 1) { r = min(n, k / (k / l)); ll t = (l &#43; r) * (r - l &#43; 1) / 2; sum -= t * (k / l); } printf(&#34;%lld&#34;, sum); return 0; } </p>
+  </section>
+  <footer class="entry-footer">April 30, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P2261 余数求和" href="https://acm.rogery.dev/post/2021-04/p2261/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P1314 聪明的质检员</h2>
   </header>
   <section class="entry-content">
@@ -314,21 +332,6 @@ int main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll 
   </section>
   <footer class="entry-footer">November 10, 2020&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P3842 线段" href="https://acm.rogery.dev/post/2020-11/p3842/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P1077 摆花</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 要从 $n$ 种花中挑出 $m$ 盆展览，其中第 $i$ 种花不得多于 $a_i$ 种。求有几种选法。
-分析 考虑动态规划，记状态 $dp[i,j]$ 为摆完前 $i$ 种花，共 $j$ 盆时的方案数。容易得到递推式
-$$ dp[i,j] = \sum_{k = j - \min(a_i, j)}^j dp[i-1,k] $$
-边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。
-const ll mod = 1e6 &#43; 7; ll dp[110], aa[110], sum[110]; int main() { ll n = rr(), m = rr(); sum[0] = dp[0] = 1; for (ll i = 1; i &lt;= n; i&#43;&#43;) aa[i] = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) { for (ll j = 1; j &lt;= m; j&#43;&#43;) sum[j] = (sum[j - 1] &#43; dp[j]) % mod; for (ll j = m; j &gt;= 0; j--) { int t = j - 1 - min(aa[i], j); if (t &gt; 0) dp[j] = (dp[j] &#43; sum[j - 1] - sum[t]) % mod; } } printf(&#34;%lld\n&#34;, (dp[m] &#43; mod) % mod); return 0; } </p>
-  </section>
-  <footer class="entry-footer">October 16, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P1077 摆花" href="https://acm.rogery.dev/post/2020-10/p1077/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

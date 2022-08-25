@@ -165,6 +165,20 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P1637 三元上升子序列</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定一个序列，求其中三元上升子序列的个数
+对于 $i,j,k$，若 $a_i &lt; a_j &lt; a_k$，则是一个满足要求的三元对。 分析 考虑枚举中间的数 $j$，设其左边有 $a$ 个数比它小，右边有 $b$ 个数比它大，则中间为 $j$ 的三元对个数为 $ab$。
+至此就和逆序对类似了，离散化后用树状数组即可。
+#include &#34;template/ds/fwtree/0.hpp&#34; int main() { int n = rr(); vector&lt;pii&gt; v(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { v[i] = {rr(), i}; } sort(v.begin(), v.end(), [](pii a, pii b) { if (a.first == b.first) return a.second &gt; b.second; return a.first &lt; b.first; }); fwtree_1&lt;int&gt; tr(n &#43; 1); vector&lt;ll&gt; al(n &#43; 1), ar(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { al[i] = tr....</p>
+  </section>
+  <footer class="entry-footer">January 28, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1637 三元上升子序列" href="https://acm.rogery.dev/post/2022-01/p1637/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P3373 线段树 2</h2>
   </header>
   <section class="entry-content">
@@ -333,23 +347,6 @@ $$ \frac{a}{b} &lt; \frac{p}{q} &lt; \frac{c}{d} $$
   </section>
   <footer class="entry-footer">October 30, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P5179 Fraction" href="https://acm.rogery.dev/post/2021-10/p5179/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P5171 Earthquake</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 给定 $a,b,c$，求满足方程 $ax &#43; by \leqslant c$ 的非负整数解的个数。
-分析 令 $n = \lfloor c / a \rfloor$，容易推出让我们求的是
-$$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{c - ax}{b} \right\rfloor $$
-直接套类欧是不行的，因为系数有负数。其他题解感觉推麻烦了，直接考虑水平翻转，令 $x \to (n - x)$，代入有
-$$ n &#43; 1 &#43; \sum_{x = 0}^{n} \left\lfloor \frac{ax &#43; c - an}{b} \right\rfloor $$
-显然 $c - an$ 是 c % a，于是套类欧即可
-附：代码，展开</p>
-  </section>
-  <footer class="entry-footer">October 28, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P5171 Earthquake" href="https://acm.rogery.dev/post/2021-10/p5171/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

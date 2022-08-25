@@ -165,6 +165,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>LOJ6053 简单的函数</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定积性函数 $f(p^c) = p \oplus c$。对 $1000000007$ 取模求前缀和。
+分析 Min25 板子题。
+const ll mod = 1000000007, inv2 = 500000004; const int maxn = 200001; ll n, prime[maxn], cnt, w[maxn], s[maxn], c[maxn]; ll sqrt_n, m; ll mo(ll x) { return (x &#43; mod) % mod; } ll f_p(ll p, ll e) { return p ^ e; } int id(ll x) { return x &lt;= sqrt_n ? x : m - (n / x) &#43; 1; } ll F(long long n, int k) { if (n &lt;= prime[k]) return 0; ll ret = s[id(n)] - s[prime[k]]; for (int i = k &#43; 1; i &lt;= cnt &amp;&amp; prime[i] * prime[i] &lt;= n; i&#43;&#43;) { ll pi = prime[i], pk = pi; for (int c = 1; pk * pi &lt;= n; c&#43;&#43;, pk *= pi) ret &#43;= f_p(pi, c) * F(n / pk, i) &#43; f_p(pi, c &#43; 1); } return mo(ret); } int main() { n = rr(); sqrt_n = sqrt(n &#43; 0....</p>
+  </section>
+  <footer class="entry-footer">August 15, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to LOJ6053 简单的函数" href="https://acm.rogery.dev/post/2021-08/loj6053/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>HDU6975 Forgiving Matching</h2>
   </header>
   <section class="entry-content">
@@ -322,24 +335,6 @@ $$ f(n) = \sum_{n \mid d} \mu\left(\frac{d}{n}\right)F(d) = \sum_{t=1}^{\min(x,y
   </section>
   <footer class="entry-footer">May 19, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P2522 Problem B" href="https://acm.rogery.dev/post/2021-05/p2522/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P2261 余数求和</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 给出正整数 $n$ 和 $k$，请计算
-$$ G(n, k) = \sum_{i = 1}^n k \bmod i $$
-分析 因为
-$$ k \bmod i = k - i \left\lfloor \frac{k}{i} \right\rfloor $$
-因此有
-$$ G(n,k) = nk - \sum_{i=1}^n i \left\lfloor \frac{k}{i} \right\rfloor $$
-后面需要整数分块。
-int main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l = 1, r; l &lt;= n; l = r &#43; 1) { r = min(n, k / (k / l)); ll t = (l &#43; r) * (r - l &#43; 1) / 2; sum -= t * (k / l); } printf(&#34;%lld&#34;, sum); return 0; } </p>
-  </section>
-  <footer class="entry-footer">April 30, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P2261 余数求和" href="https://acm.rogery.dev/post/2021-04/p2261/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
