@@ -14,7 +14,7 @@
       <pubDate>Mon, 22 Aug 2022 00:00:00 +0000</pubDate>
       
       <guid>https://acm.rogery.dev/post/2022-08/sj6/</guid>
-      <description>本场比赛最终结果不是很理想，可能我对大家的水平有过高的期待。
+      <description>本场比赛最终结果不是很理想，可能题比较难。
 A - CF189A 给一长度为 $n$ 的钢条，要求将其剪成若干长度为 $p,q,r$ 的短条，恰好裁完，且要求短条数量尽可能多。
 分析 简单背包。
 int main() { int n; vector&amp;lt;int&amp;gt; v(3); cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; v[0] &amp;gt;&amp;gt; v[1] &amp;gt;&amp;gt; v[2]; vector&amp;lt;int&amp;gt; dp(n + 1, -1E9); dp[0] = 0; for (int vi : v) { for (int j = vi; j &amp;lt;= n; j++) { dp[j] = max(dp[j], dp[j - vi] + 1); } } cout &amp;lt;&amp;lt; dp[n]; return 0; } B - ARC100A 给定一个长为 $n$ 的整数序列 $\{a_i\}$，寻找一个整数 $x$ 使得下式最小：</description>

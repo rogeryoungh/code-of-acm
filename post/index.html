@@ -168,7 +168,7 @@
     <h2>ZAFU 2022.08.22 大一个人赛题解</h2>
   </header>
   <section class="entry-content">
-    <p>本场比赛最终结果不是很理想，可能我对大家的水平有过高的期待。
+    <p>本场比赛最终结果不是很理想，可能题比较难。
 A - CF189A 给一长度为 $n$ 的钢条，要求将其剪成若干长度为 $p,q,r$ 的短条，恰好裁完，且要求短条数量尽可能多。
 分析 简单背包。
 int main() { int n; vector&lt;int&gt; v(3); cin &gt;&gt; n &gt;&gt; v[0] &gt;&gt; v[1] &gt;&gt; v[2]; vector&lt;int&gt; dp(n &#43; 1, -1E9); dp[0] = 0; for (int vi : v) { for (int j = vi; j &lt;= n; j&#43;&#43;) { dp[j] = max(dp[j], dp[j - vi] &#43; 1); } } cout &lt;&lt; dp[n]; return 0; } B - ARC100A 给定一个长为 $n$ 的整数序列 $\{a_i\}$，寻找一个整数 $x$ 使得下式最小：...</p>
