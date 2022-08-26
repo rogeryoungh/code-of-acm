@@ -1,16 +1,9 @@
-#include <vector>
-#include <iostream>
-#include <cassert>
-using ll = long long;
-using namespace std;
-
-const int P = 1E9 + 7;
-
 // @description 矩阵快速幂
 
+template <class T>
 struct QMtx {
 	int n;
-	vector<ll> m;
+	vector<T> m;
 	QMtx(int a) : n(a), m(n * n) {}
 	auto operator[](int i) {
 		return m.begin() + i * n;
@@ -28,22 +21,24 @@ struct QMtx {
 	QMtx pow(ll w);
 };
 
-QMtx operator*(const QMtx &lhs, const QMtx &rhs) {
+template <class T>
+QMtx<T> operator*(const QMtx<T> &lhs, const QMtx<T> &rhs) {
 	assert(lhs.n == rhs.n);
 	int n = lhs.n;
-	QMtx u(n);
+	QMtx<T> u(n);
 	for (int i = 0; i < n; i++) {
 		for (int k = 0; k < n; k++) {
-			ll t = lhs[i][k];
+			T t = lhs[i][k];
 			for (int j = 0; j < rhs.n; j++) {
-				(u[i][j] += rhs[k][j] * t) %= P;
+				u[i][j] += rhs[k][j] * t;
 			}
 		}
 	}
 	return u;
 }
 
-QMtx QMtx::pow(ll w) {
+template <class T>
+QMtx<T> QMtx<T>::pow(ll w) {
 	QMtx ret = QMtx::E(n), a = *this;
 	for (; w > 0; w >>= 1) {
 		if (w & 1)
@@ -53,18 +48,16 @@ QMtx QMtx::pow(ll w) {
 	return ret;
 }
 
-istream &operator>>(istream &is, QMtx &m) {
-	ll t;
-	for (int i = 0; i < m.n * m.n; i++) {
-		is >> t;
-		m.m[i] = (t + P) % P;
-	}
+template <class T>
+istream &operator>>(istream &is, QMtx<T> &m) {
+	for (int i = 0; i < m.n * m.n; i++)
+		is >> m.m[i];
 	return is;
 }
 
-ostream &operator<<(ostream &os, QMtx &m) {
-	for (int i = 0; i < m.n * m.n; i++) {
+template <class T>
+ostream &operator<<(ostream &os, const QMtx<T> &m) {
+	for (int i = 0; i < m.n * m.n; i++)
 		os << m.m[i] << " \n"[(i + 1) % m.n == 0];
-	}
 	return os;
 }

@@ -1,6 +1,4 @@
-#include <vector>
-#include <algorithm>
-using namespace std;
+#include "basic/index.hpp"
 
 // @description 多项式多点求值
 // @problem https://loj.ac/p/150

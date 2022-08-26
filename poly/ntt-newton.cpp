@@ -1,9 +1,4 @@
-#include <vector>
-#include <algorithm>
-#include <iostream>
-#include <cassert>
-using namespace std;
-using ll = int64_t;
+#include "basic/index.hpp"
 
 // @description 多项式牛顿迭代(m32)
 // @problem https://loj.ac/p/150

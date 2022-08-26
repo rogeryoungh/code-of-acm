@@ -1,23 +1,6 @@
-#include <vector>
-using namespace std;
+#include "basic/index.hpp"
 
-// @problem https://www.luogu.com.cn/problem/P3865
-// @dependices "ds/vec2.cpp"
-
-// @description 二维数组
-
-template <class T>
-struct VV {
-	int x, y;
-	vector<T> m;
-	VV(int a, int b) : x(a), y(b), m(a * b) {}
-	auto operator[](int i) {
-		return m.begin() + i * y;
-	}
-	auto operator[](int i) const {
-		return m.begin() + i * y;
-	}
-};
+#include "basic/vec2.cpp"
 
 // @description Sparse Table
 

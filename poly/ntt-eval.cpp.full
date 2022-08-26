@@ -1,7 +1,3 @@
-#include <vector>
-#include <algorithm>
-using namespace std;
-
 // @description 多项式多点求值
 // @problem https://loj.ac/p/150
 

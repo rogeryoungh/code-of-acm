@@ -1,6 +1,4 @@
-#include <vector>
-#include <queue>
-using namespace std;
+#include "basic/index.hpp"
 
 const int N = 1E5 + 5;
 using pii = pair<int, int>;

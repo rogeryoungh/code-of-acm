@@ -1,6 +1,4 @@
-#include <vector>
-#include <algorithm>
-using namespace std;
+#include "basic/index.hpp"
 
 template <class iter>
 auto sa_doubleing(iter first, iter last, int m = 128) {

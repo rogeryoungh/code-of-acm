@@ -1,6 +1,3 @@
-#include <vector>
-using namespace std;
-
 using pii = pair<int, int>;
 
 const int N = 5E5 + 10;

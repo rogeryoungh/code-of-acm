@@ -1,8 +1,3 @@
-#include <vector>
-using namespace std;
-
-// @problem https://www.luogu.com.cn/problem/P1886
-
 // @description 滑动窗口
 
 template <class T>

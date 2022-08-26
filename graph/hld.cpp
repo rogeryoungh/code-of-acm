@@ -1,5 +1,4 @@
-#include <vector>
-using namespace std;
+#include "basic/index.hpp"
 
 const int N = 1E5 + 5;
 vector<int> G[N];

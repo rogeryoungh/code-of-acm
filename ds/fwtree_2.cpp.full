@@ -1,6 +1,3 @@
-#include <vector>
-using namespace std;
-
 // @problem https://loj.ac/p/132
 // @dependices "ds/fwtree.cpp"
 

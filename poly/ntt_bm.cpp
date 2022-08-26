@@ -1,3 +1,7 @@
+#include "basic/index.hpp"
+
+struct Poly;
+
 Poly bm(const Poly &a) {
 	Poly p = {1}, q = {1};
 	int l = 0;

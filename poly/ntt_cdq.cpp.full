@@ -1,5 +1,3 @@
-#include <map>
-
 struct Poly;
 
 struct PolyCDQ {
