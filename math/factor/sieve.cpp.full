@@ -20,14 +20,12 @@ void Euler(int n) {
 // @description 质因子分解
 
 auto factor(ll n) {
-	vector<int> ans;
+	vector<ll> ans;
 	for (int i : primes) {
 		if (1ll * i * i > n)
 			break;
-		while (n % i == 0) {
+		for (; n % i == 0; n /= i)
 			ans.push_back(i);
-			n /= i;
-		}
 	}
 	if (n > 1)
 		ans.push_back(n);
@@ -37,18 +35,16 @@ auto factor(ll n) {
 // @description 质因子(p^k)
 
 auto factor_pii(ll n) {
-	vector<pair<int, int>> ans;
-	for (int p : primes) {
-		if (p * p > n)
-			break;
-		int cnt = 0;
-		while (n % p == 0) {
-			n /= p, cnt++;
-		}
-		if (cnt > 0)
-			ans.emplace_back(p, cnt);
+	vector<ll> ret = factor(n);
+	vector<pair<ll, int>> ans;
+	if (ret.empty())
+		return ans;
+	ans.emplace_back(ret[0], 1);
+	for (int i = 1; i < ret.size(); i++) {
+		if (ret[i] == ret[i - 1])
+			ans.back().second++;
+		else
+		 	ans.emplace_back(ret[i], 1);
 	}
-	if (n > 1)
-		ans.emplace_back(n, 1);
 	return ans;
 }

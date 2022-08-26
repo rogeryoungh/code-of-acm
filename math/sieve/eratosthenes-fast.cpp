@@ -3,7 +3,6 @@ using ll = long long;
 using namespace std;
 
 // @description 埃氏筛(卡常)
-// @problem https://www.luogu.com.cn/problem/P3383
 
 vector<bool> not_p;
 vector<int> primes; // 个数不精确！
