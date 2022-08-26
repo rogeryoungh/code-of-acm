@@ -1,7 +1,4 @@
-#include <vector>
-using namespace std;
-
-// @problem https://www.luogu.com.cn/problem/P3372
+#include "basic/index.hpp"
 
 // @description 线段树(懒标记)
 

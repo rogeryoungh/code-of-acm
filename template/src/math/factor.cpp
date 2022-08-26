@@ -1,13 +1,10 @@
-#include <vector>
-using ll = long long;
-using pii = std::pair<int, int>;
-using namespace std;
+#include "basic/index.hpp"
 
-vector<int> primes;
+#include "math/sieve-euler.cpp"
 
 // @description 质因子分解
 
-vector<int> factor(ll n) {
+auto factor(ll n) {
 	vector<int> ans;
 	for (int i : primes) {
 		if (1ll * i * i > n)
@@ -24,8 +21,8 @@ vector<int> factor(ll n) {
 
 // @description 质因子(p^k)
 
-vector<pii> factor_pii(ll n) {
-	vector<pii> ans;
+auto factor_pii(ll n) {
+	vector<pair<int, int>> ans;
 	for (int p : primes) {
 		if (p * p > n)
 			break;

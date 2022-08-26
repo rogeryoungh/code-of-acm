@@ -1,7 +1,4 @@
-#include <vector>
-using namespace std;
-
-// @problem https://www.luogu.com.cn/problem/P1886
+#include "basic/index.hpp"
 
 // @description 滑动窗口
 

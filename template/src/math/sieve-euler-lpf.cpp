@@ -1,8 +1,6 @@
-#include <vector>
-using namespace std;
+#include "basic/index.hpp"
 
 // @description 线性筛(LPF)
-// @problem https://www.luogu.com.cn/problem/P3383
 
 vector<int> lpf, primes;
 void Euler(int n) {

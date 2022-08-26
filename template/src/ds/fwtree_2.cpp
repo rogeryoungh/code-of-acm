@@ -1,5 +1,4 @@
-#include <vector>
-using namespace std;
+#include "basic/index.hpp"
 
 // @problem https://loj.ac/p/132
 // @dependices "ds/fwtree.cpp"
