@@ -1,4 +1,4 @@
-# LCA（倍增）
+# LCA・倍增
 
 ```cpp
 {{#include lca-binary-lifting.cpp.full}}
