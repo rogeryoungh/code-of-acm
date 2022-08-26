@@ -1,9 +1,9 @@
-# Euler 筛（LPF）
+# Euler 筛・LPF
 
 在 $O(n)$ 的时间内筛出 $n$ 以内的所有质数，并且筛出最小质因子（least prime factor）。
 
 ```cpp
-{{#include sieve-euler-lpf.cpp.full}}
+{{#include euler-lpf.cpp.full}}
 ```
 
 ## 测试例题

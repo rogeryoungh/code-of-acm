@@ -1,4 +1,4 @@
-# 最短路（Dijkstra）
+# 最短路・Dijkstra
 
 ```cpp
 {{#include dijkstra.cpp.full}}

@@ -3,7 +3,7 @@
 在 $O(n \log \log n)$ 的时间内筛出 $n$ 以内的所有质数。
 
 ```cpp
-{{#include sieve-eratosthenes.cpp.full}}
+{{#include eratosthenes.cpp.full}}
 ```
 
 ## 测试例题
