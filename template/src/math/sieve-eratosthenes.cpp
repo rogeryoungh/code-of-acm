@@ -1,9 +1,6 @@
-#include <vector>
-using ll = long long;
-using namespace std;
+#include "basic/index.hpp"
 
 // @description 埃氏筛
-// @problem https://www.luogu.com.cn/problem/P3383
 
 vector<bool> not_p;
 vector<int> primes;

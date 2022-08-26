@@ -1,3 +1,5 @@
+#include "basic/index.hpp"
+
 ll kruskal(int n) {
 	std::sort(G.begin(), G.end(), [](Edge a, Edge b) {
 		return get<2>(a) < get<2>(b);

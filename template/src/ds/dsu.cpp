@@ -1,7 +1,4 @@
-#include <vector>
-using namespace std;
-
-// @problem https://judge.yosupo.jp/problem/unionfind
+#include "basic/index.hpp"
 
 // @description 朴素并查集
 

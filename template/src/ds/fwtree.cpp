@@ -1,10 +1,4 @@
-#include <cassert>
-#include <vector>
-using namespace std;
-
-// @problem https://judge.yosupo.jp/problem/point_add_range_sum
-// @problem https://loj.ac/p/130
-// @reference "ds/fwtree_2.cpp"
+#include "basic/index.hpp"
 
 // @description 树状数组
 

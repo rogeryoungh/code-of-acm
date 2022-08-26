@@ -1,8 +1,4 @@
-#include <vector>
-#include <string>
-#include <iostream>
-using namespace std;
-using ll = long long;
+#include "basic/index.hpp"
 
 auto pre_z_algo(const string &s) {
 	int n = s.length();

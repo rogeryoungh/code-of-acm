@@ -1,13 +1,11 @@
-#include <vector>
-#include <string>
-using namespace std;
+#include "basic/index.hpp"
 
 // @problem https://www.luogu.com.cn/problem/P3805
 
 // @description Manacher
 
 template <int off>
-vector<int> manacher(const string &s) {
+auto manacher(const string &s) {
 	int n = s.size();
 	vector<int> m(n);
 	m[0] = off == 0;

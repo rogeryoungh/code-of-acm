@@ -1,7 +1,4 @@
-#include <vector>
-using namespace std;
-
-// @problem https://www.luogu.com.cn/problem/P1536 也不是不能用
+#include "basic/index.hpp"
 
 // @description 带权并查集
 
@@ -22,9 +19,10 @@ struct DSU {
 	}
 	void merge(int x, int y) {
 		x = find(x), y = find(y);
-		if (sz[x] > sz[y]) {
+		if (x == y)
+			return;
+		if (sz[x] > sz[y])
 			swap(x, y);
-		}
 		sz[y] += sz[x], fa[x] = y;
 		sz[x] = 0;
 	}
