@@ -1,9 +1,6 @@
-#include <istream>
-using namespace std;
-using ll = int64_t;
-using i128 = __int128_t;
+#include "basic/index.hpp"
 
-const ll P = 998244353998244353;
+const int P = 998244353;
 
 // @description 取模整数
 
@@ -13,10 +10,9 @@ const ll P = 998244353998244353;
 	}
 
 struct Z {
-	ll v;
-	Z(ll a = 0) : v(a) {}
-	Z(i128 a = 0) : v(a % P) {}
-	Z &operator=(const ll &m) {
+	int v;
+	Z(ll a = 0) : v(a % P) {}
+	Z &operator=(const int &m) {
 		v = m;
 		return *this;
 	}
@@ -29,18 +25,18 @@ struct Z {
 		return *this;
 	}
 	Z &operator*=(const Z &m) {
-		v = i128(v) * m.v % P;
+		v = 1ll * v * m.v % P;
 		return *this;
 	}
 	OPERATOR(Z, +);
 	OPERATOR(Z, -);
 	OPERATOR(Z, *);
-	Z pow(ll n) const {
-		ll ret = P != 1, a = v;
+	Z pow(int n) const {
+		int ret = P != 1, a = v;
 		for (; n; n /= 2) {
 			if (n % 2 == 1)
-				ret = i128(ret) * a % P;
-			a = i128(a) * a % P;
+				ret = 1ll * ret * a % P;
+			a = 1ll * a * a % P;
 		}
 		return ret;
 	}
@@ -55,6 +51,14 @@ struct Z {
 		return *this *= m.inv();
 	}
 	OPERATOR(Z, /);
+	auto approx(int A = 1E3) {
+		int x = v, y = P, a = 1, b = 0;
+		while (x > A) {
+			swap(x, y), swap(a, b);
+			a -= x / y * b, x %= y;
+		}
+		return make_pair(x, a);
+	}
 };
 
 istream &operator>>(istream &is, Z &z) {

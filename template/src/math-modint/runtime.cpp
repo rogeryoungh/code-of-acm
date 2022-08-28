@@ -1,3 +1,5 @@
+#include "basic/index.hpp"
+
 template <int>
 class RuntimeMontgomeryModInt {
   public:
