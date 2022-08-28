@@ -1,3 +1,5 @@
+#include "basic/index.hpp"
+
 const int P = 998244353;
 
 // @description 取模整数
@@ -65,21 +67,4 @@ istream &operator>>(istream &is, Z &z) {
 
 ostream &operator<<(ostream &os, const Z &z) {
 	return os << z.v;
-}
-
-// @description 拉格朗日插值
-
-Z lagrange(const vector<Z> &x, const vector<Z> &y, Z k) {
-	int n = x.size();
-	Z sum = 0;
-	for (int i = 0; i < n; i++) {
-		Z s1 = 1, s2 = 1;
-		for (int j = 0; j < n; j++) {
-			if (j == i)
-				continue;
-			s1 *= k - x[j], s2 *= x[i] - x[j];
-		}
-		sum += s1 / s2 * y[i];
-	}
-	return sum;
 }

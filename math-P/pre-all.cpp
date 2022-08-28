@@ -1,19 +1,6 @@
-#include <vector>
-using namespace std;
+#include "basic/index.hpp"
 
-const int P = 998244353;
-
-// @description 快速幂(i32, P)
-
-int qpow(int a, int b = P - 2, int m = P) {
-	int ret = m != 1;
-	for (; b; b >>= 1) {
-		if (b & 1)
-			ret = 1ll * ret * a % m;
-		a = 1ll * a * a % m;
-	}
-	return ret;
-}
+#include "math-P/qpow.cpp"
 
 // @description 预处理逆元、阶乘、阶乘逆元
 

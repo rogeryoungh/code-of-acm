@@ -1,8 +1,4 @@
-#include <istream>
-using namespace std;
-using ll = int64_t;
-
-const int P = 998244353;
+#include "basic/index.hpp"
 
 // @description 取模整数
 
@@ -11,10 +7,10 @@ const int P = 998244353;
 		return U(lhs) op## = rhs;                             \
 	}
 
+template <int P>
 struct Z {
 	int v;
-	Z(int a = 0) : v(a) {}
-	Z(ll a) : v(a % P) {}
+	Z(ll a = 0) : v(a % P) {}
 	Z &operator=(const int &m) {
 		v = m;
 		return *this;
@@ -47,6 +43,9 @@ struct Z {
 		return pow(P - 2);
 	}
 	// useless
+	static int mod() {
+		return P;
+	}
 	Z operator-() const {
 		return v == 0 ? 0 : P - v;
 	}
@@ -54,12 +53,12 @@ struct Z {
 		return *this *= m.inv();
 	}
 	OPERATOR(Z, /);
+	auto approx(int A = 1E3) {
+		int x = v, y = P, a = 1, b = 0;
+		while (x > A) {
+			swap(x, y), swap(a, b);
+			a -= x / y * b, x %= y;
+		}
+		return make_pair(x, a);
+	}
 };
-
-istream &operator>>(istream &is, Z &z) {
-	return is >> z.v;
-}
-
-ostream &operator<<(ostream &os, const Z &z) {
-	return os << z.v;
-}

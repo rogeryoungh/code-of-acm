@@ -1,19 +1,6 @@
-#include <vector>
-using namespace std;
+#include "basic/index.hpp"
 
-const int P = 998244353;
-
-// @description 快速幂(i32, P)
-
-int qpow(int a, int b = P - 2, int m = P) {
-	int ret = m != 1;
-	for (; b; b >>= 1) {
-		if (b & 1)
-			ret = 1ll * ret * a % m;
-		a = 1ll * a * a % m;
-	}
-	return ret;
-}
+#include "math-P/qpow.cpp"
 
 vector<int> iv{1, 1}, fac{1}, ifac{1};
 
@@ -43,4 +30,10 @@ void pre_ifac(int n) {
 	for (int i = n - 1; i > 0; i--) {
 		ifac[i] = 1ll * ifac[i + 1] * (i + 1) % P;
 	}
+}
+
+// @description 组合数
+
+int C(int n, int m) {
+	return 1ll * fac[n] * ifac[m] % P * ifac[n - m] % P;
 }

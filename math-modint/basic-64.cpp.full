@@ -1,7 +1,4 @@
-#include <istream>
-using namespace std;
-using ll = int64_t;
-using i128 = __int128_t;
+using i128 = __int128;
 
 const ll P = 998244353998244353;
 
@@ -14,12 +11,8 @@ const ll P = 998244353998244353;
 
 struct Z {
 	ll v;
-	Z(ll a = 0) : v(a) {}
-	Z(i128 a = 0) : v(a % P) {}
-	Z &operator=(const ll &m) {
-		v = m;
-		return *this;
-	}
+	Z(ll a = 0) : v(a % P) {}
+	Z(i128 a) : v(a % P) {}
 	Z &operator+=(const Z &m) {
 		v = (v += m.v) >= P ? v - P : v;
 		return *this;

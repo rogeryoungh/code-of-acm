@@ -1,11 +1,4 @@
-#include <cmath>
-#include <cstdint>
-#include <vector>
-#include <iostream>
-using namespace std;
-using ll = int64_t;
-
-const int P = 1E9 + 7;
+const int P = 998244353;
 
 // @description 取模整数
 
@@ -16,8 +9,7 @@ const int P = 1E9 + 7;
 
 struct Z {
 	int v;
-	Z(int a = 0) : v(a) {}
-	Z(ll a) : v(a % P) {}
+	Z(ll a = 0) : v(a % P) {}
 	Z &operator=(const int &m) {
 		v = m;
 		return *this;
@@ -57,8 +49,13 @@ struct Z {
 		return *this *= m.inv();
 	}
 	OPERATOR(Z, /);
-	explicit operator int() const {
-		return v;
+	auto approx(int A = 1E3) {
+		int x = v, y = P, a = 1, b = 0;
+		while (x > A) {
+			swap(x, y), swap(a, b);
+			a -= x / y * b, x %= y;
+		}
+		return make_pair(x, a);
 	}
 };
 

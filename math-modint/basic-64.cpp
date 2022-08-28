@@ -1,4 +1,8 @@
-const int P = 998244353;
+#include "basic/index.hpp"
+
+using i128 = __int128;
+
+const ll P = 998244353998244353;
 
 // @description 取模整数
 
@@ -8,12 +12,9 @@ const int P = 998244353;
 	}
 
 struct Z {
-	int v;
+	ll v;
 	Z(ll a = 0) : v(a % P) {}
-	Z &operator=(const int &m) {
-		v = m;
-		return *this;
-	}
+	Z(i128 a) : v(a % P) {}
 	Z &operator+=(const Z &m) {
 		v = (v += m.v) >= P ? v - P : v;
 		return *this;
@@ -23,18 +24,18 @@ struct Z {
 		return *this;
 	}
 	Z &operator*=(const Z &m) {
-		v = 1ll * v * m.v % P;
+		v = i128(v) * m.v % P;
 		return *this;
 	}
 	OPERATOR(Z, +);
 	OPERATOR(Z, -);
 	OPERATOR(Z, *);
-	Z pow(int n) const {
-		int ret = P != 1, a = v;
+	Z pow(ll n) const {
+		ll ret = P != 1, a = v;
 		for (; n; n /= 2) {
 			if (n % 2 == 1)
-				ret = 1ll * ret * a % P;
-			a = 1ll * a * a % P;
+				ret = i128(ret) * a % P;
+			a = i128(a) * a % P;
 		}
 		return ret;
 	}
@@ -49,14 +50,6 @@ struct Z {
 		return *this *= m.inv();
 	}
 	OPERATOR(Z, /);
-	auto approx(int A = 1E3) {
-		int x = v, y = P, a = 1, b = 0;
-		while (x > A) {
-			swap(x, y), swap(a, b);
-			a -= x / y * b, x %= y;
-		}
-		return make_pair(x, a);
-	}
 };
 
 istream &operator>>(istream &is, Z &z) {
@@ -65,21 +58,4 @@ istream &operator>>(istream &is, Z &z) {
 
 ostream &operator<<(ostream &os, const Z &z) {
 	return os << z.v;
-}
-
-// @description 拉格朗日插值
-
-Z lagrange(const vector<Z> &x, const vector<Z> &y, Z k) {
-	int n = x.size();
-	Z sum = 0;
-	for (int i = 0; i < n; i++) {
-		Z s1 = 1, s2 = 1;
-		for (int j = 0; j < n; j++) {
-			if (j == i)
-				continue;
-			s1 *= k - x[j], s2 *= x[i] - x[j];
-		}
-		sum += s1 / s2 * y[i];
-	}
-	return sum;
 }
