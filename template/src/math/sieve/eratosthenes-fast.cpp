@@ -1,6 +1,4 @@
-#include <vector>
-using ll = long long;
-using namespace std;
+#include "basic/index.hpp"
 
 // @description 埃氏筛(卡常)
 
