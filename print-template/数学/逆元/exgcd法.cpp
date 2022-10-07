@@ -1,4 +1,3 @@
-ll inv(ll a, ll p) {
-	auto [x, y] = exgcd(a, p);
-	return (x % p + p) % p;
+ll inv_gcd(ll a, ll p) {
+	return (std::get<0>(exgcd(a, p)) % p + p) % p;
 }

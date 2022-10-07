@@ -13,7 +13,7 @@ void pre_w(int n) {
 		return;
 	w.resize(n);
 	for (int l = lim; l < n; l *= 2) {
-		int p = qpow(3, (P - 1) / l / 2, P);
+		int p = qpow(3, (P - 1) / l / 2);
 		for (int i = 0; i < l; i += 2) {
 			w[(l + i)] = w[(l + i) / 2];
 			w[l + i + 1] = 1ll * w[l + i] * p % P;
@@ -21,9 +21,10 @@ void pre_w(int n) {
 	}
 	lim = n;
 }
+static int ntt_size = 0;
 template <class iter>
 void ntt(iter f, int n) {
-	pre_w(n);
+	pre_w(n), ntt_size += n;
 	for (int l = n / 2; l; l >>= 1)
 		for (int i = 0; i < n; i += l * 2)
 			for (int j = 0; j < l; j++) {
@@ -34,18 +35,17 @@ void ntt(iter f, int n) {
 }
 template <class iter>
 void intt(iter f, int n) {
-	pre_w(n);
+	pre_w(n), ntt_size += n;
 	for (int l = 1; l < n; l <<= 1)
 		for (int i = 0; i < n; i += l * 2)
 			for (int j = 0; j < l; j++) {
 				int x = f[i + j];
 				int y = 1ll * w[j + l] * f[i + j + l] % P;
-				f[i + j] = mo(x + y);
-				f[i + j + l] = mo(x - y + P);
+				f[i + j] = mo(x + y), f[i + j + l] = mo(x - y + P);
 			}
-	const int iv = qpow(n);
+	const int ivn = P - (P - 1) / n;
 	for (int i = 0; i < n; i++)
-		f[i] = 1ll * f[i] * iv % P;
+		f[i] = 1ll * f[i] * ivn % P;
 	reverse(f + 1, f + n);
 }
 Poly &mul(Poly &f, Poly &g, int n) {

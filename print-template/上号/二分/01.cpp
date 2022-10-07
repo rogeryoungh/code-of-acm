@@ -1,13 +1,10 @@
 template <class Comp> // last true
 ll lower(ll l, ll r, Comp check) {
-	if (!check(l))
-		return l - 1;
-	while (l < r) {
-		ll m = (l + r + 1) >> 1;
-		if (check(m))
-			l = m;
-		else
-			r = m - 1;
+	if (l >= r or not check(l))
+		return r;
+	while (r - l > 1) {
+		ll m = l + (r - l) / 2;
+		(check(m) ? l : r) = m;
 	}
 	return l;
 }

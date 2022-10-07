@@ -177,5 +177,21 @@ Dirichlet 卷积满足交换律、结合律、分配律等，其上有单位元 
 于是有
 \[ f(n) = \sum_{k=0}^n \binom{n}{k} g(k) \Rightarrow g(n) = \sum_{k=0}^n (-1)^{n-k}\binom{n}{k} f(k) \]
 
+\paragraph{斯特林数}
+
+第一类斯特林数$\begin{bmatrix}n\\ m\end{bmatrix}$表示将$n$个不同元素构成$m$个圆排列的数目。
+
+第二类斯特林数 $\begin{Bmatrix} n \\m \end{Bmatrix}$ 表示把 $n$ 个不同元素划分成$m$个相同的集合（不能有空集）的方案数。
+
+\[
+m^n=\sum_{i=0}^m \binom m i  \left\{ \begin{matrix} n \\ i \end{matrix} \right\} i!
+\]
+\[\left\{ \begin{matrix} n\\m \end{matrix} \right\}=\sum_{i=0}^m \frac{i^n}{i!} \frac{(-1)^{m-i}}{(m-i)!}\]
+
+\[\begin{bmatrix}n \\ m\end{bmatrix}=\begin{bmatrix}n-1 \\ m-1\end{bmatrix}+(n-1) \begin{bmatrix}n-1 \\ m\end{bmatrix}\]
+
+\[\begin{Bmatrix}n \\ m\end{Bmatrix}=\begin{Bmatrix}n-1 \\ m-1\end{Bmatrix}+m \begin{Bmatrix}n-1 \\ m\end{Bmatrix}\]
+
+一行第二类斯特林数的和是贝尔数。
 
 \end{document}

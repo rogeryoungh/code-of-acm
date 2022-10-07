@@ -1,12 +1,11 @@
-string s, t;
-auto pi = pre_kmp(s);
-int p = 0, n = t.length();
-for (int i = 0; i < n; i++) {
-    int j = p;
-    while (j > 0 && t[i] != s[j]) {
-        j = pi[j - 1];
-    }
-    p = j + (t[i] == s[j]);
-    if(p == s.len())
-        // 出现起始 i - s.len() + 2
+auto kmp(const string &s, const string &t) {
+	auto pi = pre_kmp(s);
+	int n = t.length();
+	vector<int> f(n + 1);
+	for (int i = 0, j = f[0]; i < n; i++) {
+		while (j >= 0 && t[i] != s[j])
+			j = pi[j];
+		f[i + 1] = ++j;
+	}
+	return make_pair(pi, f);
 }

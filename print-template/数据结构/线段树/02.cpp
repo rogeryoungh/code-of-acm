@@ -1,70 +1,66 @@
-template <class T>
-struct SegmentTree {
-	vector<T> val, add;
-	int N;
-#define ls (p * 2)
-#define rs (p * 2 + 1)
-
-	SegmentTree(int n = 0) {
-		N = 2 << std::__lg(n + 1);
-		val.resize(N * 2);
-		add.resize(N * 2);
+template <class Val, class Tag>
+struct LazySegmentTree {
+	const int N;
+	vector<Val> val;
+	vector<Tag> tag;
+	// 0 ~ N - 1
+	LazySegmentTree(int n) : N(2 << std::__lg(n)), val(N * 2), tag(N * 2) {
+		assert(n > 0);
 	}
-	void build(const vector<T> &a) {
-		for (int i = 0; i < a.size(); i++)
-			val[i + N] = a[i];
+	template <class iter>
+	void build(iter first, iter last) {
+		std::copy(first, last, val.begin() + N);
 		for (int i = N - 1; i >= 1; i--)
 			pull(i);
 	}
-	void modify(int l, int r, T x) {
-		modify(l, r, x, 1, 0, N - 1);
+	void modify(int l, int r, Tag t) {
+		modify(l, r + 1, t, 1, 0, N);
 	}
-	T query(int l, int r) {
-		return query(l, r, 1, 0, N - 1);
+	Val query(int l, int r) {
+		return query(l, r + 1, 1, 0, N);
 	}
-
+#define lson p * 2
+#define rson p * 2 + 1
   private:
 	void pull(int p) {
-		val[p] = val[ls] + val[rs];
+		val[p] = val[lson] + val[rson];
 	}
-	void push(int p, int L, int R) {
-		T &tag = add[p];
-		if (tag) {
-			add[ls] += tag;
-			add[rs] += tag;
-			int mid = (L + R) / 2;
-			val[ls] += tag * (mid - L + 1);
-			val[rs] += tag * (R - mid);
-			tag = 0;
+	void push(int p) {
+		Tag &tp = tag[p];
+		if (tp.flag) {
+			val[lson].apply(tp), tag[lson].apply(tp);
+			val[rson].apply(tp), tag[rson].apply(tp);
+			tp.flag = false;
 		}
 	}
-	void modify(int l, int r, T x, int p, int L, int R) {
+	void modify(int l, int r, Tag t, int p, int L, int R) {
 		if (l <= L && R <= r) {
-			val[p] += x * (R - L + 1);
-			add[p] += x;
-			return;
+			val[p].apply(t);
+			tag[p].apply(t);
+		} else {
+			int M = (L + R) / 2;
+			push(p);
+			if (l < M)
+				modify(l, r, t, lson, L, M);
+			if (r > M)
+				modify(l, r, t, rson, M, R);
+			pull(p);
 		}
-		push(p, L, R);
-		int mid = (L + R) / 2;
-		if (l <= mid)
-			modify(l, r, x, ls, L, mid);
-		if (r >= mid + 1)
-			modify(l, r, x, rs, mid + 1, R);
-		pull(p);
 	}
-	T query(int l, int r, int p, int L, int R) {
+	Val query(int l, int r, int p, int L, int R) {
 		if (l <= L && R <= r) {
 			return val[p];
+		} else {
+			int M = (L + R) / 2;
+			Val ret = Val();
+			push(p);
+			if (l < M)
+				ret = ret + query(l, r, lson, L, M);
+			if (r > M)
+				ret = ret + query(l, r, rson, M, R);
+			return ret;
 		}
-		push(p, L, R);
-		int mid = (L + R) / 2;
-		T v = T();
-		if (l <= mid)
-			v += query(l, r, ls, L, mid);
-		if (r >= mid + 1)
-			v += query(l, r, rs, mid + 1, R);
-		return v;
 	}
-#undef ls
-#undef rs
+#undef lson
+#undef rson
 };

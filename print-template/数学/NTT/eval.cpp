@@ -1,23 +1,22 @@
 struct PolyEI {
-	std::vector<Poly> p;
-	int n, raw_n;
-	PolyEI(Poly a) {
-		raw_n = a.size(), n = get_lim(raw_n);
-		a.redeg(n), p.resize(n * 2);
+	int raw_n, n;
+	vector<Poly> p;
+	PolyEI(Poly a) : raw_n(a.deg()), n(get_lim(raw_n)), p(n * 2) {
+		a.redeg(n);
 		for (int i = 0; i < n; i++)
-			p[i + n] = {1, P - a[i]};
+			p[i + n] = {1, -a[i]};
 		for (int i = n - 1; i; i--) {
 			int ls = i * 2, rs = i * 2 + 1;
-			int len = get_lim(p[ls].size());
+			int len = get_lim(p[ls].deg());
 			p[ls].ntt(len), p[rs].ntt(len), p[i].redeg(len);
 			for (int j = 0; j < len; j++)
-				p[i][j] = 1ll * p[ls][j] * p[rs][j] % P;
+				p[i][j] = p[ls][j] * p[rs][j];
 			p[i].intt(len);
-			p[i].push_back(mo(p[i][0] + P - 1)), p[i][0] = 1;
+			p[i].push_back(p[i][0] - 1), p[i][0] = 1;
 		}
 	}
-	Poly eval(Poly f) { // PolyEI(x).eval(f)
-		int m = f.size();
+	Poly eval(const Poly &f) { // PolyEI(x).eval(f)
+		int m = f.deg();
 		if (m == 1)
 			return Poly(raw_n, f[0]);
 		Poly q = f.rev().div(m, p[1]).redeg(n);
@@ -30,12 +29,12 @@ struct PolyEI {
 				auto qi = q.begin() + i;
 				ntt(qi, k);
 				for (int j = 0; j < k; j++) {
-					foo[j] = 1ll * qi[j] * p[o * 2 + 1][j] % P;
-					bar[j] = 1ll * qi[j] * p[o * 2][j] % P;
+					foo[j] = qi[j] * p[o * 2 + 1][j];
+					bar[j] = qi[j] * p[o * 2][j];
 				}
 				foo.intt(k), bar.intt(k);
-				std::copy(foo.begin() + k / 2, foo.end(), qi);
-				std::copy(bar.begin() + k / 2, bar.end(), qi + k / 2);
+				copy(foo.begin() + k / 2, foo.end(), qi);
+				copy(bar.begin() + k / 2, bar.end(), qi + k / 2);
 			}
 		return q.cut(raw_n);
 	}
@@ -43,7 +42,7 @@ struct PolyEI {
 		Poly q = Poly(p[1]).redeg(raw_n + 1);
 		q = eval(q.rev().deriv()).redeg(n);
 		for (int i = 0; i < raw_n; i++)
-			q[i] = 1ll * y[i] * qpow(q[i]) % P;
+			q[i] = y[i] / q[i];
 		for (int k = 1, h = n / 2; k < n; k *= 2, h >>= 1)
 			for (int i = 0, o = h; i < n; i += k * 2, o++) {
 				if (i >= raw_n)
@@ -52,9 +51,7 @@ struct PolyEI {
 				Poly foo(qi, qi + k), bar(qi + k, qi + k * 2);
 				foo.ntt(k * 2), bar.ntt(k * 2);
 				for (int j = 0; j < k * 2; j++) {
-					ll a = 1ll * foo[j] * p[o * 2 + 1][j];
-					ll b = 1ll * bar[j] * p[o * 2][j];
-					qi[j] = (a + b) % P;
+					qi[j] = foo[j] * p[o * 2 + 1][j] + bar[j] * p[o * 2][j];
 				}
 				intt(qi, k * 2);
 			}

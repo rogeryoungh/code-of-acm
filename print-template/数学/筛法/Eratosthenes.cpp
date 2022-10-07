@@ -1,16 +1,12 @@
 vector<bool> not_p;
-vector<int> primes; // 注意，个数可能不精确！
+vector<int> primes;
 void Eratosthenes(int n) {
-	not_p.resize(n + 10);
-	auto _ = [&](int i) {
-		if (!not_p[i]) {
+	not_p.resize(n);
+	for (int i = 2; i < n; i++) {
+		if (not not_p[i]) {
 			primes.push_back(i);
-			for (int j = i; j < n / i; j++)
+			for (int j = i; j <= (n - 1) / i; j++)
 				not_p[i * j] = true;
 		}
-	};
-	_(2), _(3), _(5);
-	for (int i = 1; i <= n / 6; i++) {
-		_(i * 6 + 1), _(i * 6 + 5);
 	}
 }

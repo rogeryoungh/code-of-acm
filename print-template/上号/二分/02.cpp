@@ -1,13 +1,10 @@
 template <class Comp> // first true
 ll upper(ll l, ll r, Comp check) {
-	if (!check(r))
-		return r + 1;
-	while (l < r) {
-		ll m = (l + r) >> 1;
-		if (check(m))
-			r = m;
-		else
-			l = m + 1;
+	if (l >= r or not check(r - 1))
+		return r;
+	while (r - l > 1) {
+		ll m = l + (r - l) / 2;
+		(check(m - 1) ? r : l) = m;
 	}
 	return l;
 }

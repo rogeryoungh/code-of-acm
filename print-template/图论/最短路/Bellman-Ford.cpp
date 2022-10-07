@@ -1,18 +1,19 @@
-auto bellman_ford(int n, int s) {
-	vector<int> dis(n + 1, 1E9);
-	dis[s] = 0;
-	for (int k = 1; k < n; k++) {
-		bool flag = true;
-		for (int i = 1; i <= n; i++) {
-			for (auto [v, w] : G[i]) {
-				int d2 = dis[i] + w;
-				if (d2 < dis[v]) {
-					dis[v] = d2, flag = false;
-				}
+template <class D>
+auto bellman_ford(const Graph<D> &G, int s) {
+	int n = G.size();
+	vector<D> dis(n, std::numeric_limits<D>::max() / 2);
+	vector<int> from(n, -1);
+	dis[s] = 0, from[s] = s;
+	bool flag = true;
+	for (int k = 0; k < n && flag; k++) {
+		flag = false;
+		for (int u = 0; u < n; u++) {
+			for (auto [v, w] : G[u]) {
+				int d2 = dis[u] + w;
+				if (dis[v] > d2)
+					dis[v] = d2, from[v] = u, flag = true;
 			}
 		}
-		if (flag)
-			break;
 	}
-	return dis;
+	return make_pair(dis, from);
 }

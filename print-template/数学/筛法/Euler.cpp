@@ -1,20 +1,15 @@
-vector<bool> not_p;
-vector<int> primes; // 注意，个数可能不精确！
+vector<int> lpf, primes;
 void Euler(int n) {
-	not_p.resize(n + 10);
-	auto _ = [&](int i) {
-		if (!not_p[i])
-			primes.push_back(i);
+	lpf.resize(n);
+	for (int i = 2; i < n; i++) {
+		if (!lpf[i])
+			lpf[i] = i, primes.push_back(i);
 		for (auto pj : primes) {
-			if (pj > n / i)
+			if (pj > (n - 1) / i)
 				break;
-			not_p[i * pj] = true;
+			lpf[i * pj] = pj;
 			if (i % pj == 0)
 				break;
 		}
-	};
-	_(2), _(3), _(5);
-	for (int i = 1; i <= n / 6; i++) {
-		_(i * 6 + 1), _(i * 6 + 5);
 	}
 }

@@ -2,29 +2,30 @@ int legendre(int a, int p) {
 	return qpow(a, (p - 1) / 2, p);
 }
 
-struct FP2 {
-	inline static ll P, I;
-	ll a = 1, b = 0; // a+bi, i^2=a^2-n
-	friend FP2 operator*(FP2 i1, FP2 i2) {
-		return FP2{(i1.a * i2.a + i1.b * i2.b % P * I) % P, (i1.b * i2.a + i1.a * i2.b) % P};
-	}
-};
-
-ll cipolla(ll n, ll p) {
-	FP2::P = p;
-	if (n % p == 0)
+int cipolla(int n, int p) {
+	if (n == 0)
 		return 0;
 	if (legendre(n, p) != 1)
 		return -1;
-
-	ll a = -1;
-	for (a = 0; a < p; a++) {
-		ll i = (a * a - n + p) % p;
+	if (p == 2)
+		return 1;
+	for (int a = 0; a < p; a++) {
+		int i = (a * a - n + p) % p;
+		using FP2 = pair<ll, ll>;
+		auto mul = [p, i](const FP2 &l, const FP2 &r) {
+			auto [la, lb] = l;
+			auto [ra, rb] = r;
+			return FP2{(la * ra + lb * rb % p * i) % p, (lb * ra + la * rb) % p};
+		};
 		if (legendre(i, p) == p - 1) {
-			FP2::I = i;
-			break;
+			FP2 x = {1, 1}, u = {a, 1};
+			for (int b = (p + 1) / 2; b; b /= 2) {
+				if (b % 2 == 1)
+					x = mul(x, u);
+				u = mul(u, u);
+			}
+			return min(x.first, p - x.first);
 		}
 	}
-	ll ans = tpow(FP2{a, 1}, (p + 1) / 2).a;
-	return min(ans, p - ans);
+	return -1;
 }

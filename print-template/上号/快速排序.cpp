@@ -1,13 +1,13 @@
-void quick_sort(ll *nn, ll l, ll r) {
+template <class iter>
+void quick_sort(iter first, iter last) {
+	auto l = first, r = last - 1;
 	if (l >= r)  return;
-	ll i = l, j = r;
-	ll x = nn[(l + r) / 2];
-	while (i <= j) {
-		while (nn[j] > x)  j--;
-		while (nn[i] < x)  i++;
-		if (i <= j)
-			swap(nn[i++], nn[j--]);
+	auto x = *(l + (r - l) / 2);
+	while (l <= r) {
+		while (*l < x)  l++;
+		while (*r > x)  r--;
+		if (l <= r)     swap(*l++, *r--);
 	}
-	quick_sort(nn, l, j);
-	quick_sort(nn, i, r);
+	quick_sort(first, r + 1);
+	quick_sort(l, last);
 }

@@ -1,19 +1,9 @@
 #include "basic/index.hpp"
 
+#include "math-P/qpow.cpp"
+
 // @description 多项式乘法
 // @problem https://loj.ac/p/150
-
-const int P = 998244353;
-
-int qpow(int a, int b = P - 2, int m = P) {
-	int ret = m != 1;
-	for (; b; b >>= 1) {
-		if (b & 1)
-			ret = 1ll * ret * a % m;
-		a = 1ll * a * a % m;
-	}
-	return ret;
-}
 
 using Poly = vector<int>;
 Poly w{1, 1}, Inv{1, 1}, fac{1}, ifac{1};

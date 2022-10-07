@@ -1,6 +1,6 @@
 #include "basic/index.hpp"
 
-struct Poly;
+#include "poly/ntt-newton.cpp"
 
 struct PolyCDQ {
 	int now = 0;
@@ -15,9 +15,8 @@ struct PolyCDQ {
 		now++;
 		int len = now & -now, l = now - len;
 		if (len < M) {
-			for (int j = now & -M; j < now; ++j) {
+			for (int j = now & -M; j < now; ++j)
 				conv[now] += G[j] * F[now - j];
-			}
 		} else {
 			Poly a = G.cut(len, l).ntt(len * 2), &b = nf[len];
 			if (l == 0) {
@@ -37,31 +36,30 @@ struct PolyCDQ {
 Poly cdq_inv(Poly F, int m) {
 	Poly G(m);
 	PolyCDQ X(F.redeg(m), G);
-	int iv = P - qpow(F[0]);
-	G[0] = mo(P - iv);
+	Z iv0 = -F[0].inv();
+	G[0] = -iv0;
 	for (int i = 1; i < m; i++)
-		G[i] = 1ll * iv * X.next() % P;
+		G[i] = iv0 * X.next();
 	return G;
 }
 
 Poly cdq_div(Poly H, Poly F, int m) {
 	Poly G(m);
 	PolyCDQ X(F.redeg(m), G);
-	int iv = qpow(F[0]);
-	G[0] = 1ll * iv * H[0] % P;
+	Z iv = F[0].inv();
+	G[0] = iv * H[0];
 	for (int i = 1; i < m; i++)
-		G[i] = 1ll * iv * (H[i] - X.next() + P) % P;
+		G[i] = iv * (H[i] - X.next());
 	return G;
 }
 
 Poly cdq_exp(Poly F, int m) {
 	Poly G(m);
-	pre_inv(m);
 	for (int i = 0; i < F.size(); i++)
-		F[i] = 1ll * i * F[i] % P;
+		F[i] *= i;
 	PolyCDQ X(F.redeg(m), G);
 	G[0] = 1;
 	for (int i = 1; i < m; i++)
-		G[i] = 1ll * Inv[i] * X.next() % P;
+		G[i] = iv[i] * X.next();
 	return G;
 }

@@ -1,11 +1,14 @@
-ll h = 1, t = 0;
-for (int i = 1; i <= n; i++) {
-    while (h <= t && i + 1 - k > qq[h])
-        h++;
-    while (h <= t && aa[i] <= aa[qq[t]]) // aa[i] >= aa[qq[t]]
-        t--;
-    qq[++t] = i;
-    if (i >= k) {
-        printf("%lld ", aa[qq[h]]);
-    }
+template <class T>
+auto sliding(const vector<T> &v, int k) {
+	int l = 0, r = -1, n = v.size();
+	vector<int> q(n), ret(n);
+	for (int i = 0; i < n; i++) {
+		while (l <= r && i - k >= q[l])
+			l++;
+		while (l <= r && v[i] < v[q[r]])
+			r--;
+		q[++r] = i;
+		ret[i] = q[l];
+	}
+	return ret;
 }

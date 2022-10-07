@@ -1,12 +1,16 @@
-void floyd(int n) {
-	memcpy(dis, G, sizeof(dis));
-	for (int k = 1; k <= n; k++) {
-		for (int i = 1; i <= n; i++) {
-			if (i == k || dis[i][k] == 0x3f3f3f3f)
-				continue;
-			for (int j = 1; j <= n; j++) {
-				dis[i][j] = min(dis[i][j], dis[i][k] + dis[k][j]);
+template <class D>
+auto floyd(const Graph<D> &G) {
+	int n = G.x;
+	auto f = G;
+	VV<int> pass(n, n, -1);
+	for (int k = 0; k < n; k++) {
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				D d2 = f[i][k] + f[k][j];
+				if (f[i][j] > d2)
+					f[i][j] = d2, pass[i][j] = k;
 			}
 		}
 	}
+	return make_pair(f, pass);
 }

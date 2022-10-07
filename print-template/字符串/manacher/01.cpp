@@ -1,28 +1,25 @@
-char str[MN], st[MN * 2];
-ll mp[MN * 2];
-void Manacher(char *s, int len) {
-    st[0] = st[1] = '#';
-    int l = 2;
-    for (int i = 0; i < len; i++)
-        st[l++] = s[i], st[l++] = '#';
-    st[l] = 0;
-    int mx = 0, id = 0;
-    for (int i = 0; i < l; i++) {
-        mp[i] = mx > i ? min(mp[2 * id - i], mx - i) : 1;
-        while (st[i + mp[i]] == st[i - mp[i]])
-            mp[i]++;
-        if (i + mp[i] > mx)
-            mx = i + mp[i], id = i;
-    }
+template <int off>
+auto manacher(const string &s) {
+	int n = s.size();
+	vector<int> m(n);
+	m[0] = off == 0;
+	for (int i = 1, l = 0, r = 0; i < n; i++) {
+		int &k = m[i], u = r - i;
+		if (u > 0)
+			k = min(u, m[2 * l - i]);
+		while (0 <= i - k - off && i + k < n
+            && s[i - k - off] == s[i + k])
+			k++;
+		if (i + k > r)
+			l = i, r = i + k;
+	}
+	return m;
 }
 
-int main() {
-    scanf("%s", str);
-    int len = strlen(str);
-    Manacher(str, len);
-    ll ans = 0;
-    for (int i = 0; i < 2 * (len + 1); i++)
-        ans = max(ans, mp[i] - 1);
-    printf("%lld", ans);
-    return 0;
+vector<int> manacher_odd(const string &s) {
+	return manacher<0>(s);
+}
+
+vector<int> manacher_even(const string &s) {
+	return manacher<1>(s);
 }

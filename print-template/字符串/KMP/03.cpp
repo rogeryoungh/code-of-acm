@@ -1,41 +1,31 @@
-auto pre_exkmp(const string &s) {
-	int l = 0, r = 0, n = s.length();
-	vector<int> zz(n);
-	zz[0] = n;
-	for (int i = 1; i < n; i++) {
-		if (i < r) {
-			zz[i] = min(r - i, zz[i - l]);
-		}
-		while (i + zz[i] < n && s[zz[i]] == s[i + zz[i]]) {
-			zz[i]++;
-		}
-		if (i + zz[i] > r) {
-			l = i, r = i + zz[i];
-		}
+auto pre_z_algo(const string &s) {
+	int n = s.length();
+	vector<int> z(n + 1);
+	for (int i = 1, l = 0, r = 0; i <= n; i++) {
+		int &k = z[i], u = r - i;
+		if (u > 0)
+			k = min(u, z[i - l]);
+		while (i + k < n && s[k] == s[i + k])
+			k++;
+		if (i + k > r)
+			l = i, r = i + k;
 	}
-	return zz;
+	z[0] = n;
+	return z;
 }
 
-void exkmp(const string &s, const string &t) {
-	auto zz = pre_exkmp(s);
-	ll ans1 = 0, ans2 = 0;
-	for (int i = 0; i < s.length(); i++) {
-		ans1 ^= 1ll * (i + 1) * (zz[i] + 1);
+auto z_algo(const string &s, const string &t) {
+	auto z = pre_z_algo(s);
+	int n = t.length();
+	vector<int> z2(n + 1);
+	for (int i = 0, l = 0, r = 0; i <= n; i++) {
+		int &k = z2[i], u = r - i;
+		if (u > 0)
+			k = min(u, z[i - l]);
+		while (i + k < n && s[k] == t[i + k])
+			k++;
+		if (i + k > r)
+			l = i, r = i + k;
 	}
-
-	int l = 0, r = 0, n = t.length();
-	for (int i = 0; i < n; i++) {
-		int p = 0;
-		if (i < r) {
-			p = min(r - i, zz[i - l]);
-		}
-		while (i + p < n && s[p] == t[i + p]) {
-			p++;
-		}
-		if (i + p > r) {
-			l = i, r = i + p;
-		}
-		ans2 ^= 1ll * (i + 1) * (p + 1);
-	}
-	cout << ans1 << "\n" << ans2;
+	return make_pair(z, z2);
 }

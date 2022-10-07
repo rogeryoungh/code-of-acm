@@ -1,23 +1,25 @@
-auto dijkstra(int n, int s) {
-	vector<int> dis(n + 1, 1E9);
-	vector<char> vis(n + 1);
-	dis[s] = 0;
-	priority_queue<pii, vector<pii>, std::greater<pii>> pq;
-	pq.push({0, s});
+template <class D>
+auto dijkstra(const Graph<D> &G, int s) {
+	int n = G.size();
+	vector<D> dis(n, std::numeric_limits<D>::max() / 2);
+	vector<int> from(n, -1);
+	vector<bool> vis(n);
+	dis[s] = 0, from[s] = s;
+	using pdi = pair<D, int>;
+	priority_queue<pdi, vector<pdi>, greater<pdi>> pq;
+	pq.emplace(0, s);
 	while (!pq.empty()) {
 		auto [w, u] = pq.top();
 		pq.pop();
-		if (vis[u]) {
+		if (vis[u])
 			continue;
-		}
 		vis[u] = true;
 		for (auto [v, wi] : G[u]) {
-			int len = w + wi;
-			if (len < dis[v]) {
-				dis[v] = len;
-				pq.push({len, v});
-			}
+			D d2 = w + wi;
+			if (dis[v] > d2)
+				dis[v] = d2, from[v] = u, pq.emplace(d2, v);
 		}
 	}
-	return dis;
+	return make_pair(dis, from);
 }
+

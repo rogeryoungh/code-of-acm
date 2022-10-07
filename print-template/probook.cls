@@ -89,6 +89,9 @@
 \RequirePackage{listings}
 % \setmonofont{Sarasa Mono SC}
 % \setmonofont{Sarasa Mono Slab SC}
+% \setmonofont{Iosevka Slab}
+% \setmonofont{Iosevka}
+% \setmonofont{Maple Mono}
 \setmonofont{JetBrains Mono}
 
 \definecolor{codecolorkeywords}{RGB}{0,96,255}

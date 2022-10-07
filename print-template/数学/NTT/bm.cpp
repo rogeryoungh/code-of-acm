@@ -1,7 +1,3 @@
-#include "basic/index.hpp"
-
-#include "poly/ntt-newton.cpp"
-
 Poly bm(const Poly &a) {
 	Poly p = {1}, q = {1};
 	int l = 0;

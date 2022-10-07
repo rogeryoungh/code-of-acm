@@ -80,17 +80,23 @@ T* upper_bound(T* l, T* r, const T& v, Comp cmp);
 
 \paragraph*{手写二分}
 
-在 \lstinline{true -> false} 的区间中，找到最后一个 \lstinline{true}。
+在 \lstinline{true -> false} 的开区间 $[l, r)$ 中，找到最后一个 \lstinline{true}。
 
 \lstinputlisting[style=cpp,caption=/上号/二分/01.cpp]{上号/二分/01.cpp}
 
-在 \lstinline{false -> true} 的区间中，找到第一个 \lstinline{true}。
+在 \lstinline{false -> true} 的开区间 $[l, r)$ 中，找到第一个 \lstinline{true}。
 
 \lstinputlisting[style=cpp,caption=/上号/二分/02.cpp]{上号/二分/02.cpp}
 
 对于上凸（$\wedge$ 形）函数，可以使用三分法来查找最大值。对于下凸（$\vee$ 形）变号即可
 
 \lstinputlisting[style=cpp,caption=/上号/三分法.cpp]{上号/三分法.cpp}
+
+\section{二维数组}
+
+基于 \lstinline{vector} 的二维数组。
+
+\lstinputlisting[style=cpp,caption=/上号/二维数组.cpp]{上号/二维数组.cpp}
 
 \section{矩阵乘法}
 
@@ -101,17 +107,18 @@ T* upper_bound(T* l, T* r, const T& v, Comp cmp);
 矩阵的输入、输出。
 
 \begin{lstlisting}[style=cpp]
-void read() {
-	ll t;
-	for (int i = 0; i < x * y; i++) {
-		cin >> t;
-		m[i] = (t + P) % P;
-	}
+template <class T>
+istream &operator>>(istream &is, VV<T> &m) {
+	for (int i = 0; i < m.x * m.y; i++)
+		is >> m.m[i];
+	return is;
 }
-void print() {
-	for (int i = 0; i < x * y; i++) {
-		cout << m[i] << " \n"[(i + 1) % x == 0];
-	}
+
+template <class T>
+ostream &operator<<(ostream &os, const VV<T> &m) {
+	for (int i = 0; i < m.x * m.y; i++)
+		os << m.m[i] << " \n"[(i + 1) % m.y == 0];
+	return os;
 }
 \end{lstlisting}
 
@@ -133,6 +140,10 @@ void print() {
 
 \lstinputlisting[style=cpp,caption=/上号/逆序对.cpp]{上号/逆序对.cpp}
 
+\section{取模整数}
+
+\lstinputlisting[style=cpp,caption=/上号/modint.cpp]{上号/modint.cpp}
+
 
 
 
@@ -141,11 +152,11 @@ void print() {
 
 \chapter{数学}
 
-\section{GCD 和 LCM}
+\section{GCD \& LCM \& EXGCD}
+
+\paragraph{GCD \& LCM} 自 CPP17 之后，头文件 numeric 中已经实现了二进制
 
 \lstinputlisting[style=cpp,caption=/数学/gcdlcm.cpp]{数学/gcdlcm.cpp}
-
-\section{EXGCD}
 
 对于方程 
 \[ax+by=\gcd(a,b)\]
@@ -175,7 +186,7 @@ void print() {
 
 \lstinputlisting[style=cpp,caption=/数学/筛法/Eratosthenes.cpp]{数学/筛法/Eratosthenes.cpp}
 
-\paragraph{Euler 筛}
+\paragraph{Euler 筛（LPF）}
 
 复杂度 $O(n)$，每个合数只会被筛一次。
 
@@ -183,11 +194,29 @@ void print() {
 
 \paragraph{Euler 筛 + MobiusMu + EulerPhi}
 
-由于 Euler 筛过程中会把每一个数拆分成两个互质的因数，因此可以用来预处理积性函数和加性函数。如 Euler 筛 + $\mu(m)$ + $\phi(m)$，复杂度 $O(n)$。
+由于 Euler 筛过程中会把每一个数拆分成两个互质的因数，因此可以用来预处理积性函数和加性函数。如 Euler 筛 + $\mu(m)$ + $\varphi(m)$，复杂度 $O(n)$。
 
 \lstinputlisting[style=cpp,caption=/数学/筛法/Sieve.cpp]{数学/筛法/Sieve.cpp}
 
-\section{素性测试}
+\paragraph{杜教筛}
+
+当卷积可以求和时可以拆杜教筛。
+
+\lstinputlisting[style=cpp,caption=/数学/筛法/Sieve.cpp]{数学/筛法/du.cpp}
+
+\paragraph{Min25 筛}
+
+当函数可以拆多项式时。
+
+\lstinputlisting[style=cpp,caption=/数学/筛法/min25.cpp]{数学/筛法/min25.cpp}
+
+\paragraph{PN 筛}
+
+PN 的个数只有 $O(\sqrt n)$。
+
+\lstinputlisting[style=cpp,caption=/数学/筛法/pn.cpp]{数学/筛法/pn.cpp}
+
+\section{素性测试 \& 质因分解}
 
 \subsection{试除法}
 
@@ -297,6 +326,10 @@ void print() {
 
 \lstinputlisting[style=cpp,caption=/数学/NTT/eval.cpp]{数学/NTT/eval.cpp}
 
+\subsection{Berlekamp–Massey}
+
+\lstinputlisting[style=cpp,caption=/数学/NTT/bm.cpp]{数学/NTT/bm.cpp}
+
 \subsection{FFT}
 
 \lstinputlisting[style=cpp,caption=/数学/FFT/core.cpp]{数学/FFT/core.cpp}
@@ -306,6 +339,10 @@ void print() {
 高斯消元。
 
 \lstinputlisting[style=cpp,caption=/数学/gauss.cpp]{数学/gauss.cpp}
+
+拉格朗日插值。
+
+\lstinputlisting[style=cpp,caption=/数学/interpolation-lagrange.cpp]{数学/interpolation-lagrange.cpp}
 
 
 
@@ -342,9 +379,11 @@ void print() {
 
 \section{最近公共祖先 LCA}
 
-需要预处理 $\log_2$；如果数据小，直接莽 $20$。
-
 \lstinputlisting[style=cpp,caption=图论/LCA.cpp]{图论/LCA.cpp}
+
+\section{树链剖分}
+
+\lstinputlisting[style=cpp,caption=图论/树链剖分.cpp]{图论/树链剖分.cpp}
 
 
 
@@ -416,6 +455,10 @@ for(Node *p=l->tail->prev; p!=l->head; p=p->prev)
 \section{滑动窗口}
 
 \lstinputlisting[style=cpp,caption=/数据结构/滑动窗口.cpp]{数据结构/滑动窗口.cpp}
+
+\section{并查集}
+
+\lstinputlisting[style=cpp,caption=/数据结构/并查集.cpp]{数据结构/并查集.cpp}
 
 \section{树状数组}
 

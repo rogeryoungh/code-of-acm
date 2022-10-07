@@ -1,9 +1,3 @@
-#include "basic/index.hpp"
-
-#include "math-P/qpow.cpp"
-
-// @description 取模整数
-
 // clang-format off
 #define OPERATOR(U, V, op) friend inline U operator op(const U &l, const V &r) { return U(l) op##= r; }
 // clang-format on
@@ -53,11 +47,3 @@ struct Z {
 		return make_pair(x, a);
 	}
 };
-
-istream &operator>>(istream &is, Z &z) {
-	return is >> z.v;
-}
-
-ostream &operator<<(ostream &os, const Z &z) {
-	return os << z.v;
-}
