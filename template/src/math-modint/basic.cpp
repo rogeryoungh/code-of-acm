@@ -1,17 +1,16 @@
 #include "basic/index.hpp"
 
-const int P = 998244353;
+#include "math-P/qpow.cpp"
 
 // @description 取模整数
 
-#define OPERATOR(U, op)                                       \
-	friend inline U operator op(const U &lhs, const U &rhs) { \
-		return U(lhs) op## = rhs;                             \
-	}
+// clang-format off
+#define OPERATOR(U, V, op) friend inline U operator op(const U &l, const V &r) { return U(l) op##= r; }
+// clang-format on
 
 struct Z {
 	int v;
-	Z(ll a = 0) : v(a % P) {}
+	Z(ll a = 0) : v(a %= P < 0 ? a + P : P) {}
 	Z &operator=(const int &m) {
 		v = m;
 		return *this;
@@ -28,17 +27,11 @@ struct Z {
 		v = 1ll * v * m.v % P;
 		return *this;
 	}
-	OPERATOR(Z, +);
-	OPERATOR(Z, -);
-	OPERATOR(Z, *);
+	OPERATOR(Z, Z, +);
+	OPERATOR(Z, Z, -);
+	OPERATOR(Z, Z, *);
 	Z pow(int n) const {
-		int ret = P != 1, a = v;
-		for (; n; n /= 2) {
-			if (n % 2 == 1)
-				ret = 1ll * ret * a % P;
-			a = 1ll * a * a % P;
-		}
-		return ret;
+		return qpow(v, n);
 	}
 	Z inv() const {
 		return pow(P - 2);
@@ -50,7 +43,7 @@ struct Z {
 	Z &operator/=(const Z &m) {
 		return *this *= m.inv();
 	}
-	OPERATOR(Z, /);
+	OPERATOR(Z, Z, /);
 	auto approx(int A = 1E3) {
 		int x = v, y = P, a = 1, b = 0;
 		while (x > A) {
