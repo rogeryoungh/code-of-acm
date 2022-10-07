@@ -191,20 +191,22 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="ntt-乘法i32"><a class="header" href="#ntt-乘法i32">NTT 乘法・i32</a></h1>
-<pre><code class="language-cpp">// @description 多项式乘法
-// @problem https://loj.ac/p/150
+<pre><code class="language-cpp">const int P = 998244353;
 
-const int P = 998244353;
+// @description 快速幂(i32, P)
 
 int qpow(int a, int b = P - 2, int m = P) {
 	int ret = m != 1;
-	for (; b; b &gt;&gt;= 1) {
-		if (b &amp; 1)
+	for (; b &gt; 0; b /= 2) {
+		if (b % 2 == 1)
 			ret = 1ll * ret * a % m;
 		a = 1ll * a * a % m;
 	}
 	return ret;
 }
+
+// @description 多项式乘法
+// @problem https://loj.ac/p/150
 
 using Poly = vector&lt;int&gt;;
 Poly w{1, 1}, Inv{1, 1}, fac{1}, ifac{1};

@@ -1,27 +1,26 @@
-// @description 多项式牛顿迭代(m32)
-// @problem https://loj.ac/p/150
-
 const int P = 998244353;
+
+// @description 快速幂(i32, P)
 
 int qpow(int a, int b = P - 2, int m = P) {
 	int ret = m != 1;
-	for (; b; b >>= 1) {
-		if (b & 1)
+	for (; b > 0; b /= 2) {
+		if (b % 2 == 1)
 			ret = 1ll * ret * a % m;
 		a = 1ll * a * a % m;
 	}
 	return ret;
 }
 
-#define OPERATOR(U, op)                                       \
-	friend inline U operator op(const U &lhs, const U &rhs) { \
-		return U(lhs) op## = rhs;                             \
-	}
+// @description 取模整数
+
+// clang-format off
+#define OPERATOR(U, V, op) friend inline U operator op(const U &l, const V &r) { return U(l) op##= r; }
+// clang-format on
 
 struct Z {
 	int v;
-	Z(int a = 0) : v(a) {}
-	Z(ll a) : v(a % P) {}
+	Z(ll a = 0) : v(a %= P < 0 ? a + P : P) {}
 	Z &operator=(const int &m) {
 		v = m;
 		return *this;
@@ -38,17 +37,11 @@ struct Z {
 		v = 1ll * v * m.v % P;
 		return *this;
 	}
-	OPERATOR(Z, +);
-	OPERATOR(Z, -);
-	OPERATOR(Z, *);
+	OPERATOR(Z, Z, +);
+	OPERATOR(Z, Z, -);
+	OPERATOR(Z, Z, *);
 	Z pow(int n) const {
-		int ret = P != 1, a = v;
-		for (; n; n /= 2) {
-			if (n % 2 == 1)
-				ret = 1ll * ret * a % P;
-			a = 1ll * a * a % P;
-		}
-		return ret;
+		return qpow(v, n);
 	}
 	Z inv() const {
 		return pow(P - 2);
@@ -60,7 +53,15 @@ struct Z {
 	Z &operator/=(const Z &m) {
 		return *this *= m.inv();
 	}
-	OPERATOR(Z, /);
+	OPERATOR(Z, Z, /);
+	auto approx(int A = 1E3) {
+		int x = v, y = P, a = 1, b = 0;
+		while (x > A) {
+			swap(x, y), swap(a, b);
+			a -= x / y * b, x %= y;
+		}
+		return make_pair(x, a);
+	}
 };
 
 istream &operator>>(istream &is, Z &z) {
@@ -70,6 +71,9 @@ istream &operator>>(istream &is, Z &z) {
 ostream &operator<<(ostream &os, const Z &z) {
 	return os << z.v;
 }
+
+// @description 多项式牛顿迭代(m32)
+// @problem https://loj.ac/p/150
 
 vector<Z> w{1, 1}, iv{1, 1}, fac{1}, ifac{1};
 
@@ -162,15 +166,14 @@ struct Poly : vector<Z> { // 大常数板子
 			T[i] -= g[i];
 		return T;
 	}
-
-	OPERATOR(Poly, +);
-	OPERATOR(Poly, -);
-	Poly operator*(Z k) {
-		Poly f = T;
-		for (Z &fi : f)
+	Poly &operator*=(Z k) {
+		for (Z &fi : T)
 			fi *= k;
-		return f;
+		return T;
 	}
+	OPERATOR(Poly, Poly, +);
+	OPERATOR(Poly, Poly, -);
+	OPERATOR(Poly, Z, *);
 	Poly &ntt(int n) {
 		return redeg(n), ::ntt(begin(), n), T;
 	}
@@ -259,21 +262,6 @@ struct Poly : vector<Z> { // 大常数板子
 	friend Poly operator/(const Poly &f, const Poly &g) {
 		int m = f.deg() - g.deg() + 1;
 		return f.rev().div(m, g.rev()).rev();
-	}
-	Poly pow_safe(int m, ll k) const {
-		int pos = 0;
-		while (pos < deg() && T[pos].v == 0) {
-			++pos;
-		}
-		if (pos == deg() || pos > (m - 1) / k) {
-			return Poly(m, 0);
-		}
-		Z x = T[pos];
-		Poly f = Poly(begin() + pos, end()) * x.inv();
-		f = f.pow(m - pos * k, k % P) * x.pow(k % (P - 1));
-		f.insert(f.begin(), pos * k, 0);
-		assert(f.deg() == m);
-		return f;
 	}
 #undef T
 };

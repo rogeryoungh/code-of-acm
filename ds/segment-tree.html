@@ -193,59 +193,59 @@
                         <h1 id="线段树"><a class="header" href="#线段树">线段树</a></h1>
 <pre><code class="language-cpp">// @description 线段树
 
-template &lt;class T, T E = T()&gt;
+template &lt;class Val&gt;
 struct SegmentTree {
-	vector&lt;T&gt; val;
-	int N;
-#define ls (p * 2)
-#define rs (p * 2 + 1)
-	SegmentTree(int n = 0) {
-		// 0 ~ N - 1
-		N = 2 &lt;&lt; std::__lg(n + 1);
-		val.resize(N * 2, E);
+	const int N;
+	vector&lt;Val&gt; val;
+	// 0 ~ N - 1
+	SegmentTree(int n) : N(2 &lt;&lt; std::__lg(n)), val(N * 2) {
+		assert(n &gt; 0);
 	}
-	void build(const vector&lt;T&gt; &amp;a) {
-		std::copy(a.begin(), a.end(), val.begin() + N);
+	template &lt;class iter&gt;
+	void build(iter first, iter last) {
+		std::copy(first, last, val.begin() + N);
 		for (int i = N - 1; i &gt;= 1; i--)
 			pull(i);
 	}
-	void modify(int i, T x) {
+	void modify(int i, Val x) {
 		modify(i, x, 1, 0, N);
 	}
-	T query(int l, int r) {
+	Val query(int l, int r) {
 		return query(l, r + 1, 1, 0, N);
 	}
-
+#define lson p * 2
+#define rson p * 2 + 1
   private:
 	void pull(int p) {
-		val[p] = val[ls] + val[rs];
+		val[p] = val[lson] + val[rson];
 	}
-	void modify(int i, T x, int p, int L, int R) {
+	void modify(int i, Val x, int p, int L, int R) {
 		if (R - L == 1) {
 			val[p] += x;
-			return;
+		} else {
+			int M = (L + R) / 2;
+			if (i &lt; M)
+				modify(i, x, lson, L, M);
+			if (i &gt;= M)
+				modify(i, x, rson, M, R);
+			pull(p);
 		}
-		int M = (L + R) / 2;
-		if (i &lt; M)
-			modify(i, x, ls, L, M);
-		if (i &gt;= M)
-			modify(i, x, rs, M, R);
-		pull(p);
 	}
-	T query(int l, int r, int p, int L, int R) {
+	Val query(int l, int r, int p, int L, int R) {
 		if (l &lt;= L &amp;&amp; R &lt;= r) {
 			return val[p];
+		} else {
+			int M = (L + R) / 2;
+			Val ret = Val();
+			if (l &lt; M)
+				ret = ret + query(l, r, lson, L, M);
+			if (r &gt; M)
+				ret = ret + query(l, r, rson, M, R);
+			return ret;
 		}
-		int M = (L + R) / 2;
-		T v = E;
-		if (l &lt; M)
-			v = v + query(l, r, ls, L, M);
-		if (r &gt; M)
-			v = v + query(l, r, rs, M, R);
-		return v;
 	}
-#undef ls
-#undef rs
+#undef lson
+#undef rson
 };
 </code></pre>
 <h2 id="测试例题"><a class="header" href="#测试例题">测试例题</a></h2>

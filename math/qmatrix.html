@@ -191,68 +191,70 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="矩阵快速幂"><a class="header" href="#矩阵快速幂">矩阵快速幂</a></h1>
-<pre><code class="language-cpp">// @description 矩阵快速幂
+<pre><code class="language-cpp">// @description 二维数组
 
 template &lt;class T&gt;
-struct QMtx {
-	int n;
+struct VV {
+	int x, y;
 	vector&lt;T&gt; m;
-	QMtx(int a) : n(a), m(n * n) {}
+	VV(int a, int b, const T &amp;v = T()) : x(a), y(b), m(a * b, v) {}
 	auto operator[](int i) {
-		return m.begin() + i * n;
+		return m.begin() + i * y;
 	}
 	auto operator[](int i) const {
-		return m.begin() + i * n;
+		return m.begin() + i * y;
 	}
-	static QMtx E(int n) {
-		QMtx e(n);
-		for (int i = 0; i &lt; n; i++) {
-			e[i][i] = 1;
-		}
-		return e;
-	}
-	QMtx pow(ll w);
 };
 
+// @description 矩阵乘法
+
 template &lt;class T&gt;
-QMtx&lt;T&gt; operator*(const QMtx&lt;T&gt; &amp;lhs, const QMtx&lt;T&gt; &amp;rhs) {
-	assert(lhs.n == rhs.n);
-	int n = lhs.n;
-	QMtx&lt;T&gt; u(n);
-	for (int i = 0; i &lt; n; i++) {
-		for (int k = 0; k &lt; n; k++) {
+VV&lt;T&gt; operator*(const VV&lt;T&gt; &amp;lhs, const VV&lt;T&gt; &amp;rhs) {
+	assert(lhs.y == rhs.x);
+	VV&lt;T&gt; u(lhs.x, rhs.y);
+	for (int i = 0; i &lt; lhs.x; i++) {
+		for (int k = 0; k &lt; rhs.x; k++) {
 			T t = lhs[i][k];
-			for (int j = 0; j &lt; rhs.n; j++) {
+			for (int j = 0; j &lt; rhs.y; j++)
 				u[i][j] += rhs[k][j] * t;
-			}
 		}
 	}
 	return u;
 }
 
 template &lt;class T&gt;
-QMtx&lt;T&gt; QMtx&lt;T&gt;::pow(ll w) {
-	QMtx ret = QMtx::E(n), a = *this;
+istream &amp;operator&gt;&gt;(istream &amp;is, VV&lt;T&gt; &amp;m) {
+	for (int i = 0; i &lt; m.x * m.y; i++)
+		is &gt;&gt; m.m[i];
+	return is;
+}
+
+template &lt;class T&gt;
+ostream &amp;operator&lt;&lt;(ostream &amp;os, const VV&lt;T&gt; &amp;m) {
+	for (int i = 0; i &lt; m.x * m.y; i++)
+		os &lt;&lt; m.m[i] &lt;&lt; &quot; \n&quot;[(i + 1) % m.y == 0];
+	return os;
+}
+
+// @description 矩阵快速幂
+
+template &lt;class T&gt;
+auto make_matrix_E(int n) {
+	VV&lt;T&gt; ret(n, n);
+	for (int i = 0; i &lt; n; i++)
+		ret[i][i] = 1;
+	return ret;
+}
+
+template &lt;class T&gt;
+auto matrix_pow(VV&lt;T&gt; a, ll w) {
+	auto ret = make_matrix_E&lt;T&gt;(a.x);
 	for (; w &gt; 0; w &gt;&gt;= 1) {
 		if (w &amp; 1)
 			ret = a * ret;
 		a = a * a;
 	}
 	return ret;
-}
-
-template &lt;class T&gt;
-istream &amp;operator&gt;&gt;(istream &amp;is, QMtx&lt;T&gt; &amp;m) {
-	for (int i = 0; i &lt; m.n * m.n; i++)
-		is &gt;&gt; m.m[i];
-	return is;
-}
-
-template &lt;class T&gt;
-ostream &amp;operator&lt;&lt;(ostream &amp;os, const QMtx&lt;T&gt; &amp;m) {
-	for (int i = 0; i &lt; m.n * m.n; i++)
-		os &lt;&lt; m.m[i] &lt;&lt; &quot; \n&quot;[(i + 1) % m.n == 0];
-	return os;
 }
 </code></pre>
 <h2 id="测试例题"><a class="header" href="#测试例题">测试例题</a></h2>

@@ -1,63 +1,65 @@
-// @description 矩阵快速幂
+// @description 二维数组
 
 template <class T>
-struct QMtx {
-	int n;
+struct VV {
+	int x, y;
 	vector<T> m;
-	QMtx(int a) : n(a), m(n * n) {}
+	VV(int a, int b, const T &v = T()) : x(a), y(b), m(a * b, v) {}
 	auto operator[](int i) {
-		return m.begin() + i * n;
+		return m.begin() + i * y;
 	}
 	auto operator[](int i) const {
-		return m.begin() + i * n;
+		return m.begin() + i * y;
 	}
-	static QMtx E(int n) {
-		QMtx e(n);
-		for (int i = 0; i < n; i++) {
-			e[i][i] = 1;
-		}
-		return e;
-	}
-	QMtx pow(ll w);
 };
 
+// @description 矩阵乘法
+
 template <class T>
-QMtx<T> operator*(const QMtx<T> &lhs, const QMtx<T> &rhs) {
-	assert(lhs.n == rhs.n);
-	int n = lhs.n;
-	QMtx<T> u(n);
-	for (int i = 0; i < n; i++) {
-		for (int k = 0; k < n; k++) {
+VV<T> operator*(const VV<T> &lhs, const VV<T> &rhs) {
+	assert(lhs.y == rhs.x);
+	VV<T> u(lhs.x, rhs.y);
+	for (int i = 0; i < lhs.x; i++) {
+		for (int k = 0; k < rhs.x; k++) {
 			T t = lhs[i][k];
-			for (int j = 0; j < rhs.n; j++) {
+			for (int j = 0; j < rhs.y; j++)
 				u[i][j] += rhs[k][j] * t;
-			}
 		}
 	}
 	return u;
 }
 
 template <class T>
-QMtx<T> QMtx<T>::pow(ll w) {
-	QMtx ret = QMtx::E(n), a = *this;
+istream &operator>>(istream &is, VV<T> &m) {
+	for (int i = 0; i < m.x * m.y; i++)
+		is >> m.m[i];
+	return is;
+}
+
+template <class T>
+ostream &operator<<(ostream &os, const VV<T> &m) {
+	for (int i = 0; i < m.x * m.y; i++)
+		os << m.m[i] << " \n"[(i + 1) % m.y == 0];
+	return os;
+}
+
+// @description 矩阵快速幂
+
+template <class T>
+auto make_matrix_E(int n) {
+	VV<T> ret(n, n);
+	for (int i = 0; i < n; i++)
+		ret[i][i] = 1;
+	return ret;
+}
+
+template <class T>
+auto matrix_pow(VV<T> a, ll w) {
+	auto ret = make_matrix_E<T>(a.x);
 	for (; w > 0; w >>= 1) {
 		if (w & 1)
 			ret = a * ret;
 		a = a * a;
 	}
 	return ret;
-}
-
-template <class T>
-istream &operator>>(istream &is, QMtx<T> &m) {
-	for (int i = 0; i < m.n * m.n; i++)
-		is >> m.m[i];
-	return is;
-}
-
-template <class T>
-ostream &operator<<(ostream &os, const QMtx<T> &m) {
-	for (int i = 0; i < m.n * m.n; i++)
-		os << m.m[i] << " \n"[(i + 1) % m.n == 0];
-	return os;
 }

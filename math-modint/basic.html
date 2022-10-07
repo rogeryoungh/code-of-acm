@@ -193,16 +193,27 @@
                         <h1 id="基础类"><a class="header" href="#基础类">基础类</a></h1>
 <pre><code class="language-cpp">const int P = 998244353;
 
+// @description 快速幂(i32, P)
+
+int qpow(int a, int b = P - 2, int m = P) {
+	int ret = m != 1;
+	for (; b &gt; 0; b /= 2) {
+		if (b % 2 == 1)
+			ret = 1ll * ret * a % m;
+		a = 1ll * a * a % m;
+	}
+	return ret;
+}
+
 // @description 取模整数
 
-#define OPERATOR(U, op)                                       \
-	friend inline U operator op(const U &amp;lhs, const U &amp;rhs) { \
-		return U(lhs) op## = rhs;                             \
-	}
+// clang-format off
+#define OPERATOR(U, V, op) friend inline U operator op(const U &amp;l, const V &amp;r) { return U(l) op##= r; }
+// clang-format on
 
 struct Z {
 	int v;
-	Z(ll a = 0) : v(a % P) {}
+	Z(ll a = 0) : v(a %= P &lt; 0 ? a + P : P) {}
 	Z &amp;operator=(const int &amp;m) {
 		v = m;
 		return *this;
@@ -219,17 +230,11 @@ struct Z {
 		v = 1ll * v * m.v % P;
 		return *this;
 	}
-	OPERATOR(Z, +);
-	OPERATOR(Z, -);
-	OPERATOR(Z, *);
+	OPERATOR(Z, Z, +);
+	OPERATOR(Z, Z, -);
+	OPERATOR(Z, Z, *);
 	Z pow(int n) const {
-		int ret = P != 1, a = v;
-		for (; n; n /= 2) {
-			if (n % 2 == 1)
-				ret = 1ll * ret * a % P;
-			a = 1ll * a * a % P;
-		}
-		return ret;
+		return qpow(v, n);
 	}
 	Z inv() const {
 		return pow(P - 2);
@@ -241,7 +246,7 @@ struct Z {
 	Z &amp;operator/=(const Z &amp;m) {
 		return *this *= m.inv();
 	}
-	OPERATOR(Z, /);
+	OPERATOR(Z, Z, /);
 	auto approx(int A = 1E3) {
 		int x = v, y = P, a = 1, b = 0;
 		while (x &gt; A) {

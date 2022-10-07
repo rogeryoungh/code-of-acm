@@ -193,74 +193,71 @@
                         <h1 id="懒标记线段树"><a class="header" href="#懒标记线段树">懒标记线段树</a></h1>
 <pre><code class="language-cpp">// @description 线段树(懒标记)
 
-template &lt;class T, T E = T()&gt;
-struct SegmentTree {
-	vector&lt;T&gt; val, add;
-	int N;
-#define ls (p * 2)
-#define rs (p * 2 + 1)
-
-	SegmentTree(int n = 0) {
-		// 0 ~ N - 1
-		N = 2 &lt;&lt; std::__lg(n + 1);
-		val.resize(N * 2, E);
-		add.resize(N * 2, E);
+template &lt;class Val, class Tag&gt;
+struct LazySegmentTree {
+	const int N;
+	vector&lt;Val&gt; val;
+	vector&lt;Tag&gt; tag;
+	// 0 ~ N - 1
+	LazySegmentTree(int n) : N(2 &lt;&lt; std::__lg(n)), val(N * 2), tag(N * 2) {
+		assert(n &gt; 0);
 	}
-	void build(const vector&lt;T&gt; &amp;a) {
-		std::copy(a.begin(), a.end(), val.begin() + N);
+	template &lt;class iter&gt;
+	void build(iter first, iter last) {
+		std::copy(first, last, val.begin() + N);
 		for (int i = N - 1; i &gt;= 1; i--)
 			pull(i);
 	}
-	void modify(int l, int r, T x) {
-		modify(l, r + 1, x, 1, 0, N);
+	void modify(int l, int r, Tag t) {
+		modify(l, r, t, 1, 0, N);
 	}
-	T query(int l, int r) {
-		return query(l, r + 1, 1, 0, N);
+	Val query(int l, int r) {
+		return query(l, r, 1, 0, N);
 	}
-
+#define lson p * 2
+#define rson p * 2 + 1
   private:
 	void pull(int p) {
-		val[p] = val[ls] + val[rs];
+		val[p] = val[lson] + val[rson];
 	}
-	void push(int p, int len) {
-		T &amp;tag = add[p];
-		if (tag) {
-			add[ls] += tag;
-			add[rs] += tag;
-			val[ls] += tag * (len / 2);
-			val[rs] += tag * (len / 2);
-			tag = 0;
+	void push(int p) {
+		Tag &amp;tp = tag[p];
+		if (tp.flag) {
+			val[lson].apply(tp), tag[lson].apply(tp);
+			val[rson].apply(tp), tag[rson].apply(tp);
+			tp.flag = false;
 		}
 	}
-	void modify(int l, int r, T x, int p, int L, int R) {
+	void modify(int l, int r, Tag t, int p, int L, int R) {
 		if (l &lt;= L &amp;&amp; R &lt;= r) {
-			val[p] += x * (R - L);
-			add[p] += x;
-			return;
+			val[p].apply(t);
+			tag[p].apply(t);
+		} else {
+			int M = (L + R) / 2;
+			push(p);
+			if (l &lt; M)
+				modify(l, r, t, lson, L, M);
+			if (r &gt; M)
+				modify(l, r, t, rson, M, R);
+			pull(p);
 		}
-		push(p, R - L);
-		int M = (L + R) / 2;
-		if (l &lt; M)
-			modify(l, r, x, ls, L, M);
-		if (r &gt; M)
-			modify(l, r, x, rs, M, R);
-		pull(p);
 	}
-	T query(int l, int r, int p, int L, int R) {
+	Val query(int l, int r, int p, int L, int R) {
 		if (l &lt;= L &amp;&amp; R &lt;= r) {
 			return val[p];
+		} else {
+			int M = (L + R) / 2;
+			Val ret = Val();
+			push(p);
+			if (l &lt; M)
+				ret = ret + query(l, r, lson, L, M);
+			if (r &gt; M)
+				ret = ret + query(l, r, rson, M, R);
+			return ret;
 		}
-		push(p, R - L);
-		int M = (L + R) / 2;
-		T v = T();
-		if (l &lt; M)
-			v += query(l, r, ls, L, M);
-		if (r &gt; M)
-			v += query(l, r, rs, M, R);
-		return v;
 	}
-#undef ls
-#undef rs
+#undef lson
+#undef rson
 };
 </code></pre>
 <h2 id="测试例题"><a class="header" href="#测试例题">测试例题</a></h2>

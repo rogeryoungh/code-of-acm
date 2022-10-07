@@ -2,57 +2,57 @@
 
 // @description 线段树
 
-template <class T, T E = T()>
+template <class Val>
 struct SegmentTree {
-	vector<T> val;
-	int N;
-#define ls (p * 2)
-#define rs (p * 2 + 1)
-	SegmentTree(int n = 0) {
-		// 0 ~ N - 1
-		N = 2 << std::__lg(n + 1);
-		val.resize(N * 2, E);
+	const int N;
+	vector<Val> val;
+	// 0 ~ N - 1
+	SegmentTree(int n) : N(2 << std::__lg(n)), val(N * 2) {
+		assert(n > 0);
 	}
-	void build(const vector<T> &a) {
-		std::copy(a.begin(), a.end(), val.begin() + N);
+	template <class iter>
+	void build(iter first, iter last) {
+		std::copy(first, last, val.begin() + N);
 		for (int i = N - 1; i >= 1; i--)
 			pull(i);
 	}
-	void modify(int i, T x) {
+	void modify(int i, Val x) {
 		modify(i, x, 1, 0, N);
 	}
-	T query(int l, int r) {
+	Val query(int l, int r) {
 		return query(l, r + 1, 1, 0, N);
 	}
-
+#define lson p * 2
+#define rson p * 2 + 1
   private:
 	void pull(int p) {
-		val[p] = val[ls] + val[rs];
+		val[p] = val[lson] + val[rson];
 	}
-	void modify(int i, T x, int p, int L, int R) {
+	void modify(int i, Val x, int p, int L, int R) {
 		if (R - L == 1) {
 			val[p] += x;
-			return;
+		} else {
+			int M = (L + R) / 2;
+			if (i < M)
+				modify(i, x, lson, L, M);
+			if (i >= M)
+				modify(i, x, rson, M, R);
+			pull(p);
 		}
-		int M = (L + R) / 2;
-		if (i < M)
-			modify(i, x, ls, L, M);
-		if (i >= M)
-			modify(i, x, rs, M, R);
-		pull(p);
 	}
-	T query(int l, int r, int p, int L, int R) {
+	Val query(int l, int r, int p, int L, int R) {
 		if (l <= L && R <= r) {
 			return val[p];
+		} else {
+			int M = (L + R) / 2;
+			Val ret = Val();
+			if (l < M)
+				ret = ret + query(l, r, lson, L, M);
+			if (r > M)
+				ret = ret + query(l, r, rson, M, R);
+			return ret;
 		}
-		int M = (L + R) / 2;
-		T v = E;
-		if (l < M)
-			v = v + query(l, r, ls, L, M);
-		if (r > M)
-			v = v + query(l, r, rs, M, R);
-		return v;
 	}
-#undef ls
-#undef rs
+#undef lson
+#undef rson
 };

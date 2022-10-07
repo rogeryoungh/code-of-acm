@@ -1,77 +1,9 @@
 #include "basic/index.hpp"
 
+#include "math-modint/basic.cpp"
+
 // @description 多项式牛顿迭代(m32, 卡常)
 // @problem https://loj.ac/p/150
-
-const int P = 998244353;
-
-int qpow(int a, int b = P - 2, int m = P) {
-	int ret = m != 1;
-	for (; b; b >>= 1) {
-		if (b & 1)
-			ret = 1ll * ret * a % m;
-		a = 1ll * a * a % m;
-	}
-	return ret;
-}
-
-#define OPERATOR(U, op)                                       \
-	friend inline U operator op(const U &lhs, const U &rhs) { \
-		return U(lhs) op## = rhs;                             \
-	}
-
-struct Z {
-	int v;
-	Z(int a = 0) : v(a) {}
-	Z(ll a) : v(a % P) {}
-	Z &operator=(const int &m) {
-		v = m;
-		return *this;
-	}
-	Z &operator+=(const Z &m) {
-		v = (v += m.v) >= P ? v - P : v;
-		return *this;
-	}
-	Z &operator-=(const Z &m) {
-		v = (v -= m.v) < 0 ? v + P : v;
-		return *this;
-	}
-	Z &operator*=(const Z &m) {
-		v = 1ll * v * m.v % P;
-		return *this;
-	}
-	OPERATOR(Z, +);
-	OPERATOR(Z, -);
-	OPERATOR(Z, *);
-	Z pow(int n) const {
-		int ret = P != 1, a = v;
-		for (; n; n /= 2) {
-			if (n % 2 == 1)
-				ret = 1ll * ret * a % P;
-			a = 1ll * a * a % P;
-		}
-		return ret;
-	}
-	Z inv() const {
-		return pow(P - 2);
-	}
-	// useless
-	Z operator-() const {
-		return v == 0 ? 0 : P - v;
-	}
-	Z &operator/=(const Z &m) {
-		return *this *= m.inv();
-	}
-	OPERATOR(Z, /);
-};
-
-istream &operator>>(istream &is, Z &z) {
-	return is >> z.v;
-}
-
-ostream &operator<<(ostream &os, const Z &z) {
-	return os << z.v;
-}
 
 vector<Z> w{1, 1}, iv{1, 1}, fac{1}, ifac{1};
 
@@ -165,14 +97,14 @@ struct Poly : vector<Z> { // 卡常板子
 			T[i] -= g[i];
 		return T;
 	}
-	OPERATOR(Poly, +);
-	OPERATOR(Poly, -);
-	Poly operator*(Z k) {
-		Poly f = T;
-		for (Z &fi : f)
+	Poly &operator*=(Z k) {
+		for (Z &fi : T)
 			fi *= k;
-		return f;
+		return T;
 	}
+	OPERATOR(Poly, Poly, +);
+	OPERATOR(Poly, Poly, -);
+	OPERATOR(Poly, Z, *);
 	Poly &ntt(int n) {
 		if (!isNTT) {
 			redeg(n), ::ntt(begin(), n);
