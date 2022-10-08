@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>P3052 Cows in a Skyscraper G | Roger Young</title>
+<meta name="keywords" content="DP" />
+<meta name="description" content="题目大意 有 $n$ 头牛坐电梯，重量分别为 $c_i$，电梯的最大限额是 $W$，求最少分多少次能够全部上去。
+分析 注意 $n \leqslant 18$，枚举全排列是不行的。考虑用状态压缩，将第 $j$ 头奶牛的选和不选用状态 $i$ 的第 $j$ 位数字表示。设 $f_i$ 表示状态为 $i$ 时最小乘电梯次数，$g_i$ 表示此状态下最新那个电梯已经有的重量。
+首先令 cow = i &lt;&lt; (j - 1)，若 i &amp; cow 为 $1$ 则说明这个奶牛已经坐上电梯了，不计算。 当 $W - g_i \geqslant c_i$ 时，最后那个电梯坐的下这头牛。 当 $W - g_i &lt; c_i$ 时，只能新开一个电梯。 还是代码更清晰
+const int maxn = 18; ll ci[maxn]; ll ff[1 &lt;&lt; maxn], gg[1 &lt;&lt; maxn]; int main() { ll n = rr(), W = rr(); for (int i = 1; i &lt;= n; i&#43;&#43;) ci[i] = rr(); fill_n(ff, 1 &lt;&lt; maxn, n); fill_n(gg, 1 &lt;&lt; maxn, W); ff[0] = 1, gg[0] = 0; for (int i = 0; i &lt; (1 &lt;&lt; n); i&#43;&#43;) { for (int j = 1; j &lt;= n; j&#43;&#43;) { ll cow = 1 &lt;&lt; (j - 1); if (i &amp; cow) continue; if (W - gg[i] &gt;= ci[j]) { ff[i | cow] = ff[i]; gg[i | cow] = min(gg[i | cow], gg[i] &#43; ci[j]); } else if (W - gg[i] &lt; ci[j] &amp;&amp; ff[i | cow] &gt;= ff[i] &#43; 1) { ff[i | cow] = ff[i] &#43; 1; gg[i | cow] = min(gg[i | cow], ci[j]); } } } printf(&#34;%lld&#34;, ff[(1 &lt;&lt; n) - 1]); return 0; } ">
+<meta name="author" content="rogeryoungh">
+<link rel="canonical" href="https://acm.rogery.dev/post/2021-10/p3052/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
+<link rel="preload" href="https://blog.rogery.dev/avatar.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.db5735216fdebd5ecb898cb813197906245b705e5f893e803582740b5cc873be.js" integrity="sha256-21c1IW/evV7LiYy4Exl5BiRbcF5fiT6ANYJ0C1zIc74="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://acm.rogery.dev/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://acm.rogery.dev/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://acm.rogery.dev/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://acm.rogery.dev/apple-touch-icon.png">
+<link rel="mask-icon" href="https://acm.rogery.dev/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.104.3" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body);"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+            
+            
+            delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '$', right: '$', display: false },
+                { left: '\\(', right: '\\)', display: false },
+                { left: '\\[', right: '\\]', display: true }
+            ],
+            
+            throwOnError: false
+        });
+    });
+</script>
+
+
+
+
+<meta property="og:title" content="P3052 Cows in a Skyscraper G" />
+<meta property="og:description" content="题目大意 有 $n$ 头牛坐电梯，重量分别为 $c_i$，电梯的最大限额是 $W$，求最少分多少次能够全部上去。
+分析 注意 $n \leqslant 18$，枚举全排列是不行的。考虑用状态压缩，将第 $j$ 头奶牛的选和不选用状态 $i$ 的第 $j$ 位数字表示。设 $f_i$ 表示状态为 $i$ 时最小乘电梯次数，$g_i$ 表示此状态下最新那个电梯已经有的重量。
+首先令 cow = i &lt;&lt; (j - 1)，若 i &amp; cow 为 $1$ 则说明这个奶牛已经坐上电梯了，不计算。 当 $W - g_i \geqslant c_i$ 时，最后那个电梯坐的下这头牛。 当 $W - g_i &lt; c_i$ 时，只能新开一个电梯。 还是代码更清晰
+const int maxn = 18; ll ci[maxn]; ll ff[1 &lt;&lt; maxn], gg[1 &lt;&lt; maxn]; int main() { ll n = rr(), W = rr(); for (int i = 1; i &lt;= n; i&#43;&#43;) ci[i] = rr(); fill_n(ff, 1 &lt;&lt; maxn, n); fill_n(gg, 1 &lt;&lt; maxn, W); ff[0] = 1, gg[0] = 0; for (int i = 0; i &lt; (1 &lt;&lt; n); i&#43;&#43;) { for (int j = 1; j &lt;= n; j&#43;&#43;) { ll cow = 1 &lt;&lt; (j - 1); if (i &amp; cow) continue; if (W - gg[i] &gt;= ci[j]) { ff[i | cow] = ff[i]; gg[i | cow] = min(gg[i | cow], gg[i] &#43; ci[j]); } else if (W - gg[i] &lt; ci[j] &amp;&amp; ff[i | cow] &gt;= ff[i] &#43; 1) { ff[i | cow] = ff[i] &#43; 1; gg[i | cow] = min(gg[i | cow], ci[j]); } } } printf(&#34;%lld&#34;, ff[(1 &lt;&lt; n) - 1]); return 0; } " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://acm.rogery.dev/post/2021-10/p3052/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-10-18T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-10-18T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="P3052 Cows in a Skyscraper G"/>
+<meta name="twitter:description" content="题目大意 有 $n$ 头牛坐电梯，重量分别为 $c_i$，电梯的最大限额是 $W$，求最少分多少次能够全部上去。
+分析 注意 $n \leqslant 18$，枚举全排列是不行的。考虑用状态压缩，将第 $j$ 头奶牛的选和不选用状态 $i$ 的第 $j$ 位数字表示。设 $f_i$ 表示状态为 $i$ 时最小乘电梯次数，$g_i$ 表示此状态下最新那个电梯已经有的重量。
+首先令 cow = i &lt;&lt; (j - 1)，若 i &amp; cow 为 $1$ 则说明这个奶牛已经坐上电梯了，不计算。 当 $W - g_i \geqslant c_i$ 时，最后那个电梯坐的下这头牛。 当 $W - g_i &lt; c_i$ 时，只能新开一个电梯。 还是代码更清晰
+const int maxn = 18; ll ci[maxn]; ll ff[1 &lt;&lt; maxn], gg[1 &lt;&lt; maxn]; int main() { ll n = rr(), W = rr(); for (int i = 1; i &lt;= n; i&#43;&#43;) ci[i] = rr(); fill_n(ff, 1 &lt;&lt; maxn, n); fill_n(gg, 1 &lt;&lt; maxn, W); ff[0] = 1, gg[0] = 0; for (int i = 0; i &lt; (1 &lt;&lt; n); i&#43;&#43;) { for (int j = 1; j &lt;= n; j&#43;&#43;) { ll cow = 1 &lt;&lt; (j - 1); if (i &amp; cow) continue; if (W - gg[i] &gt;= ci[j]) { ff[i | cow] = ff[i]; gg[i | cow] = min(gg[i | cow], gg[i] &#43; ci[j]); } else if (W - gg[i] &lt; ci[j] &amp;&amp; ff[i | cow] &gt;= ff[i] &#43; 1) { ff[i | cow] = ff[i] &#43; 1; gg[i | cow] = min(gg[i | cow], ci[j]); } } } printf(&#34;%lld&#34;, ff[(1 &lt;&lt; n) - 1]); return 0; } "/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Posts",
+      "item": "https://acm.rogery.dev/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "P3052 Cows in a Skyscraper G",
+      "item": "https://acm.rogery.dev/post/2021-10/p3052/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "P3052 Cows in a Skyscraper G",
+  "name": "P3052 Cows in a Skyscraper G",
+  "description": "题目大意 有 $n$ 头牛坐电梯，重量分别为 $c_i$，电梯的最大限额是 $W$，求最少分多少次能够全部上去。\n分析 注意 $n \\leqslant 18$，枚举全排列是不行的。考虑用状态压缩，将第 $j$ 头奶牛的选和不选用状态 $i$ 的第 $j$ 位数字表示。设 $f_i$ 表示状态为 $i$ 时最小乘电梯次数，$g_i$ 表示此状态下最新那个电梯已经有的重量。\n首先令 cow = i \u0026lt;\u0026lt; (j - 1)，若 i \u0026amp; cow 为 $1$ 则说明这个奶牛已经坐上电梯了，不计算。 当 $W - g_i \\geqslant c_i$ 时，最后那个电梯坐的下这头牛。 当 $W - g_i \u0026lt; c_i$ 时，只能新开一个电梯。 还是代码更清晰\nconst int maxn = 18; ll ci[maxn]; ll ff[1 \u0026lt;\u0026lt; maxn], gg[1 \u0026lt;\u0026lt; maxn]; int main() { ll n = rr(), W = rr(); for (int i = 1; i \u0026lt;= n; i++) ci[i] = rr(); fill_n(ff, 1 \u0026lt;\u0026lt; maxn, n); fill_n(gg, 1 \u0026lt;\u0026lt; maxn, W); ff[0] = 1, gg[0] = 0; for (int i = 0; i \u0026lt; (1 \u0026lt;\u0026lt; n); i++) { for (int j = 1; j \u0026lt;= n; j++) { ll cow = 1 \u0026lt;\u0026lt; (j - 1); if (i \u0026amp; cow) continue; if (W - gg[i] \u0026gt;= ci[j]) { ff[i | cow] = ff[i]; gg[i | cow] = min(gg[i | cow], gg[i] + ci[j]); } else if (W - gg[i] \u0026lt; ci[j] \u0026amp;\u0026amp; ff[i | cow] \u0026gt;= ff[i] + 1) { ff[i | cow] = ff[i] + 1; gg[i | cow] = min(gg[i | cow], ci[j]); } } } printf(\u0026#34;%lld\u0026#34;, ff[(1 \u0026lt;\u0026lt; n) - 1]); return 0; } ",
+  "keywords": [
+    "DP"
+  ],
+  "articleBody": "题目大意 有 $n$ 头牛坐电梯，重量分别为 $c_i$，电梯的最大限额是 $W$，求最少分多少次能够全部上去。\n分析 注意 $n \\leqslant 18$，枚举全排列是不行的。考虑用状态压缩，将第 $j$ 头奶牛的选和不选用状态 $i$ 的第 $j$ 位数字表示。设 $f_i$ 表示状态为 $i$ 时最小乘电梯次数，$g_i$ 表示此状态下最新那个电梯已经有的重量。\n首先令 cow = i \u003c\u003c (j - 1)，若 i \u0026 cow 为 $1$ 则说明这个奶牛已经坐上电梯了，不计算。 当 $W - g_i \\geqslant c_i$ 时，最后那个电梯坐的下这头牛。 当 $W - g_i \u003c c_i$ 时，只能新开一个电梯。 还是代码更清晰\nconst int maxn = 18; ll ci[maxn]; ll ff[1 \u003c\u003c maxn], gg[1 \u003c\u003c maxn]; int main() { ll n = rr(), W = rr(); for (int i = 1; i \u003c= n; i++) ci[i] = rr(); fill_n(ff, 1 \u003c\u003c maxn, n); fill_n(gg, 1 \u003c\u003c maxn, W); ff[0] = 1, gg[0] = 0; for (int i = 0; i \u003c (1 \u003c\u003c n); i++) { for (int j = 1; j \u003c= n; j++) { ll cow = 1 \u003c\u003c (j - 1); if (i \u0026 cow) continue; if (W - gg[i] \u003e= ci[j]) { ff[i | cow] = ff[i]; gg[i | cow] = min(gg[i | cow], gg[i] + ci[j]); } else if (W - gg[i] \u003c ci[j] \u0026\u0026 ff[i | cow] \u003e= ff[i] + 1) { ff[i | cow] = ff[i] + 1; gg[i | cow] = min(gg[i | cow], ci[j]); } } } printf(\"%lld\", ff[(1 \u003c\u003c n) - 1]); return 0; } ",
+  "wordCount" : "204",
+  "inLanguage": "en",
+  "datePublished": "2021-10-18T00:00:00Z",
+  "dateModified": "2021-10-18T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "rogeryoungh"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://acm.rogery.dev/post/2021-10/p3052/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Roger Young",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://acm.rogery.dev/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-font") === "serif") {
+        document.body.classList.add('serif');
+    }
+
+</script>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://acm.rogery.dev" accesskey="h" title="Roger Young (Alt + H)">Roger Young</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <button id="font-toggle" accesskey="t" title="(Alt + T)">A</button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://acm.rogery.dev/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://acm.rogery.dev/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://acm.rogery.dev/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://acm.rogery.dev/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      P3052 Cows in a Skyscraper G
+    </h1>
+    <div class="post-meta">October 18, 2021&nbsp;·&nbsp;rogeryoungh
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <div class="details">Table of Contents</div>
+        </summary>
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e9%a2%98%e7%9b%ae%e5%a4%a7%e6%84%8f" aria-label="题目大意">题目大意</a></li>
+                <li>
+                    <a href="#%e5%88%86%e6%9e%90" aria-label="分析">分析</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="题目大意">题目大意<a hidden class="anchor" aria-hidden="true" href="#题目大意">#</a></h2>
+<p>有 $n$ 头牛坐电梯，重量分别为 $c_i$，电梯的最大限额是 $W$，求最少分多少次能够全部上去。</p>
+<h2 id="分析">分析<a hidden class="anchor" aria-hidden="true" href="#分析">#</a></h2>
+<p>注意 $n \leqslant 18$，枚举全排列是不行的。考虑用状态压缩，将第 $j$ 头奶牛的选和不选用状态 $i$ 的第 $j$ 位数字表示。设 $f_i$ 表示状态为 $i$ 时最小乘电梯次数，$g_i$ 表示此状态下最新那个电梯已经有的重量。</p>
+<ul>
+<li>首先令 <code>cow = i &lt;&lt; (j - 1)</code>，若 <code>i &amp; cow</code> 为 $1$ 则说明这个奶牛已经坐上电梯了，不计算。</li>
+<li>当 $W - g_i \geqslant c_i$ 时，最后那个电梯坐的下这头牛。</li>
+<li>当 $W - g_i &lt; c_i$ 时，只能新开一个电梯。</li>
+</ul>
+<p>还是代码更清晰</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ll</span> <span class="n">ci</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="n">ll</span> <span class="n">ff</span><span class="p">[</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">maxn</span><span class="p">],</span> <span class="n">gg</span><span class="p">[</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">maxn</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ll</span> <span class="n">n</span> <span class="o">=</span> <span class="n">rr</span><span class="p">(),</span> <span class="n">W</span> <span class="o">=</span> <span class="n">rr</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ci</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rr</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">fill_n</span><span class="p">(</span><span class="n">ff</span><span class="p">,</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">maxn</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">fill_n</span><span class="p">(</span><span class="n">gg</span><span class="p">,</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">maxn</span><span class="p">,</span> <span class="n">W</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ff</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">gg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">n</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">ll</span> <span class="n">cow</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">cow</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="n">W</span> <span class="o">-</span> <span class="n">gg</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">ci</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="n">ff</span><span class="p">[</span><span class="n">i</span> <span class="o">|</span> <span class="n">cow</span><span class="p">]</span> <span class="o">=</span> <span class="n">ff</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">				<span class="n">gg</span><span class="p">[</span><span class="n">i</span> <span class="o">|</span> <span class="n">cow</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">gg</span><span class="p">[</span><span class="n">i</span> <span class="o">|</span> <span class="n">cow</span><span class="p">],</span> <span class="n">gg</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">ci</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">W</span> <span class="o">-</span> <span class="n">gg</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">ci</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">ff</span><span class="p">[</span><span class="n">i</span> <span class="o">|</span> <span class="n">cow</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">ff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="n">ff</span><span class="p">[</span><span class="n">i</span> <span class="o">|</span> <span class="n">cow</span><span class="p">]</span> <span class="o">=</span> <span class="n">ff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="n">gg</span><span class="p">[</span><span class="n">i</span> <span class="o">|</span> <span class="n">cow</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">gg</span><span class="p">[</span><span class="n">i</span> <span class="o">|</span> <span class="n">cow</span><span class="p">],</span> <span class="n">ci</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%lld&#34;</span><span class="p">,</span> <span class="n">ff</span><span class="p">[(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">n</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+
+  </div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://acm.rogery.dev/tags/dp/">DP</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://acm.rogery.dev/post/2021-10/nc11255b/">
+    <span class="title">« Prev Page</span>
+    <br>
+    <span>NC11255B Sample Game</span>
+  </a>
+  <a class="next" href="https://acm.rogery.dev/post/2021-10/p4059/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>P4059 找爸爸</span>
+  </a>
+</nav>
+<blockquote>
+    <p class="copyright-item">
+        本文作者： rogeryoungh。
+        许可协议：<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank">CC BY-SA 4.0</a>。
+        转载请署名！
+    </p>
+    <p class="copyright-item">
+        撰写时间：2021-10-18，
+        <a href="https://github.com/rogeryoungh/code-of-acm/#/commits/main/content/post/2021-10/P3052.md" target="_blank">更新历史</a>。
+    </p>
+</blockquote>
+  </footer><div id="vcomments"></div>
+<script src='//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js'></script>
+<script type="text/javascript">
+    new Valine({
+        el: '#vcomments',
+        appId: 'fKamuLtYmV8QSg2WmPMXbsbT-gzGzoHsz',
+        appKey: 'xRU1tcJiz1qbaEMD5aRkPzXk',
+        avatar: 'mp',
+        placeholder: '说点什么吧...',
+        visitor: 'false'
+    });
+</script>
+</article>
+    </main>
+    <footer class="footer">
+    <span>© 2021 <a href="https://acm.rogery.dev">Roger Young</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="gototop" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+    document.getElementById("font-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("serif")) {
+            document.body.classList.remove('serif');
+            localStorage.setItem("pref-font", 'sans');
+        } else {
+            document.body.classList.add('serif');
+            localStorage.setItem("pref-font", 'serif');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script></body>
+
+</html>

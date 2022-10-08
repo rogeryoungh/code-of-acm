@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Codeforces Round #773 (Div. 2)  (A-D) | Roger Young</title>
+<meta name="keywords" content="" />
+<meta name="description" content="在学长的提示下成功做出 D，蓝了，开心。
+A. Hard Way 给定一个在第一象限的三角形座标，你可以从 $y=0$ 的任意位置出发，在平面中沿着折线前进但不能穿过三角形。
+问三角形的边界上无法到达的位置，其总长度是多少。
+分析 题面真 TM 难读，什么玩意。
+注意到如果这条边是斜的，那么我们总是可以走一条更斜的线直接到达。如果此边水平，则不能到达。
+即输出三角形水平边的长度。
+using pii = pair&lt;int, int&gt;; int main() { int T; cin &gt;&gt; T; while (T--) { vector&lt;pii&gt; v(3); for (auto &amp;[x, y] : v) { cin &gt;&gt; x &gt;&gt; y; } sort(v.begin(), v.end(), [](pii a, pii b) { if (a.second == b.second) return a.first &lt; b.first; return a.second &gt; b.second; }); if (v[0].second == v[1].second) cout &lt;&lt; abs(v[0].">
+<meta name="author" content="rogeryoungh">
+<link rel="canonical" href="https://acm.rogery.dev/post/2022-02/cf1642/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
+<link rel="preload" href="https://blog.rogery.dev/avatar.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.db5735216fdebd5ecb898cb813197906245b705e5f893e803582740b5cc873be.js" integrity="sha256-21c1IW/evV7LiYy4Exl5BiRbcF5fiT6ANYJ0C1zIc74="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://acm.rogery.dev/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://acm.rogery.dev/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://acm.rogery.dev/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://acm.rogery.dev/apple-touch-icon.png">
+<link rel="mask-icon" href="https://acm.rogery.dev/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.104.3" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body);"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+            
+            
+            delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '$', right: '$', display: false },
+                { left: '\\(', right: '\\)', display: false },
+                { left: '\\[', right: '\\]', display: true }
+            ],
+            
+            throwOnError: false
+        });
+    });
+</script>
+
+
+
+
+<meta property="og:title" content="Codeforces Round #773 (Div. 2)  (A-D)" />
+<meta property="og:description" content="在学长的提示下成功做出 D，蓝了，开心。
+A. Hard Way 给定一个在第一象限的三角形座标，你可以从 $y=0$ 的任意位置出发，在平面中沿着折线前进但不能穿过三角形。
+问三角形的边界上无法到达的位置，其总长度是多少。
+分析 题面真 TM 难读，什么玩意。
+注意到如果这条边是斜的，那么我们总是可以走一条更斜的线直接到达。如果此边水平，则不能到达。
+即输出三角形水平边的长度。
+using pii = pair&lt;int, int&gt;; int main() { int T; cin &gt;&gt; T; while (T--) { vector&lt;pii&gt; v(3); for (auto &amp;[x, y] : v) { cin &gt;&gt; x &gt;&gt; y; } sort(v.begin(), v.end(), [](pii a, pii b) { if (a.second == b.second) return a.first &lt; b.first; return a.second &gt; b.second; }); if (v[0].second == v[1].second) cout &lt;&lt; abs(v[0]." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://acm.rogery.dev/post/2022-02/cf1642/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-02-23T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2022-02-23T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Codeforces Round #773 (Div. 2)  (A-D)"/>
+<meta name="twitter:description" content="在学长的提示下成功做出 D，蓝了，开心。
+A. Hard Way 给定一个在第一象限的三角形座标，你可以从 $y=0$ 的任意位置出发，在平面中沿着折线前进但不能穿过三角形。
+问三角形的边界上无法到达的位置，其总长度是多少。
+分析 题面真 TM 难读，什么玩意。
+注意到如果这条边是斜的，那么我们总是可以走一条更斜的线直接到达。如果此边水平，则不能到达。
+即输出三角形水平边的长度。
+using pii = pair&lt;int, int&gt;; int main() { int T; cin &gt;&gt; T; while (T--) { vector&lt;pii&gt; v(3); for (auto &amp;[x, y] : v) { cin &gt;&gt; x &gt;&gt; y; } sort(v.begin(), v.end(), [](pii a, pii b) { if (a.second == b.second) return a.first &lt; b.first; return a.second &gt; b.second; }); if (v[0].second == v[1].second) cout &lt;&lt; abs(v[0]."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Posts",
+      "item": "https://acm.rogery.dev/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Codeforces Round #773 (Div. 2)  (A-D)",
+      "item": "https://acm.rogery.dev/post/2022-02/cf1642/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Codeforces Round #773 (Div. 2)  (A-D)",
+  "name": "Codeforces Round #773 (Div. 2)  (A-D)",
+  "description": "在学长的提示下成功做出 D，蓝了，开心。\nA. Hard Way 给定一个在第一象限的三角形座标，你可以从 $y=0$ 的任意位置出发，在平面中沿着折线前进但不能穿过三角形。\n问三角形的边界上无法到达的位置，其总长度是多少。\n分析 题面真 TM 难读，什么玩意。\n注意到如果这条边是斜的，那么我们总是可以走一条更斜的线直接到达。如果此边水平，则不能到达。\n即输出三角形水平边的长度。\nusing pii = pair\u0026lt;int, int\u0026gt;; int main() { int T; cin \u0026gt;\u0026gt; T; while (T--) { vector\u0026lt;pii\u0026gt; v(3); for (auto \u0026amp;[x, y] : v) { cin \u0026gt;\u0026gt; x \u0026gt;\u0026gt; y; } sort(v.begin(), v.end(), [](pii a, pii b) { if (a.second == b.second) return a.first \u0026lt; b.first; return a.second \u0026gt; b.second; }); if (v[0].second == v[1].second) cout \u0026lt;\u0026lt; abs(v[0].",
+  "keywords": [
+    
+  ],
+  "articleBody": "在学长的提示下成功做出 D，蓝了，开心。\nA. Hard Way 给定一个在第一象限的三角形座标，你可以从 $y=0$ 的任意位置出发，在平面中沿着折线前进但不能穿过三角形。\n问三角形的边界上无法到达的位置，其总长度是多少。\n分析 题面真 TM 难读，什么玩意。\n注意到如果这条边是斜的，那么我们总是可以走一条更斜的线直接到达。如果此边水平，则不能到达。\n即输出三角形水平边的长度。\nusing pii = pair\u003cint, int\u003e; int main() { int T; cin \u003e\u003e T; while (T--) { vector\u003cpii\u003e v(3); for (auto \u0026[x, y] : v) { cin \u003e\u003e x \u003e\u003e y; } sort(v.begin(), v.end(), [](pii a, pii b) { if (a.second == b.second) return a.first \u003c b.first; return a.second \u003e b.second; }); if (v[0].second == v[1].second) cout \u003c\u003c abs(v[0].first - v[1].first) \u003c\u003c \"\\n\"; else cout \u003c\u003c \"0\\n\"; } return 0; } B. Power Walking 有一些能量包，每个小孩的能力增幅是其得到不同种类能量包的个数。\n总共有 $n$ 个能量包，其类别分别是 $\\{a_i\\}$。假如把这些分给 $k$ 个小孩，每个小孩至少得到一个能量包。\n求对所有的 $0 \\leqslant k \\leqslant n$，求这 $k$ 个小孩最小的能量增幅。\n分析 设这 $n$ 个能量包中类别不同的共有 $m$ 个。\n若 $k \\leqslant m$，则至少有 $m$ 的增幅，多出来的 $n-m$ 个可以和相同类别塞给同一个小朋友，没有额外增幅。 若 $k \u003e m$，则至少有 $k$ 的增幅，多出来的 $n-k$ 个仍可以和相同类别合并，没有额外增幅。 总之，最小的能量增幅是 $\\max(k, m)$。\nint main() { int T; cin \u003e\u003e T; while (T--) { int n; cin \u003e\u003e n; vector\u003cint\u003e a(n); for (auto \u0026ai : a) cin \u003e\u003e ai; int m = n; sort(a.begin(), a.end()); for (int i = 1; i \u003c n; i++) m -= a[i] == a[i - 1]; for (int i = 1; i \u003c= n; i++) { cout \u003c\u003c max(i, m) \u003c\u003c \" \\n\"[i == n]; } } return 0; } C. Great Sequence 给定 $n$ 个数字 $\\{a_i\\}$，和一个数字 $x$。如果存在 $a_j$ 满足 $a_j = x a_i$，那么我们可以把这两个数配对。每个数字只能被配对一次。\n现在允许往序列 $\\{a_i\\}$ 中添加数字，问若要让序列中所有数字都被配对，最少添加几个数字。\n分析 排序后，双指针配对即可，时间复杂度 $O(n)$。Map 大概也能过，时间复杂度 $O(n \\log n)$。\nint main() { int T; cin \u003e\u003e T; while (T--) { int n; ll x; cin \u003e\u003e n \u003e\u003e x; vector\u003cll\u003e a(n); for (auto \u0026ai : a) cin \u003e\u003e ai; sort(a.begin(), a.end()); vector\u003cint\u003e vis(n); int l = 0, r = -1; while (r \u003c n - 1) { r++; while (a[l] * x \u003c a[r] || (a[l] * x == a[r] \u0026\u0026 vis[l])) l++; if (a[l] * x == a[r]) vis[l] = vis[r] = true; } int ans = 0; for (auto vi : vis) ans += vi; cout \u003c\u003c n - ans \u003c\u003c \"\\n\"; } return 0; } D. Repetitions Decoding 给定一个长为 $n$ 的序列 $\\{a_i\\}$，可以在任意位置插入相同的两个元素 $[c, c]$。\nOlya 希望序列能够被分成一系列子序列，并且所有子序列左右重复。\n分析 对于左边第一个数 $a_1$，找到右侧与之相同的第一个数 $a_r$，不断在 $a_r$ 右侧插入数字使得 $a[1, r - 1]$ 到 $a[r, 2r - 2]$ 相同。然后再从 $2r-1$ 开始继续操作，直到序列结尾。\n若原序列存在数字是出现了奇数次，则一定无解。前述算法一定不能运行到结尾。\n注意到当原序列每个数字出现偶数次一定有解。而前述算法每次一定会减少一个数，故一定能找到解。\nusing pii = pair\u003cint, int\u003e; int main() { int T; cin \u003e\u003e T; while (T--) { int n; cin \u003e\u003e n; vector\u003cint\u003e v(n); for (auto \u0026vi : v) cin \u003e\u003e vi; bool flag = true; vector\u003cpii\u003e ans; vector\u003cint\u003e ans2; int l = 0; while (l \u003c v.size()) { int r = -1; for (int i = l + 1; i \u003c v.size(); i++) { if (v[i] == v[l]) { r = i; break; } } if (r == -1) { flag = false; break; } int len = 1; while (l + len \u003c r) { v.insert(v.begin() + r + len, {v[l + len], v[l + len]}); ans.emplace_back(r + len, v[l + len]); len++; } l = r + len; ans2.push_back(len * 2); } if (!flag) { cout \u003c\u003c \"-1\\n\"; } else { cout \u003c\u003c ans.size() \u003c\u003c \"\\n\"; for (auto [x, y] : ans) { cout \u003c\u003c x \u003c\u003c \" \" \u003c\u003c y \u003c\u003c \"\\n\"; } cout \u003c\u003c ans2.size() \u003c\u003c \"\\n\"; for (auto ai : ans2) { cout \u003c\u003c ai \u003c\u003c \" \"; } cout \u003c\u003c \"\\n\"; } } return 0; } ",
+  "wordCount" : "536",
+  "inLanguage": "en",
+  "datePublished": "2022-02-23T00:00:00Z",
+  "dateModified": "2022-02-23T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "rogeryoungh"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://acm.rogery.dev/post/2022-02/cf1642/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Roger Young",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://acm.rogery.dev/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-font") === "serif") {
+        document.body.classList.add('serif');
+    }
+
+</script>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://acm.rogery.dev" accesskey="h" title="Roger Young (Alt + H)">Roger Young</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <button id="font-toggle" accesskey="t" title="(Alt + T)">A</button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://acm.rogery.dev/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://acm.rogery.dev/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://acm.rogery.dev/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://acm.rogery.dev/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Codeforces Round #773 (Div. 2)  (A-D)
+    </h1>
+    <div class="post-meta">February 23, 2022&nbsp;·&nbsp;rogeryoungh
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <div class="details">Table of Contents</div>
+        </summary>
+        <div class="inner"><ul>
+                <li>
+                    <a href="#a-hard-way" aria-label="A. Hard Way">A. Hard Way</a><ul>
+                        
+                <li>
+                    <a href="#%e5%88%86%e6%9e%90" aria-label="分析">分析</a></li></ul>
+                </li>
+                <li>
+                    <a href="#b-power-walking" aria-label="B. Power Walking">B. Power Walking</a><ul>
+                        
+                <li>
+                    <a href="#%e5%88%86%e6%9e%90-1" aria-label="分析">分析</a></li></ul>
+                </li>
+                <li>
+                    <a href="#c-great-sequence" aria-label="C. Great Sequence">C. Great Sequence</a><ul>
+                        
+                <li>
+                    <a href="#%e5%88%86%e6%9e%90-2" aria-label="分析">分析</a></li></ul>
+                </li>
+                <li>
+                    <a href="#d-repetitions-decoding" aria-label="D. Repetitions Decoding">D. Repetitions Decoding</a><ul>
+                        
+                <li>
+                    <a href="#%e5%88%86%e6%9e%90-3" aria-label="分析">分析</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>在学长的提示下成功做出 D，蓝了，开心。</p>
+<h2 id="a-hard-way">A. Hard Way<a hidden class="anchor" aria-hidden="true" href="#a-hard-way">#</a></h2>
+<p>给定一个在第一象限的三角形座标，你可以从 $y=0$ 的任意位置出发，在平面中沿着折线前进但不能穿过三角形。</p>
+<p>问三角形的边界上无法到达的位置，其总长度是多少。</p>
+<h3 id="分析">分析<a hidden class="anchor" aria-hidden="true" href="#分析">#</a></h3>
+<p>题面真 TM 难读，什么玩意。</p>
+<p>注意到如果这条边是斜的，那么我们总是可以走一条更斜的线直接到达。如果此边水平，则不能到达。</p>
+<p>即输出三角形水平边的长度。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">using</span> <span class="n">pii</span> <span class="o">=</span> <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">T</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">T</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span> <span class="p">(</span><span class="n">T</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="o">:</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[](</span><span class="n">pii</span> <span class="n">a</span><span class="p">,</span> <span class="n">pii</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">second</span> <span class="o">==</span> <span class="n">b</span><span class="p">.</span><span class="n">second</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">first</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">second</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">});</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">second</span> <span class="o">==</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">second</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">abs</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">first</span> <span class="o">-</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">first</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;0</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="b-power-walking">B. Power Walking<a hidden class="anchor" aria-hidden="true" href="#b-power-walking">#</a></h2>
+<p>有一些能量包，每个小孩的能力增幅是其得到不同种类能量包的个数。</p>
+<p>总共有 $n$ 个能量包，其类别分别是 $\{a_i\}$。假如把这些分给 $k$ 个小孩，每个小孩至少得到一个能量包。</p>
+<p>求对所有的 $0 \leqslant k \leqslant n$，求这 $k$ 个小孩最小的能量增幅。</p>
+<h3 id="分析-1">分析<a hidden class="anchor" aria-hidden="true" href="#分析-1">#</a></h3>
+<p>设这 $n$ 个能量包中类别不同的共有 $m$ 个。</p>
+<ul>
+<li>若 $k \leqslant m$，则至少有 $m$ 的增幅，多出来的 $n-m$ 个可以和相同类别塞给同一个小朋友，没有额外增幅。</li>
+<li>若 $k &gt; m$，则至少有 $k$ 的增幅，多出来的 $n-k$ 个仍可以和相同类别合并，没有额外增幅。</li>
+</ul>
+<p>总之，最小的能量增幅是 $\max(k, m)$。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">T</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">T</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span> <span class="p">(</span><span class="n">T</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">ai</span> <span class="p">:</span> <span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">ai</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">sort</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">m</span> <span class="o">-=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">max</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">[</span><span class="n">i</span> <span class="o">==</span> <span class="n">n</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="c-great-sequence">C. Great Sequence<a hidden class="anchor" aria-hidden="true" href="#c-great-sequence">#</a></h2>
+<p>给定 $n$ 个数字 $\{a_i\}$，和一个数字 $x$。如果存在 $a_j$ 满足 $a_j = x a_i$，那么我们可以把这两个数配对。每个数字只能被配对一次。</p>
+<p>现在允许往序列 $\{a_i\}$ 中添加数字，问若要让序列中所有数字都被配对，最少添加几个数字。</p>
+<h3 id="分析-2">分析<a hidden class="anchor" aria-hidden="true" href="#分析-2">#</a></h3>
+<p>排序后，双指针配对即可，时间复杂度 $O(n)$。Map 大概也能过，时间复杂度 $O(n \log n)$。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">T</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">T</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span> <span class="p">(</span><span class="n">T</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ll</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">ai</span> <span class="p">:</span> <span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">ai</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">sort</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">		<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vis</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">while</span> <span class="p">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">r</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="k">while</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">||</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span> <span class="o">==</span> <span class="n">a</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">vis</span><span class="p">[</span><span class="n">l</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">				<span class="n">l</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span> <span class="o">==</span> <span class="n">a</span><span class="p">[</span><span class="n">r</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">				<span class="n">vis</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">vis</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">vi</span> <span class="p">:</span> <span class="n">vis</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">ans</span> <span class="o">+=</span> <span class="n">vi</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">n</span> <span class="o">-</span> <span class="n">ans</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="d-repetitions-decoding">D. Repetitions Decoding<a hidden class="anchor" aria-hidden="true" href="#d-repetitions-decoding">#</a></h2>
+<p>给定一个长为 $n$ 的序列 $\{a_i\}$，可以在任意位置插入相同的两个元素 $[c, c]$。</p>
+<p>Olya 希望序列能够被分成一系列子序列，并且所有子序列左右重复。</p>
+<h3 id="分析-3">分析<a hidden class="anchor" aria-hidden="true" href="#分析-3">#</a></h3>
+<p>对于左边第一个数 $a_1$，找到右侧与之相同的第一个数 $a_r$，不断在 $a_r$ 右侧插入数字使得 $a[1, r - 1]$ 到 $a[r, 2r - 2]$ 相同。然后再从 $2r-1$ 开始继续操作，直到序列结尾。</p>
+<p>若原序列存在数字是出现了奇数次，则一定无解。前述算法一定不能运行到结尾。</p>
+<p>注意到当原序列每个数字出现偶数次一定有解。而前述算法每次一定会减少一个数，故一定能找到解。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">using</span> <span class="n">pii</span> <span class="o">=</span> <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">T</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">T</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span> <span class="p">(</span><span class="n">T</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">vi</span> <span class="p">:</span> <span class="n">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">vi</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">bool</span> <span class="n">flag</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span> <span class="n">ans</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ans2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">while</span> <span class="p">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">v</span><span class="p">[</span><span class="n">l</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">					<span class="n">r</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">					<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="n">r</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="n">flag</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="k">while</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">len</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="n">v</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="n">r</span> <span class="o">+</span> <span class="n">len</span><span class="p">,</span> <span class="p">{</span><span class="n">v</span><span class="p">[</span><span class="n">l</span> <span class="o">+</span> <span class="n">len</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="n">l</span> <span class="o">+</span> <span class="n">len</span><span class="p">]});</span>
+</span></span><span class="line"><span class="cl">				<span class="n">ans</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="n">len</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="n">l</span> <span class="o">+</span> <span class="n">len</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">				<span class="n">len</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="n">l</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="n">len</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">ans2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">len</span> <span class="o">*</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">flag</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;-1</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="o">:</span> <span class="n">ans</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans2</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">ai</span> <span class="p">:</span> <span class="n">ans2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ai</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+
+  </div>
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="prev" href="https://acm.rogery.dev/post/2022-02/abc241/">
+    <span class="title">« Prev Page</span>
+    <br>
+    <span>AtCoder Beginner Contest 241 (A-E)</span>
+  </a>
+  <a class="next" href="https://acm.rogery.dev/post/2022-02/cf1644/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>Educational Codeforces Round 123 (Rated for Div. 2)(A-C)</span>
+  </a>
+</nav>
+<blockquote>
+    <p class="copyright-item">
+        本文作者： rogeryoungh。
+        许可协议：<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank">CC BY-SA 4.0</a>。
+        转载请署名！
+    </p>
+    <p class="copyright-item">
+        撰写时间：2022-02-23，
+        <a href="https://github.com/rogeryoungh/code-of-acm/#/commits/main/content/post/2022-02/CF1642.md" target="_blank">更新历史</a>。
+    </p>
+</blockquote>
+  </footer><div id="vcomments"></div>
+<script src='//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js'></script>
+<script type="text/javascript">
+    new Valine({
+        el: '#vcomments',
+        appId: 'fKamuLtYmV8QSg2WmPMXbsbT-gzGzoHsz',
+        appKey: 'xRU1tcJiz1qbaEMD5aRkPzXk',
+        avatar: 'mp',
+        placeholder: '说点什么吧...',
+        visitor: 'false'
+    });
+</script>
+</article>
+    </main>
+    <footer class="footer">
+    <span>© 2021 <a href="https://acm.rogery.dev">Roger Young</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="gototop" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+    document.getElementById("font-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("serif")) {
+            document.body.classList.remove('serif');
+            localStorage.setItem("pref-font", 'sans');
+        } else {
+            document.body.classList.add('serif');
+            localStorage.setItem("pref-font", 'serif');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script></body>
+
+</html>

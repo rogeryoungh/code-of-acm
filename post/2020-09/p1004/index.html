@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>P1004 方格取数 | Roger Young</title>
+<meta name="keywords" content="洛谷, DP" />
+<meta name="description" content="题目大意 在 $n \times n$ 的方格（$n \leqslant 9$）中存在一些正整数，经过格子时获得格子上的数，但只能获得一次。
+某人只能向右或向下走，从格子的左上角走到到右下角，共走两次，求最大能取得的数字。
+分析 考虑把先走后走转化为两个人同时走，只需要处理遇到两次的值即可。
+考虑四维 DP，用 $dp[x_1,y_1,x_2,y_2]$ 表示第一个人走到 $(x_1,y_1)$ 和第二个人走到 $(x_2,y_2)$。
+再考虑转移，每一个位置仅可能从其左面或上面转移来，于是可以写出（$x_1 \ne y_1$ 或 $x_2 \ne y_2$ 时）
+$$ dp[x_1,y_1,x_2,y_2] = \max\left\{ \begin{matrix} dp[x_1-1,y_1,x_2-1,y_2] \\ dp[x_1,y_1-1,x_2-1,y_2] \\ dp[x_1-1,y_1,x_2,y_2-1] \\ dp[x_1,y_1-1,x_2,y_2-1] \end{matrix}\right\} &#43; a[x_1,y_1] &#43; a[x_2,y_2] $$
+当 $x_1=y_1,x_2=y_2$ 时，只加一次即可。到这里 $O(n^4)$ 其实已经可以过题了，但还可以优化。
+注意到一些状态是不可达的，因为 $x_1&#43;y_1 = x_2&#43;y_2$，因此存在 $O(n^3)$ 的 DP。
+考虑当前已走长度 $h=x_1&#43;y_1=x_2&#43;y_2$，于是可以把两个人的座标表示为 $(x_1,h-x_1)$ 和 $(x_2,h-x_2)$。
+于是记状态为 $dp[h,x_1,x_2]$，当 $x_1 \ne x_2$ 时有
+$$ dp[h,x_1,x_2] = \max\left\{ \begin{matrix} dp[h-1,x_1,x_2] \\ dp[h-1,x_1,x_2-1] \\ dp[h-1,x_1-1,x_2] \\ dp[h-1,x_1-1,x_2-1] \end{matrix}\right\} &#43; a[x_1,h-x_1] &#43; a[x_2,h-x_2] $$">
+<meta name="author" content="rogeryoungh">
+<link rel="canonical" href="https://acm.rogery.dev/post/2020-09/p1004/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
+<link rel="preload" href="https://blog.rogery.dev/avatar.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.db5735216fdebd5ecb898cb813197906245b705e5f893e803582740b5cc873be.js" integrity="sha256-21c1IW/evV7LiYy4Exl5BiRbcF5fiT6ANYJ0C1zIc74="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://acm.rogery.dev/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://acm.rogery.dev/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://acm.rogery.dev/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://acm.rogery.dev/apple-touch-icon.png">
+<link rel="mask-icon" href="https://acm.rogery.dev/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.104.3" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body);"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+            
+            
+            delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '$', right: '$', display: false },
+                { left: '\\(', right: '\\)', display: false },
+                { left: '\\[', right: '\\]', display: true }
+            ],
+            
+            throwOnError: false
+        });
+    });
+</script>
+
+
+
+
+<meta property="og:title" content="P1004 方格取数" />
+<meta property="og:description" content="题目大意 在 $n \times n$ 的方格（$n \leqslant 9$）中存在一些正整数，经过格子时获得格子上的数，但只能获得一次。
+某人只能向右或向下走，从格子的左上角走到到右下角，共走两次，求最大能取得的数字。
+分析 考虑把先走后走转化为两个人同时走，只需要处理遇到两次的值即可。
+考虑四维 DP，用 $dp[x_1,y_1,x_2,y_2]$ 表示第一个人走到 $(x_1,y_1)$ 和第二个人走到 $(x_2,y_2)$。
+再考虑转移，每一个位置仅可能从其左面或上面转移来，于是可以写出（$x_1 \ne y_1$ 或 $x_2 \ne y_2$ 时）
+$$ dp[x_1,y_1,x_2,y_2] = \max\left\{ \begin{matrix} dp[x_1-1,y_1,x_2-1,y_2] \\ dp[x_1,y_1-1,x_2-1,y_2] \\ dp[x_1-1,y_1,x_2,y_2-1] \\ dp[x_1,y_1-1,x_2,y_2-1] \end{matrix}\right\} &#43; a[x_1,y_1] &#43; a[x_2,y_2] $$
+当 $x_1=y_1,x_2=y_2$ 时，只加一次即可。到这里 $O(n^4)$ 其实已经可以过题了，但还可以优化。
+注意到一些状态是不可达的，因为 $x_1&#43;y_1 = x_2&#43;y_2$，因此存在 $O(n^3)$ 的 DP。
+考虑当前已走长度 $h=x_1&#43;y_1=x_2&#43;y_2$，于是可以把两个人的座标表示为 $(x_1,h-x_1)$ 和 $(x_2,h-x_2)$。
+于是记状态为 $dp[h,x_1,x_2]$，当 $x_1 \ne x_2$ 时有
+$$ dp[h,x_1,x_2] = \max\left\{ \begin{matrix} dp[h-1,x_1,x_2] \\ dp[h-1,x_1,x_2-1] \\ dp[h-1,x_1-1,x_2] \\ dp[h-1,x_1-1,x_2-1] \end{matrix}\right\} &#43; a[x_1,h-x_1] &#43; a[x_2,h-x_2] $$" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://acm.rogery.dev/post/2020-09/p1004/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-09-20T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2020-09-20T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="P1004 方格取数"/>
+<meta name="twitter:description" content="题目大意 在 $n \times n$ 的方格（$n \leqslant 9$）中存在一些正整数，经过格子时获得格子上的数，但只能获得一次。
+某人只能向右或向下走，从格子的左上角走到到右下角，共走两次，求最大能取得的数字。
+分析 考虑把先走后走转化为两个人同时走，只需要处理遇到两次的值即可。
+考虑四维 DP，用 $dp[x_1,y_1,x_2,y_2]$ 表示第一个人走到 $(x_1,y_1)$ 和第二个人走到 $(x_2,y_2)$。
+再考虑转移，每一个位置仅可能从其左面或上面转移来，于是可以写出（$x_1 \ne y_1$ 或 $x_2 \ne y_2$ 时）
+$$ dp[x_1,y_1,x_2,y_2] = \max\left\{ \begin{matrix} dp[x_1-1,y_1,x_2-1,y_2] \\ dp[x_1,y_1-1,x_2-1,y_2] \\ dp[x_1-1,y_1,x_2,y_2-1] \\ dp[x_1,y_1-1,x_2,y_2-1] \end{matrix}\right\} &#43; a[x_1,y_1] &#43; a[x_2,y_2] $$
+当 $x_1=y_1,x_2=y_2$ 时，只加一次即可。到这里 $O(n^4)$ 其实已经可以过题了，但还可以优化。
+注意到一些状态是不可达的，因为 $x_1&#43;y_1 = x_2&#43;y_2$，因此存在 $O(n^3)$ 的 DP。
+考虑当前已走长度 $h=x_1&#43;y_1=x_2&#43;y_2$，于是可以把两个人的座标表示为 $(x_1,h-x_1)$ 和 $(x_2,h-x_2)$。
+于是记状态为 $dp[h,x_1,x_2]$，当 $x_1 \ne x_2$ 时有
+$$ dp[h,x_1,x_2] = \max\left\{ \begin{matrix} dp[h-1,x_1,x_2] \\ dp[h-1,x_1,x_2-1] \\ dp[h-1,x_1-1,x_2] \\ dp[h-1,x_1-1,x_2-1] \end{matrix}\right\} &#43; a[x_1,h-x_1] &#43; a[x_2,h-x_2] $$"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Posts",
+      "item": "https://acm.rogery.dev/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "P1004 方格取数",
+      "item": "https://acm.rogery.dev/post/2020-09/p1004/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "P1004 方格取数",
+  "name": "P1004 方格取数",
+  "description": "题目大意 在 $n \\times n$ 的方格（$n \\leqslant 9$）中存在一些正整数，经过格子时获得格子上的数，但只能获得一次。\n某人只能向右或向下走，从格子的左上角走到到右下角，共走两次，求最大能取得的数字。\n分析 考虑把先走后走转化为两个人同时走，只需要处理遇到两次的值即可。\n考虑四维 DP，用 $dp[x_1,y_1,x_2,y_2]$ 表示第一个人走到 $(x_1,y_1)$ 和第二个人走到 $(x_2,y_2)$。\n再考虑转移，每一个位置仅可能从其左面或上面转移来，于是可以写出（$x_1 \\ne y_1$ 或 $x_2 \\ne y_2$ 时）\n$$ dp[x_1,y_1,x_2,y_2] = \\max\\left\\{ \\begin{matrix} dp[x_1-1,y_1,x_2-1,y_2] \\\\ dp[x_1,y_1-1,x_2-1,y_2] \\\\ dp[x_1-1,y_1,x_2,y_2-1] \\\\ dp[x_1,y_1-1,x_2,y_2-1] \\end{matrix}\\right\\} + a[x_1,y_1] + a[x_2,y_2] $$\n当 $x_1=y_1,x_2=y_2$ 时，只加一次即可。到这里 $O(n^4)$ 其实已经可以过题了，但还可以优化。\n注意到一些状态是不可达的，因为 $x_1+y_1 = x_2+y_2$，因此存在 $O(n^3)$ 的 DP。\n考虑当前已走长度 $h=x_1+y_1=x_2+y_2$，于是可以把两个人的座标表示为 $(x_1,h-x_1)$ 和 $(x_2,h-x_2)$。\n于是记状态为 $dp[h,x_1,x_2]$，当 $x_1 \\ne x_2$ 时有\n$$ dp[h,x_1,x_2] = \\max\\left\\{ \\begin{matrix} dp[h-1,x_1,x_2] \\\\ dp[h-1,x_1,x_2-1] \\\\ dp[h-1,x_1-1,x_2] \\\\ dp[h-1,x_1-1,x_2-1] \\end{matrix}\\right\\} + a[x_1,h-x_1] + a[x_2,h-x_2] $$",
+  "keywords": [
+    "洛谷", "DP"
+  ],
+  "articleBody": "题目大意 在 $n \\times n$ 的方格（$n \\leqslant 9$）中存在一些正整数，经过格子时获得格子上的数，但只能获得一次。\n某人只能向右或向下走，从格子的左上角走到到右下角，共走两次，求最大能取得的数字。\n分析 考虑把先走后走转化为两个人同时走，只需要处理遇到两次的值即可。\n考虑四维 DP，用 $dp[x_1,y_1,x_2,y_2]$ 表示第一个人走到 $(x_1,y_1)$ 和第二个人走到 $(x_2,y_2)$。\n再考虑转移，每一个位置仅可能从其左面或上面转移来，于是可以写出（$x_1 \\ne y_1$ 或 $x_2 \\ne y_2$ 时）\n$$ dp[x_1,y_1,x_2,y_2] = \\max\\left\\{ \\begin{matrix} dp[x_1-1,y_1,x_2-1,y_2] \\\\ dp[x_1,y_1-1,x_2-1,y_2] \\\\ dp[x_1-1,y_1,x_2,y_2-1] \\\\ dp[x_1,y_1-1,x_2,y_2-1] \\end{matrix}\\right\\} + a[x_1,y_1] + a[x_2,y_2] $$\n当 $x_1=y_1,x_2=y_2$ 时，只加一次即可。到这里 $O(n^4)$ 其实已经可以过题了，但还可以优化。\n注意到一些状态是不可达的，因为 $x_1+y_1 = x_2+y_2$，因此存在 $O(n^3)$ 的 DP。\n考虑当前已走长度 $h=x_1+y_1=x_2+y_2$，于是可以把两个人的座标表示为 $(x_1,h-x_1)$ 和 $(x_2,h-x_2)$。\n于是记状态为 $dp[h,x_1,x_2]$，当 $x_1 \\ne x_2$ 时有\n$$ dp[h,x_1,x_2] = \\max\\left\\{ \\begin{matrix} dp[h-1,x_1,x_2] \\\\ dp[h-1,x_1,x_2-1] \\\\ dp[h-1,x_1-1,x_2] \\\\ dp[h-1,x_1-1,x_2-1] \\end{matrix}\\right\\} + a[x_1,h-x_1] + a[x_2,h-x_2] $$\n再注意到可以使用滚动数组，因此有\nll mtx[10][10], dp[10][10]; int main() { ll N = rr(); while (true) { ll a = rr(), b = rr(), c = rr(); if (a + b + c == 0) break; mtx[a][b] = c; } for (ll ss = 2; ss \u003c= 2 * N; ss++) { ll max_x1 = min(N, ss - 1), min_x1 = max(1ll, ss - N); for (ll x1 = max_x1; x1 \u003e= min_x1; x1--) { ll max_x2 = min(N, ss - 1), min_x2 = max(1ll, ss - N); for (ll x2 = max_x2; x2 \u003e= min_x2; x2--) { dp[x1][x2] = max4( dp[x1 - 1][x2 - 1], dp[x1][x2 - 1], dp[x1 - 1][x2], dp[x1][x2] ); dp[x1][x2] += mtx[x1][ss - x1] + mtx[x2][ss - x2]; if (x1 == x2) dp[x1][x2] -= mtx[x1][ss - x1]; } } } printf(\"%lld\\n\", dp[N][N]); return 0; } ",
+  "wordCount" : "222",
+  "inLanguage": "en",
+  "datePublished": "2020-09-20T00:00:00Z",
+  "dateModified": "2020-09-20T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "rogeryoungh"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://acm.rogery.dev/post/2020-09/p1004/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Roger Young",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://acm.rogery.dev/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-font") === "serif") {
+        document.body.classList.add('serif');
+    }
+
+</script>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://acm.rogery.dev" accesskey="h" title="Roger Young (Alt + H)">Roger Young</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <button id="font-toggle" accesskey="t" title="(Alt + T)">A</button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://acm.rogery.dev/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://acm.rogery.dev/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://acm.rogery.dev/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://acm.rogery.dev/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      P1004 方格取数
+    </h1>
+    <div class="post-meta">September 20, 2020&nbsp;·&nbsp;rogeryoungh
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <div class="details">Table of Contents</div>
+        </summary>
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e9%a2%98%e7%9b%ae%e5%a4%a7%e6%84%8f" aria-label="题目大意">题目大意</a></li>
+                <li>
+                    <a href="#%e5%88%86%e6%9e%90" aria-label="分析">分析</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="题目大意">题目大意<a hidden class="anchor" aria-hidden="true" href="#题目大意">#</a></h2>
+<p>在 $n \times n$ 的方格（$n \leqslant 9$）中存在一些正整数，经过格子时获得格子上的数，但只能获得一次。</p>
+<p>某人只能向右或向下走，从格子的左上角走到到右下角，共走两次，求最大能取得的数字。</p>
+<h2 id="分析">分析<a hidden class="anchor" aria-hidden="true" href="#分析">#</a></h2>
+<p>考虑把先走后走转化为两个人同时走，只需要处理遇到两次的值即可。</p>
+<p>考虑四维 DP，用 $dp[x_1,y_1,x_2,y_2]$ 表示第一个人走到 $(x_1,y_1)$ 和第二个人走到 $(x_2,y_2)$。</p>
+<p>再考虑转移，每一个位置仅可能从其左面或上面转移来，于是可以写出（$x_1 \ne y_1$ 或 $x_2 \ne y_2$ 时）</p>
+<p>$$
+dp[x_1,y_1,x_2,y_2] = \max\left\{ \begin{matrix}
+dp[x_1-1,y_1,x_2-1,y_2] \\
+dp[x_1,y_1-1,x_2-1,y_2] \\
+dp[x_1-1,y_1,x_2,y_2-1] \\
+dp[x_1,y_1-1,x_2,y_2-1]
+\end{matrix}\right\}  + a[x_1,y_1] + a[x_2,y_2]
+$$</p>
+<p>当 $x_1=y_1,x_2=y_2$ 时，只加一次即可。到这里 $O(n^4)$ 其实已经可以过题了，但还可以优化。</p>
+<p>注意到一些状态是不可达的，因为 $x_1+y_1 = x_2+y_2$，因此存在 $O(n^3)$ 的 DP。</p>
+<p>考虑当前已走长度 $h=x_1+y_1=x_2+y_2$，于是可以把两个人的座标表示为 $(x_1,h-x_1)$ 和 $(x_2,h-x_2)$。</p>
+<p>于是记状态为 $dp[h,x_1,x_2]$，当 $x_1 \ne x_2$ 时有</p>
+<p>$$
+dp[h,x_1,x_2] = \max\left\{ \begin{matrix}
+dp[h-1,x_1,x_2] \\
+dp[h-1,x_1,x_2-1] \\
+dp[h-1,x_1-1,x_2] \\
+dp[h-1,x_1-1,x_2-1]
+\end{matrix}\right\}  + a[x_1,h-x_1] + a[x_2,h-x_2]
+$$</p>
+<p>再注意到可以使用滚动数组，因此有</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">ll</span> <span class="n">mtx</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">10</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">10</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ll</span> <span class="n">N</span> <span class="o">=</span> <span class="n">rr</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ll</span> <span class="n">a</span> <span class="o">=</span> <span class="n">rr</span><span class="p">(),</span> <span class="n">b</span> <span class="o">=</span> <span class="n">rr</span><span class="p">(),</span> <span class="n">c</span> <span class="o">=</span> <span class="n">rr</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">mtx</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">ss</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">ss</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">N</span><span class="p">;</span> <span class="n">ss</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ll</span> <span class="n">max_x1</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">ss</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">min_x1</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="mi">1ll</span><span class="p">,</span> <span class="n">ss</span> <span class="o">-</span> <span class="n">N</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">max_x1</span><span class="p">;</span> <span class="n">x1</span> <span class="o">&gt;=</span> <span class="n">min_x1</span><span class="p">;</span> <span class="n">x1</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">ll</span> <span class="n">max_x2</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">ss</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">min_x2</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="mi">1ll</span><span class="p">,</span> <span class="n">ss</span> <span class="o">-</span> <span class="n">N</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">max_x2</span><span class="p">;</span> <span class="n">x2</span> <span class="o">&gt;=</span> <span class="n">min_x2</span><span class="p">;</span> <span class="n">x2</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="n">dp</span><span class="p">[</span><span class="n">x1</span><span class="p">][</span><span class="n">x2</span><span class="p">]</span> <span class="o">=</span> <span class="n">max4</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">					<span class="n">dp</span><span class="p">[</span><span class="n">x1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">x2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">					<span class="n">dp</span><span class="p">[</span><span class="n">x1</span><span class="p">][</span><span class="n">x2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">					<span class="n">dp</span><span class="p">[</span><span class="n">x1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">x2</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">					<span class="n">dp</span><span class="p">[</span><span class="n">x1</span><span class="p">][</span><span class="n">x2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">				<span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="n">dp</span><span class="p">[</span><span class="n">x1</span><span class="p">][</span><span class="n">x2</span><span class="p">]</span> <span class="o">+=</span> <span class="n">mtx</span><span class="p">[</span><span class="n">x1</span><span class="p">][</span><span class="n">ss</span> <span class="o">-</span> <span class="n">x1</span><span class="p">]</span> <span class="o">+</span> <span class="n">mtx</span><span class="p">[</span><span class="n">x2</span><span class="p">][</span><span class="n">ss</span> <span class="o">-</span> <span class="n">x2</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span> <span class="p">(</span><span class="n">x1</span> <span class="o">==</span> <span class="n">x2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">					<span class="n">dp</span><span class="p">[</span><span class="n">x1</span><span class="p">][</span><span class="n">x2</span><span class="p">]</span> <span class="o">-=</span> <span class="n">mtx</span><span class="p">[</span><span class="n">x1</span><span class="p">][</span><span class="n">ss</span> <span class="o">-</span> <span class="n">x1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%lld</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">N</span><span class="p">][</span><span class="n">N</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+
+  </div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://acm.rogery.dev/tags/%E6%B4%9B%E8%B0%B7/">洛谷</a></li>
+      <li><a href="https://acm.rogery.dev/tags/dp/">DP</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://acm.rogery.dev/post/2020-09/cf1384b2/">
+    <span class="title">« Prev Page</span>
+    <br>
+    <span>CF1384B2 Koa and the Beach</span>
+  </a>
+  <a class="next" href="https://acm.rogery.dev/post/other/jump/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>OJ 题目跳转</span>
+  </a>
+</nav>
+<blockquote>
+    <p class="copyright-item">
+        本文作者： rogeryoungh。
+        许可协议：<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank">CC BY-SA 4.0</a>。
+        转载请署名！
+    </p>
+    <p class="copyright-item">
+        撰写时间：2020-09-20，
+        <a href="https://github.com/rogeryoungh/code-of-acm/#/commits/main/content/post/2020-09/P1004.md" target="_blank">更新历史</a>。
+    </p>
+</blockquote>
+  </footer><div id="vcomments"></div>
+<script src='//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js'></script>
+<script type="text/javascript">
+    new Valine({
+        el: '#vcomments',
+        appId: 'fKamuLtYmV8QSg2WmPMXbsbT-gzGzoHsz',
+        appKey: 'xRU1tcJiz1qbaEMD5aRkPzXk',
+        avatar: 'mp',
+        placeholder: '说点什么吧...',
+        visitor: 'false'
+    });
+</script>
+</article>
+    </main>
+    <footer class="footer">
+    <span>© 2021 <a href="https://acm.rogery.dev">Roger Young</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="gototop" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+    document.getElementById("font-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("serif")) {
+            document.body.classList.remove('serif');
+            localStorage.setItem("pref-font", 'sans');
+        } else {
+            document.body.classList.add('serif');
+            localStorage.setItem("pref-font", 'serif');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script></body>
+
+</html>

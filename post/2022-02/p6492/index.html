@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>P6492 STEP | Roger Young</title>
+<meta name="keywords" content="" />
+<meta name="description" content="题目大意 给定一个长度为 $n$ 的字符序列，初始全是 L。
+有 $q$ 次操作，每次将 $a_x$ 在 L 和 R 中切换。
+求每次操作后字符串中最长交错序列的长度。
+分析 首先需要逐位异或，把交错序列变成相同元素。我想到的是另一种办法，如果 $a_i$ 相对与 $a_{i-1}$ 是变化的，那么 $b_i$ 为 $1$。原问题即被转化为维护最长 $1$ 的个数。
+用线段树维护每一层的信息，其中 $l$ 表示左边界上的最长长度，$r$ 表示右边界上的最长长度，$val$ 表示整个区间上的最长长度。
+关键在于如何编写 pull 合并信息。
+如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。 struct SegmentTree { vector&lt;int&gt; l, r, val; int N; SegmentTree(int n) { N = 2 &lt;&lt; std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 &#43; 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] &#43;= l[rs]; if (r[rs] == len) r[p] &#43;= r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] &#43; l[rs]}); } void modify(int i) { i &#43;= N; l[i] = r[i] = val[i] = !">
+<meta name="author" content="rogeryoungh">
+<link rel="canonical" href="https://acm.rogery.dev/post/2022-02/p6492/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
+<link rel="preload" href="https://blog.rogery.dev/avatar.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.db5735216fdebd5ecb898cb813197906245b705e5f893e803582740b5cc873be.js" integrity="sha256-21c1IW/evV7LiYy4Exl5BiRbcF5fiT6ANYJ0C1zIc74="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://acm.rogery.dev/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://acm.rogery.dev/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://acm.rogery.dev/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://acm.rogery.dev/apple-touch-icon.png">
+<link rel="mask-icon" href="https://acm.rogery.dev/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.104.3" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body);"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+            
+            
+            delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '$', right: '$', display: false },
+                { left: '\\(', right: '\\)', display: false },
+                { left: '\\[', right: '\\]', display: true }
+            ],
+            
+            throwOnError: false
+        });
+    });
+</script>
+
+
+
+
+<meta property="og:title" content="P6492 STEP" />
+<meta property="og:description" content="题目大意 给定一个长度为 $n$ 的字符序列，初始全是 L。
+有 $q$ 次操作，每次将 $a_x$ 在 L 和 R 中切换。
+求每次操作后字符串中最长交错序列的长度。
+分析 首先需要逐位异或，把交错序列变成相同元素。我想到的是另一种办法，如果 $a_i$ 相对与 $a_{i-1}$ 是变化的，那么 $b_i$ 为 $1$。原问题即被转化为维护最长 $1$ 的个数。
+用线段树维护每一层的信息，其中 $l$ 表示左边界上的最长长度，$r$ 表示右边界上的最长长度，$val$ 表示整个区间上的最长长度。
+关键在于如何编写 pull 合并信息。
+如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。 struct SegmentTree { vector&lt;int&gt; l, r, val; int N; SegmentTree(int n) { N = 2 &lt;&lt; std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 &#43; 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] &#43;= l[rs]; if (r[rs] == len) r[p] &#43;= r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] &#43; l[rs]}); } void modify(int i) { i &#43;= N; l[i] = r[i] = val[i] = !" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://acm.rogery.dev/post/2022-02/p6492/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-02-22T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2022-02-22T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="P6492 STEP"/>
+<meta name="twitter:description" content="题目大意 给定一个长度为 $n$ 的字符序列，初始全是 L。
+有 $q$ 次操作，每次将 $a_x$ 在 L 和 R 中切换。
+求每次操作后字符串中最长交错序列的长度。
+分析 首先需要逐位异或，把交错序列变成相同元素。我想到的是另一种办法，如果 $a_i$ 相对与 $a_{i-1}$ 是变化的，那么 $b_i$ 为 $1$。原问题即被转化为维护最长 $1$ 的个数。
+用线段树维护每一层的信息，其中 $l$ 表示左边界上的最长长度，$r$ 表示右边界上的最长长度，$val$ 表示整个区间上的最长长度。
+关键在于如何编写 pull 合并信息。
+如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。 struct SegmentTree { vector&lt;int&gt; l, r, val; int N; SegmentTree(int n) { N = 2 &lt;&lt; std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 &#43; 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] &#43;= l[rs]; if (r[rs] == len) r[p] &#43;= r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] &#43; l[rs]}); } void modify(int i) { i &#43;= N; l[i] = r[i] = val[i] = !"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Posts",
+      "item": "https://acm.rogery.dev/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "P6492 STEP",
+      "item": "https://acm.rogery.dev/post/2022-02/p6492/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "P6492 STEP",
+  "name": "P6492 STEP",
+  "description": "题目大意 给定一个长度为 $n$ 的字符序列，初始全是 L。\n有 $q$ 次操作，每次将 $a_x$ 在 L 和 R 中切换。\n求每次操作后字符串中最长交错序列的长度。\n分析 首先需要逐位异或，把交错序列变成相同元素。我想到的是另一种办法，如果 $a_i$ 相对与 $a_{i-1}$ 是变化的，那么 $b_i$ 为 $1$。原问题即被转化为维护最长 $1$ 的个数。\n用线段树维护每一层的信息，其中 $l$ 表示左边界上的最长长度，$r$ 表示右边界上的最长长度，$val$ 表示整个区间上的最长长度。\n关键在于如何编写 pull 合并信息。\n如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。 struct SegmentTree { vector\u0026lt;int\u0026gt; l, r, val; int N; SegmentTree(int n) { N = 2 \u0026lt;\u0026lt; std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 + 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] += l[rs]; if (r[rs] == len) r[p] += r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] + l[rs]}); } void modify(int i) { i += N; l[i] = r[i] = val[i] = !",
+  "keywords": [
+    
+  ],
+  "articleBody": "题目大意 给定一个长度为 $n$ 的字符序列，初始全是 L。\n有 $q$ 次操作，每次将 $a_x$ 在 L 和 R 中切换。\n求每次操作后字符串中最长交错序列的长度。\n分析 首先需要逐位异或，把交错序列变成相同元素。我想到的是另一种办法，如果 $a_i$ 相对与 $a_{i-1}$ 是变化的，那么 $b_i$ 为 $1$。原问题即被转化为维护最长 $1$ 的个数。\n用线段树维护每一层的信息，其中 $l$ 表示左边界上的最长长度，$r$ 表示右边界上的最长长度，$val$ 表示整个区间上的最长长度。\n关键在于如何编写 pull 合并信息。\n如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。 struct SegmentTree { vector\u003cint\u003e l, r, val; int N; SegmentTree(int n) { N = 2 \u003c\u003c std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 + 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] += l[rs]; if (r[rs] == len) r[p] += r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] + l[rs]}); } void modify(int i) { i += N; l[i] = r[i] = val[i] = !val[i]; int len = 1; for (int k = i / 2; k \u003e= 1; k /= 2, len *= 2) { pull(k, len); } } }; ",
+  "wordCount" : "158",
+  "inLanguage": "en",
+  "datePublished": "2022-02-22T00:00:00Z",
+  "dateModified": "2022-02-22T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "rogeryoungh"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://acm.rogery.dev/post/2022-02/p6492/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Roger Young",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://acm.rogery.dev/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-font") === "serif") {
+        document.body.classList.add('serif');
+    }
+
+</script>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://acm.rogery.dev" accesskey="h" title="Roger Young (Alt + H)">Roger Young</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <button id="font-toggle" accesskey="t" title="(Alt + T)">A</button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://acm.rogery.dev/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://acm.rogery.dev/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://acm.rogery.dev/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://acm.rogery.dev/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      P6492 STEP
+    </h1>
+    <div class="post-meta">February 22, 2022&nbsp;·&nbsp;rogeryoungh
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <div class="details">Table of Contents</div>
+        </summary>
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e9%a2%98%e7%9b%ae%e5%a4%a7%e6%84%8f" aria-label="题目大意">题目大意</a></li>
+                <li>
+                    <a href="#%e5%88%86%e6%9e%90" aria-label="分析">分析</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="题目大意">题目大意<a hidden class="anchor" aria-hidden="true" href="#题目大意">#</a></h2>
+<p>给定一个长度为 $n$ 的字符序列，初始全是 <code>L</code>。</p>
+<p>有 $q$ 次操作，每次将 $a_x$ 在 <code>L</code> 和 <code>R</code> 中切换。</p>
+<p>求每次操作后字符串中最长交错序列的长度。</p>
+<h2 id="分析">分析<a hidden class="anchor" aria-hidden="true" href="#分析">#</a></h2>
+<p>首先需要逐位异或，把交错序列变成相同元素。我想到的是另一种办法，如果 $a_i$ 相对与 $a_{i-1}$ 是变化的，那么 $b_i$ 为 $1$。原问题即被转化为维护最长 $1$ 的个数。</p>
+<p>用线段树维护每一层的信息，其中 $l$ 表示左边界上的最长长度，$r$ 表示右边界上的最长长度，$val$ 表示整个区间上的最长长度。</p>
+<p>关键在于如何编写 <code>pull</code> 合并信息。</p>
+<ul>
+<li>如果整块区域都是 $1$，那么可以和另一块区域合并。</li>
+<li>合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和<strong>中间</strong>中取。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">SegmentTree</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">val</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">N</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">SegmentTree</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">N</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">__lg</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">l</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">r</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">val</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">pull</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">ls</span> <span class="o">=</span> <span class="n">p</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">p</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">l</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">l</span><span class="p">[</span><span class="n">ls</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">rs</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="n">ls</span><span class="p">]</span> <span class="o">==</span> <span class="n">len</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">l</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">+=</span> <span class="n">l</span><span class="p">[</span><span class="n">rs</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">rs</span><span class="p">]</span> <span class="o">==</span> <span class="n">len</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">r</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">+=</span> <span class="n">r</span><span class="p">[</span><span class="n">ls</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">		<span class="n">val</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">({</span><span class="n">l</span><span class="p">[</span><span class="n">p</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="n">p</span><span class="p">],</span> <span class="n">val</span><span class="p">[</span><span class="n">ls</span><span class="p">],</span> <span class="n">val</span><span class="p">[</span><span class="n">rs</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="n">ls</span><span class="p">]</span> <span class="o">+</span> <span class="n">l</span><span class="p">[</span><span class="n">rs</span><span class="p">]});</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">modify</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">i</span> <span class="o">+=</span> <span class="n">N</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">!</span><span class="n">val</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span> <span class="n">k</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">k</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">len</span> <span class="o">*=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">pull</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div>
+
+  </div>
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="prev" href="https://acm.rogery.dev/post/2022-02/cf242e/">
+    <span class="title">« Prev Page</span>
+    <br>
+    <span>CF242E XOR on Segment</span>
+  </a>
+  <a class="next" href="https://acm.rogery.dev/post/2022-02/hj6/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>ZAFU 2022.02.16 个人赛题解</span>
+  </a>
+</nav>
+<blockquote>
+    <p class="copyright-item">
+        本文作者： rogeryoungh。
+        许可协议：<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank">CC BY-SA 4.0</a>。
+        转载请署名！
+    </p>
+    <p class="copyright-item">
+        撰写时间：2022-02-22，
+        <a href="https://github.com/rogeryoungh/code-of-acm/#/commits/main/content/post/2022-02/P6492.md" target="_blank">更新历史</a>。
+    </p>
+</blockquote>
+  </footer><div id="vcomments"></div>
+<script src='//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js'></script>
+<script type="text/javascript">
+    new Valine({
+        el: '#vcomments',
+        appId: 'fKamuLtYmV8QSg2WmPMXbsbT-gzGzoHsz',
+        appKey: 'xRU1tcJiz1qbaEMD5aRkPzXk',
+        avatar: 'mp',
+        placeholder: '说点什么吧...',
+        visitor: 'false'
+    });
+</script>
+</article>
+    </main>
+    <footer class="footer">
+    <span>© 2021 <a href="https://acm.rogery.dev">Roger Young</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="gototop" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+    document.getElementById("font-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("serif")) {
+            document.body.classList.remove('serif');
+            localStorage.setItem("pref-font", 'sans');
+        } else {
+            document.body.classList.add('serif');
+            localStorage.setItem("pref-font", 'serif');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script></body>
+
+</html>

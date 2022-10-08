@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>洛谷 on Roger Young</title>
+    <link>https://acm.rogery.dev/tags/%E6%B4%9B%E8%B0%B7/</link>
+    <description>Recent content in 洛谷 on Roger Young</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>© 2021 [Roger Young](https://acm.rogery.dev)</copyright>
+    <lastBuildDate>Wed, 28 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/tags/%E6%B4%9B%E8%B0%B7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>P4173 残缺的字符串</title>
+      <link>https://acm.rogery.dev/post/2021-07/p4173/</link>
+      <pubDate>Wed, 28 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2021-07/p4173/</guid>
+      <description>魔改 KMP 大概是不行的，卷积在这里出现的很妙。
+卷积处理匹配 定义匹配函数
+$$ d(x,y) = [x = y] $$
+给定文本串 $B$ 和长为 $m$ 的模式串 $A$，要找出 $A$ 在 $B$ 的所有出现，可以定义
+$$ f(k) = \sum_{i=0}^{m-1} d(A_{i}, B_{i-m+k}) $$
+即 $f(k) = 0$ 时有完全匹配 $A = B[k-m\ldots k-1]$。考虑让 $d$ 函数更 “数学” 一点，以更好的计算
+$$ d(x,y) = (x - y)^2 $$
+再提供模式串 $A$ 的翻转 $S$，即 $A_i = S_{m-i}$，展开有
+$$ \begin{aligned} f(k) &amp;amp;= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{i-m+k}^2 - 2\sum_{i=0}^{m-1} A_{i}B_{i-m+k}\\ &amp;amp;= \sum_{i=0}^{m-1}A_{i}^2 + \sum_{i=0}^{m-1}B_{i-m+k}^2 - 2\sum_{i=0}^{m-1} S_{m-i}B_{i-m+k} \end{aligned} $$</description>
+    </item>
+    
+    <item>
+      <title>P1762 偶数</title>
+      <link>https://acm.rogery.dev/post/2021-07/p1762/</link>
+      <pubDate>Mon, 12 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2021-07/p1762/</guid>
+      <description>题目大意 求杨辉三角形前 $n$ 行的偶数个数，对 $1000003$ 取模。
+分析 对杨辉三角奇数打表。
+1 1 1 1 1 1 1 1 1 1	1 1 1	1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	1 1 1	1 1 1 1	1 1 1 1 1 1	1 1 1 1 1	1	1	1 1 1	1 1	1 1	1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	1 1 1	1 1 1 1	1 1 1 1 1 1	1 1 1 1 1	1	1	1 1 1	1 1	1 1	1 1 1 1 1 1	1 1 1 1 1 1 1 1 1 1 1 1	1 1 1 1 1 1 1 1 1	1	1	1 1 1	1 1	1 1	1 1 1 1	1 1	1 1	1 1 1 1 1 1	1 1 1 1	1 1 1 1	1 1 1 1 1	1	1	1	1	1	1	1 1 1	1 1	1 1	1 1	1 1	1 1	1 1	1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 于是递推公式</description>
+    </item>
+    
+    <item>
+      <title>P2257 YY 的 GCD</title>
+      <link>https://acm.rogery.dev/post/2021-05/p2257/</link>
+      <pubDate>Wed, 26 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2021-05/p2257/</guid>
+      <description>题目大意 即求
+$$ \sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) \in \mathbb{P}] $$
+分析 先转化一下
+$$ \sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) \in \mathbb{P}] = \sum_{p}\sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) = p] $$
+在 P2522 中得到
+$$ \sum_{i=1}^x \sum_{j=1}^y [\gcd(i,j) = k] = \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tk} \right\rfloor \left\lfloor \frac{y}{tk} \right\rfloor $$
+代入有
+$$ \sum_{p} \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tp} \right\rfloor \left\lfloor \frac{y}{tp} \right\rfloor $$
+令 $T = tp$，$T$ 的上界应还是 $\min(x,y)$，代入有
+$$ \sum_{T=1}^{\min(x,y)} \left\lfloor \frac{x}{T} \right\rfloor \left\lfloor \frac{y}{T} \right\rfloor \sum_{p \mid T} \mu\left(\frac{T}{p}\right) $$</description>
+    </item>
+    
+    <item>
+      <title>P2350 外星人</title>
+      <link>https://acm.rogery.dev/post/2021-05/p2350/</link>
+      <pubDate>Tue, 25 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2021-05/p2350/</guid>
+      <description>题目大意 设
+$$ \varphi_{x+1}(m) = \varphi(\varphi_x(m)) $$
+求最小的 $x$ 使得 $\varphi_x(m) = 1$。
+其中 $\varphi(m)$ 是欧拉函数。
+分析 注意到仅有 $\varphi(1) = \varphi(2) = 1$，再有公式
+$$ \varphi\left(\prod_{i=1}^mp_i^{q_i}\right) = \prod_{i=1}^m(p_i-1)p_i^{q_i-1} $$
+因此从唯一分解形式的角度来看，迭代一次消去了一个 $2$，也生成了一些 $2$。
+考虑设 $f(n)$ 为 $\varphi(n)$ 中因子 $2$ 的个数。
+设 $\gcd(a,b) = 1$，可以证明 $f(ab) = f(a) f(b)$。同时 $f(p) = f(p-1)$。
+这说明 $f(x)$ 是一个积性函数，可以用 Euler 筛递推。
+const ll MN = 1e5 + 10; bool notp[1000001]; int prime[200001], cnt, phi[1000001]; void sieve(int n) { phi[1] = 1; for (ll i = 2; i &amp;lt;= n; i++) { if (!</description>
+    </item>
+    
+    <item>
+      <title>P2303 Longge 的问题</title>
+      <link>https://acm.rogery.dev/post/2021-05/p2303/</link>
+      <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2021-05/p2303/</guid>
+      <description>题目大意 即求
+$$ \sum_{i=1}^n \gcd(i,n) $$
+分析 联想到
+$$ \varphi(n) = \sum_{i=1}^n [\gcd(i,n) = 1] $$
+尝试凑这个形式
+$$ \begin{aligned} \sum_{i=1}^n \gcd(i,n) &amp;amp;= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \\ &amp;amp;= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \\ &amp;amp;= \sum_{d \mid n} d \varphi(n/d) \end{aligned} $$
+这里其实已经可以过题了，但还可以再瞎搞一下，令
+$$ nf(n) = \sum_{d \mid n} d \varphi(n/d) = n\sum_{d \mid n} \frac{\varphi(d)}{d} $$
+尝试证明 $f(n)$ 是一个积性函数。设 $\gcd(a,b) = 1$，有</description>
+    </item>
+    
+    <item>
+      <title>P4721 分治 FFT</title>
+      <link>https://acm.rogery.dev/post/2021-05/p4721/</link>
+      <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2021-05/p4721/</guid>
+      <description>题目大意 给定 $g[1], \cdots, g[m]$，求序列 $f$。
+$$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$
+分析 不妨令 $g [0] = 0$，$h (x) = g (x) + h [0]$，我们要解方程
+$$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$
+这个形式看似卷积，但实际上它缺了一项。对 $n &amp;gt; 0$ 凑卷积</description>
+    </item>
+    
+    <item>
+      <title>P2522 Problem B</title>
+      <link>https://acm.rogery.dev/post/2021-05/p2522/</link>
+      <pubDate>Wed, 19 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2021-05/p2522/</guid>
+      <description>题目大意 即求
+$$ \sum_{i=a}^b \sum_{j=c}^d [\gcd(i,j) = k] $$
+分析 容易想到，独立出函数 $f(k)$ 使得
+$$ f(k) = \sum_{i=1}^x \sum_{j=1}^y [\gcd(i,j) = k] $$
+利用 Mobius 反演化简，设 $F(d)$
+$$ F(n) = \sum_{n \mid d} f(d) = \sum_{i=1}^x \sum_{j=1}^y [n \mid i][n \mid j] = \left\lfloor \frac{x}{n} \right\rfloor \left\lfloor \frac{y}{n} \right\rfloor $$
+反演化简有
+$$ f(n) = \sum_{n \mid d} \mu\left(\frac{d}{n}\right)F(d) = \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tn} \right\rfloor \left\lfloor \frac{y}{tn} \right\rfloor $$
+预处理出 $\mu(t)$ 的前缀和，剩下的就是一个二重分块了。</description>
+    </item>
+    
+    <item>
+      <title>P2261 余数求和</title>
+      <link>https://acm.rogery.dev/post/2021-04/p2261/</link>
+      <pubDate>Fri, 30 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2021-04/p2261/</guid>
+      <description>题目大意 给出正整数 $n$ 和 $k$，请计算
+$$ G(n, k) = \sum_{i = 1}^n k \bmod i $$
+分析 因为
+$$ k \bmod i = k - i \left\lfloor \frac{k}{i} \right\rfloor $$
+因此有
+$$ G(n,k) = nk - \sum_{i=1}^n i \left\lfloor \frac{k}{i} \right\rfloor $$
+后面需要整数分块。
+int main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l = 1, r; l &amp;lt;= n; l = r + 1) { r = min(n, k / (k / l)); ll t = (l + r) * (r - l + 1) / 2; sum -= t * (k / l); } printf(&amp;#34;%lld&amp;#34;, sum); return 0; } </description>
+    </item>
+    
+    <item>
+      <title>P1314 聪明的质检员</title>
+      <link>https://acm.rogery.dev/post/2021-04/p1314/</link>
+      <pubDate>Tue, 13 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2021-04/p1314/</guid>
+      <description>题目大意 对于一个区间 $[l_i,r_i]$，计算矿石在这个区间上的检验值 $y_i$：
+$$ y_i=\sum_{j=l_i}^{r_i}[w_j \geqslant W] \times \sum_{j=l_i}^{r_i}[w_j \geqslant W]v_j $$
+记检验结果为 $y=\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。
+分析 注意到 $y(w)$ 是关于 $W$ 的递减函数，对 $w$ 在 $[w_{\min},w_{\max}]$ 上进行二分。
+const ll MN = 2e5 + 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; ll n, m, s; int main() { n = rr(), m = rr(), s = rr(); ll minw = 0x3f3f3f3f, maxw = 0; f1[0] = f2[0] = 0; for (ll i = 1; i &amp;lt;= n; i++) { ww[i] = rr(), vv[i] = rr(); maxw = max(ww[i], maxw); minw = min(ww[i], minw); } for (ll i = 1; i &amp;lt;= m; i++) { li[i] = rr(), ri[i] = rr(); } ll l = minw, r = maxw + 1; while (l &amp;lt; r) { int mid = (l + r) &amp;gt;&amp;gt; 1; if (sum(mid) &amp;lt;= s) r = mid; else l = mid + 1; } ll rst = min(sum(l - 1) - s, s - sum(l)); printf(&amp;#34;%lld&amp;#34;, rst); return 0; } 区间求和可以用前缀和优化。</description>
+    </item>
+    
+    <item>
+      <title>P1019 单词接龙</title>
+      <link>https://acm.rogery.dev/post/2021-03/p1019/</link>
+      <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2021-03/p1019/</guid>
+      <description>题目大意 对于字符串 $a,b$，若 $a$ 的末尾与 $b$ 的开头有部分字符串相同，则其可以拼接起来。例如 at + tact = atact。
+给定词典和初始字母，每个单词最多出现两次，求最大拼接长度。
+分析 我是没想出来，经题解提示了拼接函数才写出来的。
+设 $mt(x,y)$ 为第 $x$ 和 $y$ 个单词拼接后的最小重合长度，其可简单的通过匹配得到。
+char s[30][100]; ll len[30]; ll mt[30][30]; void init(int x, int y) { ll ml = min(len[x], len[y]) - 1; for (ll i = 1; i &amp;lt;= ml; i++) { int flag = 1; for (ll j = 0; j &amp;lt;= i - 1; j++) { if (s[x][len[x] + j - i] !</description>
+    </item>
+    
+    <item>
+      <title>P2678 跳石头</title>
+      <link>https://acm.rogery.dev/post/2021-03/p2678/</link>
+      <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2021-03/p2678/</guid>
+      <description>题目大意 在 $0$ 到 $L$ 的位置间，有 $N$ 块岩石。若要使得岩石间距最小值最大，允许移除 $M$ 块，求此时间距最小值。
+分析 定义函数 $f(x)$，输入为最小值，输出为被移除岩石的个数，实现如下
+ll L, N, M, aa[100086]; ll f(ll x) { ll ans = 0; ll l = 0, r = 1; while (r &amp;lt;= N) { if (aa[r] - aa[l] &amp;gt;= x) l = r; else ans++; r++; } return ans; } 显然 $f(x)$ 是单调递减的函数，二分查找即可。
+int main() { L = rr(), N = rr(), M = rr(); for (ll i = 1; i &amp;lt;= N; i++) aa[i] = rr(); aa[++N] = L; ll l = 1, r = L; while (l &amp;lt; r) { ll mid = (l + r + 1) &amp;gt;&amp;gt; 1; ll fm = f(mid); if (fm &amp;lt;= M) l = mid; else r = mid - 1; } printf(&amp;#34;%lld\n&amp;#34;, l); return 0; } </description>
+    </item>
+    
+    <item>
+      <title>P1880 石子合并</title>
+      <link>https://acm.rogery.dev/post/2020-11/p1880/</link>
+      <pubDate>Mon, 30 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2020-11/p1880/</guid>
+      <description>题目大意 环形队列上有 $n$ 堆石子，可以把相邻的两堆合成一堆，每次合并的得分是新一堆的石子数。
+求最终分数的最小值和最大值。
+分析 考虑 $dp(i,j)$ 是将区间 $[i,j]$ 的石子全部合并的最大值。于是状态转移方程为
+$$ dp(i,j) = \max_{i \leqslant k \leqslant j}(dp(i,k) + dp(k+1,j) + s(i,j)) $$
+其中 $s(i,j)$ 是 $[i,j]$ 中所有石子数。
+然而不能通过先 $i$ 再 $j$ 再 $k$ 的循环来递推，运算顺序值得注意。
+细节：前缀和、循环开两倍。
+int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(); for (ll i = 1; i &amp;lt;= n; i++) f[i + n] = f[i] = rr(); for (ll i = 1; i &amp;lt;= n * 2; i++) s[i] = s[i - 1] + f[i]; for (ll len = 2; len &amp;lt;= n; len++) { for (ll i = 1; i &amp;lt;= 2 * n - len + 1; i++) { int j = i + len - 1; int tmax = 0, tmin = 0x3f3f3f3f; int ss = s[j] - s[i - 1]; for (ll k = i; k &amp;lt;= j - 1; k++) { tmax = max(tmax, dmax[i][k] + dmax[k + 1][j] + ss); tmin = min(tmin, dmin[i][k] + dmin[k + 1][j] + ss); } dmax[i][j] = tmax; dmin[i][j] = tmin; } } int mmin = 0x3f3f3f3f, mmax = 0; for (ll p = 0; p &amp;lt;= n - 1; p++) { mmin = min(mmin, dmin[p + 1][p + n]); mmax = max(mmax, dmax[p + 1][p + n]); } printf(&amp;#34;%d\n%d\n&amp;#34;, mmin, mmax); return 0; } </description>
+    </item>
+    
+    <item>
+      <title>P1833 樱花</title>
+      <link>https://acm.rogery.dev/post/2020-11/p1833/</link>
+      <pubDate>Wed, 11 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2020-11/p1833/</guid>
+      <description>题目大意 混合背包。每棵树都有美学值 $C_i$，共有三种：
+一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。 分析 对于混合背包，我们可以对物品拆分，得到多个物品。
+ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), teh = rr(), tem = rr(); int tsum = (teh - tsh) * 60 + tem - tsm; int n = rr(); int tp = 1; for (ll i = 1; i &amp;lt;= n; i++) { int t = rr(), c = rr(), p = rr(); if (p == 1) { tt[tp] = t, cc[tp] = c; tp++; } else { p = p !</description>
+    </item>
+    
+    <item>
+      <title>P1541 乌龟棋</title>
+      <link>https://acm.rogery.dev/post/2020-11/p1541/</link>
+      <pubDate>Tue, 10 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2020-11/p1541/</guid>
+      <description>题目大意 初始有四种卡片，消耗后分别可以前进 $1$、$2$、$3$ 和 $4$ 格。棋盘上每个点都有个分数，求从第 $1$ 格到达第 $N$ 格途径分数的最大值。
+分析 设状态 $F[i, j, k, w]$ 为使用 $i$ 张前进 $1$、……、$w$ 张前进 $4$ 之后的状态，容易得到转移方程
+$$ F[i, j, k, w] = \max\left\{ \begin{matrix} dp[i - 1, j, k, w] \\ dp[i, j - 1, k, w] \\ dp[i, j, k - 1, w] \\ dp[i, j, k, w - 1] \end{matrix}\right\} + a[i + 2j + 3k + 4w] $$
+处理一下边界情况，滚动数组即可。
+ll dp[50][50][50], aa[400], tt[10]; int main() { ll n = rr(), m = rr(); for (ll i = 1; i &amp;lt;= n; i++) { aa[i] = rr(); } for (ll i = 1; i &amp;lt;= m; i++) { tt[rr()]++; } for (ll i = 0; i &amp;lt;= tt[1]; i++) { for (ll j = 0; j &amp;lt;= tt[2]; j++) { for (ll k = 0; k &amp;lt;= tt[3]; k++) { for (ll w = 0; w &amp;lt;= tt[4]; w++) { dp[j][k][w] = aa[i * 1 + j * 2 + k * 3 + w * 4 + 1] + max4( j == 0 ?</description>
+    </item>
+    
+    <item>
+      <title>P3842 线段</title>
+      <link>https://acm.rogery.dev/post/2020-11/p3842/</link>
+      <pubDate>Tue, 10 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2020-11/p3842/</guid>
+      <description>题目大意 在 $n \times n$ 的格上，在每行中各有一条线段 $(i, l_i) \to (i, r_i)$。
+你从 $(1,1)$ 出发，只能沿着格子直走，最终走到 $(n,n)$。要求沿途经过所有的线段，且所走路程长度尽量的短。
+分析 显然是一行一行的递推。维护两个数据，一个是走完该行后停留在左侧的，记作 ${\rm DP}_l$，相应的停留在右侧的记作 ${\rm DP}_r$。
+若停在左侧，可能从上一行的右侧走来，也可能是由左侧走来，故转移方程有
+$$ {\rm DP}_l[i] = r_i - l_i + \min\{{\rm DP}_l[i - 1] + |l_{i-1} - r_i|, {\rm DP}_r[i - 1] + |r_{i - 1} - r_i|\} $$
+右侧类似，故可以写出代码
+int main() { int n = rr(); ll past_l = 1, past_r = 1, dpl = 0, dpr = 0; for (ll i = 1; i &amp;lt;= n; i++) { ll l = rr(), r = rr(); ll tl = min(dpl + abs(past_l - r), dpr + abs(past_r - r)) + r - l; ll tr = min(dpl + abs(past_l - l), dpr + abs(past_r - l)) + r - l; dpl = tl, dpr = tr; past_l = l, past_r = r; } printf(&amp;#34;%lld\n&amp;#34;, min(dpl + n - past_l, dpr + n - past_r) + n - 1); return 0; } </description>
+    </item>
+    
+    <item>
+      <title>P1077 摆花</title>
+      <link>https://acm.rogery.dev/post/2020-10/p1077/</link>
+      <pubDate>Fri, 16 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2020-10/p1077/</guid>
+      <description>题目大意 要从 $n$ 种花中挑出 $m$ 盆展览，其中第 $i$ 种花不得多于 $a_i$ 种。求有几种选法。
+分析 考虑动态规划，记状态 $dp[i,j]$ 为摆完前 $i$ 种花，共 $j$ 盆时的方案数。容易得到递推式
+$$ dp[i,j] = \sum_{k = j - \min(a_i, j)}^j dp[i-1,k] $$
+边界条件是 $dp[0,0] = 1$。可以用滚动数组、前缀和优化。
+const ll mod = 1e6 + 7; ll dp[110], aa[110], sum[110]; int main() { ll n = rr(), m = rr(); sum[0] = dp[0] = 1; for (ll i = 1; i &amp;lt;= n; i++) aa[i] = rr(); for (ll i = 1; i &amp;lt;= n; i++) { for (ll j = 1; j &amp;lt;= m; j++) sum[j] = (sum[j - 1] + dp[j]) % mod; for (ll j = m; j &amp;gt;= 0; j--) { int t = j - 1 - min(aa[i], j); if (t &amp;gt; 0) dp[j] = (dp[j] + sum[j - 1] - sum[t]) % mod; } } printf(&amp;#34;%lld\n&amp;#34;, (dp[m] + mod) % mod); return 0; } </description>
+    </item>
+    
+    <item>
+      <title>P1090 合并果子</title>
+      <link>https://acm.rogery.dev/post/2020-10/p1090/</link>
+      <pubDate>Fri, 16 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2020-10/p1090/</guid>
+      <description>题目大意 可以合并两堆果子成一堆新果子，消耗两堆果子数目之和的体力。给定 $n$ 堆果子的数目 $a_i$，求体力耗费最小的方案。
+分析 很容易猜到贪心结论，不断选取两个最小的堆进行合并。
+priority_queue&amp;lt;int, vector&amp;lt;int&amp;gt;, greater&amp;lt;int&amp;gt; &amp;gt; q; int main() { int n = rr(); for (ll i = 1; i &amp;lt;= n; i++) { int t = rr(); q.push(t); } int sum = 0; while (q.size() &amp;gt;= 2) { int x = q.top(); q.pop(); int y = q.top(); q.pop(); sum += x + y; q.push(x + y); } printf(&amp;#34;%d\n&amp;#34;, sum); return 0; } 本质上是证明 Huffman 树的构造的正确性，有点复杂。</description>
+    </item>
+    
+    <item>
+      <title>P1923 求第 $k$ 小的数</title>
+      <link>https://acm.rogery.dev/post/2020-10/p1923/</link>
+      <pubDate>Fri, 16 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2020-10/p1923/</guid>
+      <description>题目大意 给定数列，求第 $k$ 小的数。
+分析 模板题。考虑分治，随便选一个数 $x$，然后把比 $x$ 大的数移到右边，比 $x$ 小的数移到左边。因此得到了数 $x$ 的排位，若恰为第 $k$ 个则返回，否则根据大小在左右寻找。
+该算法是不稳定的，期望复杂度 $O(n)$，最坏复杂度 $O(n^2)$。
+实际上存在最坏复杂度为 $O(n)$ 的 BFPTR 算法，但因为其常数过大实现复杂而很少应用。
+ll nn[5000010], k, n; ll quicksort(ll l, ll r) { ll i = l, j = r; ll x = nn[(l + r) / 2]; while (i &amp;lt;= j) { while (nn[j] &amp;gt; x) j--; while (nn[i] &amp;lt; x) i++; if (i &amp;lt;= j) { swap(nn[i], nn[j]); i++, j--; } } // l &amp;lt;= j &amp;lt;= i &amp;lt;=r if (k &amp;lt;= j) return quicksort(l, j); else if (k &amp;gt;= i) return quicksort(i, r); else return nn[k + 1]; } int main() { n = rr(), k = rr(); for (ll i = 1; i &amp;lt;= n; i++) scanf(&amp;#34;%lld&amp;#34;, &amp;amp;nn[i]); printf(&amp;#34;%lld&amp;#34;, quicksort(1, n)); return 0; } </description>
+    </item>
+    
+    <item>
+      <title>P1928 外星密码</title>
+      <link>https://acm.rogery.dev/post/2020-10/p1928/</link>
+      <pubDate>Fri, 16 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2020-10/p1928/</guid>
+      <description>题目大意 我们将重复的 $n$ 个字符串 S 压缩为 [nS]，且存在多重压缩。给定一个压缩结果，展开它。
+分析 我考虑用类似状态机的方式解析字符串。
+当读到正常字符时，把它添到 $s$ 末尾 读到左括号时，则递归 read()，重复 $n$ 遍添到 $s$ 末尾 右括号或文本结束则返回 $s$ 写成 BNF 更直观一点
+&amp;lt;pwd&amp;gt; ::= &amp;lt;EMPTY&amp;gt; | {&amp;lt;ALPHA&amp;gt;} | &amp;lt;pwd&amp;gt; &amp;#34;[&amp;#34; &amp;lt;NUMBER&amp;gt; &amp;lt;pwd&amp;gt; &amp;#34;]&amp;#34; &amp;lt;pwd&amp;gt; string read() { string s = &amp;#34;&amp;#34;; char c; while (cin &amp;gt;&amp;gt; c) { if (c == &amp;#39;[&amp;#39;) { int n; cin &amp;gt;&amp;gt; n; string ts = read(); while (n--) s += ts; } else if (c == &amp;#39;]&amp;#39;) { return s; } else { s += c; } } return s; } int main() { cout &amp;lt;&amp;lt; read(); return 0; } </description>
+    </item>
+    
+    <item>
+      <title>P1990 覆盖墙壁</title>
+      <link>https://acm.rogery.dev/post/2020-10/p1990/</link>
+      <pubDate>Fri, 16 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2020-10/p1990/</guid>
+      <description>题目大意 有 I 形和 L 形两种砖头，分别能覆盖 2 个单元和 3 个单元。求 $2 \times n$ 的墙有多少不重复的覆盖方式，结果对 $10^4$ 取模。
+分析 其中 I 形砖块仅有横放和竖放两种。关键在于 L 形，两个 L 形之间可以用 I 形填充，这让情况变得复杂起来。
+对于 $F_n$ 的递推，我们可以想到
+在 $F_{n-1}$ 后放一个 I 形砖块。 在 $F_{n-2}$ 后放两个横着的 I 形砖块。 对于更前面的递推，较为复杂。 两个 L 形砖块对齐，上下翻转也可以，即 $2 F_{n-3}$。 两个 L 形砖块可以对顶放，空缺恰用一个 I 填充，即 $2 F_{n-4}$。 类似 $2F_{n-3}$，中间可以再插入两个 I 形，即 $2 F_{n-5}$。 …… 直到 I 形和 L 形砖块恰好铺满墙壁，即 $2F_{0}$。 容易得到我们的递推式
+$$ F_n = F_{n-1} + F_{n-2} + 2 \sum_{i=0}^{n-3} F_i $$</description>
+    </item>
+    
+    <item>
+      <title>P4995 跳跳！</title>
+      <link>https://acm.rogery.dev/post/2020-10/p4995/</link>
+      <pubDate>Fri, 16 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2020-10/p4995/</guid>
+      <description>题目大意 给定石头的高度 $h$，从第 $i$ 块石头跳到第 $j$ 块上耗费体力 $(h_i-h_j)^2$ ，求最耗体力的路径。
+分析 容易猜到贪心结论，是不断的在剩余石头中最大最小的来回跳。
+考虑证明结论，设 $h_i$ 是将要跳的序列，展开求和式
+$$ S = \sum_{k=1}^{n-1}(h_k-h_{k+1})^2 = \sum_{k=1}^nh_k^2 - 2\sum_{k=1}^{n-1}h_kh_{k+1} $$
+注意到平方和为一个定值，重点在后半式。记 $H_k = h_{k+1}$，有
+$$ \sum_{k=1}^{n-1}h_kH_k $$
+利用高中时学的排序不等式，有
+$$ \text{反序和} \leqslant \text{乱序和} \leqslant \text{顺序和} $$
+于是有反序最小。双指针维护即可。
+ll nn[310]; int main() { ll n = rr(); for (ll i = 1; i &amp;lt;= n; i++) nn[i] = rr(); sort(nn + 1, nn + n + 1); ll l = 0, r = n, sum = 0; while (l &amp;lt; r) { ll t1 = nn[l] - nn[r], t2 = nn[l + 1] - nn[r]; sum += t1 * t1 + t2 * t2; l++, r--; } printf(&amp;#34;%lld\n&amp;#34;, sum); return 0; } </description>
+    </item>
+    
+    <item>
+      <title>P5143 攀爬者</title>
+      <link>https://acm.rogery.dev/post/2020-10/p5143/</link>
+      <pubDate>Tue, 13 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2020-10/p5143/</guid>
+      <description>题目大意 在三维空间中，HKE 只能往上走，求攀爬总长。
+分析 对所有座标的 $z$ 分量排序即可。
+struct POINT { double x, y, z; bool operator&amp;lt;(POINT p) { return z &amp;gt; p.z; } } nn[50010]; double dis(POINT &amp;amp;p1, POINT &amp;amp;p2) { double t1 = p1.x - p2.x, t2 = p1.y - p2.y, t3 = p1.z - p2.z; return sqrt(t1 * t1 + t2 * t2 + t3 * t3); } int main() { int n = rr(); for (ll i = 1; i &amp;lt;= n; i++) cin &amp;gt;&amp;gt; nn[i].</description>
+    </item>
+    
+    <item>
+      <title>P1095 守望者的逃离</title>
+      <link>https://acm.rogery.dev/post/2020-10/p1095/</link>
+      <pubDate>Fri, 09 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2020-10/p1095/</guid>
+      <description>P1095 守望者的逃离 题目大意 守望者的可以在一秒逃出 $17 {\rm m}$，或者消耗 $10$ 点魔法值闪现 $60 {\rm m}$。原地休息时每秒回复 $4$ 点魔法值。
+守望者开始有 $M$ 点魔法，需要在 $T$ 秒内逃离距离 $S$。若能逃离则求最短逃离时间，否则求最远距离。
+分析 设 $s_1$为一直走路，$s_2$ 为一直闪现恢复。当 $s_2$ 快了就把 $s_1$ 更新为 $s_2$。
+int main() { int m = rr(), s = rr(), t = rr(); int time = t, s1 = 0, s2 = 0; while (time &amp;gt; 0 &amp;amp;&amp;amp; s1 &amp;lt; s) { s1 += 17; if (m &amp;gt;= 10) m -= 10, s2 += 60; else m += 4; s1 = max(s1, s2); time--; } if (s1 &amp;lt; s) printf(&amp;#34;No\n%d\n&amp;#34;, s1); else printf(&amp;#34;Yes\n%d\n&amp;#34;, t - time); return 0; } </description>
+    </item>
+    
+    <item>
+      <title>P1042 乒乓球</title>
+      <link>https://acm.rogery.dev/post/2020-09/p1042/</link>
+      <pubDate>Wed, 23 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2020-09/p1042/</guid>
+      <description>题目大意 赢 11 分并且压对手两分以上则一局结束，否则要追分至压对手两分。
+给定 $\texttt{WL}$ 序列，分别求 11 分制和 21 分制下每场比分，$\texttt{E}$ 是结束符。
+分析 这是一道比较烦的模拟题，很绕。
+char ch[62510]; int solve(int win, int len) { int w = 0, l = 0; for (ll i = 0; i &amp;lt; len; i++) { w += ch[i] == &amp;#39;W&amp;#39;; l += ch[i] == &amp;#39;L&amp;#39;; if (max(w, l) &amp;gt;= win &amp;amp;&amp;amp; abs(w - l) &amp;gt;= 2) { printf(&amp;#34;%d:%d\n&amp;#34;, w, l); w = l = 0; } } printf(&amp;#34;%d:%d\n&amp;#34;, w, l); } int main() { char ccc; int len = 0; while (scanf(&amp;#34;%c&amp;#34;, &amp;amp;ccc) !</description>
+    </item>
+    
+    <item>
+      <title>P2181 对角线</title>
+      <link>https://acm.rogery.dev/post/2020-09/p2181/</link>
+      <pubDate>Tue, 22 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2020-09/p2181/</guid>
+      <description>题目大意 凸 $n$ 边形中，任意三条对角线不共点，求所有对角线交点的个数。
+分析 注意到一个交点对应凸多边形 $4$ 个定点，于是等价于 $n$ 个点任选 $4$ 个点的选法种数，即
+$$ \binom{n}{4} = \frac{n(n-1)(n-2)(n-3)}{24} $$
+注意爆 long long，需要写成 n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4。
+int main() { unsigned long long n; scanf(&amp;#34;%llu&amp;#34;, &amp;amp;n); n = n * (n - 1) / 2 * (n - 2) / 3 * (n - 3) / 4; printf(&amp;#34;%llu&amp;#34;, n); return 0; } </description>
+    </item>
+    
+    <item>
+      <title>P1004 方格取数</title>
+      <link>https://acm.rogery.dev/post/2020-09/p1004/</link>
+      <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2020-09/p1004/</guid>
+      <description>题目大意 在 $n \times n$ 的方格（$n \leqslant 9$）中存在一些正整数，经过格子时获得格子上的数，但只能获得一次。
+某人只能向右或向下走，从格子的左上角走到到右下角，共走两次，求最大能取得的数字。
+分析 考虑把先走后走转化为两个人同时走，只需要处理遇到两次的值即可。
+考虑四维 DP，用 $dp[x_1,y_1,x_2,y_2]$ 表示第一个人走到 $(x_1,y_1)$ 和第二个人走到 $(x_2,y_2)$。
+再考虑转移，每一个位置仅可能从其左面或上面转移来，于是可以写出（$x_1 \ne y_1$ 或 $x_2 \ne y_2$ 时）
+$$ dp[x_1,y_1,x_2,y_2] = \max\left\{ \begin{matrix} dp[x_1-1,y_1,x_2-1,y_2] \\ dp[x_1,y_1-1,x_2-1,y_2] \\ dp[x_1-1,y_1,x_2,y_2-1] \\ dp[x_1,y_1-1,x_2,y_2-1] \end{matrix}\right\} + a[x_1,y_1] + a[x_2,y_2] $$
+当 $x_1=y_1,x_2=y_2$ 时，只加一次即可。到这里 $O(n^4)$ 其实已经可以过题了，但还可以优化。
+注意到一些状态是不可达的，因为 $x_1+y_1 = x_2+y_2$，因此存在 $O(n^3)$ 的 DP。
+考虑当前已走长度 $h=x_1+y_1=x_2+y_2$，于是可以把两个人的座标表示为 $(x_1,h-x_1)$ 和 $(x_2,h-x_2)$。
+于是记状态为 $dp[h,x_1,x_2]$，当 $x_1 \ne x_2$ 时有
+$$ dp[h,x_1,x_2] = \max\left\{ \begin{matrix} dp[h-1,x_1,x_2] \\ dp[h-1,x_1,x_2-1] \\ dp[h-1,x_1-1,x_2] \\ dp[h-1,x_1-1,x_2-1] \end{matrix}\right\} + a[x_1,h-x_1] + a[x_2,h-x_2] $$</description>
+    </item>
+    
+  </channel>
+</rss>

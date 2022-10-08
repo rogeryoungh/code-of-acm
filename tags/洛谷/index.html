@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>洛谷 | Roger Young</title>
+<meta name="keywords" content="" />
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="https://acm.rogery.dev/tags/%E6%B4%9B%E8%B0%B7/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.516fb8b590ac7d538e32093f4a6811588662ee6b96d207ce1d68927839cf0186.css" integrity="sha256-UW&#43;4tZCsfVOOMgk/SmgRWIZi7muW0gfOHWiSeDnPAYY=" rel="preload stylesheet" as="style">
+<link rel="preload" href="https://blog.rogery.dev/avatar.png" as="image">
+<link rel="icon" href="https://acm.rogery.dev/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://acm.rogery.dev/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://acm.rogery.dev/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://acm.rogery.dev/apple-touch-icon.png">
+<link rel="mask-icon" href="https://acm.rogery.dev/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.104.3" />
+<link rel="alternate" type="application/rss+xml" href="https://acm.rogery.dev/tags/%E6%B4%9B%E8%B0%B7/index.xml">
+
+
+
+
+<meta property="og:title" content="洛谷" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://acm.rogery.dev/tags/%E6%B4%9B%E8%B0%B7/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="洛谷"/>
+<meta name="twitter:description" content=""/>
+
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-font") === "serif") {
+        document.body.classList.add('serif');
+    }
+
+</script>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://acm.rogery.dev" accesskey="h" title="Roger Young (Alt + H)">Roger Young</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <button id="font-toggle" accesskey="t" title="(Alt + T)">A</button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://acm.rogery.dev/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://acm.rogery.dev/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://acm.rogery.dev/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://acm.rogery.dev/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>洛谷</h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>P4173 残缺的字符串</h2>
+  </header>
+  <section class="entry-content">
+    <p>魔改 KMP 大概是不行的，卷积在这里出现的很妙。
+卷积处理匹配 定义匹配函数
+$$ d(x,y) = [x = y] $$
+给定文本串 $B$ 和长为 $m$ 的模式串 $A$，要找出 $A$ 在 $B$ 的所有出现，可以定义
+$$ f(k) = \sum_{i=0}^{m-1} d(A_{i}, B_{i-m&#43;k}) $$
+即 $f(k) = 0$ 时有完全匹配 $A = B[k-m\ldots k-1]$。考虑让 $d$ 函数更 “数学” 一点，以更好的计算
+$$ d(x,y) = (x - y)^2 $$
+再提供模式串 $A$ 的翻转 $S$，即 $A_i = S_{m-i}$，展开有
+$$ \begin{aligned} f(k) &amp;= \sum_{i=0}^{m-1}A_{i}^2 &#43; \sum_{i=0}^{m-1}B_{i-m&#43;k}^2 - 2\sum_{i=0}^{m-1} A_{i}B_{i-m&#43;k}\\ &amp;= \sum_{i=0}^{m-1}A_{i}^2 &#43; \sum_{i=0}^{m-1}B_{i-m&#43;k}^2 - 2\sum_{i=0}^{m-1} S_{m-i}B_{i-m&#43;k} \end{aligned} $$...</p>
+  </section>
+  <footer class="entry-footer">July 28, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P4173 残缺的字符串" href="https://acm.rogery.dev/post/2021-07/p4173/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>P1762 偶数</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 求杨辉三角形前 $n$ 行的偶数个数，对 $1000003$ 取模。
+分析 对杨辉三角奇数打表。
+1 1 1 1 1 1 1 1 1 1	1 1 1	1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	1 1 1	1 1 1 1	1 1 1 1 1 1	1 1 1 1 1	1	1	1 1 1	1 1	1 1	1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	1 1 1	1 1 1 1	1 1 1 1 1 1	1 1 1 1 1	1	1	1 1 1	1 1	1 1	1 1 1 1 1 1	1 1 1 1 1 1 1 1 1 1 1 1	1 1 1 1 1 1 1 1 1	1	1	1 1 1	1 1	1 1	1 1 1 1	1 1	1 1	1 1 1 1 1 1	1 1 1 1	1 1 1 1	1 1 1 1 1	1	1	1	1	1	1	1 1 1	1 1	1 1	1 1	1 1	1 1	1 1	1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 于是递推公式...</p>
+  </section>
+  <footer class="entry-footer">July 12, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1762 偶数" href="https://acm.rogery.dev/post/2021-07/p1762/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>P2257 YY 的 GCD</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 即求
+$$ \sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) \in \mathbb{P}] $$
+分析 先转化一下
+$$ \sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) \in \mathbb{P}] = \sum_{p}\sum_{i=1}^N \sum_{j=1}^M [\gcd(i,j) = p] $$
+在 P2522 中得到
+$$ \sum_{i=1}^x \sum_{j=1}^y [\gcd(i,j) = k] = \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tk} \right\rfloor \left\lfloor \frac{y}{tk} \right\rfloor $$
+代入有
+$$ \sum_{p} \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tp} \right\rfloor \left\lfloor \frac{y}{tp} \right\rfloor $$
+令 $T = tp$，$T$ 的上界应还是 $\min(x,y)$，代入有
+$$ \sum_{T=1}^{\min(x,y)} \left\lfloor \frac{x}{T} \right\rfloor \left\lfloor \frac{y}{T} \right\rfloor \sum_{p \mid T} \mu\left(\frac{T}{p}\right) $$...</p>
+  </section>
+  <footer class="entry-footer">May 26, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P2257 YY 的 GCD" href="https://acm.rogery.dev/post/2021-05/p2257/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>P2350 外星人</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 设
+$$ \varphi_{x&#43;1}(m) = \varphi(\varphi_x(m)) $$
+求最小的 $x$ 使得 $\varphi_x(m) = 1$。
+其中 $\varphi(m)$ 是欧拉函数。
+分析 注意到仅有 $\varphi(1) = \varphi(2) = 1$，再有公式
+$$ \varphi\left(\prod_{i=1}^mp_i^{q_i}\right) = \prod_{i=1}^m(p_i-1)p_i^{q_i-1} $$
+因此从唯一分解形式的角度来看，迭代一次消去了一个 $2$，也生成了一些 $2$。
+考虑设 $f(n)$ 为 $\varphi(n)$ 中因子 $2$ 的个数。
+设 $\gcd(a,b) = 1$，可以证明 $f(ab) = f(a) f(b)$。同时 $f(p) = f(p-1)$。
+这说明 $f(x)$ 是一个积性函数，可以用 Euler 筛递推。
+const ll MN = 1e5 &#43; 10; bool notp[1000001]; int prime[200001], cnt, phi[1000001]; void sieve(int n) { phi[1] = 1; for (ll i = 2; i &lt;= n; i&#43;&#43;) { if (!...</p>
+  </section>
+  <footer class="entry-footer">May 25, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P2350 外星人" href="https://acm.rogery.dev/post/2021-05/p2350/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>P2303 Longge 的问题</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 即求
+$$ \sum_{i=1}^n \gcd(i,n) $$
+分析 联想到
+$$ \varphi(n) = \sum_{i=1}^n [\gcd(i,n) = 1] $$
+尝试凑这个形式
+$$ \begin{aligned} \sum_{i=1}^n \gcd(i,n) &amp;= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \\ &amp;= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \\ &amp;= \sum_{d \mid n} d \varphi(n/d) \end{aligned} $$
+这里其实已经可以过题了，但还可以再瞎搞一下，令
+$$ nf(n) = \sum_{d \mid n} d \varphi(n/d) = n\sum_{d \mid n} \frac{\varphi(d)}{d} $$
+尝试证明 $f(n)$ 是一个积性函数。设 $\gcd(a,b) = 1$，有...</p>
+  </section>
+  <footer class="entry-footer">May 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P2303 Longge 的问题" href="https://acm.rogery.dev/post/2021-05/p2303/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>P4721 分治 FFT</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定 $g[1], \cdots, g[m]$，求序列 $f$。
+$$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$
+分析 不妨令 $g [0] = 0$，$h (x) = g (x) &#43; h [0]$，我们要解方程
+$$ f [n] = \sum_{j = 1}^n f [n - j] g [j] = \sum_{j = 1}^n f [n - j] h [j] $$
+这个形式看似卷积，但实际上它缺了一项。对 $n &gt; 0$ 凑卷积...</p>
+  </section>
+  <footer class="entry-footer">May 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P4721 分治 FFT" href="https://acm.rogery.dev/post/2021-05/p4721/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>P2522 Problem B</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 即求
+$$ \sum_{i=a}^b \sum_{j=c}^d [\gcd(i,j) = k] $$
+分析 容易想到，独立出函数 $f(k)$ 使得
+$$ f(k) = \sum_{i=1}^x \sum_{j=1}^y [\gcd(i,j) = k] $$
+利用 Mobius 反演化简，设 $F(d)$
+$$ F(n) = \sum_{n \mid d} f(d) = \sum_{i=1}^x \sum_{j=1}^y [n \mid i][n \mid j] = \left\lfloor \frac{x}{n} \right\rfloor \left\lfloor \frac{y}{n} \right\rfloor $$
+反演化简有
+$$ f(n) = \sum_{n \mid d} \mu\left(\frac{d}{n}\right)F(d) = \sum_{t=1}^{\min(x,y)} \mu(t) \left\lfloor \frac{x}{tn} \right\rfloor \left\lfloor \frac{y}{tn} \right\rfloor $$
+预处理出 $\mu(t)$ 的前缀和，剩下的就是一个二重分块了。...</p>
+  </section>
+  <footer class="entry-footer">May 19, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P2522 Problem B" href="https://acm.rogery.dev/post/2021-05/p2522/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>P2261 余数求和</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给出正整数 $n$ 和 $k$，请计算
+$$ G(n, k) = \sum_{i = 1}^n k \bmod i $$
+分析 因为
+$$ k \bmod i = k - i \left\lfloor \frac{k}{i} \right\rfloor $$
+因此有
+$$ G(n,k) = nk - \sum_{i=1}^n i \left\lfloor \frac{k}{i} \right\rfloor $$
+后面需要整数分块。
+int main() { ll n = rr(); ll k = rr(); ll sum = n * k; n = min(n, k); for (ll l = 1, r; l &lt;= n; l = r &#43; 1) { r = min(n, k / (k / l)); ll t = (l &#43; r) * (r - l &#43; 1) / 2; sum -= t * (k / l); } printf(&#34;%lld&#34;, sum); return 0; } </p>
+  </section>
+  <footer class="entry-footer">April 30, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P2261 余数求和" href="https://acm.rogery.dev/post/2021-04/p2261/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>P1314 聪明的质检员</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 对于一个区间 $[l_i,r_i]$，计算矿石在这个区间上的检验值 $y_i$：
+$$ y_i=\sum_{j=l_i}^{r_i}[w_j \geqslant W] \times \sum_{j=l_i}^{r_i}[w_j \geqslant W]v_j $$
+记检验结果为 $y=\sum y_i$，对于给定的 $s$，求 $|y-s|$ 的最小值。
+分析 注意到 $y(w)$ 是关于 $W$ 的递减函数，对 $w$ 在 $[w_{\min},w_{\max}]$ 上进行二分。
+const ll MN = 2e5 &#43; 10; ll vv[MN], ww[MN], li[MN], ri[MN], f1[MN], f2[MN]; ll n, m, s; int main() { n = rr(), m = rr(), s = rr(); ll minw = 0x3f3f3f3f, maxw = 0; f1[0] = f2[0] = 0; for (ll i = 1; i &lt;= n; i&#43;&#43;) { ww[i] = rr(), vv[i] = rr(); maxw = max(ww[i], maxw); minw = min(ww[i], minw); } for (ll i = 1; i &lt;= m; i&#43;&#43;) { li[i] = rr(), ri[i] = rr(); } ll l = minw, r = maxw &#43; 1; while (l &lt; r) { int mid = (l &#43; r) &gt;&gt; 1; if (sum(mid) &lt;= s) r = mid; else l = mid &#43; 1; } ll rst = min(sum(l - 1) - s, s - sum(l)); printf(&#34;%lld&#34;, rst); return 0; } 区间求和可以用前缀和优化。...</p>
+  </section>
+  <footer class="entry-footer">April 13, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1314 聪明的质检员" href="https://acm.rogery.dev/post/2021-04/p1314/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>P1019 单词接龙</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 对于字符串 $a,b$，若 $a$ 的末尾与 $b$ 的开头有部分字符串相同，则其可以拼接起来。例如 at &#43; tact = atact。
+给定词典和初始字母，每个单词最多出现两次，求最大拼接长度。
+分析 我是没想出来，经题解提示了拼接函数才写出来的。
+设 $mt(x,y)$ 为第 $x$ 和 $y$ 个单词拼接后的最小重合长度，其可简单的通过匹配得到。
+char s[30][100]; ll len[30]; ll mt[30][30]; void init(int x, int y) { ll ml = min(len[x], len[y]) - 1; for (ll i = 1; i &lt;= ml; i&#43;&#43;) { int flag = 1; for (ll j = 0; j &lt;= i - 1; j&#43;&#43;) { if (s[x][len[x] &#43; j - i] !...</p>
+  </section>
+  <footer class="entry-footer">March 29, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1019 单词接龙" href="https://acm.rogery.dev/post/2021-03/p1019/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="https://acm.rogery.dev/tags/%E6%B4%9B%E8%B0%B7/page/2/">Next Page »</a>
+  </nav>
+</footer>
+    </main>
+    <footer class="footer">
+    <span>© 2021 <a href="https://acm.rogery.dev">Roger Young</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="gototop" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+    document.getElementById("font-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("serif")) {
+            document.body.classList.remove('serif');
+            localStorage.setItem("pref-font", 'sans');
+        } else {
+            document.body.classList.add('serif');
+            localStorage.setItem("pref-font", 'serif');
+        }
+    })
+
+</script></body>
+
+</html>
