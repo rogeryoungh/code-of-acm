@@ -1,7 +1,7 @@
 #include "basic/index.hpp"
 
 const int N = 5E5 + 10;
-vector<int> G[N];
+std::vector<int> G[N];
 
 // @problem https://www.luogu.com.cn/problem/P3379
 
@@ -12,7 +12,7 @@ vector<int> G[N];
 struct LCA {
 	const int lgn;
 	VV<int> f;
-	vector<int> dep;
+	std::vector<int> dep;
 	LCA(int n, int s = 1) : lgn(1 + std::__lg(n)), f(n, lgn), dep(n) {
 		dfs(s, 0);
 		for (int i = 1; i < lgn; i++) {
@@ -32,7 +32,7 @@ struct LCA {
 	}
 	int query(int x, int y) {
 		if (dep[x] > dep[y])
-			swap(x, y);
+			std::swap(x, y);
 		while (dep[x] < dep[y]) {
 			y = f[y][std::__lg(dep[y] - dep[x])];
 		}

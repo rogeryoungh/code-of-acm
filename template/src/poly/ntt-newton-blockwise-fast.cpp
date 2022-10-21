@@ -5,7 +5,7 @@
 // @description 多项式牛顿迭代(m32, 卡常)
 // @problem https://loj.ac/p/150
 
-vector<Z> w{1, 1}, iv{1, 1}, fac{1}, ifac{1};
+std::vector<Z> w{1, 1}, iv{1, 1}, fac{1}, ifac{1};
 
 inline int get_lim(int n) {
 	int m = 1;
@@ -75,7 +75,7 @@ void intt(iter f, int n) {
 	reverse(f + 1, f + n);
 }
 
-struct Poly : vector<Z> { // 卡常板子
+struct Poly : std::vector<Z> { // 卡常板子
 	using vector::vector;
 	bool isNTT = false;
 #define T (*this)
@@ -86,16 +86,16 @@ struct Poly : vector<Z> { // 卡常板子
 		return resize(m), T;
 	}
 	Poly cut(int m, int l = 0) const {
-		return {begin() + l, begin() + min(m + l, deg())};
+		return {begin() + l, begin() + std::min(m + l, deg())};
 	}
 	Poly &operator+=(const Poly &g) {
-		redeg(max(deg(), g.deg()));
+		redeg(std::max(deg(), g.deg()));
 		for (int i = 0; i < g.deg(); i++)
 			T[i] += g[i];
 		return T;
 	}
 	Poly &operator-=(const Poly &g) {
-		redeg(max(deg(), g.deg()));
+		redeg(std::max(deg(), g.deg()));
 		for (int i = 0; i < g.deg(); i++)
 			T[i] -= g[i];
 		return T;
@@ -137,13 +137,13 @@ struct Poly : vector<Z> { // 卡常板子
 	}
 	Poly deriv(int m) const {
 		Poly f(m);
-		for (int i = 1; i < min(deg(), m + 1); i++)
+		for (int i = 1; i < std::min(deg(), m + 1); i++)
 			f[i - 1] = T[i] * i;
 		return f;
 	}
 	Poly integr(int m) const {
 		Poly f(m);
-		for (int i = min(deg(), m - 1); i > 0; --i)
+		for (int i = std::min(deg(), m - 1); i > 0; --i)
 			f[i] = iv[i] * T[i - 1];
 		return f;
 	}
@@ -229,7 +229,7 @@ Poly Poly::sqrt(int u) const { // 8E
 			}
 		}
 		psi.intt(m * 2).fill0H(m * 2);
-		for (int j = 0; j < min(m, deg() - m * k); j++)
+		for (int j = 0; j < std::min(m, deg() - m * k); j++)
 			psi[j] += (*this)[m * k + j];
 		mul(psi, h, m * 2);
 		x.redeg((k + 1) * m);
@@ -262,7 +262,7 @@ Poly Poly::div(int u, Poly f) const { // 10E
 				psi[i] -= ng[j][i] * (nf[k - j][i] - nf[k - 1 - j][i]);
 		}
 		psi.intt(m * 2).fill0H(m * 2);
-		for (int j = 0; j < min(m, deg() - m * k); j++)
+		for (int j = 0; j < std::min(m, deg() - m * k); j++)
 			psi[j] += (*this)[m * k + j];
 		mul(psi, h, m * 2);
 		x.redeg((k + 1) * m);

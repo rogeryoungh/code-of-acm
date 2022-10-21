@@ -4,10 +4,12 @@
 
 // @description 预处理逆元、阶乘、阶乘逆元
 
-vector<int> iv{1, 1}, fac{1}, ifac{1};
+std::vector<int> iv, fac, ifac;
 
 void pre_all(int n) {
-	iv.resize(n + 1), fac.resize(n + 1), ifac.resize(n + 1);
+	n = std::max(5, n);
+	iv = fac = ifac = std::vector<int>(n + 1);
+	iv[0] = iv[1] = fac[0] = ifac[0] = 1;
 	for (int i = 1; i <= n; i++) {
 		fac[i] = 1ll * fac[i - 1] * i % P;
 	}

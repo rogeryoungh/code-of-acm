@@ -17,7 +17,7 @@ int cipolla(int n, int p) {
 		return 1;
 	for (int a = 0; a < p; a++) {
 		int i = (a * a - n + p) % p;
-		using FP2 = pair<ll, ll>;
+		using FP2 = std::pair<ll, ll>;
 		auto mul = [p, i](const FP2 &l, const FP2 &r) {
 			auto [la, lb] = l;
 			auto [ra, rb] = r;
@@ -30,7 +30,7 @@ int cipolla(int n, int p) {
 					x = mul(x, u);
 				u = mul(u, u);
 			}
-			return min(x.first, p - x.first);
+			return std::min(x.first, p - x.first);
 		}
 	}
 	return -1;

@@ -60,7 +60,7 @@ struct Z {
 	}
 };
 
-vector<Z> w{1, 1}, iv{1, 1}, fac{1}, ifac{1};
+std::vector<Z> w{1, 1}, iv{1, 1}, fac{1}, ifac{1};
 
 inline int get_lim(int m) {
 	return 2 << std::__lg(m - (m > 1));
@@ -127,7 +127,7 @@ void intt(iter f, int n) {
 	reverse(f + 1, f + n);
 }
 
-struct Poly : vector<Z> { // 大常数板子
+struct Poly : std::vector<Z> { // 大常数板子
 	using vector::vector;
 #define T (*this)
 	int deg() const {
@@ -137,7 +137,7 @@ struct Poly : vector<Z> { // 大常数板子
 		return resize(m), T;
 	}
 	Poly cut(int m, int l = 0) const {
-		return {begin() + l, begin() + min(m + l, deg())};
+		return {begin() + l, begin() + std::min(m + l, deg())};
 	}
 	Poly operator*(int k) {
 		Poly f = T;
@@ -195,7 +195,7 @@ struct Poly : vector<Z> { // 大常数板子
 
 struct PolyEI {
 	int raw_n, n;
-	vector<Poly> p;
+	std::vector<Poly> p;
 	PolyEI(Poly a) : raw_n(a.deg()), n(get_lim(raw_n)), p(n * 2) {
 		a.redeg(n);
 		for (int i = 0; i < n; i++)
