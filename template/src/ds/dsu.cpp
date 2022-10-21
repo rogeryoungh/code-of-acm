@@ -3,7 +3,7 @@
 // @description 朴素并查集
 
 struct DSU {
-	vector<int> fa;
+	std::vector<int> fa;
 	DSU(int n) : fa(n) {
 		for (int i = 0; i < n; i++)
 			fa[i] = i;

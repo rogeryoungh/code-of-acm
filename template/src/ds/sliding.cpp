@@ -3,9 +3,9 @@
 // @description 滑动窗口
 
 template <class T>
-auto sliding(const vector<T> &v, int k) {
+auto sliding(const std::vector<T> &v, int k) {
 	int l = 0, r = -1, n = v.size();
-	vector<int> q(n), ret(n);
+	std::vector<int> q(n), ret(n);
 	for (int i = 0; i < n; i++) {
 		while (l <= r && i - k >= q[l])
 			l++;

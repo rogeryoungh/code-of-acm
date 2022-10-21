@@ -5,12 +5,14 @@
 // @description 取模整数
 
 // clang-format off
-#define OPERATOR(U, V, op) friend inline U operator op(const U &l, const V &r) { return U(l) op##= r; }
+#define OPERATOR(U, V, op) \
+	friend inline U operator op(const U &l, const V &r) \
+	{ return U(l) op##= r; }
 // clang-format on
 
 struct Z {
 	int v;
-	Z(ll a = 0) : v(a %= P < 0 ? a + P : P) {}
+	Z(ll a = 0) : v((a % P + P) % P) {}
 	Z &operator=(const int &m) {
 		v = m;
 		return *this;
@@ -47,17 +49,17 @@ struct Z {
 	auto approx(int A = 1E3) {
 		int x = v, y = P, a = 1, b = 0;
 		while (x > A) {
-			swap(x, y), swap(a, b);
+			std::swap(x, y), std::swap(a, b);
 			a -= x / y * b, x %= y;
 		}
-		return make_pair(x, a);
+		return std::make_pair(x, a);
 	}
 };
 
-istream &operator>>(istream &is, Z &z) {
+std::istream &operator>>(std::istream &is, Z &z) {
 	return is >> z.v;
 }
 
-ostream &operator<<(ostream &os, const Z &z) {
+std::ostream &operator<<(std::ostream &os, const Z &z) {
 	return os << z.v;
 }

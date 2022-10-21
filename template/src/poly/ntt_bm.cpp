@@ -33,7 +33,7 @@ Poly bm(const Poly &a) {
 
 Z mulAt(const Poly &F, const Poly &G, int u) {
 	int n = F.size() - 1, m = G.size() - 1;
-	int a = max(0, u - m), b = min(u, n);
+	int a = std::max(0, u - m), b = std::min(u, n);
 	Z ans = 0;
 	for (int i = a; i <= b; i++)
 		ans += F[i] * G[u - i];

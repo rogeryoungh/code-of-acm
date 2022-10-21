@@ -4,7 +4,7 @@
 
 // @description 拉格朗日插值
 
-Z lagrange(const vector<Z> &x, const vector<Z> &y, Z k) {
+Z lagrange(const std::vector<Z> &x, const std::vector<Z> &y, Z k) {
 	int n = x.size();
 	Z sum = 0;
 	for (int i = 0; i < n; i++) {
