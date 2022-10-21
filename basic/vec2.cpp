@@ -5,7 +5,7 @@
 template <class T>
 struct VV {
 	int x, y;
-	vector<T> m;
+	std::vector<T> m;
 	VV(int a, int b, const T &v = T()) : x(a), y(b), m(a * b, v) {}
 	auto operator[](int i) {
 		return m.begin() + i * y;

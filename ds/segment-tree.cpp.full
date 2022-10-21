@@ -3,7 +3,7 @@
 template <class Val>
 struct SegmentTree {
 	const int N;
-	vector<Val> val;
+	std::vector<Val> val;
 	// 0 ~ N - 1
 	SegmentTree(int n) : N(2 << std::__lg(n)), val(N * 2) {
 		assert(n > 0);

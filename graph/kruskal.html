@@ -191,7 +191,27 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="最小生成树kruskal"><a class="header" href="#最小生成树kruskal">最小生成树（kruskal）</a></h1>
-<pre><code class="language-cpp">ll kruskal(int n) {
+<pre><code class="language-cpp">// @description 朴素并查集
+
+struct DSU {
+	std::vector&lt;int&gt; fa;
+	DSU(int n) : fa(n) {
+		for (int i = 0; i &lt; n; i++)
+			fa[i] = i;
+	}
+	int find(int x) {
+		return fa[x] == x ? x : fa[x] = find(fa[x]);
+	}
+	bool same(int x, int y) {
+		return find(x) == find(y);
+	}
+	void merge(int x, int y) {
+		x = find(x), y = find(y);
+		fa[x] = y;
+	}
+};
+
+ll kruskal(int n) {
 	std::sort(G.begin(), G.end(), [](Edge a, Edge b) {
 		return get&lt;2&gt;(a) &lt; get&lt;2&gt;(b);
 	});

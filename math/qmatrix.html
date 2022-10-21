@@ -196,7 +196,7 @@
 template &lt;class T&gt;
 struct VV {
 	int x, y;
-	vector&lt;T&gt; m;
+	std::vector&lt;T&gt; m;
 	VV(int a, int b, const T &amp;v = T()) : x(a), y(b), m(a * b, v) {}
 	auto operator[](int i) {
 		return m.begin() + i * y;
@@ -223,14 +223,14 @@ VV&lt;T&gt; operator*(const VV&lt;T&gt; &amp;lhs, const VV&lt;T&gt; &amp;rhs) {
 }
 
 template &lt;class T&gt;
-istream &amp;operator&gt;&gt;(istream &amp;is, VV&lt;T&gt; &amp;m) {
+std::istream &amp;operator&gt;&gt;(std::istream &amp;is, VV&lt;T&gt; &amp;m) {
 	for (int i = 0; i &lt; m.x * m.y; i++)
 		is &gt;&gt; m.m[i];
 	return is;
 }
 
 template &lt;class T&gt;
-ostream &amp;operator&lt;&lt;(ostream &amp;os, const VV&lt;T&gt; &amp;m) {
+std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const VV&lt;T&gt; &amp;m) {
 	for (int i = 0; i &lt; m.x * m.y; i++)
 		os &lt;&lt; m.m[i] &lt;&lt; &quot; \n&quot;[(i + 1) % m.y == 0];
 	return os;

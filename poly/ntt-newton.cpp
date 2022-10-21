@@ -5,7 +5,7 @@
 // @description 多项式牛顿迭代(m32)
 // @problem https://loj.ac/p/150
 
-vector<Z> w{1, 1}, iv{1, 1}, fac{1}, ifac{1};
+std::vector<Z> w{1, 1}, iv{1, 1}, fac{1}, ifac{1};
 
 inline int get_lim(int m) {
 	return 2 << std::__lg(m - (m > 1));
@@ -28,7 +28,7 @@ void pre_w(int n) {
 }
 
 void pre_all(int n) {
-	iv.resize(n + 1), fac.resize(n + 1), ifac.resize(n + 1);
+	iv = fac = ifac = std::vector<Z>(n + 1);
 	for (int i = 1; i <= n; i++) {
 		fac[i] = i * fac[i - 1];
 	}
@@ -72,7 +72,7 @@ void intt(iter f, int n) {
 	reverse(f + 1, f + n);
 }
 
-struct Poly : vector<Z> { // 大常数板子
+struct Poly : std::vector<Z> { // 大常数板子
 	using vector::vector;
 #define T (*this)
 	int deg() const {
@@ -82,16 +82,16 @@ struct Poly : vector<Z> { // 大常数板子
 		return resize(m), T;
 	}
 	Poly cut(int m, int l = 0) const {
-		return {begin() + l, begin() + min(m + l, deg())};
+		return {begin() + l, begin() + std::min(m + l, deg())};
 	}
 	Poly &operator+=(const Poly &g) {
-		redeg(max(deg(), g.deg()));
+		redeg(std::max(deg(), g.deg()));
 		for (int i = 0; i < g.deg(); i++)
 			T[i] += g[i];
 		return T;
 	}
 	Poly &operator-=(const Poly &g) {
-		redeg(max(deg(), g.deg()));
+		redeg(std::max(deg(), g.deg()));
 		for (int i = 0; i < g.deg(); i++)
 			T[i] -= g[i];
 		return T;
@@ -122,13 +122,13 @@ struct Poly : vector<Z> { // 大常数板子
 	}
 	Poly deriv(int m) const {
 		Poly f(m);
-		for (int i = 1; i < min(deg(), m + 1); i++)
+		for (int i = 1; i < std::min(deg(), m + 1); i++)
 			f[i - 1] = T[i] * i;
 		return f;
 	}
 	Poly integr(int m) const {
 		Poly f(m);
-		for (int i = min(deg(), m - 1); i > 0; --i)
+		for (int i = std::min(deg(), m - 1); i > 0; --i)
 			f[i] = iv[i] * T[i - 1];
 		return f;
 	}

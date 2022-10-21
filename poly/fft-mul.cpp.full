@@ -57,7 +57,7 @@ void ifft(Poly &f) {
 	std::reverse(f.begin() + 1, f.end());
 }
 
-vector<int> mul(const vector<int> &a, const vector<int> &b) {
+std::vector<int> mul(const std::vector<int> &a, const std::vector<int> &b) {
 	int n = a.size(), m = b.size(), lim = get_lim(n + m - 1);
 	Poly f(lim);
 	for (int i = 0; i < n; i++)
@@ -68,13 +68,13 @@ vector<int> mul(const vector<int> &a, const vector<int> &b) {
 	for (int i = 0; i < lim; i++)
 		f[i] = f[i] * f[i];
 	ifft(f);
-	vector<int> ans(n + m - 1);
+	std::vector<int> ans(n + m - 1);
 	for (int i = 0; i < n + m - 1; i++)
 		ans[i] = int(f[i].imag() / 2 + 0.5);
 	return ans;
 }
 
-vector<i128> intmod_mul(const vector<int> &a, const vector<int> &b, int p) {
+std::vector<i128> intmod_mul(const std::vector<int> &a, const std::vector<int> &b, int p) {
 	const int LIM = 1 << 16;
 	int n = a.size(), m = b.size(), lim = get_lim(n + m - 1);
 	Poly A1(lim), A2(lim), Q(lim);
@@ -92,7 +92,7 @@ vector<i128> intmod_mul(const vector<int> &a, const vector<int> &b, int p) {
 		A2[i] *= Q[i];
 	ifft(A1);
 	ifft(A2);
-	vector<i128> ans(n + m - 1);
+	std::vector<i128> ans(n + m - 1);
 
 	for (int i = 0; i < m + n - 1; i++) {
 		i128 a1b1 = (A1[i].real() + A2[i].real() + 1) / 2;

@@ -3,8 +3,8 @@
 template <class Val, class Tag>
 struct LazySegmentTree {
 	const int N;
-	vector<Val> val;
-	vector<Tag> tag;
+	std::vector<Val> val;
+	std::vector<Tag> tag;
 	// 0 ~ N - 1
 	LazySegmentTree(int n) : N(2 << std::__lg(n)), val(N * 2), tag(N * 2) {
 		assert(n > 0);

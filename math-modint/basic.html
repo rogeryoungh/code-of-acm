@@ -208,12 +208,14 @@ int qpow(int a, int b = P - 2, int m = P) {
 // @description 取模整数
 
 // clang-format off
-#define OPERATOR(U, V, op) friend inline U operator op(const U &amp;l, const V &amp;r) { return U(l) op##= r; }
+#define OPERATOR(U, V, op) \
+	friend inline U operator op(const U &amp;l, const V &amp;r) \
+	{ return U(l) op##= r; }
 // clang-format on
 
 struct Z {
 	int v;
-	Z(ll a = 0) : v(a %= P &lt; 0 ? a + P : P) {}
+	Z(ll a = 0) : v((a % P + P) % P) {}
 	Z &amp;operator=(const int &amp;m) {
 		v = m;
 		return *this;
@@ -250,18 +252,18 @@ struct Z {
 	auto approx(int A = 1E3) {
 		int x = v, y = P, a = 1, b = 0;
 		while (x &gt; A) {
-			swap(x, y), swap(a, b);
+			std::swap(x, y), std::swap(a, b);
 			a -= x / y * b, x %= y;
 		}
-		return make_pair(x, a);
+		return std::make_pair(x, a);
 	}
 };
 
-istream &amp;operator&gt;&gt;(istream &amp;is, Z &amp;z) {
+std::istream &amp;operator&gt;&gt;(std::istream &amp;is, Z &amp;z) {
 	return is &gt;&gt; z.v;
 }
 
-ostream &amp;operator&lt;&lt;(ostream &amp;os, const Z &amp;z) {
+std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 	return os &lt;&lt; z.v;
 }
 </code></pre>

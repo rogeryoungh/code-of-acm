@@ -196,19 +196,19 @@
 template &lt;class T&gt;
 struct fwtree {
 	int n;
-	vector&lt;T&gt; v;
-	fwtree(int a = 0) : n(a), v(n + 1) {}
+	std::vector&lt;T&gt; v;
+	// 1 ~ N - 1
+	fwtree(int a = 0) : n(a), v(n) {}
 	void add(int i, T x) {
-		for (i++; i &lt;= n; i += i &amp; -i) {
+		for (; i &lt; n; i += i &amp; -i) {
 			v[i] += x;
 		}
 	}
-	template &lt;class iter&gt;
-	void init(iter first, iter last) {
-		copy(first, last, v.begin() + 1);
-		for (int i = 1; i &lt;= n; i++) {
+	void build(auto first, auto last) {
+		copy(first, last, v.begin());
+		for (int i = 1; i &lt; n; i++) {
 			int j = i + (i &amp; -i);
-			if (j &lt;= n) {
+			if (j &lt; n) {
 				v[j] += v[i];
 			}
 		}
@@ -216,11 +216,11 @@ struct fwtree {
 	T sum(int i) const {
 		assert(i &lt; n);
 		T sum = T();
-		for (i++; i &gt; 0; i -= i &amp; -i)
+		for (; i &gt; 0; i -= i &amp; -i)
 			sum += v[i];
 		return sum;
 	}
-	T sum(int l, int r) {
+	T sum(int l, int r) const {
 		assert(0 &lt;= l &amp;&amp; l &lt;= r &amp;&amp; r &lt; n);
 		return sum(r) - sum(l - 1);
 	}

@@ -194,9 +194,9 @@
 <pre><code class="language-cpp">// @description 滑动窗口
 
 template &lt;class T&gt;
-auto sliding(const vector&lt;T&gt; &amp;v, int k) {
+auto sliding(const std::vector&lt;T&gt; &amp;v, int k) {
 	int l = 0, r = -1, n = v.size();
-	vector&lt;int&gt; q(n), ret(n);
+	std::vector&lt;int&gt; q(n), ret(n);
 	for (int i = 0; i &lt; n; i++) {
 		while (l &lt;= r &amp;&amp; i - k &gt;= q[l])
 			l++;

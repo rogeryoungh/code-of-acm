@@ -1,6 +1,6 @@
 // @description 扩展欧几里得
 
-tuple<ll, ll, ll> exgcd(ll a, ll b) {
+std::tuple<ll, ll, ll> exgcd(ll a, ll b) {
 	if (b == 0) {
 		return {1, 0, a};
 	} else {
@@ -10,7 +10,7 @@ tuple<ll, ll, ll> exgcd(ll a, ll b) {
 }
 
 ll inv_gcd(ll a, ll p) {
-	return (get<0>(exgcd(a, p)) % p + p) % p;
+	return (std::get<0>(exgcd(a, p)) % p + p) % p;
 }
 
 // @description 扩展中国剩余定理

@@ -2,8 +2,7 @@
 
 // @description 二分
 
-template <class Comp> // last true
-ll lower(ll l, ll r, Comp check) {
+ll lower(ll l, ll r, auto check) { // last true
 	if (l >= r or not check(l))
 		return r;
 	while (r - l > 1) {
@@ -13,8 +12,7 @@ ll lower(ll l, ll r, Comp check) {
 	return l;
 }
 
-template <class Comp> // first true
-ll upper(ll l, ll r, Comp check) {
+ll upper(ll l, ll r, auto check) { // first true
 	if (l >= r or not check(r - 1))
 		return r;
 	while (r - l > 1) {

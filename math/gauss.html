@@ -205,7 +205,7 @@ $$</p>
 template &lt;class T&gt;
 struct VV {
 	int x, y;
-	vector&lt;T&gt; m;
+	std::vector&lt;T&gt; m;
 	VV(int a, int b, const T &amp;v = T()) : x(a), y(b), m(a * b, v) {}
 	auto operator[](int i) {
 		return m.begin() + i * y;
@@ -223,11 +223,11 @@ auto Gauss(VV&lt;double&gt; v) {
 	for (int i = 0; i &lt; n; i++) {
 		int mi = i;
 		for (int j = i + 1; j &lt; n; j++)
-			if (fabs(v[j][i]) &gt; fabs(v[mi][i]))
+			if (std::abs(v[j][i]) &gt; std::abs(v[mi][i]))
 				mi = j;
 		for (int j = 0; j &lt; n + 1; j++)
-			swap(v[i][j], v[mi][j]);
-		if (fabs(v[i][i]) &lt; eps)
+			std::swap(v[i][j], v[mi][j]);
+		if (std::abs(v[i][i]) &lt; eps)
 			return VV&lt;double&gt;(0, 0);
 		for (int j = 0; j &lt; n; j++) {
 			if (j != i) {

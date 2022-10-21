@@ -191,9 +191,9 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="kmp"><a class="header" href="#kmp">KMP</a></h1>
-<pre><code class="language-cpp">auto pre_kmp(const string &amp;s) {
+<pre><code class="language-cpp">auto pre_kmp(const std::string &amp;s) {
 	int n = s.length();
-	vector&lt;int&gt; pi(n + 1);
+	std::vector&lt;int&gt; pi(n + 1);
 	for (int i = 1; i &lt; n; i++) {
 		int j = pi[i];
 		while (j &gt; 0 &amp;&amp; s[i] != s[j])
@@ -203,7 +203,7 @@
 	return pi;
 }
 
-void kmp(const string &amp;s, const string &amp;t) {
+void kmp(const std::string &amp;s, const std::string &amp;t) {
 	auto pi = pre_kmp(s);
 	int p = 0, n = t.length(), sn = s.length();
 	for (int i = 0; i &lt; n; i++) {
@@ -212,11 +212,11 @@ void kmp(const string &amp;s, const string &amp;t) {
 			j = pi[j];
 		p = j + (t[i] == s[j]);
 		if (p == sn) {
-			cout &lt;&lt; i - sn + 2 &lt;&lt; &quot;\n&quot;;
+			std::cout &lt;&lt; i - sn + 2 &lt;&lt; &quot;\n&quot;;
 		}
 	}
 	for (int i = 1; i &lt;= sn; i++) {
-		cout &lt;&lt; pi[i] &lt;&lt; &quot; &quot;;
+		std::cout &lt;&lt; pi[i] &lt;&lt; &quot; &quot;;
 	}
 }
 </code></pre>

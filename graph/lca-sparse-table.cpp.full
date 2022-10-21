@@ -1,4 +1,4 @@
-using pii = pair<int, int>;
+using pii = std::pair<int, int>;
 
 const int N = 5E5 + 10;
 std::vector<int> G[N];
@@ -12,7 +12,7 @@ std::vector<int> G[N];
 template <class T>
 struct VV {
 	int x, y;
-	vector<T> m;
+	std::vector<T> m;
 	VV(int a, int b, const T &v = T()) : x(a), y(b), m(a * b, v) {}
 	auto operator[](int i) {
 		return m.begin() + i * y;
@@ -46,8 +46,8 @@ struct SparseTable {
 };
 
 struct LCA {
-	vector<int> dfn;
-	vector<pii> rnk;
+	std::vector<int> dfn;
+	std::vector<pii> rnk;
 	SparseTable<pii> st;
 	int cnt = 0;
 
@@ -70,7 +70,7 @@ struct LCA {
 			return x;
 		x = dfn[x], y = dfn[y];
 		if (x > y) {
-			swap(x, y);
+			std::swap(x, y);
 		}
 		return st.query(x + 1, y).second;
 	}

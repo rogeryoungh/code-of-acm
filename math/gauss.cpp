@@ -10,11 +10,11 @@ auto Gauss(VV<double> v) {
 	for (int i = 0; i < n; i++) {
 		int mi = i;
 		for (int j = i + 1; j < n; j++)
-			if (fabs(v[j][i]) > fabs(v[mi][i]))
+			if (std::abs(v[j][i]) > std::abs(v[mi][i]))
 				mi = j;
 		for (int j = 0; j < n + 1; j++)
-			swap(v[i][j], v[mi][j]);
-		if (fabs(v[i][i]) < eps)
+			std::swap(v[i][j], v[mi][j]);
+		if (std::abs(v[i][i]) < eps)
 			return VV<double>(0, 0);
 		for (int j = 0; j < n; j++) {
 			if (j != i) {

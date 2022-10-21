@@ -192,14 +192,14 @@
                     <main>
                         <h1 id="树链剖分"><a class="header" href="#树链剖分">树链剖分</a></h1>
 <pre><code class="language-cpp">const int N = 1E5 + 5;
-vector&lt;int&gt; G[N];
+std::vector&lt;int&gt; G[N];
 
 // @problem https://www.luogu.com.cn/problem/P3379
 
 // @description 树链剖分 LCA
 
 struct HLD {
-	vector&lt;int&gt; sz, dep, fa, son, top, dfn;
+	std::vector&lt;int&gt; sz, dep, fa, son, top, dfn;
 	int cnt = 0;
 	HLD(int n, int r = 1) : sz(n), dep(n), fa(n), son(n), top(n), dfn(n) {
 		dfs1(r), dfs2(r, r);
@@ -231,7 +231,7 @@ struct HLD {
 	int qpath(int x, int y) {
 		while (top[x] != top[y]) {
 			if (dep[top[x]] &gt; dep[top[y]]) {
-				swap(x, y);
+				std::swap(x, y);
 			}
 			y = fa[top[y]];
 		}

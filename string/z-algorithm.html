@@ -191,14 +191,14 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="z-函数"><a class="header" href="#z-函数">Z 函数</a></h1>
-<pre><code class="language-cpp">auto pre_z_algo(const string &amp;s) {
+<pre><code class="language-cpp">auto pre_z_algo(const std::string &amp;s) {
 	int n = s.length();
-	vector&lt;int&gt; z(n);
+	std::vector&lt;int&gt; z(n);
 	z[0] = n;
 	for (int i = 1, l = 0, r = 0; i &lt; n; i++) {
 		int &amp;k = z[i], u = r - i;
 		if (u &gt; 0)
-			k = min(u, z[i - l]);
+			k = std::min(u, z[i - l]);
 		while (i + k &lt; n &amp;&amp; s[k] == s[i + k])
 			k++;
 		if (i + k &gt; r)
@@ -207,7 +207,7 @@
 	return z;
 }
 
-void z_algo(const string &amp;s, const string &amp;t) {
+void z_algo(const std::string &amp;s, const std::string &amp;t) {
 	auto z = pre_z_algo(s);
 	ll ans1 = 0, ans2 = 0;
 	for (int i = 0; i &lt; z.size(); i++) {
@@ -217,14 +217,14 @@ void z_algo(const string &amp;s, const string &amp;t) {
 	for (int i = 0, l = 0, r = 0; i &lt; n; i++) {
 		int k = 0, u = r - i;
 		if (u &gt; 0)
-			k = min(u, z[i - l]);
+			k = std::min(u, z[i - l]);
 		while (i + k &lt; n &amp;&amp; s[k] == t[i + k])
 			k++;
 		if (i + k &gt; r)
 			l = i, r = i + k;
 		ans2 ^= 1ll * (i + 1) * (k + 1);
 	}
-	cout &lt;&lt; ans1 &lt;&lt; '\n' &lt;&lt; ans2 &lt;&lt; '\n';
+	std::cout &lt;&lt; ans1 &lt;&lt; '\n' &lt;&lt; ans2 &lt;&lt; '\n';
 }
 </code></pre>
 

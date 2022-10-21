@@ -1,6 +1,6 @@
 #include "basic/index.hpp"
 
-using pii = pair<int, int>;
+using pii = std::pair<int, int>;
 
 const int N = 5E5 + 10;
 std::vector<int> G[N];
@@ -35,8 +35,8 @@ struct SparseTable {
 };
 
 struct LCA {
-	vector<int> dfn;
-	vector<pii> rnk;
+	std::vector<int> dfn;
+	std::vector<pii> rnk;
 	SparseTable<pii> st;
 	int cnt = 0;
 
@@ -59,7 +59,7 @@ struct LCA {
 			return x;
 		x = dfn[x], y = dfn[y];
 		if (x > y) {
-			swap(x, y);
+			std::swap(x, y);
 		}
 		return st.query(x + 1, y).second;
 	}

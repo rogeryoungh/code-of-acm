@@ -196,7 +196,7 @@
 template &lt;class Val&gt;
 struct SegmentTree {
 	const int N;
-	vector&lt;Val&gt; val;
+	std::vector&lt;Val&gt; val;
 	// 0 ~ N - 1
 	SegmentTree(int n) : N(2 &lt;&lt; std::__lg(n)), val(N * 2) {
 		assert(n &gt; 0);

@@ -1,11 +1,11 @@
 // @description 快速幂(i32)
 
 int qpow(int a, ll b, int m) {
-	int ret = m != 1;
+	int ret = 1 % m;
 	for (; b > 0; b /= 2) {
 		if (b % 2 == 1)
-			ret = 1ll * ret * a % m;
-		a = 1ll * a * a % m;
+			ret = ll(a) * ret % m;
+		a = ll(a) * a % m;
 	}
 	return ret;
 }
@@ -25,7 +25,7 @@ int cipolla(int n, int p) {
 		return 1;
 	for (int a = 0; a < p; a++) {
 		int i = (a * a - n + p) % p;
-		using FP2 = pair<ll, ll>;
+		using FP2 = std::pair<ll, ll>;
 		auto mul = [p, i](const FP2 &l, const FP2 &r) {
 			auto [la, lb] = l;
 			auto [ra, rb] = r;
@@ -38,7 +38,7 @@ int cipolla(int n, int p) {
 					x = mul(x, u);
 				u = mul(u, u);
 			}
-			return min(x.first, p - x.first);
+			return std::min(x.first, p - x.first);
 		}
 	}
 	return -1;

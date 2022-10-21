@@ -203,7 +203,7 @@ $$</p>
 <p>不保证 $\{m_i\}$ 互质，但保证 $\operatorname{lcm}(m_i) &lt; 10^{18}$。</p>
 <pre><code class="language-cpp">// @description 扩展欧几里得
 
-tuple&lt;ll, ll, ll&gt; exgcd(ll a, ll b) {
+std::tuple&lt;ll, ll, ll&gt; exgcd(ll a, ll b) {
 	if (b == 0) {
 		return {1, 0, a};
 	} else {
@@ -213,7 +213,7 @@ tuple&lt;ll, ll, ll&gt; exgcd(ll a, ll b) {
 }
 
 ll inv_gcd(ll a, ll p) {
-	return (get&lt;0&gt;(exgcd(a, p)) % p + p) % p;
+	return (std::get&lt;0&gt;(exgcd(a, p)) % p + p) % p;
 }
 
 // @description 扩展中国剩余定理

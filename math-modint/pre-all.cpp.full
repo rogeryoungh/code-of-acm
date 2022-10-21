@@ -1,18 +1,28 @@
-#include <vector>
-using namespace std;
-
 const int P = 998244353;
+
+// @description 快速幂(i32, P)
+
+int qpow(int a, int b = P - 2, int m = P) {
+	int ret = m != 1;
+	for (; b > 0; b /= 2) {
+		if (b % 2 == 1)
+			ret = 1ll * ret * a % m;
+		a = 1ll * a * a % m;
+	}
+	return ret;
+}
 
 // @description 取模整数
 
-#define OPERATOR(U, op)                                       \
-	friend inline U operator op(const U &lhs, const U &rhs) { \
-		return U(lhs) op## = rhs;                             \
-	}
+// clang-format off
+#define OPERATOR(U, V, op) \
+	friend inline U operator op(const U &l, const V &r) \
+	{ return U(l) op##= r; }
+// clang-format on
 
 struct Z {
 	int v;
-	Z(int a = 0) : v(a) {}
+	Z(ll a = 0) : v((a % P + P) % P) {}
 	Z &operator=(const int &m) {
 		v = m;
 		return *this;
@@ -29,17 +39,11 @@ struct Z {
 		v = 1ll * v * m.v % P;
 		return *this;
 	}
-	OPERATOR(Z, +);
-	OPERATOR(Z, -);
-	OPERATOR(Z, *);
+	OPERATOR(Z, Z, +);
+	OPERATOR(Z, Z, -);
+	OPERATOR(Z, Z, *);
 	Z pow(int n) const {
-		int ret = P != 1, a = v;
-		for (; n; n /= 2) {
-			if (n % 2 == 1)
-				ret = 1ll * ret * a % P;
-			a = 1ll * a * a % P;
-		}
-		return ret;
+		return qpow(v, n);
 	}
 	Z inv() const {
 		return pow(P - 2);
@@ -51,15 +55,33 @@ struct Z {
 	Z &operator/=(const Z &m) {
 		return *this *= m.inv();
 	}
-	OPERATOR(Z, /);
+	OPERATOR(Z, Z, /);
+	auto approx(int A = 1E3) {
+		int x = v, y = P, a = 1, b = 0;
+		while (x > A) {
+			std::swap(x, y), std::swap(a, b);
+			a -= x / y * b, x %= y;
+		}
+		return std::make_pair(x, a);
+	}
 };
+
+std::istream &operator>>(std::istream &is, Z &z) {
+	return is >> z.v;
+}
+
+std::ostream &operator<<(std::ostream &os, const Z &z) {
+	return os << z.v;
+}
 
 // @description 预处理逆元、阶乘、阶乘逆元
 
-vector<Z> iv{1, 1}, fac{1}, ifac{1};
+std::vector<Z> iv, fac, ifac;
 
 void pre_all(int n) {
-	iv.resize(n + 1), fac.resize(n + 1), ifac.resize(n + 1);
+	n = std::max(5, n);
+	iv = fac = ifac = std::vector<Z>(n + 1);
+	iv[0] = iv[1] = fac[0] = ifac[0] = 1;
 	for (int i = 1; i <= n; i++) {
 		fac[i] = fac[i - 1] * i;
 	}

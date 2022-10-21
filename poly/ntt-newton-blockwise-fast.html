@@ -208,12 +208,14 @@ int qpow(int a, int b = P - 2, int m = P) {
 // @description 取模整数
 
 // clang-format off
-#define OPERATOR(U, V, op) friend inline U operator op(const U &amp;l, const V &amp;r) { return U(l) op##= r; }
+#define OPERATOR(U, V, op) \
+	friend inline U operator op(const U &amp;l, const V &amp;r) \
+	{ return U(l) op##= r; }
 // clang-format on
 
 struct Z {
 	int v;
-	Z(ll a = 0) : v(a %= P &lt; 0 ? a + P : P) {}
+	Z(ll a = 0) : v((a % P + P) % P) {}
 	Z &amp;operator=(const int &amp;m) {
 		v = m;
 		return *this;
@@ -250,25 +252,25 @@ struct Z {
 	auto approx(int A = 1E3) {
 		int x = v, y = P, a = 1, b = 0;
 		while (x &gt; A) {
-			swap(x, y), swap(a, b);
+			std::swap(x, y), std::swap(a, b);
 			a -= x / y * b, x %= y;
 		}
-		return make_pair(x, a);
+		return std::make_pair(x, a);
 	}
 };
 
-istream &amp;operator&gt;&gt;(istream &amp;is, Z &amp;z) {
+std::istream &amp;operator&gt;&gt;(std::istream &amp;is, Z &amp;z) {
 	return is &gt;&gt; z.v;
 }
 
-ostream &amp;operator&lt;&lt;(ostream &amp;os, const Z &amp;z) {
+std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 	return os &lt;&lt; z.v;
 }
 
 // @description 多项式牛顿迭代(m32, 卡常)
 // @problem https://loj.ac/p/150
 
-vector&lt;Z&gt; w{1, 1}, iv{1, 1}, fac{1}, ifac{1};
+std::vector&lt;Z&gt; w{1, 1}, iv{1, 1}, fac{1}, ifac{1};
 
 inline int get_lim(int n) {
 	int m = 1;
@@ -338,7 +340,7 @@ void intt(iter f, int n) {
 	reverse(f + 1, f + n);
 }
 
-struct Poly : vector&lt;Z&gt; { // 卡常板子
+struct Poly : std::vector&lt;Z&gt; { // 卡常板子
 	using vector::vector;
 	bool isNTT = false;
 #define T (*this)
@@ -349,16 +351,16 @@ struct Poly : vector&lt;Z&gt; { // 卡常板子
 		return resize(m), T;
 	}
 	Poly cut(int m, int l = 0) const {
-		return {begin() + l, begin() + min(m + l, deg())};
+		return {begin() + l, begin() + std::min(m + l, deg())};
 	}
 	Poly &amp;operator+=(const Poly &amp;g) {
-		redeg(max(deg(), g.deg()));
+		redeg(std::max(deg(), g.deg()));
 		for (int i = 0; i &lt; g.deg(); i++)
 			T[i] += g[i];
 		return T;
 	}
 	Poly &amp;operator-=(const Poly &amp;g) {
-		redeg(max(deg(), g.deg()));
+		redeg(std::max(deg(), g.deg()));
 		for (int i = 0; i &lt; g.deg(); i++)
 			T[i] -= g[i];
 		return T;
@@ -400,13 +402,13 @@ struct Poly : vector&lt;Z&gt; { // 卡常板子
 	}
 	Poly deriv(int m) const {
 		Poly f(m);
-		for (int i = 1; i &lt; min(deg(), m + 1); i++)
+		for (int i = 1; i &lt; std::min(deg(), m + 1); i++)
 			f[i - 1] = T[i] * i;
 		return f;
 	}
 	Poly integr(int m) const {
 		Poly f(m);
-		for (int i = min(deg(), m - 1); i &gt; 0; --i)
+		for (int i = std::min(deg(), m - 1); i &gt; 0; --i)
 			f[i] = iv[i] * T[i - 1];
 		return f;
 	}
@@ -492,7 +494,7 @@ Poly Poly::sqrt(int u) const { // 8E
 			}
 		}
 		psi.intt(m * 2).fill0H(m * 2);
-		for (int j = 0; j &lt; min(m, deg() - m * k); j++)
+		for (int j = 0; j &lt; std::min(m, deg() - m * k); j++)
 			psi[j] += (*this)[m * k + j];
 		mul(psi, h, m * 2);
 		x.redeg((k + 1) * m);
@@ -525,7 +527,7 @@ Poly Poly::div(int u, Poly f) const { // 10E
 				psi[i] -= ng[j][i] * (nf[k - j][i] - nf[k - 1 - j][i]);
 		}
 		psi.intt(m * 2).fill0H(m * 2);
-		for (int j = 0; j &lt; min(m, deg() - m * k); j++)
+		for (int j = 0; j &lt; std::min(m, deg() - m * k); j++)
 			psi[j] += (*this)[m * k + j];
 		mul(psi, h, m * 2);
 		x.redeg((k + 1) * m);

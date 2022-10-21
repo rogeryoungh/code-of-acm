@@ -196,14 +196,14 @@
 // @description Manacher
 
 template &lt;int off&gt;
-auto manacher(const string &amp;s) {
+auto manacher(const std::string &amp;s) {
 	int n = s.size();
-	vector&lt;int&gt; m(n);
+	std::vector&lt;int&gt; m(n);
 	m[0] = off == 0;
 	for (int i = 1, l = 0, r = 0; i &lt; n; i++) {
 		int &amp;k = m[i], u = r - i;
 		if (u &gt; 0)
-			k = min(u, m[2 * l - i]);
+			k = std::min(u, m[2 * l - i]);
 		while (0 &lt;= i - k - off &amp;&amp; i + k &lt; n &amp;&amp; s[i - k - off] == s[i + k])
 			k++;
 		if (i + k &gt; r)
@@ -212,11 +212,11 @@ auto manacher(const string &amp;s) {
 	return m;
 }
 
-vector&lt;int&gt; manacher_odd(const string &amp;s) {
+std::vector&lt;int&gt; manacher_odd(const std::string &amp;s) {
 	return manacher&lt;0&gt;(s);
 }
 
-vector&lt;int&gt; manacher_even(const string &amp;s) {
+std::vector&lt;int&gt; manacher_even(const std::string &amp;s) {
 	return manacher&lt;1&gt;(s);
 }
 </code></pre>

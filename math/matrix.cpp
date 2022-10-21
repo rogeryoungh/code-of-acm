@@ -19,14 +19,14 @@ VV<T> operator*(const VV<T> &lhs, const VV<T> &rhs) {
 }
 
 template <class T>
-istream &operator>>(istream &is, VV<T> &m) {
+std::istream &operator>>(std::istream &is, VV<T> &m) {
 	for (int i = 0; i < m.x * m.y; i++)
 		is >> m.m[i];
 	return is;
 }
 
 template <class T>
-ostream &operator<<(ostream &os, const VV<T> &m) {
+std::ostream &operator<<(std::ostream &os, const VV<T> &m) {
 	for (int i = 0; i < m.x * m.y; i++)
 		os << m.m[i] << " \n"[(i + 1) % m.y == 0];
 	return os;

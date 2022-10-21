@@ -15,12 +15,14 @@ int qpow(int a, int b = P - 2, int m = P) {
 // @description 取模整数
 
 // clang-format off
-#define OPERATOR(U, V, op) friend inline U operator op(const U &l, const V &r) { return U(l) op##= r; }
+#define OPERATOR(U, V, op) \
+	friend inline U operator op(const U &l, const V &r) \
+	{ return U(l) op##= r; }
 // clang-format on
 
 struct Z {
 	int v;
-	Z(ll a = 0) : v(a %= P < 0 ? a + P : P) {}
+	Z(ll a = 0) : v((a % P + P) % P) {}
 	Z &operator=(const int &m) {
 		v = m;
 		return *this;
@@ -57,25 +59,25 @@ struct Z {
 	auto approx(int A = 1E3) {
 		int x = v, y = P, a = 1, b = 0;
 		while (x > A) {
-			swap(x, y), swap(a, b);
+			std::swap(x, y), std::swap(a, b);
 			a -= x / y * b, x %= y;
 		}
-		return make_pair(x, a);
+		return std::make_pair(x, a);
 	}
 };
 
-istream &operator>>(istream &is, Z &z) {
+std::istream &operator>>(std::istream &is, Z &z) {
 	return is >> z.v;
 }
 
-ostream &operator<<(ostream &os, const Z &z) {
+std::ostream &operator<<(std::ostream &os, const Z &z) {
 	return os << z.v;
 }
 
 // @description 多项式牛顿迭代(m32, 卡常)
 // @problem https://loj.ac/p/150
 
-vector<Z> w{1, 1}, iv{1, 1}, fac{1}, ifac{1};
+std::vector<Z> w{1, 1}, iv{1, 1}, fac{1}, ifac{1};
 
 inline int get_lim(int m) {
 	return 2 << std::__lg(m - (m > 1));
@@ -142,7 +144,7 @@ void intt(iter f, int n) {
 	reverse(f + 1, f + n);
 }
 
-struct Poly : vector<Z> { // 卡常板子
+struct Poly : std::vector<Z> { // 卡常板子
 	using vector::vector;
 	bool isNTT = false;
 #define T (*this)
@@ -153,16 +155,16 @@ struct Poly : vector<Z> { // 卡常板子
 		return resize(m), T;
 	}
 	Poly cut(int m, int l = 0) const {
-		return {begin() + l, begin() + min(m + l, deg())};
+		return {begin() + l, begin() + std::min(m + l, deg())};
 	}
 	Poly &operator+=(const Poly &g) {
-		redeg(max(deg(), g.deg()));
+		redeg(std::max(deg(), g.deg()));
 		for (int i = 0; i < g.deg(); i++)
 			T[i] += g[i];
 		return T;
 	}
 	Poly &operator-=(const Poly &g) {
-		redeg(max(deg(), g.deg()));
+		redeg(std::max(deg(), g.deg()));
 		for (int i = 0; i < g.deg(); i++)
 			T[i] -= g[i];
 		return T;
@@ -198,13 +200,13 @@ struct Poly : vector<Z> { // 卡常板子
 	}
 	Poly deriv(int m) const {
 		Poly f(m);
-		for (int i = 1; i < min(deg(), m + 1); i++)
+		for (int i = 1; i < std::min(deg(), m + 1); i++)
 			f[i - 1] = T[i] * i;
 		return f;
 	}
 	Poly integr(int m) const {
 		Poly f(m);
-		for (int i = min(deg(), m - 1); i > 0; --i)
+		for (int i = std::min(deg(), m - 1); i > 0; --i)
 			f[i] = iv[i] * T[i - 1];
 		return f;
 	}
@@ -239,7 +241,7 @@ struct Poly : vector<Z> { // 卡常板子
 		Poly x = cut(t / 2), u = g.inv(t / 2); // 10E
 		Poly q = mul(x, u, t).cut(t / 2);	   // 6E
 		mul(q, g, t).fill0L(t);				   // 6E
-		for (int i = t / 2; i < min(t, deg()); i++)
+		for (int i = t / 2; i < std::min(t, deg()); i++)
 			q[i] -= T[i];
 		mul(q, u, t); // 4E
 		for (int i = t / 2; i < t; i++)
@@ -263,7 +265,7 @@ struct Poly : vector<Z> { // 卡常板子
 			for (int i = 0; i < t / 2; i++)
 				q[i] -= i * f[i];
 			mul(q, ng, t); // 6E
-			for (int i = t / 2; i < min(t, deg()); i++)
+			for (int i = t / 2; i < std::min(t, deg()); i++)
 				q[i] = T[i] + q[i - t / 2] * iv[i];
 			mul(q.fill0L(t), nf, t); // 4E
 			f.redeg(t);
@@ -279,7 +281,7 @@ struct Poly : vector<Z> { // 卡常板子
 			if (t >= 4)
 				ng = g.invD(f, ng, t / 2); // 3E
 			mul(f, f, t / 2).redeg(t);				  // 1E
-			for (int i = t / 2; i < min(t, deg()); i++)
+			for (int i = t / 2; i < std::min(t, deg()); i++)
 				f[i] = T[i - t / 2] + T[i] - f[i - t / 2];
 			mul(f.fill0L(t), ng, t); // 6E
 			x.redeg(t);

@@ -1,12 +1,12 @@
 const int N = 1E5 + 5;
-vector<int> G[N];
+std::vector<int> G[N];
 
 // @problem https://www.luogu.com.cn/problem/P3379
 
 // @description 树链剖分 LCA
 
 struct HLD {
-	vector<int> sz, dep, fa, son, top, dfn;
+	std::vector<int> sz, dep, fa, son, top, dfn;
 	int cnt = 0;
 	HLD(int n, int r = 1) : sz(n), dep(n), fa(n), son(n), top(n), dfn(n) {
 		dfs1(r), dfs2(r, r);
@@ -38,7 +38,7 @@ struct HLD {
 	int qpath(int x, int y) {
 		while (top[x] != top[y]) {
 			if (dep[top[x]] > dep[top[y]]) {
-				swap(x, y);
+				std::swap(x, y);
 			}
 			y = fa[top[y]];
 		}

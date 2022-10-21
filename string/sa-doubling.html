@@ -191,11 +191,10 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="后缀数组"><a class="header" href="#后缀数组">后缀数组</a></h1>
-<pre><code class="language-cpp">template &lt;class iter&gt;
-auto sa_doubleing(iter first, iter last, int m = 128) {
+<pre><code class="language-cpp">auto sa_doubleing(auto first, auto last, int m = 128) {
 	int n = last - first;
-	vector&lt;int&gt; cnt(max(n, m)), sa(n), rk(n + 1, -1), id(n + 1, -1);
-	copy(first, last, rk.begin());
+	std::vector&lt;int&gt; cnt(std::max(n, m)), sa(n), rk(n + 1, -1), id(n + 1, -1);
+	std::copy(first, last, rk.begin());
 	for (int i = 0; i &lt; n; i++)
 		cnt[rk[i]]++;
 	for (int i = 1; i &lt; m; i++)
@@ -209,15 +208,15 @@ auto sa_doubleing(iter first, iter last, int m = 128) {
 		for (int i = 0; i &lt; n; i++)
 			if (sa[i] &gt;= k)
 				id[p++] = sa[i] - k;
-		fill(cnt.begin(), cnt.end(), 0);
+		std::fill(cnt.begin(), cnt.end(), 0);
 		for (int i = 0; i &lt; n; i++)
 			cnt[rk[i]]++;
 		for (int i = 1; i &lt; m; i++)
 			cnt[i] += cnt[i - 1];
 		for (int i = n - 1; i &gt;= 0; i--)
 			sa[--cnt[rk[id[i]]]] = id[i];
-		fill(id.begin(), id.end(), -1);
-		swap(rk, id);
+		std::fill(id.begin(), id.end(), -1);
+		std::swap(rk, id);
 		rk[sa[0]] = 0, p = 0;
 		for (int i = 1; i &lt; n; i++) {
 			bool f = id[sa[i]] == id[sa[i - 1]] &amp;&amp; id[sa[i] + k] == id[sa[i - 1] + k];

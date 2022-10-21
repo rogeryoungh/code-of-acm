@@ -203,7 +203,7 @@ $$</p>
 <p>保证 $\{m_i\}$ 互质。</p>
 <pre><code class="language-cpp">// @description 扩展欧几里得
 
-tuple&lt;ll, ll, ll&gt; exgcd(ll a, ll b) {
+std::tuple&lt;ll, ll, ll&gt; exgcd(ll a, ll b) {
 	if (b == 0) {
 		return {1, 0, a};
 	} else {
@@ -213,13 +213,13 @@ tuple&lt;ll, ll, ll&gt; exgcd(ll a, ll b) {
 }
 
 ll inv_gcd(ll a, ll p) {
-	return (get&lt;0&gt;(exgcd(a, p)) % p + p) % p;
+	return (std::get&lt;0&gt;(exgcd(a, p)) % p + p) % p;
 }
 
 // @description 中国剩余定理
 
 template &lt;class PAIR&gt;
-ll crt(const vector&lt;PAIR&gt; &amp;am) {
+ll crt(const std::vector&lt;PAIR&gt; &amp;am) {
 	ll prod = 1, ret = 0;
 	for (auto [a, m] : am)
 		prod *= m;

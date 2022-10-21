@@ -194,7 +194,7 @@
 <pre><code class="language-cpp">// @description 带权并查集
 
 struct DSU {
-	vector&lt;int&gt; fa, sz;
+	std::vector&lt;int&gt; fa, sz;
 	DSU(int n) : fa(n), sz(n, 1) {
 		for (int i = 0; i &lt; n; i++)
 			fa[i] = i;
@@ -213,7 +213,7 @@ struct DSU {
 		if (x == y)
 			return;
 		if (sz[x] &gt; sz[y])
-			swap(x, y);
+			std::swap(x, y);
 		sz[y] += sz[x], fa[x] = y;
 		sz[x] = 0;
 	}

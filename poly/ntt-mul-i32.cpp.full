@@ -15,7 +15,7 @@ int qpow(int a, int b = P - 2, int m = P) {
 // @description 多项式乘法
 // @problem https://loj.ac/p/150
 
-using Poly = vector<int>;
+using Poly = std::vector<int>;
 Poly w{1, 1}, Inv{1, 1}, fac{1}, ifac{1};
 
 inline int get_lim(int m) {
@@ -88,7 +88,7 @@ Poly operator*(Poly f, Poly g) {
 }
 
 Poly operator+(Poly f, Poly g) {
-	int n = max(f.size(), g.size());
+	int n = std::max(f.size(), g.size());
 	f.resize(n);
 	for (int i = 0; i < n; i++) {
 		f[i] = mo(f[i] + g[i]);
@@ -97,7 +97,7 @@ Poly operator+(Poly f, Poly g) {
 }
 
 Poly operator-(Poly f, Poly g) {
-	int n = max(f.size(), g.size());
+	int n = std::max(f.size(), g.size());
 	f.resize(n);
 	for (int i = 0; i < n; i++) {
 		f[i] = mo(f[i] - g[i] + P);
