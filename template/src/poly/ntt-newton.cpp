@@ -1,11 +1,11 @@
 #include "basic/index.hpp"
 
-#include "math-modint/basic.cpp"
+#include "math-modint/pre-all.cpp"
 
 // @description 多项式牛顿迭代(m32)
 // @problem https://loj.ac/p/150
 
-std::vector<Z> w{1, 1}, iv{1, 1}, fac{1}, ifac{1};
+std::vector<Z> w{1, 1};
 
 inline int get_lim(int m) {
 	return 2 << std::__lg(m - (m > 1));
@@ -20,33 +20,16 @@ void pre_w(int n) {
 	for (int l = lim; l < n; l *= 2) {
 		Z p = qpow(3, (P - 1) / l / 2);
 		for (int i = 0; i < l; i += 2) {
-			w[(l + i)] = w[(l + i) / 2];
+			w[l + i] = w[(l + i) / 2];
 			w[l + i + 1] = w[l + i] * p;
 		}
 	}
 	lim = n;
 }
 
-void pre_all(int n) {
-	iv = fac = ifac = std::vector<Z>(n + 1);
-	for (int i = 1; i <= n; i++) {
-		fac[i] = i * fac[i - 1];
-	}
-	ifac[n] = fac[n].inv(), iv[n] = Z(n).inv();
-	for (int i = n - 1; i > 0; i--) {
-		ifac[i] = ifac[i + 1] * (i + 1);
-		iv[i] = ifac[i] * fac[i - 1];
-	}
-}
-
-Z C(int n, int m) {
-	return fac[n] * ifac[m] * ifac[n - m];
-}
-
 static int ntt_size = 0;
 
-template <class iter>
-void ntt(iter f, int n) {
+void ntt(auto f, int n) {
 	pre_w(n), ntt_size += n;
 	for (int l = n / 2; l; l >>= 1)
 		for (int i = 0; i < n; i += l * 2)
@@ -57,8 +40,7 @@ void ntt(iter f, int n) {
 			}
 }
 
-template <class iter>
-void intt(iter f, int n) {
+void intt(auto f, int n) {
 	pre_w(n), ntt_size += n;
 	for (int l = 1; l < n; l <<= 1)
 		for (int i = 0; i < n; i += l * 2)
@@ -69,7 +51,7 @@ void intt(iter f, int n) {
 	const int ivn = P - (P - 1) / n;
 	for (int i = 0; i < n; i++)
 		f[i] *= ivn;
-	reverse(f + 1, f + n);
+	std::reverse(f + 1, f + n);
 }
 
 struct Poly : std::vector<Z> { // 大常数板子
@@ -104,6 +86,7 @@ struct Poly : std::vector<Z> { // 大常数板子
 	OPERATOR(Poly, Poly, +);
 	OPERATOR(Poly, Poly, -);
 	OPERATOR(Poly, Z, *);
+	OPERATOR(Poly, Poly, *);
 	Poly &ntt(int n) {
 		return redeg(n), ::ntt(begin(), n), T;
 	}
@@ -116,9 +99,9 @@ struct Poly : std::vector<Z> { // 大常数板子
 			f[i] *= g[i];
 		return f.intt(n);
 	}
-	friend Poly operator*(Poly f, Poly g) {
-		int m = f.deg() + g.deg() - 1;
-		return mul(f, g, get_lim(m)).redeg(m);
+	Poly &operator*=(Poly g) {
+		int m = T.deg() + g.deg() - 1;
+		return mul(T, g, get_lim(m)).redeg(m);
 	}
 	Poly deriv(int m) const {
 		Poly f(m);
@@ -173,25 +156,13 @@ struct Poly : std::vector<Z> { // 大常数板子
 	Poly rev() const {
 		return {rbegin(), rend()};
 	}
-	Poly shift(int c) {
-		int n = deg();
-		Poly A(n), B(n);
-		Z ci = 1;
-		for (int i = 0; i < n; i++) {
-			A[i] = T[i] * fac[i];
-			B[i] = ci * ifac[i];
-			ci *= c;
-		}
-		reverse(A.begin(), A.end());
-		A = A * B;
-		for (int i = 0; i < n; i++) {
-			B[i] = A[n - i - 1] * ifac[i];
-		}
-		return B;
-	}
 	friend Poly operator/(const Poly &f, const Poly &g) {
 		int m = f.deg() - g.deg() + 1;
 		return f.rev().div(m, g.rev()).rev();
+	}
+	friend auto operator%(const Poly &f, const Poly &g) {
+		Poly Q = f / g;
+		return make_pair(Q, (f - Q * g).redeg(g.deg() - 1));
 	}
 #undef T
 };

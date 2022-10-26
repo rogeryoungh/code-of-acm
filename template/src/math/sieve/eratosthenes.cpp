@@ -2,8 +2,8 @@
 
 // @description 埃氏筛
 
-vector<bool> not_p;
-vector<int> primes;
+std::vector<bool> not_p;
+std::vector<int> primes;
 void Eratosthenes(int n) {
 	not_p.resize(n);
 	for (int i = 2; i < n; i++) {

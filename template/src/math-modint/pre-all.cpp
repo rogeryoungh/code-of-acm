@@ -7,9 +7,7 @@
 std::vector<Z> iv, fac, ifac;
 
 void pre_all(int n) {
-	n = std::max(5, n);
-	iv = fac = ifac = std::vector<Z>(n + 1);
-	iv[0] = iv[1] = fac[0] = ifac[0] = 1;
+	iv = fac = ifac = std::vector<Z>(n + 1, 1);
 	for (int i = 1; i <= n; i++) {
 		fac[i] = fac[i - 1] * i;
 	}

@@ -34,7 +34,7 @@ maps = set()
 
 # 将旧内容中的 include 替换为文件内容
 
-def replace_dfs(content: List[str], is_test: bool):
+def replace_dfs(content: List[str], is_test: bool, disable: bool = False):
     index = 0
     while index < len(content):
         line = content[index]
@@ -42,12 +42,13 @@ def replace_dfs(content: List[str], is_test: bool):
         if line.startswith(r'#include "'):
             path = line.split('"')[1]
             content_split = []
+            disable_t = disable or line.endswith('// !!only')
             if path not in maps:
                 header = ''
-                if path != 'basic/index.hpp' or is_test:
+                if not disable and (path != 'basic/index.hpp' or is_test):
                     header = read_file(template_dir + path)
                 maps.add(path)
-                content_split = replace_dfs(header.splitlines(), is_test)
+                content_split = replace_dfs(header.splitlines(), is_test, disable_t)
             content[index:index + 1] = content_split
             index -= 1
         index += 1

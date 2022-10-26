@@ -15,7 +15,7 @@ class RuntimeMontgomeryModInt {
 	}
 
 	static bool set_mod(u32 m) {
-		if ((m & 1) == 0 || m == 1 || (m & (3U << 30)) != 0)
+		if (m % 2 == 0 || m == 1 || (m & (3U << 30)) != 0)
 			return false;
 		mod = m, mod2 = mod << 1;
 		u32 two = 2, iv = mod * (two - mod * mod);

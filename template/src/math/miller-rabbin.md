@@ -15,10 +15,9 @@
 如果需要卡常，那么 `i64 * i64 % i64` 实际上可以用浮点数卡一下。
 
 ```cpp
-inline u64 mod_mul(u64 a, u64 b, u64 n) {
-	u64 c = a * b - u64(f80(a) / n * b + 0.5l) * n;
-	if (c < n)  return c;
-	return c + n;
+inline ll mul_mod(ll a, ll b, ll m) {
+	ll c = a * b - ll(f80(a) / m * b + 0.5) * m;
+	return c < 0 ? c + m : (c >= m ? c - m : c);
 }
 ```
 

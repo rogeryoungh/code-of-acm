@@ -4,22 +4,21 @@
 
 const double eps = 1E-6;
 
-auto Gauss(VV<double> v) {
-	assert(v.x == v.y - 1);
-	int n = v.x;
-	for (int i = 0; i < n; i++) {
+template <class T>
+std::optional<VV<T>> Gauss(VV<T> v) {
+	for (int i = 0; i < v.x; i++) {
 		int mi = i;
-		for (int j = i + 1; j < n; j++)
+		for (int j = i + 1; j < v.x; j++)
 			if (std::abs(v[j][i]) > std::abs(v[mi][i]))
 				mi = j;
-		for (int j = 0; j < n + 1; j++)
+		for (int j = 0; j < v.y; j++)
 			std::swap(v[i][j], v[mi][j]);
 		if (std::abs(v[i][i]) < eps)
-			return VV<double>(0, 0);
-		for (int j = 0; j < n; j++) {
+			return std::nullopt;
+		for (int j = 0; j < v.x; j++) {
 			if (j != i) {
-				double tmp = v[j][i] / v[i][i];
-				for (int k = i + 1; k < n + 1; k++)
+				auto tmp = v[j][i] / v[i][i];
+				for (int k = 0; k < v.y; k++)
 					v[j][k] -= v[i][k] * tmp;
 			}
 		}

@@ -11,9 +11,9 @@ Pollard Rho 算法可以在 $O(n^{0.25})$ 的期望复杂度内计算出 $n$ 的
 如果需要卡常，那么 `i64 * i64 % i64` 实际上可以用浮点数卡一下。
 
 ```cpp
-inline ll mod_mul(ll a, ll b, ll n) {
-	ll c = a * b - ll(f80(a) / n * b + 0.5) * n;
-	return c < 0 ? c + n : (c >= n ? c - n : c);
+inline ll mul_mod(ll a, ll b, ll m) {
+	ll c = a * b - ll(f80(a) / m * b + 0.5) * m;
+	return c < 0 ? c + m : (c >= m ? c - m : c);
 }
 ```
 
