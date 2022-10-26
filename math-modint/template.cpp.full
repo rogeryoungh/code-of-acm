@@ -51,12 +51,12 @@ struct Z {
 		return *this *= m.inv();
 	}
 	OPERATOR(Z, /);
-	auto approx(int A = 1E3) {
+	auto approx(int A = 1E3) const {
 		int x = v, y = P, a = 1, b = 0;
 		while (x > A) {
-			swap(x, y), swap(a, b);
+			std::swap(x, y), std::swap(a, b);
 			a -= x / y * b, x %= y;
 		}
-		return make_pair(x, a);
+		return std::make_pair(x, a);
 	}
 };

@@ -8,8 +8,7 @@ struct SegmentTree {
 	SegmentTree(int n) : N(2 << std::__lg(n)), val(N * 2) {
 		assert(n > 0);
 	}
-	template <class iter>
-	void build(iter first, iter last) {
+	void build(auto first, auto last) {
 		std::copy(first, last, val.begin() + N);
 		for (int i = N - 1; i >= 1; i--)
 			pull(i);

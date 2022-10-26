@@ -4,10 +4,10 @@
 
 // @description 扩展中国剩余定理
 
-using i128 = __int128_t;
+#include "using/i128.cpp"
 
 template<class PAIR>
-ll excrt(const vector<PAIR> &am) {
+ll excrt(const std::vector<PAIR> &am) {
 	auto [ans, M] = am[0];
 	for (auto [a, m] : am) {
 		if (M % m == 0 && ans % m == a)

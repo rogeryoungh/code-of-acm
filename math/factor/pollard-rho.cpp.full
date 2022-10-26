@@ -49,7 +49,7 @@ ll pollard_rho(ll N) {
 			int w = 128;
 			do {
 				p = q, x = f(x), y = f(f(y));
-				q = i128(p) * abs(x - y) % N;
+				q = i128(p) * std::abs(x - y) % N;
 			} while (w-- && q != 0);
 			ll d = std::__gcd(p, N);
 			if (d > 1 && d != N)
@@ -59,7 +59,7 @@ ll pollard_rho(ll N) {
 }
 
 auto factor(ll x) {
-	vector<ll> v;
+	std::vector<ll> v;
 	if (x == 1)
 		return v;
 	std::function<void(ll)> dfs = [&](ll u) {

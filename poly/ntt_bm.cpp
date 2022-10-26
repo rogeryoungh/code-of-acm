@@ -24,10 +24,10 @@ Poly bm(const Poly &a) {
 				x *= od;
 			l = r - l;
 		}
-		swap(p, t);
+		std::swap(p, t);
 	}
 	assert(p.deg() == l + 1);
-	reverse(p.begin(), p.end());
+	std::reverse(p.begin(), p.end());
 	return p;
 }
 
@@ -51,7 +51,7 @@ Z divAt(Poly F, Poly G, ll n) {
 			G[i] = G[i * 2] * G[i * 2 + 1];
 		G.redeg(m);
 		F.intt(m * 2), G.intt(m);
-		for (int i = 0, j = n & 1; i < len; i++, j += 2)
+		for (int i = 0, j = n % 2; i < len; i++, j += 2)
 			F[i] = F[j];
 		F.redeg(len), G.redeg(len);
 	}
@@ -60,7 +60,7 @@ Z divAt(Poly F, Poly G, ll n) {
 
 // 特征方程 F(x) 和初值 {Ai}，求 An
 Z getAn(Poly F, const Poly &A, ll n) {
-	reverse(F.begin(), F.end());
+	std::reverse(F.begin(), F.end());
 	assert(F[0].v == 1);
 	Poly f = (A * F).cut(A.deg());
 	return divAt(f, F, n);

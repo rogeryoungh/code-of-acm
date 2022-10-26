@@ -11,11 +11,45 @@ auto factor(ll n) {
 	return ret;
 }
 
+// @description 线性筛
+
+std::vector<bool> not_p;
+std::vector<int> primes;
+void Euler(int n) {
+	not_p.resize(n);
+	for (int i = 2; i < n; i++) {
+		if (not not_p[i])
+			primes.push_back(i);
+		for (int pj : primes) {
+			if (pj > (n - 1) / i)
+				break;
+			not_p[i * pj] = true;
+			if (i % pj == 0)
+				break;
+		}
+	}
+}
+
+// @description 质因子分解
+
+auto factor(ll n) {
+	std::vector<ll> ans;
+	for (int i : primes) {
+		if (1ll * i * i > n)
+			break;
+		for (; n % i == 0; n /= i)
+			ans.push_back(i);
+	}
+	if (n > 1)
+		ans.push_back(n);
+	return ans;
+}
+
 // @description 质因子(p^k)
 
 auto factor_pii(ll n) {
-	vector<ll> ret = factor(n);
-	vector<pair<ll, int>> ans;
+	std::vector<ll> ret = factor(n);
+	std::vector<std::pair<ll, int>> ans;
 	if (ret.empty())
 		return ans;
 	ans.emplace_back(ret[0], 1);

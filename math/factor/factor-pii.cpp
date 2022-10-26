@@ -1,10 +1,12 @@
 #include "basic/index.hpp"
 
+#include "math/factor/sieve.cpp"
+
 // @description 质因子(p^k)
 
 auto factor_pii(ll n) {
-	vector<ll> ret = factor(n);
-	vector<pair<ll, int>> ans;
+	std::vector<ll> ret = factor(n);
+	std::vector<std::pair<ll, int>> ans;
 	if (ret.empty())
 		return ans;
 	ans.emplace_back(ret[0], 1);

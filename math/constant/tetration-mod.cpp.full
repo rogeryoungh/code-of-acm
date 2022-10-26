@@ -1,0 +1,63 @@
+// @description 快速幂(i32)
+
+int qpow(int a, ll b, int m) {
+	int ret = 1 % m;
+	for (; b > 0; b /= 2) {
+		if (b % 2 == 1)
+			ret = ll(a) * ret % m;
+		a = ll(a) * a % m;
+	}
+	return ret;
+}
+
+// @description 线性筛
+
+std::vector<bool> not_p;
+std::vector<int> primes;
+void Euler(int n) {
+	not_p.resize(n);
+	for (int i = 2; i < n; i++) {
+		if (not not_p[i])
+			primes.push_back(i);
+		for (int pj : primes) {
+			if (pj > (n - 1) / i)
+				break;
+			not_p[i * pj] = true;
+			if (i % pj == 0)
+				break;
+		}
+	}
+}
+
+int euler_phi(ll x) {
+	ll ans = 1;
+	for (int p : primes) {
+		if (1ll * p * p > x)
+			break;
+		if (x % p == 0)
+			x /= p, ans *= p - 1;
+		while (x % p == 0)
+			x /= p, ans *= p;
+	}
+	if (x > 1)
+		ans *= x - 1;
+	return ans;
+}
+
+int tetration_mod(int a, int b, int m) {
+	if (m == 1)
+		return 0;
+	if (a == 0)
+		return (b + 1) % 2;
+	if (b == 0)
+		return 1;
+	if (b == 1)
+		return a % m;
+	if (a == 2 && b <= 4) {
+		static const std::array ans = {1, 2, 4, 16, 65536};
+		return ans[b] % m;
+	}
+	int phi = euler_phi(m);
+	int d = tetration_mod(a, b - 1, phi) + phi;
+	return qpow(a % m, d, m);
+}

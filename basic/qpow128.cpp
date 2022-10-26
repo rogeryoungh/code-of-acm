@@ -1,6 +1,6 @@
 #include "basic/index.hpp"
 
-using i128 = __int128_t;
+#include "using/i128.cpp"
 
 // @description 快速幂(i128)
 

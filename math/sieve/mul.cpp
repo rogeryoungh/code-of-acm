@@ -3,8 +3,8 @@ using namespace std;
 
 // @description 线性筛积性函数
 
-vector<bool> not_p;
-vector<int> primes, phi, mu;
+std::vector<bool> not_p;
+std::vector<int> primes, phi, mu;
 void Euler(int n) {
 	not_p.resize(n);
 	phi = mu = vector<int>(n);

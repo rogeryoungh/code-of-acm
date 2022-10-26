@@ -144,7 +144,7 @@ void intt(iter f, int n) {
 	const int ivn = P - (P - 1) / n;
 	for (int i = 0; i < n; i++)
 		f[i] *= ivn;
-	reverse(f + 1, f + n);
+	std::reverse(f + 1, f + n);
 }
 
 struct Poly : std::vector<Z> { // 卡常板子

@@ -39,6 +39,6 @@ auto get_path(const vector<int> &from, int x, int y) {
 	for (; x != y; y = from[y])
 		ret.push_back(y);
 	ret.push_back(y);
-	reverse(ret.begin(), ret.end());
+	std::reverse(ret.begin(), ret.end());
 	return ret;
 }

@@ -32,7 +32,7 @@ struct fwtree_1 {
 	std::vector<T> u;
 	fwtree_1(int n = 0) : f1(n), f2(n), u(n) {}
 	void build(auto first, auto last) {
-		copy(first, last, u.begin());
+		std::copy(first, last, u.begin());
 		for (int i = 1; i < u.size(); i++) {
 			u[i] += u[i - 1];
 		}
@@ -56,7 +56,7 @@ struct fwtree_2 {
 	std::vector<T> u;
 	fwtree_2(int n = 0) : f1(n), f2(n), f3(n), u(n) {}
 	void build(auto first, auto last) {
-		copy(first, last, u.begin());
+		std::copy(first, last, u.begin());
 		T sum = u[0];
 		for (int i = 1; i < u.size(); i++) {
 			u[i] += u[i - 1] + sum;

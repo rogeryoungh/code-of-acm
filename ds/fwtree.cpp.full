@@ -12,7 +12,7 @@ struct fwtree {
 		}
 	}
 	void build(auto first, auto last) {
-		copy(first, last, v.begin());
+		std::copy(first, last, v.begin());
 		for (int i = 1; i < n; i++) {
 			int j = i + (i & -i);
 			if (j < n) {

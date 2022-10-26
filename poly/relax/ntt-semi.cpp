@@ -1,18 +1,20 @@
 #include "basic/index.hpp"
 
-#include "poly/ntt-newton.cpp"
+#include "poly/ntt-basic.cpp"
 
-struct PolyCDQ {
+struct PolySemi {
 	int now = 0;
-	const int M = 32;
-	Poly &F, &G, conv;
+	enum : int { M = 32 };
+	const Poly &F;
+	Poly G, conv;
 	std::map<int, Poly> nf;
-
-	PolyCDQ(Poly &f, Poly &g) : F(f), G(g), conv(M) {}
-
-	Z next() { // return  (F * G)[now] - F[0] G[now]
+	PolySemi(const Poly &f) : F(f), G(M), conv(M) {}
+	void set(Z v) {
+		G[now] = v;
 		conv[now] += G[now] * F[0];
 		now++;
+	}
+	Z next() { // return  (F * G)[now] - F[0] G[now]
 		int len = now & -now, l = now - len;
 		if (len < M) {
 			for (int j = now & -M; j < now; ++j)
@@ -22,6 +24,7 @@ struct PolyCDQ {
 			if (l == 0) {
 				b = F.cut(len * 2).ntt(len * 2);
 				conv.redeg(now * 2);
+				G.redeg(now * 2);
 			}
 			for (int i = 0; i < len * 2; i++)
 				a[i] *= b[i];
@@ -33,33 +36,31 @@ struct PolyCDQ {
 	}
 };
 
-Poly cdq_inv(Poly F, int m) {
-	Poly G(m);
-	PolyCDQ X(F.redeg(m), G);
+Poly semi_inv(Poly F, int m) {
+	PolySemi X(F.redeg(m));
 	Z iv0 = -F[0].inv();
-	G[0] = -iv0;
-	for (int i = 1; i < m; i++)
-		G[i] = iv0 * X.next();
-	return G;
+	X.set(-iv0);
+	for (int i = 1; i < m; i++) {
+		X.set(iv0 * X.next());
+	}
+	return X.G.redeg(m);
 }
 
-Poly cdq_div(Poly H, Poly F, int m) {
-	Poly G(m);
-	PolyCDQ X(F.redeg(m), G);
-	Z iv = F[0].inv();
-	G[0] = iv * H[0];
+Poly semi_inv(Poly H, Poly F, int m) {
+	PolySemi X(F.redeg(m));
+	Z iv0 = F[0].inv();
+	X.set(iv0 * H[0]);
 	for (int i = 1; i < m; i++)
-		G[i] = iv * (H[i] - X.next());
-	return G;
+		X.set(iv0 * (H[i] - X.next()));
+	return X.G.redeg(m);
 }
 
-Poly cdq_exp(Poly F, int m) {
-	Poly G(m);
+Poly semi_exp(Poly F, int m) {
 	for (int i = 0; i < F.size(); i++)
 		F[i] *= i;
-	PolyCDQ X(F.redeg(m), G);
-	G[0] = 1;
+	PolySemi X(F);
+	X.set(1);
 	for (int i = 1; i < m; i++)
-		G[i] = iv[i] * X.next();
-	return G;
+		X.set(iv[i] * X.next());
+	return X.G.redeg(m);
 }
