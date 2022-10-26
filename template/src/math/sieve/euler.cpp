@@ -2,8 +2,8 @@
 
 // @description 线性筛
 
-vector<bool> not_p;
-vector<int> primes;
+std::vector<bool> not_p;
+std::vector<int> primes;
 void Euler(int n) {
 	not_p.resize(n);
 	for (int i = 2; i < n; i++) {

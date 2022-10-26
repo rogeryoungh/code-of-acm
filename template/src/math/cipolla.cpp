@@ -8,11 +8,11 @@ int legendre(int a, int p) {
 	return qpow(a, (p - 1) / 2, p);
 }
 
-int cipolla(int n, int p) {
+std::optional<int> cipolla(int n, int p) {
 	if (n == 0)
 		return 0;
 	if (legendre(n, p) != 1)
-		return -1;
+		return std::nullopt;
 	if (p == 2)
 		return 1;
 	for (int a = 0; a < p; a++) {
@@ -33,5 +33,5 @@ int cipolla(int n, int p) {
 			return std::min(x.first, p - x.first);
 		}
 	}
-	return -1;
+	return std::nullopt;
 }

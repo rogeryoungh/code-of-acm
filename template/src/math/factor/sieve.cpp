@@ -5,7 +5,7 @@
 // @description 质因子分解
 
 auto factor(ll n) {
-	vector<ll> ans;
+	std::vector<ll> ans;
 	for (int i : primes) {
 		if (1ll * i * i > n)
 			break;
@@ -17,4 +17,4 @@ auto factor(ll n) {
 	return ans;
 }
 
-#include "math/factor/factor-pii.cpp"
+#include "math/factor/factor-pii.cpp" // !!only

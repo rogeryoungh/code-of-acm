@@ -15,8 +15,8 @@ auto make_matrix_E(int n) {
 template <class T>
 auto matrix_pow(VV<T> a, ll w) {
 	auto ret = make_matrix_E<T>(a.x);
-	for (; w > 0; w >>= 1) {
-		if (w & 1)
+	for (; w > 0; w /= 2) {
+		if (w % 2 == 1)
 			ret = a * ret;
 		a = a * a;
 	}

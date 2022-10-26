@@ -18,8 +18,7 @@ struct SparseTable {
 	int n, lgn;
 	VV<T> v;
 	SparseTable(int a) : n(a), lgn(1 + std::__lg(n)), v(lgn, n) {}
-	template <class iter>
-	void init(iter first, iter last) {
+	void init(auto first, auto last) {
 		copy(first, last, v[0]);
 		for (int i = 1; i < lgn; i++) {
 			int ti = 1 << (i - 1);

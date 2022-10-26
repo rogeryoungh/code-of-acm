@@ -1,6 +1,6 @@
 #include "basic/index.hpp"
 
-using i128 = __int128;
+#include "using/i128.cpp"
 
 const ll P = 998244353998244353;
 
@@ -13,8 +13,7 @@ const ll P = 998244353998244353;
 
 struct Z {
 	ll v;
-	Z(ll a = 0) : v(a % P) {}
-	Z(i128 a) : v(a % P) {}
+	Z(i128 a = 0) : v(a % P) {}
 	Z &operator+=(const Z &m) {
 		v = (v += m.v) >= P ? v - P : v;
 		return *this;
@@ -52,10 +51,10 @@ struct Z {
 	OPERATOR(Z, /);
 };
 
-istream &operator>>(istream &is, Z &z) {
+std::istream &operator>>(std::istream &is, Z &z) {
 	return is >> z.v;
 }
 
-ostream &operator<<(ostream &os, const Z &z) {
+std::ostream &operator<<(std::ostream &os, const Z &z) {
 	return os << z.v;
 }

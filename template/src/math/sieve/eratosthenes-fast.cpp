@@ -2,8 +2,8 @@
 
 // @description 埃氏筛(卡常)
 
-vector<bool> not_p;
-vector<int> primes; // 个数不精确！
+std::vector<bool> not_p;
+std::vector<int> primes; // 个数不精确！
 void Eratosthenes(int n) {
 	not_p.resize(n + 6);
 	auto f = [&](int i) {

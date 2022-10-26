@@ -1,11 +1,11 @@
 #include "basic/index.hpp"
 
-#include "math-modint/basic.cpp"
+#include "math-modint/pre-all.cpp"
 
 // @description 多项式牛顿迭代(m32, 卡常)
 // @problem https://loj.ac/p/150
 
-std::vector<Z> w{1, 1}, iv{1, 1}, fac{1}, ifac{1};
+std::vector<Z> w{1, 1};
 
 inline int get_lim(int m) {
 	return 2 << std::__lg(m - (m > 1));
@@ -25,22 +25,6 @@ void pre_w(int n) {
 		}
 	}
 	lim = n;
-}
-
-void pre_all(int n) {
-	iv.resize(n + 1), fac.resize(n + 1), ifac.resize(n + 1);
-	for (int i = 1; i <= n; i++) {
-		fac[i] = i * fac[i - 1];
-	}
-	ifac[n] = fac[n].inv(), iv[n] = Z(n).inv();
-	for (int i = n - 1; i > 0; i--) {
-		ifac[i] = ifac[i + 1] * (i + 1);
-		iv[i] = ifac[i] * fac[i - 1];
-	}
-}
-
-Z C(int n, int m) {
-	return fac[n] * ifac[m] * ifac[n - m];
 }
 
 static int ntt_size = 0;
@@ -69,7 +53,7 @@ void intt(iter f, int n) {
 	const int ivn = P - (P - 1) / n;
 	for (int i = 0; i < n; i++)
 		f[i] *= ivn;
-	reverse(f + 1, f + n);
+	std::reverse(f + 1, f + n);
 }
 
 struct Poly : std::vector<Z> { // 卡常板子
