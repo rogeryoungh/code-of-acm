@@ -3,7 +3,7 @@ const int P = 998244353;
 // @description 快速幂(i32, P)
 
 int qpow(int a, int b = P - 2, int m = P) {
-	int ret = m != 1;
+	int ret = 1 % m;
 	for (; b > 0; b /= 2) {
 		if (b % 2 == 1)
 			ret = 1ll * ret * a % m;
@@ -78,7 +78,10 @@ std::ostream &operator<<(std::ostream &os, const Z &z) {
 
 std::vector<Z> iv, fac, ifac;
 
-void pre_all(int n) {
+void pre_all(int u) {
+	int l = iv.size(), n = l * 2;
+	if (u <= l)
+		return;
 	iv = fac = ifac = std::vector<Z>(n + 1, 1);
 	for (int i = 1; i <= n; i++) {
 		fac[i] = fac[i - 1] * i;
@@ -88,6 +91,7 @@ void pre_all(int n) {
 		ifac[i] = ifac[i + 1] * (i + 1);
 		iv[i] = ifac[i] * fac[i - 1];
 	}
+	pre_all(u);
 }
 
 // @description 组合数

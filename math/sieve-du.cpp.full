@@ -3,22 +3,22 @@
 using namespace std;
 using ll = long long;
 
-std::vector<bool> not_p;
+std::vector<bool> isp;
 std::vector<int> primes, phi, mu;
 std::vector<ll> smu;
 void Euler(int n) {
-	not_p.resize(n);
+	isp.resize(n, true);
 	phi = mu = vector<int>(n);
 	mu[1] = phi[1] = 1;
 	for (int i = 2; i < n; i++) {
-		if (!not_p[i]) {
+		if (isp[i]) {
 			primes.push_back(i);
 			phi[i] = i - 1, mu[i] = -1;
 		}
 		for (int pj : primes) {
 			if (pj > (n - 1) / i)
 				break;
-			not_p[i * pj] = true;
+			isp[i * pj] = false;
 			if (i % pj == 0) {
 				phi[i * pj] = phi[i] * pj;
 				mu[i * pj] = 0;

@@ -11,7 +11,7 @@ struct Poly : std::vector<int> {
 Poly w{1, 1};
 
 inline int get_lim(int m) {
-	return 2 << std::__lg(m - (m > 1));
+	return 1 << std::__lg(m * 2 - 1);
 }
 
 inline int mo(int u) {
@@ -19,19 +19,16 @@ inline int mo(int u) {
 }
 
 void pre_w(int n) {
-	static int lim = 2;
-	n = get_lim(n);
-	if (n <= lim)
+	int l = w.size(), l2 = l * 2;
+	if (n <= l)
 		return;
-	w.resize(n);
-	for (int l = lim; l < n; l *= 2) {
-		int p = qpow(3, (P - 1) / l / 2);
-		for (int i = 0; i < l; i += 2) {
-			w[l + i] = w[(l + i) / 2];
-			w[l + i + 1] = 1ll * w[l + i] * p % P;
-		}
+	w.resize(l2);
+	int p = qpow(3, (P - 1) / l2);
+	for (int i = l; i < l2; i += 2) {
+		w[i] = w[i / 2];
+		w[i + 1] = 1ll * w[i] * p % P;
 	}
-	lim = n;
+	pre_w(n);
 }
 
 static int ntt_size = 0;

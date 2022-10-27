@@ -8,26 +8,22 @@ using Poly = std::vector<int>;
 std::vector<img> w{{1, 0}, {1, 0}};
 
 inline int get_lim(int m) {
-	return 2 << std::__lg(m - (m > 1));
+	return 1 << std::__lg(m * 2 - 1);
 }
 
 const f64 PI = acos(-1.0);
 
-void pre_w(int n) {
-	static int LIM = 2;
-	int lim = get_lim(n);
-	if (lim <= LIM)
+void pre_w(int u) {
+	int l = w.size(), l2 = l * 2;
+	if (u <= l)
 		return;
-	w.resize(lim);
-	for (int l = LIM; l < lim; l *= 2) {
-		img p; // w[j + l] = w_{2l} ^ j
-		p = img(cos(PI / l), sin(PI / l));
-		for (int i = 0; i < l; i += 2) {
-			w[l + i] = w[(l + i) / 2];
-			w[l + i + 1] = w[l + i] * p;
-		}
+	w.resize(l2);
+	img p = img(cos(PI / l), sin(PI / l));
+	for (int i = l; i < l2; i += 2) {
+		w[i] = w[i / 2];
+		w[i + 1] = w[i] * p;
 	}
-	LIM = lim;
+	pre_w(u);
 }
 
 static int ntt_size = 0;
@@ -74,26 +70,23 @@ Poly mul(const Poly &a, const Poly &b) {
 }
 
 Poly mul5(const Poly &a, const Poly &b, int p) {
-	const int B = 1 << 16;
+	enum : int { B = 1 << 15 };
 	int n = a.size(), m = b.size(), N = get_lim(n + m - 1);
 	std::vector<img> a0(N), a1(N), Q(N);
-	for (int i = 0; i < n; i++) {
-		int l = a[i] / B, h = a[i] % B;
-		a0[i] = img(l, h), a1[i] = img(l, -h);
-	}
+	for (int i = 0; i < n; i++)
+		a0[i] = a[i] % B, a1[i] = a[i] / B;
 	for (int i = 0; i < m; i++)
-		Q[i] = img(b[i] / B, b[i] % B);
+		Q[i] = img(b[i] % B, b[i] / B);
 	fft(a0.begin(), N), fft(a1.begin(), N), fft(Q.begin(), N);
 	for (int i = 0; i < N; i++)
 		a0[i] *= Q[i], a1[i] *= Q[i];
 	ifft(a0.begin(), N), ifft(a1.begin(), N);
 	Poly ans(n + m - 1);
-
 	for (int i = 0; i < m + n - 1; i++) {
-		ll a1b1 = (a0[i].real() + a1[i].real() + 1) / 2;
-		ll a1b0 = (a0[i].imag() + a1[i].imag() + 1) / 2;
-		ll a0b1 = (a0[i].imag() - a1[i].imag() + 1) / 2;
-		ll a0b0 = (a1[i].real() - a0[i].real() + 1) / 2;
+		ll a1b1 = a1[i].imag() + .5;
+		ll a1b0 = a1[i].real() + .5;
+		ll a0b1 = a0[i].imag() + .5;
+		ll a0b0 = a0[i].real() + .5;
 		ans[i] = ((a1b1 * B % p + a0b1 + a1b0) * B + a0b0) % p;
 	}
 	return ans;

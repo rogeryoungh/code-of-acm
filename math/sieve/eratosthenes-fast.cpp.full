@@ -1,14 +1,14 @@
 // @description 埃氏筛(卡常)
 
-std::vector<bool> not_p;
+std::vector<bool> isp;
 std::vector<int> primes; // 个数不精确！
 void Eratosthenes(int n) {
-	not_p.resize(n + 6);
+	isp.resize(n + 6, true);
 	auto f = [&](int i) {
-		if (not not_p[i]) {
+		if (isp[i]) {
 			primes.push_back(i);
-			for (int j = i; j <= (n - 1) / i; j++)
-				not_p[i * j] = true;
+			for (ll j = ll(i) * i; j < n; j += i)
+				isp[j] = false;
 		}
 	};
 	f(2), f(3);

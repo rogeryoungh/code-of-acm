@@ -10,19 +10,15 @@ auto pre_kmp(const std::string &s) {
 	return pi;
 }
 
-void kmp(const std::string &s, const std::string &t) {
+auto kmp(const std::string &s, const std::string &t) {
 	auto pi = pre_kmp(s);
-	int p = 0, n = t.length(), sn = s.length();
+	int n = t.length();
+	std::vector<int> p(n + 1);
 	for (int i = 0; i < n; i++) {
-		int j = p;
+		int j = p[i];
 		while (j > 0 && t[i] != s[j])
 			j = pi[j];
-		p = j + (t[i] == s[j]);
-		if (p == sn) {
-			std::cout << i - sn + 2 << "\n";
-		}
+		p[i + 1] = j + (t[i] == s[j]);
 	}
-	for (int i = 1; i <= sn; i++) {
-		std::cout << pi[i] << " ";
-	}
+	return std::make_pair(pi, p);
 }

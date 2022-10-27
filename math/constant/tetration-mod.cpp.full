@@ -12,17 +12,17 @@ int qpow(int a, ll b, int m) {
 
 // @description 线性筛
 
-std::vector<bool> not_p;
+std::vector<bool> isp;
 std::vector<int> primes;
 void Euler(int n) {
-	not_p.resize(n);
+	isp.resize(n, true);
 	for (int i = 2; i < n; i++) {
-		if (not not_p[i])
+		if (isp[i])
 			primes.push_back(i);
 		for (int pj : primes) {
 			if (pj > (n - 1) / i)
 				break;
-			not_p[i * pj] = true;
+			isp[i * pj] = false;
 			if (i % pj == 0)
 				break;
 		}

@@ -43,7 +43,7 @@ Z mulAt(const Poly &F, const Poly &G, int u) {
 // [x^n] F(x)/G(x)
 Z divAt(Poly F, Poly G, ll n) {
 	int len = std::max(F.deg(), G.deg()), m = get_lim(len);
-	for (; n > m; n >>= 1) {
+	for (; n > m; n /= 2) {
 		F.ntt(m * 2), G.ntt(m * 2);
 		for (int i = 0; i < m * 2; i++)
 			F[i] = F[i] * G[i ^ 1];
