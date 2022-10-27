@@ -110,7 +110,7 @@ class RuntimeMontgomeryModInt {
 		for (m32 res(1), x(*this);; x *= x) {
 			if (y & 1)
 				res *= x;
-			if ((y >>= 1) == 0)
+			if ((y /= 2) == 0)
 				return res;
 		}
 	}

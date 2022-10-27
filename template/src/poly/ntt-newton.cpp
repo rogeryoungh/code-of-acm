@@ -8,30 +8,27 @@
 std::vector<Z> w{1, 1};
 
 inline int get_lim(int m) {
-	return 2 << std::__lg(m - (m > 1));
+	return 1 << std::__lg(m * 2 - 1);
 }
 
 void pre_w(int n) {
-	int lim = w.size();
-	n = get_lim(n);
-	if (n <= lim)
+	int l = w.size(), l2 = l * 2;
+	if (n <= l)
 		return;
-	w.resize(n);
-	for (int l = lim; l < n; l *= 2) {
-		Z p = qpow(3, (P - 1) / l / 2);
-		for (int i = 0; i < l; i += 2) {
-			w[l + i] = w[(l + i) / 2];
-			w[l + i + 1] = w[l + i] * p;
-		}
+	w.resize(l2);
+	Z p = Z(3).pow((P - 1) / l2);
+	for (int i = l; i < l2; i += 2) {
+		w[i] = w[i / 2];
+		w[i + 1] = w[i] * p;
 	}
-	lim = n;
+	pre_w(n);
 }
 
 static int ntt_size = 0;
 
 void ntt(auto f, int n) {
 	pre_w(n), ntt_size += n;
-	for (int l = n / 2; l; l >>= 1)
+	for (int l = n / 2; l; l /= 2)
 		for (int i = 0; i < n; i += l * 2)
 			for (int j = 0; j < l; j++) {
 				Z x = f[i + j], y = f[i + j + l];
@@ -42,7 +39,7 @@ void ntt(auto f, int n) {
 
 void intt(auto f, int n) {
 	pre_w(n), ntt_size += n;
-	for (int l = 1; l < n; l <<= 1)
+	for (int l = 1; l < n; l *= 2)
 		for (int i = 0; i < n; i += l * 2)
 			for (int j = 0; j < l; j++) {
 				Z x = f[i + j], y = w[j + l] * f[i + j + l];
@@ -146,7 +143,7 @@ struct Poly : std::vector<Z> { // 大常数板子
 	Poly sqrt(int m) const { // 36E
 		Poly x = {1};
 		for (int t = 2; t < m * 2; t *= 2) {
-			x = (x + cut(t).div(t, x)) * qpow(2);
+			x = (x + cut(t).div(t, x)) * ((P + 1) / 2);
 		}
 		return x.redeg(m);
 	}
