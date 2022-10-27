@@ -1,57 +1,34 @@
 #include "basic/index.hpp"
 
-#include "math-modint/basic.cpp"
+#include "math-modint/pre-all.cpp"
 
 // @description 多项式牛顿迭代(m32, 卡常)
 // @problem https://loj.ac/p/150
 
-std::vector<Z> w{1, 1}, iv{1, 1}, fac{1}, ifac{1};
+std::vector<Z> w{1, 1};
 
-inline int get_lim(int n) {
-	int m = 1;
-	while (m < n)
-		m *= 2;
-	return m;
+inline int get_lim(int m) {
+	return 1 << std::__lg(m * 2 - 1);
 }
 
 void pre_w(int n) {
-	int lim = w.size();
-	n = get_lim(n);
-	if (n <= lim)
+	int l = w.size(), l2 = l * 2;
+	if (n <= l)
 		return;
-	w.resize(n);
-	for (int l = lim; l < n; l *= 2) {
-		Z p = qpow(3, (P - 1) / l / 2);
-		for (int i = 0; i < l; i += 2) {
-			w[(l + i)] = w[(l + i) / 2];
-			w[l + i + 1] = w[l + i] * p;
-		}
+	w.resize(l2);
+	Z p = qpow(3, (P - 1) / l2);
+	for (int i = l; i < l2; i += 2) {
+		w[i] = w[i / 2];
+		w[i + 1] = w[i] * p;
 	}
-	lim = n;
-}
-
-void pre_all(int n) {
-	iv.resize(n + 1), fac.resize(n + 1), ifac.resize(n + 1);
-	for (int i = 1; i <= n; i++) {
-		fac[i] = i * fac[i - 1];
-	}
-	ifac[n] = fac[n].inv(), iv[n] = Z(n).inv();
-	for (int i = n - 1; i > 0; i--) {
-		ifac[i] = ifac[i + 1] * (i + 1);
-		iv[i] = ifac[i] * fac[i - 1];
-	}
-}
-
-Z C(int n, int m) {
-	return fac[n] * ifac[m] * ifac[n - m];
+	pre_w(n);
 }
 
 static int ntt_size = 0;
 
-template <class iter>
-void ntt(iter f, int n) {
+void ntt(auto f, int n) {
 	pre_w(n), ntt_size += n;
-	for (int l = n / 2; l; l >>= 1)
+	for (int l = n / 2; l; l /= 2)
 		for (int i = 0; i < n; i += l * 2)
 			for (int j = 0; j < l; j++) {
 				Z x = f[i + j], y = f[i + j + l];
@@ -60,10 +37,9 @@ void ntt(iter f, int n) {
 			}
 }
 
-template <class iter>
-void intt(iter f, int n) {
+void intt(auto f, int n) {
 	pre_w(n), ntt_size += n;
-	for (int l = 1; l < n; l <<= 1)
+	for (int l = 1; l < n; l *= 2)
 		for (int i = 0; i < n; i += l * 2)
 			for (int j = 0; j < l; j++) {
 				Z x = f[i + j], y = w[j + l] * f[i + j + l];
@@ -143,6 +119,7 @@ struct Poly : std::vector<Z> { // 卡常板子
 	}
 	Poly integr(int m) const {
 		Poly f(m);
+		pre_all(deg());
 		for (int i = std::min(deg(), m - 1); i > 0; --i)
 			f[i] = iv[i] * T[i - 1];
 		return f;

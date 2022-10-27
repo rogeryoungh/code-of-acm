@@ -6,7 +6,10 @@
 
 std::vector<Z> iv, fac, ifac;
 
-void pre_all(int n) {
+void pre_all(int u) {
+	int l = iv.size(), n = l * 2;
+	if (u <= l)
+		return;
 	iv = fac = ifac = std::vector<Z>(n + 1, 1);
 	for (int i = 1; i <= n; i++) {
 		fac[i] = fac[i - 1] * i;
@@ -16,6 +19,7 @@ void pre_all(int n) {
 		ifac[i] = ifac[i + 1] * (i + 1);
 		iv[i] = ifac[i] * fac[i - 1];
 	}
+	pre_all(u);
 }
 
 // @description 组合数

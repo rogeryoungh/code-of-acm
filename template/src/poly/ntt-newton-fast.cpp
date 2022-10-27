@@ -8,31 +8,27 @@
 std::vector<Z> w{1, 1};
 
 inline int get_lim(int m) {
-	return 2 << std::__lg(m - (m > 1));
+	return 1 << std::__lg(m * 2 - 1);
 }
 
 void pre_w(int n) {
-	int lim = w.size();
-	n = get_lim(n);
-	if (n <= lim)
+	int l = w.size(), l2 = l * 2;
+	if (n <= l)
 		return;
-	w.resize(n);
-	for (int l = lim; l < n; l *= 2) {
-		Z p = qpow(3, (P - 1) / l / 2);
-		for (int i = 0; i < l; i += 2) {
-			w[(l + i)] = w[(l + i) / 2];
-			w[l + i + 1] = w[l + i] * p;
-		}
+	w.resize(l2);
+	Z p = Z(3).pow((P - 1) / l2);
+	for (int i = l; i < l2; i += 2) {
+		w[i] = w[i / 2];
+		w[i + 1] = w[i] * p;
 	}
-	lim = n;
+	pre_w(n);
 }
 
 static int ntt_size = 0;
 
-template <class iter>
-void ntt(iter f, int n) {
+void ntt(auto f, int n) {
 	pre_w(n), ntt_size += n;
-	for (int l = n / 2; l; l >>= 1)
+	for (int l = n / 2; l; l /= 2)
 		for (int i = 0; i < n; i += l * 2)
 			for (int j = 0; j < l; j++) {
 				Z x = f[i + j], y = f[i + j + l];
@@ -41,10 +37,9 @@ void ntt(iter f, int n) {
 			}
 }
 
-template <class iter>
-void intt(iter f, int n) {
+void intt(auto f, int n) {
 	pre_w(n), ntt_size += n;
-	for (int l = 1; l < n; l <<= 1)
+	for (int l = 1; l < n; l *= 2)
 		for (int i = 0; i < n; i += l * 2)
 			for (int j = 0; j < l; j++) {
 				Z x = f[i + j], y = w[j + l] * f[i + j + l];
@@ -118,6 +113,7 @@ struct Poly : std::vector<Z> { // 卡常板子
 	}
 	Poly integr(int m) const {
 		Poly f(m);
+		pre_all(deg());
 		for (int i = std::min(deg(), m - 1); i > 0; --i)
 			f[i] = iv[i] * T[i - 1];
 		return f;
@@ -167,7 +163,8 @@ struct Poly : std::vector<Z> { // 卡常板子
 		if (m == 1)
 			return {1};
 		Poly f = {1, T[1]}, g = {1}, nf, ng = g;
-		for (int t = 4; t < m * 2; t <<= 1) {
+		pre_all(deg());
+		for (int t = 4; t < m * 2; t *= 2) {
 			nf = Poly(f).ntt(t);		// 2E
 			ng = g.invD(nf, ng, t / 2); // 3E
 			Poly q = cut(t / 2);
@@ -188,17 +185,17 @@ struct Poly : std::vector<Z> { // 卡常板子
 	}
 	Poly sqrt(int m) const { // 11E
 		Poly x = {1}, g = x.inv(1), ng = g;
-		for (int t = 2; t < m * 2; t <<= 1) {
+		for (int t = 2; t < m * 2; t *= 2) {
 			Poly f = Poly(x).ntt(t / 2); // 2E
 			if (t >= 4)
 				ng = g.invD(f, ng, t / 2); // 3E
-			mul(f, f, t / 2).redeg(t);				  // 1E
+			mul(f, f, t / 2).redeg(t);	   // 1E
 			for (int i = t / 2; i < std::min(t, deg()); i++)
 				f[i] = T[i - t / 2] + T[i] - f[i - t / 2];
 			mul(f.fill0L(t), ng, t); // 6E
 			x.redeg(t);
 			for (int i = t / 2; i < t; i++)
-				x[i] = f[i] * iv[2];
+				x[i] = f[i] * ((P + 1) / 2);
 		}
 		return x.cut(deg());
 	}
