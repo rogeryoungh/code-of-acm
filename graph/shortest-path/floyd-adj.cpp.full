@@ -14,10 +14,10 @@ struct VV {
 };
 
 template <class D>
-using Graph = VV<D>; // 默认 x == y
+using Edges = VV<D>; // 默认 x == y
 
 template <class D>
-auto get_graph(int n) {
+auto get_edges(int n) {
 	VV<D> f(n, n, std::numeric_limits<D>::max() / 2);
 	for (int i = 0; i < n; i++)
 		f[i][i] = 0;
@@ -27,9 +27,9 @@ auto get_graph(int n) {
 // @description Floyd 最短路
 
 template <class D>
-auto floyd(const Graph<D> &G) {
-	int n = G.x;
-	auto f = G;
+auto floyd(const Edges<D> &E) {
+	int n = E.x;
+	auto f = E;
 	VV<int> pass(n, n, -1);
 	for (int k = 0; k < n; k++) {
 		for (int i = 0; i < n; i++) {
@@ -44,7 +44,7 @@ auto floyd(const Graph<D> &G) {
 }
 
 auto get_path(const VV<int> &pass, int x, int y) {
-	vector<int> path = {x};
+	std::vector<int> path = {x};
 	std::function<void(int, int)> dfs = [&](int a, int b) {
 		if (pass[a][b] != -1) {
 			int p = pass[a][b];
