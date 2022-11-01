@@ -5,9 +5,9 @@
 // @description Floyd 最短路
 
 template <class D>
-auto floyd(const Graph<D> &G) {
-	int n = G.x;
-	auto f = G;
+auto floyd(const Edges<D> &E) {
+	int n = E.x;
+	auto f = E;
 	VV<int> pass(n, n, -1);
 	for (int k = 0; k < n; k++) {
 		for (int i = 0; i < n; i++) {
@@ -22,7 +22,7 @@ auto floyd(const Graph<D> &G) {
 }
 
 auto get_path(const VV<int> &pass, int x, int y) {
-	vector<int> path = {x};
+	std::vector<int> path = {x};
 	std::function<void(int, int)> dfs = [&](int a, int b) {
 		if (pass[a][b] != -1) {
 			int p = pass[a][b];

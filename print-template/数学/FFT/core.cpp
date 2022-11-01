@@ -1,39 +1,33 @@
-using img = std::complex<double>;
+using img = complex<f64>;
+using Poly = vector<int>;
 
-using Poly = std::vector<img>;
-Poly w;
+vector<img> w{{1, 0}, {1, 0}};
 
-int get_lim(int sum) {
-	int lim = 1, k = 0;
-	while (lim < sum)
-		lim <<= 1, k++;
-	return lim;
+inline int get_lim(int m) {
+	return 1 << std::__lg(m * 2 - 1);
 }
 
-const double PI = acos(-1.0);
+const f64 PI = acos(-1.0);
 
-void pre_w(int n) {
-	static int LIM = (w = {(img){1, 0}, (img){1, 0}}, 2);
-	int lim = get_lim(n);
-	if (lim <= LIM)
+void pre_w(int u) {
+	int l = w.size(), l2 = l * 2;
+	if (u <= l)
 		return;
-	w.resize(lim);
-	for (int l = LIM; l < lim; l *= 2) {
-		img p; // w[j + l] = w_{2l} ^ j
-		p = img(cos(PI / l), sin(PI / l));
-		for (int i = 0; i < l; i += 2) {
-			w[(l + i)] = w[(l + i) / 2];
-			w[l + i + 1] = w[l + i] * p;
-		}
+	w.resize(l2);
+	img p = img(cos(PI / l), sin(PI / l));
+	for (int i = l; i < l2; i += 2) {
+		w[i] = w[i / 2];
+		w[i + 1] = w[i] * p;
 	}
-	LIM = lim;
+	pre_w(u);
 }
 
-void fft(Poly &f) {
-	int deg = f.size();
-	pre_w(deg);
-	for (int l = deg >> 1; l; l >>= 1)
-		for (int i = 0; i < deg; i += (l << 1))
+static int ntt_size = 0;
+
+void fft(auto f, int n) {
+	pre_w(n), ntt_size += n;
+	for (int l = n / 2; l; l /= 2)
+		for (int i = 0; i < n; i += l * 2)
 			for (int j = 0; j < l; j++) {
 				img x = f[i + j] + f[i + j + l];
 				f[i + j + l] = w[j + l] * (f[i + j] - f[i + j + l]);
@@ -41,63 +35,55 @@ void fft(Poly &f) {
 			}
 }
 
-void ifft(Poly &f) {
-	int deg = f.size();
-	pre_w(deg);
-	for (int l = 1; l < deg; l <<= 1)
-		for (int i = 0; i < deg; i += (l << 1))
+void ifft(auto f, int n) {
+	pre_w(n), ntt_size += n;
+	for (int l = 1; l < n; l *= 2)
+		for (int i = 0; i < n; i += l * 2)
 			for (int j = 0; j < l; j++) {
 				img x = f[i + j], y = f[i + j + l] * w[j + l];
 				f[i + j] = x + y, f[i + j + l] = x - y;
 			}
-	for (int i = 0; i < deg; i++)
-		f[i] /= deg;
-	std::reverse(f.begin() + 1, f.end());
+	for (int i = 0; i < n; i++)
+		f[i] /= n;
+	reverse(f + 1, f + n);
 }
 
-vector<int> mul(const vector<int> &a, const vector<int> &b) {
-	int n = a.size(), m = b.size(), lim = get_lim(n + m - 1);
-	Poly f(lim);
+Poly mul(const Poly &a, const Poly &b) {
+	int n = a.size(), m = b.size(), N = get_lim(n + m - 1);
+	vector<img> f(N);
 	for (int i = 0; i < n; i++)
 		f[i] += img(a[i], 0);
 	for (int i = 0; i < m; i++)
 		f[i] += img(0, b[i]);
-	fft(f);
-	for (int i = 0; i < lim; i++)
-		f[i] = f[i] * f[i];
-	ifft(f);
-	vector<int> ans(n + m - 1);
+	fft(f.begin(), N);
+	for (int i = 0; i < N; i++)
+		f[i] *= f[i];
+	ifft(f.begin(), N);
+	Poly ans(n + m - 1);
 	for (int i = 0; i < n + m - 1; i++)
 		ans[i] = int(f[i].imag() / 2 + 0.5);
 	return ans;
 }
 
-vector<i128> intmod_mul(const vector<int> &a, const vector<int> &b, int p) {
-	const int LIM = 1 << 16;
-	int n = a.size(), m = b.size(), lim = get_lim(n + m - 1);
-	Poly A1(lim), A2(lim), Q(lim);
-	for (int i = 0; i < n; i++) {
-		A1[i] = img(a[i] / LIM, a[i] % LIM);
-		A2[i] = img(a[i] / LIM, -a[i] % LIM);
-	}
-	for (int i = 0; i < m; i++) {
-		Q[i] = img(b[i] / LIM, b[i] % LIM);
-	}
-	fft(A1), fft(A2), fft(Q);
-	for (int i = 0; i < lim; i++)
-		A1[i] *= Q[i];
-	for (int i = 0; i < lim; i++)
-		A2[i] *= Q[i];
-	ifft(A1);
-	ifft(A2);
-	vector<i128> ans(n + m - 1);
-
+Poly mul5(const Poly &a, const Poly &b, int p) {
+	enum : int { B = 1 << 15 };
+	int n = a.size(), m = b.size(), N = get_lim(n + m - 1);
+	vector<img> a0(N), a1(N), Q(N);
+	for (int i = 0; i < n; i++)
+		a0[i] = a[i] % B, a1[i] = a[i] / B;
+	for (int i = 0; i < m; i++)
+		Q[i] = img(b[i] % B, b[i] / B);
+	fft(a0.begin(), N), fft(a1.begin(), N), fft(Q.begin(), N);
+	for (int i = 0; i < N; i++)
+		a0[i] *= Q[i], a1[i] *= Q[i];
+	ifft(a0.begin(), N), ifft(a1.begin(), N);
+	Poly ans(n + m - 1);
 	for (int i = 0; i < m + n - 1; i++) {
-		i128 a1b1 = (A1[i].real() + A2[i].real() + 1) / 2;
-		i128 a1b2 = (A1[i].imag() + A2[i].imag() + 1) / 2;
-		i128 a2b1 = (A1[i].imag() - A2[i].imag() + 1) / 2;
-		i128 a2b2 = (A2[i].real() - A1[i].real() + 1) / 2;
-		ans[i] = (a1b1 * LIM + a1b2 + a2b1) * LIM + a2b2;
+		ll a1b1 = a1[i].imag() + .5;
+		ll a1b0 = a1[i].real() + .5;
+		ll a0b1 = a0[i].imag() + .5;
+		ll a0b0 = a0[i].real() + .5;
+		ans[i] = ((a1b1 * B % p + a0b1 + a1b0) * B + a0b0) % p;
 	}
 	return ans;
 }

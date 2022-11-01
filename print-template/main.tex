@@ -316,11 +316,27 @@ PN 的个数只有 $O(\sqrt n)$。
 
 \lstinputlisting[style=cpp,caption=/数学/NTT/impl.cpp]{数学/NTT/impl.cpp}
 
-\subsection{半在线卷积}
+\subsection{多项式平移}
+
+\lstinputlisting[style=cpp,caption=/数学/NTT/taylor-shift.cpp]{数学/NTT/taylor-shift.cpp}
+
+\subsection{Chirp Z 变换}
+
+\lstinputlisting[style=cpp,caption=/数学/NTT/chirpz.cpp]{数学/NTT/chirpz.cpp}
+
+\subsection{三模 NTT}
+
+\lstinputlisting[style=cpp,caption=/数学/NTT/mod3.cpp]{数学/NTT/mod3.cpp}
+
+\subsection{在线卷积}
 
 当 $f$ 已经给出时，若要逐点的计算 $f \ast g$，可以使用半在线卷积算法。
 
-\lstinputlisting[style=cpp,caption=/数学/NTT/cdq.cpp]{数学/NTT/cdq.cpp}
+\lstinputlisting[style=cpp,caption=/数学/NTT/semi.cpp]{数学/NTT/semi.cpp}
+
+当 $f$ 和 $g$ 都未给出时，可以使用全在线卷积。
+
+\lstinputlisting[style=cpp,caption=/数学/NTT/relax.cpp]{数学/NTT/relax.cpp}
 
 \subsection{多点求值 ・ 快速插值}
 
@@ -344,6 +360,25 @@ PN 的个数只有 $O(\sqrt n)$。
 
 \lstinputlisting[style=cpp,caption=/数学/interpolation-lagrange.cpp]{数学/interpolation-lagrange.cpp}
 
+线性基。
+
+\lstinputlisting[style=cpp,caption=/数学/basis.cpp]{数学/basis.cpp}
+
+
+
+\section{数学常数}
+
+\subsection{幂塔}
+
+\lstinputlisting[style=cpp,caption=/数学/常数/tetration-mod.cpp]{数学/常数/tetration-mod.cpp}
+
+\subsection{斯特林数}
+
+\lstinputlisting[style=cpp,caption=/数学/常数/stirling.cpp]{数学/常数/stirling.cpp}
+
+\subsection{幂表}
+
+\lstinputlisting[style=cpp,caption=/数学/常数/powers.cpp]{数学/常数/powers.cpp}
 
 
 
@@ -384,6 +419,10 @@ PN 的个数只有 $O(\sqrt n)$。
 \section{树链剖分}
 
 \lstinputlisting[style=cpp,caption=图论/树链剖分.cpp]{图论/树链剖分.cpp}
+
+\section{Tarjan}
+
+\lstinputlisting[style=cpp,caption=图论/Tarjan.cpp]{图论/Tarjan.cpp}
 
 
 
@@ -534,6 +573,10 @@ for(Node *p=l->tail->prev; p!=l->head; p=p->prev)
 \section{Manacher}
 
 \lstinputlisting[style=cpp,caption=/字符串/manacher/01.cpp]{字符串/manacher/01.cpp}
+
+\section{后缀数组}
+
+\lstinputlisting[style=cpp,caption=/字符串/SA.cpp]{字符串/SA.cpp}
 
 
 

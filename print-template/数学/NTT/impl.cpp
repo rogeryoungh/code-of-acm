@@ -41,7 +41,7 @@ Poly exp(int m) const { // 48E
 Poly sqrt(int m) const { // 36E
 	Poly x = {1};
 	for (int t = 2; t < m * 2; t *= 2) {
-		x = (x + cut(t).div(t, x)) * qpow(2);
+		x = (x + cut(t).div(t, x)) * ((P + 1) / 2);
 	}
 	return x.redeg(m);
 }
@@ -51,23 +51,11 @@ Poly pow(int m, int k) const {
 Poly rev() const {
 	return {rbegin(), rend()};
 }
-Poly shift(int c) {
-	int n = deg();
-	Poly A(n), B(n);
-	Z ci = 1;
-	for (int i = 0; i < n; i++) {
-		A[i] = T[i] * fac[i];
-		B[i] = ci * ifac[i];
-		ci *= c;
-	}
-	reverse(A.begin(), A.end());
-	A = A * B;
-	for (int i = 0; i < n; i++) {
-		B[i] = A[n - i - 1] * ifac[i];
-	}
-	return B;
-}
 friend Poly operator/(const Poly &f, const Poly &g) {
 	int m = f.deg() - g.deg() + 1;
 	return f.rev().div(m, g.rev()).rev();
+}
+friend auto operator%(const Poly &f, const Poly &g) {
+	Poly Q = f / g;
+	return make_pair(Q, (f - Q * g).redeg(g.deg() - 1));
 }
