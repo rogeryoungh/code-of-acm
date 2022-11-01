@@ -78,3 +78,5 @@
   - [堆](./ds/heap.md)
   - [线段树](./ds/segment-tree.md)
   - [懒标记线段树](./ds/lazy-segment-tree.md)
+- [计算几何](./geo/index.md)
+  - [点](./geo/point.md)

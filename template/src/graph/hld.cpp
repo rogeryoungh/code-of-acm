@@ -44,7 +44,6 @@ struct HLD {
 			}
 			y = fa[top[y]];
 		}
-
 		return dep[x] < dep[y] ? x : y;
 	}
 };

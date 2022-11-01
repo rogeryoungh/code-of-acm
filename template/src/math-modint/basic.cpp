@@ -4,11 +4,7 @@
 
 // @description 取模整数
 
-// clang-format off
-#define OPERATOR(U, V, op) \
-	friend inline U operator op(const U &l, const V &r) \
-	{ return U(l) op##= r; }
-// clang-format on
+#include "using/operator-marco.cpp"
 
 struct Z {
 	int v;
