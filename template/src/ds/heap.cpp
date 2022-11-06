@@ -4,7 +4,7 @@
 
 template <class T>
 struct Heap {
-	std::vector<T> v;
+	V<T> v;
 	Heap() : v(1) {}
 	bool update(int p) {
 		bool f = v[p] < v[p / 2];

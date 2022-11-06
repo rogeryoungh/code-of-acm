@@ -1,6 +1,6 @@
 #include "basic/index.hpp"
 
-#include "math/matrix.cpp"
+#include "math/matrix/matrix.cpp"
 
 // @description 矩阵快速幂
 

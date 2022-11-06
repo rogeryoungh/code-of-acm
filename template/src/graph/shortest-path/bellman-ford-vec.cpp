@@ -7,8 +7,8 @@
 template <class D>
 auto bellman_ford(const Edges<D> &E, int s) {
 	int n = E.size();
-	std::vector<D> dis(n, std::numeric_limits<D>::max() / 2);
-	std::vector<int> from(n, -1);
+	V<D> dis(n, std::numeric_limits<D>::max() / 2);
+	V<int> from(n, -1);
 	dis[s] = 0, from[s] = s;
 	bool flag = true;
 	for (int k = 0; k < n && flag; k++) {

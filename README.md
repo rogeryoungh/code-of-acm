@@ -20,10 +20,11 @@
 ```cpp
 #include <bits/stdc++.h>
 
-using namespace std;
+template <class T>
+using V = std::vector<T>;
 using ll = long long;
 
-int ____ = (ios::sync_with_stdio(0), cin.tie(0), cout.tie(0), 1);
+int ____ = std::cin.tie(nullptr)->sync_with_stdio(false);
 
 // END OF HEADER | Author: Roger Young
 ```

@@ -1,34 +1,35 @@
 #include "basic/index.hpp"
 
-using Vertex = std::vector<int>;
-using Edges = std::vector<Vertex>;
+#include "graph/saving/vec.cpp"
 
 struct SCC {
-	std::vector<int> id;
-	std::vector<Vertex> group;
+	V<int> id;
+	V<V<int>> group;
 	SCC(int n) : id(n) {}
 };
 
+template <class D>
 struct SCCImpl : SCC {
+	const Edges<D> &E, &IE;
 	const int n;
-	const Edges &E, &IE;
-	std::vector<bool> vis;
-	std::vector<int> stk;
+	V<bool> vis;
+	V<int> stk;
 	int cnt = 0;
 	void dfs1(int u) {
 		vis[u] = true;
-		for (int v : E[u])
-			if (!vis[v])
-				dfs1(v);
+		for (auto e : E[u])
+			if (!vis[e.to])
+				dfs1(e.to);
 		stk.push_back(u);
 	}
 	void dfs2(int u) {
 		id[u] = cnt;
-		for (int v : IE[u])
-			if (id[v] == 0)
-				dfs2(v);
+		for (auto e : IE[u])
+			if (id[e.to] == 0)
+				dfs2(e.to);
 	}
-	SCCImpl(const Edges &E_, const Edges &IE_) : SCC(E_.size()), n(E_.size()), E(E_), IE(IE_), vis(n) {
+	SCCImpl(const Edges<D> &E_, const Edges<D> &IE_)
+		: SCC(E_.size()), E(E_), IE(IE_), n(E.size()), vis(n) {
 		for (int i = 1; i < n; i++)
 			if (!vis[i])
 				dfs1(i);

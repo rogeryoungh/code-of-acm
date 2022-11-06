@@ -4,7 +4,7 @@
 
 // @description 多项式乘法
 
-struct Poly : std::vector<int> {
+struct Poly : V<int> {
 	using vector::vector;
 	static Poly &mul(Poly &f, Poly &g, int n);
 };

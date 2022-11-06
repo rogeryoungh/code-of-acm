@@ -2,7 +2,7 @@
 
 // @description 线性筛(LPF)
 
-std::vector<int> lpf, primes;
+V<int> lpf, primes;
 void Euler(int n) {
 	lpf.resize(n);
 	for (int i = 2; i < n; i++) {

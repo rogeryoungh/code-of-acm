@@ -1,13 +1,8 @@
 #include "basic/index.hpp"
 
-using pii = std::pair<int, int>;
+#include "using/pii.cpp"
 
-const int N = 5E5 + 10;
-std::vector<int> G[N];
-
-// @problem https://www.luogu.com.cn/problem/P3379
-// @dependices "ds/vec2.cpp"
-// @dependices "ds/sparse-table.cpp"
+#include "graph/saving/vec.cpp"
 
 #include "basic/vec2.cpp"
 
@@ -27,39 +22,43 @@ struct SparseTable {
 			}
 		}
 	}
-	T query(int l, int r) {
+	T query(int l, int r) const {
 		int s = std::__lg(r - l + 1);
 		return min(v[s][l], v[s][r - (1 << s) + 1]);
 	}
 };
 
 struct LCA {
-	std::vector<int> dfn;
-	std::vector<pii> rnk;
+	const int n;
+	V<int> dfn;
 	SparseTable<pii> st;
-	int cnt = 0;
-
-	LCA(int n, int s = 1) : dfn(n), rnk(n), st(n) {
-		dfs(s, 0);
-		st.init(rnk.begin(), rnk.end());
-	}
-
-	void dfs(int x, int fa) {
-		dfn[x] = ++cnt;
-		rnk[cnt] = {dfn[fa], fa};
-		for (int u : G[x]) {
-			if (u != fa) {
-				dfs(u, x);
-			}
-		}
-	}
-	int query(int x, int y) {
+	LCA(int n_) : n(n_), dfn(n), st(n) {}
+	int query(int x, int y) const {
 		if (x == y)
 			return x;
 		x = dfn[x], y = dfn[y];
-		if (x > y) {
+		if (x > y)
 			std::swap(x, y);
-		}
 		return st.query(x + 1, y).second;
+	}
+};
+
+template <class D>
+struct LCAImpl : LCA {
+	const Edges<D> &E;
+	V<pii> rnk;
+	int cnt = 0;
+	LCAImpl(const Edges<D> &E_, int s = 1) : LCA(E_.size()), E(E_), rnk(n) {
+		dfs(s, 0);
+		st.init(rnk.begin(), rnk.end());
+	}
+	void dfs(int u, int fa) {
+		dfn[u] = ++cnt;
+		rnk[cnt] = {dfn[fa], fa};
+		for (auto e : E[u]) {
+			if (e.to != fa) {
+				dfs(e.to, u);
+			}
+		}
 	}
 };

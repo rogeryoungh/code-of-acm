@@ -13,7 +13,7 @@ $$
 输入以 $0$-index 的矩阵 $A$ 表示。
 
 ```cpp
-{{#include gauss.cpp.full}}
+{{#include gauss-f64.cpp.full}}
 ```
 
 # 测试例题
