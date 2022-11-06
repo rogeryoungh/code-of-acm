@@ -10,7 +10,7 @@ struct PolySemi {
 	const Poly &F;
 	Poly G, conv;
 	std::map<pii, Poly> nf, nr;
-	std::vector<int> U;
+	V<int> U;
 	PolySemi(const Poly &f) : F(f), G(M), conv(M), U(32, -1) {}
 	Poly &getNf(pii p) {
 		auto &u = nf[p];

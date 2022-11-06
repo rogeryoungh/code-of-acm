@@ -7,12 +7,12 @@
 template <class D>
 auto dijkstra(const Edges<D> &E, int s) {
 	int n = E.size();
-	std::vector<D> dis(n, std::numeric_limits<D>::max() / 2);
-	std::vector<int> from(n, -1);
-	std::vector<bool> vis(n);
+	V<D> dis(n, std::numeric_limits<D>::max() / 2);
+	V<int> from(n, -1);
+	V<bool> vis(n);
 	dis[s] = 0, from[s] = s;
 	using pdi = std::pair<D, int>;
-	std::priority_queue<pdi, std::vector<pdi>, std::greater<pdi>> pq;
+	std::priority_queue<pdi, V<pdi>, std::greater<pdi>> pq;
 	pq.emplace(0, s);
 	while (!pq.empty()) {
 		auto [w, u] = pq.top();
@@ -29,8 +29,8 @@ auto dijkstra(const Edges<D> &E, int s) {
 	return make_pair(dis, from);
 }
 
-auto get_path(const std::vector<int> &from, int x, int y) {
-	std::vector<int> r;
+auto get_path(const V<int> &from, int x, int y) {
+	V<int> r;
 	for (; x != y; y = from[y])
 		r.push_back(y);
 	r.push_back(y);

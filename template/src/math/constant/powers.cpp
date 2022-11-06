@@ -3,8 +3,8 @@
 #include "basic/qpow.cpp"
 
 auto powers(int n, int k, int mod) {
-	std::vector<bool> isp(n + 1, true);
-	std::vector<int> pw(n + 1, 1);
+	V<bool> isp(n + 1, true);
+	V<int> pw(n + 1, 1);
 	for (int p = 2; p <= n; ++p)
 		if (isp[p]) {
 			for (ll j = ll(p) * p; j <= n; j += p)

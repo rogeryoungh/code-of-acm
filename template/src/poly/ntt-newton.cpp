@@ -5,7 +5,7 @@
 // @description 多项式牛顿迭代(m32)
 // @problem https://loj.ac/p/150
 
-std::vector<Z> w{1, 1};
+V<Z> w{1, 1};
 
 inline int get_lim(int m) {
 	return 1 << std::__lg(m * 2 - 1);
@@ -51,7 +51,7 @@ void intt(auto f, int n) {
 	std::reverse(f + 1, f + n);
 }
 
-struct Poly : std::vector<Z> { // 大常数板子
+struct Poly : V<Z> { // 大常数板子
 	using vector::vector;
 #define T (*this)
 	int deg() const {
@@ -102,12 +102,14 @@ struct Poly : std::vector<Z> { // 大常数板子
 	}
 	Poly deriv(int m) const {
 		Poly f(m);
+		pre_all(m);
 		for (int i = 1; i < std::min(deg(), m + 1); i++)
 			f[i - 1] = T[i] * i;
 		return f;
 	}
 	Poly integr(int m) const {
 		Poly f(m);
+		pre_all(m);
 		for (int i = std::min(deg(), m - 1); i > 0; --i)
 			f[i] = iv[i] * T[i - 1];
 		return f;
@@ -130,7 +132,7 @@ struct Poly : std::vector<Z> { // 大常数板子
 	}
 	Poly ln(int m) const {
 		assert(T[0].v == 1);
-		return deriv(m).div(m - 1, cut(m)).integr(m);
+		return deriv(m).div(m, cut(m)).integr(m);
 	}
 	Poly exp(int m) const { // 48E
 		assert(T[0].v == 0);

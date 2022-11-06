@@ -5,7 +5,7 @@
 template <class T>
 struct fwtree {
 	int n;
-	std::vector<T> v;
+	V<T> v;
 	// 1 ~ N - 1
 	fwtree(int a = 0) : n(a), v(n) {}
 	void add(int i, T x) {
@@ -29,7 +29,7 @@ struct fwtree {
 template <class T>
 struct fwtree_1 {
 	fwtree<T> f1, f2;
-	std::vector<T> u;
+	V<T> u;
 	fwtree_1(int n = 0) : f1(n), f2(n), u(n) {}
 	void build(auto first, auto last) {
 		std::copy(first, last, u.begin());
@@ -53,7 +53,7 @@ struct fwtree_1 {
 template <class T>
 struct fwtree_2 {
 	fwtree<T> f1, f2, f3;
-	std::vector<T> u;
+	V<T> u;
 	fwtree_2(int n = 0) : f1(n), f2(n), f3(n), u(n) {}
 	void build(auto first, auto last) {
 		std::copy(first, last, u.begin());
