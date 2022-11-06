@@ -12,7 +12,7 @@ int qpow(int a, int b = P - 2, int m = P) {
 	return ret;
 }
 
-std::vector<int> iv{1, 1}, fac{1}, ifac{1};
+V<int> iv{1, 1}, fac{1}, ifac{1};
 
 // @description 预处理逆元
 

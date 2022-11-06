@@ -18,7 +18,7 @@ struct SparseTable {
 			}
 		}
 	}
-	T query(int l, int r) {
+	T query(int l, int r) const {
 		int s = std::__lg(r - l + 1);
 		return max(v[s][l], v[s][r - (1 << s) + 1]);
 	}

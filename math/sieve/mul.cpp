@@ -1,13 +1,12 @@
-#include <vector>
-using namespace std;
+#include "basic/index.hpp"
 
 // @description 线性筛积性函数
 
-std::vector<bool> isp;
-std::vector<int> primes, phi, mu;
+V<bool> isp;
+V<int> primes, phi, mu;
 void Euler(int n) {
 	isp.resize(n, true);
-	phi = mu = std::vector<int>(n);
+	phi = mu = V<int>(n);
 	mu[1] = phi[1] = 1;
 	for (int i = 2; i < n; i++) {
 		if (isp[i]) {

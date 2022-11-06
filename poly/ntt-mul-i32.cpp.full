@@ -14,7 +14,7 @@ int qpow(int a, int b = P - 2, int m = P) {
 
 // @description 多项式乘法
 
-struct Poly : std::vector<int> {
+struct Poly : V<int> {
 	using vector::vector;
 	static Poly &mul(Poly &f, Poly &g, int n);
 };

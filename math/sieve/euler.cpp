@@ -2,8 +2,8 @@
 
 // @description 线性筛
 
-std::vector<bool> isp;
-std::vector<int> primes;
+V<bool> isp;
+V<int> primes;
 void Euler(int n) {
 	isp.resize(n, true);
 	for (int i = 2; i < n; i++) {

@@ -2,8 +2,8 @@
 
 #include "math-modint/basic.cpp"
 
-std::vector<bool> not_p;
-std::vector<int> primes;
+V<bool> not_p;
+V<int> primes;
 void Euler(int n) {
 	not_p.resize(n);
 	for (int i = 2; i < n; i++) {
@@ -21,9 +21,9 @@ void Euler(int n) {
 
 struct Min25 {
 	ll n, sn, m = 0;
-	std::vector<bool> not_p;
-	std::vector<int> pri;
-	std::vector<Z> sum;
+	V<bool> not_p;
+	V<int> pri;
+	V<Z> sum;
 	Z fp(int p, int k) {
 		Z pk = Z(p).pow(k);
 		return pk * (pk - 1);
@@ -32,8 +32,8 @@ struct Min25 {
 		return x <= sn ? x : m - (n / x) + 1;
 	}
 	Min25(ll u) : n(u), sn(sqrt(n) + 1), not_p(sn + 1), sum(sn * 2 + 5) {
-		std::vector<Z> s2(sn * 2 + 5), s1(sn * 2 + 5);
-		std::vector<ll> w(sn * 2 + 5);
+		V<Z> s2(sn * 2 + 5), s1(sn * 2 + 5);
+		V<ll> w(sn * 2 + 5);
 		for (ll l = 1, r; l <= n; l = r + 1) {
 			w[++m] = r = n / (n / l);
 			Z mr = r % P;

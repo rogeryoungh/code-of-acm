@@ -5,8 +5,8 @@
 // @description 质因子(p^k)
 
 auto factor_pii(ll n) {
-	std::vector<ll> ret = factor(n);
-	std::vector<std::pair<ll, int>> ans;
+	V<ll> ret = factor(n);
+	V<std::pair<ll, int>> ans;
 	if (ret.empty())
 		return ans;
 	ans.emplace_back(ret[0], 1);

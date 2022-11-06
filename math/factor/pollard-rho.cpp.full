@@ -59,7 +59,7 @@ ll pollard_rho(ll N) {
 }
 
 auto factor(ll x) {
-	std::vector<ll> v;
+	V<ll> v;
 	if (x == 1)
 		return v;
 	std::function<void(ll)> dfs = [&](ll u) {

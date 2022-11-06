@@ -3,9 +3,9 @@
 #include "using/f64.cpp"
 
 using img = std::complex<f64>;
-using Poly = std::vector<int>;
+using Poly = V<int>;
 
-std::vector<img> w{{1, 0}, {1, 0}};
+V<img> w{{1, 0}, {1, 0}};
 
 inline int get_lim(int m) {
 	return 1 << std::__lg(m * 2 - 1);
@@ -54,7 +54,7 @@ void ifft(auto f, int n) {
 
 Poly mul(const Poly &a, const Poly &b) {
 	int n = a.size(), m = b.size(), N = get_lim(n + m - 1);
-	std::vector<img> f(N);
+	V<img> f(N);
 	for (int i = 0; i < n; i++)
 		f[i] += img(a[i], 0);
 	for (int i = 0; i < m; i++)
@@ -72,7 +72,7 @@ Poly mul(const Poly &a, const Poly &b) {
 Poly mul5(const Poly &a, const Poly &b, int p) {
 	enum : int { B = 1 << 15 };
 	int n = a.size(), m = b.size(), N = get_lim(n + m - 1);
-	std::vector<img> a0(N), a1(N), Q(N);
+	V<img> a0(N), a1(N), Q(N);
 	for (int i = 0; i < n; i++)
 		a0[i] = a[i] % B, a1[i] = a[i] / B;
 	for (int i = 0; i < m; i++)

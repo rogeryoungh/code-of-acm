@@ -13,8 +13,8 @@ auto factor(ll n) {
 
 // @description 线性筛
 
-std::vector<bool> isp;
-std::vector<int> primes;
+V<bool> isp;
+V<int> primes;
 void Euler(int n) {
 	isp.resize(n, true);
 	for (int i = 2; i < n; i++) {
@@ -33,7 +33,7 @@ void Euler(int n) {
 // @description 质因子分解
 
 auto factor(ll n) {
-	std::vector<ll> ans;
+	V<ll> ans;
 	for (int i : primes) {
 		if (1ll * i * i > n)
 			break;
@@ -48,8 +48,8 @@ auto factor(ll n) {
 // @description 质因子(p^k)
 
 auto factor_pii(ll n) {
-	std::vector<ll> ret = factor(n);
-	std::vector<std::pair<ll, int>> ans;
+	V<ll> ret = factor(n);
+	V<std::pair<ll, int>> ans;
 	if (ret.empty())
 		return ans;
 	ans.emplace_back(ret[0], 1);

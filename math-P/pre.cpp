@@ -2,7 +2,7 @@
 
 #include "math-P/qpow.cpp"
 
-std::vector<int> iv{1, 1}, fac{1}, ifac{1};
+V<int> iv{1, 1}, fac{1}, ifac{1};
 
 // @description 预处理逆元
 

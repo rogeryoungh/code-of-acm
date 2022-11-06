@@ -6,10 +6,7 @@ const ll P = 998244353998244353;
 
 // @description 取模整数
 
-#define OPERATOR(U, op)                                       \
-	friend inline U operator op(const U &lhs, const U &rhs) { \
-		return U(lhs) op## = rhs;                             \
-	}
+#include "using/operator-marco.cpp"
 
 struct Z {
 	ll v;
@@ -26,9 +23,9 @@ struct Z {
 		v = i128(v) * m.v % P;
 		return *this;
 	}
-	OPERATOR(Z, +);
-	OPERATOR(Z, -);
-	OPERATOR(Z, *);
+	OPERATOR(Z, Z, +);
+	OPERATOR(Z, Z, -);
+	OPERATOR(Z, Z, *);
 	Z pow(ll n) const {
 		ll ret = P != 1, a = v;
 		for (; n; n /= 2) {
@@ -48,7 +45,7 @@ struct Z {
 	Z &operator/=(const Z &m) {
 		return *this *= m.inv();
 	}
-	OPERATOR(Z, /);
+	OPERATOR(Z, Z, /);
 };
 
 std::istream &operator>>(std::istream &is, Z &z) {
