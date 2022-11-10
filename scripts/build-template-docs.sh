@@ -12,7 +12,6 @@ chmod +x $HOME/bin/preprocessor-md-tex
 
 export PATH="$HOME/bin:$PATH"
 
-cd template && xmake build && xmake run
 preprocessor-md-tex ./template/src/
 python ./scripts/extract.py
-cd ./template && mdbook build
+cd ./template && xmake build && xmake run && mdbook build
