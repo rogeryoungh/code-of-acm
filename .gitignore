@@ -3,6 +3,9 @@ archive-code/
 temp/
 template/book/
 template/**/*.cpp.full
+template/.xmake/
+template/build/
+
 
 *.pdf
 __latexident*.tex

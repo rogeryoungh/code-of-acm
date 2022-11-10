@@ -7,5 +7,5 @@ Diagnostics:
   UnusedIncludes: Strict
 
 CompileFlags:
-  Add: [-xc++, -Wall, -Wextra, -std=c++20, -Wno-sign-compare, -I/home/roger/Code/ACM/code-of-acm/template/src]
+  Add: [-xc++, -Wall, -Wextra, -std=c++20, -Wno-sign-compare, -I/home/roger/Code/ACM/code-of-acm/template/src, -I/home/roger/Code/ACM/code-of-acm/template/picobench/include]
   Compiler: clang++

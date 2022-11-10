@@ -65,6 +65,7 @@
   - [FFT 乘法](./poly/fft-mul.md)
   - [NTT 乘法・i32](./poly/ntt-mul-i32.md)
   - [NTT 乘法・三模](./poly/ntt-mul-mod3.md)
+  - [NTT $O(n^2)$](./poly/ntt-naive.md)
   - [NTT 牛顿迭代](./poly/ntt-newton.md)
   - [NTT 牛顿迭代・卡常](./poly/ntt-newton-fast.md)
   - [NTT 牛顿迭代・分块卡常](./poly/ntt-newton-blockwise-fast.md)

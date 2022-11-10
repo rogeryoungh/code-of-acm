@@ -21,6 +21,11 @@ jobs:
           hugo-version: 'latest'
           # extended: true
 
+      - name: Setup xmake
+        uses: xmake-io/github-action-setup-xmake@v1
+        with:
+          xmake-version: latest
+
       - name: Build
         run: |
           bash scripts/build.sh
