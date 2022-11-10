@@ -193,7 +193,56 @@
                         <h1 id="质因分解筛优化"><a class="header" href="#质因分解筛优化">质因分解・筛优化</a></h1>
 <p>需要筛出 $O(\sqrt{N})$ 内的质数，后可以在 $O\left(\sqrt{\frac{N}{\log N}}\right)$ 内求出 $N$ 的所有质因子。</p>
 <p>常数相对于不筛有玄学改进。</p>
-<pre><code class="language-cpp">{{#include sieve.cpp.full}}
+<pre><code class="language-cpp">// @description 线性筛
+
+V&lt;bool&gt; isp;
+V&lt;int&gt; primes;
+void Euler(int n) {
+	isp.resize(n, true);
+	for (int i = 2; i &lt; n; i++) {
+		if (isp[i])
+			primes.push_back(i);
+		for (int pj : primes) {
+			if (pj &gt; (n - 1) / i)
+				break;
+			isp[i * pj] = false;
+			if (i % pj == 0)
+				break;
+		}
+	}
+}
+
+// @description 质因子分解
+
+auto factor(ll n) {
+	V&lt;ll&gt; ans;
+	for (int i : primes) {
+		if (1ll * i * i &gt; n)
+			break;
+		for (; n % i == 0; n /= i)
+			ans.push_back(i);
+	}
+	if (n &gt; 1)
+		ans.push_back(n);
+	return ans;
+}
+
+// @description 质因子(p^k)
+
+auto factor_pii(ll n) {
+	V&lt;ll&gt; ret = factor(n);
+	V&lt;std::pair&lt;ll, int&gt;&gt; ans;
+	if (ret.empty())
+		return ans;
+	ans.emplace_back(ret[0], 1);
+	for (int i = 1; i &lt; ret.size(); i++) {
+		if (ret[i] == ret[i - 1])
+			ans.back().second++;
+		else
+		 	ans.emplace_back(ret[i], 1);
+	}
+	return ans;
+}
 </code></pre>
 
                     </main>

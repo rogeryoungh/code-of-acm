@@ -191,7 +191,37 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="z-函数"><a class="header" href="#z-函数">Z 函数</a></h1>
-<pre><code class="language-cpp">{{#include z-algorithm.cpp.full}}
+<pre><code class="language-cpp">auto pre_z_algo(const std::string &amp;s) {
+	int n = s.length();
+	V&lt;int&gt; z(n + 1);
+	z[1] = n;
+	for (int i = 1, l = -1, r = 0; i &lt; n; i++) {
+		int &amp;k = z[i + 1], u = r - i;
+		if (u &gt; 0)
+			k = std::min(u, z[i - l + 1]);
+		while (i + k &lt; n &amp;&amp; s[k] == s[i + k])
+			k++;
+		if (i + k &gt; r)
+			l = i, r = i + k;
+	}
+	return z;
+}
+
+auto z_algo(const std::string &amp;s, const std::string &amp;t) {
+	auto z = pre_z_algo(s);
+	int n = t.length();
+	V&lt;int&gt; z2(n + 1);
+	for (int i = 0, l = 0, r = 0; i &lt; n; i++) {
+		int &amp;k = z2[i + 1], u = r - i;
+		if (u &gt; 0)
+			k = std::min(u, z[i - l + 1]);
+		while (i + k &lt; n &amp;&amp; s[k] == t[i + k])
+			k++;
+		if (i + k &gt; r)
+			l = i, r = i + k;
+	}
+	return std::make_pair(z, z2);
+}
 </code></pre>
 
                     </main>

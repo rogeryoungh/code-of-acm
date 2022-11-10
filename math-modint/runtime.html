@@ -191,7 +191,133 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="runtime-montgomery-modint"><a class="header" href="#runtime-montgomery-modint">Runtime Montgomery Modint</a></h1>
-<pre><code class="language-cpp">{{#include runtime.cpp.full}}
+<pre><code class="language-cpp">template &lt;int&gt;
+class RuntimeMontgomeryModInt {
+  public:
+	using i32 = std::int32_t;
+	using u32 = std::uint32_t;
+	using u64 = std::uint64_t;
+	using m32 = RuntimeMontgomeryModInt;
+
+	using value_type = u32;
+
+	static u32 get_mod() {
+		return mod;
+	}
+
+	static bool set_mod(u32 m) {
+		if (m % 2 == 0 || m == 1 || (m &amp; (3U &lt;&lt; 30)) != 0)
+			return false;
+		mod = m, mod2 = mod &lt;&lt; 1;
+		u32 two = 2, iv = mod * (two - mod * mod);
+		iv *= two - mod * iv;
+		iv *= two - mod * iv;
+		r = iv * (mod * iv - two);
+		r2 = -u64(mod) % mod;
+		return true;
+	}
+
+	RuntimeMontgomeryModInt() = default;
+	~RuntimeMontgomeryModInt() = default;
+
+	template &lt;typename T&gt;
+	RuntimeMontgomeryModInt(T v) : v_(reduce(u64(v % i32(mod) + i32(mod)) * r2)) {}
+
+	RuntimeMontgomeryModInt(const m32 &amp;) = default;
+
+	u32 get() const {
+		return norm(reduce(v_));
+	}
+
+	template &lt;typename T&gt;
+	explicit operator T() const {
+		return T(get());
+	}
+
+	m32 operator-() const {
+		m32 res;
+		res.v_ = (mod2 &amp; -(v_ != 0)) - v_;
+		return res;
+	}
+
+	m32 inv() const {
+		i32 x1 = 1, x3 = 0, a = get(), b = mod;
+		while (b != 0) {
+			i32 q = a / b, x1_old = x1, a_old = a;
+			x1 = x3, x3 = x1_old - x3 * q, a = b, b = a_old - b * q;
+		}
+		return m32(x1);
+	}
+
+	m32 &amp;operator=(const m32 &amp;) = default;
+
+	m32 &amp;operator+=(const m32 &amp;rhs) {
+		v_ += rhs.v_ - mod2;
+		v_ += mod2 &amp; -(v_ &gt;&gt; 31);
+		return *this;
+	}
+	m32 &amp;operator-=(const m32 &amp;rhs) {
+		v_ -= rhs.v_;
+		v_ += mod2 &amp; -(v_ &gt;&gt; 31);
+		return *this;
+	}
+	m32 &amp;operator*=(const m32 &amp;rhs) {
+		v_ = reduce(u64(v_) * rhs.v_);
+		return *this;
+	}
+	m32 &amp;operator/=(const m32 &amp;rhs) {
+		return operator*=(rhs.inv());
+	}
+	friend m32 operator+(const m32 &amp;lhs, const m32 &amp;rhs) {
+		return m32(lhs) += rhs;
+	}
+	friend m32 operator-(const m32 &amp;lhs, const m32 &amp;rhs) {
+		return m32(lhs) -= rhs;
+	}
+	friend m32 operator*(const m32 &amp;lhs, const m32 &amp;rhs) {
+		return m32(lhs) *= rhs;
+	}
+	friend m32 operator/(const m32 &amp;lhs, const m32 &amp;rhs) {
+		return m32(lhs) /= rhs;
+	}
+	friend bool operator==(const m32 &amp;lhs, const m32 &amp;rhs) {
+		return norm(lhs.v_) == norm(rhs.v_);
+	}
+	friend bool operator!=(const m32 &amp;lhs, const m32 &amp;rhs) {
+		return norm(lhs.v_) != norm(rhs.v_);
+	}
+
+	friend std::istream &amp;operator&gt;&gt;(std::istream &amp;is, m32 &amp;rhs) {
+		i32 x;
+		is &gt;&gt; x;
+		rhs = m32(x);
+		return is;
+	}
+	friend std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const m32 &amp;rhs) {
+		return os &lt;&lt; rhs.get();
+	}
+
+	m32 pow(u64 y) const {
+		for (m32 res(1), x(*this);; x *= x) {
+			if (y &amp; 1)
+				res *= x;
+			if ((y /= 2) == 0)
+				return res;
+		}
+	}
+
+  private:
+	static u32 reduce(u64 x) {
+		return (x + u64(u32(x) * r) * mod) &gt;&gt; 32;
+	}
+	static u32 norm(u32 x) {
+		return x - (mod &amp; -((mod - 1 - x) &gt;&gt; 31));
+	}
+
+	u32 v_;
+
+	static inline u32 r, r2, mod, mod2;
+};
 </code></pre>
 
                     </main>

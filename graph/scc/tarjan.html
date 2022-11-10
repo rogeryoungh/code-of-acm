@@ -191,7 +191,63 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="tarjan"><a class="header" href="#tarjan">Tarjan</a></h1>
-<pre><code class="language-cpp">{{#include tarjan.cpp.full}}
+<pre><code class="language-cpp">template &lt;class D&gt;
+struct Edge {
+	int to;
+	D len;
+};
+
+template &lt;class D&gt;
+using Edges = V&lt;V&lt;Edge&lt;D&gt;&gt;&gt;;
+
+struct SCC {
+	V&lt;int&gt; id;
+	V&lt;V&lt;int&gt;&gt; group;
+	SCC(int n) : id(n) {}
+};
+
+template &lt;class D&gt;
+struct SCCImpl : SCC {
+	const Edges&lt;D&gt; &amp;E;
+	const int n;
+	V&lt;int&gt; low, dfn, stk;
+	V&lt;bool&gt; flag;
+	int cnt = 0, c2 = 0;
+	void tarjan(int u) {
+		low[u] = dfn[u] = ++cnt;
+		stk.push_back(u), flag[u] = true;
+		for (auto e : E[u]) {
+			if (dfn[e.to] == 0) {
+				tarjan(e.to);
+				low[u] = std::min(low[u], low[e.to]);
+			} else if (flag[e.to]) {
+				low[u] = std::min(low[u], dfn[e.to]);
+			}
+		}
+		if (dfn[u] == low[u]) {
+			c2++;
+			while (true) {
+				int v = stk.back();
+				stk.pop_back();
+				id[v] = c2;
+				flag[v] = false;
+				if (u == v)
+					break;
+			}
+		}
+	}
+	SCCImpl(const Edges&lt;D&gt; &amp;E_) : SCC(E_.size()), E(E_), n(E.size()), low(n), dfn(n), flag(n) {
+		for (int i = 1; i &lt; n; i++) {
+			if (dfn[i] == 0)
+				tarjan(i);
+		}
+		group.resize(c2 + 1);
+		for (int i = 1; i &lt; n; i++) {
+			id[i] = c2 + 1 - id[i]; // 拓扑序
+			group[id[i]].push_back(i);
+		}
+	}
+};
 </code></pre>
 
                     </main>

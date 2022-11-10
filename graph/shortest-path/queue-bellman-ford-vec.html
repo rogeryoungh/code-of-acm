@@ -191,7 +191,36 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="最短路队列优化-bellman-fordvec"><a class="header" href="#最短路队列优化-bellman-fordvec">最短路・队列优化 Bellman Ford・VEC</a></h1>
-<pre><code class="language-cpp">{{#include queue-bellman-ford-vec.cpp.full}}
+<pre><code class="language-cpp">template &lt;class D&gt;
+struct Edge {
+	int to;
+	D len;
+};
+
+template &lt;class D&gt;
+using Edges = V&lt;V&lt;Edge&lt;D&gt;&gt;&gt;;
+
+// @description 队列优化 Bellman Ford 最短路
+
+template &lt;class D&gt;
+auto queue_bellman_ford(const Edges&lt;D&gt; &amp;G, int s) {
+	int n = G.size();
+	std::queue&lt;int&gt; q;
+	V&lt;D&gt; dis(n, std::numeric_limits&lt;D&gt;::max() / 2);
+	V&lt;int&gt; from(n, -1);
+	dis[s] = 0, from[s] = s;
+	q.push(s);
+	while (!q.empty()) {
+		int u = q.front();
+		q.pop();
+		for (auto [v, w] : G[u]) {
+			int d2 = dis[u] + w;
+			if (dis[v] &gt; d2)
+				dis[v] = d2, from[v] = u, q.push(v);
+		}
+	}
+	return std::make_pair(dis, from);
+}
 </code></pre>
 
                     </main>

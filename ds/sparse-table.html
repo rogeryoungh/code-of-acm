@@ -191,7 +191,42 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="st"><a class="header" href="#st">ST</a></h1>
-<pre><code class="language-cpp">{{#include sparse-table.cpp.full}}
+<pre><code class="language-cpp">// @description 二维数组
+
+template &lt;class T&gt;
+struct VV {
+	int x, y;
+	V&lt;T&gt; m;
+	VV(int a, int b, const T &amp;v = T()) : x(a), y(b), m(a * b, v) {}
+	auto operator[](int i) {
+		return m.begin() + i * y;
+	}
+	auto operator[](int i) const {
+		return m.begin() + i * y;
+	}
+};
+
+// @description Sparse Table
+
+template &lt;class T&gt;
+struct SparseTable {
+	int n, lgn;
+	VV&lt;T&gt; v;
+	SparseTable(int a) : n(a), lgn(1 + std::__lg(n)), v(lgn, n) {}
+	void init(auto first, auto last) {
+		copy(first, last, v[0]);
+		for (int i = 1; i &lt; lgn; i++) {
+			int ti = 1 &lt;&lt; (i - 1);
+			for (int j = 0; j &lt;= n - 2 * ti; j++) {
+				v[i][j] = max(v[i - 1][j], v[i - 1][j + ti]);
+			}
+		}
+	}
+	T query(int l, int r) const {
+		int s = std::__lg(r - l + 1);
+		return max(v[s][l], v[s][r - (1 &lt;&lt; s) + 1]);
+	}
+};
 </code></pre>
 <h2 id="测试例题"><a class="header" href="#测试例题">测试例题</a></h2>
 <ul>

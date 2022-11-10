@@ -191,7 +191,32 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="manacher"><a class="header" href="#manacher">Manacher</a></h1>
-<pre><code class="language-cpp">{{#include manacher.cpp.full}}
+<pre><code class="language-cpp">// @description Manacher
+
+template &lt;int o&gt;
+auto manacher(const std::string &amp;s) {
+	int n = s.size();
+	V&lt;int&gt; m(n);
+	m[0] = o == 0;
+	for (int i = 1, l = 0, r = 0; i &lt; n; i++) {
+		int &amp;k = m[i], u = r - i;
+		if (u &gt; 0)
+			k = std::min(u, m[2 * l - i]);
+		while (0 &lt;= i - k - o &amp;&amp; i + k &lt; n &amp;&amp; s[i - k - o] == s[i + k])
+			k++;
+		if (i + k &gt; r)
+			l = i, r = i + k;
+	}
+	return m;
+}
+
+V&lt;int&gt; manacher_odd(const std::string &amp;s) {
+	return manacher&lt;0&gt;(s);
+}
+
+V&lt;int&gt; manacher_even(const std::string &amp;s) {
+	return manacher&lt;1&gt;(s);
+}
 </code></pre>
 <h2 id="测试例题"><a class="header" href="#测试例题">测试例题</a></h2>
 <ul>

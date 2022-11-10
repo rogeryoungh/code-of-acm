@@ -194,7 +194,40 @@
 <p>快速判断 $10^{18}$ 内的数字是否为素数。</p>
 <p>若选取 $k$ 个素数为基底，那么复杂度大概是 $O(k \log n)$，错误率为 $4^{-k}$。</p>
 <p>下方代码的基底在 $2^{64}$ 内没有例外。更多基底有关的可以查看 <a href="https://miller-rabin.appspot.com">SPRP Base</a>。</p>
-<pre><code class="language-cpp">{{#include miller-rabbin.cpp.full}}
+<pre><code class="language-cpp">using i128 = __int128_t;
+
+// @description 快速幂(i128)
+
+ll qpow128(ll a, ll b, ll m) {
+	ll ret = 1 % m;
+	for (; b; b /= 2) {
+		if (b % 2 == 1)
+			ret = i128(a) * ret % m;
+		a = i128(a) * a % m;
+	}
+	return ret;
+}
+
+// @description 素性测试(Miller Rabbin)
+
+bool miller_rabbin(ll n) {
+	if (n &lt;= 3)
+		return n &gt;= 2;
+	if (n % 2 == 0)
+		return false;
+	ll a = n - 1;
+	a /= a &amp; -a;
+	for (int p : {2, 3, 5, 7, 11, 13, 17, 19, 23}) {
+		if (n &lt;= p)
+			return true;
+		ll t = a, v = qpow128(p, t, n);
+		while (t != n - 1 &amp;&amp; v != 1 &amp;&amp; v != n - 1)
+			v = i128(v) * v % n, t *= 2;
+		if (v != n - 1 &amp;&amp; t % 2 == 0)
+			return false;
+	}
+	return true;
+}
 </code></pre>
 <h2 id="备注"><a class="header" href="#备注">备注</a></h2>
 <p>如果需要卡常，那么 <code>i64 * i64 % i64</code> 实际上可以用浮点数卡一下。</p>

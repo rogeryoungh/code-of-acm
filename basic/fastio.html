@@ -192,7 +192,58 @@
                     <main>
                         <h1 id="快读"><a class="header" href="#快读">快读</a></h1>
 <p>这个快读目前不能自动输出，有待以后改进。</p>
-<pre><code class="language-cpp">{{#include fastio.cpp.full}}
+<pre><code class="language-cpp">struct FastI {
+	char s[1 &lt;&lt; 20], *t = s;
+	FastI() {
+		fread(s, 1, sizeof(s), stdin);
+	}
+	template &lt;class T, bool is_int = is_integral&lt;T&gt;::value&gt;
+	FastI &amp;operator&gt;&gt;(T &amp;x) {
+		x = 0;
+		while (!isdigit(*t))
+			t++;
+		while (isdigit(*t))
+			x = x * 10 + *t++ - '0';
+		return *this;
+	}
+};
+
+struct FastO {
+	char s[1 &lt;&lt; 20], *t = s;
+	~FastO() {
+		fwrite(s, 1, t - s, stdout);
+	}
+	void puts(const char *x) {
+		while (*x != 0)
+			*t++ = *x++;
+	}
+	void output(uint64_t x) {
+		static char u[22];
+		char *i = u + 20;
+		do {
+			*--i = x % 10 + '0', x /= 10;
+		} while (x &gt; 0);
+		puts(i);
+	}
+	FastO &amp;operator&lt;&lt;(uint64_t x) {
+		return output(x), *this;
+	}
+	FastO &amp;operator&lt;&lt;(char x) {
+		return *t++ = x, *this;
+	}
+	FastO &amp;operator&lt;&lt;(int64_t x) {
+		if (x &lt; 0) {
+			*--t = '-', x = -x;
+		}
+		return output(x), *this;
+	}
+	FastO &amp;operator&lt;&lt;(const char *x) {
+		return puts(x), *this;
+	}
+};
+
+FastI fin;
+FastO fout;
 </code></pre>
 
                     </main>

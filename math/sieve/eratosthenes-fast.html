@@ -191,7 +191,24 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="筛法eratosthenes卡常"><a class="header" href="#筛法eratosthenes卡常">筛法・Eratosthenes・卡常</a></h1>
-<pre><code class="language-cpp">{{#include eratosthenes-fast.cpp.full}}
+<pre><code class="language-cpp">// @description 埃氏筛(卡常)
+
+V&lt;bool&gt; isp;
+V&lt;int&gt; primes; // 个数不精确！
+void Eratosthenes(int n) {
+	isp.resize(n + 6, true);
+	auto f = [&amp;](int i) {
+		if (isp[i]) {
+			primes.push_back(i);
+			for (ll j = ll(i) * i; j &lt; n; j += i)
+				isp[j] = false;
+		}
+	};
+	f(2), f(3);
+	for (int i = 5; i &lt; n; i += 6) {
+		f(i), f(i + 2);
+	}
+}
 </code></pre>
 <h2 id="测试例题"><a class="header" href="#测试例题">测试例题</a></h2>
 <ul>

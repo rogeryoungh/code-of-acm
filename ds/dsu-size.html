@@ -191,7 +191,33 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="带权并查集"><a class="header" href="#带权并查集">带权并查集</a></h1>
-<pre><code class="language-cpp">{{#include dsu-size.cpp.full}}
+<pre><code class="language-cpp">// @description 带权并查集
+
+struct DSU {
+	V&lt;int&gt; fa, sz;
+	DSU(int n) : fa(n), sz(n, 1) {
+		for (int i = 0; i &lt; n; i++)
+			fa[i] = i;
+	}
+	int find(int x) {
+		return fa[x] == x ? x : fa[x] = find(fa[x]);
+	}
+	bool same(int x, int y) {
+		return find(x) == find(y);
+	}
+	int size(int x) {
+		return sz[find(x)];
+	}
+	void merge(int x, int y) {
+		x = find(x), y = find(y);
+		if (x == y)
+			return;
+		if (sz[x] &gt; sz[y])
+			std::swap(x, y);
+		sz[y] += sz[x], fa[x] = y;
+		sz[x] = 0;
+	}
+};
 </code></pre>
 <h2 id="测试例题"><a class="header" href="#测试例题">测试例题</a></h2>
 <ul>

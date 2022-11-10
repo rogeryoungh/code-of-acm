@@ -191,7 +191,59 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="kosaraju"><a class="header" href="#kosaraju">Kosaraju</a></h1>
-<pre><code class="language-cpp">{{#include kosaraju.cpp.full}}
+<pre><code class="language-cpp">template &lt;class D&gt;
+struct Edge {
+	int to;
+	D len;
+};
+
+template &lt;class D&gt;
+using Edges = V&lt;V&lt;Edge&lt;D&gt;&gt;&gt;;
+
+struct SCC {
+	V&lt;int&gt; id;
+	V&lt;V&lt;int&gt;&gt; group;
+	SCC(int n) : id(n) {}
+};
+
+template &lt;class D&gt;
+struct SCCImpl : SCC {
+	const Edges&lt;D&gt; &amp;E, &amp;IE;
+	const int n;
+	V&lt;bool&gt; vis;
+	V&lt;int&gt; stk;
+	int cnt = 0;
+	void dfs1(int u) {
+		vis[u] = true;
+		for (auto e : E[u])
+			if (!vis[e.to])
+				dfs1(e.to);
+		stk.push_back(u);
+	}
+	void dfs2(int u) {
+		id[u] = cnt;
+		for (auto e : IE[u])
+			if (id[e.to] == 0)
+				dfs2(e.to);
+	}
+	SCCImpl(const Edges&lt;D&gt; &amp;E_, const Edges&lt;D&gt; &amp;IE_)
+		: SCC(E_.size()), E(E_), IE(IE_), n(E.size()), vis(n) {
+		for (int i = 1; i &lt; n; i++)
+			if (!vis[i])
+				dfs1(i);
+		std::reverse(stk.begin(), stk.end());
+		for (int u : stk) {
+			if (id[u] == 0) {
+				++cnt;
+				dfs2(u);
+			}
+		}
+		group.resize(cnt + 1);
+		for (int i = 1; i &lt; n; i++) {
+			group[id[i]].push_back(i);
+		}
+	}
+};
 </code></pre>
 
                     </main>

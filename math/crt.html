@@ -201,7 +201,37 @@ x \equiv a_n &amp;\pmod {m_n}
 \end{cases}
 $$</p>
 <p>保证 $\{m_i\}$ 互质。</p>
-<pre><code class="language-cpp">{{#include crt.cpp.full}}
+<pre><code class="language-cpp">// @description 扩展欧几里得
+
+std::tuple&lt;ll, ll, ll&gt; exgcd(ll a, ll b) {
+	if (b == 0) {
+		if (a &gt; 0)
+			return {1, 0, a};
+		else
+			return {-1, 0, -a};
+	} else {
+		auto [y, x, g] = exgcd(b, a % b);
+		return {x, y - a / b * x, g};
+	}
+}
+
+ll inv_gcd(ll a, ll p) {
+	return (std::get&lt;0&gt;(exgcd(a, p)) % p + p) % p;
+}
+
+// @description 中国剩余定理
+
+template &lt;class PAIR&gt;
+ll crt(const V&lt;PAIR&gt; &amp;am) {
+	ll prod = 1, ret = 0;
+	for (auto [a, m] : am)
+		prod *= m;
+	for (auto [a, m] : am) {
+		ll u = prod / m, v = inv_gcd(u, m);
+		ret = (ret + a * u * v) % prod;
+	}
+	return ret;
+}
 </code></pre>
 <h2 id="测试例题"><a class="header" href="#测试例题">测试例题</a></h2>
 <ul>

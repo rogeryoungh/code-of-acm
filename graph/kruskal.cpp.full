@@ -1,0 +1,38 @@
+// @description 朴素并查集
+
+struct DSU {
+	V<int> fa;
+	DSU(int n) : fa(n) {
+		for (int i = 0; i < n; i++)
+			fa[i] = i;
+	}
+	int find(int x) {
+		return fa[x] == x ? x : fa[x] = find(fa[x]);
+	}
+	bool same(int x, int y) {
+		return find(x) == find(y);
+	}
+	void merge(int x, int y) {
+		x = find(x), y = find(y);
+		fa[x] = y;
+	}
+};
+
+ll kruskal(int n) {
+	std::sort(G.begin(), G.end(), [](Edge a, Edge b) {
+		return get<2>(a) < get<2>(b);
+	});
+	ll ans = 0, cnt = 0;
+	DSU dsu(n + 1);
+	for (auto [u, v, w] : G) {
+		if (dsu.find(u) == dsu.find(v)) {
+			continue;
+		}
+		ans += w, cnt++;
+		dsu.merge(u, v);
+		if (cnt == n - 1) {
+			return ans;
+		}
+	}
+	return -1;
+}

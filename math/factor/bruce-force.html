@@ -192,7 +192,69 @@
                     <main>
                         <h1 id="质因分解暴力"><a class="header" href="#质因分解暴力">质因分解・暴力</a></h1>
 <p>可以在 $O(\sqrt{n})$ 的时间复杂度内求出 $n$ 的所有质因子。</p>
-<pre><code class="language-cpp">{{#include bruce-force.cpp.full}}
+<pre><code class="language-cpp">// @description 因式分解
+
+auto factor(ll n) {
+	vector&lt;ll&gt; ret;
+	for (int i = 2; 1ll * i * i &lt;= n; i++) {
+		for (; n % i == 0; n /= i)
+			ret.push_back(i);
+	}
+	if (n &gt; 1)
+		ret.push_back(n);
+	return ret;
+}
+
+// @description 线性筛
+
+V&lt;bool&gt; isp;
+V&lt;int&gt; primes;
+void Euler(int n) {
+	isp.resize(n, true);
+	for (int i = 2; i &lt; n; i++) {
+		if (isp[i])
+			primes.push_back(i);
+		for (int pj : primes) {
+			if (pj &gt; (n - 1) / i)
+				break;
+			isp[i * pj] = false;
+			if (i % pj == 0)
+				break;
+		}
+	}
+}
+
+// @description 质因子分解
+
+auto factor(ll n) {
+	V&lt;ll&gt; ans;
+	for (int i : primes) {
+		if (1ll * i * i &gt; n)
+			break;
+		for (; n % i == 0; n /= i)
+			ans.push_back(i);
+	}
+	if (n &gt; 1)
+		ans.push_back(n);
+	return ans;
+}
+
+// @description 质因子(p^k)
+
+auto factor_pii(ll n) {
+	V&lt;ll&gt; ret = factor(n);
+	V&lt;std::pair&lt;ll, int&gt;&gt; ans;
+	if (ret.empty())
+		return ans;
+	ans.emplace_back(ret[0], 1);
+	for (int i = 1; i &lt; ret.size(); i++) {
+		if (ret[i] == ret[i - 1])
+			ans.back().second++;
+		else
+		 	ans.emplace_back(ret[i], 1);
+	}
+	return ans;
+}
 </code></pre>
 
                     </main>

@@ -192,7 +192,20 @@
                     <main>
                         <h1 id="eratosthenes朴素"><a class="header" href="#eratosthenes朴素">Eratosthenes（朴素）</a></h1>
 <p>在 $O(n \log \log n)$ 的时间内筛出 $n$ 以内的所有质数。</p>
-<pre><code class="language-cpp">{{#include eratosthenes.cpp.full}}
+<pre><code class="language-cpp">// @description 埃氏筛
+
+V&lt;bool&gt; isp;
+V&lt;int&gt; primes;
+void Eratosthenes(int n) {
+	isp.resize(n, true);
+	for (int i = 2; i &lt; n; i++) {
+		if (isp[i]) {
+			primes.push_back(i);
+			for (ll j = ll(i) * i; j &lt; n; j += i)
+				isp[j] = false;
+		}
+	}
+}
 </code></pre>
 <h2 id="测试例题"><a class="header" href="#测试例题">测试例题</a></h2>
 <ul>

@@ -1,0 +1,25 @@
+// @description 二维数组
+
+template <class T>
+struct VV {
+	int x, y;
+	V<T> m;
+	VV(int a, int b, const T &v = T()) : x(a), y(b), m(a * b, v) {}
+	auto operator[](int i) {
+		return m.begin() + i * y;
+	}
+	auto operator[](int i) const {
+		return m.begin() + i * y;
+	}
+};
+
+template <class D>
+using Edges = VV<D>; // 默认 x == y
+
+template <class D>
+auto get_edges(int n) {
+	VV<D> f(n, n, std::numeric_limits<D>::max() / 2);
+	for (int i = 0; i < n; i++)
+		f[i][i] = 0;
+	return f;
+}

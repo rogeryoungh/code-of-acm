@@ -191,7 +191,99 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="lagrange-插值"><a class="header" href="#lagrange-插值">Lagrange 插值</a></h1>
-<pre><code class="language-cpp">{{#include interpolation-lagrange.cpp.full}}
+<pre><code class="language-cpp">const int P = 998244353;
+
+// @description 快速幂(i32, P)
+
+int qpow(int a, int b = P - 2, int m = P) {
+	int ret = 1 % m;
+	for (; b &gt; 0; b /= 2) {
+		if (b % 2 == 1)
+			ret = 1ll * ret * a % m;
+		a = 1ll * a * a % m;
+	}
+	return ret;
+}
+
+// @description 取模整数
+
+// clang-format off
+#define OPERATOR(U, V, op)	\
+friend inline U operator op(const U &amp;l, const V &amp;r) {	\
+	return U(l) op##= r;	\
+}
+// clang-format on
+
+struct Z {
+	int v;
+	Z(ll a = 0) : v((a % P + P) % P) {}
+	Z &amp;operator=(const int &amp;m) {
+		v = m;
+		return *this;
+	}
+	Z &amp;operator+=(const Z &amp;m) {
+		v = (v += m.v) &gt;= P ? v - P : v;
+		return *this;
+	}
+	Z &amp;operator-=(const Z &amp;m) {
+		v = (v -= m.v) &lt; 0 ? v + P : v;
+		return *this;
+	}
+	Z &amp;operator*=(const Z &amp;m) {
+		v = 1ll * v * m.v % P;
+		return *this;
+	}
+	OPERATOR(Z, Z, +);
+	OPERATOR(Z, Z, -);
+	OPERATOR(Z, Z, *);
+	Z pow(int n) const {
+		return qpow(v, n);
+	}
+	Z inv() const {
+		return pow(P - 2);
+	}
+	// useless
+	Z operator-() const {
+		return v == 0 ? 0 : P - v;
+	}
+	Z &amp;operator/=(const Z &amp;m) {
+		return *this *= m.inv();
+	}
+	OPERATOR(Z, Z, /);
+	auto approx(int A = 1E3) {
+		int x = v, y = P, a = 1, b = 0;
+		while (x &gt; A) {
+			std::swap(x, y), std::swap(a, b);
+			a -= x / y * b, x %= y;
+		}
+		return std::make_pair(x, a);
+	}
+};
+
+std::istream &amp;operator&gt;&gt;(std::istream &amp;is, Z &amp;z) {
+	return is &gt;&gt; z.v;
+}
+
+std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
+	return os &lt;&lt; z.v;
+}
+
+// @description 拉格朗日插值
+
+Z lagrange(const V&lt;Z&gt; &amp;x, const V&lt;Z&gt; &amp;y, Z k) {
+	int n = x.size();
+	Z sum = 0;
+	for (int i = 0; i &lt; n; i++) {
+		Z s1 = 1, s2 = 1;
+		for (int j = 0; j &lt; n; j++) {
+			if (j == i)
+				continue;
+			s1 *= k - x[j], s2 *= x[i] - x[j];
+		}
+		sum += s1 / s2 * y[i];
+	}
+	return sum;
+}
 </code></pre>
 
                     </main>

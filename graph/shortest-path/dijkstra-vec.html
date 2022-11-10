@@ -192,7 +192,50 @@
                     <main>
                         <h1 id="最短路dijkstra"><a class="header" href="#最短路dijkstra">最短路・Dijkstra</a></h1>
 <p>对于 $n$ 个点 $m$ 条边的图，可以在 $O(n \log m)$ 的时间内求出来源点 $s$ 到所有点的最短路，并且求出路径。</p>
-<pre><code class="language-cpp">{{#include dijkstra-vec.cpp.full}}
+<pre><code class="language-cpp">template &lt;class D&gt;
+struct Edge {
+	int to;
+	D len;
+};
+
+template &lt;class D&gt;
+using Edges = V&lt;V&lt;Edge&lt;D&gt;&gt;&gt;;
+
+// @description Dijkstra 最短路
+
+template &lt;class D&gt;
+auto dijkstra(const Edges&lt;D&gt; &amp;E, int s) {
+	int n = E.size();
+	V&lt;D&gt; dis(n, std::numeric_limits&lt;D&gt;::max() / 2);
+	V&lt;int&gt; from(n, -1);
+	V&lt;bool&gt; vis(n);
+	dis[s] = 0, from[s] = s;
+	using pdi = std::pair&lt;D, int&gt;;
+	std::priority_queue&lt;pdi, V&lt;pdi&gt;, std::greater&lt;pdi&gt;&gt; pq;
+	pq.emplace(0, s);
+	while (!pq.empty()) {
+		auto [w, u] = pq.top();
+		pq.pop();
+		if (vis[u])
+			continue;
+		vis[u] = true;
+		for (auto [v, wi] : E[u]) {
+			D d2 = w + wi;
+			if (dis[v] &gt; d2)
+				dis[v] = d2, from[v] = u, pq.emplace(d2, v);
+		}
+	}
+	return make_pair(dis, from);
+}
+
+auto get_path(const V&lt;int&gt; &amp;from, int x, int y) {
+	V&lt;int&gt; r;
+	for (; x != y; y = from[y])
+		r.push_back(y);
+	r.push_back(y);
+	std::reverse(r.begin(), r.end());
+	return r;
+}
 </code></pre>
 
                     </main>

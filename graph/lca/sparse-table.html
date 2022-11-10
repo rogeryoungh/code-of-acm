@@ -191,7 +191,88 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="lcast"><a class="header" href="#lcast">LCA（ST）</a></h1>
-<pre><code class="language-cpp">{{#include sparse-table.cpp.full}}
+<pre><code class="language-cpp">using pii = std::pair&lt;int, int&gt;;
+
+template &lt;class D&gt;
+struct Edge {
+	int to;
+	D len;
+};
+
+template &lt;class D&gt;
+using Edges = V&lt;V&lt;Edge&lt;D&gt;&gt;&gt;;
+
+// @description 二维数组
+
+template &lt;class T&gt;
+struct VV {
+	int x, y;
+	V&lt;T&gt; m;
+	VV(int a, int b, const T &amp;v = T()) : x(a), y(b), m(a * b, v) {}
+	auto operator[](int i) {
+		return m.begin() + i * y;
+	}
+	auto operator[](int i) const {
+		return m.begin() + i * y;
+	}
+};
+
+// @description LCA(Sparse Table)
+
+template &lt;class T&gt;
+struct SparseTable {
+	int n, lgn;
+	VV&lt;T&gt; v;
+	SparseTable(int a) : n(a), lgn(1 + std::__lg(n)), v(lgn, n) {}
+	void init(auto first, auto last) {
+		copy(first, last, v[0]);
+		for (int i = 1; i &lt; lgn; i++) {
+			int ti = 1 &lt;&lt; (i - 1);
+			for (int j = 0; j &lt;= n - 2 * ti; j++) {
+				v[i][j] = min(v[i - 1][j], v[i - 1][j + ti]);
+			}
+		}
+	}
+	T query(int l, int r) const {
+		int s = std::__lg(r - l + 1);
+		return min(v[s][l], v[s][r - (1 &lt;&lt; s) + 1]);
+	}
+};
+
+struct LCA {
+	const int n;
+	V&lt;int&gt; dfn;
+	SparseTable&lt;pii&gt; st;
+	LCA(int n_) : n(n_), dfn(n), st(n) {}
+	int query(int x, int y) const {
+		if (x == y)
+			return x;
+		x = dfn[x], y = dfn[y];
+		if (x &gt; y)
+			std::swap(x, y);
+		return st.query(x + 1, y).second;
+	}
+};
+
+template &lt;class D&gt;
+struct LCAImpl : LCA {
+	const Edges&lt;D&gt; &amp;E;
+	V&lt;pii&gt; rnk;
+	int cnt = 0;
+	LCAImpl(const Edges&lt;D&gt; &amp;E_, int s = 1) : LCA(E_.size()), E(E_), rnk(n) {
+		dfs(s, 0);
+		st.init(rnk.begin(), rnk.end());
+	}
+	void dfs(int u, int fa) {
+		dfn[u] = ++cnt;
+		rnk[cnt] = {dfn[fa], fa};
+		for (auto e : E[u]) {
+			if (e.to != fa) {
+				dfs(e.to, u);
+			}
+		}
+	}
+};
 </code></pre>
 
                     </main>

@@ -191,7 +191,44 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="堆"><a class="header" href="#堆">堆</a></h1>
-<pre><code class="language-cpp">{{#include heap.cpp.full}}
+<pre><code class="language-cpp">// @description 小根堆
+
+template &lt;class T&gt;
+struct Heap {
+	V&lt;T&gt; v;
+	Heap() : v(1) {}
+	bool update(int p) {
+		bool f = v[p] &lt; v[p / 2];
+		if (f) {
+			std::swap(v[p], v[p / 2]);
+		}
+		return !f;
+	}
+	T top() {
+		return v[1];
+	}
+	void put(T x) {
+		v.push_back(x);
+		int p = v.size() - 1;
+		while (p &gt; 1) {
+			if (update(p))
+				return;
+			p /= 2;
+		}
+	}
+	void pop() {
+		v[1] = v.back();
+		v.pop_back();
+		int sz = v.size(), p = 2;
+		while (p &lt; sz) {
+			if (p + 1 &lt; sz &amp;&amp; v[p + 1] &lt; v[p])
+				p++;
+			if (update(p))
+				return;
+			p *= 2;
+		}
+	}
+};
 </code></pre>
 <h2 id="测试例题"><a class="header" href="#测试例题">测试例题</a></h2>
 <ul>

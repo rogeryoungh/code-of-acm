@@ -191,7 +191,72 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="lca倍增"><a class="header" href="#lca倍增">LCA・倍增</a></h1>
-<pre><code class="language-cpp">{{#include binary-lifting.cpp.full}}
+<pre><code class="language-cpp">template &lt;class D&gt;
+struct Edge {
+	int to;
+	D len;
+};
+
+template &lt;class D&gt;
+using Edges = V&lt;V&lt;Edge&lt;D&gt;&gt;&gt;;
+
+// @description 二维数组
+
+template &lt;class T&gt;
+struct VV {
+	int x, y;
+	V&lt;T&gt; m;
+	VV(int a, int b, const T &amp;v = T()) : x(a), y(b), m(a * b, v) {}
+	auto operator[](int i) {
+		return m.begin() + i * y;
+	}
+	auto operator[](int i) const {
+		return m.begin() + i * y;
+	}
+};
+
+// @description LCA(倍增)
+
+struct LCA {
+	const int n, lgn;
+	VV&lt;int&gt; f;
+	V&lt;int&gt; dep;
+	LCA(int n_) : n(n_), lgn(1 + std::__lg(n)), f(n, lgn), dep(n) {}
+	int query(int x, int y) {
+		if (dep[x] &gt; dep[y])
+			std::swap(x, y);
+		while (dep[x] &lt; dep[y])
+			y = f[y][std::__lg(dep[y] - dep[x])];
+		for (int i = lgn - 1; i &gt;= 0; i--) {
+			if (f[x][i] != f[y][i]) {
+				x = f[x][i], y = f[y][i];
+			}
+		}
+		return x == y ? x : f[x][0];
+	}
+};
+
+template &lt;class D&gt;
+struct LCAImpl : LCA {
+	const Edges&lt;D&gt; &amp;E;
+	LCAImpl(const Edges&lt;D&gt; &amp;E_, int s = 1) : LCA(E_.size()), E(E_) {
+		dfs(s, 0);
+		for (int i = 1; i &lt; lgn; i++) {
+			for (int j = 0; j &lt; n; j++) {
+				f[j][i] = f[f[j][i - 1]][i - 1];
+			}
+		}
+	}
+	void dfs(int u, int fa) {
+		f[u][0] = fa;
+		dep[u] = dep[fa] + 1;
+		for (auto e : E[u]) {
+			if (e.to != fa) {
+				dfs(e.to, u);
+			}
+		}
+	}
+};
 </code></pre>
 
                     </main>

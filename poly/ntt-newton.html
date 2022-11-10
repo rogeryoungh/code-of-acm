@@ -191,57 +191,322 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="ntt-牛顿迭代"><a class="header" href="#ntt-牛顿迭代">NTT 牛顿迭代</a></h1>
-<pre><code class="language-cpp">{{#include ntt-newton.cpp.full}}
+<pre><code class="language-cpp">const int P = 998244353;
+
+// @description 快速幂(i32, P)
+
+int qpow(int a, int b = P - 2, int m = P) {
+	int ret = 1 % m;
+	for (; b &gt; 0; b /= 2) {
+		if (b % 2 == 1)
+			ret = 1ll * ret * a % m;
+		a = 1ll * a * a % m;
+	}
+	return ret;
+}
+
+// @description 取模整数
+
+// clang-format off
+#define OPERATOR(U, V, op)	\
+friend inline U operator op(const U &amp;l, const V &amp;r) {	\
+	return U(l) op##= r;	\
+}
+// clang-format on
+
+struct Z {
+	int v;
+	Z(ll a = 0) : v((a % P + P) % P) {}
+	Z &amp;operator=(const int &amp;m) {
+		v = m;
+		return *this;
+	}
+	Z &amp;operator+=(const Z &amp;m) {
+		v = (v += m.v) &gt;= P ? v - P : v;
+		return *this;
+	}
+	Z &amp;operator-=(const Z &amp;m) {
+		v = (v -= m.v) &lt; 0 ? v + P : v;
+		return *this;
+	}
+	Z &amp;operator*=(const Z &amp;m) {
+		v = 1ll * v * m.v % P;
+		return *this;
+	}
+	OPERATOR(Z, Z, +);
+	OPERATOR(Z, Z, -);
+	OPERATOR(Z, Z, *);
+	Z pow(int n) const {
+		return qpow(v, n);
+	}
+	Z inv() const {
+		return pow(P - 2);
+	}
+	// useless
+	Z operator-() const {
+		return v == 0 ? 0 : P - v;
+	}
+	Z &amp;operator/=(const Z &amp;m) {
+		return *this *= m.inv();
+	}
+	OPERATOR(Z, Z, /);
+	auto approx(int A = 1E3) {
+		int x = v, y = P, a = 1, b = 0;
+		while (x &gt; A) {
+			std::swap(x, y), std::swap(a, b);
+			a -= x / y * b, x %= y;
+		}
+		return std::make_pair(x, a);
+	}
+};
+
+std::istream &amp;operator&gt;&gt;(std::istream &amp;is, Z &amp;z) {
+	return is &gt;&gt; z.v;
+}
+
+std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
+	return os &lt;&lt; z.v;
+}
+
+// @description 预处理逆元、阶乘、阶乘逆元
+
+V&lt;Z&gt; iv, fac, ifac;
+
+void pre_all(int u) {
+	int l = iv.size(), n = l * 2;
+	if (u &lt;= l)
+		return;
+	iv = fac = ifac = V&lt;Z&gt;(n + 1, 1);
+	for (int i = 1; i &lt;= n; i++) {
+		fac[i] = fac[i - 1] * i;
+	}
+	ifac[n] = fac[n].inv(), iv[n] = Z(n).inv();
+	for (int i = n - 1; i &gt; 0; i--) {
+		ifac[i] = ifac[i + 1] * (i + 1);
+		iv[i] = ifac[i] * fac[i - 1];
+	}
+	pre_all(u);
+}
+
+// @description 组合数
+
+Z C(int n, int m) {
+	return fac[n] * ifac[m] * ifac[n - m];
+}
+
+// @description 多项式牛顿迭代(m32)
+// @problem https://loj.ac/p/150
+
+V&lt;Z&gt; w{1, 1};
+
+inline int get_lim(int m) {
+	return 1 &lt;&lt; std::__lg(m * 2 - 1);
+}
+
+void pre_w(int n) {
+	int l = w.size(), l2 = l * 2;
+	if (n &lt;= l)
+		return;
+	w.resize(l2);
+	Z p = Z(3).pow((P - 1) / l2);
+	for (int i = l; i &lt; l2; i += 2) {
+		w[i] = w[i / 2];
+		w[i + 1] = w[i] * p;
+	}
+	pre_w(n);
+}
+
+static int ntt_size = 0;
+
+void ntt(auto f, int n) {
+	pre_w(n), ntt_size += n;
+	for (int l = n / 2; l; l /= 2)
+		for (int i = 0; i &lt; n; i += l * 2)
+			for (int j = 0; j &lt; l; j++) {
+				Z x = f[i + j], y = f[i + j + l];
+				f[i + j + l] = w[j + l] * (x - y);
+				f[i + j] = x + y;
+			}
+}
+
+void intt(auto f, int n) {
+	pre_w(n), ntt_size += n;
+	for (int l = 1; l &lt; n; l *= 2)
+		for (int i = 0; i &lt; n; i += l * 2)
+			for (int j = 0; j &lt; l; j++) {
+				Z x = f[i + j], y = w[j + l] * f[i + j + l];
+				f[i + j] = x + y, f[i + j + l] = x - y;
+			}
+	const int ivn = P - (P - 1) / n;
+	for (int i = 0; i &lt; n; i++)
+		f[i] *= ivn;
+	std::reverse(f + 1, f + n);
+}
+
+struct Poly : V&lt;Z&gt; { // 大常数板子
+	using vector::vector;
+#define T (*this)
+	int deg() const {
+		return size();
+	}
+	Poly &amp;redeg(int m) {
+		return resize(m), T;
+	}
+	Poly cut(int m, int l = 0) const {
+		return {begin() + l, begin() + std::min(m + l, deg())};
+	}
+	Poly &amp;operator+=(const Poly &amp;g) {
+		redeg(std::max(deg(), g.deg()));
+		for (int i = 0; i &lt; g.deg(); i++)
+			T[i] += g[i];
+		return T;
+	}
+	Poly &amp;operator-=(const Poly &amp;g) {
+		redeg(std::max(deg(), g.deg()));
+		for (int i = 0; i &lt; g.deg(); i++)
+			T[i] -= g[i];
+		return T;
+	}
+	Poly &amp;operator*=(Z k) {
+		for (Z &amp;fi : T)
+			fi *= k;
+		return T;
+	}
+	OPERATOR(Poly, Poly, +);
+	OPERATOR(Poly, Poly, -);
+	OPERATOR(Poly, Z, *);
+	OPERATOR(Poly, Poly, *);
+	Poly &amp;ntt(int n) {
+		return redeg(n), ::ntt(begin(), n), T;
+	}
+	Poly &amp;intt(int n) {
+		return ::intt(begin(), n), T;
+	}
+	static Poly &amp;mul(Poly &amp;f, Poly &amp;g, int n) {
+		f.ntt(n), g.ntt(n);
+		for (int i = 0; i &lt; n; i++)
+			f[i] *= g[i];
+		return f.intt(n);
+	}
+	Poly &amp;operator*=(Poly g) {
+		int m = T.deg() + g.deg() - 1;
+		return mul(T, g, get_lim(m)).redeg(m);
+	}
+	Poly deriv(int m) const {
+		Poly f(m);
+		pre_all(m);
+		for (int i = 1; i &lt; std::min(deg(), m + 1); i++)
+			f[i - 1] = T[i] * i;
+		return f;
+	}
+	Poly integr(int m) const {
+		Poly f(m);
+		pre_all(m);
+		for (int i = std::min(deg(), m - 1); i &gt; 0; --i)
+			f[i] = iv[i] * T[i - 1];
+		return f;
+	}
+	Poly inv(int m) const { // 12E
+		Poly x = {T[0].inv()};
+		for (int t = 2; t &lt; m * 2; t *= 2) {
+			Poly u = cut(t).ntt(t * 2);
+			x.ntt(t * 2);
+			for (int i = 0; i &lt; t * 2; i++)
+				x[i] = (2 - u[i] * x[i]) * x[i];
+			x.intt(t * 2).redeg(t);
+		}
+		return x.redeg(m);
+	}
+	Poly div(int m, const Poly &amp;g) const { // 18E
+		if (deg() == 0)
+			return {};
+		return (cut(m) * g.inv(m)).redeg(m);
+	}
+	Poly ln(int m) const {
+		assert(T[0].v == 1);
+		return deriv(m).div(m, cut(m)).integr(m);
+	}
+	Poly exp(int m) const { // 48E
+		assert(T[0].v == 0);
+		Poly x = {1};
+		for (int t = 2; t &lt; m * 2; t *= 2) {
+			x = x * (cut(t) - x.ln(t) + Poly{1}), x.redeg(t);
+		}
+		return x.redeg(m);
+	}
+	Poly sqrt(int m) const { // 36E
+		Poly x = {1};
+		for (int t = 2; t &lt; m * 2; t *= 2) {
+			x = (x + cut(t).div(t, x)) * ((P + 1) / 2);
+		}
+		return x.redeg(m);
+	}
+	Poly pow(int m, int k) const {
+		return (ln(m) * k).exp(m);
+	}
+	Poly rev() const {
+		return {rbegin(), rend()};
+	}
+	friend Poly operator/(const Poly &amp;f, const Poly &amp;g) {
+		int m = f.deg() - g.deg() + 1;
+		return f.rev().div(m, g.rev()).rev();
+	}
+	friend auto operator%(const Poly &amp;f, const Poly &amp;g) {
+		Poly Q = f / g;
+		return make_pair(Q, (f - Q * g).redeg(g.deg() - 1));
+	}
+#undef T
+};
 </code></pre>
 <pre><code>poly/ntt-newton.cpp:
 ===============================================================================
    Name (baseline is *)   |   Dim   |  Total ms |  ns/op  |Baseline| Ops/second
 ===============================================================================
                  NTT 1E * |       1 |     0.000 |     100 |      - | 10000000.0
-                   MUL 3E |       1 |     0.000 |     300 |  3.000 |  3333333.3
-                  INV 12E |       1 |     0.000 |     200 |  2.000 |  5000000.0
-                  EXP 48E |       1 |     0.000 |     200 |  2.000 |  5000000.0
-                 SQRT 36E |       1 |     0.000 |     100 |  1.000 | 10000000.0
+                   MUL 3E |       1 |     0.000 |     200 |  2.000 |  5000000.0
+                  INV 12E |       1 |     0.000 |     300 |  3.000 |  3333333.3
+                  EXP 48E |       1 |     0.000 |       0 |  0.000 |        inf
+                 SQRT 36E |       1 |     0.000 |     200 |  2.000 |  5000000.0
                  NTT 1E * |       2 |     0.000 |      50 |      - | 20000000.0
-                   MUL 3E |       2 |     0.001 |     250 |  5.000 |  4000000.0
+                   MUL 3E |       2 |     0.000 |     200 |  4.000 |  5000000.0
                   INV 12E |       2 |     0.001 |     250 |  5.000 |  4000000.0
-                  EXP 48E |       2 |     0.002 |     850 | 17.000 |  1176470.6
-                 SQRT 36E |       2 |     0.001 |     600 | 12.000 |  1666666.7
+                  EXP 48E |       2 |     0.001 |     700 | 14.000 |  1428571.4
+                 SQRT 36E |       2 |     0.001 |     500 | 10.000 |  2000000.0
                  NTT 1E * |       4 |     0.000 |      25 |      - | 40000000.0
-                   MUL 3E |       4 |     0.001 |     175 |  7.000 |  5714285.7
-                  INV 12E |       4 |     0.001 |     225 |  9.000 |  4444444.4
-                  EXP 48E |       4 |     0.003 |     800 | 32.000 |  1250000.0
-                 SQRT 36E |       4 |     0.003 |     675 | 27.000 |  1481481.5
+                   MUL 3E |       4 |     0.001 |     150 |  6.000 |  6666666.7
+                  INV 12E |       4 |     0.001 |     175 |  7.010 |  5706134.1
+                  EXP 48E |       4 |     0.003 |     725 | 29.000 |  1379310.3
+                 SQRT 36E |       4 |     0.004 |     900 | 36.000 |  1111111.1
                  NTT 1E * |       8 |     0.000 |      12 |      - | 80000000.0
-                   MUL 3E |       8 |     0.001 |     100 |  8.000 | 10000000.0
-                  INV 12E |       8 |     0.002 |     200 | 16.000 |  5000000.0
-                  EXP 48E |       8 |     0.007 |     937 | 75.000 |  1066666.7
-                 SQRT 36E |       8 |     0.005 |     662 | 53.000 |  1509434.0
+                   MUL 3E |       8 |     0.001 |      75 |  6.000 | 13333333.3
+                  INV 12E |       8 |     0.001 |     175 | 14.000 |  5714285.7
+                  EXP 48E |       8 |     0.007 |     837 | 67.000 |  1194029.9
+                 SQRT 36E |       8 |     0.004 |     525 | 42.000 |  1904761.9
                  NTT 1E * |      16 |     0.000 |      12 |      - | 80000000.0
-                   MUL 3E |      16 |     0.002 |     106 |  8.500 |  9411764.7
-                  INV 12E |      16 |     0.003 |     181 | 14.500 |  5517241.4
-                  EXP 48E |      16 |     0.013 |     793 | 63.505 |  1259743.3
-                 SQRT 36E |      16 |     0.010 |     650 | 52.000 |  1538461.5
+                   MUL 3E |      16 |     0.001 |      75 |  6.000 | 13333333.3
+                  INV 12E |      16 |     0.003 |     156 | 12.500 |  6400000.0
+                  EXP 48E |      16 |     0.010 |     643 | 51.500 |  1553398.1
+                 SQRT 36E |      16 |     0.008 |     506 | 40.500 |  1975308.6
                  NTT 1E * |      64 |     0.001 |      10 |      - | 91428571.4
-                   MUL 3E |      64 |     0.006 |      92 |  8.429 | 10847457.6
-                  INV 12E |      64 |     0.012 |     184 | 16.857 |  5423728.8
-                  EXP 48E |      64 |     0.051 |     790 | 72.287 |  1264797.1
-                 SQRT 36E |      64 |     0.037 |     571 | 52.287 |  1748586.1
-                 NTT 1E * |     512 |     0.008 |      15 |      - | 66493506.5
-                   MUL 3E |     512 |     0.061 |     119 |  7.948 |  8365876.4
-                  INV 12E |     512 |     0.115 |     225 | 14.987 |  4436664.9
-                  EXP 48E |     512 |     0.465 |     907 | 60.326 |  1102241.5
-                 SQRT 36E |     512 |     0.338 |     660 | 43.910 |  1514318.0
-                 NTT 1E * |   65536 |     1.753 |      26 |      - | 37377996.5
-                   MUL 3E |   65536 |    12.415 |     189 |  7.081 |  5278893.5
-                  INV 12E |   65536 |    24.158 |     368 | 13.778 |  2712803.4
-                  EXP 48E |   65536 |    95.943 |    1463 | 54.720 |   683072.8
-                 SQRT 36E |   65536 |    71.612 |    1092 | 40.844 |   915151.5
-                 NTT 1E * |  131072 |     3.645 |      27 |      - | 35958755.2
-                   MUL 3E |  131072 |    27.587 |     210 |  7.568 |  4751206.9
-                  INV 12E |  131072 |    52.816 |     402 | 14.490 |  2481684.0
-                  EXP 48E |  131072 |   206.272 |    1573 | 56.589 |   635433.1
-                 SQRT 36E |  131072 |   151.878 |    1158 | 41.667 |   863007.7
+                   MUL 3E |      64 |     0.005 |      82 |  7.571 | 12075471.7
+                  INV 12E |      64 |     0.010 |     156 | 14.287 |  6399360.1
+                  EXP 48E |      64 |     0.041 |     637 | 58.287 |  1568589.0
+                 SQRT 36E |      64 |     0.030 |     475 | 43.430 |  2105193.9
+                 NTT 1E * |     512 |     0.007 |      13 |      - | 75294117.6
+                   MUL 3E |     512 |     0.049 |      95 |  7.221 | 10427698.6
+                  INV 12E |     512 |     0.097 |     189 | 14.280 |  5272860.2
+                  EXP 48E |     512 |     0.372 |     726 | 54.721 |  1375952.0
+                 SQRT 36E |     512 |     0.277 |     541 | 40.736 |  1848342.1
+                 NTT 1E * |   65536 |     1.451 |      22 |      - | 45174716.3
+                   MUL 3E |   65536 |    10.089 |     153 |  6.954 |  6495814.5
+                  INV 12E |   65536 |    19.233 |     293 | 13.258 |  3407440.9
+                  EXP 48E |   65536 |    74.834 |    1141 | 51.584 |   875752.0
+                 SQRT 36E |   65536 |    55.707 |     850 | 38.400 |  1176433.2
+                 NTT 1E * |  131072 |     3.076 |      23 |      - | 42606363.1
+                   MUL 3E |  131072 |    21.875 |     166 |  7.111 |  5991796.3
+                  INV 12E |  131072 |    41.268 |     314 | 13.415 |  3176082.6
+                  EXP 48E |  131072 |   161.599 |    1232 | 52.529 |   811095.4
+                 SQRT 36E |  131072 |   119.962 |     915 | 38.995 |  1092608.2
 ===============================================================================
 </code></pre>
 

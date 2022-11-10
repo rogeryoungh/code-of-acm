@@ -200,7 +200,48 @@ A_{n,1} x_1 + \cdots + A_{n,n} x_n &amp;= A_{n, n+1} \\
 \end{cases}
 $$</p>
 <p>输入以 $0$-index 的矩阵 $A$ 表示。</p>
-<pre><code class="language-cpp">{{#include gauss-f64.cpp.full}}
+<pre><code class="language-cpp">using f64 = double;
+
+// @description 二维数组
+
+template &lt;class T&gt;
+struct VV {
+	int x, y;
+	V&lt;T&gt; m;
+	VV(int a, int b, const T &amp;v = T()) : x(a), y(b), m(a * b, v) {}
+	auto operator[](int i) {
+		return m.begin() + i * y;
+	}
+	auto operator[](int i) const {
+		return m.begin() + i * y;
+	}
+};
+
+const f64 eps = 1E-6;
+
+std::optional&lt;VV&lt;f64&gt;&gt; gauss(VV&lt;f64&gt; v) {
+	for (int i = 0; i &lt; v.x; i++) {
+		int mi = i;
+		for (int j = i + 1; j &lt; v.x; j++)
+			if (std::abs(v[j][i]) &gt; std::abs(v[mi][i]))
+				mi = j;
+		for (int j = 0; j &lt; v.y; j++)
+			std::swap(v[i][j], v[mi][j]);
+		if (std::abs(v[i][i]) &lt; eps)
+			return std::nullopt;
+		auto ivi = 1 / v[i][i];
+		for (int k = v.y - 1; k &gt;= i; k--)
+			v[i][k] *= ivi;
+		for (int j = 0; j &lt; v.x; j++) {
+			if (j != i) {
+				auto tmp = v[j][i];
+				for (int k = 0; k &lt; v.y; k++)
+					v[j][k] -= v[i][k] * tmp;
+			}
+		}
+	}
+	return v;
+}
 </code></pre>
 <h1 id="测试例题"><a class="header" href="#测试例题">测试例题</a></h1>
 <ul>

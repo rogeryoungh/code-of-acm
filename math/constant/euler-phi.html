@@ -192,7 +192,39 @@
                     <main>
                         <h1 id="euler-varphin-函数"><a class="header" href="#euler-varphin-函数">Euler $\varphi(n)$ 函数</a></h1>
 <p>需要用筛预处理 $O(\sqrt{N})$ 内的质数，每次求值复杂度 $O(\sqrt{N})$。</p>
-<pre><code class="language-cpp">{{#include euler-phi.cpp.full}}
+<pre><code class="language-cpp">// @description 线性筛
+
+V&lt;bool&gt; isp;
+V&lt;int&gt; primes;
+void Euler(int n) {
+	isp.resize(n, true);
+	for (int i = 2; i &lt; n; i++) {
+		if (isp[i])
+			primes.push_back(i);
+		for (int pj : primes) {
+			if (pj &gt; (n - 1) / i)
+				break;
+			isp[i * pj] = false;
+			if (i % pj == 0)
+				break;
+		}
+	}
+}
+
+ll euler_phi(ll x) {
+	ll ans = 1;
+	for (int p : primes) {
+		if (1ll * p * p &gt; x)
+			break;
+		if (x % p == 0)
+			x /= p, ans *= p - 1;
+		while (x % p == 0)
+			x /= p, ans *= p;
+	}
+	if (x &gt; 1)
+		ans *= x - 1;
+	return ans;
+}
 </code></pre>
 
                     </main>

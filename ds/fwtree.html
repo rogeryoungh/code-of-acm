@@ -191,7 +191,40 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="树状数组"><a class="header" href="#树状数组">树状数组</a></h1>
-<pre><code class="language-cpp">{{#include fwtree.cpp.full}}
+<pre><code class="language-cpp">// @description 树状数组
+
+template &lt;class T&gt;
+struct fwtree {
+	int n;
+	V&lt;T&gt; v;
+	// 1 ~ N - 1
+	fwtree(int a = 0) : n(a), v(n) {}
+	void add(int i, T x) {
+		for (; i &lt; n; i += i &amp; -i) {
+			v[i] += x;
+		}
+	}
+	void build(auto first, auto last) {
+		std::copy(first, last, v.begin());
+		for (int i = 1; i &lt; n; i++) {
+			int j = i + (i &amp; -i);
+			if (j &lt; n) {
+				v[j] += v[i];
+			}
+		}
+	}
+	T sum(int i) const {
+		assert(i &lt; n);
+		T sum = T();
+		for (; i &gt; 0; i -= i &amp; -i)
+			sum += v[i];
+		return sum;
+	}
+	T sum(int l, int r) const {
+		assert(0 &lt;= l &amp;&amp; l &lt;= r &amp;&amp; r &lt; n);
+		return sum(r) - sum(l - 1);
+	}
+};
 </code></pre>
 <h2 id="测试例题"><a class="header" href="#测试例题">测试例题</a></h2>
 <ul>
