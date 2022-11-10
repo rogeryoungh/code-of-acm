@@ -5,5 +5,5 @@
 常数相对于不筛有玄学改进。
 
 ```cpp
-{{#include sieve.cpp.full}}
+{{#include sieve.hpp.full}}
 ```

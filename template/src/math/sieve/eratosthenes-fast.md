@@ -1,7 +1,7 @@
 # 筛法・Eratosthenes・卡常
 
 ```cpp
-{{#include eratosthenes-fast.cpp.full}}
+{{#include eratosthenes-fast.hpp.full}}
 ```
 
 ## 测试例题

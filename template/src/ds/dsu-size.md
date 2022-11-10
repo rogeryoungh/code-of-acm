@@ -1,7 +1,7 @@
 # 带权并查集
 
 ```cpp
-{{#include dsu-size.cpp.full}}
+{{#include dsu-size.hpp.full}}
 ```
 
 ## 测试例题

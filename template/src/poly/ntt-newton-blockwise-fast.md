@@ -1,5 +1,5 @@
 # NTT 牛顿迭代（分块卡常）
 
 ```cpp
-{{#include ntt-newton-blockwise-fast.cpp.full}}
+{{#include ntt-newton-blockwise-fast.hpp.full}}
 ```

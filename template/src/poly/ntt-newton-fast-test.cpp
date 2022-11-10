@@ -1,9 +1,9 @@
 #define PICOBENCH_IMPLEMENT_WITH_MAIN
 #include "picobench/picobench.hpp"
 
-#include "poly/ntt-newton-fast.cpp"
+#include "poly/ntt-newton-fast.hpp"
 
-PICOBENCH_SUITE("poly/ntt-newton-fast.cpp");
+PICOBENCH_SUITE("poly/ntt-newton-fast.hpp");
 
 std::vector poly_iterations = {1, 2, 4, 8, 16, 64, 512, 1 << 16, 1 << 17};
 

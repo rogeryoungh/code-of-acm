@@ -1,7 +1,7 @@
 # 快速幂
 
 ```cpp
-{{#include qpow.cpp.full}}
+{{#include qpow.hpp.full}}
 ```
 
 ## 测试例题

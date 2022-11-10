@@ -1,7 +1,7 @@
 # 并查集
 
 ```cpp
-{{#include dsu.cpp.full}}
+{{#include dsu.hpp.full}}
 ```
 
 ## 测试例题

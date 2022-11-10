@@ -1,7 +1,7 @@
 # 斯特林数
 
 ```cpp
-{{#include stirling.cpp.full}}
+{{#include stirling.hpp.full}}
 ```
 
 ## 测试例题

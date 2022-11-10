@@ -1,5 +1,5 @@
 # LCA・倍增
 
 ```cpp
-{{#include binary-lifting.cpp.full}}
+{{#include binary-lifting.hpp.full}}
 ```

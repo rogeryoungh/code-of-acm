@@ -3,7 +3,7 @@
 Pollard Rho 算法可以在 $O(n^{0.25})$ 的期望复杂度内计算出 $n$ 的一个因子，可以用于 $10^{18}$ 内的因式分解。
 
 ```cpp
-{{#include pollard-rho.cpp.full}}
+{{#include pollard-rho.hpp.full}}
 ```
 
 ## 备注

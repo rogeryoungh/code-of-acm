@@ -3,6 +3,7 @@ archive-code/
 temp/
 template/book/
 template/**/*.cpp.full
+template/**/*.hpp.full
 template/.xmake/
 template/build/
 

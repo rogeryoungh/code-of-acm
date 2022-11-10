@@ -5,5 +5,5 @@
 除了卡常以外没什么用。
 
 ```cpp
-{{#include powers.cpp.full}}
+{{#include powers.hpp.full}}
 ```

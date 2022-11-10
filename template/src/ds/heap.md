@@ -1,7 +1,7 @@
 # 堆
 
 ```cpp
-{{#include heap.cpp.full}}
+{{#include heap.hpp.full}}
 ```
 
 ## 测试例题

@@ -1,5 +1,5 @@
 # Kosaraju
 
 ```cpp
-{{#include kosaraju.cpp.full}}
+{{#include kosaraju.hpp.full}}
 ```

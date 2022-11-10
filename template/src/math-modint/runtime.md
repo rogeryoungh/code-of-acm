@@ -1,5 +1,5 @@
 # Runtime Montgomery Modint
 
 ```cpp
-{{#include runtime.cpp.full}}
+{{#include runtime.hpp.full}}
 ```

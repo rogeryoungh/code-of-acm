@@ -5,5 +5,5 @@
 仅在 $N$ 较小时有用。
 
 ```cpp
-{{#include lpf.cpp.full}}
+{{#include lpf.hpp.full}}
 ```

@@ -1,5 +1,5 @@
 # LCA（ST）
 
 ```cpp
-{{#include sparse-table.cpp.full}}
+{{#include sparse-table.hpp.full}}
 ```

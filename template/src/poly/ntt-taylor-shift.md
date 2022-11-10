@@ -3,5 +3,5 @@
 给定多项式 $f(x)$，求多项式 $f(x + c)$。
 
 ```cpp
-{{#include ntt-taylor-shift.cpp.full}}
+{{#include ntt-taylor-shift.hpp.full}}
 ```

@@ -1,5 +1,5 @@
 # Tarjan
 
 ```cpp
-{{#include tarjan.cpp.full}}
+{{#include tarjan.hpp.full}}
 ```

@@ -75,7 +75,7 @@ def process(file_name: str, is_test: bool):
 def process_all(dir_name: str, is_test: bool):
     for root, dirs, files in os.walk(dir_name):
         for f in files:
-            if f.endswith('.cpp'):
+            if f.endswith('.hpp'):
                 path = os.path.join(root, f)
                 process(path, is_test)
 
