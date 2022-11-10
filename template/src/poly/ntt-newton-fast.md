@@ -3,3 +3,7 @@
 ```cpp
 {{#include ntt-newton-fast.cpp.full}}
 ```
+
+```
+{{#include ../../build/poly-ntt-newton-fast.info}}
+```

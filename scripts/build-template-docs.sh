@@ -14,4 +14,4 @@ export PATH="$HOME/bin:$PATH"
 
 preprocessor-md-tex ./template/src/
 python ./scripts/extract.py
-cd ./template && mdbook build
+cd ./template && xmake build && xmake run && mdbook build
