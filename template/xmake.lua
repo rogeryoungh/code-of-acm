@@ -2,6 +2,7 @@ add_rules("mode.debug", "mode.release")
 
 set_optimize("faster") -- O2
 add_cxxflags("-Wall", "-Wextra", "-Wshadow")
+set_languages("c99", "c++20")
 
 target("src")
     set_kind("object")
