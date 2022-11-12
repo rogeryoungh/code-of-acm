@@ -1,4 +1,7 @@
 #include <bits/stdc++.h>
+
+template <class T>
+using V = std::vector<T>;
 using ll = long long;
 
 int ____ = std::cin.tie(nullptr)->sync_with_stdio(false);
