@@ -68,7 +68,7 @@ Poly semi_inv(Poly F, int m) {
 	return X.G.redeg(m);
 }
 
-Poly semi_inv(Poly H, Poly F, int m) {
+Poly semi_div(Poly H, Poly F, int m) {
 	PolySemi X(F.redeg(m));
 	Z iv0 = F[0].inv();
 	X.set(iv0 * H[0]);

@@ -82,9 +82,9 @@ struct Poly : V<Z> { // 大常数板子
 		int m = f.deg() + g.deg() - 1;
 		return mul(f, g, get_lim(m)).redeg(m);
 	}
-	Poly deriv() const {
-		Poly f(deg() - 1);
-		for (int i = 1; i < deg(); i++)
+	Poly deriv(int m) const {
+		Poly f(m);
+		for (int i = 1; i < std::min(deg(), m + 1); i++)
 			f[i - 1] = T[i] * i;
 		return f;
 	}
@@ -133,8 +133,14 @@ struct PolyEI {
 		int m = f.deg();
 		if (m == 1)
 			return Poly(raw_n, f[0]);
-		Poly q = f.rev().div(m, p[1]).redeg(n);
-		rotate(q.begin(), q.begin() + m, q.end());
+		Poly q = f.rev().div(m, p[1]).redeg(m);
+		if (m > n) {
+			std::rotate(q.begin(), q.begin() + m - n, q.end());
+			q.redeg(n);
+		} else {
+			q.redeg(n);
+			std::rotate(q.begin(), q.begin() + m, q.end());
+		}
 		for (int k = n, o = 1; k > 1; k /= 2)
 			for (int i = 0; i < n; i += k, o++) {
 				if (i >= raw_n)
@@ -147,14 +153,14 @@ struct PolyEI {
 					bar[j] = qi[j] * p[o * 2][j];
 				}
 				foo.intt(k), bar.intt(k);
-				copy(foo.begin() + k / 2, foo.end(), qi);
-				copy(bar.begin() + k / 2, bar.end(), qi + k / 2);
+				std::copy(foo.begin() + k / 2, foo.end(), qi);
+				std::copy(bar.begin() + k / 2, bar.end(), qi + k / 2);
 			}
 		return q.cut(raw_n);
 	}
 	Poly inter(const Poly &y) { // PolyEI(x).inter(y)
 		Poly q = Poly(p[1]).redeg(raw_n + 1);
-		q = eval(q.rev().deriv()).redeg(n);
+		q = eval(q.rev().deriv(raw_n + 1)).redeg(n);
 		for (int i = 0; i < raw_n; i++)
 			q[i] = y[i] / q[i];
 		for (int k = 1, h = n / 2; k < n; k *= 2, h /= 2)

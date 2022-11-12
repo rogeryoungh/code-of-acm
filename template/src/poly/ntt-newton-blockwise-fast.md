@@ -3,3 +3,7 @@
 ```cpp
 {{#include ntt-newton-blockwise-fast.hpp.full}}
 ```
+
+```
+{{#include ../../build/ntt-newton-blockwise-fast.info}}
+```

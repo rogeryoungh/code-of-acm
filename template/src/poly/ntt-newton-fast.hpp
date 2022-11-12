@@ -162,6 +162,7 @@ struct Poly : V<Z> { // 卡常板子
 	Poly exp(int m) const { // 17E
 		if (m == 1)
 			return {1};
+		assert(T[0].v == 0);
 		Poly f = {1, T[1]}, g = {1}, nf, ng = g;
 		pre_all(deg());
 		for (int t = 4; t < m * 2; t *= 2) {

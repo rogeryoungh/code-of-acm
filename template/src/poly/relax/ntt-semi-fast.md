@@ -3,3 +3,8 @@
 ```cpp
 {{#include ntt-semi-fast.hpp.full}}
 ```
+
+```
+{{#include ../../../build/ntt-semi-fast.info}}
+```
+

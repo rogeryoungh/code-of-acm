@@ -1,9 +1,9 @@
 #define PICOBENCH_IMPLEMENT_WITH_MAIN
 #include "picobench/picobench.hpp"
 
-#include "poly/ntt-newton.hpp"
+#include "poly/ntt-newton-blockwise-fast.hpp"
 
-PICOBENCH_SUITE("poly/ntt-newton.hpp");
+PICOBENCH_SUITE("poly/ntt-newton-blockwise-fast.hpp");
 
 std::vector poly_iterations = {1, 2, 64, 1 << 9, 1 << 12, 1 << 14, 1 << 15, 1 << 16, 1 << 17, 1 << 18, 1 << 19};
 
@@ -51,7 +51,7 @@ static void poly_inv_bench(picobench::state &s) {
 	s.stop_timer();
 }
 
-PICOBENCH(poly_inv_bench).iterations(poly_iterations).label("INV 12E");
+PICOBENCH(poly_inv_bench).iterations(poly_iterations).label("INV 10E");
 
 static void poly_ln_bench(picobench::state &s) {
 	int n = s.iterations();
@@ -67,7 +67,7 @@ static void poly_ln_bench(picobench::state &s) {
 	s.stop_timer();
 }
 
-PICOBENCH(poly_ln_bench).iterations(poly_iterations).label("LOG 18E");
+PICOBENCH(poly_ln_bench).iterations(poly_iterations).label("LOG 10E");
 
 static void poly_exp_bench(picobench::state &s) {
 	int n = s.iterations();
@@ -82,7 +82,7 @@ static void poly_exp_bench(picobench::state &s) {
 	s.stop_timer();
 }
 
-PICOBENCH(poly_exp_bench).iterations(poly_iterations).label("EXP 48E");
+PICOBENCH(poly_exp_bench).iterations(poly_iterations).label("EXP 14E");
 
 static void poly_sqrt_bench(picobench::state &s) {
 	int n = s.iterations();
@@ -97,4 +97,4 @@ static void poly_sqrt_bench(picobench::state &s) {
 	s.stop_timer();
 }
 
-PICOBENCH(poly_sqrt_bench).iterations(poly_iterations).label("SQRT 36E");
+PICOBENCH(poly_sqrt_bench).iterations(poly_iterations).label("SQRT 8E");

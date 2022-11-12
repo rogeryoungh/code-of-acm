@@ -5,3 +5,7 @@ FFT 乘法及拆系数 $5$ 次乘法，可以做 `int` 范围内的卷积。可�
 ```cpp
 {{#include fft-mul.hpp.full}}
 ```
+
+```
+{{#include ../../build/fft-mul.info}}
+```
