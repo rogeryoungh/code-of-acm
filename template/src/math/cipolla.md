@@ -9,7 +9,7 @@ $$
 即模平方根。
 
 ```cpp
-{{#include cipolla.cpp.full}}
+{{#include cipolla.hpp.full}}
 ```
 
 ## 测试例题

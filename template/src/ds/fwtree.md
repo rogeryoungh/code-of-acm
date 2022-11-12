@@ -1,7 +1,7 @@
 # 树状数组
 
 ```cpp
-{{#include fwtree.cpp.full}}
+{{#include fwtree.hpp.full}}
 ```
 
 ## 测试例题

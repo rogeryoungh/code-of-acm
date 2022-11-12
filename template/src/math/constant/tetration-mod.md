@@ -2,5 +2,5 @@
 
 
 ```cpp
-{{#include tetration-mod.cpp.full}}
+{{#include tetration-mod.hpp.full}}
 ```

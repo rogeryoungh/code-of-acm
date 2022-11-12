@@ -1,5 +1,5 @@
 # 点
 
 ```cpp
-{{#include fpoint.cpp.full}}
+{{#include fpoint.hpp.full}}
 ```

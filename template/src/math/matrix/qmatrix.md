@@ -1,7 +1,7 @@
 # 矩阵快速幂
 
 ```cpp
-{{#include qmatrix.cpp.full}}
+{{#include qmatrix.hpp.full}}
 ```
 
 ## 测试例题

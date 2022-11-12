@@ -1,7 +1,7 @@
 # 矩阵
 
 ```cpp
-{{#include matrix.cpp.full}}
+{{#include matrix.hpp.full}}
 ```
 
 ## 测试例题

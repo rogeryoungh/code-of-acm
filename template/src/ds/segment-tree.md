@@ -1,7 +1,7 @@
 # 线段树
 
 ```cpp
-{{#include segment-tree.cpp.full}}
+{{#include segment-tree.hpp.full}}
 ```
 
 ## 测试例题

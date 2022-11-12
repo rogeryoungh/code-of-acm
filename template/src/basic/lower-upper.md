@@ -7,7 +7,7 @@
 若无答案，则返回 $r$。
 
 ```cpp
-{{#include lower-upper.cpp.full}}
+{{#include lower-upper.hpp.full}}
 ```
 
 ## 测试例题

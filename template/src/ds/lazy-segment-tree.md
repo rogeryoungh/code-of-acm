@@ -1,7 +1,7 @@
 # 懒标记线段树
 
 ```cpp
-{{#include lazy-segment-tree.cpp.full}}
+{{#include lazy-segment-tree.hpp.full}}
 ```
 
 ## 测试例题

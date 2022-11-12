@@ -7,7 +7,7 @@
 下方代码的基底在 $2^{64}$ 内没有例外。更多基底有关的可以查看 [SPRP Base](https://miller-rabin.appspot.com)。
 
 ```cpp
-{{#include miller-rabbin.cpp.full}}
+{{#include miller-rabbin.hpp.full}}
 ```
 
 ## 备注

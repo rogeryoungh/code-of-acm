@@ -1,7 +1,7 @@
 # 滑动窗口
 
 ```cpp
-{{#include sliding.cpp.full}}
+{{#include sliding.hpp.full}}
 ```
 
 ## 测试例题

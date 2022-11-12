@@ -14,7 +14,7 @@ $$
 不保证 $\{m_i\}$ 互质，但保证 $\operatorname{lcm}(m_i) < 10^{18}$。
 
 ```cpp
-{{#include excrt.cpp.full}}
+{{#include excrt.hpp.full}}
 ```
 
 ## 测试例题

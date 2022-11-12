@@ -9,5 +9,5 @@ $$
 的一个解 $(x, y)$，并且求出 $\gcd(a, b)$。
 
 ```cpp
-{{#include exgcd.cpp.full}}
+{{#include exgcd.hpp.full}}
 ```

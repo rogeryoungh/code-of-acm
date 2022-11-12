@@ -1,7 +1,7 @@
 # ST
 
 ```cpp
-{{#include sparse-table.cpp.full}}
+{{#include sparse-table.hpp.full}}
 ```
 
 ## 测试例题

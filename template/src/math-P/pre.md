@@ -1,5 +1,5 @@
 # 预处理常数
 
 ```cpp
-{{#include pre.cpp.full}}
+{{#include pre.hpp.full}}
 ```

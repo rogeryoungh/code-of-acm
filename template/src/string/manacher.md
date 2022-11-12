@@ -1,7 +1,7 @@
 # Manacher
 
 ```cpp
-{{#include manacher.cpp.full}}
+{{#include manacher.hpp.full}}
 ```
 
 ## 测试例题

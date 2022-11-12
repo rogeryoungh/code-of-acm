@@ -1,5 +1,5 @@
 # 树链剖分
 
 ```cpp
-{{#include hld.cpp.full}}
+{{#include hld.hpp.full}}
 ```

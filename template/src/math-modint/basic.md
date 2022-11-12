@@ -1,5 +1,5 @@
 # 基础类
 
 ```cpp
-{{#include basic.cpp.full}}
+{{#include basic.hpp.full}}
 ```

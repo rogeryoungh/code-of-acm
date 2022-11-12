@@ -7,7 +7,7 @@ $$
 $$
 
 ```cpp
-{{#include floor-sum.cpp.full}}
+{{#include floor-sum.hpp.full}}
 ```
 
 ## 测试例题

@@ -1,5 +1,5 @@
 # KMP
 
 ```cpp
-{{#include kmp.cpp.full}}
+{{#include kmp.hpp.full}}
 ```

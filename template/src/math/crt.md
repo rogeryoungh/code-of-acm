@@ -14,7 +14,7 @@ $$
 保证 $\{m_i\}$ 互质。
 
 ```cpp
-{{#include crt.cpp.full}}
+{{#include crt.hpp.full}}
 ```
 
 ## 测试例题
