@@ -61,6 +61,7 @@
     - [Kosaraju](./graph/scc/kosaraju.md)
   - [最小生成树・kruskal](./graph/kruskal.md)
   - [树链剖分](./graph/hld.md)
+  - [Dinic](./graph/dinic.md)
 - [多项式](./poly/index.md)
   - [FFT 乘法](./poly/fft-mul.md)
   - [NTT 乘法・i32](./poly/ntt-mul-i32.md)
