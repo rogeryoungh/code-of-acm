@@ -3,5 +3,5 @@
 我的初始文件。
 
 ```cpp
-{{#include index.hpp}}
+{{#include index.cpp}}
 ```
