@@ -165,6 +165,25 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>HDU6537 Neko and function</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 定义 $f(n, k)$ 为满足如下要求的，长度为 $k$ 的数列 $\\{a_i\\}$ 个数：
+要求每个数字都大于 $1$； 数列各项之积恰为 $n$。 求其前缀和 $S(n, k) = \sum f(i, k)$。
+分析 多组输入好坑啊。
+先允许 $a_i=1$，将结果记为 $g(n,k)$，容易利用隔板法求得
+$$ g (p^c, k) = \binom{t &#43; k - 1}{k - 1} $$
+对于多个质因数，显然其贡献是相互独立的，即 $g$ 是积性函数。考虑选取 $i$ 个数令其 $a_i&gt;1$，枚举有
+$$ g (n, k) = \sum_{i = 1}^k \binom{n}{i} f (n, i) $$
+二项式反演（或者直接容斥）有
+$$ f (n, k) = \sum_{i = 1}^k (- 1)^{k - i} \binom{k}{i} g (n, i) $$...</p>
+  </section>
+  <footer class="entry-footer">September 22, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to HDU6537 Neko and function" href="https://acm.rogery.dev/post/2021-09/hdu6537/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>HDU6750 Function</h2>
   </header>
   <section class="entry-content">
@@ -315,25 +334,6 @@ int main() { ll ttt = rr(); while (ttt--) { ll m = rr(), d = rr(), w = rr(); ll 
   </section>
   <footer class="entry-footer">May 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to CF1389E Calendar Ambiguity" href="https://acm.rogery.dev/post/2021-05/cf1389e/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P2303 Longge 的问题</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 即求
-$$ \sum_{i=1}^n \gcd(i,n) $$
-分析 联想到
-$$ \varphi(n) = \sum_{i=1}^n [\gcd(i,n) = 1] $$
-尝试凑这个形式
-$$ \begin{aligned} \sum_{i=1}^n \gcd(i,n) &amp;= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \\ &amp;= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \\ &amp;= \sum_{d \mid n} d \varphi(n/d) \end{aligned} $$
-这里其实已经可以过题了，但还可以再瞎搞一下，令
-$$ nf(n) = \sum_{d \mid n} d \varphi(n/d) = n\sum_{d \mid n} \frac{\varphi(d)}{d} $$
-尝试证明 $f(n)$ 是一个积性函数。设 $\gcd(a,b) = 1$，有...</p>
-  </section>
-  <footer class="entry-footer">May 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P2303 Longge 的问题" href="https://acm.rogery.dev/post/2021-05/p2303/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

@@ -165,6 +165,22 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P3768 简单的数学题</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 求
+$$ \sum_{i=1}^n \sum_{j=1}^n ij \gcd(i, j) $$
+分析 显然欧拉反演
+$$ \begin{aligned} ans &amp;= \sum_{i=1}^n \sum_{j=1}^n ij \sum_{d \mid \gcd(i, j)} \varphi(d) \\ &amp;= \sum_{d=1} d^2\varphi(d) \sum_{i=1}^{n/d} \sum_{j=1}^{n/d} ij \\ &amp;= \sum_{d=1} d^2\varphi(d) \frac{1}{4}\lfloor n/d\rfloor^2(\lfloor n/d \rfloor &#43; 1)^2 \end{aligned} $$
+整除分块 &#43; 杜教筛即可。
+int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; int x = min(n, m); Euler(x &#43; 1); vector&lt;ll&gt; sphi(x &#43; 1); for (int i = 1; i &lt;= x; i&#43;&#43;) { sphi[i] = sphi[i - 1] &#43; phi[i]; } ll ans = 0; for (int l = 1, r; l &lt;= x; l = r &#43; 1) { r = min(n / (n / l), m / (m / l)); ans &#43;= 1ll * (sphi[r] - sphi[l - 1]) * (n / l) * (m / l); } cout &lt;&lt; ans * 2 - 1ll * n * m; return 0; } 全部代码请看：Luogu/3x/P3768....</p>
+  </section>
+  <footer class="entry-footer">July 29, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P3768 简单的数学题" href="https://acm.rogery.dev/post/2022-07/p3768/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P4062 Yazid 的新生舞会</h2>
   </header>
   <section class="entry-content">
@@ -305,21 +321,6 @@ B. Minimize Ordering 给定一个字符串 $S$，请找到 $S$ 的重排 $S’$�
   </section>
   <footer class="entry-footer">March 15, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to AtCoder Beginner Contest 242(A-E)" href="https://acm.rogery.dev/post/2022-03/abc242/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>AtCoder Beginner Contest 243(A-G)</h2>
-  </header>
-  <section class="entry-content">
-    <p>数学不行，摆烂。
-A. Shampoo 三个人 F, M, T 按顺序洗澡，其中洗发液用量分别是 $A, B, C$。
-现在洗发液的量 $V$，问谁先无法洗澡？
-分析 第一次没认真读，WA 了一发。
-int main() { int V, A, B, C; cin &gt;&gt; V &gt;&gt; A &gt;&gt; B &gt;&gt; C; V %= A &#43; B &#43; C; if (V &lt; A) { cout &lt;&lt; &#34;F&#34;; } else if (V &lt; A &#43; B) { cout &lt;&lt; &#34;M&#34;; } else { cout &lt;&lt; &#34;T&#34;; } return 0; } 全部代码请看：Atcoder/ABC243/ABC243A....</p>
-  </section>
-  <footer class="entry-footer">March 12, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to AtCoder Beginner Contest 243(A-G)" href="https://acm.rogery.dev/post/2022-03/abc243/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

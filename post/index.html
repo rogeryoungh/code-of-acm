@@ -165,6 +165,26 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>多项式板刷</h2>
+  </header>
+  <section class="entry-content">
+    <p>好久没更新过博客了，最近用了 Obsidian，很多笔记就记在那里边了。
+但是最近发现 Obsidian 的编辑器有点拉，文件一大就很难受，遂回到 hugo 来。
+组合类模型 【定理・隔板原理】
+把 $n$ 个球放到 $k$ 个盒子中，要求每个盒子中至少放一个，有多少种放法？
+即 $n - 1$ 个空中插入 $k-1$ 个板子，答案为 $\binom{n-1}{k-1}$。
+另一种考虑是每个盒子看成组合类 $$ f(x) = x &#43; x^2 &#43; \cdots = \frac{x}{1 - x} $$ 故 $k$ 个盒子即 $$ f^k(x) = x^k \left( \frac{1}{1-x} \right)^k $$
+这个东西可以进行多项式快速幂，也可以直接 $O(n)$ 的计算。
+$$ \left( \frac{1}{1-x}\right) ^k = (1-z)^{-k} = \sum_{n=0}^\infty \binom{n&#43;k-1}{k-1} x^n $$
+ABC248C Dice Sum
+$n$ 个 $m$ 面骰子（有标号），求总和小于 $k$ 的局面可能数。...</p>
+  </section>
+  <footer class="entry-footer">November 15, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to 多项式板刷" href="https://acm.rogery.dev/post/2022-11/poly/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P2144 轮状病毒</h2>
   </header>
   <section class="entry-content">
@@ -318,22 +338,6 @@ $$ \begin{aligned} ans &amp;= \sum_{d=1}^n \sum_{i=1}^n \sum_{j=1}^m \frac{ij}{d
   </section>
   <footer class="entry-footer">July 29, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P1829 能量采集" href="https://acm.rogery.dev/post/2022-08/p1829/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P3768 简单的数学题</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 求
-$$ \sum_{i=1}^n \sum_{j=1}^n ij \gcd(i, j) $$
-分析 显然欧拉反演
-$$ \begin{aligned} ans &amp;= \sum_{i=1}^n \sum_{j=1}^n ij \sum_{d \mid \gcd(i, j)} \varphi(d) \\ &amp;= \sum_{d=1} d^2\varphi(d) \sum_{i=1}^{n/d} \sum_{j=1}^{n/d} ij \\ &amp;= \sum_{d=1} d^2\varphi(d) \frac{1}{4}\lfloor n/d\rfloor^2(\lfloor n/d \rfloor &#43; 1)^2 \end{aligned} $$
-整除分块 &#43; 杜教筛即可。
-int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; int x = min(n, m); Euler(x &#43; 1); vector&lt;ll&gt; sphi(x &#43; 1); for (int i = 1; i &lt;= x; i&#43;&#43;) { sphi[i] = sphi[i - 1] &#43; phi[i]; } ll ans = 0; for (int l = 1, r; l &lt;= x; l = r &#43; 1) { r = min(n / (n / l), m / (m / l)); ans &#43;= 1ll * (sphi[r] - sphi[l - 1]) * (n / l) * (m / l); } cout &lt;&lt; ans * 2 - 1ll * n * m; return 0; } 全部代码请看：Luogu/3x/P3768....</p>
-  </section>
-  <footer class="entry-footer">July 29, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P3768 简单的数学题" href="https://acm.rogery.dev/post/2022-07/p3768/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

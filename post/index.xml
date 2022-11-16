@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© 2021 [Roger Young](https://acm.rogery.dev)</copyright>
-    <lastBuildDate>Sun, 28 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>多项式板刷</title>
+      <link>https://acm.rogery.dev/post/2022-11/poly/</link>
+      <pubDate>Tue, 15 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2022-11/poly/</guid>
+      <description>好久没更新过博客了，最近用了 Obsidian，很多笔记就记在那里边了。
+但是最近发现 Obsidian 的编辑器有点拉，文件一大就很难受，遂回到 hugo 来。
+组合类模型 【定理・隔板原理】
+把 $n$ 个球放到 $k$ 个盒子中，要求每个盒子中至少放一个，有多少种放法？
+即 $n - 1$ 个空中插入 $k-1$ 个板子，答案为 $\binom{n-1}{k-1}$。
+另一种考虑是每个盒子看成组合类 $$ f(x) = x + x^2 + \cdots = \frac{x}{1 - x} $$ 故 $k$ 个盒子即 $$ f^k(x) = x^k \left( \frac{1}{1-x} \right)^k $$
+这个东西可以进行多项式快速幂，也可以直接 $O(n)$ 的计算。
+$$ \left( \frac{1}{1-x}\right) ^k = (1-z)^{-k} = \sum_{n=0}^\infty \binom{n+k-1}{k-1} x^n $$
+ABC248C Dice Sum
+$n$ 个 $m$ 面骰子（有标号），求总和小于 $k$ 的局面可能数。</description>
+    </item>
+    
     <item>
       <title>P2144 轮状病毒</title>
       <link>https://acm.rogery.dev/post/2022-08/p2144/</link>

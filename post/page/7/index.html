@@ -165,6 +165,25 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P2303 Longge 的问题</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 即求
+$$ \sum_{i=1}^n \gcd(i,n) $$
+分析 联想到
+$$ \varphi(n) = \sum_{i=1}^n [\gcd(i,n) = 1] $$
+尝试凑这个形式
+$$ \begin{aligned} \sum_{i=1}^n \gcd(i,n) &amp;= \sum_{d \mid n} d \sum_{i=1}^n [\gcd(i,n) = d] \\ &amp;= \sum_{d \mid n} d \sum_{i=1}^{n/d} [\gcd(i,n/d) = 1] \\ &amp;= \sum_{d \mid n} d \varphi(n/d) \end{aligned} $$
+这里其实已经可以过题了，但还可以再瞎搞一下，令
+$$ nf(n) = \sum_{d \mid n} d \varphi(n/d) = n\sum_{d \mid n} \frac{\varphi(d)}{d} $$
+尝试证明 $f(n)$ 是一个积性函数。设 $\gcd(a,b) = 1$，有...</p>
+  </section>
+  <footer class="entry-footer">May 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P2303 Longge 的问题" href="https://acm.rogery.dev/post/2021-05/p2303/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P4721 分治 FFT</h2>
   </header>
   <section class="entry-content">
@@ -321,19 +340,6 @@ int dmax[205][205], dmin[205][205]; int f[205], s[205]; int main() { int n = rr(
   </section>
   <footer class="entry-footer">November 30, 2020&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P1880 石子合并" href="https://acm.rogery.dev/post/2020-11/p1880/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P1833 樱花</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 混合背包。每棵树都有美学值 $C_i$，共有三种：
-一种只能看一遍。 一种最多看 $A_i$ 遍。 一种可以看无数遍。 分析 对于混合背包，我们可以对物品拆分，得到多个物品。
-ll dp[1086], tt[100086], cc[100086]; int main() { int tsh = rr(), tsm = rr(), teh = rr(), tem = rr(); int tsum = (teh - tsh) * 60 &#43; tem - tsm; int n = rr(); int tp = 1; for (ll i = 1; i &lt;= n; i&#43;&#43;) { int t = rr(), c = rr(), p = rr(); if (p == 1) { tt[tp] = t, cc[tp] = c; tp&#43;&#43;; } else { p = p !...</p>
-  </section>
-  <footer class="entry-footer">November 11, 2020&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P1833 樱花" href="https://acm.rogery.dev/post/2020-11/p1833/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
