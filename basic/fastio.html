@@ -192,53 +192,83 @@
                     <main>
                         <h1 id="快读"><a class="header" href="#快读">快读</a></h1>
 <p>这个快读目前不能自动输出，有待以后改进。</p>
-<pre><code class="language-cpp">struct FastI {
-	char s[1 &lt;&lt; 20], *t = s;
-	FastI() {
-		fread(s, 1, sizeof(s), stdin);
+<pre><code class="language-cpp">struct BasicBuffer {
+	std::vector&lt;char&gt; s;
+	BasicBuffer() : s(1 &lt;&lt; 18) {}
+	char *p = s.data(), *beg = p, *end = p + s.size();
+	inline char getc() {
+		if (p == end)
+			readAll();
+		return *p++;
 	}
-	template &lt;class T, bool is_int = is_integral&lt;T&gt;::value&gt;
-	FastI &amp;operator&gt;&gt;(T &amp;x) {
-		x = 0;
-		while (!isdigit(*t))
-			t++;
-		while (isdigit(*t))
-			x = x * 10 + *t++ - '0';
-		return *this;
+	inline void putc(char c) {
+		if (p == end)
+			writeAll();
+		*p++ = c;
+	}
+	inline void puts(const char *x) {
+		while (*x != 0)
+			putc(*x++);
+	}
+	void readAll() {
+		std::fread(beg, 1, end - beg, stdin);
+		p = s.data();
+	}
+	void writeAll() {
+		std::fwrite(beg, 1, p - beg, stdout);
+		p = s.data();
 	}
 };
 
-struct FastO {
-	char s[1 &lt;&lt; 20], *t = s;
+struct FastI : BasicBuffer {
+	FastI() {
+		readAll();
+	}
+	ll read() {
+		ll x = 0;
+		char c = getc();
+		bool sgn = true;
+		while (!std::isdigit(c))
+			sgn = sgn &amp;&amp; c != '-', c = getc();
+		while (std::isdigit(c))
+			x = x * 10 + c - '0', c = getc();
+		return sgn ? x : -x;
+	}
+	template &lt;class T&gt;
+	FastI &amp;operator&gt;&gt;(T &amp;x) {
+		return x = read(), *this;
+	}
+	FastI &amp;operator&gt;&gt;(char &amp;x) {
+		return x = getc(), *this;
+	}
+};
+
+struct FastO : BasicBuffer {
+	std::array&lt;char, 32&gt; u{};
 	~FastO() {
-		fwrite(s, 1, t - s, stdout);
+		writeAll();
 	}
-	void puts(const char *x) {
-		while (*x != 0)
-			*t++ = *x++;
-	}
-	void output(uint64_t x) {
-		static char u[22];
-		char *i = u + 20;
-		do {
+	void output(ll x) {
+		char *i = u.data() + 20;
+		if (x &lt; 0)
+			putc('-'), x = -x;
+		do
 			*--i = x % 10 + '0', x /= 10;
-		} while (x &gt; 0);
+		while (x &gt; 0);
 		puts(i);
 	}
-	FastO &amp;operator&lt;&lt;(uint64_t x) {
+	template &lt;class T&gt;
+	FastO &amp;operator&lt;&lt;(T &amp;x) {
 		return output(x), *this;
 	}
 	FastO &amp;operator&lt;&lt;(char x) {
-		return *t++ = x, *this;
-	}
-	FastO &amp;operator&lt;&lt;(int64_t x) {
-		if (x &lt; 0) {
-			*--t = '-', x = -x;
-		}
-		return output(x), *this;
+		return putc(x), *this;
 	}
 	FastO &amp;operator&lt;&lt;(const char *x) {
 		return puts(x), *this;
+	}
+	FastO &amp;operator&lt;&lt;(const std::string &amp;x) {
+		return puts(x.c_str()), *this;
 	}
 };
 
