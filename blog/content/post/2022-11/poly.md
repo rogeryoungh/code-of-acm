@@ -120,6 +120,8 @@ $$
 
 原题还要解二次剩余，比较无趣。
 
+> []
+
 ## 多项式思想
 
 > [2018 CCPC 桂林 B](https://codeforces.com/gym/102823/problem/B)
