@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://acm.rogery.dev/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.105.0">
+<meta name="generator" content="Hugo 0.106.0">
 <link rel="alternate" type="application/rss+xml" href="https://acm.rogery.dev/post/index.xml">
 
 
@@ -162,6 +162,19 @@
 <header class="page-header">
   <h1>Posts</h1>
 </header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P5143 攀爬者</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 在三维空间中，HKE 只能往上走，求攀爬总长。
+分析 对所有座标的 $z$ 分量排序即可。
+struct POINT { double x, y, z; bool operator&lt;(POINT p) { return z &gt; p.z; } } nn[50010]; double dis(POINT &amp;p1, POINT &amp;p2) { double t1 = p1.x - p2.x, t2 = p1.y - p2.y, t3 = p1.z - p2.z; return sqrt(t1 * t1 &#43; t2 * t2 &#43; t3 * t3); } int main() { int n = rr(); for (ll i = 1; i &lt;= n; i&#43;&#43;) cin &gt;&gt; nn[i]....</p>
+  </section>
+  <footer class="entry-footer">October 13, 2020&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P5143 攀爬者" href="https://acm.rogery.dev/post/2020-10/p5143/"></a>
+</article>
 
 <article class="post-entry"> 
   <header class="entry-header">

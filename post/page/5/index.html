@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://acm.rogery.dev/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.105.0">
+<meta name="generator" content="Hugo 0.106.0">
 <link rel="alternate" type="application/rss+xml" href="https://acm.rogery.dev/post/index.xml">
 
 
@@ -162,6 +162,30 @@
 <header class="page-header">
   <h1>Posts</h1>
 </header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>CF Round 706(Div 2)</h2>
+  </header>
+  <section class="entry-content">
+    <p>D. Let&#39;s Go Hiking 两人在序列上移动，Qingshan 只能往值更高的地方走，Daniel 只能往低处走。两人不能重叠，求 Qingshan 中有多少可以赢的位置。
+分析 其实我们只用关注上升和下降的序列有多长，而不必关心它们具体是几。
+如果 Qingshan 选边界上的坡，或者不选在坡顶，那么 Daniel 可以紧挨着它，从而必输。
+如果 Qingshan 不选最长的坡，则 Danniel 可以选最长的坡，从而必输。
+如果最长的坡存在没有公共最高点的两个，Danniel 可以避开 Qingshan 选，从而必输。
+剩下的情况只有两种：
+最长的坡只有一个，Qingshan 只能选在此坡坡顶，Danniel 可以选在靠近坡底的地方，使得两人碰面，从而必输。 最长的坡有两个且有公共最高点，Qingshan 选在坡顶，则可以选择避开 Danniel 下坡，从而必胜。 附：代码，展开
+E. Garden of the Sun 在棋盘的格子中有不连续的 X，请连接使得其满足如下条件
+X 组成的图案是连通的。 X 组成的图案不存在环。 分析 X 不连续是一个比较强的性质。
+构造类似 丰 字形的图案，横与横之间空两行，这样可以使得所有 X 都附在一条横上，且互相不连接。
+接下来考虑如何把横连起来，可以发现只用在第一列、第二列中选一列进行连接即可。
+附：代码，展开
+F. BFS Trees 第一次补题补到 F 耶！什么时候才能在赛中做到 F 呢……
+我们定义一个图上的生成树是以 $s$ 点为根的 BFS 树，当且仅当：对于任意的节点 $t$，$s\to t$ 在 BFS 树上的最短路等于图上的最短路。...</p>
+  </section>
+  <footer class="entry-footer">November 11, 2021&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to CF Round 706(Div 2)" href="https://acm.rogery.dev/post/2021-11/cf1496/"></a>
+</article>
 
 <article class="post-entry"> 
   <header class="entry-header">
@@ -320,24 +344,6 @@ $$ \begin{aligned} &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j
   </section>
   <footer class="entry-footer">September 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to HDU6833 A Very Easy Math Problem" href="https://acm.rogery.dev/post/2021-09/hdu6833/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>HDU6755 Fibonacci Sum</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 设 Fibonacci 数列第 $i$ 项为 $F_i$，求
-$$ S = \sum_{i = 0}^n (F_{i c})^k $$
-分析 由特征方程法，设
-$$ x^2 &#43; x - 1 = 0 \Longrightarrow A, B = \frac{1 \pm \sqrt{5}}{2} $$
-因此 Fibonacci 通项公式即可表示为
-$$ F_n = \frac{A^n - B^n}{A - B} $$
-根据二次剩余的知识，模意义下是可以开方的。因此
-$$ (F_{i c})^k = \left( \frac{A^{i c} - B^{i c}}{A - B} \right)^k = \frac{1}{(A - B)^k} \sum_{j = 0}^k \binom{k}{j} (- 1)^{k - j} (A^j B^{k - j})^{i c} $$...</p>
-  </section>
-  <footer class="entry-footer">September 23, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to HDU6755 Fibonacci Sum" href="https://acm.rogery.dev/post/2021-09/hdu6755/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://acm.rogery.dev/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.105.0">
+<meta name="generator" content="Hugo 0.106.0">
 <link rel="alternate" type="application/rss+xml" href="https://acm.rogery.dev/post/index.xml">
 
 
@@ -165,6 +165,23 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P1829 能量采集</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 计算
+$$ \sum_{i=1}^n \sum_{j=1}^m \operatorname{lcm}(i, j) $$
+分析 先化 $\gcd$ 出来
+$$ ans = \sum_{i=1}^n \sum_{j=1}^m \frac{ij}{\gcd(i, j)} $$
+显然套 Mobius 反演，朝着那个方向化就行。
+$$ \begin{aligned} ans &amp;= \sum_{d=1}^n \sum_{i=1}^n \sum_{j=1}^m \frac{ij}{d} [\gcd(i, j) = d] \\ &amp;= \sum_{d=1} d \sum_{i=1}^{n / d} \sum_{j=1}^{m / d} ij [\gcd(i, j) = 1] \\ &amp;= \sum_{d=1} d \sum_{x=1}^{\min(n/d, m/d)} x^2\mu(x) S_1 \left(\left\lfloor \frac{m}{dx} \right\rfloor \right) S_1 \left(\left\lfloor \frac{n}{dx} \right\rfloor \right) \end{aligned} $$
+其中 $x^2 \mu(x)$ 可以线性筛预处理，后者可以整除分块嵌套一下。...</p>
+  </section>
+  <footer class="entry-footer">July 29, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1829 能量采集" href="https://acm.rogery.dev/post/2022-08/p1829/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P3768 简单的数学题</h2>
   </header>
   <section class="entry-content">
@@ -307,20 +324,6 @@ int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; fo
   </section>
   <footer class="entry-footer">April 6, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to 2021 牛客寒假算法基础集训营 1" href="https://acm.rogery.dev/post/2022-04/nc9981/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>AtCoder Beginner Contest 242(A-E)</h2>
-  </header>
-  <section class="entry-content">
-    <p>A. T-shirt 前 $A$ 名一定获得衣服，在 $[A&#43;1, B]$ 之间的人将随机挑 $C$ 个人获得衣服。
-若已知他排名于 $X$，求其获得衣服的概率。
-分析 int main() { int A, B, C, X; cin &gt;&gt; A &gt;&gt; B &gt;&gt; C &gt;&gt; X; double ans = 0; if (X &lt;= A) { ans = 1; } else if (X &lt;= B &amp;&amp; A != B) { ans = 1.0 * C / (B - A); } printf(&#34;%.12lf&#34;, ans); return 0; } 全部代码请看：Atcoder/ABC242/ABC242A.cpp。
-B. Minimize Ordering 给定一个字符串 $S$，请找到 $S$ 的重排 $S’$，并且使其字典序尽可能小。...</p>
-  </section>
-  <footer class="entry-footer">March 15, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to AtCoder Beginner Contest 242(A-E)" href="https://acm.rogery.dev/post/2022-03/abc242/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

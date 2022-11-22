@@ -7,7 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© 2021 [Roger Young](https://acm.rogery.dev)</copyright>
-    <lastBuildDate>Tue, 15 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BZOJ2839 集合计数</title>
+      <link>https://acm.rogery.dev/post/2022-11/bzoj2839/</link>
+      <pubDate>Mon, 21 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2022-11/bzoj2839/</guid>
+      <description>题目大意 给定 $n$ 个集合，在其中选取一些几何，使得这些几何的交恰好为 $k$，求方案数。
+分析 考虑钦定 $i$ 个集合是其交集，剩下不做限定，则方案数为
+$$ f_i = \binom{n}{i} (2^{2^{n-i}}-1) $$
+那么恰好 $k$ 个集合是其交集可以通过二项式反演求得
+$$ a_k = \sum_{i=k}^n (-1)^{i-k} \binom{i}{k} f_i = \sum_{i=k} ^n (-1)^{i-k} \frac{n!}{k!(i-k)!(n-i)!} (2^{2^{n-i}} - 1) $$
+全部代码请看：BZOJ/2x/BZOJ2839.cpp。</description>
+    </item>
+    
     <item>
       <title>多项式板刷</title>
       <link>https://acm.rogery.dev/post/2022-11/poly/</link>

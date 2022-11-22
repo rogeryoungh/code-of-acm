@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://acm.rogery.dev/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.105.0">
+<meta name="generator" content="Hugo 0.106.0">
 <link rel="alternate" type="application/rss+xml" href="https://acm.rogery.dev/post/index.xml">
 
 
@@ -162,6 +162,22 @@
 <header class="page-header">
   <h1>Posts</h1>
 </header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>BZOJ2839 集合计数</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定 $n$ 个集合，在其中选取一些几何，使得这些几何的交恰好为 $k$，求方案数。
+分析 考虑钦定 $i$ 个集合是其交集，剩下不做限定，则方案数为
+$$ f_i = \binom{n}{i} (2^{2^{n-i}}-1) $$
+那么恰好 $k$ 个集合是其交集可以通过二项式反演求得
+$$ a_k = \sum_{i=k}^n (-1)^{i-k} \binom{i}{k} f_i = \sum_{i=k} ^n (-1)^{i-k} \frac{n!}{k!(i-k)!(n-i)!} (2^{2^{n-i}} - 1) $$
+全部代码请看：BZOJ/2x/BZOJ2839.cpp。</p>
+  </section>
+  <footer class="entry-footer">November 21, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to BZOJ2839 集合计数" href="https://acm.rogery.dev/post/2022-11/bzoj2839/"></a>
+</article>
 
 <article class="post-entry"> 
   <header class="entry-header">
@@ -321,23 +337,6 @@ $$ \begin{aligned} ans &amp;= 2 \sum_{i=1}^n \sum_{j=1}^m \sum_{d \mid \gcd(i, j
   </section>
   <footer class="entry-footer">July 29, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P1447 能量采集" href="https://acm.rogery.dev/post/2022-07/p1447/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P1829 能量采集</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 计算
-$$ \sum_{i=1}^n \sum_{j=1}^m \operatorname{lcm}(i, j) $$
-分析 先化 $\gcd$ 出来
-$$ ans = \sum_{i=1}^n \sum_{j=1}^m \frac{ij}{\gcd(i, j)} $$
-显然套 Mobius 反演，朝着那个方向化就行。
-$$ \begin{aligned} ans &amp;= \sum_{d=1}^n \sum_{i=1}^n \sum_{j=1}^m \frac{ij}{d} [\gcd(i, j) = d] \\ &amp;= \sum_{d=1} d \sum_{i=1}^{n / d} \sum_{j=1}^{m / d} ij [\gcd(i, j) = 1] \\ &amp;= \sum_{d=1} d \sum_{x=1}^{\min(n/d, m/d)} x^2\mu(x) S_1 \left(\left\lfloor \frac{m}{dx} \right\rfloor \right) S_1 \left(\left\lfloor \frac{n}{dx} \right\rfloor \right) \end{aligned} $$
-其中 $x^2 \mu(x)$ 可以线性筛预处理，后者可以整除分块嵌套一下。...</p>
-  </section>
-  <footer class="entry-footer">July 29, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P1829 能量采集" href="https://acm.rogery.dev/post/2022-08/p1829/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
