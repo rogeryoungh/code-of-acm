@@ -66,7 +66,7 @@ struct FastO : BasicBuffer {
 		puts(i);
 	}
 	template <class T>
-	FastO &operator<<(T &x) {
+	FastO &operator<<(const T &x) {
 		return output(x), *this;
 	}
 	FastO &operator<<(char x) {

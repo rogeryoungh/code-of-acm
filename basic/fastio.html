@@ -258,7 +258,7 @@ struct FastO : BasicBuffer {
 		puts(i);
 	}
 	template &lt;class T&gt;
-	FastO &amp;operator&lt;&lt;(T &amp;x) {
+	FastO &amp;operator&lt;&lt;(const T &amp;x) {
 		return output(x), *this;
 	}
 	FastO &amp;operator&lt;&lt;(char x) {
