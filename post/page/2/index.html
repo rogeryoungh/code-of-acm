@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://acm.rogery.dev/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.106.0">
+<meta name="generator" content="Hugo 0.107.0">
 <link rel="alternate" type="application/rss+xml" href="https://acm.rogery.dev/post/index.xml">
 
 
@@ -165,6 +165,60 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>蔚来杯 2022牛客暑期多校训练营6</h2>
+  </header>
+  <section class="entry-content">
+    <p>赛中过题：ABEG。
+A - Car Show 给定一个长为 $n$ 的颜色序列 $\{a_i\}$，问有多少段区间出现了所有的颜色？
+分析 双指针。对于右端点 $r$，若临界的左端点是 $l$，那么 $[1, l]$ 都是合法的。
+队友签的，代码没有。
+B - Two Frogs 在一个长为 $n$ 的池塘中，可以从第 $i$ 个荷叶跳到第 $[i &#43; 1, i &#43; a_i]$ 个荷叶上。
+若两个青蛙从 $1$ 开始，每个荷叶上随机往后跳，问相同步数到达第 $n$ 个荷叶的期望。
+分析 显然 DP。设 $DP(i, j)$ 为跳 $i$ 次跳到第 $j$ 个荷叶上的概率，往后刷表即可。
+int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; v(n &#43; 1); vector&lt;Z&gt; iv(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { cin &gt;&gt; v[i]; iv[i] = Z(v[i])....</p>
+  </section>
+  <footer class="entry-footer">August 6, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to 蔚来杯 2022牛客暑期多校训练营6" href="https://acm.rogery.dev/post/2022-08/nc33194/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P6055 GCD</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 求
+$$ \sum_{i=1}^N \sum_{j=1}^N \sum_{p=1}^{\left\lfloor \frac{N}{j}\right\rfloor} \sum_{q=1}^{\left\lfloor \frac{N}{j}\right\rfloor} [\gcd(i,j)=1][\gcd(p,q)=1] $$
+分析 注意到一个神奇的事情
+$$ \begin{aligned} &amp;[\gcd(i,j)=1][\gcd(p,q)=1] \\ =&amp;[\gcd(i,j) = 1][\gcd(pj,qj)=j]\\ =&amp;[\gcd(i, pj, qj) = 1] \end{aligned} $$
+因此
+$$ \begin{aligned} ans &amp;= \sum_{i=1}^N \sum_{p=1}^N\sum_{q=1}^N [\gcd(i, j, k) = 1] \\ &amp;= \sum_{d=1}^N \mu(d) \left\lfloor \frac{N}{d} \right\rfloor^3 \end{aligned} $$
+整除分块即可。
+int main() { ll n; cin &gt;&gt; n; Euler(1E6); SumMu smu(1E6); ll ans = 0; for (ll l = 1, r; l &lt;= n; l = r &#43; 1) { r = n / (n / l); int s = (smu....</p>
+  </section>
+  <footer class="entry-footer">July 30, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P6055 GCD" href="https://acm.rogery.dev/post/2022-07/p6055/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P1447 能量采集</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 在 $n \times m$ 的花园中，设 $(0, 0) \to (i, j)$ 之间的格点数为 $k$，则 $(i, j)$ 的贡献为 $2k&#43;1$。求整个花园的累计贡献。
+分析 首先，格点数为 $\gcd(i, j) - 1$，不要拿 $\min(n/i, m/j)$ 去算，算不清楚的。
+因此答案为
+$$ ans = \sum_{i=1}^n \sum_{j=1}^m (2\gcd(i, j) - 1) $$
+由欧拉反演
+$$ \sum_{d \mid n} \varphi(d) = n $$
+因此
+$$ \begin{aligned} ans &amp;= 2 \sum_{i=1}^n \sum_{j=1}^m \sum_{d \mid \gcd(i, j)} \varphi(d) - nm\\ &amp;= 2\sum_{d=1}\varphi(d) \left\lfloor \frac{n}{d}\right\rfloor \left\lfloor \frac{m}{d}\right\rfloor - nm \end{aligned} $$...</p>
+  </section>
+  <footer class="entry-footer">July 29, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P1447 能量采集" href="https://acm.rogery.dev/post/2022-07/p1447/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>P1829 能量采集</h2>
   </header>
   <section class="entry-content">
@@ -272,58 +326,6 @@ int main() { int n; string a, b; cin &gt;&gt; n &gt;&gt; a &gt;&gt; b; int ans =
   </section>
   <footer class="entry-footer">July 6, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to ZAFU 2022.07.06 个人赛题解" href="https://acm.rogery.dev/post/2022-07/sj1/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P8240 偷铀计划</h2>
-  </header>
-  <section class="entry-content">
-    <p>随机到了一个神秘题目。
-题目大意 在 $n$ 个点的无向图中，有 $k$ 个点有守卫。假如你携带有 $x$ 千克的铀，那么你在移动时与这些守卫的距离必须都大于 $x$。
-多组询问，回答从点 $x$ 运输到点 $y$ 最多能运输多少铀。
-分析 这题对算法的考察较为综合，卡了我一天。
-首先需要求出每个点到最近的守卫的距离 $dis$，在 dijkstra 时设置多个起点即可。
-把每个边的权值设置为两个端点 $dis$ 的最小值，重新建图 $G_2$。
-接下来是关键的一步：得到 $G_2$ 的最大生成树 $G_3$，任何运输路径都在最大生成树上。
-最后用 LCA 维护树两点之间路径的权值 $\min$。
-int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; for (int i = 0; i &lt; m; i&#43;&#43;) { int x, y, z; cin &gt;&gt; x &gt;&gt; y &gt;&gt; z; G1[x].push_back({y, z}); G1[y].push_back({x, z}); } int k; cin &gt;&gt; k; vector&lt;int&gt; start(k); for (auto &amp;si : start) cin &gt;&gt; si; auto dis = dijkstra(n, start); for (int u = 1; u &lt;= n; u&#43;&#43;) { for (auto [v, w] : G1[u]) { ll tw = min(dis[u], dis[v]); G2[u]....</p>
-  </section>
-  <footer class="entry-footer">May 1, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P8240 偷铀计划" href="https://acm.rogery.dev/post/2022-05/p8240/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Codeforces Round #707</h2>
-  </header>
-  <section class="entry-content">
-    <p>咕了好久。
-A. Alexey and Train 奇怪的模拟。略。
-全部代码请看：Codeforces/CF1501/CF1501B.cpp。
-B. Napoleon Cake 略。
-全部代码请看：Codeforces/CF1501/CF1501B.cpp。
-C. Going Home 给定一个数组，请给出是否存在四元组使得
-$$ a_w &#43; a_v = a_x &#43; a_y $$
-分析 这题很诈骗。注意到 $x&#43;y$ 最多只有 $5 \times 10^6$ 种情况，暴力即可。
-int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; a(n); for (auto &amp;ai : a) { cin &gt;&gt; ai; } vector&lt;pii&gt; u(N &#43; 1); for (int i = 0; i &lt; n; i&#43;&#43;) { for (int j = 0; j &lt; i; j&#43;&#43;) { int sum = a[i] &#43; a[j]; if (u[sum] !...</p>
-  </section>
-  <footer class="entry-footer">April 25, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to Codeforces Round #707" href="https://acm.rogery.dev/post/2022-04/cf1501/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>2021 牛客寒假算法基础集训营 1</h2>
-  </header>
-  <section class="entry-content">
-    <p>复习一下。
-A. 串 计算长度不超过 $n$ 且蕴含 us 作为子串的字符串有多少个。
-分析 读错题目了，还以为是容斥。对 “出现 us”、“出现 u”、“其他” 三种情况分别 DP。
-int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; for (int i = 1; i &lt;= n; i&#43;&#43;) { ll t0 = dp0 * 25 % P; ll tu = (dpu * 25 &#43; dp0) % P; ll ts = (dpu &#43; dps * 26) % P; dp0 = t0, dpu = tu, dps = ts; ans = (ans &#43; dps) % P; } cout &lt;&lt; ans; return 0; } 全部代码请看：Nowcoder/NC9981/A....</p>
-  </section>
-  <footer class="entry-footer">April 6, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to 2021 牛客寒假算法基础集训营 1" href="https://acm.rogery.dev/post/2022-04/nc9981/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

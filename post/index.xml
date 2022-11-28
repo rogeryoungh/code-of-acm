@@ -7,7 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>© 2021 [Roger Young](https://acm.rogery.dev)</copyright>
-    <lastBuildDate>Mon, 21 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://acm.rogery.dev/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CF10C Digital Root</title>
+      <link>https://acm.rogery.dev/post/2022-11/cf10c/</link>
+      <pubDate>Mon, 28 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2022-11/cf10c/</guid>
+      <description>题目大意 设数根函数为 $d(n)$，求 $[1, n]$ 内 $d(ab) = d(c)$ 但 $ab \ne c$ 的元素有多少个。
+分析 设
+$$ a_i = \sum_{j=1}^n [d(j) = i] $$
+故答案为
+$$ \begin{aligned} ans &amp;amp;= \sum_{i=1}^n \sum_{j=1}^n a_{d(ij)} - [ij \leqslant n] \\ &amp;amp;= \sum_{i=0}^8 \sum_{j=0}^8 a_i a_j a_{d(ij)} - \sum_{i=1}^n \left\lfloor \frac{n}{i} \right\rfloor \end{aligned} $$
+除了整除分块的 $O(\sqrt{n})$ 外，复杂度 $O(9)$。
+int main() { int n; std::cin &amp;gt;&amp;gt; n; V&amp;lt;int&amp;gt; a(9); for (int i = 0; i &amp;lt; 9; i++) { a[i] = n / 9 + (i &amp;lt;= n % 9); } a[0]--; ll ans = 0; for (int i = 0; i &amp;lt; 9; i++) { for (int j = 0; j &amp;lt; 9; j++) { ans += 1ll * a[i] * a[j] * a[i * j % 9]; } } for (int l = 1, r; l &amp;lt;= n; l = r + 1) { r = n / (n / l); ans -= 1ll * (r - l + 1) * (n / l); } std::cout &amp;lt;&amp;lt; ans; return 0; } 全部代码请看：Codeforces/other/10C.</description>
+    </item>
+    
+    <item>
+      <title>CF10D LCIS</title>
+      <link>https://acm.rogery.dev/post/2022-11/cf10d/</link>
+      <pubDate>Mon, 28 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2022-11/cf10d/</guid>
+      <description>题目大意 给定两个分别长 $n,m$ 的序列 $\{a\},\{b\}$，求其最长公共上升子序列。
+分析 设 $DP(i, j)$ 为序列 $a$ 中的前 $i$ 个元素，以 $b_j$ 结尾时的最长子序列长度。
+如果 $a_i = b_j$，则 $DP(i, j) = \max\limits_{k&amp;lt;j \land b_k &amp;lt; b_j}(DP(i,k)) + 1$ 否则 $DP(i, j) = DP(i - 1, j)$。 这个东西可以滚动数组优化。
+int main() { int n; std::cin &amp;gt;&amp;gt; n; V&amp;lt;int&amp;gt; a(n + 1); for (int i = 1; i &amp;lt;= n; i++) { std::cin &amp;gt;&amp;gt; a[i]; } int m; std::cin &amp;gt;&amp;gt; m; V&amp;lt;int&amp;gt; b(m + 1); for (int j = 1; j &amp;lt;= m; j++) { std::cin &amp;gt;&amp;gt; b[j]; } V&amp;lt;int&amp;gt; dp(m + 1), pre(m + 1, -1); for (int i = 1; i &amp;lt;= n; i++) { int p = 0; for (int j = 1; j &amp;lt;= m; j++) { if (a[i] == b[j]) { dp[j] = dp[p] + 1, pre[j] = p; } else if (a[i] &amp;gt; b[j] &amp;amp;&amp;amp; dp[p] &amp;lt; dp[j]) { p = j; } } } int p = std::max_element(dp.</description>
+    </item>
+    
     <item>
       <title>BZOJ2839 集合计数</title>
       <link>https://acm.rogery.dev/post/2022-11/bzoj2839/</link>
@@ -20,6 +47,22 @@ $$ f_i = \binom{n}{i} (2^{2^{n-i}}-1) $$
 那么恰好 $k$ 个集合是其交集可以通过二项式反演求得
 $$ a_k = \sum_{i=k}^n (-1)^{i-k} \binom{i}{k} f_i = \sum_{i=k} ^n (-1)^{i-k} \frac{n!}{k!(i-k)!(n-i)!} (2^{2^{n-i}} - 1) $$
 全部代码请看：BZOJ/2x/BZOJ2839.cpp。</description>
+    </item>
+    
+    <item>
+      <title>P4491 染色</title>
+      <link>https://acm.rogery.dev/post/2022-11/p4491/</link>
+      <pubDate>Sun, 20 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://acm.rogery.dev/post/2022-11/p4491/</guid>
+      <description>题目大意 对于一个长 $n$ 的画布，每个位置可以被染成 $1 \sim m$ 的颜色中的一种。若恰好出现了 $s$ 次的颜色有 $k$ 种，则获得了 $w_k$ 的愉悦度。求所有涂法的愉悦度的和。
+分析 考虑钦定 $i$ 种颜色被染了 $s$ 次，剩下不做限定，则方案数为
+$$ f_i = \binom{m}{i} \frac{n!}{(s!)^i (n - si)!} (n - si)^{m - i} $$
+那么恰好 $k$ 个集合是其交集可以通过二项式反演求得
+$$ a_k = \sum_{i=k}^m (-1)^{i-k} \binom{i}{k} f_i $$
+这个式子可以推卷积，有空补上过程。
+全部代码请看：Luogu/4x/P4491.cpp。
+参考 题解 P4491 - command_block </description>
     </item>
     
     <item>

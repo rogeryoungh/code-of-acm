@@ -3,14 +3,23 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://acm.rogery.dev/</loc>
-    <lastmod>2022-11-21T00:00:00+00:00</lastmod>
+    <lastmod>2022-11-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url><url>
+    <loc>https://acm.rogery.dev/post/2022-11/cf10c/</loc>
+    <lastmod>2022-11-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://acm.rogery.dev/post/2022-11/cf10d/</loc>
+    <lastmod>2022-11-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://acm.rogery.dev/post/</loc>
+    <lastmod>2022-11-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://acm.rogery.dev/post/2022-11/bzoj2839/</loc>
     <lastmod>2022-11-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://acm.rogery.dev/post/</loc>
-    <lastmod>2022-11-21T00:00:00+00:00</lastmod>
+    <loc>https://acm.rogery.dev/post/2022-11/p4491/</loc>
+    <lastmod>2022-11-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://acm.rogery.dev/post/2022-11/poly/</loc>
     <lastmod>2022-11-15T00:00:00+00:00</lastmod>

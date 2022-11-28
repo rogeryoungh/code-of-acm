@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://acm.rogery.dev/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.106.0">
+<meta name="generator" content="Hugo 0.107.0">
 <link rel="alternate" type="application/rss+xml" href="https://acm.rogery.dev/post/index.xml">
 
 
@@ -165,6 +165,37 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>CF10C Digital Root</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 设数根函数为 $d(n)$，求 $[1, n]$ 内 $d(ab) = d(c)$ 但 $ab \ne c$ 的元素有多少个。
+分析 设
+$$ a_i = \sum_{j=1}^n [d(j) = i] $$
+故答案为
+$$ \begin{aligned} ans &amp;= \sum_{i=1}^n \sum_{j=1}^n a_{d(ij)} - [ij \leqslant n] \\ &amp;= \sum_{i=0}^8 \sum_{j=0}^8 a_i a_j a_{d(ij)} - \sum_{i=1}^n \left\lfloor \frac{n}{i} \right\rfloor \end{aligned} $$
+除了整除分块的 $O(\sqrt{n})$ 外，复杂度 $O(9)$。
+int main() { int n; std::cin &gt;&gt; n; V&lt;int&gt; a(9); for (int i = 0; i &lt; 9; i&#43;&#43;) { a[i] = n / 9 &#43; (i &lt;= n % 9); } a[0]--; ll ans = 0; for (int i = 0; i &lt; 9; i&#43;&#43;) { for (int j = 0; j &lt; 9; j&#43;&#43;) { ans &#43;= 1ll * a[i] * a[j] * a[i * j % 9]; } } for (int l = 1, r; l &lt;= n; l = r &#43; 1) { r = n / (n / l); ans -= 1ll * (r - l &#43; 1) * (n / l); } std::cout &lt;&lt; ans; return 0; } 全部代码请看：Codeforces/other/10C....</p>
+  </section>
+  <footer class="entry-footer">November 28, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to CF10C Digital Root" href="https://acm.rogery.dev/post/2022-11/cf10c/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>CF10D LCIS</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定两个分别长 $n,m$ 的序列 $\{a\},\{b\}$，求其最长公共上升子序列。
+分析 设 $DP(i, j)$ 为序列 $a$ 中的前 $i$ 个元素，以 $b_j$ 结尾时的最长子序列长度。
+如果 $a_i = b_j$，则 $DP(i, j) = \max\limits_{k&lt;j \land b_k &lt; b_j}(DP(i,k)) &#43; 1$ 否则 $DP(i, j) = DP(i - 1, j)$。 这个东西可以滚动数组优化。
+int main() { int n; std::cin &gt;&gt; n; V&lt;int&gt; a(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { std::cin &gt;&gt; a[i]; } int m; std::cin &gt;&gt; m; V&lt;int&gt; b(m &#43; 1); for (int j = 1; j &lt;= m; j&#43;&#43;) { std::cin &gt;&gt; b[j]; } V&lt;int&gt; dp(m &#43; 1), pre(m &#43; 1, -1); for (int i = 1; i &lt;= n; i&#43;&#43;) { int p = 0; for (int j = 1; j &lt;= m; j&#43;&#43;) { if (a[i] == b[j]) { dp[j] = dp[p] &#43; 1, pre[j] = p; } else if (a[i] &gt; b[j] &amp;&amp; dp[p] &lt; dp[j]) { p = j; } } } int p = std::max_element(dp....</p>
+  </section>
+  <footer class="entry-footer">November 28, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to CF10D LCIS" href="https://acm.rogery.dev/post/2022-11/cf10d/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>BZOJ2839 集合计数</h2>
   </header>
   <section class="entry-content">
@@ -177,6 +208,24 @@ $$ a_k = \sum_{i=k}^n (-1)^{i-k} \binom{i}{k} f_i = \sum_{i=k} ^n (-1)^{i-k} \fr
   </section>
   <footer class="entry-footer">November 21, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to BZOJ2839 集合计数" href="https://acm.rogery.dev/post/2022-11/bzoj2839/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>P4491 染色</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 对于一个长 $n$ 的画布，每个位置可以被染成 $1 \sim m$ 的颜色中的一种。若恰好出现了 $s$ 次的颜色有 $k$ 种，则获得了 $w_k$ 的愉悦度。求所有涂法的愉悦度的和。
+分析 考虑钦定 $i$ 种颜色被染了 $s$ 次，剩下不做限定，则方案数为
+$$ f_i = \binom{m}{i} \frac{n!}{(s!)^i (n - si)!} (n - si)^{m - i} $$
+那么恰好 $k$ 个集合是其交集可以通过二项式反演求得
+$$ a_k = \sum_{i=k}^m (-1)^{i-k} \binom{i}{k} f_i $$
+这个式子可以推卷积，有空补上过程。
+全部代码请看：Luogu/4x/P4491.cpp。
+参考 题解 P4491 - command_block </p>
+  </section>
+  <footer class="entry-footer">November 20, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P4491 染色" href="https://acm.rogery.dev/post/2022-11/p4491/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -283,60 +332,6 @@ int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; v(n &#43; 1); for (int i =
   </section>
   <footer class="entry-footer">August 7, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to ZAFU 2022.08.07 个人赛题解" href="https://acm.rogery.dev/post/2022-08/sj5/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>蔚来杯 2022牛客暑期多校训练营6</h2>
-  </header>
-  <section class="entry-content">
-    <p>赛中过题：ABEG。
-A - Car Show 给定一个长为 $n$ 的颜色序列 $\{a_i\}$，问有多少段区间出现了所有的颜色？
-分析 双指针。对于右端点 $r$，若临界的左端点是 $l$，那么 $[1, l]$ 都是合法的。
-队友签的，代码没有。
-B - Two Frogs 在一个长为 $n$ 的池塘中，可以从第 $i$ 个荷叶跳到第 $[i &#43; 1, i &#43; a_i]$ 个荷叶上。
-若两个青蛙从 $1$ 开始，每个荷叶上随机往后跳，问相同步数到达第 $n$ 个荷叶的期望。
-分析 显然 DP。设 $DP(i, j)$ 为跳 $i$ 次跳到第 $j$ 个荷叶上的概率，往后刷表即可。
-int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; v(n &#43; 1); vector&lt;Z&gt; iv(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { cin &gt;&gt; v[i]; iv[i] = Z(v[i])....</p>
-  </section>
-  <footer class="entry-footer">August 6, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to 蔚来杯 2022牛客暑期多校训练营6" href="https://acm.rogery.dev/post/2022-08/nc33194/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P6055 GCD</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 求
-$$ \sum_{i=1}^N \sum_{j=1}^N \sum_{p=1}^{\left\lfloor \frac{N}{j}\right\rfloor} \sum_{q=1}^{\left\lfloor \frac{N}{j}\right\rfloor} [\gcd(i,j)=1][\gcd(p,q)=1] $$
-分析 注意到一个神奇的事情
-$$ \begin{aligned} &amp;[\gcd(i,j)=1][\gcd(p,q)=1] \\ =&amp;[\gcd(i,j) = 1][\gcd(pj,qj)=j]\\ =&amp;[\gcd(i, pj, qj) = 1] \end{aligned} $$
-因此
-$$ \begin{aligned} ans &amp;= \sum_{i=1}^N \sum_{p=1}^N\sum_{q=1}^N [\gcd(i, j, k) = 1] \\ &amp;= \sum_{d=1}^N \mu(d) \left\lfloor \frac{N}{d} \right\rfloor^3 \end{aligned} $$
-整除分块即可。
-int main() { ll n; cin &gt;&gt; n; Euler(1E6); SumMu smu(1E6); ll ans = 0; for (ll l = 1, r; l &lt;= n; l = r &#43; 1) { r = n / (n / l); int s = (smu....</p>
-  </section>
-  <footer class="entry-footer">July 30, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P6055 GCD" href="https://acm.rogery.dev/post/2022-07/p6055/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P1447 能量采集</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 在 $n \times m$ 的花园中，设 $(0, 0) \to (i, j)$ 之间的格点数为 $k$，则 $(i, j)$ 的贡献为 $2k&#43;1$。求整个花园的累计贡献。
-分析 首先，格点数为 $\gcd(i, j) - 1$，不要拿 $\min(n/i, m/j)$ 去算，算不清楚的。
-因此答案为
-$$ ans = \sum_{i=1}^n \sum_{j=1}^m (2\gcd(i, j) - 1) $$
-由欧拉反演
-$$ \sum_{d \mid n} \varphi(d) = n $$
-因此
-$$ \begin{aligned} ans &amp;= 2 \sum_{i=1}^n \sum_{j=1}^m \sum_{d \mid \gcd(i, j)} \varphi(d) - nm\\ &amp;= 2\sum_{d=1}\varphi(d) \left\lfloor \frac{n}{d}\right\rfloor \left\lfloor \frac{m}{d}\right\rfloor - nm \end{aligned} $$...</p>
-  </section>
-  <footer class="entry-footer">July 29, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P1447 能量采集" href="https://acm.rogery.dev/post/2022-07/p1447/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

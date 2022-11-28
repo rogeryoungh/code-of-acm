@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://acm.rogery.dev/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.106.0">
+<meta name="generator" content="Hugo 0.107.0">
 <link rel="alternate" type="application/rss+xml" href="https://acm.rogery.dev/post/index.xml">
 
 
@@ -165,6 +165,60 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P5057 简单题</h2>
+  </header>
+  <section class="entry-content">
+    <p>题目大意 给定一个 01 序列，有如下操作：
+将区间 $[l,r]$ 上的数 01 翻转。 询问第 $i$ 个数的值。 分析 区间操作，单点查询，很自然的想到了差分。
+用异或或者加减代替翻转都可以，用树状数组维护。我选择了加减，这样询问时对 $2$ 取余即可。
+#include &#34;template/ds/fwtree/0.hpp&#34; int main() { int n = rr(), m = rr(); fwtree_1&lt;int&gt; tr(n &#43; 2); while (m--) { int t = rr(); if (t == 1) { int l = rr() &#43; 1, r = rr() &#43; 1; tr.modify(l - 1, -1), tr.modify(r, 1); } else { int i = rr(); i = tr....</p>
+  </section>
+  <footer class="entry-footer">January 28, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P5057 简单题" href="https://acm.rogery.dev/post/2022-01/p5057/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>代码模板</h2>
+  </header>
+  <section class="entry-content">
+    <p>我的代码模板依赖于我自定义的预处理器，它通过 DFS 把所有引入的模板展开。
+index.hpp：公共文件头。 我的模板风格是简单封装：在保持易用的同时，封装尽量的薄。
+Data Struct 基础数据结构。
+fwtree/1.hpp：普通树状数组。 fwtree/2.hpp：支持区间修改、区间查询的树状数组。 SegmentTree/1.hpp：普通线段树示例，不可引入。 SegmentTree/2.hpp：带懒标记的线段树示例，不可引入。 Math 基础数学算法。
+qpow.hpp：快速幂。 qpow128.hpp：64 位类型的快速幂。 Basic 我也不知道这东西该放哪，就放到这里吧。
+modint：m32。 NTT-int 简化多项式板子，码量少，常数较大。
+fps/O.hpp：多项式基础结构，用牛顿迭代完成操作。 fps/F.hpp：与上面的相同，略卡常数。 cdq.hpp：非递归 CDQ 分治。 eval.hpp：多点插值，多点求值。 没有用的 NTT-mint 基于 modint 的多项式板子，注重易用性和常数，码量较大。
+每一种算法可能有多种实现。
+多项式类的定义
+poly/1.hpp：继承于 vector&lt;m32&gt;。 NTT
+ntt/1.hpp：无 rev 的 NTT。 ntt/2.hpp：略微卡常的 NTT。 多项式逆
+inv/1.hpp：12E 的牛顿迭代 inv，和 16E 的牛顿迭代 div。 inv/2.hpp：10E 的牛顿迭代 inv，和 13E 的牛顿迭代 div。 inv/3.hpp：24E 的牛顿迭代 inv，和 28E 的牛顿迭代 div。 inv/6.hpp：半在线卷积实现的 inv &amp; div。 inv/7.hpp：全在线卷积实现的 inv &amp; div。（没啥用） inv/8....</p>
+  </section>
+  <footer class="entry-footer">January 22, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to 代码模板" href="https://acm.rogery.dev/post/other/docs/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>ZAFU 2022.01.18 个人赛题解</h2>
+  </header>
+  <section class="entry-content">
+    <p>非常抱歉，本次比赛对难度估计不当，给大家造成了不好的体验，在此向大家致歉。
+A - CF1379A 见 CF Round #657 (Div. 2) 。
+B - CF1379B 见 CF Round #657 (Div. 2) 。
+C - CF1313B 题目大意 有 $n$ 位参赛者参加两轮比赛，ff 获得的名次分别是 $x$ 和 $y$，其他人的名次是未知的，求 ff 最终可能的最高排名和最低排名。
+分析 结论是很容易猜到的，证明有些困难。
+首先构造最低排名，让尽量多的同学有总分 $x&#43;y$，此时 ff 的排名为 $S_1 = \min(n, x &#43; y - 1)$。
+证明
+如果某人的总分满足 $x_i &#43; y_i \leqslant x &#43; y$，那么其两次排名一定满足 $$ x_i \leqslant x&#43;y-1\ 且\ y_i \leqslant x&#43;y-1$$ 这样的数对显然是不多于 $\min(n, x &#43; y - 1) = S_1$ 个的，而 $S_1$ 的构造已给出，故最多为 $S_1$ 个。...</p>
+  </section>
+  <footer class="entry-footer">January 21, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to ZAFU 2022.01.18 个人赛题解" href="https://acm.rogery.dev/post/2022-01/hj1/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>CF Round 706(Div 2)</h2>
   </header>
   <section class="entry-content">
@@ -295,55 +349,6 @@ const int maxn = 18; ll ci[maxn]; ll ff[1 &lt;&lt; maxn], gg[1 &lt;&lt; maxn]; i
   </section>
   <footer class="entry-footer">October 18, 2021&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to P3052 Cows in a Skyscraper G" href="https://acm.rogery.dev/post/2021-10/p3052/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P4059 找爸爸</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 给定两串 DNA 序列，可以在其中任意插空格，然后逐位比较，当两位都是字母时查表得到相似度。
-长度为 $k$ 的空格有额外相似度 $- A - B(k - 1)$。求两序列的最大相似度。
-分析 若不考虑空格的贡献，容易想到二维 DP，记 ${\rm DP}[i,j]$ 是 $A$ 串到位置 $i$ 同时 $B$ 串到位置 $j$ 时最大的相似度，有
-$$ {\rm DP}[i, j] = \max\{ {\rm DP}[i - 1, j - 1] &#43; D[i, j], {\rm DP}[i - 1, j], {\rm DP}[i, j - 1] \} $$
-当我们考虑空格的贡献时，可以发现空格的额外贡献只与前面一位有关。若两个序列此位都是空格，则把去掉后相似度一定会增加，故只有三种可能：设 ${\rm DP}_0$ 是结尾没有空格；${\rm DP}_1$ 是空格在 $A$ 串；${\rm DP}_2$ 是空格在 $B$ 串。
-思考最后一个空格的转移方式，自然有方程
-$$ \begin{aligned} {\rm DP}_0[i, j] &amp;= \max\{ {\rm DP}_0[i - 1, j - 1], {\rm DP}_1[i - 1, j - 1], {\rm DP}_2[i - 1, j - 1] \} &#43; D[i, j] \\ {\rm DP}_1[i, j] &amp;= \max\{ {\rm DP}_0[i, j - 1] - A, {\rm DP}_1[i, j - 1]- B, {\rm DP}_2[i, j - 1] - A\} \\ {\rm DP}_2[i, j] &amp;= \max\{ {\rm DP}_0[i - 1, j] - A, {\rm DP}_1[i - 1, j] - A, {\rm DP}_2[i, j - 1] - B \} \\ \end{aligned} $$...</p>
-  </section>
-  <footer class="entry-footer">October 17, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P4059 找爸爸" href="https://acm.rogery.dev/post/2021-10/p4059/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>HDU6955 Xor sum</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 给定整数序列 $\{a_n\}$，寻找满足区间异或和大于等于 $k$ 的连续序列中最短的。
-若有多个同样长度的答案，输出位置靠前的，若不存在输出 -1。
-分析 看到异或最值就应该想到 01trie。做前缀异或和，这样我们的问题就变成找到最靠近的两个数，其异或大于等于 $k$。
-因为要求位置最靠前的，所以我选择倒着遍历。当遍历到第 $i$ 个数 $a_i$ 时，字典树已经维护好此位置之后的数据，即每个值出现最左边的位置。
-const int maxn = 1e5 &#43; 10, o = 30 - 1; int trie[maxn * 30][2], val[maxn * 30], tot, n, k; void insert(int ai, int i) { int p = 1; for (int j = o; j &gt;= 0; j--) { int ch = (ai &gt;&gt; j) &amp; 1; if (trie[p][ch] == 0) trie[p][ch] = &#43;&#43;tot; p = trie[p][ch]; val[p] = i; } } 我们只需从高位到低位遍历第 $j$ 位，分类讨论：...</p>
-  </section>
-  <footer class="entry-footer">October 11, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to HDU6955 Xor sum" href="https://acm.rogery.dev/post/2021-10/hdu6955/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>HDU6833 A Very Easy Math Problem</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 即求
-$$ S (n) = \sum^n_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k f (\gcd \{ a_x \}) \gcd \{ a_x \} $$
-我自己随便简写了，全打太麻烦了。
-分析 这东西看着很吓人，其实是纸老虎。首先 $f(x) = \mu(x)^2$。提出 $\gcd$ 有
-$$ \begin{aligned} S (n) &amp; =\sum_{d=1}^{n}\sum^{n}_{\{ a_{x}\}=1}(\prod_{j=1}^{x}a_{j})^{k}{\mu}(d)^{2}d [gcd \{ a_{x}\} =d]\\ &amp; =\sum_{d=1}^{n}{\mu}(d)^{2}d^{k x&#43;1}\sum^{n/d}_{\{ a_{x}\} =1}(\prod_{j=1}^{x}a_{j})^{k}[gcd \{ a_{x}\} =1] \end{aligned} $$
-对后面这部分反演有
-$$ \begin{aligned} &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t \mid \gcd \{ a_x \}} \mu (t) \right)\\ = &amp; \sum^{n / d}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \left( \sum_{t = 1}^{n / d} [t \mid \gcd \{ a_x \}] \mu (t) \right)\\ = &amp; \sum_{t = 1}^{n / d} \mu (t) t^{k x} \sum^{n / d t}_{\{ a_x \} = 1} \left( \prod_{j = 1}^x a_j \right)^k \end{aligned} $$...</p>
-  </section>
-  <footer class="entry-footer">September 24, 2021&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to HDU6833 A Very Easy Math Problem" href="https://acm.rogery.dev/post/2021-09/hdu6833/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

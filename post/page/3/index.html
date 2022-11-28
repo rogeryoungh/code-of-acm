@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://acm.rogery.dev/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.106.0">
+<meta name="generator" content="Hugo 0.107.0">
 <link rel="alternate" type="application/rss+xml" href="https://acm.rogery.dev/post/index.xml">
 
 
@@ -165,6 +165,58 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>P8240 偷铀计划</h2>
+  </header>
+  <section class="entry-content">
+    <p>随机到了一个神秘题目。
+题目大意 在 $n$ 个点的无向图中，有 $k$ 个点有守卫。假如你携带有 $x$ 千克的铀，那么你在移动时与这些守卫的距离必须都大于 $x$。
+多组询问，回答从点 $x$ 运输到点 $y$ 最多能运输多少铀。
+分析 这题对算法的考察较为综合，卡了我一天。
+首先需要求出每个点到最近的守卫的距离 $dis$，在 dijkstra 时设置多个起点即可。
+把每个边的权值设置为两个端点 $dis$ 的最小值，重新建图 $G_2$。
+接下来是关键的一步：得到 $G_2$ 的最大生成树 $G_3$，任何运输路径都在最大生成树上。
+最后用 LCA 维护树两点之间路径的权值 $\min$。
+int main() { int n, m; cin &gt;&gt; n &gt;&gt; m; for (int i = 0; i &lt; m; i&#43;&#43;) { int x, y, z; cin &gt;&gt; x &gt;&gt; y &gt;&gt; z; G1[x].push_back({y, z}); G1[y].push_back({x, z}); } int k; cin &gt;&gt; k; vector&lt;int&gt; start(k); for (auto &amp;si : start) cin &gt;&gt; si; auto dis = dijkstra(n, start); for (int u = 1; u &lt;= n; u&#43;&#43;) { for (auto [v, w] : G1[u]) { ll tw = min(dis[u], dis[v]); G2[u]....</p>
+  </section>
+  <footer class="entry-footer">May 1, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to P8240 偷铀计划" href="https://acm.rogery.dev/post/2022-05/p8240/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Codeforces Round #707</h2>
+  </header>
+  <section class="entry-content">
+    <p>咕了好久。
+A. Alexey and Train 奇怪的模拟。略。
+全部代码请看：Codeforces/CF1501/CF1501B.cpp。
+B. Napoleon Cake 略。
+全部代码请看：Codeforces/CF1501/CF1501B.cpp。
+C. Going Home 给定一个数组，请给出是否存在四元组使得
+$$ a_w &#43; a_v = a_x &#43; a_y $$
+分析 这题很诈骗。注意到 $x&#43;y$ 最多只有 $5 \times 10^6$ 种情况，暴力即可。
+int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; a(n); for (auto &amp;ai : a) { cin &gt;&gt; ai; } vector&lt;pii&gt; u(N &#43; 1); for (int i = 0; i &lt; n; i&#43;&#43;) { for (int j = 0; j &lt; i; j&#43;&#43;) { int sum = a[i] &#43; a[j]; if (u[sum] !...</p>
+  </section>
+  <footer class="entry-footer">April 25, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to Codeforces Round #707" href="https://acm.rogery.dev/post/2022-04/cf1501/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>2021 牛客寒假算法基础集训营 1</h2>
+  </header>
+  <section class="entry-content">
+    <p>复习一下。
+A. 串 计算长度不超过 $n$ 且蕴含 us 作为子串的字符串有多少个。
+分析 读错题目了，还以为是容斥。对 “出现 us”、“出现 u”、“其他” 三种情况分别 DP。
+int main() { int n; cin &gt;&gt; n; ll ans = 0; ll dp0 = 1, dpu = 0, dps = 0; for (int i = 1; i &lt;= n; i&#43;&#43;) { ll t0 = dp0 * 25 % P; ll tu = (dpu * 25 &#43; dp0) % P; ll ts = (dpu &#43; dps * 26) % P; dp0 = t0, dpu = tu, dps = ts; ans = (ans &#43; dps) % P; } cout &lt;&lt; ans; return 0; } 全部代码请看：Nowcoder/NC9981/A....</p>
+  </section>
+  <footer class="entry-footer">April 6, 2022&nbsp;·&nbsp;rogeryoungh</footer>
+  <a class="entry-link" aria-label="post link to 2021 牛客寒假算法基础集训营 1" href="https://acm.rogery.dev/post/2022-04/nc9981/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>AtCoder Beginner Contest 242(A-E)</h2>
   </header>
   <section class="entry-content">
@@ -268,51 +320,6 @@ int main() { int T; cin &gt;&gt; T; while (T--) { string s; cin &gt;&gt; s; vect
   </section>
   <footer class="entry-footer">February 23, 2022&nbsp;·&nbsp;rogeryoungh</footer>
   <a class="entry-link" aria-label="post link to Educational Codeforces Round 123 (Rated for Div. 2)(A-C)" href="https://acm.rogery.dev/post/2022-02/cf1644/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>CF242E XOR on Segment</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 给定一个长为 $n$ 的数列 $\{a_i\}$，有如下操作
-询问区间 $[l, r]$ 上的和。 对 $[l, r]$ 区间上每个数异或上一个数 $x$。 分析 只需注意到异或是不进位的，我们可以单独维护数列的每一位。开二十棵线段树即可。
-int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; a(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { cin &gt;&gt; a[i]; } vector&lt;SegmentTree&lt;int&gt;&gt; tr; for (int k = 0; k &lt; 20; k&#43;&#43;) { tr.push_back(SegmentTree&lt;int&gt;(n &#43; 1)); vector&lt;int&gt; tmp(n &#43; 1); for (int i = 1; i &lt;= n; i&#43;&#43;) { if ((1 &lt;&lt; k) &amp; a[i]) tmp[i] = 1; } tr[k]....</p>
-  </section>
-  <footer class="entry-footer">February 22, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to CF242E XOR on Segment" href="https://acm.rogery.dev/post/2022-02/cf242e/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>P6492 STEP</h2>
-  </header>
-  <section class="entry-content">
-    <p>题目大意 给定一个长度为 $n$ 的字符序列，初始全是 L。
-有 $q$ 次操作，每次将 $a_x$ 在 L 和 R 中切换。
-求每次操作后字符串中最长交错序列的长度。
-分析 首先需要逐位异或，把交错序列变成相同元素。我想到的是另一种办法，如果 $a_i$ 相对与 $a_{i-1}$ 是变化的，那么 $b_i$ 为 $1$。原问题即被转化为维护最长 $1$ 的个数。
-用线段树维护每一层的信息，其中 $l$ 表示左边界上的最长长度，$r$ 表示右边界上的最长长度，$val$ 表示整个区间上的最长长度。
-关键在于如何编写 pull 合并信息。
-如果整块区域都是 $1$，那么可以和另一块区域合并。 合并后的 $val$ 应该考虑在左边界、右边界、左子树、右子树和中间中取。 struct SegmentTree { vector&lt;int&gt; l, r, val; int N; SegmentTree(int n) { N = 2 &lt;&lt; std::__lg(n); l.resize(N * 2, 0); r.resize(N * 2, 0); val.resize(N * 2, 0); } void pull(int p, int len) { int ls = p * 2, rs = p * 2 &#43; 1; l[p] = l[ls], r[p] = r[rs]; if (l[ls] == len) l[p] &#43;= l[rs]; if (r[rs] == len) r[p] &#43;= r[ls]; val[p] = max({l[p], r[p], val[ls], val[rs], r[ls] &#43; l[rs]}); } void modify(int i) { i &#43;= N; l[i] = r[i] = val[i] = !...</p>
-  </section>
-  <footer class="entry-footer">February 22, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to P6492 STEP" href="https://acm.rogery.dev/post/2022-02/p6492/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>ZAFU 2022.02.16 个人赛题解</h2>
-  </header>
-  <section class="entry-content">
-    <p>本次比赛 A 题还是出了小锅，幸好发现的比较早，最后影响还算不大。
-A - ABC202A 签到，不讲。我没想到读假了还能过（
-int main() { int a, b, c; cin &gt;&gt; a &gt;&gt; b &gt;&gt; c; cout &lt;&lt; 21 - a - b - c; return 0; } B - CF567A 注意到座标是按照从小到大顺序的，那么对于第 $i$ 个人，最小值显然在 $x_{i-1}, x_{i&#43;1}$ 中取到，最大值在 $x_{1}, x_n$ 中取到。
-注意特判左右两边。
-int main() { int n; cin &gt;&gt; n; vector&lt;int&gt; v(n); for (auto &amp;vi : v) cin &gt;&gt; vi; for (int i = 0; i &lt; n; i&#43;&#43;) { int m1, m2; if (i == 0) { m1 = v[1] - v[i], m2 = v[n - 1] - v[i]; } else if (i == n - 1) { m2 = v[i] - v[0], m1 = v[i] - v[i - 1]; } else { m1 = min(v[i] - v[i - 1], v[i &#43; 1] - v[i]); m2 = max(v[i] - v[0], v[n - 1] - v[i]); } cout &lt;&lt; m1 &lt;&lt; &#34; &#34; &lt;&lt; m2 &lt;&lt; &#34;\n&#34;; } return 0; } C - CF765B 即第 $i$ 个字母第一次出现时，第 $1 \sim i - 1$ 个字母都应该出现过。...</p>
-  </section>
-  <footer class="entry-footer">February 16, 2022&nbsp;·&nbsp;rogeryoungh</footer>
-  <a class="entry-link" aria-label="post link to ZAFU 2022.02.16 个人赛题解" href="https://acm.rogery.dev/post/2022-02/hj6/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
