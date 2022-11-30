@@ -1,0 +1,139 @@
+inline int popcnt(std::uint64_t x) {
+	return __builtin_popcountll(x);
+}
+
+inline int bsr(std::uint32_t x) {
+	return 31 - __builtin_clz(x);
+}
+
+inline int bsr(std::uint64_t x) {
+	return 63 - __builtin_clzll(x);
+}
+
+inline int bsf(std::uint64_t x) {
+	return __builtin_ctzll(x);
+}
+
+const int P = 998244353;
+
+// @description 快速幂(i32, P)
+
+int qpow(int a, ll b = P - 2, int m = P) {
+	int ret = 1 % m;
+	for (; b > 0; b /= 2) {
+		if (b % 2 == 1)
+			ret = 1ll * ret * a % m;
+		a = 1ll * a * a % m;
+	}
+	return ret;
+}
+
+// @description 取模整数
+
+// clang-format off
+#define OPERATOR(U, V, op)	\
+friend inline U operator op(const U &l, const V &r) {	\
+	return U(l) op##= r;	\
+}
+// clang-format on
+
+struct Z {
+	int v;
+	Z(ll a = 0) : v((a % P + P) % P) {}
+	Z &operator=(const int &m) {
+		v = m;
+		return *this;
+	}
+	Z &operator+=(const Z &m) {
+		v = (v += m.v) >= P ? v - P : v;
+		return *this;
+	}
+	Z &operator-=(const Z &m) {
+		v = (v -= m.v) < 0 ? v + P : v;
+		return *this;
+	}
+	Z &operator*=(const Z &m) {
+		v = 1ll * v * m.v % P;
+		return *this;
+	}
+	OPERATOR(Z, Z, +);
+	OPERATOR(Z, Z, -);
+	OPERATOR(Z, Z, *);
+	Z pow(int n) const {
+		return qpow(v, n);
+	}
+	Z inv() const {
+		return pow(P - 2);
+	}
+	// useless
+	Z operator-() const {
+		return v == 0 ? 0 : P - v;
+	}
+	Z &operator/=(const Z &m) {
+		return *this *= m.inv();
+	}
+	OPERATOR(Z, Z, /);
+	auto approx(int A = 1E3) {
+		int x = v, y = P, a = 1, b = 0;
+		while (x > A) {
+			std::swap(x, y), std::swap(a, b);
+			a -= x / y * b, x %= y;
+		}
+		return std::make_pair(x, a);
+	}
+};
+
+std::istream &operator>>(std::istream &is, Z &z) {
+	return is >> z.v;
+}
+
+std::ostream &operator<<(std::ostream &os, const Z &z) {
+	return os << z.v;
+}
+
+void OR(V<Z> &f, bool inv) {
+	int n = f.size(), x = inv ? 1 : -1;
+	for (int k = 1; k < n; k *= 2)
+		for (int i = 0; i < n; i += k * 2)
+			for (int j = 0; j < k; j++)
+				f[i + j + k] += f[i + j] * x;
+}
+
+void AND(V<Z> &f, bool inv) {
+	int n = f.size(), x = inv ? 1 : -1;
+	for (int k = 1; k < n; k *= 2)
+		for (int i = 0; i < n; i += k * 2)
+			for (int j = 0; j < k; j++)
+				f[i + j] += f[i + j + k] * x;
+}
+
+void XOR(V<Z> &f, bool inv) {
+	int n = f.size(), x = inv ? 1 : qpow(2);
+	for (int k = 1; k < n; k <<= 1)
+		for (int i = 0; i < n; i += k * 2)
+			for (int j = 0; j < k; j++) {
+				Z u = f[i + j], v = f[i + j + k];
+				f[i + j] = (u + v) * x;
+				f[i + j + k] = (u - v) * x;
+			}
+}
+
+auto subset_conv(const V<Z> &f, const V<Z> &g) {
+	int N = f.size(), n = std::__lg(f.size());
+	V<V<Z>> nf, ng, nr;
+	nf = ng = nr = V<V<Z>>(n + 1, V<Z>(N));
+	for (int i = 0; i < N; i++)
+		nf[popcnt(i)][i] = f[i], ng[popcnt(i)][i] = g[i];
+	for (int i = 0; i <= n; i++)
+		OR(nf[i], true), OR(ng[i], true);
+	for (int i = 0; i < N; i++)
+		for (int j = 0; j <= n; j++)
+			for (int k = 0; k <= n - j; k++)
+				nr[j + k][i] += nf[j][i] * ng[k][i];
+	for (int i = 0; i <= n; i++)
+		OR(nr[i], false);
+	V<Z> r(N);
+	for (int i = 0; i < N; i++)
+		r[i] = nr[popcnt(i)][i];
+	return r;
+}

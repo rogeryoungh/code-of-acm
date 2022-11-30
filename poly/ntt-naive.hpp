@@ -1,6 +1,6 @@
 #include "basic/index.hpp"
 
-#include "math-P/pre-all.hpp"
+#include "math/pre-all/pre-all-P.hpp"
 
 inline int mo(int x) {
 	return x >= P ? x - P : x;

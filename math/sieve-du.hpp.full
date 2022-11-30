@@ -3,7 +3,7 @@ V<int> primes, phi, mu;
 V<ll> smu;
 void Euler(int n) {
 	isp.resize(n, true);
-	phi = mu = vector<int>(n);
+	phi = mu = V<int>(n);
 	mu[1] = phi[1] = 1;
 	for (int i = 2; i < n; i++) {
 		if (isp[i]) {

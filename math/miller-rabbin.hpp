@@ -1,6 +1,6 @@
 #include "basic/index.hpp"
 
-#include "basic/qpow128.hpp"
+#include "basic/qpow/qpow128.hpp"
 
 // @description 素性测试(Miller Rabbin)
 

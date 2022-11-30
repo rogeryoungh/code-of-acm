@@ -1,6 +1,6 @@
 #include "basic/index.hpp"
 
-#include "math-modint/basic.hpp"
+#include "basic/modint/modint.hpp"
 
 #include "basic/vec2.hpp"
 

@@ -1,6 +1,6 @@
 #include "basic/index.hpp"
 
-#include "basic/qpow.hpp"
+#include "basic/qpow/qpow.hpp"
 
 #include "math/sieve/euler.hpp"
 
