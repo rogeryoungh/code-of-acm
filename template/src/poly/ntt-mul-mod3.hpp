@@ -1,6 +1,6 @@
 #include "basic/index.hpp"
 
-#include "basic/qpow.hpp"
+#include "basic/qpow/qpow.hpp"
 
 // @description 多项式乘法(int mod)
 

@@ -1,6 +1,6 @@
 #include "basic/index.hpp"
 
-#include "basic/qpow.hpp"
+#include "basic/qpow/qpow.hpp"
 
 auto powers(int n, int k, int mod) {
 	V<bool> isp(n + 1, true);
