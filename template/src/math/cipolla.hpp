@@ -1,6 +1,6 @@
 #include "basic/index.hpp"
 
-#include "basic/qpow.hpp"
+#include "basic/qpow/qpow.hpp"
 
 // @description 二次剩余(cipolla)
 

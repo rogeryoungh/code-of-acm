@@ -1,9 +1,11 @@
 #include "basic/index.hpp"
 
+#include "basic/v2pti.hpp"
+
 // @description 因式分解
 
 auto factor(ll n) {
-	vector<ll> ret;
+	V<ll> ret;
 	for (int i = 2; 1ll * i * i <= n; i++) {
 		for (; n % i == 0; n /= i)
 			ret.push_back(i);
@@ -12,5 +14,3 @@ auto factor(ll n) {
 		ret.push_back(n);
 	return ret;
 }
-
-#include "math/factor/factor-pii.hpp"

@@ -1,5 +1,7 @@
 #include "basic/index.hpp"
 
+#include "basic/v2pti.hpp"
+
 #include "math/sieve/euler.hpp"
 
 // @description 质因子分解
@@ -16,5 +18,3 @@ auto factor(ll n) {
 		ans.push_back(n);
 	return ans;
 }
-
-#include "math/factor/factor-pii.hpp" // !!only

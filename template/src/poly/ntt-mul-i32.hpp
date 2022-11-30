@@ -1,6 +1,6 @@
 #include "basic/index.hpp"
 
-#include "math-P/qpow.hpp"
+#include "basic/qpow/qpow-P.hpp"
 
 // @description 多项式乘法
 

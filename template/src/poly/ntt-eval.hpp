@@ -1,6 +1,6 @@
 #include "basic/index.hpp"
 
-#include "math-modint/pre-all.hpp"
+#include "math/pre-all/pre-all-modint.hpp"
 
 V<Z> w{1, 1};
 

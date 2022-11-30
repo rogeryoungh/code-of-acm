@@ -1,6 +1,6 @@
 #include "basic/index.hpp"
 
-#include "math-modint/pre-all.hpp"
+#include "math/pre-all/pre-all-modint.hpp"
 
 // @description 多项式牛顿迭代(m32, 卡常)
 // @problem https://loj.ac/p/150
