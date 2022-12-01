@@ -42,7 +42,7 @@
     - [Lagrange 插值（求值）](./math/interpolation/lagrange1.md)
     - [Lagrange 插值（求系数）](./math/interpolation/lagrange2.md)
     - [Lagrange 插值（连续）](./math/interpolation/lagrange3.md)
-  - [FWT](./math/fwt.md)
+  - [FWT](./math/fwt/fwt.md)
 - [字符串](./string/index.md)
   - [KMP](./string/kmp.md)
   - [Z 函数](./string/z-algorithm.md)
