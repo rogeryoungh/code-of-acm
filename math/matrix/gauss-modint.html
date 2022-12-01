@@ -214,6 +214,10 @@ int qpow(int a, ll b = P - 2, int m = P) {
 	return ret;
 }
 
+inline int mo(int x) {
+	return x &gt;= P ? x - P : x;
+}
+
 // @description 取模整数
 
 // clang-format off

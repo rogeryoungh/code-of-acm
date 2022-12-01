@@ -221,31 +221,46 @@ int qpow(int a, ll b = P - 2, int m = P) {
 	return ret;
 }
 
-void OR(V&lt;int&gt; &amp;f, bool inv) {
-	int n = f.size(), x = inv ? 1 : P - 1;
+inline int mo(int x) {
+	return x &gt;= P ? x - P : x;
+}
+
+template &lt;bool inv&gt;
+void OR(auto f, int n) {
 	for (int k = 1; k &lt; n; k *= 2)
 		for (int i = 0; i &lt; n; i += k * 2)
 			for (int j = 0; j &lt; k; j++)
-				f[i + j + k] = (f[i + j + k] + 1ll * f[i + j] * x) % P;
+				if (inv)
+					f[i + j + k] = mo(f[i + j + k] - f[i + j] + P);
+				else
+					f[i + j + k] = mo(f[i + j + k] + f[i + j]);
 }
 
-void AND(V&lt;int&gt; &amp;f, bool inv) {
-	int n = f.size(), x = inv ? 1 : P - 1;
+template &lt;bool inv&gt;
+void AND(auto f, int n) {
 	for (int k = 1; k &lt; n; k *= 2)
 		for (int i = 0; i &lt; n; i += k * 2)
 			for (int j = 0; j &lt; k; j++)
-				f[i + j] = (f[i + j] + 1ll * f[i + j + k] * x) % P;
+				if (inv)
+					f[i + j] = mo(f[i + j] - f[i + j + k] + P);
+				else
+					f[i + j] = mo(f[i + j] + f[i + j + k]);
 }
 
-void XOR(V&lt;int&gt; &amp;f, bool inv) {
-	int n = f.size(), x = inv ? 1 : qpow(2);
-	for (int k = 1; k &lt; n; k &lt;&lt;= 1)
+template &lt;bool inv&gt;
+void XOR(auto f, int n) {
+	for (int k = 1; k &lt; n; k *= 2)
 		for (int i = 0; i &lt; n; i += k * 2)
 			for (int j = 0; j &lt; k; j++) {
 				int u = f[i + j], v = f[i + j + k];
-				f[i + j] = 1ll * (u + v) * x % P;
-				f[i + j + k] = 1ll * (u - v + P) * x % P;
+				f[i + j] = mo(u + v);
+				f[i + j + k] = mo(u - v + P);
 			}
+	if (inv) {
+		const int ivn = P - (P - 1) / n;
+		for (int i = 0; i &lt; n; i++)
+			f[i] = 1ll * f[i] * ivn % P;
+	}
 }
 
 auto subset_conv(const V&lt;int&gt; &amp;f, const V&lt;int&gt; &amp;g) {
@@ -255,13 +270,13 @@ auto subset_conv(const V&lt;int&gt; &amp;f, const V&lt;int&gt; &amp;g) {
 	for (int i = 0; i &lt; N; i++)
 		nf[popcnt(i)][i] = f[i], ng[popcnt(i)][i] = g[i];
 	for (int i = 0; i &lt;= n; i++)
-		OR(nf[i], true), OR(ng[i], true);
-	for (int i = 0; i &lt; N; i++)
-		for (int j = 0; j &lt;= n; j++)
-			for (int k = 0; k &lt;= n - j; k++)
-				nr[j + k][i] = (nr[j + k][i] + 1ll * nf[j][i] * ng[k][i]) % P;
+		OR&lt;0&gt;(nf[i].begin(), N), OR&lt;0&gt;(ng[i].begin(), N);
 	for (int i = 0; i &lt;= n; i++)
-		OR(nr[i], false);
+		for (int j = 0; j &lt;= n - i; j++)
+			for (int k = 0; k &lt; N; k++)
+				nr[i + j][k] = (nr[i + j][k] + 1ll * nf[i][k] * ng[j][k]) % P;
+	for (int i = 0; i &lt;= n; i++)
+		OR&lt;1&gt;(nr[i].begin(), N);
 	V&lt;int&gt; r(N);
 	for (int i = 0; i &lt; N; i++)
 		r[i] = nr[popcnt(i)][i];
@@ -296,6 +311,10 @@ int qpow(int a, ll b = P - 2, int m = P) {
 		a = 1ll * a * a % m;
 	}
 	return ret;
+}
+
+inline int mo(int x) {
+	return x &gt;= P ? x - P : x;
 }
 
 // @description 取模整数
@@ -361,31 +380,42 @@ std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 	return os &lt;&lt; z.v;
 }
 
-void OR(V&lt;Z&gt; &amp;f, bool inv) {
-	int n = f.size(), x = inv ? 1 : -1;
+template &lt;bool inv&gt;
+void OR(auto f, int n) {
 	for (int k = 1; k &lt; n; k *= 2)
 		for (int i = 0; i &lt; n; i += k * 2)
 			for (int j = 0; j &lt; k; j++)
-				f[i + j + k] += f[i + j] * x;
+				if (inv)
+					f[i + j + k] -= f[i + j];
+				else
+					f[i + j + k] += f[i + j];
 }
 
-void AND(V&lt;Z&gt; &amp;f, bool inv) {
-	int n = f.size(), x = inv ? 1 : -1;
+template &lt;bool inv&gt;
+void AND(auto f, int n) {
 	for (int k = 1; k &lt; n; k *= 2)
 		for (int i = 0; i &lt; n; i += k * 2)
 			for (int j = 0; j &lt; k; j++)
-				f[i + j] += f[i + j + k] * x;
+				if (inv)
+					f[i + j] -= f[i + j + k];
+				else
+					f[i + j] += f[i + j + k];
 }
 
-void XOR(V&lt;Z&gt; &amp;f, bool inv) {
-	int n = f.size(), x = inv ? 1 : qpow(2);
-	for (int k = 1; k &lt; n; k &lt;&lt;= 1)
+template &lt;bool inv&gt;
+void XOR(auto f, int n) {
+	for (int k = 1; k &lt; n; k *= 2)
 		for (int i = 0; i &lt; n; i += k * 2)
 			for (int j = 0; j &lt; k; j++) {
 				Z u = f[i + j], v = f[i + j + k];
-				f[i + j] = (u + v) * x;
-				f[i + j + k] = (u - v) * x;
+				f[i + j] = u + v;
+				f[i + j + k] = u - v;
 			}
+	if (inv) {
+		const Z ivn = P - (P - 1) / n;
+		for (int i = 0; i &lt; n; i++)
+			f[i] *= ivn;
+	}
 }
 
 auto subset_conv(const V&lt;Z&gt; &amp;f, const V&lt;Z&gt; &amp;g) {
@@ -395,13 +425,13 @@ auto subset_conv(const V&lt;Z&gt; &amp;f, const V&lt;Z&gt; &amp;g) {
 	for (int i = 0; i &lt; N; i++)
 		nf[popcnt(i)][i] = f[i], ng[popcnt(i)][i] = g[i];
 	for (int i = 0; i &lt;= n; i++)
-		OR(nf[i], true), OR(ng[i], true);
-	for (int i = 0; i &lt; N; i++)
-		for (int j = 0; j &lt;= n; j++)
-			for (int k = 0; k &lt;= n - j; k++)
-				nr[j + k][i] += nf[j][i] * ng[k][i];
+		OR&lt;0&gt;(nf[i].begin(), N), OR&lt;0&gt;(ng[i], N);
 	for (int i = 0; i &lt;= n; i++)
-		OR(nr[i], false);
+		for (int j = 0; j &lt;= n - i; j++)
+			for (int k = 0; k &lt; N; k++)
+				nr[i + j][k] += nf[i][k] * ng[j][k];
+	for (int i = 0; i &lt;= n; i++)
+		OR&lt;1&gt;(nr[i], N);
 	V&lt;Z&gt; r(N);
 	for (int i = 0; i &lt; N; i++)
 		r[i] = nr[popcnt(i)][i];

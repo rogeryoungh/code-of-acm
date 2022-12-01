@@ -4,31 +4,42 @@
 
 #include "basic/qpow/qpow-P.hpp"
 
-void OR(V<int> &f, bool inv) {
-	int n = f.size(), x = inv ? 1 : P - 1;
+template <bool inv>
+void OR(auto f, int n) {
 	for (int k = 1; k < n; k *= 2)
 		for (int i = 0; i < n; i += k * 2)
 			for (int j = 0; j < k; j++)
-				f[i + j + k] = (f[i + j + k] + 1ll * f[i + j] * x) % P;
+				if (inv)
+					f[i + j + k] = mo(f[i + j + k] - f[i + j] + P);
+				else
+					f[i + j + k] = mo(f[i + j + k] + f[i + j]);
 }
 
-void AND(V<int> &f, bool inv) {
-	int n = f.size(), x = inv ? 1 : P - 1;
+template <bool inv>
+void AND(auto f, int n) {
 	for (int k = 1; k < n; k *= 2)
 		for (int i = 0; i < n; i += k * 2)
 			for (int j = 0; j < k; j++)
-				f[i + j] = (f[i + j] + 1ll * f[i + j + k] * x) % P;
+				if (inv)
+					f[i + j] = mo(f[i + j] - f[i + j + k] + P);
+				else
+					f[i + j] = mo(f[i + j] + f[i + j + k]);
 }
 
-void XOR(V<int> &f, bool inv) {
-	int n = f.size(), x = inv ? 1 : qpow(2);
-	for (int k = 1; k < n; k <<= 1)
+template <bool inv>
+void XOR(auto f, int n) {
+	for (int k = 1; k < n; k *= 2)
 		for (int i = 0; i < n; i += k * 2)
 			for (int j = 0; j < k; j++) {
 				int u = f[i + j], v = f[i + j + k];
-				f[i + j] = 1ll * (u + v) * x % P;
-				f[i + j + k] = 1ll * (u - v + P) * x % P;
+				f[i + j] = mo(u + v);
+				f[i + j + k] = mo(u - v + P);
 			}
+	if (inv) {
+		const int ivn = P - (P - 1) / n;
+		for (int i = 0; i < n; i++)
+			f[i] = 1ll * f[i] * ivn % P;
+	}
 }
 
 auto subset_conv(const V<int> &f, const V<int> &g) {
@@ -38,13 +49,13 @@ auto subset_conv(const V<int> &f, const V<int> &g) {
 	for (int i = 0; i < N; i++)
 		nf[popcnt(i)][i] = f[i], ng[popcnt(i)][i] = g[i];
 	for (int i = 0; i <= n; i++)
-		OR(nf[i], true), OR(ng[i], true);
-	for (int i = 0; i < N; i++)
-		for (int j = 0; j <= n; j++)
-			for (int k = 0; k <= n - j; k++)
-				nr[j + k][i] = (nr[j + k][i] + 1ll * nf[j][i] * ng[k][i]) % P;
+		OR<0>(nf[i].begin(), N), OR<0>(ng[i].begin(), N);
 	for (int i = 0; i <= n; i++)
-		OR(nr[i], false);
+		for (int j = 0; j <= n - i; j++)
+			for (int k = 0; k < N; k++)
+				nr[i + j][k] = (nr[i + j][k] + 1ll * nf[i][k] * ng[j][k]) % P;
+	for (int i = 0; i <= n; i++)
+		OR<1>(nr[i].begin(), N);
 	V<int> r(N);
 	for (int i = 0; i < N; i++)
 		r[i] = nr[popcnt(i)][i];
