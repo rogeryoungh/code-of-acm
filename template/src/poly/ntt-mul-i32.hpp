@@ -14,10 +14,6 @@ inline int get_lim(int m) {
 	return 1 << std::__lg(m * 2 - 1);
 }
 
-inline int mo(int u) {
-	return u >= P ? u - P : u;
-}
-
 void pre_w(int n) {
 	int l = w.size(), l2 = l * 2;
 	if (n <= l)
