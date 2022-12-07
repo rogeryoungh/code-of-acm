@@ -197,11 +197,11 @@
 V&lt;bool&gt; isp;
 V&lt;int&gt; primes;
 void Eratosthenes(int n) {
-	isp.resize(n, true);
-	for (int i = 2; i &lt; n; i++) {
+	isp.resize(n + 1, true);
+	for (int i = 2; i &lt;= n; i++) {
 		if (isp[i]) {
 			primes.push_back(i);
-			for (ll j = ll(i) * i; j &lt; n; j += i)
+			for (ll j = ll(i) * i; j &lt;= n; j += i)
 				isp[j] = false;
 		}
 	}

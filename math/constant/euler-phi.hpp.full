@@ -3,12 +3,12 @@
 V<bool> isp;
 V<int> primes;
 void Euler(int n) {
-	isp.resize(n, true);
-	for (int i = 2; i < n; i++) {
+	isp.resize(n + 1, true);
+	for (int i = 2; i <= n; i++) {
 		if (isp[i])
 			primes.push_back(i);
 		for (int pj : primes) {
-			if (pj > (n - 1) / i)
+			if (pj > n / i)
 				break;
 			isp[i * pj] = false;
 			if (i % pj == 0)

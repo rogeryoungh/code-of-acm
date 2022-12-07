@@ -208,12 +208,12 @@ int qpow(int a, ll b, int m) {
 V&lt;bool&gt; isp;
 V&lt;int&gt; primes;
 void Euler(int n) {
-	isp.resize(n, true);
-	for (int i = 2; i &lt; n; i++) {
+	isp.resize(n + 1, true);
+	for (int i = 2; i &lt;= n; i++) {
 		if (isp[i])
 			primes.push_back(i);
 		for (int pj : primes) {
-			if (pj &gt; (n - 1) / i)
+			if (pj &gt; n / i)
 				break;
 			isp[i * pj] = false;
 			if (i % pj == 0)

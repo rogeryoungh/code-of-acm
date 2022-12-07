@@ -196,12 +196,12 @@
 
 V&lt;int&gt; lpf, primes;
 void Euler(int n) {
-	lpf.resize(n);
-	for (int i = 2; i &lt; n; i++) {
+	lpf.resize(n + 1);
+	for (int i = 2; i &lt;= n; i++) {
 		if (!lpf[i])
 			lpf[i] = i, primes.push_back(i);
 		for (auto pj : primes) {
-			if (pj &gt; (n - 1) / i)
+			if (pj &gt; n / i)
 				break;
 			lpf[i * pj] = pj;
 			if (i % pj == 0)
