@@ -3,8 +3,7 @@
 
 #include <bits/stdc++.h>
 
-template <class T>
-using V = std::vector<T>;
+#define V std::vector
 using ll = long long;
 
 #endif

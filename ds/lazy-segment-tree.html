@@ -191,6 +191,14 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="懒标记线段树"><a class="header" href="#懒标记线段树">懒标记线段树</a></h1>
+<h2 id="用法"><a class="header" href="#用法">用法</a></h2>
+<ul>
+<li><code>LazySegmentTree(n)</code>：令 $N = 2^{\lceil \log_2 (n) \rceil}$，创建一个 $[0, N)$ 的线段树。</li>
+<li><code>build(first, last)</code>：传入迭代器，$O(n)$ 的建树。</li>
+<li><code>modify(l, r, tag)</code>：对区间 $[l, r)$ 作用 $tag$。</li>
+<li><code>query(l, r)</code>：查询区间 $[l, r)$ 的值。</li>
+</ul>
+<h2 id="代码"><a class="header" href="#代码">代码</a></h2>
 <pre><code class="language-cpp">// @description 线段树(懒标记)
 
 template &lt;class Val, class Tag&gt;
@@ -198,20 +206,17 @@ struct LazySegmentTree {
 	const int N;
 	V&lt;Val&gt; val;
 	V&lt;Tag&gt; tag;
-	// 0 ~ N - 1
-	LazySegmentTree(int n) : N(2 &lt;&lt; std::__lg(n)), val(N * 2), tag(N * 2) {
-		assert(n &gt; 0);
-	}
+	LazySegmentTree(uint32_t n) : N(std::bit_ceil(n)), val(N * 2), tag(N * 2) {}
 	void build(auto first, auto last) {
 		std::copy(first, last, val.begin() + N);
 		for (int i = N - 1; i &gt;= 1; i--)
 			pull(i);
 	}
 	void modify(int l, int r, Tag t) {
-		modify(l, r, t, 1, 0, N);
+		modify(1, 0, N, l, r, t);
 	}
 	Val query(int l, int r) {
-		return query(l, r, 1, 0, N);
+		return query(1, 0, N, l, r);
 	}
 #define lson p * 2
 #define rson p * 2 + 1
@@ -220,38 +225,36 @@ struct LazySegmentTree {
 		val[p] = val[lson] + val[rson];
 	}
 	void push(int p) {
-		Tag &amp;tp = tag[p];
-		if (tp.flag) {
-			val[lson].apply(tp), tag[lson].apply(tp);
-			val[rson].apply(tp), tag[rson].apply(tp);
-			tp.flag = false;
+		Tag &amp;t = tag[p];
+		if (t.flag) {
+			t(val[lson])(tag[lson])(val[rson])(tag[rson]);
+			t.flag = false;
 		}
 	}
-	void modify(int l, int r, Tag t, int p, int L, int R) {
+	void modify(int p, int L, int R, int l, int r, Tag t) {
 		if (l &lt;= L &amp;&amp; R &lt;= r) {
-			val[p].apply(t);
-			tag[p].apply(t);
+			t(val[p])(tag[p]);
 		} else {
 			int M = (L + R) / 2;
 			push(p);
 			if (l &lt; M)
-				modify(l, r, t, lson, L, M);
+				modify(lson, L, M, l, r, t);
 			if (r &gt; M)
-				modify(l, r, t, rson, M, R);
+				modify(rson, M, R, l, r, t);
 			pull(p);
 		}
 	}
-	Val query(int l, int r, int p, int L, int R) {
+	Val query(int p, int L, int R, int l, int r) {
 		if (l &lt;= L &amp;&amp; R &lt;= r) {
 			return val[p];
 		} else {
 			int M = (L + R) / 2;
-			Val ret = Val();
 			push(p);
+			Val ret{};
 			if (l &lt; M)
-				ret = ret + query(l, r, lson, L, M);
+				ret = ret + query(lson, L, M, l, r);
 			if (r &gt; M)
-				ret = ret + query(l, r, rson, M, R);
+				ret = ret + query(rson, M, R, l, r);
 			return ret;
 		}
 	}
@@ -259,9 +262,38 @@ struct LazySegmentTree {
 #undef rson
 };
 </code></pre>
+<h2 id="例子"><a class="header" href="#例子">例子</a></h2>
+<p>例如在 <a href="https://www.luogu.com.cn/problem/P3373">P3373 线段树 2</a> 中。</p>
+<pre><code class="language-cpp">struct Info {
+	ll sum = 0, len = 0;
+	friend Info operator+(const Info &amp;l, const Info &amp;r) {
+		return {(l.sum + r.sum) % P, l.len + r.len};
+	}
+};
+
+struct Tag {
+	bool flag = false;
+	ll k = 1, m = 0;
+	Tag &amp;operator()(Info &amp;o) {
+		o.sum = (k * o.sum + o.len * m) % P;
+		return *this;
+	}
+	Tag &amp;operator()(Tag &amp;o) {
+		if (flag &amp;&amp; o.flag) {
+			ll tk = o.k * k;
+			ll tm = o.m * k + m;
+			o.k = tk % P, o.m = tm % P;
+		} else if (flag) {
+			o = *this;
+		}
+		return *this;
+	}
+};
+</code></pre>
 <h2 id="测试例题"><a class="header" href="#测试例题">测试例题</a></h2>
 <ul>
 <li><a href="https://www.luogu.com.cn/problem/P3372">P3372 线段树 1</a></li>
+<li><a href="https://www.luogu.com.cn/problem/P3373">P3373 线段树 2</a></li>
 </ul>
 
                     </main>
