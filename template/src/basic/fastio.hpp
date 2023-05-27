@@ -1,84 +1,116 @@
 #include "basic/index.hpp"
 
-struct BasicBuffer {
-	std::vector<char> s;
-	BasicBuffer() : s(1 << 18) {}
-	char *p = s.data(), *beg = p, *end = p + s.size();
-	inline char getc() {
+struct Buf {
+	FILE *f;
+	std::vector<char> buf;
+	char *beg, *end, *p;
+	Buf(FILE *f_, int size) : f(f_), buf(size), beg(buf.data()), end(beg + size - 1), p(beg) {}
+	char top() const {
+		return *p;
+	}
+	char pop() {
+		char r = *p++;
 		if (p == end)
-			readAll();
-		return *p++;
+			reread();
+		return r;
 	}
-	inline void putc(char c) {
+	void reread() {
+		p = std::move(p, end, beg);
+		int r = std::fread(p, 1, end - p, f);
+		p[r] = 0, p = beg;
+	}
+	void write(const char *s, int len) {
+		std::fwrite(s, 1, len, f);
+	}
+	void flush() {
+		write(beg, p - beg);
+		p = beg;
+	}
+	void push(char s) {
+		*p++ = s;
 		if (p == end)
-			writeAll();
-		*p++ = c;
+			flush();
 	}
-	inline void puts(const char *x) {
-		while (*x != 0)
-			putc(*x++);
+	void push(const char *s, int len) {
+		if (len < buf.size()) {
+			if (end - p <= len)
+				flush();
+			p = std::copy_n(s, len, p);
+		} else {
+			flush();
+			write(s, len);
+		}
 	}
-	void readAll() {
-		std::fread(beg, 1, end - beg, stdin);
-		p = s.data();
-	}
-	void writeAll() {
-		std::fwrite(beg, 1, p - beg, stdout);
-		p = s.data();
+	void puts(const char *s) {
+		while (*s != 0)
+			push(*s++);
 	}
 };
 
-struct FastI : BasicBuffer {
-	FastI() {
-		readAll();
+struct FastI : Buf {
+	FastI(FILE *f, int size = 1 << 18) : Buf(f, size) {
+		p = end, reread();
 	}
-	ll read() {
-		ll x = 0;
-		char c = getc();
-		bool sgn = true;
-		while (!std::isdigit(c))
-			sgn = sgn && c != '-', c = getc();
-		while (std::isdigit(c))
-			x = x * 10 + c - '0', c = getc();
-		return sgn ? x : -x;
-	}
-	template <class T>
-	FastI &operator>>(T &x) {
-		return x = read(), *this;
+	void skipSpace() {
+		while (std::isspace(top()))
+			pop();
 	}
 	FastI &operator>>(char &x) {
-		return x = getc(), *this;
+		skipSpace();
+		x = pop();
+		return *this;
+	}
+	FastI &operator>>(std::string &x) {
+		x.resize(0);
+		skipSpace();
+		while (std::isgraph(top()))
+			x.push_back(pop());
+		return *this;
+	}
+	template <std::integral T>
+	FastI &operator>>(T &x) {
+		bool neg = false;
+		x = 0;
+		skipSpace();
+		if constexpr (std::is_signed_v<T>)
+			if (top() == '-')
+				neg = true, pop();
+		while (std::isdigit(top()))
+			x = x * 10 + (pop() & 0xf);
+		if constexpr (std::is_signed_v<T>)
+			x = neg ? -x : x;
+		return *this;
 	}
 };
 
-struct FastO : BasicBuffer {
-	std::array<char, 32> u{};
+struct FastO : Buf {
+	FastO(FILE *f, int size = 1 << 18) : Buf(f, size) {}
 	~FastO() {
-		writeAll();
+		Buf::flush();
 	}
-	void output(ll x) {
-		char *i = u.data() + 20;
-		if (x < 0)
-			putc('-'), x = -x;
+	template <std::integral T>
+	FastO &operator<<(T x) {
+		static std::array<char, 48> u{};
+		char *r = u.data() + 40, *s = r;
+		bool neg = false;
+		if constexpr (std::is_signed_v<T>)
+			if (x < 0)
+				neg = true, x = -x;
 		do
-			*--i = x % 10 + '0', x /= 10;
+			*--s = x % 10 + '0', x /= 10;
 		while (x > 0);
-		puts(i);
-	}
-	template <class T>
-	FastO &operator<<(const T &x) {
-		return output(x), *this;
+		if constexpr (std::is_signed_v<T>)
+			if (neg)
+				*--s = '-';
+		return push(s, r - s), *this;
 	}
 	FastO &operator<<(char x) {
-		return putc(x), *this;
+		return push(x), *this;
 	}
 	FastO &operator<<(const char *x) {
 		return puts(x), *this;
 	}
 	FastO &operator<<(const std::string &x) {
-		return puts(x.c_str()), *this;
+		return push(x.c_str(), x.size()), *this;
 	}
 };
-
-FastI fin;
-FastO fout;
