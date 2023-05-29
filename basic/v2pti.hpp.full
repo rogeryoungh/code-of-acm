@@ -1,8 +1,8 @@
 // @description V<T> -> V<pair<T, count>>
 
 template <class T>
-auto v2pti(const V<T> &v) {
-	V<std::pair<T, int>> r;
+auto v2pti(const std::vector<T> &v) {
+	std::vector<std::pair<T, int>> r;
 	if (v.empty())
 		return r;
 	r.emplace_back(v[0], 1);

@@ -1,8 +1,8 @@
 // @description V<T> -> V<pair<T, count>>
 
 template <class T>
-auto v2pti(const V<T> &v) {
-	V<std::pair<T, int>> r;
+auto v2pti(const std::vector<T> &v) {
+	std::vector<std::pair<T, int>> r;
 	if (v.empty())
 		return r;
 	r.emplace_back(v[0], 1);
@@ -18,7 +18,7 @@ auto v2pti(const V<T> &v) {
 // @description 因式分解
 
 auto factor(ll n) {
-	V<ll> ret;
+	std::vector<ll> ret;
 	for (int i = 2; 1ll * i * i <= n; i++) {
 		for (; n % i == 0; n /= i)
 			ret.push_back(i);

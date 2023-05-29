@@ -7,7 +7,7 @@
 #include "using/i128.hpp"
 
 template<class PAIR>
-ll excrt(const V<PAIR> &am) {
+ll excrt(const std::vector<PAIR> &am) {
 	auto [ans, M] = am[0];
 	for (auto [a, m] : am) {
 		if (M % m == 0 && ans % m == a)

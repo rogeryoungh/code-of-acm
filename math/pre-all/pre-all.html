@@ -212,13 +212,13 @@ inline int mo(int x) {
 
 // @description 预处理逆元、阶乘、阶乘逆元
 
-V&lt;int&gt; iv, fac, ifac;
+std::vector&lt;int&gt; iv, fac, ifac;
 
 void pre_all(int u) {
 	int l = iv.size(), n = l * 2;
 	if (u &lt; l)
 		return;
-	iv = fac = ifac = V&lt;int&gt;(n + 1, 1);
+	iv = fac = ifac = std::vector&lt;int&gt;(n + 1, 1);
 	for (int i = 1; i &lt;= n; i++) {
 		fac[i] = 1ll * fac[i - 1] * i % P;
 	}
@@ -320,13 +320,13 @@ std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 
 // @description 预处理逆元、阶乘、阶乘逆元
 
-V&lt;Z&gt; iv, fac, ifac;
+std::vector&lt;Z&gt; iv, fac, ifac;
 
 void pre_all(int u) {
 	int l = iv.size(), n = l * 2;
 	if (u &lt;= l)
 		return;
-	iv = fac = ifac = V&lt;Z&gt;(n + 1, 1);
+	iv = fac = ifac = std::vector&lt;Z&gt;(n + 1, 1);
 	for (int i = 1; i &lt;= n; i++) {
 		fac[i] = fac[i - 1] * i;
 	}

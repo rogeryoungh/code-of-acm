@@ -5,7 +5,7 @@
 // @description 因式分解
 
 auto factor(ll n) {
-	V<ll> ret;
+	std::vector<ll> ret;
 	for (int i = 2; 1ll * i * i <= n; i++) {
 		for (; n % i == 0; n /= i)
 			ret.push_back(i);

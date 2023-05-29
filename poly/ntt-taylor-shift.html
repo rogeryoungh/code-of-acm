@@ -275,13 +275,13 @@ std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 
 // @description 预处理逆元、阶乘、阶乘逆元
 
-V&lt;Z&gt; iv, fac, ifac;
+std::vector&lt;Z&gt; iv, fac, ifac;
 
 void pre_all(int u) {
 	int l = iv.size(), n = l * 2;
 	if (u &lt;= l)
 		return;
-	iv = fac = ifac = V&lt;Z&gt;(n + 1, 1);
+	iv = fac = ifac = std::vector&lt;Z&gt;(n + 1, 1);
 	for (int i = 1; i &lt;= n; i++) {
 		fac[i] = fac[i - 1] * i;
 	}
@@ -302,7 +302,7 @@ Z C(int n, int m) {
 // @description 多项式牛顿迭代(m32)
 // @problem https://loj.ac/p/150
 
-V&lt;Z&gt; w{1, 1};
+std::vector&lt;Z&gt; w{1, 1};
 
 inline int get_lim(int m) {
 	return 1 &lt;&lt; std::__lg(m * 2 - 1);
@@ -348,7 +348,7 @@ void intt(auto f, int n) {
 	std::reverse(f + 1, f + n);
 }
 
-struct Poly : V&lt;Z&gt; { // 大常数板子
+struct Poly : std::vector&lt;Z&gt; { // 大常数板子
 	using vector::vector;
 #define T (*this)
 	int deg() const {

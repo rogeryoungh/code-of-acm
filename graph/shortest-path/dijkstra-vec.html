@@ -199,19 +199,19 @@ struct Edge {
 };
 
 template &lt;class D&gt;
-using Edges = V&lt;V&lt;Edge&lt;D&gt;&gt;&gt;;
+using Edges = std::vector&lt;std::vector&lt;Edge&lt;D&gt;&gt;&gt;;
 
 // @description Dijkstra 最短路
 
 template &lt;class D&gt;
 auto dijkstra(const Edges&lt;D&gt; &amp;E, int s) {
 	int n = E.size();
-	V&lt;D&gt; dis(n, std::numeric_limits&lt;D&gt;::max() / 2);
-	V&lt;int&gt; from(n, -1);
-	V&lt;bool&gt; vis(n);
+	std::vector&lt;D&gt; dis(n, std::numeric_limits&lt;D&gt;::max() / 2);
+	std::vector&lt;int&gt; from(n, -1);
+	std::vector&lt;bool&gt; vis(n);
 	dis[s] = 0, from[s] = s;
 	using pdi = std::pair&lt;D, int&gt;;
-	std::priority_queue&lt;pdi, V&lt;pdi&gt;, std::greater&lt;pdi&gt;&gt; pq;
+	std::priority_queue&lt;pdi, std::vector&lt;pdi&gt;, std::greater&lt;pdi&gt;&gt; pq;
 	pq.emplace(0, s);
 	while (!pq.empty()) {
 		auto [w, u] = pq.top();
@@ -228,8 +228,8 @@ auto dijkstra(const Edges&lt;D&gt; &amp;E, int s) {
 	return make_pair(dis, from);
 }
 
-auto get_path(const V&lt;int&gt; &amp;from, int x, int y) {
-	V&lt;int&gt; r;
+auto get_path(const std::vector&lt;int&gt; &amp;from, int x, int y) {
+	std::vector&lt;int&gt; r;
 	for (; x != y; y = from[y])
 		r.push_back(y);
 	r.push_back(y);

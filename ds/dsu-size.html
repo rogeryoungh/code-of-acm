@@ -194,7 +194,7 @@
 <pre><code class="language-cpp">// @description 带权并查集
 
 struct DSU {
-	V&lt;int&gt; fa, sz;
+	std::vector&lt;int&gt; fa, sz;
 	DSU(int n) : fa(n), sz(n, 1) {
 		for (int i = 0; i &lt; n; i++)
 			fa[i] = i;

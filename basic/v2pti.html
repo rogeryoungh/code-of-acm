@@ -194,8 +194,8 @@
 <pre><code class="language-cpp">// @description V&lt;T&gt; -&gt; V&lt;pair&lt;T, count&gt;&gt;
 
 template &lt;class T&gt;
-auto v2pti(const V&lt;T&gt; &amp;v) {
-	V&lt;std::pair&lt;T, int&gt;&gt; r;
+auto v2pti(const std::vector&lt;T&gt; &amp;v) {
+	std::vector&lt;std::pair&lt;T, int&gt;&gt; r;
 	if (v.empty())
 		return r;
 	r.emplace_back(v[0], 1);

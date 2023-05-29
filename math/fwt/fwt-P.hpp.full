@@ -70,10 +70,10 @@ void XOR(auto f, int n) {
 	}
 }
 
-auto subset_conv(const V<int> &f, const V<int> &g) {
+auto subset_conv(const std::vector<int> &f, const std::vector<int> &g) {
 	int N = f.size(), n = std::__lg(f.size());
-	V<V<int>> nf, ng, nr;
-	nf = ng = nr = V<V<int>>(n + 1, V<int>(N));
+	std::vector<std::vector<int>> nf, ng, nr;
+	nf = ng = nr = std::vector<std::vector<int>>(n + 1, std::vector<int>(N));
 	for (int i = 0; i < N; i++)
 		nf[popcnt(i)][i] = f[i], ng[popcnt(i)][i] = g[i];
 	for (int i = 0; i <= n; i++)
@@ -84,7 +84,7 @@ auto subset_conv(const V<int> &f, const V<int> &g) {
 				nr[i + j][k] = (nr[i + j][k] + 1ll * nf[i][k] * ng[j][k]) % P;
 	for (int i = 0; i <= n; i++)
 		OR<1>(nr[i].begin(), N);
-	V<int> r(N);
+	std::vector<int> r(N);
 	for (int i = 0; i < N; i++)
 		r[i] = nr[popcnt(i)][i];
 	return r;

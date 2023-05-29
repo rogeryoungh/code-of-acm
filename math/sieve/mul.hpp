@@ -2,11 +2,11 @@
 
 // @description 线性筛积性函数
 
-V<bool> isp;
-V<int> primes, phi, mu;
+std::vector<bool> isp;
+std::vector<int> primes, phi, mu;
 void Euler(int n) {
 	isp.resize(n + 1, true);
-	phi = mu = V<int>(n + 1);
+	phi = mu = std::vector<int>(n + 1);
 	mu[1] = phi[1] = 1;
 	for (int i = 2; i <= n; i++) {
 		if (isp[i]) {

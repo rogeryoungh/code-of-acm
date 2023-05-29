@@ -193,7 +193,7 @@
                         <h1 id="后缀数组"><a class="header" href="#后缀数组">后缀数组</a></h1>
 <pre><code class="language-cpp">auto sa_doubleing(auto first, auto last, int m = 128) {
 	int n = last - first;
-	V&lt;int&gt; cnt(std::max(n, m)), sa(n), rk(n + 1, -1), id(n + 1, -1);
+	std::vector&lt;int&gt; cnt(std::max(n, m)), sa(n), rk(n + 1, -1), id(n + 1, -1);
 	std::copy(first, last, rk.begin());
 	for (int i = 0; i &lt; n; i++)
 		cnt[rk[i]]++;

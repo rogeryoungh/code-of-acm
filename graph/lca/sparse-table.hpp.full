@@ -7,14 +7,14 @@ struct Edge {
 };
 
 template <class D>
-using Edges = V<V<Edge<D>>>;
+using Edges = std::vector<std::vector<Edge<D>>>;
 
 // @description 二维数组
 
 template <class T>
 struct VV {
 	int x, y;
-	V<T> m;
+	std::vector<T> m;
 	VV(int a, int b, const T &v = T()) : x(a), y(b), m(a * b, v) {}
 	auto operator[](int i) {
 		return m.begin() + i * y;
@@ -48,7 +48,7 @@ struct SparseTable {
 
 struct LCA {
 	const int n;
-	V<int> dfn;
+	std::vector<int> dfn;
 	SparseTable<pii> st;
 	LCA(int n_) : n(n_), dfn(n), st(n) {}
 	int query(int x, int y) const {
@@ -64,7 +64,7 @@ struct LCA {
 template <class D>
 struct LCAImpl : LCA {
 	const Edges<D> &E;
-	V<pii> rnk;
+	std::vector<pii> rnk;
 	int cnt = 0;
 	LCAImpl(const Edges<D> &E_, int s = 1) : LCA(E_.size()), E(E_), rnk(n) {
 		dfs(s, 0);

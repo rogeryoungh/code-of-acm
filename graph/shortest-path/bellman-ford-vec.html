@@ -199,7 +199,7 @@ struct Edge {
 };
 
 template &lt;class D&gt;
-using Edges = V&lt;V&lt;Edge&lt;D&gt;&gt;&gt;;
+using Edges = std::vector&lt;std::vector&lt;Edge&lt;D&gt;&gt;&gt;;
 
 // @description Bellman Ford 最短路
 

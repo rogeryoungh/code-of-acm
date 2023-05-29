@@ -195,7 +195,7 @@
 
 template &lt;class T&gt;
 struct Heap {
-	V&lt;T&gt; v;
+	std::vector&lt;T&gt; v;
 	Heap() : v(1) {}
 	bool update(int p) {
 		bool f = v[p] &lt; v[p / 2];

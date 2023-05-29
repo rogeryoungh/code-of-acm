@@ -3,7 +3,6 @@
 
 #include <bits/stdc++.h>
 
-#define V std::vector
 using ll = long long;
 
 #endif

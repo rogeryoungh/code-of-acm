@@ -5,8 +5,8 @@ struct Dinic {
 	struct edge {
 		int to, cap, rev;
 	};
-	V<V<edge>> G;
-	V<int> lev, cur;
+	std::vector<std::vector<edge>> G;
+	std::vector<int> lev, cur;
 	Dinic(int n) : G(n), lev(n), cur(n) {}
 
 	inline void add(int x, int y, int c) {

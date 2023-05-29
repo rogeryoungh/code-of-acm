@@ -197,8 +197,8 @@
 	struct edge {
 		int to, cap, rev;
 	};
-	V&lt;V&lt;edge&gt;&gt; G;
-	V&lt;int&gt; lev, cur;
+	std::vector&lt;std::vector&lt;edge&gt;&gt; G;
+	std::vector&lt;int&gt; lev, cur;
 	Dinic(int n) : G(n), lev(n), cur(n) {}
 
 	inline void add(int x, int y, int c) {

@@ -194,8 +194,8 @@
 <p>在 $O(n)$ 的时间内筛出 $n$ 以内的所有质数。</p>
 <pre><code class="language-cpp">// @description 线性筛
 
-V&lt;bool&gt; isp;
-V&lt;int&gt; primes;
+std::vector&lt;bool&gt; isp;
+std::vector&lt;int&gt; primes;
 void Euler(int n) {
 	isp.resize(n + 1, true);
 	for (int i = 2; i &lt;= n; i++) {

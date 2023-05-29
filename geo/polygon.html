@@ -314,7 +314,7 @@ int ccw(L l, P p) {
 	return ccw(l.s, l.t, p);
 }
 
-using VP = V&lt;P&gt;;
+using VP = std::vector&lt;P&gt;;
 
 template &lt;class RET&gt;
 RET ring_act(const auto &amp;v, auto &amp;&amp;func) {

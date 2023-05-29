@@ -224,7 +224,7 @@ ll inv_gcd(ll a, ll p) {
 using i128 = __int128_t;
 
 template&lt;class PAIR&gt;
-ll excrt(const V&lt;PAIR&gt; &amp;am) {
+ll excrt(const std::vector&lt;PAIR&gt; &amp;am) {
 	auto [ans, M] = am[0];
 	for (auto [a, m] : am) {
 		if (M % m == 0 &amp;&amp; ans % m == a)

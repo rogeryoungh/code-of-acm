@@ -198,7 +198,7 @@ struct Edge {
 };
 
 template &lt;class D&gt;
-using Edges = V&lt;V&lt;Edge&lt;D&gt;&gt;&gt;;
+using Edges = std::vector&lt;std::vector&lt;Edge&lt;D&gt;&gt;&gt;;
 
 // @description 队列优化 Bellman Ford 最短路
 
@@ -206,8 +206,8 @@ template &lt;class D&gt;
 auto queue_bellman_ford(const Edges&lt;D&gt; &amp;G, int s) {
 	int n = G.size();
 	std::queue&lt;int&gt; q;
-	V&lt;D&gt; dis(n, std::numeric_limits&lt;D&gt;::max() / 2);
-	V&lt;int&gt; from(n, -1);
+	std::vector&lt;D&gt; dis(n, std::numeric_limits&lt;D&gt;::max() / 2);
+	std::vector&lt;int&gt; from(n, -1);
 	dis[s] = 0, from[s] = s;
 	q.push(s);
 	while (!q.empty()) {

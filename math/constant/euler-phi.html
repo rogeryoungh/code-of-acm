@@ -194,8 +194,8 @@
 <p>需要用筛预处理 $O(\sqrt{N})$ 内的质数，每次求值复杂度 $O(\sqrt{N})$。</p>
 <pre><code class="language-cpp">// @description 线性筛
 
-V&lt;bool&gt; isp;
-V&lt;int&gt; primes;
+std::vector&lt;bool&gt; isp;
+std::vector&lt;int&gt; primes;
 void Euler(int n) {
 	isp.resize(n + 1, true);
 	for (int i = 2; i &lt;= n; i++) {

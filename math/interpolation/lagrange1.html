@@ -212,7 +212,7 @@ inline int mo(int x) {
 
 // @description 拉格朗日插值
 
-int lagrange(const V&lt;int&gt; &amp;x, const V&lt;int&gt; &amp;y, int k) {
+int lagrange(const std::vector&lt;int&gt; &amp;x, const std::vector&lt;int&gt; &amp;y, int k) {
 	int sum = 0, n = x.size();
 	for (int i = 0; i &lt; n; i++) {
 		int s1 = 1, s2 = 1;
@@ -311,7 +311,7 @@ std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 
 // @description 拉格朗日插值
 
-Z lagrange(const V&lt;Z&gt; &amp;x, const V&lt;Z&gt; &amp;y, Z k) {
+Z lagrange(const std::vector&lt;Z&gt; &amp;x, const std::vector&lt;Z&gt; &amp;y, Z k) {
 	int n = x.size();
 	Z sum = 0;
 	for (int i = 0; i &lt; n; i++) {

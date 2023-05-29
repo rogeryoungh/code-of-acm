@@ -263,10 +263,10 @@ void XOR(auto f, int n) {
 	}
 }
 
-auto subset_conv(const V&lt;int&gt; &amp;f, const V&lt;int&gt; &amp;g) {
+auto subset_conv(const std::vector&lt;int&gt; &amp;f, const std::vector&lt;int&gt; &amp;g) {
 	int N = f.size(), n = std::__lg(f.size());
-	V&lt;V&lt;int&gt;&gt; nf, ng, nr;
-	nf = ng = nr = V&lt;V&lt;int&gt;&gt;(n + 1, V&lt;int&gt;(N));
+	std::vector&lt;std::vector&lt;int&gt;&gt; nf, ng, nr;
+	nf = ng = nr = std::vector&lt;std::vector&lt;int&gt;&gt;(n + 1, std::vector&lt;int&gt;(N));
 	for (int i = 0; i &lt; N; i++)
 		nf[popcnt(i)][i] = f[i], ng[popcnt(i)][i] = g[i];
 	for (int i = 0; i &lt;= n; i++)
@@ -277,7 +277,7 @@ auto subset_conv(const V&lt;int&gt; &amp;f, const V&lt;int&gt; &amp;g) {
 				nr[i + j][k] = (nr[i + j][k] + 1ll * nf[i][k] * ng[j][k]) % P;
 	for (int i = 0; i &lt;= n; i++)
 		OR&lt;1&gt;(nr[i].begin(), N);
-	V&lt;int&gt; r(N);
+	std::vector&lt;int&gt; r(N);
 	for (int i = 0; i &lt; N; i++)
 		r[i] = nr[popcnt(i)][i];
 	return r;
@@ -418,10 +418,10 @@ void XOR(auto f, int n) {
 	}
 }
 
-auto subset_conv(const V&lt;Z&gt; &amp;f, const V&lt;Z&gt; &amp;g) {
+auto subset_conv(const std::vector&lt;Z&gt; &amp;f, const std::vector&lt;Z&gt; &amp;g) {
 	int N = f.size(), n = std::__lg(f.size());
-	V&lt;V&lt;Z&gt;&gt; nf, ng, nr;
-	nf = ng = nr = V&lt;V&lt;Z&gt;&gt;(n + 1, V&lt;Z&gt;(N));
+	std::vector&lt;std::vector&lt;Z&gt;&gt; nf, ng, nr;
+	nf = ng = nr = std::vector&lt;std::vector&lt;Z&gt;&gt;(n + 1, std::vector&lt;Z&gt;(N));
 	for (int i = 0; i &lt; N; i++)
 		nf[popcnt(i)][i] = f[i], ng[popcnt(i)][i] = g[i];
 	for (int i = 0; i &lt;= n; i++)
@@ -432,7 +432,7 @@ auto subset_conv(const V&lt;Z&gt; &amp;f, const V&lt;Z&gt; &amp;g) {
 				nr[i + j][k] += nf[i][k] * ng[j][k];
 	for (int i = 0; i &lt;= n; i++)
 		OR&lt;1&gt;(nr[i], N);
-	V&lt;Z&gt; r(N);
+	std::vector&lt;Z&gt; r(N);
 	for (int i = 0; i &lt; N; i++)
 		r[i] = nr[popcnt(i)][i];
 	return r;

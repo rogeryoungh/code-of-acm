@@ -196,7 +196,7 @@
 template &lt;int o&gt;
 auto manacher(const std::string &amp;s) {
 	int n = s.size();
-	V&lt;int&gt; m(n);
+	std::vector&lt;int&gt; m(n);
 	m[0] = o == 0;
 	for (int i = 1, l = 0, r = 0; i &lt; n; i++) {
 		int &amp;k = m[i], u = r - i;
@@ -210,11 +210,11 @@ auto manacher(const std::string &amp;s) {
 	return m;
 }
 
-V&lt;int&gt; manacher_odd(const std::string &amp;s) {
+std::vector&lt;int&gt; manacher_odd(const std::string &amp;s) {
 	return manacher&lt;0&gt;(s);
 }
 
-V&lt;int&gt; manacher_even(const std::string &amp;s) {
+std::vector&lt;int&gt; manacher_even(const std::string &amp;s) {
 	return manacher&lt;1&gt;(s);
 }
 </code></pre>

@@ -4,7 +4,7 @@
 
 // @description 多项式乘法(int mod)
 
-using Poly = V<int>;
+using Poly = std::vector<int>;
 
 inline int get_lim(int m) {
 	return 1 << std::__lg(m * 2 - 1);

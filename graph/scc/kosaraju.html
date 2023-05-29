@@ -198,11 +198,11 @@ struct Edge {
 };
 
 template &lt;class D&gt;
-using Edges = V&lt;V&lt;Edge&lt;D&gt;&gt;&gt;;
+using Edges = std::vector&lt;std::vector&lt;Edge&lt;D&gt;&gt;&gt;;
 
 struct SCC {
-	V&lt;int&gt; id;
-	V&lt;V&lt;int&gt;&gt; group;
+	std::vector&lt;int&gt; id;
+	std::vector&lt;std::vector&lt;int&gt;&gt; group;
 	SCC(int n) : id(n) {}
 };
 
@@ -210,8 +210,8 @@ template &lt;class D&gt;
 struct SCCImpl : SCC {
 	const Edges&lt;D&gt; &amp;E, &amp;IE;
 	const int n;
-	V&lt;bool&gt; vis;
-	V&lt;int&gt; stk;
+	std::vector&lt;bool&gt; vis;
+	std::vector&lt;int&gt; stk;
 	int cnt = 0;
 	void dfs1(int u) {
 		vis[u] = true;

@@ -206,8 +206,8 @@ int qpow(int a, ll b, int m) {
 }
 
 auto powers(int n, int k, int mod) {
-	V&lt;bool&gt; isp(n + 1, true);
-	V&lt;int&gt; pw(n + 1, 1);
+	std::vector&lt;bool&gt; isp(n + 1, true);
+	std::vector&lt;int&gt; pw(n + 1, 1);
 	for (int p = 2; p &lt;= n; ++p)
 		if (isp[p]) {
 			for (ll j = ll(p) * p; j &lt;= n; j += p)

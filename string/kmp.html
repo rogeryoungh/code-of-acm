@@ -193,7 +193,7 @@
                         <h1 id="kmp"><a class="header" href="#kmp">KMP</a></h1>
 <pre><code class="language-cpp">auto pre_kmp(const std::string &amp;s) {
 	int n = s.length();
-	V&lt;int&gt; pi(n + 1);
+	std::vector&lt;int&gt; pi(n + 1);
 	for (int i = 1; i &lt; n; i++) {
 		int j = pi[i];
 		while (j &gt; 0 &amp;&amp; s[i] != s[j])
@@ -206,7 +206,7 @@
 auto kmp(const std::string &amp;s, const std::string &amp;t) {
 	auto pi = pre_kmp(s);
 	int n = t.length();
-	V&lt;int&gt; p(n + 1);
+	std::vector&lt;int&gt; p(n + 1);
 	for (int i = 0; i &lt; n; i++) {
 		int j = p[i];
 		while (j &gt; 0 &amp;&amp; t[i] != s[j])

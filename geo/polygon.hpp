@@ -2,7 +2,7 @@
 
 #include "geo/fpoint.hpp"
 
-using VP = V<P>;
+using VP = std::vector<P>;
 
 template <class RET>
 RET ring_act(const auto &v, auto &&func) {

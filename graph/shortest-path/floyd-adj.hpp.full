@@ -3,7 +3,7 @@
 template <class T>
 struct VV {
 	int x, y;
-	V<T> m;
+	std::vector<T> m;
 	VV(int a, int b, const T &v = T()) : x(a), y(b), m(a * b, v) {}
 	auto operator[](int i) {
 		return m.begin() + i * y;
@@ -44,7 +44,7 @@ auto floyd(const Edges<D> &E) {
 }
 
 auto get_path(const VV<int> &pass, int x, int y) {
-	V<int> path = {x};
+	std::vector<int> path = {x};
 	std::function<void(int, int)> dfs = [&](int a, int b) {
 		if (pass[a][b] != -1) {
 			int p = pass[a][b];

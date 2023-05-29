@@ -196,8 +196,8 @@
 <pre><code class="language-cpp">// @description V&lt;T&gt; -&gt; V&lt;pair&lt;T, count&gt;&gt;
 
 template &lt;class T&gt;
-auto v2pti(const V&lt;T&gt; &amp;v) {
-	V&lt;std::pair&lt;T, int&gt;&gt; r;
+auto v2pti(const std::vector&lt;T&gt; &amp;v) {
+	std::vector&lt;std::pair&lt;T, int&gt;&gt; r;
 	if (v.empty())
 		return r;
 	r.emplace_back(v[0], 1);
@@ -212,8 +212,8 @@ auto v2pti(const V&lt;T&gt; &amp;v) {
 
 // @description 线性筛
 
-V&lt;bool&gt; isp;
-V&lt;int&gt; primes;
+std::vector&lt;bool&gt; isp;
+std::vector&lt;int&gt; primes;
 void Euler(int n) {
 	isp.resize(n + 1, true);
 	for (int i = 2; i &lt;= n; i++) {
@@ -232,7 +232,7 @@ void Euler(int n) {
 // @description 质因子分解
 
 auto factor(ll n) {
-	V&lt;ll&gt; ans;
+	std::vector&lt;ll&gt; ans;
 	for (int i : primes) {
 		if (1ll * i * i &gt; n)
 			break;

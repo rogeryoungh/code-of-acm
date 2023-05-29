@@ -18,13 +18,13 @@ inline int mo(int x) {
 
 // @description 预处理逆元、阶乘、阶乘逆元
 
-V<int> iv, fac, ifac;
+std::vector<int> iv, fac, ifac;
 
 void pre_all(int u) {
 	int l = iv.size(), n = l * 2;
 	if (u < l)
 		return;
-	iv = fac = ifac = V<int>(n + 1, 1);
+	iv = fac = ifac = std::vector<int>(n + 1, 1);
 	for (int i = 1; i <= n; i++) {
 		fac[i] = 1ll * fac[i - 1] * i % P;
 	}

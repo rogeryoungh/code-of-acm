@@ -198,11 +198,11 @@ struct Edge {
 };
 
 template &lt;class D&gt;
-using Edges = V&lt;V&lt;Edge&lt;D&gt;&gt;&gt;;
+using Edges = std::vector&lt;std::vector&lt;Edge&lt;D&gt;&gt;&gt;;
 
 struct SCC {
-	V&lt;int&gt; id;
-	V&lt;V&lt;int&gt;&gt; group;
+	std::vector&lt;int&gt; id;
+	std::vector&lt;std::vector&lt;int&gt;&gt; group;
 	SCC(int n) : id(n) {}
 };
 
@@ -210,8 +210,8 @@ template &lt;class D&gt;
 struct SCCImpl : SCC {
 	const Edges&lt;D&gt; &amp;E;
 	const int n;
-	V&lt;int&gt; low, dfn, stk;
-	V&lt;bool&gt; flag;
+	std::vector&lt;int&gt; low, dfn, stk;
+	std::vector&lt;bool&gt; flag;
 	int cnt = 0, c2 = 0;
 	void tarjan(int u) {
 		low[u] = dfn[u] = ++cnt;

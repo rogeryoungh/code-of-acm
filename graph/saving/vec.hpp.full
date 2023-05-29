@@ -5,4 +5,4 @@ struct Edge {
 };
 
 template <class D>
-using Edges = V<V<Edge<D>>>;
+using Edges = std::vector<std::vector<Edge<D>>>;

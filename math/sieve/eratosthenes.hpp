@@ -2,8 +2,8 @@
 
 // @description 埃氏筛
 
-V<bool> isp;
-V<int> primes;
+std::vector<bool> isp;
+std::vector<int> primes;
 void Eratosthenes(int n) {
 	isp.resize(n + 1, true);
 	for (int i = 2; i <= n; i++) {

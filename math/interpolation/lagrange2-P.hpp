@@ -4,9 +4,9 @@
 
 // @description 拉格朗日插值
 
-auto lagrange(const V<int> &x, const V<int> &y) {
+auto lagrange(const std::vector<int> &x, const std::vector<int> &y) {
 	int n = x.size();
-	V<int> d(n), u(n + 1), t(n);
+	std::vector<int> d(n), u(n + 1), t(n);
 	u[0] = 1;
 	for (int i = 0; i < n; i++) {
 		for (int j = i + 1; j >= 1; j--)

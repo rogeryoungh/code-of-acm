@@ -192,7 +192,6 @@
 <p>我的初始文件。</p>
 <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
 
-#define V std::vector
 using ll = long long;
 
 int ____ = std::cin.tie(nullptr)-&gt;sync_with_stdio(false);
@@ -215,7 +214,7 @@ int main() {
 template &lt;class T&gt;
 struct VV {
 	int x, y;
-	V&lt;T&gt; m;
+	std::vector&lt;T&gt; m;
 	VV(int a, int b, const T &amp;v = T()) : x(a), y(b), m(a * b, v) {}
 	auto operator[](int i) {
 		return m.begin() + i * y;
@@ -605,8 +604,8 @@ class RuntimeMontgomeryModInt {
 <pre><code class="language-cpp">// @description V&lt;T&gt; -&gt; V&lt;pair&lt;T, count&gt;&gt;
 
 template &lt;class T&gt;
-auto v2pti(const V&lt;T&gt; &amp;v) {
-	V&lt;std::pair&lt;T, int&gt;&gt; r;
+auto v2pti(const std::vector&lt;T&gt; &amp;v) {
+	std::vector&lt;std::pair&lt;T, int&gt;&gt; r;
 	if (v.empty())
 		return r;
 	r.emplace_back(v[0], 1);
@@ -644,7 +643,7 @@ inline int bsf(std::uint64_t x) {
 template &lt;class T&gt;
 struct VV {
 	int x, y;
-	V&lt;T&gt; m;
+	std::vector&lt;T&gt; m;
 	VV(int a, int b, const T &amp;v = T()) : x(a), y(b), m(a * b, v) {}
 	auto operator[](int i) {
 		return m.begin() + i * y;
@@ -694,7 +693,7 @@ std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const VV&lt;T&gt; &amp;
 template &lt;class T&gt;
 struct VV {
 	int x, y;
-	V&lt;T&gt; m;
+	std::vector&lt;T&gt; m;
 	VV(int a, int b, const T &amp;v = T()) : x(a), y(b), m(a * b, v) {}
 	auto operator[](int i) {
 		return m.begin() + i * y;
@@ -776,7 +775,7 @@ $$</p>
 template &lt;class T&gt;
 struct VV {
 	int x, y;
-	V&lt;T&gt; m;
+	std::vector&lt;T&gt; m;
 	VV(int a, int b, const T &amp;v = T()) : x(a), y(b), m(a * b, v) {}
 	auto operator[](int i) {
 		return m.begin() + i * y;
@@ -912,7 +911,7 @@ std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 template &lt;class T&gt;
 struct VV {
 	int x, y;
-	V&lt;T&gt; m;
+	std::vector&lt;T&gt; m;
 	VV(int a, int b, const T &amp;v = T()) : x(a), y(b), m(a * b, v) {}
 	auto operator[](int i) {
 		return m.begin() + i * y;
@@ -980,8 +979,8 @@ ll inv_gcd(ll a, ll p) {
 <p>在 $O(n)$ 的时间内筛出 $n$ 以内的所有质数。</p>
 <pre><code class="language-cpp">// @description 线性筛
 
-V&lt;bool&gt; isp;
-V&lt;int&gt; primes;
+std::vector&lt;bool&gt; isp;
+std::vector&lt;int&gt; primes;
 void Euler(int n) {
 	isp.resize(n + 1, true);
 	for (int i = 2; i &lt;= n; i++) {
@@ -1005,8 +1004,8 @@ void Euler(int n) {
 <p>在 $O(n)$ 的时间内筛出 $n$ 以内的所有质数。</p>
 <pre><code class="language-cpp">// @description 线性筛
 
-V&lt;bool&gt; isp;
-V&lt;int&gt; primes;
+std::vector&lt;bool&gt; isp;
+std::vector&lt;int&gt; primes;
 void Euler(int n) {
 	isp.resize(n + 1, true);
 	for (int i = 2; i &lt;= n; i++) {
@@ -1030,7 +1029,7 @@ void Euler(int n) {
 <p>在 $O(n)$ 的时间内筛出 $n$ 以内的所有质数，并且筛出最小质因子（least prime factor）。</p>
 <pre><code class="language-cpp">// @description 线性筛(LPF)
 
-V&lt;int&gt; lpf, primes;
+std::vector&lt;int&gt; lpf, primes;
 void Euler(int n) {
 	lpf.resize(n + 1);
 	for (int i = 2; i &lt;= n; i++) {
@@ -1054,8 +1053,8 @@ void Euler(int n) {
 <p>在 $O(n \log \log n)$ 的时间内筛出 $n$ 以内的所有质数。</p>
 <pre><code class="language-cpp">// @description 埃氏筛
 
-V&lt;bool&gt; isp;
-V&lt;int&gt; primes;
+std::vector&lt;bool&gt; isp;
+std::vector&lt;int&gt; primes;
 void Eratosthenes(int n) {
 	isp.resize(n + 1, true);
 	for (int i = 2; i &lt;= n; i++) {
@@ -1074,8 +1073,8 @@ void Eratosthenes(int n) {
 <div style="break-before: page; page-break-before: always;"></div><h1 id="筛法eratosthenes卡常"><a class="header" href="#筛法eratosthenes卡常">筛法・Eratosthenes・卡常</a></h1>
 <pre><code class="language-cpp">// @description 埃氏筛(卡常)
 
-V&lt;bool&gt; isp;
-V&lt;int&gt; primes; // 个数不精确！
+std::vector&lt;bool&gt; isp;
+std::vector&lt;int&gt; primes; // 个数不精确！
 void Eratosthenes(int n) {
 	isp.resize(n + 6, true);
 	auto f = [&amp;](int i) {
@@ -1101,8 +1100,8 @@ void Eratosthenes(int n) {
 <pre><code class="language-cpp">// @description V&lt;T&gt; -&gt; V&lt;pair&lt;T, count&gt;&gt;
 
 template &lt;class T&gt;
-auto v2pti(const V&lt;T&gt; &amp;v) {
-	V&lt;std::pair&lt;T, int&gt;&gt; r;
+auto v2pti(const std::vector&lt;T&gt; &amp;v) {
+	std::vector&lt;std::pair&lt;T, int&gt;&gt; r;
 	if (v.empty())
 		return r;
 	r.emplace_back(v[0], 1);
@@ -1117,8 +1116,8 @@ auto v2pti(const V&lt;T&gt; &amp;v) {
 
 // @description 线性筛
 
-V&lt;bool&gt; isp;
-V&lt;int&gt; primes;
+std::vector&lt;bool&gt; isp;
+std::vector&lt;int&gt; primes;
 void Euler(int n) {
 	isp.resize(n + 1, true);
 	for (int i = 2; i &lt;= n; i++) {
@@ -1137,7 +1136,7 @@ void Euler(int n) {
 // @description 质因子分解
 
 auto factor(ll n) {
-	V&lt;ll&gt; ans;
+	std::vector&lt;ll&gt; ans;
 	for (int i : primes) {
 		if (1ll * i * i &gt; n)
 			break;
@@ -1154,8 +1153,8 @@ auto factor(ll n) {
 <pre><code class="language-cpp">// @description V&lt;T&gt; -&gt; V&lt;pair&lt;T, count&gt;&gt;
 
 template &lt;class T&gt;
-auto v2pti(const V&lt;T&gt; &amp;v) {
-	V&lt;std::pair&lt;T, int&gt;&gt; r;
+auto v2pti(const std::vector&lt;T&gt; &amp;v) {
+	std::vector&lt;std::pair&lt;T, int&gt;&gt; r;
 	if (v.empty())
 		return r;
 	r.emplace_back(v[0], 1);
@@ -1171,7 +1170,7 @@ auto v2pti(const V&lt;T&gt; &amp;v) {
 // @description 因式分解
 
 auto factor(ll n) {
-	V&lt;ll&gt; ret;
+	std::vector&lt;ll&gt; ret;
 	for (int i = 2; 1ll * i * i &lt;= n; i++) {
 		for (; n % i == 0; n /= i)
 			ret.push_back(i);
@@ -1187,8 +1186,8 @@ auto factor(ll n) {
 <pre><code class="language-cpp">// @description V&lt;T&gt; -&gt; V&lt;pair&lt;T, count&gt;&gt;
 
 template &lt;class T&gt;
-auto v2pti(const V&lt;T&gt; &amp;v) {
-	V&lt;std::pair&lt;T, int&gt;&gt; r;
+auto v2pti(const std::vector&lt;T&gt; &amp;v) {
+	std::vector&lt;std::pair&lt;T, int&gt;&gt; r;
 	if (v.empty())
 		return r;
 	r.emplace_back(v[0], 1);
@@ -1203,8 +1202,8 @@ auto v2pti(const V&lt;T&gt; &amp;v) {
 
 // @description 线性筛
 
-V&lt;bool&gt; isp;
-V&lt;int&gt; primes;
+std::vector&lt;bool&gt; isp;
+std::vector&lt;int&gt; primes;
 void Euler(int n) {
 	isp.resize(n + 1, true);
 	for (int i = 2; i &lt;= n; i++) {
@@ -1223,7 +1222,7 @@ void Euler(int n) {
 // @description 质因子分解
 
 auto factor(ll n) {
-	V&lt;ll&gt; ans;
+	std::vector&lt;ll&gt; ans;
 	for (int i : primes) {
 		if (1ll * i * i &gt; n)
 			break;
@@ -1241,8 +1240,8 @@ auto factor(ll n) {
 <pre><code class="language-cpp">// @description V&lt;T&gt; -&gt; V&lt;pair&lt;T, count&gt;&gt;
 
 template &lt;class T&gt;
-auto v2pti(const V&lt;T&gt; &amp;v) {
-	V&lt;std::pair&lt;T, int&gt;&gt; r;
+auto v2pti(const std::vector&lt;T&gt; &amp;v) {
+	std::vector&lt;std::pair&lt;T, int&gt;&gt; r;
 	if (v.empty())
 		return r;
 	r.emplace_back(v[0], 1);
@@ -1257,7 +1256,7 @@ auto v2pti(const V&lt;T&gt; &amp;v) {
 
 // @description 线性筛(LPF)
 
-V&lt;int&gt; lpf, primes;
+std::vector&lt;int&gt; lpf, primes;
 void Euler(int n) {
 	lpf.resize(n + 1);
 	for (int i = 2; i &lt;= n; i++) {
@@ -1276,7 +1275,7 @@ void Euler(int n) {
 // @description 质因子分解
 
 auto factor(ll n) {
-	V&lt;ll&gt; ret;
+	std::vector&lt;ll&gt; ret;
 	for (; n &gt; 1; n /= lpf[n])
 		ret.push_back(lpf[n]);
 	return ret;
@@ -1345,7 +1344,7 @@ ll pollard_rho(ll N) {
 }
 
 auto factor(ll x) {
-	V&lt;ll&gt; v;
+	std::vector&lt;ll&gt; v;
 	if (x == 1)
 		return v;
 	std::function&lt;void(ll)&gt; dfs = [&amp;](ll u) {
@@ -1404,7 +1403,7 @@ ll inv_gcd(ll a, ll p) {
 // @description 中国剩余定理
 
 template &lt;class PAIR&gt;
-ll crt(const V&lt;PAIR&gt; &amp;am) {
+ll crt(const std::vector&lt;PAIR&gt; &amp;am) {
 	ll prod = 1, ret = 0;
 	for (auto [a, m] : am)
 		prod *= m;
@@ -1453,7 +1452,7 @@ ll inv_gcd(ll a, ll p) {
 using i128 = __int128_t;
 
 template&lt;class PAIR&gt;
-ll excrt(const V&lt;PAIR&gt; &amp;am) {
+ll excrt(const std::vector&lt;PAIR&gt; &amp;am) {
 	auto [ans, M] = am[0];
 	for (auto [a, m] : am) {
 		if (M % m == 0 &amp;&amp; ans % m == a)
@@ -1627,13 +1626,13 @@ inline int mo(int x) {
 
 // @description 预处理逆元、阶乘、阶乘逆元
 
-V&lt;int&gt; iv, fac, ifac;
+std::vector&lt;int&gt; iv, fac, ifac;
 
 void pre_all(int u) {
 	int l = iv.size(), n = l * 2;
 	if (u &lt; l)
 		return;
-	iv = fac = ifac = V&lt;int&gt;(n + 1, 1);
+	iv = fac = ifac = std::vector&lt;int&gt;(n + 1, 1);
 	for (int i = 1; i &lt;= n; i++) {
 		fac[i] = 1ll * fac[i - 1] * i % P;
 	}
@@ -1735,13 +1734,13 @@ std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 
 // @description 预处理逆元、阶乘、阶乘逆元
 
-V&lt;Z&gt; iv, fac, ifac;
+std::vector&lt;Z&gt; iv, fac, ifac;
 
 void pre_all(int u) {
 	int l = iv.size(), n = l * 2;
 	if (u &lt;= l)
 		return;
-	iv = fac = ifac = V&lt;Z&gt;(n + 1, 1);
+	iv = fac = ifac = std::vector&lt;Z&gt;(n + 1, 1);
 	for (int i = 1; i &lt;= n; i++) {
 		fac[i] = fac[i - 1] * i;
 	}
@@ -1778,7 +1777,7 @@ inline int mo(int x) {
 	return x &gt;= P ? x - P : x;
 }
 
-V&lt;int&gt; iv{1, 1}, fac{1}, ifac{1};
+std::vector&lt;int&gt; iv{1, 1}, fac{1}, ifac{1};
 
 // @description 预处理逆元
 
@@ -1898,13 +1897,13 @@ std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 
 // @description 预处理逆元、阶乘、阶乘逆元
 
-V&lt;Z&gt; iv, fac, ifac;
+std::vector&lt;Z&gt; iv, fac, ifac;
 
 void pre_all(int u) {
 	int l = iv.size(), n = l * 2;
 	if (u &lt;= l)
 		return;
-	iv = fac = ifac = V&lt;Z&gt;(n + 1, 1);
+	iv = fac = ifac = std::vector&lt;Z&gt;(n + 1, 1);
 	for (int i = 1; i &lt;= n; i++) {
 		fac[i] = fac[i - 1] * i;
 	}
@@ -1925,7 +1924,7 @@ Z C(int n, int m) {
 // @description 多项式牛顿迭代(m32)
 // @problem https://loj.ac/p/150
 
-V&lt;Z&gt; w{1, 1};
+std::vector&lt;Z&gt; w{1, 1};
 
 inline int get_lim(int m) {
 	return 1 &lt;&lt; std::__lg(m * 2 - 1);
@@ -1971,7 +1970,7 @@ void intt(auto f, int n) {
 	std::reverse(f + 1, f + n);
 }
 
-struct Poly : V&lt;Z&gt; { // 大常数板子
+struct Poly : std::vector&lt;Z&gt; { // 大常数板子
 	using vector::vector;
 #define T (*this)
 	int deg() const {
@@ -2179,8 +2178,8 @@ Poly stirling2st_col(int n, int k) {
 <p>需要用筛预处理 $O(\sqrt{N})$ 内的质数，每次求值复杂度 $O(\sqrt{N})$。</p>
 <pre><code class="language-cpp">// @description 线性筛
 
-V&lt;bool&gt; isp;
-V&lt;int&gt; primes;
+std::vector&lt;bool&gt; isp;
+std::vector&lt;int&gt; primes;
 void Euler(int n) {
 	isp.resize(n + 1, true);
 	for (int i = 2; i &lt;= n; i++) {
@@ -2227,8 +2226,8 @@ int qpow(int a, ll b, int m) {
 }
 
 auto powers(int n, int k, int mod) {
-	V&lt;bool&gt; isp(n + 1, true);
-	V&lt;int&gt; pw(n + 1, 1);
+	std::vector&lt;bool&gt; isp(n + 1, true);
+	std::vector&lt;int&gt; pw(n + 1, 1);
 	for (int p = 2; p &lt;= n; ++p)
 		if (isp[p]) {
 			for (ll j = ll(p) * p; j &lt;= n; j += p)
@@ -2256,8 +2255,8 @@ int qpow(int a, ll b, int m) {
 
 // @description 线性筛
 
-V&lt;bool&gt; isp;
-V&lt;int&gt; primes;
+std::vector&lt;bool&gt; isp;
+std::vector&lt;int&gt; primes;
 void Euler(int n) {
 	isp.resize(n + 1, true);
 	for (int i = 2; i &lt;= n; i++) {
@@ -2329,7 +2328,7 @@ inline int mo(int x) {
 
 // @description 拉格朗日插值
 
-int lagrange(const V&lt;int&gt; &amp;x, const V&lt;int&gt; &amp;y, int k) {
+int lagrange(const std::vector&lt;int&gt; &amp;x, const std::vector&lt;int&gt; &amp;y, int k) {
 	int sum = 0, n = x.size();
 	for (int i = 0; i &lt; n; i++) {
 		int s1 = 1, s2 = 1;
@@ -2428,7 +2427,7 @@ std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 
 // @description 拉格朗日插值
 
-Z lagrange(const V&lt;Z&gt; &amp;x, const V&lt;Z&gt; &amp;y, Z k) {
+Z lagrange(const std::vector&lt;Z&gt; &amp;x, const std::vector&lt;Z&gt; &amp;y, Z k) {
 	int n = x.size();
 	Z sum = 0;
 	for (int i = 0; i &lt; n; i++) {
@@ -2463,9 +2462,9 @@ inline int mo(int x) {
 
 // @description 拉格朗日插值
 
-auto lagrange(const V&lt;int&gt; &amp;x, const V&lt;int&gt; &amp;y) {
+auto lagrange(const std::vector&lt;int&gt; &amp;x, const std::vector&lt;int&gt; &amp;y) {
 	int n = x.size();
-	V&lt;int&gt; d(n), u(n + 1), t(n);
+	std::vector&lt;int&gt; d(n), u(n + 1), t(n);
 	u[0] = 1;
 	for (int i = 0; i &lt; n; i++) {
 		for (int j = i + 1; j &gt;= 1; j--)
@@ -2570,9 +2569,9 @@ std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 
 // @description 拉格朗日插值
 
-auto lagrange(const V&lt;Z&gt; &amp;x, const V&lt;Z&gt; &amp;y) {
+auto lagrange(const std::vector&lt;Z&gt; &amp;x, const std::vector&lt;Z&gt; &amp;y) {
 	int n = x.size();
-	V&lt;Z&gt; d(n), u(n + 1), t(n);
+	std::vector&lt;Z&gt; d(n), u(n + 1), t(n);
 	u[0] = 1;
 	for (int i = 0; i &lt; n; i++) {
 		for (int j = i + 1; j &gt;= 1; j--)
@@ -2615,11 +2614,11 @@ inline int mo(int x) {
 
 // @description 拉格朗日插值
 
-int lagrange(const V&lt;int&gt; &amp;y, int x) {
+int lagrange(const std::vector&lt;int&gt; &amp;y, int x) {
 	int n = y.size();
 	if (0 &lt;= x &amp;&amp; x &lt; n)
 		return y[x];
-	V&lt;int&gt; pl(n + 2, 1), pr(n + 2, 1), fac(n + 2, 1);
+	std::vector&lt;int&gt; pl(n + 2, 1), pr(n + 2, 1), fac(n + 2, 1);
 	for (int i = 0; i &lt; n; i++)
 		pl[i + 1] = 1ll * pl[i] * (x - i) % P;
 	for (int i = n - 1; i &gt;= 0; i--)
@@ -2720,11 +2719,11 @@ std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 
 // @description 拉格朗日插值
 
-Z lagrange(const V&lt;Z&gt; &amp;y, int x) {
+Z lagrange(const std::vector&lt;Z&gt; &amp;y, int x) {
 	int n = y.size();
 	if (0 &lt;= x &amp;&amp; x &lt; n)
 		return y[x];
-	V&lt;Z&gt; pl(n + 2, 1), pr(n + 2, 1), fac(n + 2, 1);
+	std::vector&lt;Z&gt; pl(n + 2, 1), pr(n + 2, 1), fac(n + 2, 1);
 	for (int i = 0; i &lt; n; i++)
 		pl[i + 1] = pl[i] * (x - i);
 	for (int i = n - 1; i &gt;= 0; i--)
@@ -2814,10 +2813,10 @@ void XOR(auto f, int n) {
 	}
 }
 
-auto subset_conv(const V&lt;int&gt; &amp;f, const V&lt;int&gt; &amp;g) {
+auto subset_conv(const std::vector&lt;int&gt; &amp;f, const std::vector&lt;int&gt; &amp;g) {
 	int N = f.size(), n = std::__lg(f.size());
-	V&lt;V&lt;int&gt;&gt; nf, ng, nr;
-	nf = ng = nr = V&lt;V&lt;int&gt;&gt;(n + 1, V&lt;int&gt;(N));
+	std::vector&lt;std::vector&lt;int&gt;&gt; nf, ng, nr;
+	nf = ng = nr = std::vector&lt;std::vector&lt;int&gt;&gt;(n + 1, std::vector&lt;int&gt;(N));
 	for (int i = 0; i &lt; N; i++)
 		nf[popcnt(i)][i] = f[i], ng[popcnt(i)][i] = g[i];
 	for (int i = 0; i &lt;= n; i++)
@@ -2828,7 +2827,7 @@ auto subset_conv(const V&lt;int&gt; &amp;f, const V&lt;int&gt; &amp;g) {
 				nr[i + j][k] = (nr[i + j][k] + 1ll * nf[i][k] * ng[j][k]) % P;
 	for (int i = 0; i &lt;= n; i++)
 		OR&lt;1&gt;(nr[i].begin(), N);
-	V&lt;int&gt; r(N);
+	std::vector&lt;int&gt; r(N);
 	for (int i = 0; i &lt; N; i++)
 		r[i] = nr[popcnt(i)][i];
 	return r;
@@ -2969,10 +2968,10 @@ void XOR(auto f, int n) {
 	}
 }
 
-auto subset_conv(const V&lt;Z&gt; &amp;f, const V&lt;Z&gt; &amp;g) {
+auto subset_conv(const std::vector&lt;Z&gt; &amp;f, const std::vector&lt;Z&gt; &amp;g) {
 	int N = f.size(), n = std::__lg(f.size());
-	V&lt;V&lt;Z&gt;&gt; nf, ng, nr;
-	nf = ng = nr = V&lt;V&lt;Z&gt;&gt;(n + 1, V&lt;Z&gt;(N));
+	std::vector&lt;std::vector&lt;Z&gt;&gt; nf, ng, nr;
+	nf = ng = nr = std::vector&lt;std::vector&lt;Z&gt;&gt;(n + 1, std::vector&lt;Z&gt;(N));
 	for (int i = 0; i &lt; N; i++)
 		nf[popcnt(i)][i] = f[i], ng[popcnt(i)][i] = g[i];
 	for (int i = 0; i &lt;= n; i++)
@@ -2983,7 +2982,7 @@ auto subset_conv(const V&lt;Z&gt; &amp;f, const V&lt;Z&gt; &amp;g) {
 				nr[i + j][k] += nf[i][k] * ng[j][k];
 	for (int i = 0; i &lt;= n; i++)
 		OR&lt;1&gt;(nr[i], N);
-	V&lt;Z&gt; r(N);
+	std::vector&lt;Z&gt; r(N);
 	for (int i = 0; i &lt; N; i++)
 		r[i] = nr[popcnt(i)][i];
 	return r;
@@ -2993,7 +2992,7 @@ auto subset_conv(const V&lt;Z&gt; &amp;f, const V&lt;Z&gt; &amp;g) {
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kmp"><a class="header" href="#kmp">KMP</a></h1>
 <pre><code class="language-cpp">auto pre_kmp(const std::string &amp;s) {
 	int n = s.length();
-	V&lt;int&gt; pi(n + 1);
+	std::vector&lt;int&gt; pi(n + 1);
 	for (int i = 1; i &lt; n; i++) {
 		int j = pi[i];
 		while (j &gt; 0 &amp;&amp; s[i] != s[j])
@@ -3006,7 +3005,7 @@ auto subset_conv(const V&lt;Z&gt; &amp;f, const V&lt;Z&gt; &amp;g) {
 auto kmp(const std::string &amp;s, const std::string &amp;t) {
 	auto pi = pre_kmp(s);
 	int n = t.length();
-	V&lt;int&gt; p(n + 1);
+	std::vector&lt;int&gt; p(n + 1);
 	for (int i = 0; i &lt; n; i++) {
 		int j = p[i];
 		while (j &gt; 0 &amp;&amp; t[i] != s[j])
@@ -3019,7 +3018,7 @@ auto kmp(const std::string &amp;s, const std::string &amp;t) {
 <div style="break-before: page; page-break-before: always;"></div><h1 id="z-函数"><a class="header" href="#z-函数">Z 函数</a></h1>
 <pre><code class="language-cpp">auto pre_z_algo(const std::string &amp;s) {
 	int n = s.length();
-	V&lt;int&gt; z(n + 1);
+	std::vector&lt;int&gt; z(n + 1);
 	z[1] = n;
 	for (int i = 1, l = -1, r = 0; i &lt; n; i++) {
 		int &amp;k = z[i + 1], u = r - i;
@@ -3036,7 +3035,7 @@ auto kmp(const std::string &amp;s, const std::string &amp;t) {
 auto z_algo(const std::string &amp;s, const std::string &amp;t) {
 	auto z = pre_z_algo(s);
 	int n = t.length();
-	V&lt;int&gt; z2(n + 1);
+	std::vector&lt;int&gt; z2(n + 1);
 	for (int i = 0, l = 0, r = 0; i &lt; n; i++) {
 		int &amp;k = z2[i + 1], u = r - i;
 		if (u &gt; 0)
@@ -3052,7 +3051,7 @@ auto z_algo(const std::string &amp;s, const std::string &amp;t) {
 <div style="break-before: page; page-break-before: always;"></div><h1 id="后缀数组"><a class="header" href="#后缀数组">后缀数组</a></h1>
 <pre><code class="language-cpp">auto sa_doubleing(auto first, auto last, int m = 128) {
 	int n = last - first;
-	V&lt;int&gt; cnt(std::max(n, m)), sa(n), rk(n + 1, -1), id(n + 1, -1);
+	std::vector&lt;int&gt; cnt(std::max(n, m)), sa(n), rk(n + 1, -1), id(n + 1, -1);
 	std::copy(first, last, rk.begin());
 	for (int i = 0; i &lt; n; i++)
 		cnt[rk[i]]++;
@@ -3094,7 +3093,7 @@ auto z_algo(const std::string &amp;s, const std::string &amp;t) {
 template &lt;int o&gt;
 auto manacher(const std::string &amp;s) {
 	int n = s.size();
-	V&lt;int&gt; m(n);
+	std::vector&lt;int&gt; m(n);
 	m[0] = o == 0;
 	for (int i = 1, l = 0, r = 0; i &lt; n; i++) {
 		int &amp;k = m[i], u = r - i;
@@ -3108,11 +3107,11 @@ auto manacher(const std::string &amp;s) {
 	return m;
 }
 
-V&lt;int&gt; manacher_odd(const std::string &amp;s) {
+std::vector&lt;int&gt; manacher_odd(const std::string &amp;s) {
 	return manacher&lt;0&gt;(s);
 }
 
-V&lt;int&gt; manacher_even(const std::string &amp;s) {
+std::vector&lt;int&gt; manacher_even(const std::string &amp;s) {
 	return manacher&lt;1&gt;(s);
 }
 </code></pre>
@@ -3131,7 +3130,7 @@ struct Edge {
 };
 
 template &lt;class D&gt;
-using Edges = V&lt;V&lt;Edge&lt;D&gt;&gt;&gt;;
+using Edges = std::vector&lt;std::vector&lt;Edge&lt;D&gt;&gt;&gt;;
 
 // @description Bellman Ford 最短路
 
@@ -3163,7 +3162,7 @@ struct Edge {
 };
 
 template &lt;class D&gt;
-using Edges = V&lt;V&lt;Edge&lt;D&gt;&gt;&gt;;
+using Edges = std::vector&lt;std::vector&lt;Edge&lt;D&gt;&gt;&gt;;
 
 // @description 队列优化 Bellman Ford 最短路
 
@@ -3171,8 +3170,8 @@ template &lt;class D&gt;
 auto queue_bellman_ford(const Edges&lt;D&gt; &amp;G, int s) {
 	int n = G.size();
 	std::queue&lt;int&gt; q;
-	V&lt;D&gt; dis(n, std::numeric_limits&lt;D&gt;::max() / 2);
-	V&lt;int&gt; from(n, -1);
+	std::vector&lt;D&gt; dis(n, std::numeric_limits&lt;D&gt;::max() / 2);
+	std::vector&lt;int&gt; from(n, -1);
 	dis[s] = 0, from[s] = s;
 	q.push(s);
 	while (!q.empty()) {
@@ -3196,19 +3195,19 @@ struct Edge {
 };
 
 template &lt;class D&gt;
-using Edges = V&lt;V&lt;Edge&lt;D&gt;&gt;&gt;;
+using Edges = std::vector&lt;std::vector&lt;Edge&lt;D&gt;&gt;&gt;;
 
 // @description Dijkstra 最短路
 
 template &lt;class D&gt;
 auto dijkstra(const Edges&lt;D&gt; &amp;E, int s) {
 	int n = E.size();
-	V&lt;D&gt; dis(n, std::numeric_limits&lt;D&gt;::max() / 2);
-	V&lt;int&gt; from(n, -1);
-	V&lt;bool&gt; vis(n);
+	std::vector&lt;D&gt; dis(n, std::numeric_limits&lt;D&gt;::max() / 2);
+	std::vector&lt;int&gt; from(n, -1);
+	std::vector&lt;bool&gt; vis(n);
 	dis[s] = 0, from[s] = s;
 	using pdi = std::pair&lt;D, int&gt;;
-	std::priority_queue&lt;pdi, V&lt;pdi&gt;, std::greater&lt;pdi&gt;&gt; pq;
+	std::priority_queue&lt;pdi, std::vector&lt;pdi&gt;, std::greater&lt;pdi&gt;&gt; pq;
 	pq.emplace(0, s);
 	while (!pq.empty()) {
 		auto [w, u] = pq.top();
@@ -3225,8 +3224,8 @@ auto dijkstra(const Edges&lt;D&gt; &amp;E, int s) {
 	return make_pair(dis, from);
 }
 
-auto get_path(const V&lt;int&gt; &amp;from, int x, int y) {
-	V&lt;int&gt; r;
+auto get_path(const std::vector&lt;int&gt; &amp;from, int x, int y) {
+	std::vector&lt;int&gt; r;
 	for (; x != y; y = from[y])
 		r.push_back(y);
 	r.push_back(y);
@@ -3241,7 +3240,7 @@ auto get_path(const V&lt;int&gt; &amp;from, int x, int y) {
 template &lt;class T&gt;
 struct VV {
 	int x, y;
-	V&lt;T&gt; m;
+	std::vector&lt;T&gt; m;
 	VV(int a, int b, const T &amp;v = T()) : x(a), y(b), m(a * b, v) {}
 	auto operator[](int i) {
 		return m.begin() + i * y;
@@ -3282,7 +3281,7 @@ auto floyd(const Edges&lt;D&gt; &amp;E) {
 }
 
 auto get_path(const VV&lt;int&gt; &amp;pass, int x, int y) {
-	V&lt;int&gt; path = {x};
+	std::vector&lt;int&gt; path = {x};
 	std::function&lt;void(int, int)&gt; dfs = [&amp;](int a, int b) {
 		if (pass[a][b] != -1) {
 			int p = pass[a][b];
@@ -3303,14 +3302,14 @@ struct Edge {
 };
 
 template &lt;class D&gt;
-using Edges = V&lt;V&lt;Edge&lt;D&gt;&gt;&gt;;
+using Edges = std::vector&lt;std::vector&lt;Edge&lt;D&gt;&gt;&gt;;
 
 // @description 二维数组
 
 template &lt;class T&gt;
 struct VV {
 	int x, y;
-	V&lt;T&gt; m;
+	std::vector&lt;T&gt; m;
 	VV(int a, int b, const T &amp;v = T()) : x(a), y(b), m(a * b, v) {}
 	auto operator[](int i) {
 		return m.begin() + i * y;
@@ -3325,7 +3324,7 @@ struct VV {
 struct LCA {
 	const int n, lgn;
 	VV&lt;int&gt; f;
-	V&lt;int&gt; dep;
+	std::vector&lt;int&gt; dep;
 	LCA(int n_) : n(n_), lgn(1 + std::__lg(n)), f(n, lgn), dep(n) {}
 	int query(int x, int y) {
 		if (dep[x] &gt; dep[y])
@@ -3373,14 +3372,14 @@ struct Edge {
 };
 
 template &lt;class D&gt;
-using Edges = V&lt;V&lt;Edge&lt;D&gt;&gt;&gt;;
+using Edges = std::vector&lt;std::vector&lt;Edge&lt;D&gt;&gt;&gt;;
 
 // @description 二维数组
 
 template &lt;class T&gt;
 struct VV {
 	int x, y;
-	V&lt;T&gt; m;
+	std::vector&lt;T&gt; m;
 	VV(int a, int b, const T &amp;v = T()) : x(a), y(b), m(a * b, v) {}
 	auto operator[](int i) {
 		return m.begin() + i * y;
@@ -3414,7 +3413,7 @@ struct SparseTable {
 
 struct LCA {
 	const int n;
-	V&lt;int&gt; dfn;
+	std::vector&lt;int&gt; dfn;
 	SparseTable&lt;pii&gt; st;
 	LCA(int n_) : n(n_), dfn(n), st(n) {}
 	int query(int x, int y) const {
@@ -3430,7 +3429,7 @@ struct LCA {
 template &lt;class D&gt;
 struct LCAImpl : LCA {
 	const Edges&lt;D&gt; &amp;E;
-	V&lt;pii&gt; rnk;
+	std::vector&lt;pii&gt; rnk;
 	int cnt = 0;
 	LCAImpl(const Edges&lt;D&gt; &amp;E_, int s = 1) : LCA(E_.size()), E(E_), rnk(n) {
 		dfs(s, 0);
@@ -3456,11 +3455,11 @@ struct Edge {
 };
 
 template &lt;class D&gt;
-using Edges = V&lt;V&lt;Edge&lt;D&gt;&gt;&gt;;
+using Edges = std::vector&lt;std::vector&lt;Edge&lt;D&gt;&gt;&gt;;
 
 struct SCC {
-	V&lt;int&gt; id;
-	V&lt;V&lt;int&gt;&gt; group;
+	std::vector&lt;int&gt; id;
+	std::vector&lt;std::vector&lt;int&gt;&gt; group;
 	SCC(int n) : id(n) {}
 };
 
@@ -3468,8 +3467,8 @@ template &lt;class D&gt;
 struct SCCImpl : SCC {
 	const Edges&lt;D&gt; &amp;E;
 	const int n;
-	V&lt;int&gt; low, dfn, stk;
-	V&lt;bool&gt; flag;
+	std::vector&lt;int&gt; low, dfn, stk;
+	std::vector&lt;bool&gt; flag;
 	int cnt = 0, c2 = 0;
 	void tarjan(int u) {
 		low[u] = dfn[u] = ++cnt;
@@ -3515,11 +3514,11 @@ struct Edge {
 };
 
 template &lt;class D&gt;
-using Edges = V&lt;V&lt;Edge&lt;D&gt;&gt;&gt;;
+using Edges = std::vector&lt;std::vector&lt;Edge&lt;D&gt;&gt;&gt;;
 
 struct SCC {
-	V&lt;int&gt; id;
-	V&lt;V&lt;int&gt;&gt; group;
+	std::vector&lt;int&gt; id;
+	std::vector&lt;std::vector&lt;int&gt;&gt; group;
 	SCC(int n) : id(n) {}
 };
 
@@ -3527,8 +3526,8 @@ template &lt;class D&gt;
 struct SCCImpl : SCC {
 	const Edges&lt;D&gt; &amp;E, &amp;IE;
 	const int n;
-	V&lt;bool&gt; vis;
-	V&lt;int&gt; stk;
+	std::vector&lt;bool&gt; vis;
+	std::vector&lt;int&gt; stk;
 	int cnt = 0;
 	void dfs1(int u) {
 		vis[u] = true;
@@ -3566,7 +3565,7 @@ struct SCCImpl : SCC {
 <pre><code class="language-cpp">// @description 朴素并查集
 
 struct DSU {
-	V&lt;int&gt; fa;
+	std::vector&lt;int&gt; fa;
 	DSU(int n) : fa(n) {
 		for (int i = 0; i &lt; n; i++)
 			fa[i] = i;
@@ -3604,14 +3603,14 @@ ll kruskal(int n) {
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="树链剖分"><a class="header" href="#树链剖分">树链剖分</a></h1>
 <pre><code class="language-cpp">const int N = 1E5 + 5;
-V&lt;int&gt; G[N];
+std::vector&lt;std::vector&lt;int&gt;&gt; G(N);
 
 // @problem https://www.luogu.com.cn/problem/P3379
 
 // @description 树链剖分 LCA
 
 struct HLD {
-	V&lt;int&gt; sz, dep, fa, son, top, dfn;
+	std::vector&lt;int&gt; sz, dep, fa, son, top, dfn;
 	int cnt = 0;
 	HLD(int n, int r = 1) : sz(n), dep(n), fa(n), son(n), top(n), dfn(n) {
 		dfs1(r), dfs2(r, r);
@@ -3658,8 +3657,8 @@ struct HLD {
 	struct edge {
 		int to, cap, rev;
 	};
-	V&lt;V&lt;edge&gt;&gt; G;
-	V&lt;int&gt; lev, cur;
+	std::vector&lt;std::vector&lt;edge&gt;&gt; G;
+	std::vector&lt;int&gt; lev, cur;
 	Dinic(int n) : G(n), lev(n), cur(n) {}
 
 	inline void add(int x, int y, int c) {
@@ -3712,9 +3711,9 @@ struct HLD {
 <pre><code class="language-cpp">using f64 = double;
 
 using img = std::complex&lt;f64&gt;;
-using Poly = V&lt;int&gt;;
+using Poly = std::vector&lt;int&gt;;
 
-V&lt;img&gt; w{{1, 0}, {1, 0}};
+std::vector&lt;img&gt; w{{1, 0}, {1, 0}};
 
 inline int get_lim(int m) {
 	return 1 &lt;&lt; std::__lg(m * 2 - 1);
@@ -3763,7 +3762,7 @@ void ifft(auto f, int n) {
 
 Poly mul(const Poly &amp;a, const Poly &amp;b) {
 	int n = a.size(), m = b.size(), N = get_lim(n + m - 1);
-	V&lt;img&gt; f(N);
+	std::vector&lt;img&gt; f(N);
 	for (int i = 0; i &lt; n; i++)
 		f[i] += img(a[i], 0);
 	for (int i = 0; i &lt; m; i++)
@@ -3781,7 +3780,7 @@ Poly mul(const Poly &amp;a, const Poly &amp;b) {
 Poly mul5(const Poly &amp;a, const Poly &amp;b, int p) {
 	enum : int { B = 1 &lt;&lt; 15 };
 	int n = a.size(), m = b.size(), N = get_lim(n + m - 1);
-	V&lt;img&gt; a0(N), a1(N), Q(N);
+	std::vector&lt;img&gt; a0(N), a1(N), Q(N);
 	for (int i = 0; i &lt; n; i++)
 		a0[i] = a[i] % B, a1[i] = a[i] / B;
 	for (int i = 0; i &lt; m; i++)
@@ -3805,28 +3804,28 @@ Poly mul5(const Poly &amp;a, const Poly &amp;b, int p) {
 ===============================================================================
    Name (baseline is *)   |   Dim   |  Total ms |  ns/op  |Baseline| Ops/second
 ===============================================================================
-                    MUL * |       1 |     0.001 |     500 |      - |  2000000.0
-         MUL5 MOD 1E9 + 7 |       1 |     0.001 |     500 |  1.000 |  2000000.0
-                    MUL * |       2 |     0.001 |     300 |      - |  3333333.3
-         MUL5 MOD 1E9 + 7 |       2 |     0.001 |     700 |  2.333 |  1428571.4
-                    MUL * |      64 |     0.005 |      73 |      - | 13617021.3
-         MUL5 MOD 1E9 + 7 |      64 |     0.014 |     220 |  3.000 |  4539007.1
-                    MUL * |     512 |     0.042 |      81 |      - | 12278177.5
-         MUL5 MOD 1E9 + 7 |     512 |     0.150 |     291 |  3.585 |  3424726.3
-                    MUL * |    4096 |     0.520 |     126 |      - |  7876892.8
-         MUL5 MOD 1E9 + 7 |    4096 |     1.213 |     296 |  2.332 |  3378127.6
-                    MUL * |   16384 |     1.868 |     114 |      - |  8769896.7
-         MUL5 MOD 1E9 + 7 |   16384 |     6.017 |     367 |  3.221 |  2722983.8
-                    MUL * |   32768 |     4.144 |     126 |      - |  7906916.1
-         MUL5 MOD 1E9 + 7 |   32768 |    13.409 |     409 |  3.236 |  2443792.9
-                    MUL * |   65536 |     9.528 |     145 |      - |  6877931.6
-         MUL5 MOD 1E9 + 7 |   65536 |    25.647 |     391 |  2.692 |  2555276.3
-                    MUL * |  131072 |    21.199 |     161 |      - |  6182961.7
-         MUL5 MOD 1E9 + 7 |  131072 |    55.110 |     420 |  2.600 |  2378376.4
-                    MUL * |  262144 |    48.858 |     186 |      - |  5365477.3
-         MUL5 MOD 1E9 + 7 |  262144 |   129.052 |     492 |  2.641 |  2031304.9
-                    MUL * |  524288 |    91.337 |     174 |      - |  5740171.7
-         MUL5 MOD 1E9 + 7 |  524288 |   275.339 |     525 |  3.015 |  1904155.7
+                    MUL * |       1 |     0.000 |     100 |      - | 10000000.0
+         MUL5 MOD 1E9 + 7 |       1 |     0.001 |     700 |  7.000 |  1428571.4
+                    MUL * |       2 |     0.000 |     200 |      - |  5000000.0
+         MUL5 MOD 1E9 + 7 |       2 |     0.001 |     650 |  3.250 |  1538461.5
+                    MUL * |      64 |     0.005 |      71 |      - | 13913043.5
+         MUL5 MOD 1E9 + 7 |      64 |     0.012 |     185 |  2.587 |  5378151.3
+                    MUL * |     512 |     0.039 |      76 |      - | 13128205.1
+         MUL5 MOD 1E9 + 7 |     512 |     0.099 |     192 |  2.528 |  5192697.8
+                    MUL * |    4096 |     0.364 |      88 |      - | 11240426.0
+         MUL5 MOD 1E9 + 7 |    4096 |     1.041 |     254 |  2.856 |  3936202.0
+                    MUL * |   16384 |     1.711 |     104 |      - |  9575155.1
+         MUL5 MOD 1E9 + 7 |   16384 |     4.170 |     254 |  2.437 |  3929122.3
+                    MUL * |   32768 |     3.814 |     116 |      - |  8591304.5
+         MUL5 MOD 1E9 + 7 |   32768 |    10.284 |     313 |  2.696 |  3186286.8
+                    MUL * |   65536 |     7.331 |     111 |      - |  8940085.1
+         MUL5 MOD 1E9 + 7 |   65536 |    18.947 |     289 |  2.585 |  3458921.4
+                    MUL * |  131072 |    15.852 |     120 |      - |  8268350.5
+         MUL5 MOD 1E9 + 7 |  131072 |    40.463 |     308 |  2.552 |  3239330.2
+                    MUL * |  262144 |    33.431 |     127 |      - |  7841390.4
+         MUL5 MOD 1E9 + 7 |  262144 |    87.737 |     334 |  2.624 |  2987850.5
+                    MUL * |  524288 |    71.549 |     136 |      - |  7327646.9
+         MUL5 MOD 1E9 + 7 |  524288 |   193.567 |     369 |  2.705 |  2708561.5
 ===============================================================================
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ntt-乘法i32"><a class="header" href="#ntt-乘法i32">NTT 乘法・i32</a></h1>
@@ -3850,7 +3849,7 @@ inline int mo(int x) {
 
 // @description 多项式乘法
 
-struct Poly : V&lt;int&gt; {
+struct Poly : std::vector&lt;int&gt; {
 	using vector::vector;
 	static Poly &amp;mul(Poly &amp;f, Poly &amp;g, int n);
 };
@@ -3935,17 +3934,17 @@ Poly operator-(Poly f, Poly g) {
 ===============================================================================
    Name (baseline is *)   |   Dim   |  Total ms |  ns/op  |Baseline| Ops/second
 ===============================================================================
-          MUL MOD 1E9+7 * |       1 |     0.000 |     400 |      - |  2500000.0
-          MUL MOD 1E9+7 * |       2 |     0.001 |     450 |      - |  2222222.2
-          MUL MOD 1E9+7 * |      64 |     0.006 |     101 |      - |  9846153.8
-          MUL MOD 1E9+7 * |     512 |     0.053 |     103 |      - |  9642184.6
-          MUL MOD 1E9+7 * |    4096 |     0.493 |     120 |      - |  8309968.3
-          MUL MOD 1E9+7 * |   16384 |     2.585 |     157 |      - |  6337827.4
-          MUL MOD 1E9+7 * |   32768 |     5.749 |     175 |      - |  5699349.6
-          MUL MOD 1E9+7 * |   65536 |    11.348 |     173 |      - |  5774883.5
-          MUL MOD 1E9+7 * |  131072 |    25.283 |     192 |      - |  5184190.4
-          MUL MOD 1E9+7 * |  262144 |    51.768 |     197 |      - |  5063857.5
-          MUL MOD 1E9+7 * |  524288 |   111.279 |     212 |      - |  4711458.7
+          MUL MOD 1E9+7 * |       1 |     0.001 |     600 |      - |  1666666.7
+          MUL MOD 1E9+7 * |       2 |     0.001 |     300 |      - |  3333333.3
+          MUL MOD 1E9+7 * |      64 |     0.006 |      87 |      - | 11428571.4
+          MUL MOD 1E9+7 * |     512 |     0.046 |      89 |      - | 11130434.8
+          MUL MOD 1E9+7 * |    4096 |     0.452 |     110 |      - |  9053954.6
+          MUL MOD 1E9+7 * |   16384 |     2.078 |     126 |      - |  7882630.4
+          MUL MOD 1E9+7 * |   32768 |     4.381 |     133 |      - |  7479251.6
+          MUL MOD 1E9+7 * |   65536 |     9.336 |     142 |      - |  7019879.3
+          MUL MOD 1E9+7 * |  131072 |    20.979 |     160 |      - |  6247849.3
+          MUL MOD 1E9+7 * |  262144 |    43.718 |     166 |      - |  5996252.5
+          MUL MOD 1E9+7 * |  524288 |    92.519 |     176 |      - |  5666843.2
 ===============================================================================
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ntt-乘法三模"><a class="header" href="#ntt-乘法三模">NTT 乘法・三模</a></h1>
@@ -3963,7 +3962,7 @@ int qpow(int a, ll b, int m) {
 
 // @description 多项式乘法(int mod)
 
-using Poly = V&lt;int&gt;;
+using Poly = std::vector&lt;int&gt;;
 
 inline int get_lim(int m) {
 	return 1 &lt;&lt; std::__lg(m * 2 - 1);
@@ -4056,17 +4055,17 @@ Poly mul3(Poly f, Poly g, int p) {
 ===============================================================================
    Name (baseline is *)   |   Dim   |  Total ms |  ns/op  |Baseline| Ops/second
 ===============================================================================
-          MUL MOD 1E9+7 * |       1 |     0.002 |    1600 |      - |   625000.0
+          MUL MOD 1E9+7 * |       1 |     0.002 |    1700 |      - |   588235.3
           MUL MOD 1E9+7 * |       2 |     0.002 |    1200 |      - |   833333.3
-          MUL MOD 1E9+7 * |      64 |     0.024 |     371 |      - |  2689075.6
-          MUL MOD 1E9+7 * |     512 |     0.197 |     384 |      - |  2602948.7
-          MUL MOD 1E9+7 * |    4096 |     1.907 |     465 |      - |  2147979.9
-          MUL MOD 1E9+7 * |   16384 |     8.405 |     512 |      - |  1949376.4
-          MUL MOD 1E9+7 * |   32768 |    17.536 |     535 |      - |  1868615.1
-          MUL MOD 1E9+7 * |   65536 |    38.187 |     582 |      - |  1716200.7
-          MUL MOD 1E9+7 * |  131072 |    85.328 |     651 |      - |  1536094.3
-          MUL MOD 1E9+7 * |  262144 |   200.705 |     765 |      - |  1306117.7
-          MUL MOD 1E9+7 * |  524288 |   357.991 |     682 |      - |  1464530.3
+          MUL MOD 1E9+7 * |      64 |     0.018 |     279 |      - |  3575419.0
+          MUL MOD 1E9+7 * |     512 |     0.158 |     308 |      - |  3242558.6
+          MUL MOD 1E9+7 * |    4096 |     1.529 |     373 |      - |  2678882.1
+          MUL MOD 1E9+7 * |   16384 |     6.923 |     422 |      - |  2366440.0
+          MUL MOD 1E9+7 * |   32768 |    14.527 |     443 |      - |  2255653.0
+          MUL MOD 1E9+7 * |   65536 |    30.800 |     469 |      - |  2127784.6
+          MUL MOD 1E9+7 * |  131072 |    64.859 |     494 |      - |  2020888.2
+          MUL MOD 1E9+7 * |  262144 |   139.495 |     532 |      - |  1879234.6
+          MUL MOD 1E9+7 * |  524288 |   303.615 |     579 |      - |  1726820.7
 ===============================================================================
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ntton2"><a class="header" href="#ntton2">NTT・$O(n^2)$</a></h1>
@@ -4091,13 +4090,13 @@ inline int mo(int x) {
 
 // @description 预处理逆元、阶乘、阶乘逆元
 
-V&lt;int&gt; iv, fac, ifac;
+std::vector&lt;int&gt; iv, fac, ifac;
 
 void pre_all(int u) {
 	int l = iv.size(), n = l * 2;
 	if (u &lt; l)
 		return;
-	iv = fac = ifac = V&lt;int&gt;(n + 1, 1);
+	iv = fac = ifac = std::vector&lt;int&gt;(n + 1, 1);
 	for (int i = 1; i &lt;= n; i++) {
 		fac[i] = 1ll * fac[i - 1] * i % P;
 	}
@@ -4115,7 +4114,7 @@ int C(int n, int m) {
 	return 1ll * fac[n] * ifac[m] % P * ifac[n - m] % P;
 }
 
-struct Poly : V&lt;int&gt; { // O(n2) 板子，我也不知道有啥用
+struct Poly : std::vector&lt;int&gt; { // O(n2) 板子，我也不知道有啥用
 	using vector::vector;
 	int deg() const {
 		return size();
@@ -4219,30 +4218,30 @@ Poly operator-(const Poly &amp;f, const Poly &amp;g) {
 ===============================================================================
    Name (baseline is *)   |   Dim   |  Total ms |  ns/op  |Baseline| Ops/second
 ===============================================================================
-                    MUL * |       1 |     0.000 |     200 |      - |  5000000.0
-                      INV |       1 |     0.000 |     300 |  1.500 |  3333333.3
-                      EXP |       1 |     0.000 |     100 |  0.500 | 10000000.0
-                     SQRT |       1 |     0.000 |     400 |  2.000 |  2500000.0
+                    MUL * |       1 |     0.000 |     100 |      - | 10000000.0
+                      INV |       1 |     0.000 |     300 |  3.000 |  3333333.3
+                      EXP |       1 |     0.000 |     300 |  3.000 |  3333333.3
+                     SQRT |       1 |     0.000 |     200 |  2.000 |  5000000.0
                     MUL * |       2 |     0.000 |      50 |      - | 20000000.0
                       INV |       2 |     0.000 |     150 |  3.000 |  6666666.7
-                      EXP |       2 |     0.000 |     100 |  2.000 | 10000000.0
-                     SQRT |       2 |     0.000 |     150 |  3.000 |  6666666.7
-                    MUL * |      64 |     0.007 |     115 |      - |  8648648.6
-                      INV |      64 |     0.008 |     128 |  1.108 |  7804878.0
-                      EXP |      64 |     0.009 |     135 |  1.176 |  7356321.8
-                     SQRT |      64 |     0.009 |     135 |  1.176 |  7356321.8
-                    MUL * |     512 |     0.405 |     791 |      - |  1263567.3
-                      INV |     512 |     0.486 |     949 |  1.200 |  1053058.1
-                      EXP |     512 |     0.487 |     951 |  1.202 |  1051330.4
-                     SQRT |     512 |     0.536 |    1047 |  1.324 |   954684.2
-                    MUL * |    4096 |    27.205 |    6641 |      - |   150559.9
-                      INV |    4096 |    37.548 |    9166 |  1.380 |   109088.0
-                      EXP |    4096 |    40.261 |    9829 |  1.480 |   101736.0
-                     SQRT |    4096 |    37.638 |    9189 |  1.384 |   108824.8
-                    MUL * |   16384 |   489.746 |   29891 |      - |    33454.1
-                      INV |   16384 |   610.865 |   37284 |  1.247 |    26821.0
-                      EXP |   16384 |   620.910 |   37897 |  1.268 |    26387.1
-                     SQRT |   16384 |   617.058 |   37662 |  1.260 |    26551.8
+                      EXP |       2 |     0.000 |     200 |  4.000 |  5000000.0
+                     SQRT |       2 |     0.000 |     200 |  4.000 |  5000000.0
+                    MUL * |      64 |     0.007 |     109 |      - |  9142857.1
+                      INV |      64 |     0.011 |     171 |  1.571 |  5818181.8
+                      EXP |      64 |     0.011 |     168 |  1.543 |  5926474.7
+                     SQRT |      64 |     0.011 |     171 |  1.571 |  5818181.8
+                    MUL * |     512 |     0.434 |     847 |      - |  1180542.3
+                      INV |     512 |     0.660 |    1289 |  1.523 |   775288.9
+                      EXP |     512 |     0.661 |    1291 |  1.525 |   774352.0
+                     SQRT |     512 |     0.687 |    1341 |  1.584 |   745163.0
+                    MUL * |    4096 |    27.740 |    6772 |      - |   147655.6
+                      INV |    4096 |    42.110 |   10280 |  1.518 |    97268.4
+                      EXP |    4096 |    42.095 |   10277 |  1.517 |    97304.0
+                     SQRT |    4096 |    44.029 |   10749 |  1.587 |    93030.5
+                    MUL * |   16384 |   448.268 |   27360 |      - |    36549.6
+                      INV |   16384 |   673.331 |   41096 |  1.502 |    24332.8
+                      EXP |   16384 |   673.468 |   41105 |  1.502 |    24327.8
+                     SQRT |   16384 |   704.433 |   42995 |  1.571 |    23258.4
 ===============================================================================
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ntt-牛顿迭代"><a class="header" href="#ntt-牛顿迭代">NTT 牛顿迭代</a></h1>
@@ -4329,13 +4328,13 @@ std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 
 // @description 预处理逆元、阶乘、阶乘逆元
 
-V&lt;Z&gt; iv, fac, ifac;
+std::vector&lt;Z&gt; iv, fac, ifac;
 
 void pre_all(int u) {
 	int l = iv.size(), n = l * 2;
 	if (u &lt;= l)
 		return;
-	iv = fac = ifac = V&lt;Z&gt;(n + 1, 1);
+	iv = fac = ifac = std::vector&lt;Z&gt;(n + 1, 1);
 	for (int i = 1; i &lt;= n; i++) {
 		fac[i] = fac[i - 1] * i;
 	}
@@ -4356,7 +4355,7 @@ Z C(int n, int m) {
 // @description 多项式牛顿迭代(m32)
 // @problem https://loj.ac/p/150
 
-V&lt;Z&gt; w{1, 1};
+std::vector&lt;Z&gt; w{1, 1};
 
 inline int get_lim(int m) {
 	return 1 &lt;&lt; std::__lg(m * 2 - 1);
@@ -4402,7 +4401,7 @@ void intt(auto f, int n) {
 	std::reverse(f + 1, f + n);
 }
 
-struct Poly : V&lt;Z&gt; { // 大常数板子
+struct Poly : std::vector&lt;Z&gt; { // 大常数板子
 	using vector::vector;
 #define T (*this)
 	int deg() const {
@@ -4521,72 +4520,72 @@ struct Poly : V&lt;Z&gt; { // 大常数板子
 ===============================================================================
    Name (baseline is *)   |   Dim   |  Total ms |  ns/op  |Baseline| Ops/second
 ===============================================================================
-                 NTT 1E * |       1 |     0.000 |     300 |      - |  3333333.3
-                   MUL 6E |       1 |     0.001 |     800 |  2.667 |  1250000.0
-                  INV 12E |       1 |     0.000 |     400 |  1.333 |  2500000.0
-                  LOG 18E |       1 |     0.002 |    2400 |  8.000 |   416666.7
-                  EXP 48E |       1 |     0.000 |     300 |  1.000 |  3333333.3
-                 SQRT 36E |       1 |     0.001 |     900 |  3.000 |  1111111.1
+                 NTT 1E * |       1 |     0.000 |     200 |      - |  5000000.0
+                   MUL 6E |       1 |     0.001 |     900 |  4.500 |  1111111.1
+                  INV 12E |       1 |     0.000 |     300 |  1.500 |  3333333.3
+                  LOG 18E |       1 |     0.002 |    1800 |  9.000 |   555555.6
+                  EXP 48E |       1 |     0.000 |     100 |  0.500 | 10000000.0
+                 SQRT 36E |       1 |     0.000 |     100 |  0.500 | 10000000.0
                  NTT 1E * |       2 |     0.000 |      50 |      - | 20000000.0
-                   MUL 6E |       2 |     0.001 |     500 | 10.000 |  2000000.0
-                  INV 12E |       2 |     0.001 |     500 | 10.000 |  2000000.0
-                  LOG 18E |       2 |     0.002 |     750 | 15.000 |  1333333.3
-                  EXP 48E |       2 |     0.003 |    1500 | 30.000 |   666666.7
-                 SQRT 36E |       2 |     0.003 |    1250 | 25.000 |   800000.0
+                   MUL 6E |       2 |     0.001 |     650 | 13.000 |  1538461.5
+                  INV 12E |       2 |     0.001 |     250 |  5.000 |  4000000.0
+                  LOG 18E |       2 |     0.002 |     800 | 16.000 |  1250000.0
+                  EXP 48E |       2 |     0.004 |    2100 | 42.000 |   476190.5
+                 SQRT 36E |       2 |     0.004 |    1850 | 37.000 |   540540.5
                  NTT 1E * |      64 |     0.001 |      10 |      - | 91428571.4
-                   MUL 6E |      64 |     0.006 |      90 |  8.286 | 11034482.8
-                  INV 12E |      64 |     0.012 |     189 | 17.286 |  5289256.2
-                  LOG 18E |      64 |     0.016 |     245 | 22.430 |  4076173.5
-                  EXP 48E |      64 |     0.059 |     915 | 83.714 |  1092150.2
-                 SQRT 36E |      64 |     0.037 |     576 | 52.714 |  1734417.3
-                 NTT 1E * |     512 |     0.006 |      12 |      - | 81269841.3
-                   MUL 6E |     512 |     0.047 |      91 |  7.445 | 10916611.6
-                  INV 12E |     512 |     0.100 |     195 | 15.857 |  5125073.8
-                  LOG 18E |     512 |     0.138 |     269 | 21.889 |  3712808.5
-                  EXP 48E |     512 |     0.404 |     788 | 64.064 |  1268576.5
-                 SQRT 36E |     512 |     0.256 |     500 | 40.667 |  1998430.9
-                 NTT 1E * |    4096 |     0.069 |      16 |      - | 59275553.2
-                   MUL 6E |    4096 |     0.495 |     120 |  7.162 |  8276369.3
-                  INV 12E |    4096 |     0.951 |     232 | 13.761 |  4307480.0
-                  LOG 18E |    4096 |     1.618 |     395 | 23.418 |  2531196.6
-                  EXP 48E |    4096 |     4.092 |     998 | 59.215 |  1001022.0
-                 SQRT 36E |    4096 |     2.761 |     674 | 39.961 |  1483352.3
-                 NTT 1E * |   16384 |     0.315 |      19 |      - | 52095058.2
-                   MUL 6E |   16384 |     2.446 |     149 |  7.777 |  6698252.8
-                  INV 12E |   16384 |     4.964 |     302 | 15.782 |  3300881.9
-                  LOG 18E |   16384 |     6.899 |     421 | 21.936 |  2374860.7
-                  EXP 48E |   16384 |    18.763 |    1145 | 59.659 |   873217.9
-                 SQRT 36E |   16384 |    14.351 |     875 | 45.630 |  1141689.3
-                 NTT 1E * |   32768 |     0.703 |      21 |      - | 46584959.1
-                   MUL 6E |   32768 |     4.611 |     140 |  6.555 |  7106298.0
-                  INV 12E |   32768 |     9.180 |     280 | 13.050 |  3569677.0
-                  LOG 18E |   32768 |    16.416 |     500 | 23.338 |  1996080.1
-                  EXP 48E |   32768 |    39.296 |    1199 | 55.866 |   833874.6
-                 SQRT 36E |   32768 |    26.789 |     817 | 38.085 |  1223174.0
-                 NTT 1E * |   65536 |     1.617 |      24 |      - | 40519151.6
-                   MUL 6E |   65536 |    10.278 |     156 |  6.355 |  6376370.7
-                  INV 12E |   65536 |    21.266 |     324 | 13.148 |  3081770.8
-                  LOG 18E |   65536 |    32.310 |     493 | 19.977 |  2028322.1
-                  EXP 48E |   65536 |    80.328 |    1225 | 49.665 |   815855.4
-                 SQRT 36E |   65536 |    62.918 |     960 | 38.901 |  1041605.0
-                 NTT 1E * |  131072 |     3.454 |      26 |      - | 37948809.4
-                   MUL 6E |  131072 |    22.320 |     170 |  6.462 |  5872401.2
-                  INV 12E |  131072 |    46.183 |     352 | 13.371 |  2838130.7
-                  LOG 18E |  131072 |    71.761 |     547 | 20.777 |  1826506.6
-                  EXP 48E |  131072 |   180.436 |    1376 | 52.241 |   726419.8
-                 SQRT 36E |  131072 |   134.697 |    1027 | 38.998 |   973090.6
-                 NTT 1E * |  262144 |     7.803 |      29 |      - | 33593837.3
-                   MUL 6E |  262144 |    50.088 |     191 |  6.419 |  5233665.9
-                  INV 12E |  262144 |   101.532 |     387 | 13.011 |  2581876.4
-                  LOG 18E |  262144 |   156.942 |     598 | 20.112 |  1670329.3
-                  EXP 48E |  262144 |   357.528 |    1363 | 45.817 |   733213.3
-                 SQRT 36E |  262144 |   300.469 |    1146 | 38.505 |   872449.5
-                 NTT 1E * |  524288 |    13.408 |      25 |      - | 39102447.4
-                   MUL 6E |  524288 |   104.515 |     199 |  7.795 |  5016381.6
-                  INV 12E |  524288 |   199.700 |     380 | 14.894 |  2625378.0
-                  LOG 18E |  524288 |   307.511 |     586 | 22.935 |  1704941.8
-                  EXP 48E |  524288 |   800.046 |    1525 | 59.669 |   655322.7
-                 SQRT 36E |  524288 |   599.863 |    1144 | 44.739 |   874012.9
+                   MUL 6E |      64 |     0.005 |      84 |  7.714 | 11851851.9
+                  INV 12E |      64 |     0.010 |     154 | 14.143 |  6464646.5
+                  LOG 18E |      64 |     0.015 |     234 | 21.429 |  4266666.7
+                  EXP 48E |      64 |     0.046 |     720 | 65.856 |  1388316.4
+                 SQRT 36E |      64 |     0.032 |     492 | 45.000 |  2031746.0
+                 NTT 1E * |     512 |     0.006 |      12 |      - | 80000000.0
+                   MUL 6E |     512 |     0.048 |      93 |  7.516 | 10644490.6
+                  INV 12E |     512 |     0.092 |     179 | 14.328 |  5583424.2
+                  LOG 18E |     512 |     0.147 |     286 | 22.922 |  3490115.9
+                  EXP 48E |     512 |     0.368 |     717 | 57.437 |  1392822.1
+                 SQRT 36E |     512 |     0.270 |     527 | 42.172 |  1897005.9
+                 NTT 1E * |    4096 |     0.065 |      15 |      - | 63210852.0
+                   MUL 6E |    4096 |     0.466 |     113 |  7.185 |  8797288.6
+                  INV 12E |    4096 |     0.913 |     222 | 14.093 |  4485341.1
+                  LOG 18E |    4096 |     1.390 |     339 | 21.448 |  2947195.1
+                  EXP 48E |    4096 |     3.503 |     855 | 54.065 |  1169153.3
+                 SQRT 36E |    4096 |     2.625 |     640 | 40.505 |  1560564.1
+                 NTT 1E * |   16384 |     0.301 |      18 |      - | 54486380.1
+                   MUL 6E |   16384 |     2.133 |     130 |  7.092 |  7682302.3
+                  INV 12E |   16384 |     4.130 |     252 | 13.733 |  3967466.0
+                  LOG 18E |   16384 |     6.341 |     387 | 21.086 |  2583949.2
+                  EXP 48E |   16384 |    15.956 |     973 | 53.065 |  1026794.5
+                 SQRT 36E |   16384 |    11.925 |     727 | 39.656 |  1373958.8
+                 NTT 1E * |   32768 |     0.641 |      19 |      - | 51112310.4
+                   MUL 6E |   32768 |     4.539 |     138 |  7.080 |  7219072.9
+                  INV 12E |   32768 |     8.761 |     267 | 13.665 |  3740393.3
+                  LOG 18E |   32768 |    13.532 |     412 | 21.108 |  2421436.7
+                  EXP 48E |   32768 |    33.997 |    1037 | 53.029 |   963863.8
+                 SQRT 36E |   32768 |    25.406 |     775 | 39.630 |  1289752.3
+                 NTT 1E * |   65536 |     1.367 |      20 |      - | 47927593.8
+                   MUL 6E |   65536 |     9.587 |     146 |  7.011 |  6835871.6
+                  INV 12E |   65536 |    18.600 |     283 | 13.603 |  3523413.0
+                  LOG 18E |   65536 |    28.585 |     436 | 20.905 |  2292661.4
+                  EXP 48E |   65536 |    71.995 |    1098 | 52.651 |   910289.3
+                 SQRT 36E |   65536 |    53.839 |     821 | 39.374 |  1217251.0
+                 NTT 1E * |  131072 |     2.902 |      22 |      - | 45164660.5
+                   MUL 6E |  131072 |    20.263 |     154 |  6.982 |  6468397.3
+                  INV 12E |  131072 |    39.211 |     299 | 13.511 |  3342710.9
+                  LOG 18E |  131072 |    60.117 |     458 | 20.715 |  2180291.6
+                  EXP 48E |  131072 |   152.859 |    1166 | 52.672 |   857472.4
+                 SQRT 36E |  131072 |   113.866 |     868 | 39.236 |  1151102.6
+                 NTT 1E * |  262144 |     6.167 |      23 |      - | 42508346.6
+                   MUL 6E |  262144 |    44.207 |     168 |  7.169 |  5929857.0
+                  INV 12E |  262144 |    82.809 |     315 | 13.428 |  3165632.3
+                  LOG 18E |  262144 |   129.667 |     494 | 21.026 |  2021664.2
+                  EXP 48E |  262144 |   325.106 |    1240 | 52.718 |   806333.0
+                 SQRT 36E |  262144 |   244.422 |     932 | 39.635 |  1072505.7
+                 NTT 1E * |  524288 |    13.023 |      24 |      - | 40257188.1
+                   MUL 6E |  524288 |    94.030 |     179 |  7.220 |  5575732.7
+                  INV 12E |  524288 |   177.943 |     339 | 13.663 |  2946383.4
+                  LOG 18E |  524288 |   281.052 |     536 | 21.580 |  1865450.4
+                  EXP 48E |  524288 |   698.557 |    1332 | 53.638 |   750530.5
+                 SQRT 36E |  524288 |   520.214 |     992 | 39.944 |  1007832.3
 ===============================================================================
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ntt-牛顿迭代卡常"><a class="header" href="#ntt-牛顿迭代卡常">NTT 牛顿迭代・卡常</a></h1>
@@ -4673,13 +4672,13 @@ std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 
 // @description 预处理逆元、阶乘、阶乘逆元
 
-V&lt;Z&gt; iv, fac, ifac;
+std::vector&lt;Z&gt; iv, fac, ifac;
 
 void pre_all(int u) {
 	int l = iv.size(), n = l * 2;
 	if (u &lt;= l)
 		return;
-	iv = fac = ifac = V&lt;Z&gt;(n + 1, 1);
+	iv = fac = ifac = std::vector&lt;Z&gt;(n + 1, 1);
 	for (int i = 1; i &lt;= n; i++) {
 		fac[i] = fac[i - 1] * i;
 	}
@@ -4700,7 +4699,7 @@ Z C(int n, int m) {
 // @description 多项式牛顿迭代(m32, 卡常)
 // @problem https://loj.ac/p/150
 
-V&lt;Z&gt; w{1, 1};
+std::vector&lt;Z&gt; w{1, 1};
 
 inline int get_lim(int m) {
 	return 1 &lt;&lt; std::__lg(m * 2 - 1);
@@ -4746,7 +4745,7 @@ void intt(auto f, int n) {
 	std::reverse(f + 1, f + n);
 }
 
-struct Poly : V&lt;Z&gt; { // 卡常板子
+struct Poly : std::vector&lt;Z&gt; { // 卡常板子
 	using vector::vector;
 	bool isNTT = false;
 #define T (*this)
@@ -4913,71 +4912,71 @@ struct Poly : V&lt;Z&gt; { // 卡常板子
    Name (baseline is *)   |   Dim   |  Total ms |  ns/op  |Baseline| Ops/second
 ===============================================================================
                  NTT 1E * |       1 |     0.000 |     100 |      - | 10000000.0
-                   MUL 6E |       1 |     0.001 |     600 |  6.000 |  1666666.7
-                  INV 10E |       1 |     0.000 |     300 |  3.000 |  3333333.3
-                  LOG 13E |       1 |     0.003 |    2600 | 26.000 |   384615.4
-                  EXP 17E |       1 |     0.000 |     300 |  3.000 |  3333333.3
-                 SQRT 11E |       1 |     0.001 |    1200 | 12.000 |   833333.3
-                 NTT 1E * |       2 |     0.000 |      50 |      - | 20000000.0
-                   MUL 6E |       2 |     0.001 |     400 |  8.000 |  2500000.0
-                  INV 10E |       2 |     0.001 |     350 |  7.000 |  2857142.9
-                  LOG 13E |       2 |     0.002 |    1000 | 20.000 |  1000000.0
-                  EXP 17E |       2 |     0.000 |     200 |  4.000 |  5000000.0
-                 SQRT 11E |       2 |     0.002 |    1200 | 24.000 |   833333.3
-                 NTT 1E * |      64 |     0.001 |       9 |      - |106666666.7
-                   MUL 6E |      64 |     0.005 |      79 |  8.500 | 12549019.6
-                  INV 10E |      64 |     0.009 |     143 | 15.333 |  6956521.7
-                  LOG 13E |      64 |     0.012 |     187 | 20.000 |  5333333.3
-                  EXP 17E |      64 |     0.019 |     293 | 31.333 |  3404255.3
-                 SQRT 11E |      64 |     0.013 |     204 | 21.833 |  4885496.2
+                   MUL 6E |       1 |     0.001 |    1000 | 10.000 |  1000000.0
+                  INV 10E |       1 |     0.001 |     700 |  7.000 |  1428571.4
+                  LOG 13E |       1 |     0.002 |    2400 | 24.000 |   416666.7
+                  EXP 17E |       1 |     0.000 |     200 |  2.000 |  5000000.0
+                 SQRT 11E |       1 |     0.001 |     500 |  5.000 |  2000000.0
+                 NTT 1E * |       2 |     0.000 |     150 |      - |  6666666.7
+                   MUL 6E |       2 |     0.002 |     750 |  5.000 |  1333333.3
+                  INV 10E |       2 |     0.001 |     500 |  3.333 |  2000000.0
+                  LOG 13E |       2 |     0.003 |    1550 | 10.333 |   645161.3
+                  EXP 17E |       2 |     0.001 |     350 |  2.333 |  2857142.9
+                 SQRT 11E |       2 |     0.002 |    1150 |  7.667 |   869565.2
+                 NTT 1E * |      64 |     0.001 |      10 |      - | 91428571.4
+                   MUL 6E |      64 |     0.006 |      90 |  8.286 | 11034482.8
+                  INV 10E |      64 |     0.008 |     131 | 12.000 |  7619047.6
+                  LOG 13E |      64 |     0.014 |     220 | 20.143 |  4539007.1
+                  EXP 17E |      64 |     0.015 |     239 | 21.857 |  4183006.5
+                 SQRT 11E |      64 |     0.010 |     162 | 14.857 |  6153846.2
                  NTT 1E * |     512 |     0.006 |      12 |      - | 81269841.3
-                   MUL 6E |     512 |     0.051 |      99 |  8.079 | 10058939.1
-                  INV 10E |     512 |     0.072 |     141 | 11.508 |  7062069.0
-                  LOG 13E |     512 |     0.095 |     186 | 15.143 |  5366876.3
-                  EXP 17E |     512 |     0.128 |     250 | 20.349 |  3993728.6
-                 SQRT 11E |     512 |     0.083 |     161 | 13.111 |  6198547.2
-                 NTT 1E * |    4096 |     0.064 |      15 |      - | 63602484.5
-                   MUL 6E |    4096 |     0.552 |     134 |  8.564 |  7426990.3
-                  INV 10E |    4096 |     0.866 |     211 | 13.440 |  4732502.7
-                  LOG 13E |    4096 |     0.891 |     217 | 13.834 |  4597577.3
-                  EXP 17E |    4096 |     1.197 |     292 | 18.585 |  3422159.7
-                 SQRT 11E |    4096 |     0.915 |     223 | 14.213 |  4475016.0
-                 NTT 1E * |   16384 |     0.308 |      18 |      - | 53211909.0
-                   MUL 6E |   16384 |     2.212 |     135 |  7.184 |  7406503.3
-                  INV 10E |   16384 |     3.624 |     221 | 11.771 |  4520451.2
-                  LOG 13E |   16384 |     4.430 |     270 | 14.388 |  3698235.4
-                  EXP 17E |   16384 |     6.274 |     382 | 20.375 |  2611567.0
-                 SQRT 11E |   16384 |     3.878 |     236 | 12.595 |  4224948.6
-                 NTT 1E * |   32768 |     0.691 |      21 |      - | 47400275.4
-                   MUL 6E |   32768 |     5.248 |     160 |  7.591 |  6243873.9
-                  INV 10E |   32768 |     7.499 |     228 | 10.848 |  4369629.5
-                  LOG 13E |   32768 |    10.631 |     324 | 15.378 |  3082263.3
-                  EXP 17E |   32768 |    12.818 |     391 | 18.542 |  2556393.5
-                 SQRT 11E |   32768 |     8.319 |     253 | 12.034 |  3938869.6
-                 NTT 1E * |   65536 |     1.450 |      22 |      - | 45193906.4
-                   MUL 6E |   65536 |    11.842 |     180 |  8.166 |  5534315.7
-                  INV 10E |   65536 |    16.406 |     250 | 11.313 |  3994715.5
-                  LOG 13E |   65536 |    22.715 |     346 | 15.664 |  2885192.4
-                  EXP 17E |   65536 |    29.171 |     445 | 20.117 |  2246604.5
-                 SQRT 11E |   65536 |    18.721 |     285 | 12.910 |  3500651.6
-                 NTT 1E * |  131072 |     3.308 |      25 |      - | 39623750.9
-                   MUL 6E |  131072 |    23.380 |     178 |  7.068 |  5606229.4
-                  INV 10E |  131072 |    36.290 |     276 | 10.971 |  3611817.3
-                  LOG 13E |  131072 |    46.027 |     351 | 13.914 |  2847725.4
-                  EXP 17E |  131072 |    60.588 |     462 | 18.316 |  2163322.9
-                 SQRT 11E |  131072 |    41.601 |     317 | 12.576 |  3150664.0
-                 NTT 1E * |  262144 |     6.828 |      26 |      - | 38390640.4
-                   MUL 6E |  262144 |    52.537 |     200 |  7.694 |  4989670.3
-                  INV 10E |  262144 |    78.626 |     299 | 11.515 |  3334077.0
-                  LOG 13E |  262144 |   106.022 |     404 | 15.527 |  2472548.5
-                  EXP 17E |  262144 |   130.347 |     497 | 19.089 |  2011121.2
-                 SQRT 11E |  262144 |    84.442 |     322 | 12.366 |  3104419.9
-                 NTT 1E * |  524288 |    13.913 |      26 |      - | 37683418.0
-                   MUL 6E |  524288 |   111.883 |     213 |  8.042 |  4686037.7
-                  INV 10E |  524288 |   164.558 |     313 | 11.828 |  3186038.7
-                  LOG 13E |  524288 |   223.088 |     425 | 16.035 |  2350138.7
-                  EXP 17E |  524288 |   276.535 |     527 | 19.876 |  1895920.8
-                 SQRT 11E |  524288 |   177.809 |     339 | 12.780 |  2948610.3
+                   MUL 6E |     512 |     0.050 |      97 |  7.905 | 10281124.5
+                  INV 10E |     512 |     0.074 |     144 | 11.730 |  6928281.5
+                  LOG 13E |     512 |     0.096 |     188 | 15.302 |  5311203.3
+                  EXP 17E |     512 |     0.127 |     248 | 20.174 |  4028355.8
+                 SQRT 11E |     512 |     0.078 |     153 | 12.444 |  6530695.5
+                 NTT 1E * |    4096 |     0.065 |      15 |      - | 63405572.8
+                   MUL 6E |    4096 |     0.463 |     112 |  7.163 |  8852407.3
+                  INV 10E |    4096 |     0.712 |     173 | 11.029 |  5748780.0
+                  LOG 13E |    4096 |     0.929 |     226 | 14.381 |  4409051.5
+                  EXP 17E |    4096 |     1.195 |     291 | 18.495 |  3428197.4
+                 SQRT 11E |    4096 |     0.766 |     186 | 11.851 |  5350066.2
+                 NTT 1E * |   16384 |     0.300 |      18 |      - | 54668183.7
+                   MUL 6E |   16384 |     2.119 |     129 |  7.071 |  7730872.8
+                  INV 10E |   16384 |     3.201 |     195 | 10.680 |  5118734.7
+                  LOG 13E |   16384 |     4.244 |     259 | 14.161 |  3860428.0
+                  EXP 17E |   16384 |     5.487 |     334 | 18.308 |  2985974.4
+                 SQRT 11E |   16384 |     3.504 |     213 | 11.693 |  4675278.7
+                 NTT 1E * |   32768 |     0.643 |      19 |      - | 50992920.9
+                   MUL 6E |   32768 |     4.515 |     137 |  7.026 |  7257926.6
+                  INV 10E |   32768 |     6.802 |     207 | 10.585 |  4817418.0
+                  LOG 13E |   32768 |     9.083 |     277 | 14.135 |  3607667.1
+                  EXP 17E |   32768 |    11.628 |     354 | 18.095 |  2818056.7
+                 SQRT 11E |   32768 |     7.479 |     228 | 11.639 |  4381344.9
+                 NTT 1E * |   65536 |     1.372 |      20 |      - | 47780833.4
+                   MUL 6E |   65536 |     9.595 |     146 |  6.995 |  6830383.5
+                  INV 10E |   65536 |    14.456 |     220 | 10.539 |  4533586.3
+                  LOG 13E |   65536 |    19.309 |     294 | 14.078 |  3394055.6
+                  EXP 17E |   65536 |    24.699 |     376 | 18.007 |  2653425.6
+                 SQRT 11E |   65536 |    15.965 |     243 | 11.639 |  4105068.4
+                 NTT 1E * |  131072 |     2.915 |      22 |      - | 44963231.0
+                   MUL 6E |  131072 |    20.251 |     154 |  6.947 |  6472323.8
+                  INV 10E |  131072 |    30.686 |     234 | 10.527 |  4271406.1
+                  LOG 13E |  131072 |    41.018 |     312 | 14.071 |  3195475.3
+                  EXP 17E |  131072 |    52.552 |     400 | 18.027 |  2494154.8
+                 SQRT 11E |  131072 |    33.824 |     258 | 11.603 |  3875116.4
+                 NTT 1E * |  262144 |     6.181 |      23 |      - | 42410677.1
+                   MUL 6E |  262144 |    43.270 |     165 |  7.000 |  6058304.4
+                  INV 10E |  262144 |    66.903 |     255 | 10.824 |  3918261.9
+                  LOG 13E |  262144 |    87.424 |     333 | 14.144 |  2998526.1
+                  EXP 17E |  262144 |   112.841 |     430 | 18.256 |  2323126.8
+                 SQRT 11E |  262144 |    73.449 |     280 | 11.883 |  3569037.5
+                 NTT 1E * |  524288 |    13.097 |      24 |      - | 40030027.4
+                   MUL 6E |  524288 |    94.164 |     179 |  7.190 |  5567843.5
+                  INV 10E |  524288 |   138.368 |     263 | 10.565 |  3789085.3
+                  LOG 13E |  524288 |   189.446 |     361 | 14.464 |  2767476.5
+                  EXP 17E |  524288 |   239.430 |     456 | 18.281 |  2189733.9
+                 SQRT 11E |  524288 |   153.057 |     291 | 11.686 |  3425447.4
 ===============================================================================
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ntt-牛顿迭代分块卡常"><a class="header" href="#ntt-牛顿迭代分块卡常">NTT 牛顿迭代（分块卡常）</a></h1>
@@ -5064,13 +5063,13 @@ std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 
 // @description 预处理逆元、阶乘、阶乘逆元
 
-V&lt;Z&gt; iv, fac, ifac;
+std::vector&lt;Z&gt; iv, fac, ifac;
 
 void pre_all(int u) {
 	int l = iv.size(), n = l * 2;
 	if (u &lt;= l)
 		return;
-	iv = fac = ifac = V&lt;Z&gt;(n + 1, 1);
+	iv = fac = ifac = std::vector&lt;Z&gt;(n + 1, 1);
 	for (int i = 1; i &lt;= n; i++) {
 		fac[i] = fac[i - 1] * i;
 	}
@@ -5091,7 +5090,7 @@ Z C(int n, int m) {
 // @description 多项式牛顿迭代(m32, 卡常)
 // @problem https://loj.ac/p/150
 
-V&lt;Z&gt; w{1, 1};
+std::vector&lt;Z&gt; w{1, 1};
 
 inline int get_lim(int m) {
 	return 1 &lt;&lt; std::__lg(m * 2 - 1);
@@ -5137,7 +5136,7 @@ void intt(auto f, int n) {
 	std::reverse(f + 1, f + n);
 }
 
-struct Poly : V&lt;Z&gt; { // 卡常板子
+struct Poly : std::vector&lt;Z&gt; { // 卡常板子
 	using vector::vector;
 	bool isNTT = false;
 #define T (*this)
@@ -5377,72 +5376,72 @@ Poly Poly::exp(int u) const { // 14E
 ===============================================================================
    Name (baseline is *)   |   Dim   |  Total ms |  ns/op  |Baseline| Ops/second
 ===============================================================================
-                 NTT 1E * |       1 |     0.000 |     100 |      - | 10000000.0
-                   MUL 6E |       1 |     0.000 |     300 |  3.000 |  3333333.3
-                  INV 10E |       1 |     0.000 |     300 |  3.000 |  3333333.3
-                  LOG 10E |       1 |     0.001 |     700 |  7.000 |  1428571.4
-                  EXP 14E |       1 |     0.000 |     200 |  2.000 |  5000000.0
-                  SQRT 8E |       1 |     0.000 |     400 |  4.000 |  2500000.0
+                 NTT 1E * |       1 |     0.000 |       0 |      - |        inf
+                   MUL 6E |       1 |     0.001 |     800 |    inf |  1250000.0
+                  INV 10E |       1 |     0.000 |     400 |    inf |  2500000.0
+                  LOG 10E |       1 |     0.002 |    1500 |    inf |   666666.7
+                  EXP 14E |       1 |     0.000 |     300 |    inf |  3333333.3
+                  SQRT 8E |       1 |     0.000 |     100 |    inf | 10000000.0
                  NTT 1E * |       2 |     0.000 |      50 |      - | 20000000.0
-                   MUL 6E |       2 |     0.001 |     350 |  7.000 |  2857142.9
-                  INV 10E |       2 |     0.001 |     550 | 11.000 |  1818181.8
-                  LOG 10E |       2 |     0.003 |    1450 | 29.000 |   689655.2
-                  EXP 14E |       2 |     0.005 |    2700 | 54.000 |   370370.4
-                  SQRT 8E |       2 |     0.001 |     450 |  9.000 |  2222222.2
+                   MUL 6E |       2 |     0.002 |     800 | 16.000 |  1250000.0
+                  INV 10E |       2 |     0.001 |     500 | 10.000 |  2000000.0
+                  LOG 10E |       2 |     0.005 |    2550 | 51.000 |   392156.9
+                  EXP 14E |       2 |     0.001 |     700 | 14.000 |  1428571.4
+                  SQRT 8E |       2 |     0.002 |     950 | 19.000 |  1052631.6
                  NTT 1E * |      64 |     0.001 |       9 |      - |106666666.7
-                   MUL 6E |      64 |     0.004 |      70 |  7.500 | 14222222.2
-                  INV 10E |      64 |     0.019 |     290 | 31.000 |  3440860.2
-                  LOG 10E |      64 |     0.019 |     290 | 31.000 |  3440860.2
-                  EXP 14E |      64 |     0.022 |     339 | 36.167 |  2949308.8
-                  SQRT 8E |      64 |     0.016 |     253 | 27.000 |  3950617.3
+                   MUL 6E |      64 |     0.006 |      90 |  9.667 | 11034482.8
+                  INV 10E |      64 |     0.015 |     237 | 25.333 |  4210526.3
+                  LOG 10E |      64 |     0.022 |     337 | 36.000 |  2962963.0
+                  EXP 14E |      64 |     0.029 |     459 | 49.000 |  2176870.7
+                  SQRT 8E |      64 |     0.014 |     212 | 22.667 |  4705882.4
                  NTT 1E * |     512 |     0.006 |      12 |      - | 80000000.0
-                   MUL 6E |     512 |     0.042 |      82 |  6.594 | 12132701.4
-                  INV 10E |     512 |     0.112 |     217 | 17.422 |  4591887.1
-                  LOG 10E |     512 |     0.103 |     200 | 16.031 |  4990204.8
-                  EXP 14E |     512 |     0.140 |     273 | 21.906 |  3651925.8
-                  SQRT 8E |     512 |     0.088 |     171 | 13.703 |  5838084.4
-                 NTT 1E * |    4096 |     0.057 |      13 |      - | 72238584.9
-                   MUL 6E |    4096 |     0.434 |     106 |  7.660 |  9431225.3
-                  INV 10E |    4096 |     0.796 |     194 | 14.042 |  5144410.2
-                  LOG 10E |    4096 |     0.778 |     189 | 13.723 |  5264077.8
-                  EXP 14E |    4096 |     1.235 |     301 | 21.772 |  3317926.4
-                  SQRT 8E |    4096 |     0.788 |     192 | 13.889 |  5201243.4
-                 NTT 1E * |   16384 |     0.368 |      22 |      - | 44557942.5
-                   MUL 6E |   16384 |     2.344 |     143 |  6.376 |  6988538.7
-                  INV 10E |   16384 |     3.836 |     234 | 10.432 |  4271207.0
-                  LOG 10E |   16384 |     3.604 |     219 |  9.803 |  4545534.0
-                  EXP 14E |   16384 |     5.108 |     311 | 13.891 |  3207628.8
-                  SQRT 8E |   16384 |     3.576 |     218 |  9.725 |  4582019.4
-                 NTT 1E * |   32768 |     0.664 |      20 |      - | 49319464.2
-                   MUL 6E |   32768 |     5.034 |     153 |  7.577 |  6509177.5
-                  INV 10E |   32768 |     7.169 |     218 | 10.790 |  4570770.5
-                  LOG 10E |   32768 |     9.338 |     284 | 14.055 |  3509011.7
-                  EXP 14E |   32768 |    12.640 |     385 | 19.024 |  2592454.9
-                  SQRT 8E |   32768 |     6.825 |     208 | 10.272 |  4801291.1
-                 NTT 1E * |   65536 |     1.269 |      19 |      - | 51655781.6
-                   MUL 6E |   65536 |    10.506 |     160 |  8.281 |  6237931.4
-                  INV 10E |   65536 |    16.708 |     254 | 13.169 |  3922508.4
-                  LOG 10E |   65536 |    19.871 |     303 | 15.663 |  3297991.2
-                  EXP 14E |   65536 |    27.010 |     412 | 21.289 |  2426394.5
-                  SQRT 8E |   65536 |    15.043 |     229 | 11.857 |  4356500.2
-                 NTT 1E * |  131072 |     3.396 |      25 |      - | 38594677.0
-                   MUL 6E |  131072 |    25.207 |     192 |  7.422 |  5199843.0
-                  INV 10E |  131072 |    35.903 |     273 | 10.572 |  3650739.5
-                  LOG 10E |  131072 |    38.922 |     296 | 11.461 |  3367540.3
-                  EXP 14E |  131072 |    59.218 |     451 | 17.437 |  2213389.7
-                  SQRT 8E |  131072 |    35.140 |     268 | 10.347 |  3730030.4
-                 NTT 1E * |  262144 |     7.412 |      28 |      - | 35369735.9
-                   MUL 6E |  262144 |    48.785 |     186 |  6.582 |  5373485.6
-                  INV 10E |  262144 |    89.157 |     340 | 12.030 |  2940241.4
-                  LOG 10E |  262144 |    87.917 |     335 | 11.862 |  2981735.0
-                  EXP 14E |  262144 |   113.335 |     432 | 15.292 |  2313009.1
-                  SQRT 8E |  262144 |    77.741 |     296 | 10.489 |  3372028.1
-                 NTT 1E * |  524288 |    15.483 |      29 |      - | 33862018.3
-                   MUL 6E |  524288 |   112.087 |     213 |  7.239 |  4677513.2
-                  INV 10E |  524288 |   165.256 |     315 | 10.673 |  3172587.4
-                  LOG 10E |  524288 |   191.584 |     365 | 12.374 |  2736597.8
-                  EXP 14E |  524288 |   245.267 |     467 | 15.841 |  2137625.7
-                  SQRT 8E |  524288 |   161.709 |     308 | 10.444 |  3242164.8
+                   MUL 6E |     512 |     0.049 |      96 |  7.688 | 10406504.1
+                  INV 10E |     512 |     0.090 |     175 | 14.062 |  5688952.1
+                  LOG 10E |     512 |     0.109 |     212 | 16.984 |  4710211.6
+                  EXP 14E |     512 |     0.134 |     261 | 20.938 |  3820895.5
+                  SQRT 8E |     512 |     0.093 |     181 | 14.515 |  5511361.8
+                 NTT 1E * |    4096 |     0.065 |      15 |      - | 63307573.4
+                   MUL 6E |    4096 |     0.467 |     114 |  7.223 |  8765284.7
+                  INV 10E |    4096 |     0.770 |     187 | 11.901 |  5319494.3
+                  LOG 10E |    4096 |     0.861 |     210 | 13.309 |  4756717.6
+                  EXP 14E |    4096 |     1.142 |     278 | 17.644 |  3587956.2
+                  SQRT 8E |    4096 |     0.715 |     174 | 11.054 |  5727085.4
+                 NTT 1E * |   16384 |     0.300 |      18 |      - | 54595316.9
+                   MUL 6E |   16384 |     2.142 |     130 |  7.139 |  7647873.0
+                  INV 10E |   16384 |     3.417 |     208 | 11.387 |  4794579.9
+                  LOG 10E |   16384 |     3.790 |     231 | 12.630 |  4322509.2
+                  EXP 14E |   16384 |     5.018 |     306 | 16.721 |  3265053.6
+                  SQRT 8E |   16384 |     3.129 |     190 | 10.428 |  5235687.4
+                 NTT 1E * |   32768 |     0.642 |      19 |      - | 51040657.4
+                   MUL 6E |   32768 |     4.629 |     141 |  7.210 |  7078867.5
+                  INV 10E |   32768 |     7.226 |     220 | 11.256 |  4534684.2
+                  LOG 10E |   32768 |     8.043 |     245 | 12.528 |  4074061.2
+                  EXP 14E |   32768 |    10.604 |     323 | 16.517 |  3090278.8
+                  SQRT 8E |   32768 |     6.607 |     201 | 10.291 |  4959750.5
+                 NTT 1E * |   65536 |     1.367 |      20 |      - | 47927593.8
+                   MUL 6E |   65536 |     9.654 |     147 |  7.060 |  6788709.3
+                  INV 10E |   65536 |    15.358 |     234 | 11.231 |  4267316.2
+                  LOG 10E |   65536 |    16.902 |     257 | 12.360 |  3877512.4
+                  EXP 14E |   65536 |    22.486 |     343 | 16.445 |  2914466.9
+                  SQRT 8E |   65536 |    13.812 |     210 | 10.101 |  4745008.6
+                 NTT 1E * |  131072 |     2.908 |      22 |      - | 45079211.6
+                   MUL 6E |  131072 |    21.165 |     161 |  7.279 |  6192822.6
+                  INV 10E |  131072 |    32.529 |     248 | 11.188 |  4029374.4
+                  LOG 10E |  131072 |    35.707 |     272 | 12.281 |  3670773.9
+                  EXP 14E |  131072 |    49.615 |     378 | 17.064 |  2641777.6
+                  SQRT 8E |  131072 |    29.359 |     223 | 10.097 |  4464437.8
+                 NTT 1E * |  262144 |     6.175 |      23 |      - | 42452572.8
+                   MUL 6E |  262144 |    45.689 |     174 |  7.399 |  5737612.9
+                  INV 10E |  262144 |    69.845 |     266 | 11.311 |  3753202.0
+                  LOG 10E |  262144 |    77.473 |     295 | 12.546 |  3383668.6
+                  EXP 14E |  262144 |   103.691 |     395 | 16.792 |  2528130.6
+                  SQRT 8E |  262144 |    61.416 |     234 |  9.946 |  4268302.8
+                 NTT 1E * |  524288 |    13.033 |      24 |      - | 40228445.7
+                   MUL 6E |  524288 |    93.648 |     178 |  7.186 |  5598492.4
+                  INV 10E |  524288 |   150.134 |     286 | 11.520 |  3492126.1
+                  LOG 10E |  524288 |   163.019 |     310 | 12.508 |  3216114.0
+                  EXP 14E |  524288 |   219.532 |     418 | 16.845 |  2388207.0
+                  SQRT 8E |  524288 |   131.899 |     251 | 10.121 |  3974918.0
 ===============================================================================
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ntt-多项式平移"><a class="header" href="#ntt-多项式平移">NTT 多项式平移</a></h1>
@@ -5530,13 +5529,13 @@ std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 
 // @description 预处理逆元、阶乘、阶乘逆元
 
-V&lt;Z&gt; iv, fac, ifac;
+std::vector&lt;Z&gt; iv, fac, ifac;
 
 void pre_all(int u) {
 	int l = iv.size(), n = l * 2;
 	if (u &lt;= l)
 		return;
-	iv = fac = ifac = V&lt;Z&gt;(n + 1, 1);
+	iv = fac = ifac = std::vector&lt;Z&gt;(n + 1, 1);
 	for (int i = 1; i &lt;= n; i++) {
 		fac[i] = fac[i - 1] * i;
 	}
@@ -5557,7 +5556,7 @@ Z C(int n, int m) {
 // @description 多项式牛顿迭代(m32)
 // @problem https://loj.ac/p/150
 
-V&lt;Z&gt; w{1, 1};
+std::vector&lt;Z&gt; w{1, 1};
 
 inline int get_lim(int m) {
 	return 1 &lt;&lt; std::__lg(m * 2 - 1);
@@ -5603,7 +5602,7 @@ void intt(auto f, int n) {
 	std::reverse(f + 1, f + n);
 }
 
-struct Poly : V&lt;Z&gt; { // 大常数板子
+struct Poly : std::vector&lt;Z&gt; { // 大常数板子
 	using vector::vector;
 #define T (*this)
 	int deg() const {
@@ -5759,13 +5758,13 @@ std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 
 // @description 预处理逆元、阶乘、阶乘逆元
 
-V&lt;Z&gt; iv, fac, ifac;
+std::vector&lt;Z&gt; iv, fac, ifac;
 
 void pre_all(int u) {
 	int l = iv.size(), n = l * 2;
 	if (u &lt;= l)
 		return;
-	iv = fac = ifac = V&lt;Z&gt;(n + 1, 1);
+	iv = fac = ifac = std::vector&lt;Z&gt;(n + 1, 1);
 	for (int i = 1; i &lt;= n; i++) {
 		fac[i] = fac[i - 1] * i;
 	}
@@ -5783,7 +5782,7 @@ Z C(int n, int m) {
 	return fac[n] * ifac[m] * ifac[n - m];
 }
 
-V&lt;Z&gt; w{1, 1};
+std::vector&lt;Z&gt; w{1, 1};
 
 inline int get_lim(int m) {
 	return 1 &lt;&lt; std::__lg(m * 2 - 1);
@@ -5829,7 +5828,7 @@ void intt(auto f, int n) {
 	std::reverse(f + 1, f + n);
 }
 
-struct Poly : V&lt;Z&gt; { // 大常数板子
+struct Poly : std::vector&lt;Z&gt; { // 大常数板子
 	using vector::vector;
 #define T (*this)
 	int deg() const {
@@ -5895,7 +5894,7 @@ struct Poly : V&lt;Z&gt; { // 大常数板子
 
 struct PolyEI {
 	int raw_n, n;
-	V&lt;Poly&gt; p;
+	std::vector&lt;Poly&gt; p;
 	PolyEI(Poly a) : raw_n(a.deg()), n(get_lim(raw_n)), p(n * 2) {
 		a.redeg(n);
 		for (int i = 0; i &lt; n; i++)
@@ -5964,33 +5963,33 @@ struct PolyEI {
 ===============================================================================
    Name (baseline is *)   |   Dim   |  Total ms |  ns/op  |Baseline| Ops/second
 ===============================================================================
-                 NTT 1E * |       1 |     0.000 |     100 |      - | 10000000.0
-                     EVAL |       1 |     0.000 |     400 |  4.000 |  2500000.0
-                    INTER |       1 |     0.001 |     700 |  7.000 |  1428571.4
+                 NTT 1E * |       1 |     0.000 |       0 |      - |        inf
+                     EVAL |       1 |     0.001 |     800 |    inf |  1250000.0
+                    INTER |       1 |     0.001 |     600 |    inf |  1666666.7
                  NTT 1E * |       2 |     0.000 |      50 |      - | 20000000.0
-                     EVAL |       2 |     0.003 |    1300 | 26.000 |   769230.8
-                    INTER |       2 |     0.002 |    1200 | 24.000 |   833333.3
-                 NTT 1E * |      64 |     0.001 |      10 |      - | 91428571.4
-                     EVAL |      64 |     0.058 |     901 | 82.429 |  1109185.4
-                    INTER |      64 |     0.074 |    1159 |106.001 |   862522.1
-                 NTT 1E * |     512 |     0.007 |      13 |      - | 75294117.6
-                     EVAL |     512 |     0.620 |    1210 | 91.162 |   825935.7
-                    INTER |     512 |     0.564 |    1101 | 82.942 |   907796.6
-                 NTT 1E * |    4096 |     0.070 |      17 |      - | 58347578.3
-                     EVAL |    4096 |     7.071 |    1726 |100.731 |   579240.1
-                    INTER |    4096 |     7.077 |    1727 |100.805 |   578814.4
-                 NTT 1E * |   16384 |     0.331 |      20 |      - | 49453368.8
-                     EVAL |   16384 |    33.197 |    2026 |100.201 |   493542.1
-                    INTER |   16384 |    33.816 |    2063 |102.071 |   484502.0
-                 NTT 1E * |   32768 |     0.656 |      20 |      - | 49943377.8
-                     EVAL |   32768 |    73.422 |    2240 |111.906 |   446296.4
-                    INTER |   32768 |    72.329 |    2207 |110.240 |   453040.7
-                 NTT 1E * |   65536 |     1.455 |      22 |      - | 45038612.3
-                     EVAL |   65536 |   153.918 |    2348 |105.778 |   425785.6
-                    INTER |   65536 |   159.598 |    2435 |109.681 |   410632.3
-                 NTT 1E * |  131072 |     3.517 |      26 |      - | 37267946.1
-                     EVAL |  131072 |   346.877 |    2646 | 98.628 |   377863.4
-                    INTER |  131072 |   363.357 |    2772 |103.314 |   360724.7
+                     EVAL |       2 |     0.003 |    1500 | 30.000 |   666666.7
+                    INTER |       2 |     0.003 |    1450 | 29.000 |   689655.2
+                 NTT 1E * |      64 |     0.001 |      12 |      - | 80000000.0
+                     EVAL |      64 |     0.048 |     742 | 59.375 |  1347368.4
+                    INTER |      64 |     0.049 |     767 | 61.375 |  1303462.3
+                 NTT 1E * |     512 |     0.006 |      12 |      - | 81269841.3
+                     EVAL |     512 |     0.529 |    1033 | 84.000 |   967499.9
+                    INTER |     512 |     0.506 |     987 | 80.285 |  1012261.8
+                 NTT 1E * |    4096 |     0.065 |      15 |      - | 63210852.0
+                     EVAL |    4096 |     5.578 |    1361 | 86.075 |   734368.1
+                    INTER |    4096 |     5.601 |    1367 | 86.432 |   731339.4
+                 NTT 1E * |   16384 |     0.307 |      18 |      - | 53316151.4
+                     EVAL |   16384 |    27.064 |    1651 | 88.069 |   605390.6
+                    INTER |   16384 |    27.099 |    1653 | 88.184 |   604599.7
+                 NTT 1E * |   32768 |     0.642 |      19 |      - | 51040657.4
+                     EVAL |   32768 |    59.744 |    1823 | 93.060 |   548473.2
+                    INTER |   32768 |    59.576 |    1818 | 92.797 |   550023.6
+                 NTT 1E * |   65536 |     1.367 |      20 |      - | 47931099.0
+                     EVAL |   65536 |   130.589 |    1992 | 95.509 |   501848.5
+                    INTER |   65536 |   130.216 |    1986 | 95.236 |   503288.3
+                 NTT 1E * |  131072 |     2.908 |      22 |      - | 45074591.9
+                     EVAL |  131072 |   283.476 |    2162 | 97.485 |   462374.0
+                    INTER |  131072 |   286.674 |    2187 | 98.585 |   457215.8
 ===============================================================================
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ntt-chirp-z-变换"><a class="header" href="#ntt-chirp-z-变换">NTT Chirp Z 变换</a></h1>
@@ -6078,13 +6077,13 @@ std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 
 // @description 预处理逆元、阶乘、阶乘逆元
 
-V&lt;Z&gt; iv, fac, ifac;
+std::vector&lt;Z&gt; iv, fac, ifac;
 
 void pre_all(int u) {
 	int l = iv.size(), n = l * 2;
 	if (u &lt;= l)
 		return;
-	iv = fac = ifac = V&lt;Z&gt;(n + 1, 1);
+	iv = fac = ifac = std::vector&lt;Z&gt;(n + 1, 1);
 	for (int i = 1; i &lt;= n; i++) {
 		fac[i] = fac[i - 1] * i;
 	}
@@ -6105,7 +6104,7 @@ Z C(int n, int m) {
 // @description 多项式牛顿迭代(m32)
 // @problem https://loj.ac/p/150
 
-V&lt;Z&gt; w{1, 1};
+std::vector&lt;Z&gt; w{1, 1};
 
 inline int get_lim(int m) {
 	return 1 &lt;&lt; std::__lg(m * 2 - 1);
@@ -6151,7 +6150,7 @@ void intt(auto f, int n) {
 	std::reverse(f + 1, f + n);
 }
 
-struct Poly : V&lt;Z&gt; { // 大常数板子
+struct Poly : std::vector&lt;Z&gt; { // 大常数板子
 	using vector::vector;
 #define T (*this)
 	int deg() const {
@@ -6311,13 +6310,13 @@ std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 
 // @description 预处理逆元、阶乘、阶乘逆元
 
-V&lt;Z&gt; iv, fac, ifac;
+std::vector&lt;Z&gt; iv, fac, ifac;
 
 void pre_all(int u) {
 	int l = iv.size(), n = l * 2;
 	if (u &lt;= l)
 		return;
-	iv = fac = ifac = V&lt;Z&gt;(n + 1, 1);
+	iv = fac = ifac = std::vector&lt;Z&gt;(n + 1, 1);
 	for (int i = 1; i &lt;= n; i++) {
 		fac[i] = fac[i - 1] * i;
 	}
@@ -6338,7 +6337,7 @@ Z C(int n, int m) {
 // @description 多项式牛顿迭代(m32)
 // @problem https://loj.ac/p/150
 
-V&lt;Z&gt; w{1, 1};
+std::vector&lt;Z&gt; w{1, 1};
 
 inline int get_lim(int m) {
 	return 1 &lt;&lt; std::__lg(m * 2 - 1);
@@ -6384,7 +6383,7 @@ void intt(auto f, int n) {
 	std::reverse(f + 1, f + n);
 }
 
-struct Poly : V&lt;Z&gt; { // 大常数板子
+struct Poly : std::vector&lt;Z&gt; { // 大常数板子
 	using vector::vector;
 #define T (*this)
 	int deg() const {
@@ -6506,50 +6505,50 @@ Poly semi_exp(Poly F, int m) {
 ===============================================================================
    Name (baseline is *)   |   Dim   |  Total ms |  ns/op  |Baseline| Ops/second
 ===============================================================================
-                 NTT 1E * |       1 |     0.000 |     100 |      - | 10000000.0
-                      INV |       1 |     0.001 |     800 |  8.000 |  1250000.0
-                      DIV |       1 |     0.001 |     700 |  7.000 |  1428571.4
-                      EXP |       1 |     0.000 |     200 |  2.000 |  5000000.0
+                 NTT 1E * |       1 |     0.000 |       0 |      - |        inf
+                      INV |       1 |     0.000 |     400 |    inf |  2500000.0
+                      DIV |       1 |     0.001 |     800 |    inf |  1250000.0
+                      EXP |       1 |     0.001 |     800 |    inf |  1250000.0
                  NTT 1E * |       2 |     0.000 |      50 |      - | 20000000.0
-                      INV |       2 |     0.001 |     550 | 11.000 |  1818181.8
+                      INV |       2 |     0.001 |     650 | 13.000 |  1538461.5
                       DIV |       2 |     0.001 |     300 |  6.000 |  3333333.3
                       EXP |       2 |     0.001 |     500 | 10.000 |  2000000.0
-                 NTT 1E * |      64 |     0.001 |      14 |      - | 71111111.1
-                      INV |      64 |     0.008 |     120 |  8.556 |  8311688.3
-                      DIV |      64 |     0.007 |     114 |  8.111 |  8767123.3
-                      EXP |      64 |     0.006 |     101 |  7.222 |  9846153.8
-                 NTT 1E * |     512 |     0.006 |      11 |      - | 83934426.2
-                      INV |     512 |     0.097 |     190 | 15.967 |  5256673.5
-                      DIV |     512 |     0.091 |     177 | 14.918 |  5626373.6
-                      EXP |     512 |     0.087 |     170 | 14.279 |  5878233.3
-                 NTT 1E * |    4096 |     0.090 |      21 |      - | 45662813.1
-                      INV |    4096 |     1.160 |     283 | 12.934 |  3530410.6
-                      DIV |    4096 |     1.224 |     298 | 13.641 |  3347482.8
-                      EXP |    4096 |     1.203 |     293 | 13.416 |  3403672.6
-                 NTT 1E * |   16384 |     0.313 |      19 |      - | 52411860.5
-                      INV |   16384 |     6.584 |     401 | 21.061 |  2488521.1
-                      DIV |   16384 |     7.504 |     457 | 24.005 |  2183416.9
-                      EXP |   16384 |     7.258 |     442 | 23.217 |  2257453.9
-                 NTT 1E * |   32768 |     0.741 |      22 |      - | 44209211.2
-                      INV |   32768 |    16.134 |     492 | 21.768 |  2030930.8
-                      DIV |   32768 |    16.305 |     497 | 21.999 |  2009631.7
-                      EXP |   32768 |    16.982 |     518 | 22.912 |  1929563.6
-                 NTT 1E * |   65536 |     1.647 |      25 |      - | 39800608.3
-                      INV |   65536 |    36.821 |     561 | 22.362 |  1779850.6
-                      DIV |   65536 |    34.676 |     529 | 21.059 |  1889960.4
-                      EXP |   65536 |    36.972 |     564 | 22.453 |  1772581.4
-                 NTT 1E * |  131072 |     2.860 |      21 |      - | 45827560.0
-                      INV |  131072 |    93.764 |     715 | 32.783 |  1397887.7
-                      DIV |  131072 |    81.183 |     619 | 28.385 |  1614523.8
-                      EXP |  131072 |    83.216 |     634 | 29.095 |  1575084.0
-                 NTT 1E * |  262144 |     7.158 |      27 |      - | 36624398.0
-                      INV |  262144 |   187.018 |     713 | 26.128 |  1401705.7
-                      DIV |  262144 |   191.879 |     731 | 26.808 |  1366192.3
-                      EXP |  262144 |   180.880 |     690 | 25.271 |  1449271.6
-                 NTT 1E * |  524288 |    14.882 |      28 |      - | 35229039.0
-                      INV |  524288 |   422.273 |     805 | 28.374 |  1241586.2
-                      DIV |  524288 |   416.318 |     794 | 27.974 |  1259346.2
-                      EXP |  524288 |   388.502 |     741 | 26.105 |  1349511.4
+                 NTT 1E * |      64 |     0.001 |       9 |      - |106666666.7
+                      INV |      64 |     0.006 |      95 | 10.167 | 10491803.3
+                      DIV |      64 |     0.007 |     110 | 11.833 |  9014084.5
+                      EXP |      64 |     0.006 |      93 | 10.000 | 10666666.7
+                 NTT 1E * |     512 |     0.006 |      12 |      - | 82580645.2
+                      INV |     512 |     0.096 |     186 | 15.435 |  5350108.2
+                      DIV |     512 |     0.093 |     181 | 15.000 |  5505376.3
+                      EXP |     512 |     0.094 |     183 | 15.129 |  5458422.2
+                 NTT 1E * |    4096 |     0.065 |      15 |      - | 63503876.0
+                      INV |    4096 |     1.204 |     293 | 18.665 |  3402287.2
+                      DIV |    4096 |     1.198 |     292 | 18.569 |  3419896.7
+                      EXP |    4096 |     1.202 |     293 | 18.634 |  3407948.8
+                 NTT 1E * |   16384 |     0.300 |      18 |      - | 54613515.4
+                      INV |   16384 |     6.197 |     378 | 20.656 |  2643952.9
+                      DIV |   16384 |     6.206 |     378 | 20.685 |  2640203.6
+                      EXP |   16384 |     6.233 |     380 | 20.776 |  2628681.7
+                 NTT 1E * |   32768 |     0.645 |      19 |      - | 50763827.7
+                      INV |   32768 |    13.978 |     426 | 21.655 |  2344261.8
+                      DIV |   32768 |    14.014 |     427 | 21.711 |  2338156.4
+                      EXP |   32768 |    14.062 |     429 | 21.784 |  2330324.7
+                 NTT 1E * |   65536 |     1.367 |      20 |      - | 47945125.3
+                      INV |   65536 |    31.261 |     477 | 22.870 |  2096393.1
+                      DIV |   65536 |    31.824 |     485 | 23.282 |  2059319.1
+                      EXP |   65536 |    31.512 |     480 | 23.053 |  2079747.9
+                 NTT 1E * |  131072 |     3.069 |      23 |      - | 42704324.9
+                      INV |  131072 |    71.031 |     541 | 23.142 |  1845289.2
+                      DIV |  131072 |    70.482 |     537 | 22.963 |  1859665.2
+                      EXP |  131072 |    71.465 |     545 | 23.284 |  1834067.5
+                 NTT 1E * |  262144 |     6.181 |      23 |      - | 42408632.5
+                      INV |  262144 |   156.620 |     597 | 25.337 |  1673759.6
+                      DIV |  262144 |   157.802 |     601 | 25.529 |  1661222.5
+                      EXP |  262144 |   156.995 |     598 | 25.398 |  1669762.7
+                 NTT 1E * |  524288 |    13.788 |      26 |      - | 38025608.4
+                      INV |  524288 |   346.274 |     660 | 25.115 |  1514082.3
+                      DIV |  524288 |   346.371 |     660 | 25.122 |  1513658.8
+                      EXP |  524288 |   346.409 |     660 | 25.124 |  1513492.7
 ===============================================================================
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ntt半在线卷积卡常"><a class="header" href="#ntt半在线卷积卡常">NTT・半在线卷积・卡常</a></h1>
@@ -6636,13 +6635,13 @@ std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 
 // @description 预处理逆元、阶乘、阶乘逆元
 
-V&lt;Z&gt; iv, fac, ifac;
+std::vector&lt;Z&gt; iv, fac, ifac;
 
 void pre_all(int u) {
 	int l = iv.size(), n = l * 2;
 	if (u &lt;= l)
 		return;
-	iv = fac = ifac = V&lt;Z&gt;(n + 1, 1);
+	iv = fac = ifac = std::vector&lt;Z&gt;(n + 1, 1);
 	for (int i = 1; i &lt;= n; i++) {
 		fac[i] = fac[i - 1] * i;
 	}
@@ -6663,7 +6662,7 @@ Z C(int n, int m) {
 // @description 多项式牛顿迭代(m32)
 // @problem https://loj.ac/p/150
 
-V&lt;Z&gt; w{1, 1};
+std::vector&lt;Z&gt; w{1, 1};
 
 inline int get_lim(int m) {
 	return 1 &lt;&lt; std::__lg(m * 2 - 1);
@@ -6709,7 +6708,7 @@ void intt(auto f, int n) {
 	std::reverse(f + 1, f + n);
 }
 
-struct Poly : V&lt;Z&gt; { // 大常数板子
+struct Poly : std::vector&lt;Z&gt; { // 大常数板子
 	using vector::vector;
 #define T (*this)
 	int deg() const {
@@ -6772,7 +6771,7 @@ struct PolySemi {
 	const Poly &amp;F;
 	Poly G, conv;
 	std::map&lt;pii, Poly&gt; nf, nr;
-	V&lt;int&gt; U;
+	std::vector&lt;int&gt; U;
 	PolySemi(const Poly &amp;f) : F(f), G(M), conv(M), U(32, -1) {}
 	Poly &amp;getNf(pii p) {
 		auto &amp;u = nf[p];
@@ -6854,49 +6853,49 @@ Poly semi_exp(Poly F, int m) {
    Name (baseline is *)   |   Dim   |  Total ms |  ns/op  |Baseline| Ops/second
 ===============================================================================
                  NTT 1E * |       1 |     0.000 |     100 |      - | 10000000.0
-                      INV |       1 |     0.001 |     500 |  5.000 |  2000000.0
-                      DIV |       1 |     0.001 |    1100 | 11.000 |   909090.9
-                      EXP |       1 |     0.001 |     600 |  6.000 |  1666666.7
+                      INV |       1 |     0.001 |     800 |  8.000 |  1250000.0
+                      DIV |       1 |     0.001 |     900 |  9.000 |  1111111.1
+                      EXP |       1 |     0.000 |     400 |  4.000 |  2500000.0
                  NTT 1E * |       2 |     0.000 |      50 |      - | 20000000.0
-                      INV |       2 |     0.001 |     450 |  9.000 |  2222222.2
-                      DIV |       2 |     0.001 |     450 |  9.000 |  2222222.2
-                      EXP |       2 |     0.000 |     200 |  4.000 |  5000000.0
-                 NTT 1E * |      64 |     0.001 |       9 |      - |106666666.7
-                      INV |      64 |     0.007 |     115 | 12.333 |  8648648.6
-                      DIV |      64 |     0.007 |     112 | 12.000 |  8888888.9
-                      EXP |      64 |     0.008 |     120 | 12.833 |  8311688.3
-                 NTT 1E * |     512 |     0.006 |      12 |      - | 78769230.8
-                      INV |     512 |     0.082 |     159 | 12.585 |  6259092.2
-                      DIV |     512 |     0.081 |     158 | 12.462 |  6320909.6
-                      EXP |     512 |     0.126 |     246 | 19.415 |  4057052.3
-                 NTT 1E * |    4096 |     0.058 |      14 |      - | 70135785.3
-                      INV |    4096 |     0.961 |     234 | 16.459 |  4261322.3
-                      DIV |    4096 |     0.986 |     240 | 16.890 |  4152452.6
-                      EXP |    4096 |     1.000 |     244 | 17.130 |  4094345.9
-                 NTT 1E * |   16384 |     0.280 |      17 |      - | 58555902.2
-                      INV |   16384 |     5.395 |     329 | 19.282 |  3036815.6
-                      DIV |   16384 |     5.299 |     323 | 18.940 |  3091656.8
-                      EXP |   16384 |     5.911 |     360 | 21.126 |  2771768.8
-                 NTT 1E * |   32768 |     0.658 |      20 |      - | 49837035.0
-                      INV |   32768 |    12.372 |     377 | 18.817 |  2648506.3
-                      DIV |   32768 |    12.466 |     380 | 18.959 |  2628683.2
-                      EXP |   32768 |    11.798 |     360 | 17.944 |  2777407.2
-                 NTT 1E * |   65536 |     1.328 |      20 |      - | 49360325.3
-                      INV |   65536 |    25.839 |     394 | 19.461 |  2536329.1
-                      DIV |   65536 |    26.309 |     401 | 19.815 |  2491027.7
-                      EXP |   65536 |    28.167 |     429 | 21.214 |  2326733.3
-                 NTT 1E * |  131072 |     3.340 |      25 |      - | 39245287.5
-                      INV |  131072 |    55.176 |     420 | 16.521 |  2375544.8
-                      DIV |  131072 |    54.084 |     412 | 16.194 |  2423509.6
-                      EXP |  131072 |    59.738 |     455 | 17.886 |  2194130.0
-                 NTT 1E * |  262144 |     6.670 |      25 |      - | 39304129.3
-                      INV |  262144 |   135.360 |     516 | 20.295 |  1936648.5
-                      DIV |  262144 |   142.511 |     543 | 21.367 |  1839470.8
-                      EXP |  262144 |   136.559 |     520 | 20.475 |  1919634.5
-                 NTT 1E * |  524288 |    15.456 |      29 |      - | 33922266.6
-                      INV |  524288 |   310.479 |     592 | 20.088 |  1688642.8
-                      DIV |  524288 |   297.472 |     567 | 19.247 |  1762479.9
-                      EXP |  524288 |   300.164 |     572 | 19.421 |  1746672.0
+                      INV |       2 |     0.001 |     650 | 13.000 |  1538461.5
+                      DIV |       2 |     0.001 |     400 |  8.000 |  2500000.0
+                      EXP |       2 |     0.001 |     600 | 12.000 |  1666666.7
+                 NTT 1E * |      64 |     0.001 |      10 |      - | 91428571.4
+                      INV |      64 |     0.009 |     137 | 12.571 |  7272727.3
+                      DIV |      64 |     0.008 |     126 | 11.571 |  7901234.6
+                      EXP |      64 |     0.010 |     156 | 14.286 |  6400000.0
+                 NTT 1E * |     512 |     0.006 |      12 |      - | 81269841.3
+                      INV |     512 |     0.086 |     168 | 13.730 |  5919075.1
+                      DIV |     512 |     0.084 |     164 | 13.365 |  6080760.1
+                      EXP |     512 |     0.089 |     174 | 14.174 |  5733546.8
+                 NTT 1E * |    4096 |     0.065 |      15 |      - | 63307573.4
+                      INV |    4096 |     0.998 |     243 | 15.422 |  4105043.4
+                      DIV |    4096 |     0.994 |     242 | 15.359 |  4121980.8
+                      EXP |    4096 |     0.993 |     242 | 15.348 |  4124886.6
+                 NTT 1E * |   16384 |     0.300 |      18 |      - | 54522644.0
+                      INV |   16384 |     5.149 |     314 | 17.135 |  3181862.1
+                      DIV |   16384 |     5.105 |     311 | 16.988 |  3209412.0
+                      EXP |   16384 |     5.079 |     309 | 16.901 |  3226094.8
+                 NTT 1E * |   32768 |     0.642 |      19 |      - | 51024761.8
+                      INV |   32768 |    11.009 |     335 | 17.142 |  2976536.3
+                      DIV |   32768 |    11.182 |     341 | 17.412 |  2930353.7
+                      EXP |   32768 |    11.150 |     340 | 17.362 |  2938921.3
+                 NTT 1E * |   65536 |     1.377 |      21 |      - | 47586545.4
+                      INV |   65536 |    23.442 |     357 | 17.021 |  2795697.5
+                      DIV |   65536 |    23.629 |     360 | 17.157 |  2773525.3
+                      EXP |   65536 |    23.812 |     363 | 17.290 |  2752256.6
+                 NTT 1E * |  131072 |     2.904 |      22 |      - | 45139773.8
+                      INV |  131072 |    49.715 |     379 | 17.121 |  2636469.9
+                      DIV |  131072 |    50.414 |     384 | 17.362 |  2599904.5
+                      EXP |  131072 |    50.576 |     385 | 17.418 |  2591587.0
+                 NTT 1E * |  262144 |     6.169 |      23 |      - | 42495949.7
+                      INV |  262144 |   116.401 |     444 | 18.870 |  2252083.2
+                      DIV |  262144 |   120.635 |     460 | 19.556 |  2173033.2
+                      EXP |  262144 |   120.516 |     459 | 19.537 |  2175188.0
+                 NTT 1E * |  524288 |    13.035 |      24 |      - | 40222902.7
+                      INV |  524288 |   257.710 |     491 | 19.771 |  2034410.2
+                      DIV |  524288 |   261.460 |     498 | 20.059 |  2005232.4
+                      EXP |  524288 |   252.972 |     482 | 19.408 |  2072509.9
 ===============================================================================
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ntt全在线卷积"><a class="header" href="#ntt全在线卷积">NTT・全在线卷积</a></h1>
@@ -6983,13 +6982,13 @@ std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, const Z &amp;z) {
 
 // @description 预处理逆元、阶乘、阶乘逆元
 
-V&lt;Z&gt; iv, fac, ifac;
+std::vector&lt;Z&gt; iv, fac, ifac;
 
 void pre_all(int u) {
 	int l = iv.size(), n = l * 2;
 	if (u &lt;= l)
 		return;
-	iv = fac = ifac = V&lt;Z&gt;(n + 1, 1);
+	iv = fac = ifac = std::vector&lt;Z&gt;(n + 1, 1);
 	for (int i = 1; i &lt;= n; i++) {
 		fac[i] = fac[i - 1] * i;
 	}
@@ -7010,7 +7009,7 @@ Z C(int n, int m) {
 // @description 多项式牛顿迭代(m32)
 // @problem https://loj.ac/p/150
 
-V&lt;Z&gt; w{1, 1};
+std::vector&lt;Z&gt; w{1, 1};
 
 inline int get_lim(int m) {
 	return 1 &lt;&lt; std::__lg(m * 2 - 1);
@@ -7056,7 +7055,7 @@ void intt(auto f, int n) {
 	std::reverse(f + 1, f + n);
 }
 
-struct Poly : V&lt;Z&gt; { // 大常数板子
+struct Poly : std::vector&lt;Z&gt; { // 大常数板子
 	using vector::vector;
 #define T (*this)
 	int deg() const {
@@ -7225,60 +7224,60 @@ Poly relax_sqrt(Poly F, int m) {
    Name (baseline is *)   |   Dim   |  Total ms |  ns/op  |Baseline| Ops/second
 ===============================================================================
                  NTT 1E * |       1 |     0.000 |     100 |      - | 10000000.0
-                      INV |       1 |     0.001 |    1300 | 13.000 |   769230.8
-                      DIV |       1 |     0.002 |    2100 | 21.000 |   476190.5
-                      EXP |       1 |     0.002 |    1500 | 15.000 |   666666.7
-                     SQRT |       1 |     0.003 |    3000 | 30.000 |   333333.3
+                      INV |       1 |     0.001 |    1100 | 11.000 |   909090.9
+                      DIV |       1 |     0.002 |    2200 | 22.000 |   454545.5
+                      EXP |       1 |     0.001 |    1000 | 10.000 |  1000000.0
+                     SQRT |       1 |     0.001 |    1400 | 14.000 |   714285.7
                  NTT 1E * |       2 |     0.000 |      50 |      - | 20000000.0
-                      INV |       2 |     0.001 |     650 | 13.000 |  1538461.5
-                      DIV |       2 |     0.002 |     800 | 16.000 |  1250000.0
-                      EXP |       2 |     0.002 |     750 | 15.000 |  1333333.3
-                     SQRT |       2 |     0.001 |     650 | 13.000 |  1538461.5
-                 NTT 1E * |      64 |     0.001 |       9 |      - |106666666.7
-                      INV |      64 |     0.007 |     104 | 11.167 |  9552238.8
-                      DIV |      64 |     0.008 |     120 | 12.833 |  8311688.3
-                      EXP |      64 |     0.008 |     121 | 13.000 |  8205128.2
-                     SQRT |      64 |     0.007 |     110 | 11.833 |  9014084.5
-                 NTT 1E * |     512 |     0.006 |      11 |      - | 86779661.0
-                      INV |     512 |     0.300 |     585 | 50.814 |  1707799.5
-                      DIV |     512 |     0.291 |     568 | 49.322 |  1759444.1
-                      EXP |     512 |     0.327 |     637 | 55.339 |  1568142.2
-                     SQRT |     512 |     0.290 |     565 | 49.068 |  1768560.4
-                 NTT 1E * |    4096 |     0.069 |      16 |      - | 59621542.9
-                      INV |    4096 |     2.694 |     657 | 39.216 |  1520352.0
-                      DIV |    4096 |     2.720 |     664 | 39.594 |  1505820.3
-                      EXP |    4096 |     2.649 |     646 | 38.552 |  1546528.8
-                     SQRT |    4096 |     2.506 |     611 | 36.470 |  1634796.3
-                 NTT 1E * |   16384 |     0.319 |      19 |      - | 51376284.9
-                      INV |   16384 |     9.799 |     598 | 30.727 |  1671999.7
-                      DIV |   16384 |     9.601 |     586 | 30.107 |  1706481.1
-                      EXP |   16384 |     9.093 |     555 | 28.515 |  1801738.2
-                     SQRT |   16384 |     9.896 |     603 | 31.030 |  1655694.6
-                 NTT 1E * |   32768 |     0.794 |      24 |      - | 41279711.4
-                      INV |   32768 |    20.948 |     639 | 26.390 |  1564239.8
-                      DIV |   32768 |    20.138 |     614 | 25.369 |  1627165.1
-                      EXP |   32768 |    21.195 |     646 | 26.700 |  1546054.5
-                     SQRT |   32768 |    19.744 |     602 | 24.872 |  1659669.5
-                 NTT 1E * |   65536 |     1.617 |      24 |      - | 40539203.1
-                      INV |   65536 |    47.057 |     718 | 29.108 |  1392708.4
-                      DIV |   65536 |    46.381 |     707 | 28.690 |  1413007.3
-                      EXP |   65536 |    45.352 |     692 | 28.054 |  1445058.2
-                     SQRT |   65536 |    47.074 |     718 | 29.119 |  1392202.4
-                 NTT 1E * |  131072 |     3.460 |      26 |      - | 37881916.7
-                      INV |  131072 |   105.029 |     801 | 30.355 |  1247965.1
-                      DIV |  131072 |   103.777 |     791 | 29.993 |  1263013.8
-                      EXP |  131072 |   106.496 |     812 | 30.779 |  1230771.7
-                     SQRT |  131072 |   104.084 |     794 | 30.082 |  1259289.7
-                 NTT 1E * |  262144 |     6.978 |      26 |      - | 37569731.0
-                      INV |  262144 |   231.128 |     881 | 33.125 |  1134193.8
-                      DIV |  262144 |   227.738 |     868 | 32.639 |  1151076.4
-                      EXP |  262144 |   240.654 |     918 | 34.490 |  1089296.5
-                     SQRT |  262144 |   227.641 |     868 | 32.625 |  1151565.4
-                 NTT 1E * |  524288 |    15.754 |      30 |      - | 33279311.7
-                      INV |  524288 |   509.869 |     972 | 32.364 |  1028280.2
-                      DIV |  524288 |   517.898 |     987 | 32.874 |  1012339.0
-                      EXP |  524288 |   511.958 |     976 | 32.497 |  1024084.9
-                     SQRT |  524288 |   534.368 |    1019 | 33.919 |   981136.5
+                      INV |       2 |     0.001 |     550 | 11.000 |  1818181.8
+                      DIV |       2 |     0.003 |    1500 | 30.000 |   666666.7
+                      EXP |       2 |     0.003 |    1400 | 28.000 |   714285.7
+                     SQRT |       2 |     0.002 |     900 | 18.000 |  1111111.1
+                 NTT 1E * |      64 |     0.001 |      10 |      - | 91428571.4
+                      INV |      64 |     0.006 |      98 |  9.000 | 10158730.2
+                      DIV |      64 |     0.007 |     112 | 10.286 |  8888888.9
+                      EXP |      64 |     0.007 |     103 |  9.429 |  9696969.7
+                     SQRT |      64 |     0.008 |     118 | 10.857 |  8421052.6
+                 NTT 1E * |     512 |     0.006 |      12 |      - | 81269841.3
+                      INV |     512 |     0.296 |     578 | 47.047 |  1727401.2
+                      DIV |     512 |     0.301 |     588 | 47.809 |  1699872.8
+                      EXP |     512 |     0.298 |     582 | 47.301 |  1718126.6
+                     SQRT |     512 |     0.297 |     579 | 47.095 |  1725654.6
+                 NTT 1E * |    4096 |     0.065 |      15 |      - | 63307573.4
+                      INV |    4096 |     2.221 |     542 | 34.323 |  1844469.3
+                      DIV |    4096 |     2.325 |     567 | 35.930 |  1761952.3
+                      EXP |    4096 |     2.345 |     572 | 36.250 |  1746402.4
+                     SQRT |    4096 |     2.220 |     542 | 34.314 |  1844966.9
+                 NTT 1E * |   16384 |     0.300 |      18 |      - | 54577130.5
+                      INV |   16384 |     8.222 |     501 | 27.389 |  1992683.8
+                      DIV |   16384 |     8.236 |     502 | 27.434 |  1989369.1
+                      EXP |   16384 |     8.366 |     510 | 27.868 |  1958408.7
+                     SQRT |   16384 |     8.367 |     510 | 27.873 |  1958057.6
+                 NTT 1E * |   32768 |     0.649 |      19 |      - | 50474585.6
+                      INV |   32768 |    17.835 |     544 | 27.472 |  1837332.5
+                      DIV |   32768 |    17.791 |     542 | 27.404 |  1841866.3
+                      EXP |   32768 |    17.935 |     547 | 27.626 |  1827077.8
+                     SQRT |   32768 |    17.868 |     545 | 27.523 |  1833918.7
+                 NTT 1E * |   65536 |     1.369 |      20 |      - | 47871578.9
+                      INV |   65536 |    39.453 |     602 | 28.819 |  1661095.1
+                      DIV |   65536 |    39.008 |     595 | 28.494 |  1680070.3
+                      EXP |   65536 |    39.390 |     601 | 28.773 |  1663777.2
+                     SQRT |   65536 |    39.207 |     598 | 28.639 |  1671555.7
+                 NTT 1E * |  131072 |     2.913 |      22 |      - | 44995660.8
+                      INV |  131072 |    87.126 |     664 | 29.910 |  1504391.5
+                      DIV |  131072 |    88.282 |     673 | 30.306 |  1484704.3
+                      EXP |  131072 |    87.053 |     664 | 29.884 |  1505653.0
+                     SQRT |  131072 |    88.031 |     671 | 30.220 |  1488922.4
+                 NTT 1E * |  262144 |     6.167 |      23 |      - | 42506968.0
+                      INV |  262144 |   196.059 |     747 | 31.791 |  1337067.9
+                      DIV |  262144 |   196.224 |     748 | 31.818 |  1335942.9
+                      EXP |  262144 |   195.079 |     744 | 31.632 |  1343786.2
+                     SQRT |  262144 |   195.605 |     746 | 31.718 |  1340169.9
+                 NTT 1E * |  524288 |    13.775 |      26 |      - | 38061768.8
+                      INV |  524288 |   432.537 |     824 | 31.401 |  1212121.8
+                      DIV |  524288 |   433.130 |     826 | 31.444 |  1210462.6
+                      EXP |  524288 |   433.457 |     826 | 31.468 |  1209549.1
+                     SQRT |  524288 |   431.840 |     823 | 31.350 |  1214079.6
 ===============================================================================
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="数据结构"><a class="header" href="#数据结构">数据结构</a></h1>
@@ -7286,7 +7285,7 @@ Poly relax_sqrt(Poly F, int m) {
 <pre><code class="language-cpp">// @description 朴素并查集
 
 struct DSU {
-	V&lt;int&gt; fa;
+	std::vector&lt;int&gt; fa;
 	DSU(int n) : fa(n) {
 		for (int i = 0; i &lt; n; i++)
 			fa[i] = i;
@@ -7311,7 +7310,7 @@ struct DSU {
 <pre><code class="language-cpp">// @description 带权并查集
 
 struct DSU {
-	V&lt;int&gt; fa, sz;
+	std::vector&lt;int&gt; fa, sz;
 	DSU(int n) : fa(n), sz(n, 1) {
 		for (int i = 0; i &lt; n; i++)
 			fa[i] = i;
@@ -7346,7 +7345,7 @@ struct DSU {
 template &lt;class T&gt;
 struct VV {
 	int x, y;
-	V&lt;T&gt; m;
+	std::vector&lt;T&gt; m;
 	VV(int a, int b, const T &amp;v = T()) : x(a), y(b), m(a * b, v) {}
 	auto operator[](int i) {
 		return m.begin() + i * y;
@@ -7386,9 +7385,9 @@ struct SparseTable {
 <pre><code class="language-cpp">// @description 滑动窗口
 
 template &lt;class T&gt;
-auto sliding(const V&lt;T&gt; &amp;v, int k) {
+auto sliding(const std::vector&lt;T&gt; &amp;v, int k) {
 	int l = 0, r = -1, n = v.size();
-	V&lt;int&gt; q(n), ret(n);
+	std::vector&lt;int&gt; q(n), ret(n);
 	for (int i = 0; i &lt; n; i++) {
 		while (l &lt;= r &amp;&amp; i - k &gt;= q[l])
 			l++;
@@ -7410,7 +7409,7 @@ auto sliding(const V&lt;T&gt; &amp;v, int k) {
 template &lt;class T&gt;
 struct fwtree {
 	int n;
-	V&lt;T&gt; v;
+	std::vector&lt;T&gt; v;
 	// 1 ~ N - 1
 	fwtree(int a = 0) : n(a), v(n) {}
 	void add(int i, T x) {
@@ -7450,7 +7449,7 @@ struct fwtree {
 
 template &lt;class T&gt;
 struct Heap {
-	V&lt;T&gt; v;
+	std::vector&lt;T&gt; v;
 	Heap() : v(1) {}
 	bool update(int p) {
 		bool f = v[p] &lt; v[p / 2];
@@ -8044,7 +8043,7 @@ int ccw(L l, P p) {
 	return ccw(l.s, l.t, p);
 }
 
-using VP = V&lt;P&gt;;
+using VP = std::vector&lt;P&gt;;
 
 template &lt;class RET&gt;
 RET ring_act(const auto &amp;v, auto &amp;&amp;func) {

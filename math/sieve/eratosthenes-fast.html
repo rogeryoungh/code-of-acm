@@ -193,8 +193,8 @@
                         <h1 id="筛法eratosthenes卡常"><a class="header" href="#筛法eratosthenes卡常">筛法・Eratosthenes・卡常</a></h1>
 <pre><code class="language-cpp">// @description 埃氏筛(卡常)
 
-V&lt;bool&gt; isp;
-V&lt;int&gt; primes; // 个数不精确！
+std::vector&lt;bool&gt; isp;
+std::vector&lt;int&gt; primes; // 个数不精确！
 void Eratosthenes(int n) {
 	isp.resize(n + 6, true);
 	auto f = [&amp;](int i) {
