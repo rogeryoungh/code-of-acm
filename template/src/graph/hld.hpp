@@ -1,14 +1,14 @@
 #include "basic/index.hpp"
 
 const int N = 1E5 + 5;
-V<int> G[N];
+std::vector<std::vector<int>> G(N);
 
 // @problem https://www.luogu.com.cn/problem/P3379
 
 // @description 树链剖分 LCA
 
 struct HLD {
-	V<int> sz, dep, fa, son, top, dfn;
+	std::vector<int> sz, dep, fa, son, top, dfn;
 	int cnt = 0;
 	HLD(int n, int r = 1) : sz(n), dep(n), fa(n), son(n), top(n), dfn(n) {
 		dfs1(r), dfs2(r, r);

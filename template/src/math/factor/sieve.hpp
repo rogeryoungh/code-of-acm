@@ -7,7 +7,7 @@
 // @description 质因子分解
 
 auto factor(ll n) {
-	V<ll> ans;
+	std::vector<ll> ans;
 	for (int i : primes) {
 		if (1ll * i * i > n)
 			break;

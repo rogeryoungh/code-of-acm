@@ -1,11 +1,11 @@
 #include "basic/index.hpp"
 
-V<bool> isp;
-V<int> primes, phi, mu;
-V<ll> smu;
+std::vector<bool> isp;
+std::vector<int> primes, phi, mu;
+std::vector<ll> smu;
 void Euler(int n) {
 	isp.resize(n, true);
-	phi = mu = V<int>(n);
+	phi = mu = std::vector<int>(n);
 	mu[1] = phi[1] = 1;
 	for (int i = 2; i < n; i++) {
 		if (isp[i]) {
@@ -25,7 +25,7 @@ void Euler(int n) {
 			mu[i * pj] = -mu[i];
 		}
 	}
-	smu = V<ll>(n);
+	smu = std::vector<ll>(n);
 	smu[1] = 1;
 	for (int i = 2; i < n; i++) {
 		smu[i] = smu[i - 1] + mu[i];
@@ -34,7 +34,7 @@ void Euler(int n) {
 
 struct SumMuPhi {
 	ll n;
-	V<ll> sum;
+	std::vector<ll> sum;
 	SumMuPhi(ll u) : n(u), sum(u / smu.size() + 1) {}
 	ll Smu(ll u) {
 		if (u < smu.size()) {

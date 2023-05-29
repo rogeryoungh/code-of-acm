@@ -3,8 +3,8 @@
 #include "graph/saving/vec.hpp"
 
 struct SCC {
-	V<int> id;
-	V<V<int>> group;
+	std::vector<int> id;
+	std::vector<std::vector<int>> group;
 	SCC(int n) : id(n) {}
 };
 
@@ -12,8 +12,8 @@ template <class D>
 struct SCCImpl : SCC {
 	const Edges<D> &E, &IE;
 	const int n;
-	V<bool> vis;
-	V<int> stk;
+	std::vector<bool> vis;
+	std::vector<int> stk;
 	int cnt = 0;
 	void dfs1(int u) {
 		vis[u] = true;

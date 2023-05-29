@@ -4,11 +4,11 @@
 
 // @description 拉格朗日插值
 
-int lagrange(const V<int> &y, int x) {
+int lagrange(const std::vector<int> &y, int x) {
 	int n = y.size();
 	if (0 <= x && x < n)
 		return y[x];
-	V<int> pl(n + 2, 1), pr(n + 2, 1), fac(n + 2, 1);
+	std::vector<int> pl(n + 2, 1), pr(n + 2, 1), fac(n + 2, 1);
 	for (int i = 0; i < n; i++)
 		pl[i + 1] = 1ll * pl[i] * (x - i) % P;
 	for (int i = n - 1; i >= 0; i--)

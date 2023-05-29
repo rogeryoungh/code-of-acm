@@ -30,7 +30,7 @@ struct SparseTable {
 
 struct LCA {
 	const int n;
-	V<int> dfn;
+	std::vector<int> dfn;
 	SparseTable<pii> st;
 	LCA(int n_) : n(n_), dfn(n), st(n) {}
 	int query(int x, int y) const {
@@ -46,7 +46,7 @@ struct LCA {
 template <class D>
 struct LCAImpl : LCA {
 	const Edges<D> &E;
-	V<pii> rnk;
+	std::vector<pii> rnk;
 	int cnt = 0;
 	LCAImpl(const Edges<D> &E_, int s = 1) : LCA(E_.size()), E(E_), rnk(n) {
 		dfs(s, 0);

@@ -2,7 +2,7 @@
 
 #include "math/pre-all/pre-all-modint.hpp"
 
-V<Z> w{1, 1};
+std::vector<Z> w{1, 1};
 
 inline int get_lim(int m) {
 	return 1 << std::__lg(m * 2 - 1);
@@ -48,7 +48,7 @@ void intt(auto f, int n) {
 	std::reverse(f + 1, f + n);
 }
 
-struct Poly : V<Z> { // 大常数板子
+struct Poly : std::vector<Z> { // 大常数板子
 	using vector::vector;
 #define T (*this)
 	int deg() const {
@@ -114,7 +114,7 @@ struct Poly : V<Z> { // 大常数板子
 
 struct PolyEI {
 	int raw_n, n;
-	V<Poly> p;
+	std::vector<Poly> p;
 	PolyEI(Poly a) : raw_n(a.deg()), n(get_lim(raw_n)), p(n * 2) {
 		a.redeg(n);
 		for (int i = 0; i < n; i++)

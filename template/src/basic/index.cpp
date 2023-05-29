@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 
-#define V std::vector
 using ll = long long;
 
 int ____ = std::cin.tie(nullptr)->sync_with_stdio(false);

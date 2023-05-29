@@ -3,8 +3,8 @@
 #include "graph/saving/vec.hpp"
 
 struct SCC {
-	V<int> id;
-	V<V<int>> group;
+	std::vector<int> id;
+	std::vector<std::vector<int>> group;
 	SCC(int n) : id(n) {}
 };
 
@@ -12,8 +12,8 @@ template <class D>
 struct SCCImpl : SCC {
 	const Edges<D> &E;
 	const int n;
-	V<int> low, dfn, stk;
-	V<bool> flag;
+	std::vector<int> low, dfn, stk;
+	std::vector<bool> flag;
 	int cnt = 0, c2 = 0;
 	void tarjan(int u) {
 		low[u] = dfn[u] = ++cnt;

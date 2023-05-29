@@ -8,8 +8,8 @@ template <class D>
 auto queue_bellman_ford(const Edges<D> &G, int s) {
 	int n = G.size();
 	std::queue<int> q;
-	V<D> dis(n, std::numeric_limits<D>::max() / 2);
-	V<int> from(n, -1);
+	std::vector<D> dis(n, std::numeric_limits<D>::max() / 2);
+	std::vector<int> from(n, -1);
 	dis[s] = 0, from[s] = s;
 	q.push(s);
 	while (!q.empty()) {
