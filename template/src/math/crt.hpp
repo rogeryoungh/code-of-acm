@@ -5,7 +5,7 @@
 // @description 中国剩余定理
 
 template <class PAIR>
-ll crt(const V<PAIR> &am) {
+ll crt(const std::vector<PAIR> &am) {
 	ll prod = 1, ret = 0;
 	for (auto [a, m] : am)
 		prod *= m;

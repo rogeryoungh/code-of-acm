@@ -5,7 +5,7 @@
 template <class T>
 struct fwtree {
 	int n;
-	V<T> v;
+	std::vector<T> v;
 	// 1 ~ N - 1
 	fwtree(int a = 0) : n(a), v(n) {}
 	void add(int i, T x) {

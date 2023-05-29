@@ -22,7 +22,7 @@ auto floyd(const Edges<D> &E) {
 }
 
 auto get_path(const VV<int> &pass, int x, int y) {
-	V<int> path = {x};
+	std::vector<int> path = {x};
 	std::function<void(int, int)> dfs = [&](int a, int b) {
 		if (pass[a][b] != -1) {
 			int p = pass[a][b];

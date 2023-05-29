@@ -2,7 +2,7 @@
 
 #include "math/pre-all/pre-all-P.hpp"
 
-struct Poly : V<int> { // O(n2) 板子，我也不知道有啥用
+struct Poly : std::vector<int> { // O(n2) 板子，我也不知道有啥用
 	using vector::vector;
 	int deg() const {
 		return size();

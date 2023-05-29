@@ -9,7 +9,7 @@
 struct LCA {
 	const int n, lgn;
 	VV<int> f;
-	V<int> dep;
+	std::vector<int> dep;
 	LCA(int n_) : n(n_), lgn(1 + std::__lg(n)), f(n, lgn), dep(n) {}
 	int query(int x, int y) {
 		if (dep[x] > dep[y])
