@@ -1,0 +1,137 @@
+$if(book)$
+\documentclass{purebook}
+$else$
+\documentclass{pureart}
+$endif$
+
+$if(horizontal)$
+\geometry{
+	paperheight=210mm,
+	paperwidth=290mm,
+  margin=20mm,
+  left=15mm,
+  right=15mm,
+}
+$endif$
+
+$if(listings)$
+\newcommand{\passthrough}[1]{#1}
+$endif$
+
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+$if(title)$
+\title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
+$endif$
+$if(subtitle)$
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{$subtitle$}
+$endif$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+\date{$date$}
+
+\begin{document}
+$if(has-frontmatter)$
+\frontmatter
+$endif$
+$if(title)$
+\maketitle
+$if(abstract)$
+\begin{abstract}
+$abstract$
+\end{abstract}
+$endif$
+$endif$
+
+$for(include-before)$
+$include-before$
+
+$endfor$
+
+
+$if(multicols)$
+\columnseprule=2pt
+\setlength{\columnsep}{30pt}
+\begin{multicols}{2}
+$endif$
+
+$if(toc)$
+$if(toc-title)$
+\renewcommand*\contentsname{$toc-title$}
+$endif$
+$if(beamer)$
+\begin{frame}[allowframebreaks]
+$if(toc-title)$
+  \frametitle{$toc-title$}
+$endif$
+  \tableofcontents[hideallsubsections]
+\end{frame}
+$else$
+{
+$if(colorlinks)$
+\hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$$endif$}
+$endif$
+\setcounter{tocdepth}{$toc-depth$}
+\tableofcontents
+}
+$endif$
+$endif$
+$if(lof)$
+\listoffigures
+$endif$
+$if(lot)$
+\listoftables
+$endif$
+$if(linestretch)$
+\setstretch{$linestretch$}
+$endif$
+$if(has-frontmatter)$
+\mainmatter
+$endif$
+$body$
+
+$if(has-frontmatter)$
+\backmatter
+$endif$
+$if(natbib)$
+$if(bibliography)$
+$if(biblio-title)$
+$if(has-chapters)$
+\renewcommand\bibname{$biblio-title$}
+$else$
+\renewcommand\refname{$biblio-title$}
+$endif$
+$endif$
+  \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+
+$endif$
+$endif$
+$if(biblatex)$
+$if(beamer)$
+\begin{frame}[allowframebreaks]{$biblio-title$}
+  \bibliographytrue
+  \printbibliography[heading=none]
+\end{frame}
+$else$
+\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+$endif$
+
+$endif$
+$for(include-after)$
+$include-after$
+
+$endfor$
+
+
+$if(multicols)$
+\end{multicols}
+$endif$
+
+\end{document}

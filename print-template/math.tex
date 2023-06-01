@@ -1,0 +1,197 @@
+\documentclass{pureart}
+
+\title{ACM 数论专版}
+\author{\href{https://github.com/rogeryoungh}{rogeryoungh}}
+
+\begin{document}
+\newcommand\mfrac[2]{\dfrac{#1\smash[b]{\strut}}{#2\smash[t]{\strut}}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\uppi}{\mathrm{\pi}}
+\newcommand{\eps}{\varepsilon}
+
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\DFT}{\operatorname{DFT}_{\omega_n}}
+\newcommand{\Id}{\operatorname{Id}}
+
+\newcommand{\num}[1]{{\fzfs{（}}{\rm{#1}}{\fzfs{）}}}
+
+\maketitle
+
+\tableofcontents
+
+\begin{abstract}
+    在代码模板里插入太多公式，翻看反而不方便，不如单独开一章。
+\end{abstract}
+
+\section{数论函数}
+
+数论函数是 $\mathbb{N}^+ \to \mathbb{C}$ 的函数。
+
+\paragraph{定义}
+常见函数 $\varepsilon(n) \coloneqq [n=1]$，$1(n) \coloneqq 1$，$\Id_k(n) \coloneqq n^k$，$\sigma_k(n) = \sum\limits_{d \mid n} d^k$。
+
+设 $n > 1$ 的唯一分解式是
+\[ n = p_1^{k_1}p_2^{k_2}\cdots p_s^{k_s} \]
+则 $\omega(n) = s$，$\Omega(n) = \sum k_i$。$\nu(n) = (-1)^{\omega(n)}$，$\lambda(n) = (-1)^{\Omega(n)}$。
+
+Euler $\varphi$ 函数：
+\[ \varphi(m) \coloneqq \sum_{i=1}^m [\gcd(i,m) = 1] = m \prod_{p \mid n}\left( 1-\frac{1}{p} \right) \]
+
+Mobius $\mu$ 函数：
+\[ \mu(n) = \begin{cases}
+    1, &n=1\\
+    0, &\exists d > 1, d^2 \mid n\\
+    (-1)^{\omega(n)}, &\text{otherwise}
+\end{cases} \]
+
+若数论函数 $f$ 满足对 $\gcd(a,b)$ 有 $f(ab) = f(a)f(b)$，则称为积性函数；若有 $f(ab) = f(a) + f(b)$ 则称为加性函数。若 $f,g$ 为积性函数，则 $f(x^p),f^p(x),fg(x),f \ast g$ 都是积性函数。
+
+积性函数有 $\varphi,\varepsilon,1,\Id_k,\sigma_k,\nu,\lambda$，加性函数有 $\omega,\Omega$。
+
+\paragraph{性质}
+$\varphi(m)$ 的性质：$\varphi(p^k) = (p-1)p^{k-1}$。
+
+\[ \varphi(m) = m \prod_{p \mid n}\left( 1-\frac{1}{p} \right), \sum_{d \mid m} \varphi(d) = m \]
+
+$\mu(m)$ 的性质：$\sum\limits_{d \mid n} \mu(d) = [n=1] = \varepsilon$。
+
+Femmat - Euler 定理：当 $\gcd(a,m) = 1$ 时，有
+\[ a^{\varphi(m)} \equiv 1 \pmod m \]
+推广，不要求互质，当 $b \geqslant \varphi(m)$ 时有
+\[ a^b \equiv a^{b \bmod \varphi(m) + \varphi(m) } \]
+
+
+\section{生成函数}
+
+\paragraph{普通生成函数}
+可以把序列 $\{a_n\}$ 映射到形式幂级数
+\[ a(x) = a_0 + a_1 x + a_2 x^2 + \cdots + a_nx^n + \cdots \]
+这样就可以通过对级数的研究得到序列的性质。记作 $f_n = [x^n]F(x)$。
+
+生成函数的四则运算是显然的。其中 $F(x)G(x) = \{\sum\limits_{i=0}^n f_ig_{n-i}\}$ 为序列 $\{f_n\}$ 与 $\{g_n\}$ 的卷积。
+
+对生成函数移位可以乘除 $x^m$，也可以对生成函数逐项求导、逐项积分。求生成函数的部分和，即是 $(1-x)^{-1}F(x)$。
+
+基础函数：
+\begin{equation*}
+    \begin{aligned}
+        \frac{1}{1-cx} &= \sum_{k=0}^\infty c^nx^n\\
+        \frac{x}{1-x-x^2} &= \sum_{k=0}^\infty F_nx^n \\
+        \ee^{cx} &= \sum_{k=0}^\infty \frac{c^nx^n}{n!} \\
+        \ln(1+x) &= \sum_{k=1}^\infty \frac{(-1)^{n-1}}{n} x^n\\
+        -\ln(1-x) &= \sum_{k=1}^\infty \frac{1}{n} x^n
+    \end{aligned}
+\end{equation*}
+
+五边形数定理：
+\[ \prod_{i=1}^\infty (1-x^i) = \sum_{k=0}^{\infty} (-1)^k x^{k(3k \pm 1) /2} \]
+
+
+
+\section{容斥原理}
+
+对于有限集 $S$，它的子集 $A,B,C$ 有
+\[ |A \cup B \cup C| = |A| + |B| + |C| - |A\cap B| - |B \cap C| - |C \cap A| + |A \cap B \cap C| \]
+对于 $n$ 个集合的情况，
+
+容斥原理：设有限集 $S$ 的 $n$ 个子集 $A_i$，则有
+\[ \left|\bigcup _{i=1}^{n}A_{i}\right|=\sum _{\varnothing \neq J\subseteq \{1,2,\ldots ,n\}}(-1)^{|J|-1}\left| \bigcap _{j\in J}A_{j} \right| \]
+
+\paragraph{Burnside 引理}
+设 $A$ 和 $B$ 为有限集合，$X=B^A$ 表示所有从 $A \to B$ 的映射。$G$ 是 $A$ 上的置换群，$X/G$ 表示 $G$ 作用在 $X$ 上产生的所有等价类的集合（若 $X$ 中的两个映射经过 $G$ 中的置换作用后相等，则它们在同一等价类中），则
+\[ |X/G|=\frac{1}{|G|}\sum_{g\in G}|X^g| \]
+其中 $|S|$ 表示集合 $S$ 中元素的个数，且
+\[ X^g = \{ x \mid x \in X,g(x) = x \} \]
+
+\paragraph{Polya 定理}
+前置条件与 Burnside 引理相同
+\[ |X/G|=\frac{1}{|G|}\sum_{g\in G}|B|^{c(g)} \]
+其中 $c(g)$ 表示置换 $g$ 能拆分成不相交的循环置换的数量。
+
+
+\section{Mobius 反演}
+
+对于数论函数 $f(x)$ 和 $g(x)$，定义 $h(x)$ 为
+\[ h(x) = \sum_{d \mid x} f(d) g\left(\frac{x}{d}\right) = \sum_{ab = x} f(a)g(b) \]
+为其 Dirichlet 卷积，简记为 $h = f \ast g$。
+
+Dirichlet 卷积满足交换律、结合律、分配律等，其上有单位元 $\varepsilon$ 和逆元，换言之其与数论函数构成了一个整环。
+
+对于数论函数 $f(n)$，有 $F = f \ast 1 \Rightarrow f = F \ast \mu$。
+
+即对于数论函数 $f(n)$，有
+\[ F(n) = \sum_{d \mid n} f(d) \Rightarrow f(n) = \sum_{d \mid n} \mu(d)f\left(\frac{n}{d}\right) \]
+以及
+\[ F(n) = \sum_{n \mid d} f(d) \Rightarrow f(n) = \sum_{n \mid d} \mu\left(\frac{d}{n}\right)F(d) \]
+常见的有
+\[ \begin{matrix}
+    1 = \varepsilon \ast 1, & \sigma_k = \Id_k \ast 1,& d = 1 \ast 1 \\
+    \Id = \varphi \ast 1, & 1_{\operatorname{Sq}} = \lambda \ast 1, &(d \ast 1)^2 = d^3 \ast 1
+\end{matrix} \]
+
+\section{组和排列}
+
+\subsection{数学常数}
+
+\paragraph{排列数}
+从 $n$ 个不同元素中取 $m$ 个不同元素按顺序排成的一列称作一个排列，则排列种数为 
+\[ A_n^m = n(n-1)\cdots (n-m+1) = \frac{n!}{(n-m)!} \]
+若元素可重复取出，则为 $n^m$。
+
+\paragraph{组和数}
+从 $n$ 个不同元素中取 $m$ 个不同元素组成的一组称作一个组合，则组合种数为
+\[ C_n^m = \frac{n(n-1)\cdots(n-m+1)}{m!} = \frac{n!}{m!(n-m)!} \]
+也记作 $\binom{n}{m}$。若元素可重复取出，则为 $\binom{n+m-1}{m}$。
+
+\paragraph{圆排列}
+将 $n$ 个元素不分首尾的排成一圈称作一个圆排列，则圆排列种数为 $(n-1)!$。
+
+\paragraph{隔板法}
+即 $n$ 个相同的球放进 $k$ 个盒子（要求盒子非空）里的种数为 $\binom{n-1}{m-1}$，即不定方程 $\sum x_m = n$ 的正整数解数。若允许盒子为空，则为 $\binom{n+k-1}{k-1}$。
+
+\paragraph{错排公式}
+每一个元素都不在自己的位置上的 $n$ 元排列称为一个错排，则错排种数为
+\[ D_n = n! \left( 1 - \frac{1}{1!} + \frac{1}{2!} - \frac{1}{3!} + \cdots + \frac{(-1)^n}{n!} \right) = \left\lfloor \frac{n!}{\ee} + 0.5 \right\rfloor \]
+其递推式为 $D_n = (n-1)(D_{n-1} + D_{n-2})$。
+
+\subsection{常见公式}
+
+\paragraph{组和数和式}
+\[ \binom{n+1}{k} = \binom{n}{k} + \binom{n}{k-1}, \quad \binom{n}{k} = \frac{n}{k} \binom{n-1}{k-1} \]
+\[ \sum\limits_{r=0}^k \binom{n+r-1}{r} = \binom{n+k}{k}, \quad \sum\limits_{r=0}^n \binom{n}{r}^2 = \binom{2n}{n} \]
+\[ \binom{n}{i}\binom{i}{m} = \binom{n}{m}\binom{n-m}{i-m}, \quad \sum\limits_{i=m}^n \binom{i}{a} = \binom{n+1}{a+1} - \binom{m}{a+1} \]
+\[ \sum\limits_{i=0}^k \binom{n}{i}\binom{m}{k-i} = \binom{n+m}{k}, \quad \sum\limits_{j=0}^k \binom{k}{j}^2 \binom{n+2k-j}{2k} = \binom{n+k}{k}^2 \]
+
+\[ \sum\limits_{r=0}^n \binom{dn}{dr} = \frac{1}{d} \sum_{r=1}^d  \left( 1+\ee^{\tfrac{2\pi r i}{d}} \right)^{dn} \]
+
+\paragraph{二项式反演}
+
+注意到
+\[ \sum_{k=0}^n (-1)^k \binom{n}{k} = [n=0] \]
+于是有
+\[ f(n) = \sum_{k=0}^n \binom{n}{k} g(k) \Rightarrow g(n) = \sum_{k=0}^n (-1)^{n-k}\binom{n}{k} f(k) \]
+
+\paragraph{斯特林数}
+
+第一类斯特林数$\begin{bmatrix}n\\ m\end{bmatrix}$表示将$n$个不同元素构成$m$个圆排列的数目。
+
+第二类斯特林数 $\begin{Bmatrix} n \\m \end{Bmatrix}$ 表示把 $n$ 个不同元素划分成$m$个相同的集合（不能有空集）的方案数。
+
+\[
+m^n=\sum_{i=0}^m \binom m i  \left\{ \begin{matrix} n \\ i \end{matrix} \right\} i!
+\]
+\[\left\{ \begin{matrix} n\\m \end{matrix} \right\}=\sum_{i=0}^m \frac{i^n}{i!} \frac{(-1)^{m-i}}{(m-i)!}\]
+
+\[\begin{bmatrix}n \\ m\end{bmatrix}=\begin{bmatrix}n-1 \\ m-1\end{bmatrix}+(n-1) \begin{bmatrix}n-1 \\ m\end{bmatrix}\]
+
+\[\begin{Bmatrix}n \\ m\end{Bmatrix}=\begin{Bmatrix}n-1 \\ m-1\end{Bmatrix}+m \begin{Bmatrix}n-1 \\ m\end{Bmatrix}\]
+
+一行第二类斯特林数的和是贝尔数。
+
+\end{document}
