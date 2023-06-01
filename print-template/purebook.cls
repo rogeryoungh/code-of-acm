@@ -59,7 +59,7 @@
 
 \setCJKmainfont[BoldFont={Noto Serif CJK SC Bold},ItalicFont={Noto Sans CJK SC}]{Noto Serif CJK SC}
 \setCJKsansfont{Noto Sans CJK SC}
-\setCJKmonofont{Sarasa Mono SC}
+\setCJKmonofont{LXGW WenKai}
 \setCJKfamilyfont{zhsong}{Noto Serif CJK SC}
 \setCJKfamilyfont{zhhei}{Noto Sans CJK SC}
 \setCJKfamilyfont{zhkai}{LXGW WenKai}

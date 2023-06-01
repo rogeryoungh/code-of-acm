@@ -49,14 +49,16 @@ jobs:
             wget -q -O notoserifcjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKsc-hinted.zip"
             wget -q -O notosanscjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKsc-hinted.zip"
             wget -q -O lxgw-wenkai.zip "https://github.com/lxgw/LxgwWenKai/releases/download/v1.250/lxgw-wenkai-v1.250.zip"
+            wget -q -O jetbrains-mono.zip "https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip"
             wget -q "http://mirrors.ctan.org/fonts/cm-unicode.zip"
             unzip -q notosans.zip -d notosans
             unzip -q notoserif.zip -d notoserif
             unzip -q notosanscjk.zip -d notosanscjk
             unzip -q notoserifcjk.zip -d notoserifcjk
             unzip -q lxgw-wenkai.zip -d lxgw-wenkai
+            unzip -q jetbrains-mono.zip -d jetbrains-mono
             unzip ./cm-unicode.zip
-            cp -r notosans notoserif notosanscjk notoserifcjk lxgw-wenkai cm-unicode/fonts/otf/* /usr/share/fonts
+            cp -r notosans notoserif notosanscjk notoserifcjk lxgw-wenkai jetbrains-mono/fonts/ttf/* cm-unicode/fonts/otf/* /usr/share/fonts
             fc-cache
 
       - name: Build
