@@ -212,39 +212,33 @@ struct SegTree {
 	Val val(Seg *p, ll len) {
 		return !p ? E(len) : p-&gt;val;
 	}
+	template &lt;bool create&gt;
+	Seg *traverse(Seg *p, ll L, ll R, ll l, ll r, auto &amp;&amp;op) {
+		if (create || !p)
+			p = clone(p, R - L);
+		if (l &lt;= L &amp;&amp; R &lt;= r) {
+			op(p-&gt;val);
+			return p;
+		} else {
+			ll M = (L + R) / 2;
+			if (l &lt; M)
+				p-&gt;ls = traverse&lt;create&gt;(p-&gt;ls, L, M, l, r, op);
+			if (r &gt; M)
+				p-&gt;rs = traverse&lt;create&gt;(p-&gt;rs, M, R, l, r, op);
+			if constexpr (!create)
+				p-&gt;val = merge(val(p-&gt;ls, M - L), val(p-&gt;rs, R - M));
+		}
+		return p;
+	}
 	template &lt;bool create = false&gt;
 	Seg *modify(Seg *rt, ll k, auto &amp;&amp;op) {
-		auto dfs = [&amp;](auto &amp;&amp;self, Seg *p, ll L, ll R) -&gt; Seg * {
-			if (create || !p)
-				p = clone(p, R - L);
-			if (R - L == 1) {
-				op(p-&gt;val);
-			} else {
-				ll M = (L + R) / 2;
-				if (k &lt; M)
-					p-&gt;ls = self(self, p-&gt;ls, L, M);
-				else
-					p-&gt;rs = self(self, p-&gt;rs, M, R);
-				p-&gt;val = merge(val(p-&gt;ls, M - L), val(p-&gt;rs, R - M));
-			}
-			return p;
-		};
-		return dfs(dfs, rt, L0, R0);
+		return traverse&lt;create&gt;(rt, L0, R0, k, k + 1, op);
 	}
 	Val query(Seg *rt, ll l, ll r) {
 		Val ret{};
-		auto dfs = [&amp;](auto &amp;&amp;self, Seg *p, ll L, ll R) -&gt; void {
-			if (l &lt;= L &amp;&amp; R &lt;= r) {
-				ret = merge(ret, val(p, R - L));
-			} else {
-				ll M = (L + R) / 2;
-				if (l &lt; M)
-					self(self, !p ? p : p-&gt;ls, L, M);
-				if (r &gt; M)
-					self(self, !p ? p : p-&gt;rs, M, R);
-			}
-		};
-		dfs(dfs, rt, L0, R0);
+		traverse&lt;false&gt;(rt, L0, R0, l, r, [&amp;](const Val &amp;v) {
+			ret = merge(ret, v);
+		});
 		return ret;
 	}
 };

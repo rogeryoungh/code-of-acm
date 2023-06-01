@@ -220,44 +220,41 @@ struct SegTree {
 		return !p ? E(len) : p-&gt;val;
 	}
 	template &lt;bool with_pull&gt;
-	Seg *traverse(Seg *s, ll l, ll r, auto &amp;&amp;op) {
-		auto dfs = [&amp;](auto &amp;&amp;self, Seg *p, ll L, ll R) -&gt; Seg * {
-			if (!p) {
-				p = alloc(R - L);
+	Seg *traverse(Seg *p, ll L, ll R, ll l, ll r, auto &amp;&amp;op) {
+		if (!p) {
+			p = alloc(R - L);
+		}
+		if (l &lt;= L &amp;&amp; R &lt;= r) {
+			op(p);
+		} else {
+			int M = (L + R) / 2;
+			auto &amp;tt = p-&gt;tag;
+			if (tt.has_value()) {
+				if (!p-&gt;ls)
+					p-&gt;ls = alloc(M - L);
+				if (!p-&gt;rs)
+					p-&gt;rs = alloc(R - M);
+				p-&gt;ls-&gt;apply(tt.value());
+				p-&gt;rs-&gt;apply(tt.value());
+				tt.reset();
 			}
-			if (l &lt;= L &amp;&amp; R &lt;= r) {
-				op(p);
-			} else {
-				int M = (L + R) / 2;
-				auto &amp;tt = p-&gt;tag;
-				if (tt.has_value()) {
-					if (!p-&gt;ls)
-						p-&gt;ls = alloc(M - L);
-					if (!p-&gt;rs)
-						p-&gt;rs = alloc(R - M);
-					p-&gt;ls-&gt;apply(tt.value());
-					p-&gt;rs-&gt;apply(tt.value());
-					tt.reset();
-				}
-				if (l &lt; M)
-					p-&gt;ls = self(self, p-&gt;ls, L, M);
-				if (r &gt; M)
-					p-&gt;rs = self(self, p-&gt;rs, M, R);
-				if constexpr (with_pull)
-					p-&gt;val = merge(val(p-&gt;ls, M - L), val(p-&gt;rs, R - M));
-			}
-			return p;
-		};
-		return dfs(dfs, s, L0, R0);
+			if (l &lt; M)
+				p-&gt;ls = traverse&lt;with_pull&gt;(p-&gt;ls, L, M, l, r, op);
+			if (r &gt; M)
+				p-&gt;rs = traverse&lt;with_pull&gt;(p-&gt;rs, M, R, l, r, op);
+			if constexpr (with_pull)
+				p-&gt;val = merge(val(p-&gt;ls, M - L), val(p-&gt;rs, R - M));
+		}
+		return p;
 	}
 	void modify(ll l, ll r, const Tag &amp;t) {
-		rt = traverse&lt;true&gt;(rt, l, r, [&amp;](Seg *p) {
+		rt = traverse&lt;true&gt;(rt, L0, R0, l, r, [&amp;](Seg *p) {
 			p-&gt;apply(t);
 		});
 	}
 	Val query(ll l, ll r) {
 		Val ret{};
-		rt = traverse&lt;false&gt;(rt, l, r, [&amp;](Seg *p) {
+		rt = traverse&lt;false&gt;(rt, L0, R0, l, r, [&amp;](Seg *p) {
 			ret = merge(ret, p-&gt;val);
 		});
 		return ret;

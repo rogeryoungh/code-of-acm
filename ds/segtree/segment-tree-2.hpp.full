@@ -19,39 +19,33 @@ struct SegTree {
 	Val val(Seg *p, ll len) {
 		return !p ? E(len) : p->val;
 	}
+	template <bool create>
+	Seg *traverse(Seg *p, ll L, ll R, ll l, ll r, auto &&op) {
+		if (create || !p)
+			p = clone(p, R - L);
+		if (l <= L && R <= r) {
+			op(p->val);
+			return p;
+		} else {
+			ll M = (L + R) / 2;
+			if (l < M)
+				p->ls = traverse<create>(p->ls, L, M, l, r, op);
+			if (r > M)
+				p->rs = traverse<create>(p->rs, M, R, l, r, op);
+			if constexpr (!create)
+				p->val = merge(val(p->ls, M - L), val(p->rs, R - M));
+		}
+		return p;
+	}
 	template <bool create = false>
 	Seg *modify(Seg *rt, ll k, auto &&op) {
-		auto dfs = [&](auto &&self, Seg *p, ll L, ll R) -> Seg * {
-			if (create || !p)
-				p = clone(p, R - L);
-			if (R - L == 1) {
-				op(p->val);
-			} else {
-				ll M = (L + R) / 2;
-				if (k < M)
-					p->ls = self(self, p->ls, L, M);
-				else
-					p->rs = self(self, p->rs, M, R);
-				p->val = merge(val(p->ls, M - L), val(p->rs, R - M));
-			}
-			return p;
-		};
-		return dfs(dfs, rt, L0, R0);
+		return traverse<create>(rt, L0, R0, k, k + 1, op);
 	}
 	Val query(Seg *rt, ll l, ll r) {
 		Val ret{};
-		auto dfs = [&](auto &&self, Seg *p, ll L, ll R) -> void {
-			if (l <= L && R <= r) {
-				ret = merge(ret, val(p, R - L));
-			} else {
-				ll M = (L + R) / 2;
-				if (l < M)
-					self(self, !p ? p : p->ls, L, M);
-				if (r > M)
-					self(self, !p ? p : p->rs, M, R);
-			}
-		};
-		dfs(dfs, rt, L0, R0);
+		traverse<false>(rt, L0, R0, l, r, [&](const Val &v) {
+			ret = merge(ret, v);
+		});
 		return ret;
 	}
 };
