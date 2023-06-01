@@ -25,42 +25,37 @@ struct SegTree {
 		for (int i = N - 1; i >= 1; i--)
 			pull(i);
 	}
-#define lson p * 2
-#define rson p * 2 + 1
 	template <bool with_pull>
-	void traverse(int l, int r, auto &&op) {
-		auto dfs = [&](auto &&self, int p, int L, int R) -> void {
-			if (l <= L && R <= r) {
-				op(tr[p]);
-			} else {
-				int M = (L + R) / 2;
-				auto &t = tr[p].tag;
-				if (t.has_value()) {
-					tr[lson].apply(t.value());
-					tr[rson].apply(t.value());
-					t.reset();
-				}
-				if (l < M)
-					self(self, lson, L, M);
-				if (r > M)
-					self(self, rson, M, R);
-				if constexpr (with_pull)
-					pull(p);
+	void traverse(int p, int L, int R, int l, int r, auto &&op) {
+		if (l <= L && R <= r) {
+			op(tr[p]);
+		} else {
+			int M = (L + R) / 2;
+			auto &t = tr[p].tag;
+			if (t.has_value()) {
+				tr[p * 2 + 0].apply(t.value());
+				tr[p * 2 + 1].apply(t.value());
+				t.reset();
 			}
-		};
-		dfs(dfs, 1, 0, N);
+			if (l < M)
+				traverse<with_pull>(p * 2 + 0, L, M, l, r, op);
+			if (r > M)
+				traverse<with_pull>(p * 2 + 1, M, R, l, r, op);
+			if constexpr (with_pull)
+				pull(p);
+		}
 	}
 	void pull(int p) {
-		tr[p].val = merge(tr[lson].val, tr[rson].val);
+		tr[p].val = merge(tr[p * 2].val, tr[p * 2 + 1].val);
 	}
 	void modify(int l, int r, const Tag &t) {
-		traverse<true>(l, r, [&](Seg &cur) {
+		traverse<true>(1, 0, N, l, r, [&](Seg &cur) {
 			cur.apply(t);
 		});
 	}
 	Val query(int l, int r) {
 		Val ret{};
-		traverse<false>(l, r, [&](const Seg &cur) {
+		traverse<false>(1, 0, N, l, r, [&](const Seg &cur) {
 			ret = merge(ret, cur.val);
 		});
 		return ret;
