@@ -2,7 +2,7 @@
 
 快速计算 $a^n \bmod m$，复杂度 $O(\log n)$。
 
-<<< @/../src/template/base/qpow.cpp
+<<< @/../src/template/base/qpow.hpp#snippet{cpp}
 
 ## 例题
 

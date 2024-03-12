@@ -1,3 +1,7 @@
+#pragma once
+#include "../base.hpp"
+
+// #region snippet
 int qpow(int a, i64 n, int m) {
 	int ret = 1 % m;
 	for (; n > 0; n /= 2) {
@@ -7,3 +11,4 @@ int qpow(int a, i64 n, int m) {
 	}
 	return ret;
 }
+// #endregion snippet

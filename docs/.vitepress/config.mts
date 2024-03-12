@@ -26,7 +26,7 @@ export default defineConfig({
 })
 
 function sidebarItems(): DefaultTheme.Sidebar {
-  return  {
+  return {
     '/template/': [
       {
         text: '基础',
@@ -36,7 +36,13 @@ function sidebarItems(): DefaultTheme.Sidebar {
           { text: '快速幂', link: '/template/qpow' },
           { text: '二分查找', link: '/template/binary-search' },
         ]
-      }
+      },
+      {
+        text: '数据结构',
+        items: [
+          { text: '并查集', link: '/template/dsu' },
+        ]
+      },
     ]
   }
 }

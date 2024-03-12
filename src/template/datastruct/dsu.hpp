@@ -1,8 +1,11 @@
+#pragma once
+#include "../base.hpp"
+
+// #region snippet
 struct DSU {
 	std::vector<int> fa;
 	DSU(int n) : fa(n) {
-		for (int i = 0; i < n; i++)
-			fa[i] = i;
+		std::iota(fa.begin(), fa.end(), 0);
 	}
 	int find(int x) {
 		return fa[x] == x ? x : fa[x] = find(fa[x]);
@@ -11,7 +14,7 @@ struct DSU {
 		return find(x) == find(y);
 	}
 	void merge(int x, int y) {
-		x = find(x), y = find(y);
-		fa[x] = y;
+		fa[find(x)] = find(y);
 	}
 };
+// #endregion snippet

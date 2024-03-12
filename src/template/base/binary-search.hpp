@@ -1,3 +1,7 @@
+#pragma once
+#include "../base.hpp"
+
+// #region snippet
 i64 bsearch_l(i64 l, i64 r, auto check) {
 	while (r - l > 1) {
 		i64 m = l + (r - l) / 2;
@@ -13,3 +17,4 @@ i64 bsearch_r(i64 l, i64 r, auto check) {
 	}
 	return check(l) ? l : r;
 }
+// #endregion snippet

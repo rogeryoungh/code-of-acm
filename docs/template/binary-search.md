@@ -6,7 +6,7 @@
 
 若无答案，返回 $r$。
 
-<<< @/../src/template/base/binary-search.cpp
+<<< @/../src/template/base/binary-search.hpp#snippet{cpp}
 
 ## 测试例题
 

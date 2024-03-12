@@ -1,8 +1,12 @@
+#pragma once
+#include "../base.hpp"
+
+// #region snippet
 template <class T>
 struct vec2d {
 	int x, y;
 	std::vector<T> m;
-	VV(int x, int y, const T &v = T()) : x(x), y(y), m(a * b, v) {}
+	vec2d(int x, int y, const T &v = T()) : x(x), y(y), m(x * y, v) {}
 	auto operator[](int i) {
 		return m.begin() + i * y;
 	}
@@ -10,3 +14,4 @@ struct vec2d {
 		return m.begin() + i * y;
 	}
 };
+// #endregion snippet
