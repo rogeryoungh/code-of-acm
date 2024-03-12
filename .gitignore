@@ -6,6 +6,9 @@ template/**/*.cpp.full
 template/**/*.hpp.full
 template/.xmake/
 template/build/
+node_modules/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
 
 
 *.pdf

@@ -21,6 +21,16 @@ jobs:
           hugo-version: 'latest'
           # extended: true
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+
+      - name: Build with VitePress
+        run: |
+          pnpm install
+          pnpm docs:build
+
       # - uses: docker://pandoc/core:latest
       #   with:
       #     args: >-  # allows you to break string into multiple lines
@@ -59,7 +69,6 @@ jobs:
       - name: Build
         run: |
           bash scripts/build.sh
-          bash scripts/build-template-docs.sh
           
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -73,7 +82,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./template/book
+          publish_dir: ./docs/.vitepress/dist
           publish_branch: docs-gh-page
 
       # - name: Deploy PDF Docs
