@@ -22,6 +22,7 @@
             color: #0099ff !important;
           }
         </style>
+        <link href="https://registry.npmmirror.com/katex/0.16.4/files/dist/katex.min.css" rel="stylesheet">
 
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -195,7 +196,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="质因分解pollard-rho"><a class="header" href="#质因分解pollard-rho">质因分解・Pollard Rho</a></h1>
-<p>Pollard Rho 算法可以在 $O(n^{0.25})$ 的期望复杂度内计算出 $n$ 的一个因子，可以用于 $10^{18}$ 内的因式分解。</p>
+<p>Pollard Rho 算法可以在 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0.25</span></span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 的期望复杂度内计算出 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 的一个因子，可以用于 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">18</span></span></span></span></span></span></span></span></span></span></span></span> 内的因式分解。</p>
 <pre><code class="language-cpp">using i128 = __int128_t;
 
 // @description 快速幂(i128)

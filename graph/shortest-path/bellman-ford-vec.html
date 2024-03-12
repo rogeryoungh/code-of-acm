@@ -22,6 +22,7 @@
             color: #0099ff !important;
           }
         </style>
+        <link href="https://registry.npmmirror.com/katex/0.16.4/files/dist/katex.min.css" rel="stylesheet">
 
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -195,7 +196,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="最短路bellman-fordvec"><a class="header" href="#最短路bellman-fordvec">最短路・Bellman Ford・VEC</a></h1>
-<p>对于 $n$ 个点 $m$ 条边的图，可以在 $O(nm)$ 的时间内求出来源点 $s$ 到所有点的最短路，并且求出路径。</p>
+<p>对于 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 个点 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span> 条边的图，可以在 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">nm</span><span class="mclose">)</span></span></span></span> 的时间内求出来源点 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">s</span></span></span></span> 到所有点的最短路，并且求出路径。</p>
 <pre><code class="language-cpp">template &lt;class D&gt;
 struct Edge {
 	int to;

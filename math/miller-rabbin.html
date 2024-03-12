@@ -22,6 +22,7 @@
             color: #0099ff !important;
           }
         </style>
+        <link href="https://registry.npmmirror.com/katex/0.16.4/files/dist/katex.min.css" rel="stylesheet">
 
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -195,9 +196,9 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="素性测试miller-rabbin"><a class="header" href="#素性测试miller-rabbin">素性测试（Miller Rabbin）</a></h1>
-<p>快速判断 $10^{18}$ 内的数字是否为素数。</p>
-<p>若选取 $k$ 个素数为基底，那么复杂度大概是 $O(k \log n)$，错误率为 $4^{-k}$。</p>
-<p>下方代码的基底在 $2^{64}$ 内没有例外。更多基底有关的可以查看 <a href="https://miller-rabin.appspot.com">SPRP Base</a>。</p>
+<p>快速判断 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">18</span></span></span></span></span></span></span></span></span></span></span></span> 内的数字是否为素数。</p>
+<p>若选取 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> 个素数为基底，那么复杂度大概是 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>，错误率为 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8491em;"></span><span class="mord"><span class="mord">4</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span></span>。</p>
+<p>下方代码的基底在 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">64</span></span></span></span></span></span></span></span></span></span></span></span> 内没有例外。更多基底有关的可以查看 <a href="https://miller-rabin.appspot.com">SPRP Base</a>。</p>
 <pre><code class="language-cpp">using i128 = __int128_t;
 
 // @description 快速幂(i128)

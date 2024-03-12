@@ -22,6 +22,7 @@
             color: #0099ff !important;
           }
         </style>
+        <link href="https://registry.npmmirror.com/katex/0.16.4/files/dist/katex.min.css" rel="stylesheet">
 
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -195,9 +196,9 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="二分"><a class="header" href="#二分">二分</a></h1>
-<p>函数 <code>lower</code> 寻找区间 $[l, r)$ 中 <code>true -&gt; false</code> 的最后一个 <code>true</code>。</p>
-<p>函数 <code>upper</code> 寻找区间 $[l, r)$ 中 <code>false -&gt; true</code> 的第一个 <code>true</code>。</p>
-<p>若无答案，则返回 $r$。</p>
+<p>函数 <code>lower</code> 寻找区间 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span> 中 <code>true -&gt; false</code> 的最后一个 <code>true</code>。</p>
+<p>函数 <code>upper</code> 寻找区间 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span> 中 <code>false -&gt; true</code> 的第一个 <code>true</code>。</p>
+<p>若无答案，则返回 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span>。</p>
 <pre><code class="language-cpp">// @description 二分
 
 ll lower(ll l, ll r, auto check) { // last true

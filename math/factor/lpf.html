@@ -22,6 +22,7 @@
             color: #0099ff !important;
           }
         </style>
+        <link href="https://registry.npmmirror.com/katex/0.16.4/files/dist/katex.min.css" rel="stylesheet">
 
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -195,8 +196,8 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="质因分解lpf-优化"><a class="header" href="#质因分解lpf-优化">质因分解・LPF 优化</a></h1>
-<p>需要 $O(N)$ 预处理，后可以在 $O(\log{n})$ 内求出 $n(n \leqslant N)$ 的所有质因子。</p>
-<p>仅在 $N$ 较小时有用。</p>
+<p>需要 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span> 预处理，后可以在 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">n</span></span><span class="mclose">)</span></span></span></span> 内求出 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span> 的所有质因子。</p>
+<p>仅在 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> 较小时有用。</p>
 <pre><code class="language-cpp">// @description V&lt;T&gt; -&gt; V&lt;pair&lt;T, count&gt;&gt;
 
 template &lt;class T&gt;
