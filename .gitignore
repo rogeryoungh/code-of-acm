@@ -9,6 +9,9 @@ template/build/
 node_modules/
 docs/.vitepress/cache/
 docs/.vitepress/dist/
+src/template/**/*.hpp.full
+src/template/**/*.cpp.full
+scripts/pre.full.cpp
 
 
 *.pdf

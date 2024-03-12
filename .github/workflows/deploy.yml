@@ -15,6 +15,10 @@ jobs:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
+
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
@@ -28,6 +32,7 @@ jobs:
 
       - name: Build with VitePress
         run: |
+          python scripts/expand.py
           pnpm install
           pnpm docs:build
 

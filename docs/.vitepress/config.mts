@@ -41,6 +41,7 @@ function sidebarItems(): DefaultTheme.Sidebar {
         text: '数据结构',
         items: [
           { text: '并查集', link: '/template/dsu' },
+          { text: 'Sparse Table', link: '/template/sparse-table' },
         ]
       },
     ]
