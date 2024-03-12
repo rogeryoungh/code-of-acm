@@ -1,63 +1,31 @@
 <!DOCTYPE HTML>
-<html lang="zh-cn" class="sidebar-visible no-js light">
+<html lang="zh-cn" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>NTT 牛顿迭代 - Roger Young 的板子</title>
+
+
         <!-- Custom HTML head -->
-<style>
-  main p>code {
-    color: #f14668 !important;
-    background: unset !important;
-  }
+        <style>
+          main p>code {
+            color: #f14668 !important;
+            background: unset !important;
+          }
+        
+          main pre>code {
+            tab-size: 2;
+          }
+        
+          main p a,
+          main ul a {
+            color: #0099ff !important;
+          }
+        </style>
 
-  main pre>code {
-    tab-size: 2;
-  }
-
-  main p a,
-  main ul a {
-    color: #0099ff !important;
-  }
-
-  .katex-display {
-    overflow: auto hidden;
-  }
-</style>
-
-<link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/KaTeX/0.13.16/katex.min.css">
-<script defer src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/KaTeX/0.13.16/katex.min.js"></script>
-<script defer src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/KaTeX/0.13.16/contrib/auto-render.min.js"></script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    renderMathInElement(document.body, {
-      delimiters: [
-        { left: '$$', right: '$$', display: true },
-        { left: '$', right: '$', display: false },
-        { left: '\\(', right: '\\)', display: false },
-        { left: '\\[', right: '\\]', display: true },
-        { left: "\\begin{equation}", right: "\\end{equation}", display: true },
-      ],
-      macros: {
-        "\\RR": "\\mathbb{R}",
-        "\\NN": "\\mathbb{N}",
-        "\\QQ": "\\mathbb{Q}",
-        "\\ZZ": "\\mathbb{Z}",
-        "\\CC": "\\mathbb{C}",
-        "\\ee": "\\mathrm{e}",
-        "\\dd": "\\mathrm{d}",
-        "\\eps": "\\varepsilon",
-      },
-      globalGroup: true,
-      throwOnError: false
-    });
-  });
-</script>
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="../favicon.svg">
         <link rel="shortcut icon" href="../favicon.png">
@@ -65,26 +33,29 @@
         <link rel="stylesheet" href="../css/general.css">
         <link rel="stylesheet" href="../css/chrome.css">
         <link rel="stylesheet" href="../css/print.css" media="print">
+
         <!-- Fonts -->
         <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
         <link rel="stylesheet" href="../fonts/fonts.css">
+
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="../highlight.css">
         <link rel="stylesheet" href="../tomorrow-night.css">
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="../theme/mdbook-admonish.css">
+
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
+        <script>
             var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
@@ -100,50 +71,81 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
+        <script>
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
 
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded "><a href="../basic/index.html"><strong aria-hidden="true">1.</strong> 基础</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic/vec2.html"><strong aria-hidden="true">1.1.</strong> 二维数组</a></li><li class="chapter-item expanded "><a href="../basic/fastio.html"><strong aria-hidden="true">1.2.</strong> 快读</a></li><li class="chapter-item expanded "><a href="../basic/qpow/qpow.html"><strong aria-hidden="true">1.3.</strong> 快速幂</a></li><li class="chapter-item expanded "><a href="../basic/lower-upper.html"><strong aria-hidden="true">1.4.</strong> 二分</a></li><li class="chapter-item expanded "><a href="../basic/modint/modint.html"><strong aria-hidden="true">1.5.</strong> Modint</a></li><li class="chapter-item expanded "><a href="../basic/modint/runtime.html"><strong aria-hidden="true">1.6.</strong> Runtime Montgomery Modint</a></li><li class="chapter-item expanded "><a href="../basic/v2pti.html"><strong aria-hidden="true">1.7.</strong> V&lt;T, count&gt;</a></li><li class="chapter-item expanded "><a href="../basic/bit.html"><strong aria-hidden="true">1.8.</strong> Bit</a></li></ol></li><li class="chapter-item expanded "><a href="../math/index.html"><strong aria-hidden="true">2.</strong> 数学</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../math/matrix/index.html"><strong aria-hidden="true">2.1.</strong> 矩阵</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../math/matrix/matrix.html"><strong aria-hidden="true">2.1.1.</strong> 矩阵</a></li><li class="chapter-item "><a href="../math/matrix/qmatrix.html"><strong aria-hidden="true">2.1.2.</strong> 矩阵快速幂</a></li><li class="chapter-item "><a href="../math/matrix/gauss-f64.html"><strong aria-hidden="true">2.1.3.</strong> 高斯消元・f64</a></li><li class="chapter-item "><a href="../math/matrix/gauss-modint.html"><strong aria-hidden="true">2.1.4.</strong> 高斯消元・modint</a></li></ol></li><li class="chapter-item expanded "><a href="../math/exgcd.html"><strong aria-hidden="true">2.2.</strong> 扩展欧几里得・EXGCD</a></li><li class="chapter-item expanded "><a href="../math/sieve/euler.html"><strong aria-hidden="true">2.3.</strong> 筛法</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../math/sieve/euler.html"><strong aria-hidden="true">2.3.1.</strong> Euler 筛・朴素</a></li><li class="chapter-item "><a href="../math/sieve/euler-lpf.html"><strong aria-hidden="true">2.3.2.</strong> Euler 筛・LPF</a></li><li class="chapter-item "><a href="../math/sieve/eratosthenes.html"><strong aria-hidden="true">2.3.3.</strong> Eratosthenes・朴素</a></li><li class="chapter-item "><a href="../math/sieve/eratosthenes-fast.html"><strong aria-hidden="true">2.3.4.</strong> Eratosthenes・卡常</a></li></ol></li><li class="chapter-item expanded "><a href="../math/factor/sieve.html"><strong aria-hidden="true">2.4.</strong> 质因分解</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../math/factor/bruce-force.html"><strong aria-hidden="true">2.4.1.</strong> 暴力</a></li><li class="chapter-item "><a href="../math/factor/sieve.html"><strong aria-hidden="true">2.4.2.</strong> 筛优化</a></li><li class="chapter-item "><a href="../math/factor/lpf.html"><strong aria-hidden="true">2.4.3.</strong> LPF 优化</a></li><li class="chapter-item "><a href="../math/factor/pollard-rho.html"><strong aria-hidden="true">2.4.4.</strong> Pollard Rho</a></li></ol></li><li class="chapter-item expanded "><a href="../math/crt.html"><strong aria-hidden="true">2.5.</strong> 中国剩余定理・CRT</a></li><li class="chapter-item expanded "><a href="../math/excrt.html"><strong aria-hidden="true">2.6.</strong> 扩展中国剩余定理</a></li><li class="chapter-item expanded "><a href="../math/miller-rabbin.html"><strong aria-hidden="true">2.7.</strong> 素性测试・Miller Rabbin</a></li><li class="chapter-item expanded "><a href="../math/floor-sum.html"><strong aria-hidden="true">2.8.</strong> Floor Sum・类欧</a></li><li class="chapter-item expanded "><a href="../math/cipolla.html"><strong aria-hidden="true">2.9.</strong> 二次剩余・Cipolla</a></li><li class="chapter-item expanded "><a href="../math/constant/index.html"><strong aria-hidden="true">2.10.</strong> 数学常数</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../math/pre-all/pre-all.html"><strong aria-hidden="true">2.10.1.</strong> 预处理常数</a></li><li class="chapter-item "><a href="../math/pre-all/pre.html"><strong aria-hidden="true">2.10.2.</strong> 预处理常数・单独</a></li><li class="chapter-item "><a href="../math/constant/stirling.html"><strong aria-hidden="true">2.10.3.</strong> 斯特林数</a></li><li class="chapter-item "><a href="../math/constant/euler-phi.html"><strong aria-hidden="true">2.10.4.</strong> Euler $\varphi(n)$</a></li><li class="chapter-item "><a href="../math/constant/powers.html"><strong aria-hidden="true">2.10.5.</strong> 幂表</a></li><li class="chapter-item "><a href="../math/constant/tetration-mod.html"><strong aria-hidden="true">2.10.6.</strong> 指数塔</a></li></ol></li><li class="chapter-item expanded "><a href="../math/interpolation/index.html"><strong aria-hidden="true">2.11.</strong> 插值</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../math/interpolation/lagrange1.html"><strong aria-hidden="true">2.11.1.</strong> Lagrange 插值（求值）</a></li><li class="chapter-item "><a href="../math/interpolation/lagrange2.html"><strong aria-hidden="true">2.11.2.</strong> Lagrange 插值（求系数）</a></li><li class="chapter-item "><a href="../math/interpolation/lagrange3.html"><strong aria-hidden="true">2.11.3.</strong> Lagrange 插值（连续）</a></li></ol></li><li class="chapter-item expanded "><a href="../math/fwt/fwt.html"><strong aria-hidden="true">2.12.</strong> FWT</a></li></ol></li><li class="chapter-item expanded "><a href="../string/index.html"><strong aria-hidden="true">3.</strong> 字符串</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../string/kmp.html"><strong aria-hidden="true">3.1.</strong> KMP</a></li><li class="chapter-item expanded "><a href="../string/z-algorithm.html"><strong aria-hidden="true">3.2.</strong> Z 函数</a></li><li class="chapter-item expanded "><a href="../string/sa-doubling.html"><strong aria-hidden="true">3.3.</strong> 后缀数组</a></li><li class="chapter-item expanded "><a href="../string/manacher.html"><strong aria-hidden="true">3.4.</strong> Manacher</a></li></ol></li><li class="chapter-item expanded "><a href="../graph/index.html"><strong aria-hidden="true">4.</strong> 图论</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../graph/shortest-path/index.html"><strong aria-hidden="true">4.1.</strong> 最短路</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../graph/shortest-path/bellman-ford-vec.html"><strong aria-hidden="true">4.1.1.</strong> Bellman Ford・VEC</a></li><li class="chapter-item "><a href="../graph/shortest-path/queue-bellman-ford-vec.html"><strong aria-hidden="true">4.1.2.</strong> 队列优化 Bellman Ford・VEC</a></li><li class="chapter-item "><a href="../graph/shortest-path/dijkstra-vec.html"><strong aria-hidden="true">4.1.3.</strong> Dijkstra・VEC</a></li><li class="chapter-item "><a href="../graph/shortest-path/floyd-adj.html"><strong aria-hidden="true">4.1.4.</strong> Floyd・ADJ</a></li></ol></li><li class="chapter-item expanded "><a href="../graph/lca/index.html"><strong aria-hidden="true">4.2.</strong> LCA</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../graph/lca/binary-lifting.html"><strong aria-hidden="true">4.2.1.</strong> 倍增</a></li><li class="chapter-item "><a href="../graph/lca/sparse-table.html"><strong aria-hidden="true">4.2.2.</strong> ST</a></li></ol></li><li class="chapter-item expanded "><a href="../graph/scc/index.html"><strong aria-hidden="true">4.3.</strong> SCC</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../graph/scc/tarjan.html"><strong aria-hidden="true">4.3.1.</strong> Tarjan</a></li><li class="chapter-item "><a href="../graph/scc/kosaraju.html"><strong aria-hidden="true">4.3.2.</strong> Kosaraju</a></li></ol></li><li class="chapter-item expanded "><a href="../graph/kruskal.html"><strong aria-hidden="true">4.4.</strong> 最小生成树・kruskal</a></li><li class="chapter-item expanded "><a href="../graph/hld.html"><strong aria-hidden="true">4.5.</strong> 树链剖分</a></li><li class="chapter-item expanded "><a href="../graph/dinic.html"><strong aria-hidden="true">4.6.</strong> Dinic</a></li></ol></li><li class="chapter-item expanded "><a href="../poly/index.html"><strong aria-hidden="true">5.</strong> 多项式</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../poly/fft-mul.html"><strong aria-hidden="true">5.1.</strong> FFT 乘法</a></li><li class="chapter-item expanded "><a href="../poly/ntt-mul-i32.html"><strong aria-hidden="true">5.2.</strong> NTT 乘法・i32</a></li><li class="chapter-item expanded "><a href="../poly/ntt-mul-mod3.html"><strong aria-hidden="true">5.3.</strong> NTT 乘法・三模</a></li><li class="chapter-item expanded "><a href="../poly/ntt-naive.html"><strong aria-hidden="true">5.4.</strong> NTT $O(n^2)$</a></li><li class="chapter-item expanded "><a href="../poly/ntt-newton.html" class="active"><strong aria-hidden="true">5.5.</strong> NTT 牛顿迭代</a></li><li class="chapter-item expanded "><a href="../poly/ntt-newton-fast.html"><strong aria-hidden="true">5.6.</strong> NTT 牛顿迭代・卡常</a></li><li class="chapter-item expanded "><a href="../poly/ntt-newton-blockwise-fast.html"><strong aria-hidden="true">5.7.</strong> NTT 牛顿迭代・分块卡常</a></li><li class="chapter-item expanded "><a href="../poly/ntt-taylor-shift.html"><strong aria-hidden="true">5.8.</strong> NTT 平移</a></li><li class="chapter-item expanded "><a href="../poly/ntt-eval.html"><strong aria-hidden="true">5.9.</strong> NTT 多点求值 & 快速插值</a></li><li class="chapter-item expanded "><a href="../poly/ntt-chirpz.html"><strong aria-hidden="true">5.10.</strong> NTT Chirp Z 变换</a></li><li class="chapter-item expanded "><a href="../poly/relax/index.html"><strong aria-hidden="true">5.11.</strong> NTT 在线卷积</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../poly/relax/ntt-semi.html"><strong aria-hidden="true">5.11.1.</strong> 半在线卷积</a></li><li class="chapter-item "><a href="../poly/relax/ntt-semi-fast.html"><strong aria-hidden="true">5.11.2.</strong> 半在线卷积・卡常</a></li><li class="chapter-item "><a href="../poly/relax/ntt-relax.html"><strong aria-hidden="true">5.11.3.</strong> 全在线卷积</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../ds/index.html"><strong aria-hidden="true">6.</strong> 数据结构</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../ds/dsu.html"><strong aria-hidden="true">6.1.</strong> 并查集</a></li><li class="chapter-item expanded "><a href="../ds/dsu-size.html"><strong aria-hidden="true">6.2.</strong> 带权并查集</a></li><li class="chapter-item expanded "><a href="../ds/sparse-table.html"><strong aria-hidden="true">6.3.</strong> ST</a></li><li class="chapter-item expanded "><a href="../ds/sliding.html"><strong aria-hidden="true">6.4.</strong> 滑动窗口</a></li><li class="chapter-item expanded "><a href="../ds/fwtree.html"><strong aria-hidden="true">6.5.</strong> 树状数组</a></li><li class="chapter-item expanded "><a href="../ds/heap.html"><strong aria-hidden="true">6.6.</strong> 堆</a></li><li class="chapter-item expanded "><a href="../ds/segtree/index.html"><strong aria-hidden="true">6.7.</strong> 线段树</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../ds/segtree/segment-tree.html"><strong aria-hidden="true">6.7.1.</strong> 线段树</a></li><li class="chapter-item "><a href="../ds/segtree/lazy-segment-tree.html"><strong aria-hidden="true">6.7.2.</strong> 懒标记线段树</a></li><li class="chapter-item "><a href="../ds/segtree/segment-tree-2.html"><strong aria-hidden="true">6.7.3.</strong> 动态开点线段树</a></li><li class="chapter-item "><a href="../ds/segtree/lazy-segment-tree-2.html"><strong aria-hidden="true">6.7.4.</strong> 动态开点懒标记线段树</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../geo/index.html"><strong aria-hidden="true">7.</strong> 计算几何</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../geo/fpoint.html"><strong aria-hidden="true">7.1.</strong> F 点 & 线段</a></li><li class="chapter-item expanded "><a href="../geo/polygon.html"><strong aria-hidden="true">7.2.</strong> F 多边形</a></li><li class="chapter-item expanded "><a href="../geo/intersect.html"><strong aria-hidden="true">7.3.</strong> F 冲突判定</a></li><li class="chapter-item expanded "><a href="../geo/ipoint.html"><strong aria-hidden="true">7.4.</strong> I 点 & 线段</a></li></ol></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -166,6 +168,7 @@
                         <a href="https://github.com/rogeryoungh/code-of-acm/edit/main/src/poly/ntt-newton.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
+
                     </div>
                 </div>
 
@@ -179,8 +182,9 @@
                         </ul>
                     </div>
                 </div>
+
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
+                <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
@@ -462,78 +466,6 @@ struct Poly : std::vector&lt;Z&gt; { // 大常数板子
 #undef T
 };
 </code></pre>
-<pre><code>poly/ntt-newton.hpp:
-===============================================================================
-   Name (baseline is *)   |   Dim   |  Total ms |  ns/op  |Baseline| Ops/second
-===============================================================================
-                 NTT 1E * |       1 |     0.000 |     100 |      - | 10000000.0
-                   MUL 6E |       1 |     0.001 |     700 |  7.000 |  1428571.4
-                  INV 12E |       1 |     0.001 |     500 |  5.000 |  2000000.0
-                  LOG 18E |       1 |     0.001 |    1300 | 13.000 |   769230.8
-                  EXP 48E |       1 |     0.000 |     200 |  2.000 |  5000000.0
-                 SQRT 36E |       1 |     0.000 |     200 |  2.000 |  5000000.0
-                 NTT 1E * |       2 |     0.000 |     100 |      - | 10000000.0
-                   MUL 6E |       2 |     0.001 |     550 |  5.500 |  1818181.8
-                  INV 12E |       2 |     0.001 |     350 |  3.500 |  2857142.9
-                  LOG 18E |       2 |     0.002 |     950 |  9.500 |  1052631.6
-                  EXP 48E |       2 |     0.006 |    3150 | 31.500 |   317460.3
-                 SQRT 36E |       2 |     0.002 |    1200 | 12.005 |   832986.3
-                 NTT 1E * |      64 |     0.001 |       9 |      - |106666666.7
-                   MUL 6E |      64 |     0.006 |      90 |  9.667 | 11034482.8
-                  INV 12E |      64 |     0.012 |     179 | 19.168 |  5564733.5
-                  LOG 18E |      64 |     0.017 |     257 | 27.500 |  3878787.9
-                  EXP 48E |      64 |     0.044 |     684 | 73.002 |  1461153.9
-                 SQRT 36E |      64 |     0.032 |     500 | 53.335 |  1999937.5
-                 NTT 1E * |     512 |     0.006 |      12 |      - | 80000000.0
-                   MUL 6E |     512 |     0.046 |      90 |  7.219 | 11082011.2
-                  INV 12E |     512 |     0.092 |     180 | 14.407 |  5553024.9
-                  LOG 18E |     512 |     0.141 |     274 | 21.985 |  3638896.4
-                  EXP 48E |     512 |     0.358 |     698 | 55.907 |  1430939.0
-                 SQRT 36E |     512 |     0.262 |     512 | 41.001 |  1951182.3
-                 NTT 1E * |    4096 |     0.064 |      15 |      - | 64300403.4
-                   MUL 6E |    4096 |     0.448 |     109 |  7.036 |  9138614.2
-                  INV 12E |    4096 |     0.870 |     212 | 13.655 |  4709036.5
-                  LOG 18E |    4096 |     1.340 |     327 | 21.030 |  3057569.8
-                  EXP 48E |    4096 |     3.378 |     824 | 53.030 |  1212528.8
-                 SQRT 36E |    4096 |     2.545 |     621 | 39.956 |  1609273.4
-                 NTT 1E * |   16384 |     0.295 |      17 |      - | 55632143.3
-                   MUL 6E |   16384 |     2.031 |     123 |  6.895 |  8067998.9
-                  INV 12E |   16384 |     3.973 |     242 | 13.492 |  4123444.6
-                  LOG 18E |   16384 |     6.092 |     371 | 20.685 |  2689554.1
-                  EXP 48E |   16384 |    15.341 |     936 | 52.089 |  1068016.1
-                 SQRT 36E |   16384 |    11.416 |     696 | 38.765 |  1435126.1
-                 NTT 1E * |   32768 |     0.628 |      19 |      - | 52152433.8
-                   MUL 6E |   32768 |     4.390 |     133 |  6.986 |  7464774.2
-                  INV 12E |   32768 |     8.379 |     255 | 13.336 |  3910560.7
-                  LOG 18E |   32768 |    12.996 |     396 | 20.684 |  2521362.7
-                  EXP 48E |   32768 |    32.514 |     992 | 51.748 |  1007814.5
-                 SQRT 36E |   32768 |    24.336 |     742 | 38.733 |  1346467.9
-                 NTT 1E * |   65536 |     1.336 |      20 |      - | 49067628.2
-                   MUL 6E |   65536 |     9.160 |     139 |  6.859 |  7154213.4
-                  INV 12E |   65536 |    17.734 |     270 | 13.277 |  3695554.8
-                  LOG 18E |   65536 |    27.387 |     417 | 20.505 |  2392975.7
-                  EXP 48E |   65536 |    68.911 |    1051 | 51.595 |   951018.1
-                 SQRT 36E |   65536 |    52.574 |     802 | 39.363 |  1246557.1
-                 NTT 1E * |  131072 |     2.841 |      21 |      - | 46138238.7
-                   MUL 6E |  131072 |    19.420 |     148 |  6.836 |  6749341.0
-                  INV 12E |  131072 |    37.643 |     287 | 13.250 |  3482020.0
-                  LOG 18E |  131072 |    58.019 |     442 | 20.423 |  2259121.6
-                  EXP 48E |  131072 |   147.076 |    1122 | 51.772 |   891183.6
-                 SQRT 36E |  131072 |   110.335 |     841 | 38.839 |  1187945.8
-                 NTT 1E * |  262144 |     6.008 |      22 |      - | 43634567.2
-                   MUL 6E |  262144 |    41.511 |     158 |  6.910 |  6315080.7
-                  INV 12E |  262144 |    80.699 |     307 | 13.432 |  3248435.5
-                  LOG 18E |  262144 |   126.014 |     480 | 20.975 |  2080273.3
-                  EXP 48E |  262144 |   314.161 |    1198 | 52.293 |   834425.4
-                 SQRT 36E |  262144 |   233.990 |     892 | 38.948 |  1120321.1
-                 NTT 1E * |  524288 |    12.653 |      24 |      - | 41436385.7
-                   MUL 6E |  524288 |    91.415 |     174 |  7.225 |  5735229.4
-                  INV 12E |  524288 |   171.321 |     326 | 13.540 |  3060262.0
-                  LOG 18E |  524288 |   272.626 |     519 | 21.547 |  1923100.6
-                  EXP 48E |  524288 |   676.965 |    1291 | 53.503 |   774468.1
-                 SQRT 36E |  524288 |   500.099 |     953 | 39.525 |  1048369.2
-===============================================================================
-</code></pre>
 
                     </main>
 
@@ -542,9 +474,11 @@ struct Poly : std::vector&lt;Z&gt; { // 大常数板子
                             <a rel="prev" href="../poly/ntt-naive.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="../poly/ntt-newton-fast.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+
+                            <a rel="next prefetch" href="../poly/ntt-newton-fast.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
+
                         <div style="clear: both"></div>
                     </nav>
                 </div>
@@ -554,23 +488,33 @@ struct Poly : std::vector&lt;Z&gt; { // 大常数板子
                     <a rel="prev" href="../poly/ntt-naive.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="../poly/ntt-newton-fast.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+
+                    <a rel="next prefetch" href="../poly/ntt-newton-fast.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
         </div>
 
-        <script type="text/javascript">
+
+
+
+        <script>
             window.playground_copyable = true;
         </script>
-        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
+
+
+    </div>
     </body>
 </html>
