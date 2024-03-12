@@ -3,7 +3,3 @@
 ```cpp
 {{#include ntt-eval.hpp.full}}
 ```
-
-```
-{{#include ../../build/ntt-eval.info}}
-```

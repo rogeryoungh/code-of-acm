@@ -3,7 +3,3 @@
 ```cpp
 {{#include ntt-mul-i32.hpp.full}}
 ```
-
-```
-{{#include ../../build/ntt-mul-i32.info}}
-```

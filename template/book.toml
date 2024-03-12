@@ -7,13 +7,7 @@ title = "Roger Young 的板子"
 
 [preprocessor.katex]
 
-[preprocessor.admonish]
-command = "mdbook-admonish"
-assets_version = "2.0.0" # do not edit: managed by `mdbook-admonish install`
-
 [output.html]
-theme = "theme/"
-additional-css = ["theme/mdbook-admonish.css"]
 git-repository-url = "https://github.com/rogeryoungh/code-of-acm/"
 edit-url-template = "https://github.com/rogeryoungh/code-of-acm/edit/main/{path}"
 

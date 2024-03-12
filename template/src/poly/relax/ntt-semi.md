@@ -3,7 +3,3 @@
 ```cpp
 {{#include ntt-semi.hpp.full}}
 ```
-
-```
-{{#include ../../../build/ntt-semi.info}}
-```
