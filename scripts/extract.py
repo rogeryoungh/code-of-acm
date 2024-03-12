@@ -9,7 +9,7 @@ import re
 
 from typing import List
 
-template_dir = "./template/src/"
+template_dir = "./src/template/"
 
 links = "// GENERATE FROM https://github.com/rogeryoungh/code-of-acm"
 date = f"// GENERATE DATE: {datetime.datetime.now()}"
@@ -82,4 +82,4 @@ def process_all(dir_name: str, is_test: bool):
 
 if __name__ == '__main__':
     # process('./template/src/math/pollard-rho.cpp', False)
-    process_all('./template/src', False)
+    process_all('./src/template/', False)
