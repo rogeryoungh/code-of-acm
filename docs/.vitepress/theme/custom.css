@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans+SC:wght@400;700&display=swap');
+
+:root {
+	--vp-font-family-base: 'Noto Sans', 'Segoe UI', sans-serif,
+	'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+	--vp-font-family-mono: Maple Mono, Jetbrains Mono, Consolas, monospace;
+}
+
+.vp-doc [class*="language-"] pre,
+.vp-doc [class*="language-"] code {
+	tab-size: 2;
+}

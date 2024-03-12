@@ -1,8 +1,8 @@
 BasedOnStyle: LLVM
 BreakBeforeBraces: Attach
-IndentWidth: '4'
+IndentWidth: '2'
 Language: Cpp
-TabWidth: '4'
+TabWidth: '2'
 UseTab: Always
 AllowShortBlocksOnASingleLine: Empty
 AllowShortFunctionsOnASingleLine: Empty

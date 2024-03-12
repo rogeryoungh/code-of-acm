@@ -34,6 +34,7 @@ function sidebarItems(): DefaultTheme.Sidebar {
           { text: '初始文件', link: '/template/base' },
           { text: '二维数组', link: '/template/vec2d' },
           { text: '快速幂', link: '/template/qpow' },
+          { text: '二分查找', link: '/template/binary-search' },
         ]
       }
     ]
