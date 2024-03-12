@@ -1,0 +1,1 @@
+import{_ as s,c as i,o as a,a2 as n}from"./chunks/framework.Bx6qu0xe.js";const F=JSON.parse('{"title":"并查集","description":"","frontmatter":{},"headers":[],"relativePath":"template/dsu.md","filePath":"template/dsu.md"}'),h={name:"template/dsu.md"},t=n("",4),k=[t];function l(p,e,E,r,d,g){return a(),i("div",null,k)}const o=s(h,[["render",l]]);export{F as __pageData,o as default};
