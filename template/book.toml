@@ -6,8 +6,10 @@ src = "src"
 title = "Roger Young 的板子"
 
 [preprocessor.katex]
+no-css = true
 
 [output.html]
+theme = "theme/"
 git-repository-url = "https://github.com/rogeryoungh/code-of-acm/"
 edit-url-template = "https://github.com/rogeryoungh/code-of-acm/edit/main/{path}"
 
