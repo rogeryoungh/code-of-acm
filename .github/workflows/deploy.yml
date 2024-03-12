@@ -10,7 +10,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
@@ -21,45 +21,40 @@ jobs:
           hugo-version: 'latest'
           # extended: true
 
-      - name: Setup xmake
-        uses: xmake-io/github-action-setup-xmake@v1
-        with:
-          xmake-version: latest
-
-      - uses: docker://pandoc/core:latest
-        with:
-          args: >-  # allows you to break string into multiple lines
-            print-template/main.md
-            --template="print-template/pureart.latex"
-            --listings
-            --top-level-division=chapter
-            -o print-template/main.tex
+      # - uses: docker://pandoc/core:latest
+      #   with:
+      #     args: >-  # allows you to break string into multiple lines
+      #       print-template/main.md
+      #       --template="print-template/pureart.latex"
+      #       --listings
+      #       --top-level-division=chapter
+      #       -o print-template/main.tex
 
       # https://github.com/OI-wiki/OI-Wiki-export/blob/master/.github/workflows/auto-release.yml
-      - uses: xu-cheng/latex-action@v2
-        with:
-          root_file: |
-            print-template/main.tex
-            print-template/math.tex
-          latexmk_use_xelatex: true
-          work_in_root_file_dir: true
-          pre_compile: |
-            wget -q -O notosans.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSans-hinted.zip"
-            wget -q -O notoserif.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSerif-hinted.zip"
-            wget -q -O notoserifcjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKsc-hinted.zip"
-            wget -q -O notosanscjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKsc-hinted.zip"
-            wget -q -O lxgw-wenkai.zip "https://github.com/lxgw/LxgwWenKai/releases/download/v1.250/lxgw-wenkai-v1.250.zip"
-            wget -q -O jetbrains-mono.zip "https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip"
-            wget -q "http://mirrors.ctan.org/fonts/cm-unicode.zip"
-            unzip -q notosans.zip -d notosans
-            unzip -q notoserif.zip -d notoserif
-            unzip -q notosanscjk.zip -d notosanscjk
-            unzip -q notoserifcjk.zip -d notoserifcjk
-            unzip -q lxgw-wenkai.zip -d lxgw-wenkai
-            unzip -q jetbrains-mono.zip -d jetbrains-mono
-            unzip ./cm-unicode.zip
-            cp -r notosans notoserif notosanscjk notoserifcjk lxgw-wenkai jetbrains-mono/fonts/ttf/* cm-unicode/fonts/otf/* /usr/share/fonts
-            fc-cache
+      # - uses: xu-cheng/latex-action@v3
+      #   with:
+      #     root_file: |
+      #       print-template/main.tex
+      #       print-template/math.tex
+      #     latexmk_use_xelatex: true
+      #     work_in_root_file_dir: true
+      #     pre_compile: |
+      #       wget -q -O notosans.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSans-hinted.zip"
+      #       wget -q -O notoserif.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSerif-hinted.zip"
+      #       wget -q -O notoserifcjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKsc-hinted.zip"
+      #       wget -q -O notosanscjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKsc-hinted.zip"
+      #       wget -q -O lxgw-wenkai.zip "https://github.com/lxgw/LxgwWenKai/releases/download/v1.320/lxgw-wenkai-v1.320.zip"
+      #       wget -q -O jetbrains-mono.zip "https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip"
+      #       wget -q "http://mirrors.ctan.org/fonts/cm-unicode.zip"
+      #       unzip -q notosans.zip -d notosans
+      #       unzip -q notoserif.zip -d notoserif
+      #       unzip -q notosanscjk.zip -d notosanscjk
+      #       unzip -q notoserifcjk.zip -d notoserifcjk
+      #       unzip -q lxgw-wenkai.zip -d lxgw-wenkai
+      #       unzip -q jetbrains-mono.zip -d jetbrains-mono
+      #       unzip ./cm-unicode.zip
+      #       cp -r notosans notoserif notosanscjk notoserifcjk lxgw-wenkai jetbrains-mono/fonts/ttf/* cm-unicode/fonts/otf/* /usr/share/fonts
+      #       fc-cache
 
       - name: Build
         run: |
@@ -81,13 +76,13 @@ jobs:
           publish_dir: ./template/book
           publish_branch: docs-gh-page
 
-      - name: Deploy PDF Docs
-        uses: marvinpinto/action-automatic-releases@latest
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          prerelease: true
-          title: "Development Build"
-          files: |
-            print-template/math.pdf
-            print-template/main.pdf
+      # - name: Deploy PDF Docs
+      #   uses: marvinpinto/action-automatic-releases@latest
+      #   with:
+      #     repo_token: "${{ secrets.GITHUB_TOKEN }}"
+      #     automatic_release_tag: "latest"
+      #     prerelease: true
+      #     title: "Development Build"
+      #     files: |
+      #       print-template/math.pdf
+      #       print-template/main.pdf

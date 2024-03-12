@@ -3,7 +3,3 @@
 ```cpp
 {{#include ntt-relax.hpp.full}}
 ```
-
-```
-{{#include ../../../build/ntt-relax.info}}
-```

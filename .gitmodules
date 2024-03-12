@@ -1,6 +1,3 @@
 [submodule "archive/themes/paper-mod"]
 	path = blog/themes/paper-mod
 	url = https://github.com/rogeryoungh/hugo-PaperMod.git
-[submodule "template/picobench"]
-	path = template/picobench
-	url = https://github.com/iboB/picobench.git

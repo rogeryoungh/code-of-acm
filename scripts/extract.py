@@ -45,7 +45,7 @@ def replace_dfs(content: List[str], is_test: bool, disable: bool = False):
             disable_t = disable or line.endswith('// !!only')
             if path not in maps:
                 header = ''
-                if not disable and (path != 'basic/index.hpp' or is_test) and path != 'picobench/picobench.hpp':
+                if not disable and (path != 'basic/index.hpp' or is_test):
                     header = read_file(template_dir + path)
                 maps.add(path)
                 content_split = replace_dfs(header.splitlines(), is_test, disable_t)
