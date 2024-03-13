@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: 算法模板
-      link: /template/base
+      link: /template/
 
 features:
   - title: 广告位招租
