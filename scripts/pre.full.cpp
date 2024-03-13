@@ -1,1 +1,1 @@
-#include "/home/runner/work/code-of-acm/code-of-acm/src/template/datastruct/sparse-table.hpp"
+#include "/home/runner/work/code-of-acm/code-of-acm/src/template/math/cipolla.hpp"

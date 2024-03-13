@@ -51,6 +51,9 @@ def process_and_write_helper(src):
 
 def process_all():
     process_and_write_helper("datastruct/sparse-table.hpp")
+    process_and_write_helper("math/miller-rabin.hpp")
+    process_and_write_helper("math/pollard-rho.hpp")
+    process_and_write_helper("math/cipolla.hpp")
 
 
 # print(process(sys.argv[1]))
