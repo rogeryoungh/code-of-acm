@@ -14,10 +14,10 @@ hero:
       link: /logs/
 
 features:
-  - title: 广告位招租
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: 广告位招租
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 算法模板
+    details: 我的算法模板，用了都说好！
+  - title: 刷题日志
+    details: 以前的刷题博客，还在迁移。
   - title: 广告位招租
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---

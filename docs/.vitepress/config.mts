@@ -36,6 +36,19 @@ function sidebarItems(): DefaultTheme.Sidebar {
         items: [
           { text: '2020-09', link: '/logs/2020-09' },
         ]
+      },
+      {
+        text: '2021',
+        items: [
+          { text: '2021-01', link: '/logs/2021-01' },
+          { text: '2021-02', link: '/logs/2021-02' },
+        ]
+      },
+      {
+        text: '2022',
+        items: [
+          { text: '2022-01', link: '/logs/2022-01' },
+        ]
       }
     ],
     '/template/': [
