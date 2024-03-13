@@ -9,6 +9,9 @@ hero:
     - theme: brand
       text: 算法模板
       link: /template/
+    - theme: alt
+      text: 刷题日志
+      link: /logs/
 
 features:
   - title: 广告位招租

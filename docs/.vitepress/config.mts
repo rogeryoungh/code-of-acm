@@ -14,19 +14,28 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: '主页', link: '/' },
-      { text: '模板', link: '/template/base' }
+      { text: '模板', link: '/template/' },
+      { text: '日志', link: '/logs/' },
     ],
 
     sidebar: sidebarItems(),
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/rogeryoungh/code-of-acm' }
     ]
   }
 })
 
 function sidebarItems(): DefaultTheme.Sidebar {
   return {
+    '/logs/': [
+      {
+        text: '2020',
+        items: [
+          { text: '2020-09', link: '/logs/2020-09' },
+        ]
+      }
+    ],
     '/template/': [
       {
         text: '基础',
