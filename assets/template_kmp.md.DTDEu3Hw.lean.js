@@ -1,0 +1,1 @@
+import{_ as s,c as i,o as a,a2 as h}from"./chunks/framework.Bx6qu0xe.js";const F=JSON.parse('{"title":"KMP","description":"","frontmatter":{},"headers":[],"relativePath":"template/kmp.md","filePath":"template/kmp.md"}'),k={name:"template/kmp.md"},n=h("",2),t=[n];function p(l,E,e,r,d,g){return a(),i("div",null,t)}const c=s(k,[["render",p]]);export{F as __pageData,c as default};
