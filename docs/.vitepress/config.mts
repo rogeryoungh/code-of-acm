@@ -20,6 +20,8 @@ export default defineConfig({
 
     sidebar: sidebarItems(),
 
+    search: { provider: 'local' },
+
     socialLinks: [
       { icon: 'github', link: 'https://github.com/rogeryoungh/code-of-acm' }
     ]
