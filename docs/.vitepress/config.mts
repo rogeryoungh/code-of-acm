@@ -93,6 +93,13 @@ function sidebarItems(): DefaultTheme.Sidebar {
         ]
       },
       {
+        text: '图论',
+        items: [
+          { text: '最短路', link: '/template/shortest-path' },
+          { text: '最小生成树', link: '/template/mst' },
+        ]
+      },
+      {
         text: '无用',
         items: [
           { text: '小技巧', link: '/template/some-trick' },
