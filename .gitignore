@@ -21,3 +21,5 @@ __latexident*.tex
 *.log
 *.synctex.gz
 *.toc
+
+.cph/
