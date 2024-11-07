@@ -1,1 +1,0 @@
-import{_ as s,c as i,o as a,a4 as h}from"./chunks/framework.nQaBHiNx.js";const F=JSON.parse('{"title":"中国剩余定理","description":"","frontmatter":{},"headers":[],"relativePath":"template/crt.md","filePath":"template/crt.md"}'),k={name:"template/crt.md"},n=h("",4),t=[n];function p(l,E,e,r,d,g){return a(),i("div",null,t)}const c=s(k,[["render",p]]);export{F as __pageData,c as default};
