@@ -44,6 +44,7 @@ function sidebarItems(): DefaultTheme.Sidebar {
         items: [
           { text: '2021-01', link: '/logs/2021-01' },
           { text: '2021-02', link: '/logs/2021-02' },
+          { text: '2021-03', link: '/logs/2021-03' },
         ]
       },
       {
