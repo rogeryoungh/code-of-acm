@@ -51,6 +51,12 @@ function sidebarItems(): DefaultTheme.Sidebar {
         items: [
           { text: '2022-01', link: '/logs/2022-01' },
         ]
+      },
+      {
+        text: '2024',
+        items: [
+          { text: '2024-11', link: '/logs/2024-11' },
+        ]
       }
     ],
     '/template/': [
