@@ -37,6 +37,7 @@ function sidebarItems(): DefaultTheme.Sidebar {
           { text: '2020-09', link: '/logs/2020-09' },
           { text: '2020-10', link: '/logs/2020-10' },
           { text: '2020-11', link: '/logs/2020-11' },
+          { text: '2020-12', link: '/logs/2020-12' },
         ]
       },
       {
@@ -45,6 +46,8 @@ function sidebarItems(): DefaultTheme.Sidebar {
           { text: '2021-01', link: '/logs/2021-01' },
           { text: '2021-02', link: '/logs/2021-02' },
           { text: '2021-03', link: '/logs/2021-03' },
+          { text: '2021-04', link: '/logs/2021-04' },
+          { text: '2021-05', link: '/logs/2021-05' },
         ]
       },
       {
